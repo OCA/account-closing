@@ -25,6 +25,9 @@
                     <label string="Provision P&amp;L accounts:" colspan="1"/>
                     <field name="provision_pl_loss_account_id" nolabel="1"/>
                     <field name="provision_pl_gain_account_id" nolabel="1"/>
+                    <newline/>
+                    <separator colspan="5"/>
+                    <field name="default_currency_reeval_journal_id"/>
                     </group>
                 </xpath>
             </field>

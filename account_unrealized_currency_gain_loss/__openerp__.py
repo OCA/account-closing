@@ -61,6 +61,8 @@ For FR
                 "account",
                 "account_reversal"],
     "init_xml": ["res_company_view.xml",
+                 "res_currency_view.xml",
+                 "account_view.xml",
                  "wizard_currency_reevaluation_view.xml"],
     "update_xml": [],
     "test": ["test/currency_reevaluation.yml"],

@@ -33,17 +33,6 @@ from datetime import date
 from osv import osv, fields
 from tools.translate import _
 
-class AccountAccount(osv.osv):
-    _inherit = 'account.account'
-
-    def compute_balances(self, cursor, uid, ids, context, query):
-        """ hack to call private __compute method """
-        return self._account_account__compute(cursor, uid, ids,
-                              ['balance', 'foreign_balance'],
-                              context=context,
-                              query=query)
-
-AccountAccount()
 
 class WizardCurrencyReevaluation(osv.osv_memory):
     _name = 'wizard.currency.reevaluation'
@@ -53,6 +42,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                 'journal_id': fields.many2one('account.journal',
                                               'Journal',
                                               domain="[('type','=','general')]",
+                                              help="You can set the default journal in company settings.",
                                               required=True),
                 'currency_type': fields.many2one('res.currency.rate.type',
                                                  'Currency Type',
@@ -88,11 +78,24 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         return last_period.date_stop
 
 
+    def _get_default_journal_id(self, cursor, uid, context):
+        """
+        Get default journal if one is defined in company settings
+        """
+        user_obj = self.pool.get('res.users')
+        cp = user_obj.browse(cursor, uid, uid, context=context).company_id
+
+        journal = cp.default_currency_reeval_journal_id
+        return journal and journal.id or False
+
+
     _defaults = {'label': '%(account)s %(rate)s currency reevaluation',
-                 'reevaluation_date': _get_default_reevaluation_date}
+                 'reevaluation_date': _get_default_reevaluation_date,
+                 'journal_id': _get_default_journal_id}
 
 
     def _compute_unrealized_currency_gl(self, cursor, uid, acc_id,
+                                                           cur_id,
                                                            data,
                                                            wiz,
                                                            context=None):
@@ -107,12 +110,11 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         @return updated data for foreign balance plus rate value used
         """
         context = context or {}
-
-        account_obj = self.pool.get('account.account')
+        
+        currency_obj = self.pool.get('res.currency')
         rate_obj = self.pool.get('res.currency.rate')
 
-        account = account_obj.browse(cursor, uid, acc_id, context=context)
-        currency_id = account.currency_id
+        currency = currency_obj.browse(cursor, uid, cur_id, context=context)
 
         type_id = wiz.currency_type and wiz.currency_type.id or False
 
@@ -120,7 +122,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         # rate name is effictive date
         rate_ids = rate_obj.search(cursor, uid,
                                    [('currency_rate_type_id', '=', type_id),
-                                    ('currency_id', '=', account.currency_id.id),
+                                    ('currency_id', '=', cur_id),
                                     ('name', '<=', wiz.reevaluation_date)],
                                    limit=1,
                                    order='name DESC')
@@ -129,11 +131,11 @@ class WizardCurrencyReevaluation(osv.osv_memory):
             if wiz.currency_type:
                 raise osv.except_osv(_('Error!'),
                                      _("A rate is missing for currency %s. Please add a rate for '%s' type as of %s."
-                                      %(account.currency_id.name, wiz.currency_type.name, wiz.reevaluation_date)))
+                                      %(currency.name, wiz.currency_type.name, wiz.reevaluation_date)))
             else:
                 raise osv.except_osv(_('Error!'),
                                      _('No rate found for currency %s.'
-                                      %(account.currency_id.name)))
+                                      %(currency.name)))
 
               
         # Compute unrealized gain loss
@@ -157,6 +159,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         return text % data
 
     def _write_adjust_balance(self, cursor, uid, acc_id,
+                              cur_id,
                               amount,
                               label,
                               wiz,
@@ -177,7 +180,6 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         move_line_obj = self.pool.get('account.move.line')
         period_obj = self.pool.get('account.period')
         user_obj = self.pool.get('res.users')
-        account_obj = self.pool.get('account.account')
 
         cp = user_obj.browse(cursor, uid, uid).company_id
 
@@ -196,8 +198,6 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                                   %(cp.name, wiz.reevaluation_date)))
 
         period = period_obj.browse(cursor, uid, period_ids[0], context=context)
-        account = account_obj.browse(cursor, uid, acc_id)
-        currency_id = account.currency_id.id
 
         created_ids = []
 
@@ -211,18 +211,18 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                              'date': wiz.reevaluation_date,
                              'to_be_reversed': True}
                 move_id = move_obj.create(cursor, uid, move_data, context=context)
-                # Create a move line Dt account to be reevaluated
+                # Create a move line to Debit account to be reevaluated
                 line_data = {'name': label,
                              'account_id': acc_id,
                              'move_id': move_id,
                              'debit': amount,
-                             'currency_id': currency_id,
+                             'currency_id': cur_id,
                              'amount_currency': 0.0,
                              'date': wiz.reevaluation_date}
                 created_id = move_line_obj.create(cursor, uid, line_data, context=context)
                 created_ids.append(created_id)
 
-                # Create a move line Ct reevaluation gain account
+                # Create a move line to Credit reevaluation gain account
                 line_data = {'name': label,
                              'account_id': cp.reevaluation_gain_account_id.id,
                              'move_id': move_id,
@@ -241,7 +241,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                              'to_be_reversed': True}
                 move_id = move_obj.create(cursor, uid, move_data, context=context)
 
-                # Create a move line Dt provision BS gain
+                # Create a move line to Debit provision BS gain
                 line_data = {'name': label,
                              'account_id': cp.provision_bs_gain_account_id.id,
                              'move_id': move_id,
@@ -250,7 +250,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                 created_id = move_line_obj.create(cursor, uid, line_data, context=context)
                 created_ids.append(created_id)
 
-                # Create a move line Ct provision P&L gain
+                # Create a move line to Credit provision P&L gain
                 line_data = {'name': label,
                              'account_id': cp.provision_pl_gain_account_id.id,
                              'move_id': move_id,
@@ -272,7 +272,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                              'to_be_reversed': True}
                 move_id = move_obj.create(cursor, uid, move_data, context=context)
 
-                # Create a move line Dt reevaluation loss account
+                # Create a move line to Debit reevaluation loss account
                 line_data = {'name': label,
                              'account_id': cp.reevaluation_loss_account_id.id,
                              'move_id': move_id,
@@ -281,12 +281,12 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                 created_id = move_line_obj.create(cursor, uid, line_data, context=context)
                 created_ids.append(created_id)
 
-                # Create a move line Ct account to be reevaluated
+                # Create a move line to Credit account to be reevaluated
                 line_data = {'name': label,
                              'account_id': acc_id,
                              'move_id': move_id,
                              'credit': amount,
-                             'currency_id': currency_id,
+                             'currency_id': cur_id,
                              'amount_currency': 0.0,
                              'date': wiz.reevaluation_date}
                 created_id = move_line_obj.create(cursor, uid, line_data, context=context)
@@ -302,7 +302,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                              'to_be_reversed': True}
                 move_id = move_obj.create(cursor, uid, move_data, context=context)
 
-                # Create a move line Dt Provision P&L
+                # Create a move line to Debit Provision P&L
                 line_data = {'name': label,
                              'account_id': cp.provision_pl_loss_account_id.id,
                              'move_id': move_id,
@@ -311,7 +311,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                 created_id = move_line_obj.create(cursor, uid, line_data, context=context)
                 created_ids.append(created_id)
 
-                # Create a move line Ct Provision BS
+                # Create a move line to Credit Provision BS
                 line_data = {'name': label,
                              'account_id': cp.provision_bs_loss_account_id.id,
                              'move_id': move_id,
@@ -335,6 +335,7 @@ class WizardCurrencyReevaluation(osv.osv_memory):
         account_obj = self.pool.get('account.account')
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         move_obj = self.pool.get('account.move')
+        currency_obj = self.pool.get('res.currency')
 
         cp = user_obj.browse(cursor, uid, uid).company_id
         
@@ -353,11 +354,17 @@ class WizardCurrencyReevaluation(osv.osv_memory):
 
             # Search for accounts Balance Sheet to be reevaluated on those criterions
             # - deferral method of account type is not None
-            # - account has a secondary currency
             account_ids = account_obj.search(cursor, uid,
                                              [('user_type.close_method', '!=', 'none'),
-                                              ('currency_id', '!=', None)])
+                                              ('currency_reevaluation', '=', True)])
 
+            if not account_ids:
+                raise osv.except_osv(_('Settings Error!'),
+                                     _("No account to be reevaluated found. "
+                                       "Please check 'Allow Currency Reevaluation' "
+                                       "for at least one account in account form."))
+
+ 
 
             fiscalyear_ids = fiscalyear_obj.search(cursor, uid,
                                                    [('date_start', '<=', wiz.reevaluation_date),
@@ -399,32 +406,42 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                                          _('You must generate an opening entry'
                                            ' in opening period for this fiscal year.'))
 
-            # Filter move lines based on user choices
-            filters = ("l.date <= '%s'"
-                      " AND l.period_id IN %s"
-                        %(wiz.reevaluation_date,
-                          str(tuple(period_ids))))
-            # Get balance sums
-            sums = account_obj.compute_balances(cursor, uid, account_ids,
-                                                context=context,
-                                                query=filters)
-            for acc_id in account_ids:
-                # Update sums with compute amount currency balance
-                self._compute_unrealized_currency_gl(cursor, uid, acc_id,
-                                                     sums, wiz, context=context)
+            
+            currency_ids = currency_obj.search(cursor, uid, [])
 
-            # Create entries only after all computation have been done
-            for acc_id in account_ids:
-                adj_balance = sums[acc_id].get('unrealized_gain_loss', 0.0)
-                rate = sums[acc_id].get('currency_rate', 0.0)
-                if adj_balance:
-                    
-                    label = self._format_label(cursor, uid, wiz.label, acc_id, rate)
-                    # Write an entry to adjust balance
-                    new_ids = self._write_adjust_balance(cursor, uid, acc_id,
-                                                         adj_balance, label, wiz, context=context)
-                    created_ids.extend(new_ids)
-       
+            for cur_id in currency_ids:
+
+                # Filter move lines based on user choices
+                filters = ("l.date <= '%s'"
+                           " AND l.period_id IN %s"
+                           " AND l.currency_id = %s"
+                            %(wiz.reevaluation_date,
+                              str(tuple(period_ids)),
+                              cur_id))
+                # Get balance sums
+                sums = account_obj.compute_balances(cursor, uid, account_ids,
+                                                    context=context,
+                                                    query=filters)
+
+                for acc_id in account_ids:
+                    if sums[acc_id]['balance']:
+                        # Update sums with compute amount currency balance
+                        self._compute_unrealized_currency_gl(cursor, uid, acc_id, cur_id,
+                                                             sums, wiz, context=context)
+    
+                # Create entries only after all computation have been done
+                for acc_id in account_ids:
+                    adj_balance = sums[acc_id].get('unrealized_gain_loss', 0.0)
+                    if adj_balance:
+                        
+                        rate = sums[acc_id].get('currency_rate', 0.0)
+                        
+                        label = self._format_label(cursor, uid, wiz.label, acc_id, rate)
+                        # Write an entry to adjust balance
+                        new_ids = self._write_adjust_balance(cursor, uid, acc_id, cur_id,
+                                                             adj_balance, label, wiz, context=context)
+                        created_ids.extend(new_ids)
+           
         if created_ids:
             return {'domain': "[('id','in', %s)]" %(created_ids,),
                     'name': _("Created reevaluation lines"),

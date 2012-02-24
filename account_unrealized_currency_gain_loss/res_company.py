@@ -50,7 +50,10 @@ class ResCompany(osv.osv):
                                                                 domain=[('type','=','other')]),
                 'provision_pl_gain_account_id': fields.many2one('account.account',
                                                                 'Provision P&L gain account',
-                                                                domain=[('type','=','other')])}
+                                                                domain=[('type','=','other')]),
+                'default_currency_reeval_journal_id': fields.many2one('account.journal',
+                                                                      'Currency gain & loss Default Journal',
+                                                                      domain=[('type','=','general')])}
 
 
 ResCompany()

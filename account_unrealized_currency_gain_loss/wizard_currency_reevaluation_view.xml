@@ -42,7 +42,7 @@
         <menuitem
             action="action_view_account_currency_reevaluation_wizard"
             id="menu_view_account_currency_reevaluation_wizard"
-            parent="account.menu_finance_periodical_processing"/>
+            parent="account.menu_account_end_year_treatments"/>
 
     </data>
 </openerp>

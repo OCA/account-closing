@@ -29,6 +29,7 @@
 ##############################################################################
 
 from . import res_company
+from . import account
 from . import wizard_currency_reevaluation
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
