@@ -1,30 +1,21 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2012 Camptocamp SA (http://www.camptocamp.com)
-# All Right Reserved
+#    Author: Yannick Vaucher
+#    Copyright 2012 Camptocamp SA
 #
-# Author : Yannick Vaucher (Camptocamp)
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
 #
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
@@ -94,56 +85,56 @@ class WizardCurrencyReevaluation(osv.osv_memory):
                  'journal_id': _get_default_journal_id}
 
 
-    def _compute_unrealized_currency_gl(self, cursor, uid, acc_id,
-                                                           cur_id,
-                                                           data,
-                                                           wiz,
-                                                           context=None):
+    def _compute_unrealized_currency_gl(
+            self, cr, uid, account_id, currency_id, data, wiz, context=None):
         """
         Update data dict with the unrealized currency gain and loss
         plus add 'currency_rate' which is the value used for rate in
         computation
         
-        @acc_id: Id of account
-        @data: dict containing foreign balance and balance
+        @param int account_id: Id of account
+        @param dict data: contains foreign balance and balance
 
-        @return updated data for foreign balance plus rate value used
+        @return: updated data for foreign balance plus rate value used
         """
         context = context or {}
         
         currency_obj = self.pool.get('res.currency')
         rate_obj = self.pool.get('res.currency.rate')
 
-        currency = currency_obj.browse(cursor, uid, cur_id, context=context)
+        currency = currency_obj.browse(cr, uid, currency_id, context=context)
 
         type_id = wiz.currency_type and wiz.currency_type.id or False
 
         # Get the last rate corresponding to the rate type selected
-        # rate name is effictive date
-        rate_ids = rate_obj.search(cursor, uid,
+        # rate name is effective date
+        rate_ids = rate_obj.search(cr, uid,
                                    [('currency_rate_type_id', '=', type_id),
-                                    ('currency_id', '=', cur_id),
+                                    ('currency_id', '=', currency_id),
                                     ('name', '<=', wiz.reevaluation_date)],
                                    limit=1,
                                    order='name DESC')
 
         if not rate_ids:
             if wiz.currency_type:
-                raise osv.except_osv(_('Error!'),
-                                     _("A rate is missing for currency %s. Please add a rate for '%s' type as of %s."
-                                      %(currency.name, wiz.currency_type.name, wiz.reevaluation_date)))
+                raise osv.except_osv(
+                    _('Error!'),
+                    _("A rate is missing for currency %s. " \
+                      "Please add a rate for '%s' type as of %s." %
+                      (currency.name,
+                       wiz.currency_type.name,
+                       wiz.reevaluation_date)))
             else:
                 raise osv.except_osv(_('Error!'),
-                                     _('No rate found for currency %s.'
-                                      %(currency.name)))
+                                     _('No rate found for currency %s.' %
+                                      (currency.name,)))
 
-              
         # Compute unrealized gain loss
-        currency_rate = rate_obj.browse(cursor, uid, rate_ids[0])
-        adj_bal = data[acc_id].get('foreign_balance', 0.0) / currency_rate.rate
-        balance = data[acc_id].get('balance', 0.0)
-        data[acc_id].update({'unrealized_gain_loss': adj_bal - balance,
-                             'currency_rate': currency_rate.rate})
+        currency_rate = rate_obj.browse(cr, uid, rate_ids[0])
+        adj_bal = data[account_id].get('foreign_balance', 0.0) / currency_rate.rate
+        balance = data[account_id].get('balance', 0.0)
+        data[account_id].update({'unrealized_gain_loss': adj_bal - balance,
+                                 'currency_rate': currency_rate.rate})
         return data 
 
     def _format_label(self, cr, uid, text, account_id, currency,
