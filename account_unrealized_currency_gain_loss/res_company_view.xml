@@ -14,9 +14,9 @@
                     <separator string="LOSS"/>
                     <separator string="GAIN"/>
                     <newline/>
-                    <label string="Reevaluation accounts:" colspan="1"/>
-                    <field name="reevaluation_loss_account_id" nolabel="1"/>
-                    <field name="reevaluation_gain_account_id" nolabel="1"/>
+                    <label string="Revaluation accounts:" colspan="1"/>
+                    <field name="revaluation_loss_account_id" nolabel="1"/>
+                    <field name="revaluation_gain_account_id" nolabel="1"/>
                     <newline/>
                     <label string="Provision B.S accounts:" colspan="1"/>
                     <field name="provision_bs_loss_account_id" nolabel="1"/>

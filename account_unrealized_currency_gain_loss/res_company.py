@@ -24,11 +24,11 @@ from osv import osv, fields
 class ResCompany(osv.osv):
     _inherit="res.company"
     
-    _columns = {'reevaluation_loss_account_id': fields.many2one('account.account',
-                                                                'Reevaluation loss account',
+    _columns = {'revaluation_loss_account_id': fields.many2one('account.account',
+                                                                'Revaluation loss account',
                                                                 domain=[('type','=','other')]),
-                'reevaluation_gain_account_id': fields.many2one('account.account',
-                                                                'Reevaluation gain account',
+                'revaluation_gain_account_id': fields.many2one('account.account',
+                                                                'Revaluation gain account',
                                                                 domain=[('type','=','other')]),
                 'provision_bs_loss_account_id': fields.many2one('account.account',
                                                                 'Provision B.S loss account',
