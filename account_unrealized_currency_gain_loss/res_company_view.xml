@@ -9,7 +9,10 @@
             <field name="inherit_id" ref="base.view_company_form" />
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Configuration']" position="inside">
-                    <group colspan="5" string="Foreign currency gain &amp; loss">
+                    <group colspan="5">
+                    <separator string="Foreign currency gain &amp; loss"  colspan="5"/>
+                    <field name="reversable_revaluations"/>
+                    <newline/>
                     <label colspan="1"/>
                     <separator string="LOSS"/>
                     <separator string="GAIN"/>

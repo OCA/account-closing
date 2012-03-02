@@ -203,7 +203,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                              'journal_id': form.journal_id.id,
                              'period_id': period.id,
                              'date': form.revaluation_date,
-                             'to_be_reversed': True}
+                             'to_be_reversed': company.reversable_revaluations}
                 move_id = move_obj.create(cr, uid, move_data, context=context)
                 # Create a move line to Debit account to be revaluated
                 line_data = {'name': label,
@@ -237,7 +237,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                              'journal_id': form.journal_id.id,
                              'period_id': period.id,
                              'date': form.revaluation_date,
-                             'to_be_reversed': True}
+                             'to_be_reversed': company.reversable_revaluations}
                 move_id = move_obj.create(cr, uid, move_data, context=context)
 
                 # Create a move line to Debit provision BS gain
@@ -273,7 +273,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                              'journal_id': form.journal_id.id,
                              'period_id': period.id,
                              'date': form.revaluation_date,
-                             'to_be_reversed': True}
+                             'to_be_reversed': company.reversable_revaluations}
                 move_id = move_obj.create(cr, uid, move_data, context=context)
 
                 # Create a move line to Debit revaluation loss account
@@ -308,7 +308,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                              'journal_id': form.journal_id.id,
                              'period_id': period.id,
                              'date': form.revaluation_date,
-                             'to_be_reversed': True}
+                             'to_be_reversed': company.reversable_revaluations}
                 move_id = move_obj.create(
                     cr, uid, move_data, context=context)
 
