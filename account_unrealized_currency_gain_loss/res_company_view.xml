@@ -27,7 +27,7 @@
                     <field name="provision_pl_gain_account_id" nolabel="1"/>
                     <newline/>
                     <separator colspan="5"/>
-                    <field name="default_currency_reeval_journal_id"/>
+                    <field name="default_currency_reval_journal_id"/>
                     </group>
                 </xpath>
             </field>

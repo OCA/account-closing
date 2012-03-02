@@ -25,7 +25,7 @@
                     </group>
                     <newline/>
                     <button special="cancel" string="Cancel" icon="gtk-cancel" />
-                    <button name="reevaluate_currency" string="Validate" type="object" icon="gtk-execute"/>
+                    <button name="revaluate_currency" string="Validate" type="object" icon="gtk-execute"/>
                 </form>
             </field>
         </record>

@@ -83,7 +83,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         user_obj = self.pool.get('res.users')
         cp = user_obj.browse(cr, uid, uid, context=context).company_id
 
-        journal = cp.default_currency_reeval_journal_id
+        journal = cp.default_currency_reval_journal_id
         return journal and journal.id or False
 
     _defaults = {'label': "%(currency)s %(account)s "
@@ -205,7 +205,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                              'date': form.revaluation_date,
                              'to_be_reversed': True}
                 move_id = move_obj.create(cr, uid, move_data, context=context)
-                # Create a move line to Debit account to be reevaluated
+                # Create a move line to Debit account to be revaluated
                 line_data = {'name': label,
                              'account_id': account_id,
                              'move_id': move_id,
@@ -288,7 +288,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                     cr, uid, line_data, context=context)
                 created_ids.append(created_id)
 
-                # Create a move line to Credit account to be reevaluated
+                # Create a move line to Credit account to be revaluated
                 line_data = {'name': label,
                              'account_id': account_id,
                              'move_id': move_id,
@@ -337,7 +337,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                 created_ids.append(created_id)
         return created_ids
 
-    def reevaluate_currency(self, cr, uid, ids, context=None):
+    def revaluate_currency(self, cr, uid, ids, context=None):
         """
         Compute unrealized currency gain and loss and add entries to
         adjust balances
@@ -372,7 +372,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
             ids = [ids]
         form = self.browse(cr, uid, ids[0], context=context)
 
-        # Search for accounts Balance Sheet to be reevaluated
+        # Search for accounts Balance Sheet to be eevaluated
         # on those criterions
         # - deferral method of account type is not None
         account_ids = account_obj.search(
@@ -383,7 +383,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         if not account_ids:
             raise osv.except_osv(
                 _('Settings Error!'),
-                _("No account to be reevaluated found. "
+                _("No account to be revaluated found. "
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form."))
 
