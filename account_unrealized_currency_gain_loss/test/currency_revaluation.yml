@@ -1,5 +1,5 @@
 -
-  In order to test the currency reevaluation wizard
+  In order to test the currency revaluation wizard
     I will set all 6 provision account
     And set 2 new currencies
       currency1 with an old rate and a new rate that will make loss
@@ -8,21 +8,21 @@
     Then I create a move to increase balance of account1
     Then I define an account with currency2 with a starting amount
     Then I create a move to increase balance of account2
-    Then I launch the reevaluation wizard
+    Then I launch the revaluation wizard
     Then I check 8 entries have been correctly created
 -
   I create 6 provision accounts
 -
-  !record {model: account.account, id: acc_reeval_loss}:
-    name: "Reeval Loss"
+  !record {model: account.account, id: acc_reval_loss}:
+    name: "Reval Loss"
     code: "XR001"
     #company_id: default
     type: "other"
     user_type: !ref {model: account.account.type,
                      search: "[('code', '=', 'asset'), ('close_method', '=', 'balance')]"}
 -
-  !record {model: account.account, id: acc_reeval_gain}:
-    name: "Reeval Gain"
+  !record {model: account.account, id: acc_reval_gain}:
+    name: "Reval Gain"
     code: "XR002"
     #company_id: default
     type: "other"
@@ -68,8 +68,8 @@
     #select first company
     cp_id = self.search(cr, uid, [], limit=1)[0]
 
-    data_accounts = {'reevaluation_loss_account_id': ref('acc_reeval_loss'),
-                     'reevaluation_gain_account_id': ref('acc_reeval_gain'),
+    data_accounts = {'revaluation_loss_account_id': ref('acc_reval_loss'),
+                     'revaluation_gain_account_id': ref('acc_reval_gain'),
                      'provision_bs_loss_account_id': ref('acc_prov_bs_loss'),
                      'provision_bs_gain_account_id': ref('acc_prov_bs_gain'),
                      'provision_pl_loss_account_id': ref('acc_prov_pl_loss'),
@@ -262,19 +262,19 @@
      cr.execute("UPDATE account_move_line SET state='valid' WHERE name = 'Increase balance'")
 
 -
-  Launch the computing with the currency reevaluation wizard on 20 january (using new rates)
+  Launch the computing with the currency revaluation wizard on 20 january (using new rates)
 -
-  !python {model: wizard.currency.reevaluation}: |
+  !python {model: wizard.currency.revaluation}: |
     from datetime import datetime
     # Enter wizard data
-    wiz_data = {'reevaluation_date': '%s-01-20' %(datetime.now().year),
+    wiz_data = {'revaluation_date': '%s-01-20' %(datetime.now().year),
                 'journal_id': ref('wiz_general_journal'),
                 'currency_type': ref('rate_type1'),
                 'label': '[%(account)s] wiz_test'}
     wiz_id = self.create(cr, uid, wiz_data)
     wiz = self.browse(cr, uid, wiz_id)
     # Call wizard computing
-    result = wiz.reevaluate_currency(context=context)
+    result = wiz.revaluate_currency(context=context)
     assert result, "No result returned"
 
 -
@@ -290,7 +290,7 @@
 
     | Prov B.S Loss | 1000.0 |    0.0 |
 
-    | Reeval Loss   |    0.0 | 1000.0 |
+    | Reval Loss   |    0.0 | 1000.0 |
 
     | Account 1     | 1000.0 |    0.0 |
 
@@ -298,7 +298,7 @@
 
     | Prov B.S Gain |    0.0 |  500.0 |
 
-    | Reeval Gain   |  500.0 |    0.0 |
+    | Reval Gain   |  500.0 |    0.0 |
 
     | Account 2     |    0.0 |  500.0 |
 -
@@ -312,10 +312,10 @@
      res = [(l.name, l.account_id.id, l.debit, l.credit) for l in lines]
      check_list = [(u'[acc1] wiz_test', ref('acc_prov_pl_loss'), 1000.0, 0.0),
                    (u'[acc1] wiz_test', ref('acc_prov_bs_loss'), 0.0, 1000.0),
-                   (u'[acc1] wiz_test', ref('acc_reeval_loss'), 1000.0, 0.0),
+                   (u'[acc1] wiz_test', ref('acc_reval_loss'), 1000.0, 0.0),
                    (u'[acc1] wiz_test', ref('wiz_test_acc1'), 0.0, 1000.0),
                    (u'[acc2] wiz_test', ref('acc_prov_pl_gain'), 0.0, 500.0),
                    (u'[acc2] wiz_test', ref('acc_prov_bs_gain'), 500.0, 0.0),
-                   (u'[acc2] wiz_test', ref('acc_reeval_gain'), 0.0, 500.0),
+                   (u'[acc2] wiz_test', ref('acc_reval_gain'), 0.0, 500.0),
                    (u'[acc2] wiz_test', ref('wiz_test_acc2'), 500.0, 0.0),]
      assert set(check_list) <= set(res), ("Those lines are missing\n"+"\n".join([el[0] + " " + str(el[1:]) for el in list(set(check_list) - set(res))]))
