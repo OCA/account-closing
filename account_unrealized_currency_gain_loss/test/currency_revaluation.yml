@@ -1,5 +1,5 @@
 -
-  In order to test the currency revaluation wizard
+  In order to test the currency reevaluation wizard
     I will set all 6 provision account
     And set 2 new currencies
       currency1 with an old rate and a new rate that will make loss
@@ -8,7 +8,7 @@
     Then I create a move to increase balance of account1
     Then I define an account with currency2 with a starting amount
     Then I create a move to increase balance of account2
-    Then I launch the revaluation wizard
+    Then I launch the reevaluation wizard
     Then I check 8 entries have been correctly created
 -
   I create 6 provision accounts
@@ -68,8 +68,8 @@
     #select first company
     cp_id = self.search(cr, uid, [], limit=1)[0]
 
-    data_accounts = {'revaluation_loss_account_id': ref('acc_reeval_loss'),
-                     'revaluation_gain_account_id': ref('acc_reeval_gain'),
+    data_accounts = {'reevaluation_loss_account_id': ref('acc_reeval_loss'),
+                     'reevaluation_gain_account_id': ref('acc_reeval_gain'),
                      'provision_bs_loss_account_id': ref('acc_prov_bs_loss'),
                      'provision_bs_gain_account_id': ref('acc_prov_bs_gain'),
                      'provision_pl_loss_account_id': ref('acc_prov_pl_loss'),
@@ -214,13 +214,7 @@
                       search: "[('type', '=', 'sale')]"}
     state: 'posted'
     date: !eval "'%s-01-01' %(datetime.now().year)"
-- !record {model: account.move, id: wiz_test_move3}:
-    #name: default
-    #period_id: default
-    journal_id: !ref {model: account.journal,
-                      search: "[('type', '=', 'sale')]"}
-    state: 'posted'
-    date: !eval "'%s-01-01' %(datetime.now().year)"
+
 -
   I insert a move line in move 1
 -
@@ -236,7 +230,6 @@
         'name': 'Increase balance',
         'quantity': 0.0,
         'move_id': ref('wiz_test_move1'),
-        'partner_id': ref('base.res_partner_agrolait')
         'state': 'valid'
     }
     line_id = self.create(cr, uid, vals)
@@ -257,28 +250,6 @@
         'name': 'Increase balance',
         'quantity': 0.0,
         'move_id': ref('wiz_test_move2'),
-        'partner_id': ref('base.res_partner_agrolait')
-        'state': 'valid'
-    }
-    line_id = self.create(cr, uid, vals)
-    assert line_id, "Account move line has not been created"
-
--
-  I insert a move line in move 3
--
-  !python {model: account.move.line}: |
-    from datetime import datetime
-    vals = {
-        'account_id': ref('wiz_test_acc2'),
-        'amount_currency': -2000.0,
-        'currency_id': ref('currency2'),
-        'credit': 1000.0,
-        'date': '%s-01-01' %(datetime.now().year),
-        'debit': 0.0,
-        'name': 'Increase balance',
-        'quantity': 0.0,
-        'move_id': ref('wiz_test_move3'),
-        'partner_id': ref('base.res_partner_c2c')
         'state': 'valid'
     }
     line_id = self.create(cr, uid, vals)
@@ -291,12 +262,12 @@
      cr.execute("UPDATE account_move_line SET state='valid' WHERE name = 'Increase balance'")
 
 -
-  Launch the computing with the currency revaluation wizard on 20 january (using new rates)
+  Launch the computing with the currency reevaluation wizard on 20 january (using new rates)
 -
-  !python {model: wizard.currency.revaluation}: |
+  !python {model: wizard.currency.reevaluation}: |
     from datetime import datetime
     # Enter wizard data
-    wiz_data = {'revaluation_date': '%s-01-20' %(datetime.now().year),
+    wiz_data = {'reevaluation_date': '%s-01-20' %(datetime.now().year),
                 'journal_id': ref('wiz_general_journal'),
                 'currency_type': ref('rate_type1'),
                 'label': '[%(account)s] wiz_test'}
@@ -309,37 +280,27 @@
 -
   I check I have the 8 following entries
 
-    | ---------- |---------------|--------|--------|
+    |---------------|--------|--------|
 
-    | Partner    | Account       | debit  | credit |
+    | Account       | debit  | credit |
 
-    | ---------- |---------------|--------|--------|
+    |---------------|--------|--------|
 
-    | Agrolait   | Prov P&L Loss |    0.0 | 1000.0 |
+    | Prov P&L Loss |    0.0 | 1000.0 |
 
-    | Agrolait   | Prov B.S Loss | 1000.0 |    0.0 |
+    | Prov B.S Loss | 1000.0 |    0.0 |
 
-    | Agrolait   | Reeval Loss   |    0.0 | 1000.0 |
+    | Reeval Loss   |    0.0 | 1000.0 |
 
-    | Agrolait   | Account 1     | 1000.0 |    0.0 |
+    | Account 1     | 1000.0 |    0.0 |
 
-    | Agrolait   | Prov P&L Gain |  500.0 |    0.0 |
+    | Prov P&L Gain |  500.0 |    0.0 |
 
-    | Agrolait   | Prov B.S Gain |    0.0 |  500.0 |
+    | Prov B.S Gain |    0.0 |  500.0 |
 
-    | Agrolait   | Reeval Gain   |  500.0 |    0.0 |
+    | Reeval Gain   |  500.0 |    0.0 |
 
-    | Agrolait   | Account 2     |    0.0 |  500.0 |
-
-    | Camptocamp | Prov P&L Gain |  500.0 |    0.0 |
-
-    | Camptocamp | Prov B&S Gain |    0.0 |  500.0 |
-
-    | Camptocamp | Reeval Gain   |  500.0 |    0.0 |
-
-    | Camptocamp | Account 2     |    0.0 |  500.0 |
-
-    | ---------- |---------------|--------|--------|
+    | Account 2     |    0.0 |  500.0 |
 -
   !python {model: account.move.line}: |
      label_search = "wiz_test"
