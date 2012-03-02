@@ -27,9 +27,10 @@ from tools.translate import _
 
 class res_currency(osv.osv):
 
-    _inherit='res.currency'
+    _inherit = 'res.currency'
 
-    def _get_conversion_rate(self, cr, uid, from_currency, to_currency, context=None):
+    def _get_conversion_rate(self, cr, uid, from_currency,
+                             to_currency, context=None):
         if context is None:
             context = {}
         if 'revaluation' in context:

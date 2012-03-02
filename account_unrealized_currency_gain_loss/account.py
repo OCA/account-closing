@@ -23,9 +23,11 @@ from osv import osv, fields
 
 
 class AccountAccount(osv.osv):
-    _inherit='account.account'
-    
-    _columns = {'currency_revaluation': fields.boolean("Allow Currency revaluation")}
+
+    _inherit = 'account.account'
+
+    _columns = {'currency_revaluation':
+                    fields.boolean("Allow Currency revaluation")}
 
     _defaults = {'currency_revaluation': False}
 
@@ -35,10 +37,13 @@ class AccountAccount(osv.osv):
                            revaluation_date,
                            context=None):
         mapping = {
-            'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
+            'balance':
+                ("COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) "
+                "as balance"),
             'debit': "COALESCE(SUM(l.debit), 0) as debit",
             'credit': "COALESCE(SUM(l.credit), 0) as credit",
-            'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance"
+            'foreign_balance':
+                "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
         }
 
         lines_where_clause = self.pool.get('account.move.line').\
@@ -59,7 +64,8 @@ class AccountAccount(osv.osv):
     def compute_revaluations(
             self, cr, uid, ids, period_ids,
             revaluation_date, context=None):
-        if context is None: context = {}
+        if context is None:
+            context = {}
         accounts = {}
 
         #compute for each account the balance/debit/credit from the move lines
@@ -70,7 +76,6 @@ class AccountAccount(osv.osv):
             revaluation_date,
             context=ctx_query)
 
-        print cr.mogrify(query, params)
         cr.execute(query, params)
 
         lines = cr.dictfetchall()

@@ -21,30 +21,39 @@
 
 from osv import osv, fields
 
+
 class ResCompany(osv.osv):
-    _inherit="res.company"
-    
-    _columns = {'revaluation_loss_account_id': fields.many2one('account.account',
-                                                                'Revaluation loss account',
-                                                                domain=[('type','=','other')]),
-                'revaluation_gain_account_id': fields.many2one('account.account',
-                                                                'Revaluation gain account',
-                                                                domain=[('type','=','other')]),
-                'provision_bs_loss_account_id': fields.many2one('account.account',
-                                                                'Provision B.S loss account',
-                                                                domain=[('type','=','other')]),
-                'provision_bs_gain_account_id': fields.many2one('account.account',
-                                                                'Provision B.S gain account',
-                                                                domain=[('type','=','other')]),
-                'provision_pl_loss_account_id': fields.many2one('account.account',
-                                                                'Provision P&L loss account',
-                                                                domain=[('type','=','other')]),
-                'provision_pl_gain_account_id': fields.many2one('account.account',
-                                                                'Provision P&L gain account',
-                                                                domain=[('type','=','other')]),
-                'default_currency_reeval_journal_id': fields.many2one('account.journal',
-                                                                      'Currency gain & loss Default Journal',
-                                                                      domain=[('type','=','general')])}
+
+    _inherit = "res.company"
+
+    _columns = {'revaluation_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Revaluation loss account',
+                                    domain=[('type', '=', 'other')]),
+                'revaluation_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Revaluation gain account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_bs_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Provision B.S loss account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_bs_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Provision B.S gain account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_pl_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Provision P&L loss account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_pl_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Provision P&L gain account',
+                                    domain=[('type', '=', 'other')]),
+                'default_currency_reeval_journal_id':
+                    fields.many2one('account.journal',
+                                    'Currency gain & loss Default Journal',
+                                    domain=[('type', '=', 'general')])}
 
 
 ResCompany()
