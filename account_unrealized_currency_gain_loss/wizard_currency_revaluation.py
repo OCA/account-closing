@@ -167,6 +167,23 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         """
         context = context or {}
 
+        def create_move():
+            base_move = {'name': label,
+                         'journal_id': form.journal_id.id,
+                         'period_id': period.id,
+                         'date': form.revaluation_date,
+                         'to_be_reversed': company.reversable_revaluations}
+            return move_obj.create(cr, uid, base_move, context=context)
+
+        def create_move_line(move_id, line_data):
+            base_line = {'name': label,
+                         'partner_id': partner_id,
+                         'currency_id': currency_id,
+                         'amount_currency': 0.0,
+                         'date': form.revaluation_date}
+            base_line.update(line_data)
+            return move_line_obj.create(cr, uid, base_line, context=context)
+
         if partner_id is None:
             partner_id = False
 
@@ -185,156 +202,81 @@ class WizardCurrencyrevaluation(osv.osv_memory):
              ('special', '=', False)],
             limit=1,
             context=context)
-
         if not period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('There is no period for company %s on %s'
                                    % (company.name, form.revaluation_date)))
-
         period = period_obj.browse(cr, uid, period_ids[0], context=context)
 
         created_ids = []
-
         # over revaluation
         if amount >= 0.01:
             if company.revaluation_gain_account_id:
-                # Create an entry
-                move_data = {'name': label,
-                             'journal_id': form.journal_id.id,
-                             'period_id': period.id,
-                             'date': form.revaluation_date,
-                             'to_be_reversed': company.reversable_revaluations}
-                move_id = move_obj.create(cr, uid, move_data, context=context)
+                move_id = create_move()
                 # Create a move line to Debit account to be revaluated
-                line_data = {'name': label,
-                             'account_id': account_id,
+                line_data = {'debit': amount,
                              'move_id': move_id,
-                             'debit': amount,
-                             'currency_id': currency_id,
-                             'partner_id': partner_id,
-                             'amount_currency': 0.0,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
-
+                             'account_id': account_id, }
+                created_ids.append(create_move_line(move_id, line_data))
                 # Create a move line to Credit revaluation gain account
-                line_data = {'name': label,
-                             'account_id':
-                                 company.revaluation_gain_account_id.id,
-                             'partner_id': partner_id,
-                             'move_id': move_id,
-                             'credit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
+                line_data = {
+                    'credit': amount,
+                    'account_id': company.revaluation_gain_account_id.id,
+                    'move_id': move_id, }
+                created_ids.append(create_move_line(move_id, line_data))
 
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
-                 # Create an entry
-                move_data = {'name': label,
-                             'journal_id': form.journal_id.id,
-                             'period_id': period.id,
-                             'date': form.revaluation_date,
-                             'to_be_reversed': company.reversable_revaluations}
-                move_id = move_obj.create(cr, uid, move_data, context=context)
+                move_id = create_move()
 
                 # Create a move line to Debit provision BS gain
-                line_data = {'name': label,
-                             'account_id':
-                                 company.provision_bs_gain_account_id.id,
-                             'move_id': move_id,
-                             'partner_id': partner_id,
-                             'debit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
-
+                line_data = {
+                    'debit': amount,
+                    'move_id': move_id,
+                    'account_id': company.provision_bs_gain_account_id.id, }
+                created_ids.append(create_move_line(move_id, line_data))
                 # Create a move line to Credit provision P&L gain
-                line_data = {'name': label,
-                             'account_id':
-                                 company.provision_pl_gain_account_id.id,
-                             'move_id': move_id,
-                             'partner_id': partner_id,
-                             'credit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
+                line_data = {
+                    'credit': amount,
+                    'account_id': company.provision_pl_gain_account_id.id,
+                    'move_id': move_id, }
+                created_ids.append(create_move_line(move_id, line_data))
 
         # under revaluation
         elif amount <= -0.01:
             amount = -amount
             if company.revaluation_loss_account_id:
-                # Create an entry
-                move_data = {'name': label,
-                             'journal_id': form.journal_id.id,
-                             'period_id': period.id,
-                             'date': form.revaluation_date,
-                             'to_be_reversed': company.reversable_revaluations}
-                move_id = move_obj.create(cr, uid, move_data, context=context)
+                move_id = create_move()
 
                 # Create a move line to Debit revaluation loss account
-                line_data = {'name': label,
-                             'account_id':
-                                 company.revaluation_loss_account_id.id,
-                             'move_id': move_id,
-                             'partner_id': partner_id,
-                             'debit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
-
+                line_data = {
+                    'debit': amount,
+                    'move_id': move_id,
+                    'account_id': company.revaluation_loss_account_id.id, }
+                created_ids.append(create_move_line(move_id, line_data))
                 # Create a move line to Credit account to be revaluated
-                line_data = {'name': label,
-                             'account_id': account_id,
-                             'move_id': move_id,
-                             'credit': amount,
-                             'currency_id': currency_id,
-                             'partner_id': partner_id,
-                             'amount_currency': 0.0,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
+                line_data = {
+                    'credit': amount,
+                    'move_id': move_id,
+                    'account_id': account_id, }
+                created_ids.append(create_move_line(move_id, line_data))
 
             if company.provision_bs_loss_account_id and \
                company.provision_pl_loss_account_id:
-                # Create an entry
-                move_data = {'name': label,
-                             'journal_id': form.journal_id.id,
-                             'period_id': period.id,
-                             'date': form.revaluation_date,
-                             'to_be_reversed': company.reversable_revaluations}
-                move_id = move_obj.create(
-                    cr, uid, move_data, context=context)
+                move_id = create_move()
 
                 # Create a move line to Debit Provision P&L
-                line_data = {'name': label,
-                             'account_id':
-                                 company.provision_pl_loss_account_id.id,
-                             'move_id': move_id,
-                             'partner_id': partner_id,
-                             'debit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
-
+                line_data = {
+                    'debit': amount,
+                    'move_id': move_id,
+                    'account_id': company.provision_pl_loss_account_id.id, }
+                created_ids.append(create_move_line(move_id, line_data))
                 # Create a move line to Credit Provision BS
-                line_data = {'name': label,
-                             'account_id':
-                                 company.provision_bs_loss_account_id.id,
-                             'move_id': move_id,
-                             'partner_id': partner_id,
-                             'credit': amount,
-                             'date': form.revaluation_date}
-                created_id = move_line_obj.create(
-                    cr, uid, line_data, context=context)
-                created_ids.append(created_id)
+                line_data = {
+                    'credit': amount,
+                    'move_id': move_id,
+                    'account_id': company.provision_bs_loss_account_id.id, }
+                created_ids.append(create_move_line(move_id, line_data))
         return created_ids
 
     def revaluate_currency(self, cr, uid, ids, context=None):
