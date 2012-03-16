@@ -9,14 +9,17 @@
             <field name="inherit_id" ref="base.view_company_form" />
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Configuration']" position="inside">
-                    <group colspan="5" string="Foreign currency gain &amp; loss">
+                    <group colspan="5">
+                    <separator string="Foreign currency gain &amp; loss"  colspan="5"/>
+                    <field name="reversable_revaluations"/>
+                    <newline/>
                     <label colspan="1"/>
                     <separator string="LOSS"/>
                     <separator string="GAIN"/>
                     <newline/>
-                    <label string="Reevaluation accounts:" colspan="1"/>
-                    <field name="reevaluation_loss_account_id" nolabel="1"/>
-                    <field name="reevaluation_gain_account_id" nolabel="1"/>
+                    <label string="Revaluation accounts:" colspan="1"/>
+                    <field name="revaluation_loss_account_id" nolabel="1"/>
+                    <field name="revaluation_gain_account_id" nolabel="1"/>
                     <newline/>
                     <label string="Provision B.S accounts:" colspan="1"/>
                     <field name="provision_bs_loss_account_id" nolabel="1"/>
@@ -27,7 +30,7 @@
                     <field name="provision_pl_gain_account_id" nolabel="1"/>
                     <newline/>
                     <separator colspan="5"/>
-                    <field name="default_currency_reeval_journal_id"/>
+                    <field name="default_currency_reval_journal_id"/>
                     </group>
                 </xpath>
             </field>

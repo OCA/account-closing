@@ -10,8 +10,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='General Information']/group[2]" position="after">
                    <group col="2" colspan="2">
-                       <separator string="Currency Reevaluation"/> 
-                       <field name="currency_reevaluation"/>
+                       <separator string="Currency Revaluation"/>
+                       <field name="currency_revaluation"/>
                    </group>
                 </xpath>
             </field>
