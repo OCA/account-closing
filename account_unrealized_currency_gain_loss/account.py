@@ -22,6 +22,16 @@
 from osv import osv, fields
 
 
+class AccountAccountLine(osv.osv):
+
+    _inherit = 'account.move.line'
+    # By convention added columns stats with gl_.
+    _columns = {'gl_foreign_balance': fields.float('Aggregated Amount curency'),
+                'gl_balance': fields.float('Aggregated Amount'),
+                'gl_revaluated_balance': fields.float('Revaluated Amount'),
+                'gl_currency_rate': fields.float('Currency rate')}
+    
+
 class AccountAccount(osv.osv):
 
     _inherit = 'account.account'
@@ -31,26 +41,22 @@ class AccountAccount(osv.osv):
 
     _defaults = {'currency_revaluation': False}
 
+    _sql_mapping = {
+            'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
+            'debit': "COALESCE(SUM(l.debit), 0) as debit",
+            'credit': "COALESCE(SUM(l.credit), 0) as credit",
+            'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance"}
     def _revaluation_query(self,
                            cr, uid,
                            ids,
                            revaluation_date,
                            context=None):
-        mapping = {
-            'balance':
-                ("COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) "
-                "as balance"),
-            'debit': "COALESCE(SUM(l.debit), 0) as debit",
-            'credit': "COALESCE(SUM(l.credit), 0) as credit",
-            'foreign_balance':
-                "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
-        }
 
         lines_where_clause = self.pool.get('account.move.line').\
             _query_get(cr, uid, context=context)
 
         query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
-                   ', '.join(mapping.values()) +
+                   ', '.join(self._sql_mapping.values()) +
                    " FROM account_move_line l "
                    " WHERE l.account_id IN %(account_ids)s AND "
                    " l.date <= %(revaluation_date)s AND "

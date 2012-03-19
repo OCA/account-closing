@@ -127,9 +127,11 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                 cr, uid, currency_id, currency_id, foreign_balance,
                 currency_rate_type_to=type_id,
                 context=ctx_rate)
-
-        return {'unrealized_gain_loss': adjusted_balance - balance,
-                'currency_rate': currency.rate}
+            unrealized_gain_loss =  adjusted_balance - balance
+            #revaluated_balance =  balance + unrealized_gain_loss
+        return {'unrealized_gain_loss': unrealized_gain_loss,
+                'currency_rate': currency.rate,
+                'revaluated_balance': adjusted_balance}
 
     def _format_label(self, cr, uid, text, account_id, currency_id,
                       rate, context=None):
@@ -154,7 +156,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         return text % data
 
     def _write_adjust_balance(self, cr, uid, account_id, currency_id,
-                              partner_id, amount, label, form, context=None):
+                              partner_id, amount, label, form, sums, context=None):
         """
         Generate entries to adjust balance in the revaluation accounts
 
@@ -175,13 +177,21 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                          'to_be_reversed': company.reversable_revaluations}
             return move_obj.create(cr, uid, base_move, context=context)
 
-        def create_move_line(move_id, line_data):
+        def create_move_line(move_id, line_data, sums):
             base_line = {'name': label,
                          'partner_id': partner_id,
                          'currency_id': currency_id,
                          'amount_currency': 0.0,
                          'date': form.revaluation_date}
             base_line.update(line_data)
+            # we can assume that keys should be equals columns name + gl_
+            # butit was not decide when the code. So commented code may sucks
+            #for k, v in sums.items():
+            #    line_data['gl_' + k] = v
+            base_line['gl_foreign_balance'] = sums.get('foreign_balance', 0.0)
+            base_line['gl_balance'] = sums.get('balance', 0.0)
+            base_line['gl_revaluated_balance'] = sums.get('revaluated_balance', 0.0)
+            base_line['gl_currency_rate'] = sums.get('currency_rate', 0.0)
             return move_line_obj.create(cr, uid, base_line, context=context)
 
         if partner_id is None:
@@ -217,13 +227,13 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                 line_data = {'debit': amount,
                              'move_id': move_id,
                              'account_id': account_id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit revaluation gain account
                 line_data = {
                     'credit': amount,
                     'account_id': company.revaluation_gain_account_id.id,
                     'move_id': move_id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
 
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
@@ -234,13 +244,13 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                     'debit': amount,
                     'move_id': move_id,
                     'account_id': company.provision_bs_gain_account_id.id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit provision P&L gain
                 line_data = {
                     'credit': amount,
                     'account_id': company.provision_pl_gain_account_id.id,
                     'move_id': move_id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
 
         # under revaluation
         elif amount <= -0.01:
@@ -253,13 +263,13 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                     'debit': amount,
                     'move_id': move_id,
                     'account_id': company.revaluation_loss_account_id.id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit account to be revaluated
                 line_data = {
                     'credit': amount,
                     'move_id': move_id,
                     'account_id': account_id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
 
             if company.provision_bs_loss_account_id and \
                company.provision_pl_loss_account_id:
@@ -270,13 +280,13 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                     'debit': amount,
                     'move_id': move_id,
                     'account_id': company.provision_pl_loss_account_id.id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit Provision BS
                 line_data = {
                     'credit': amount,
                     'move_id': move_id,
                     'account_id': company.provision_bs_loss_account_id.id, }
-                created_ids.append(create_move_line(move_id, line_data))
+                created_ids.append(create_move_line(move_id, line_data, sums))
         return created_ids
 
     def revaluate_currency(self, cr, uid, ids, context=None):
@@ -417,6 +427,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                         adj_balance,
                         label,
                         form,
+                        sums,
                         context=context)
                     created_ids.extend(new_ids)
 
