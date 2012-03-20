@@ -182,7 +182,8 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                          'partner_id': partner_id,
                          'currency_id': currency_id,
                          'amount_currency': 0.0,
-                         'date': form.revaluation_date}
+                         'date': form.revaluation_date,
+                         }
             base_line.update(line_data)
             # we can assume that keys should be equals columns name + gl_
             # butit was not decide when the code. So commented code may sucks
@@ -226,13 +227,16 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                 # Create a move line to Debit account to be revaluated
                 line_data = {'debit': amount,
                              'move_id': move_id,
-                             'account_id': account_id, }
+                             'account_id': account_id,
+                             }
                 created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit revaluation gain account
                 line_data = {
                     'credit': amount,
                     'account_id': company.revaluation_gain_account_id.id,
-                    'move_id': move_id, }
+                    'move_id': move_id, 
+                    'analytic_account_id' : company.revaluation_analytic_account_id and company.revaluation_analytic_account_id.id or False,
+                    }
                 created_ids.append(create_move_line(move_id, line_data, sums))
 
             if company.provision_bs_gain_account_id and \
@@ -262,13 +266,17 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                 line_data = {
                     'debit': amount,
                     'move_id': move_id,
-                    'account_id': company.revaluation_loss_account_id.id, }
+                    'account_id': company.revaluation_loss_account_id.id, 
+                    'analytic_account_id' : company.revaluation_analytic_account_id and company.revaluation_analytic_account_id.id or False,
+                    }
+
                 created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit account to be revaluated
                 line_data = {
                     'credit': amount,
                     'move_id': move_id,
-                    'account_id': account_id, }
+                    'account_id': account_id, 
+                    }
                 created_ids.append(create_move_line(move_id, line_data, sums))
 
             if company.provision_bs_loss_account_id and \

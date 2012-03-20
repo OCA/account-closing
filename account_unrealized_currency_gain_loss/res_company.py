@@ -34,6 +34,9 @@ class ResCompany(osv.osv):
                     fields.many2one('account.account',
                                     'Revaluation gain account',
                                     domain=[('type', '=', 'other')]),
+                'revaluation_analytic_account_id':
+                    fields.many2one('account.analytic.account',
+                                    'Revaluation Analytic account'),
                 'provision_bs_loss_account_id':
                     fields.many2one('account.account',
                                     'Provision B.S loss account',

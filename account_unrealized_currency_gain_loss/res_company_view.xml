@@ -16,10 +16,12 @@
                     <label colspan="1"/>
                     <separator string="LOSS"/>
                     <separator string="GAIN"/>
+                    <separator string="ANALYTIC ACCOUNT"/>
                     <newline/>
                     <label string="Revaluation accounts:" colspan="1"/>
                     <field name="revaluation_loss_account_id" nolabel="1"/>
                     <field name="revaluation_gain_account_id" nolabel="1"/>
+                    <field name="revaluation_analytic_account_id" nolabel="1"/>
                     <newline/>
                     <label string="Provision B.S accounts:" colspan="1"/>
                     <field name="provision_bs_loss_account_id" nolabel="1"/>
