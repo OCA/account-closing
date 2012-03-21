@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher (Camptocamp)
-#    Contributor:
+#    Author: Yannick Vaucher
 #    Copyright 2012 Camptocamp SA
-#    Donors:
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,33 +18,54 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from osv import osv, fields
 
-class ResCompany(osv.osv):
-    _inherit="res.company"
-    
-    _columns = {'reevaluation_loss_account_id': fields.many2one('account.account',
-                                                                'Reevaluation loss account',
-                                                                domain=[('type','=','other')]),
-                'reevaluation_gain_account_id': fields.many2one('account.account',
-                                                                'Reevaluation gain account',
-                                                                domain=[('type','=','other')]),
-                'provision_bs_loss_account_id': fields.many2one('account.account',
-                                                                'Provision B.S loss account',
-                                                                domain=[('type','=','other')]),
-                'provision_bs_gain_account_id': fields.many2one('account.account',
-                                                                'Provision B.S gain account',
-                                                                domain=[('type','=','other')]),
-                'provision_pl_loss_account_id': fields.many2one('account.account',
-                                                                'Provision P&L loss account',
-                                                                domain=[('type','=','other')]),
-                'provision_pl_gain_account_id': fields.many2one('account.account',
-                                                                'Provision P&L gain account',
-                                                                domain=[('type','=','other')]),
-                'default_currency_reeval_journal_id': fields.many2one('account.journal',
-                                                                      'Currency gain & loss Default Journal',
-                                                                      domain=[('type','=','general')])}
 
+class ResCompany(osv.osv):
+
+    _inherit = "res.company"
+
+    _columns = {'revaluation_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Revaluation loss account',
+                                    domain=[('type', '=', 'other')]),
+                'revaluation_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Revaluation gain account',
+                                    domain=[('type', '=', 'other')]),
+                'revaluation_analytic_account_id':
+                    fields.many2one('account.analytic.account',
+                                    'Revaluation Analytic account'),
+                'provision_bs_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Provision B.S loss account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_bs_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Provision B.S gain account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_pl_loss_account_id':
+                    fields.many2one('account.account',
+                                    'Provision P&L loss account',
+                                    domain=[('type', '=', 'other')]),
+                'provision_pl_gain_account_id':
+                    fields.many2one('account.account',
+                                    'Provision P&L gain account',
+                                    domain=[('type', '=', 'other')]),
+                'default_currency_reval_journal_id':
+                    fields.many2one('account.journal',
+                                    'Currency gain & loss Default Journal',
+                                    domain=[('type', '=', 'general')]),
+                'reversable_revaluations':
+                    fields.boolean('Reversable Revaluations',
+                    help="Revaluations entries will be created"
+                         " as \"To Be Reversed\".")
+                }
+
+    _defaults = {
+        'reversable_revaluations': True,
+    }
 
 ResCompany()
 

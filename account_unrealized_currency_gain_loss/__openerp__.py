@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher (Camptocamp)
-#    Contributor:
+#    Author: Yannick Vaucher
 #    Copyright 2012 Camptocamp SA
-#    Donors:
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {"name": "Unrealized currency gain & loss",
  "version": "6.1",
  "category": "Finance",
@@ -28,36 +27,37 @@ Add a wizard to generate the unrealized currency gain & loss entries. This adjus
 
 To configure it, Foreign currency gain & loss account have been added in company parameters.
 
-For UK (Reevaluation) :
+For UK (Revaluation) :
                         LOSS  GAIN
-- Reevaluation account   [x]  [x]
+- Revaluation account   [x]  [x]
 - Provision B.S account  [ ]  [ ]
 - Provision P&L account  [ ]  [ ]
 
 For CH (Provision) :
                         LOSS  GAIN
-- Reevaluation account   [ ]  [ ]
+- Revaluation account   [ ]  [ ]
 - Provision B.S account  [x]  [ ]
 - Provision P&L account  [x]  [ ]
 
 For FR
                         LOSS  GAIN
-- Reevaluation account   [x]  [x]
+- Revaluation account   [x]  [x]
 - Provision B.S account  [x]  [ ]
 - Provision P&L account  [x]  [ ]
 
 """,
 
     "author": "Camptocamp",
+    "license": 'AGPL-3',
     "depends": ["base",
                 "account",
                 "account_reversal"],
     "init_xml": ["res_company_view.xml",
                  "res_currency_view.xml",
                  "account_view.xml",
-                 "wizard_currency_reevaluation_view.xml"],
+                 "wizard_currency_revaluation_view.xml"],
     "update_xml": [],
-    "test": ["test/currency_reevaluation.yml"],
+    #"test": ["test/currency_revaluation.yml"],
     "demo_xml": [],
     "installable": True,
     "active": False,

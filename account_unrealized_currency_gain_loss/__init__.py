@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher (Camptocamp)
-#    Contributor:
+#    Author: Yannick Vaucher
 #    Copyright 2012 Camptocamp SA
-#    Donors:
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,8 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from . import res_company
 from . import account
-from . import wizard_currency_reevaluation
+from . import res_currency
+from . import wizard_currency_revaluation
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
