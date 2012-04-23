@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="currency_urealized_report_launcher_wizard" model="ir.ui.view">
+            <field name="name">Currency Unrealized</field>
+            <field name="model">unrealized.report.printer</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form>
+                <field name="period_id"/>
+                <field name="chart_account_id" />
+                <newline/>
+                <group col="3" colspan="4">
+                   <button special="cancel" string="Cancel" icon='gtk-cancel'/>
+                    <button name="print_report" string="Print" colspan="1" type="object" icon="gtk-execute"/>
+                </group>
+              </form>
+            </field>
+        </record>
+       
+        <record id="currency_urealized_report_action_wizard" model="ir.actions.act_window">
+            <field name="name">Print Currency Unrealized</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">unrealized.report.printer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="currency_urealized_report_launcher_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+                name="Print Currency Unrealized"
+                action="currency_urealized_report_action_wizard"
+                parent="account.final_accounting_reports"
+                id="currency_urealized_report_wizard_menu"/>
+
+    </data>
+</openerp>

@@ -22,6 +22,7 @@
 from . import res_company
 from . import account
 from . import res_currency
-from . import wizard_currency_revaluation
+from . import wizard
+import report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
