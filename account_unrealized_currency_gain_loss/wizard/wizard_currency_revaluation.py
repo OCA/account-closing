@@ -115,16 +115,18 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
         ctx_rate['currency_rate_type_id'] = type_id
+        user_obj = self.pool.get('res.users')
+        cp_currency_id = user_obj.browse(cr, uid, uid, context=context).company_id.currency_id.id
+ 
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
                                                 'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
-
         if foreign_balance:
             ctx_rate['revaluation'] = True
             adjusted_balance = currency_obj.compute(
-                cr, uid, currency_id, currency_id, foreign_balance,
+                cr, uid, currency_id, cp_currency_id, foreign_balance,
                 currency_rate_type_to=type_id,
                 context=ctx_rate)
             unrealized_gain_loss =  adjusted_balance - balance
@@ -403,7 +405,6 @@ class WizardCurrencyrevaluation(osv.osv_memory):
             period_ids,
             form.revaluation_date,
             context=context)
-
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
                 for partner_id, sums in currency_tree.iteritems():
@@ -415,7 +416,6 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                         sums, form, context=context)
                     account_sums[account_id][currency_id][partner_id].\
                         update(diff_balances)
-
         # Create entries only after all computation have been done
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():

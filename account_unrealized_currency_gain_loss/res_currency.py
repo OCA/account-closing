@@ -34,7 +34,7 @@ class res_currency(osv.osv):
         if context is None:
             context = {}
         if 'revaluation' in context:
-            currency = self.browse(cr, uid, to_currency.id, context=context)
+            currency = self.browse(cr, uid, from_currency.id, context=context)
             rate = currency.rate
             if rate == 0.0:
                 date = context.get('date', time.strftime('%Y-%m-%d'))
