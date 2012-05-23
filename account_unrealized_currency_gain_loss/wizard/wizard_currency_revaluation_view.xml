@@ -8,7 +8,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Currency Revaluation" col="4">
-                    <field name="revaluation_date"/>
+                    <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
                     <newline/>
                     <field name="journal_id"/>
                     <newline/>

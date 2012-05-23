@@ -24,7 +24,6 @@ from datetime import date
 from osv import osv, fields
 from tools.translate import _
 
-
 class WizardCurrencyrevaluation(osv.osv_memory):
     _name = 'wizard.currency.revaluation'
 
@@ -90,6 +89,47 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                           "%(rate)s currency revaluation",
                  'revaluation_date': _get_default_revaluation_date,
                  'journal_id': _get_default_journal_id}
+
+    def on_change_revaluation_date(self, cr, uid, id, revaluation_date):
+        if not revaluation_date:
+            return {}
+        warning = {}
+        user_obj = self.pool.get('res.users')
+        move_obj = self.pool.get('account.move')
+        company_id = user_obj.browse(cr, uid, uid).company_id.id
+        fiscalyear_obj = self.pool.get('account.fiscalyear')
+        fiscalyear_ids = fiscalyear_obj.search(
+            cr, uid,
+            [('date_start', '<=', revaluation_date),
+             ('date_stop', '>=', revaluation_date),
+             ('company_id', '=', company_id)],
+            limit=1
+            )
+        if fiscalyear_ids:
+            fiscalyear = fiscalyear_obj.browse(
+                cr, uid, fiscalyear_ids[0])
+
+            previous_fiscalyear_ids = fiscalyear_obj.search(
+                cr, uid,
+                [('date_stop', '<', fiscalyear.date_start),
+                 ('company_id', '=', company_id)],
+                limit=1)
+            if previous_fiscalyear_ids:
+                special_period_ids = [p.id for p in fiscalyear.period_ids
+                                      if p.special == True]
+                opening_move_ids = []
+                if special_period_ids:
+                    opening_move_ids = move_obj.search(
+                        cr, uid, [('period_id', '=', special_period_ids[0])])
+                if not opening_move_ids or not special_period_ids:
+                     warning = {
+                        'title': _('Warning!'),
+                        'message': _('No opening entries in opening period for this fiscal year')
+                }
+
+        res = {'value': {},'warning':warning}
+        return res
+
 
     def _compute_unrealized_currency_gl(self, cr, uid,
                                         currency_id,
@@ -374,29 +414,6 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                                  _('No period found for the fiscalyear %s' %
                                    (fiscalyear.code,)))
 
-        # unless it is the first year check if opening entries
-        # have been generated otherwise raise error
-        previous_fiscalyear_ids = fiscalyear_obj.search(
-            cr, uid,
-            [('date_stop', '<', fiscalyear.date_start),
-             ('company_id', '=', company.id)],
-            limit=1,
-            context=context)
-        if previous_fiscalyear_ids:
-            special_period_ids = [p.id for p in fiscalyear.period_ids
-                                  if p.special == True]
-            if not special_period_ids:
-                raise osv.except_osv(
-                    _('Error!'),
-                    _('No opening period found for this fiscal year.'))
-
-            opening_move_ids = move_obj.search(
-                cr, uid, [('period_id', '=', special_period_ids[0])])
-            if not opening_move_ids:
-                raise osv.except_osv(
-                    _('Error!'),
-                    _('You must generate an opening entry'
-                      ' in opening period for this fiscal year.'))
 
         # Get balance sums
         account_sums = account_obj.compute_revaluations(
