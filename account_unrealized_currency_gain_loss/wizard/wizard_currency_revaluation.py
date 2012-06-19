@@ -175,6 +175,8 @@ class WizardCurrencyrevaluation(osv.osv_memory):
             if balance:
                 if currency_id != cp_currency_id:
                     unrealized_gain_loss =  0.0 - balance
+                else:
+                    unrealized_gain_loss = 0.0
             else:    
                 unrealized_gain_loss =  0.0
         return {'unrealized_gain_loss': unrealized_gain_loss,
