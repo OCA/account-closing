@@ -163,6 +163,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         foreign_balance = adjusted_balance = balances.get(
                                                 'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
+        unrealized_gain_loss =  0.0
         if foreign_balance:
             ctx_rate['revaluation'] = True
             adjusted_balance = currency_obj.compute(
