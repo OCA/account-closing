@@ -54,13 +54,13 @@ class AccountAccount(osv.osv):
 
         lines_where_clause = self.pool.get('account.move.line').\
             _query_get(cr, uid, context=context)
-
         query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
                    ', '.join(self._sql_mapping.values()) +
                    " FROM account_move_line l "
                    " WHERE l.account_id IN %(account_ids)s AND "
                    " l.date <= %(revaluation_date)s AND "
                    " l.currency_id IS NOT NULL AND "
+                   " l.reconcile_id IS NULL AND "
                         + lines_where_clause +
                    " GROUP BY l.account_id, l.currency_id, l.partner_id")
         params = {'revaluation_date': revaluation_date,
