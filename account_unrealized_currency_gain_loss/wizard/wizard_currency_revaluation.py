@@ -413,7 +413,24 @@ class WizardCurrencyrevaluation(osv.osv_memory):
 
         fiscalyear = fiscalyear_obj.browse(
             cr, uid, fiscalyear_ids[0], context=context)
-
+        
+        special_period_ids = [p.id for p in fiscalyear.period_ids
+                                      if p.special == True]
+        if not special_period_ids:
+            raise osv.except_osv(_('Error!'),
+                                 _('No special period found for the fiscalyear %s' %
+                                   (fiscalyear.code,)))
+            
+        opening_move_ids = []
+        if special_period_ids:
+            
+            opening_move_ids = move_obj.search(
+                        cr, uid, [('period_id', '=', special_period_ids[0])])
+            if not opening_move_ids or not special_period_ids:
+                raise osv.except_osv(_('Error!'),
+                                     _('No opening entries in opening period for this fiscal year %s' %
+                                   (fiscalyear.code,)))
+            
         period_ids = [p.id for p in fiscalyear.period_ids
                       if p.special == False]
         if not period_ids:
