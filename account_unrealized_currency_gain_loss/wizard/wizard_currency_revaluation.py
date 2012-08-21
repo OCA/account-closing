@@ -431,8 +431,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                                      _('No opening entries in opening period for this fiscal year %s' %
                                    (fiscalyear.code,)))
             
-        period_ids = [p.id for p in fiscalyear.period_ids
-                      if p.special == False]
+        period_ids = [p.id for p in fiscalyear.period_ids]
         if not period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('No period found for the fiscalyear %s' %
