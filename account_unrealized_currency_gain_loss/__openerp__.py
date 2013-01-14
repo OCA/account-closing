@@ -61,7 +61,7 @@ For FR
     "update_xml": ['report/report.xml'],
     #"test": ["test/currency_revaluation.yml"],
     "demo_xml": [],
-    'installable': False,
+    'installable': True,
     "active": False,
 #    'certificate': 'certificate',
 }
