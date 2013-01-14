@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-<%setLang(user.context_lang)%>
+<%setLang(user.lang)%>
         <div class="act_as_table data_table">
             <div class="act_as_row labels">
                 <div class="act_as_cell">${_('Report')}</div>
