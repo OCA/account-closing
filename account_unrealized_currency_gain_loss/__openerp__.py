@@ -23,28 +23,61 @@
  "version": "6.1",
  "category": "Finance",
  "description": """
-Add a wizard to generate the unrealized currency gain & loss entries. This adjusts accounts' balance of account with a foreign currency.
+=================================
+ Unrealized currency gain & loss
+=================================
 
-To configure it, Foreign currency gain & loss account have been added in company parameters.
+The Unrealized currency gain & loss provides wizards to revaluate and get a report on revaluation.
 
-For UK (Revaluation) :
+It supports different type of writing the gain & loss like UK Revaluation or CH provisioning.
+
+
+---------------
+ Main Features
+---------------
+
+Adds two wizards to:
+
+* Generate the unrealized currency gain & loss entries. It adjusts accounts' balance of account with a foreign currency.
+* Print a report of unrealized gain & loss.
+
+The report uses webkit report system.
+
+---------------
+ Configuration
+---------------
+
+To configure it, *Foreign currency gain & loss* accounts have been added in company parameters.
+
+For UK (Revaluation)
+====================
+
+::
+
                         LOSS  GAIN
-- Revaluation account   [x]  [x]
-- Provision B.S account  [ ]  [ ]
-- Provision P&L account  [ ]  [ ]
+  Revaluation account    [x]  [x]
+  Provision B.S account  [ ]  [ ]
+  Provision P&L account  [ ]  [ ]
 
-For CH (Provision) :
+For CH (Provision)
+==================
+
+::
+
                         LOSS  GAIN
-- Revaluation account   [ ]  [ ]
-- Provision B.S account  [x]  [ ]
-- Provision P&L account  [x]  [ ]
+  Revaluation account    [ ]  [ ]
+  Provision B.S account  [x]  [ ]
+  Provision P&L account  [x]  [ ]
 
 For FR
-                        LOSS  GAIN
-- Revaluation account   [x]  [x]
-- Provision B.S account  [x]  [ ]
-- Provision P&L account  [x]  [ ]
+======
 
+::
+
+                        LOSS  GAIN
+  Revaluation account    [x]  [x]
+  Provision B.S account  [x]  [ ]
+  Provision P&L account  [x]  [ ]
 """,
 
     "author": "Camptocamp",
