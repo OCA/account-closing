@@ -25,12 +25,18 @@ from openerp.osv import fields, orm
 class UnrealizedCurrencyReportPrinter(orm.TransientModel):
     _name = "unrealized.report.printer"
 
-    _columns = {'chart_account_id': fields.many2one('account.account', 'Chart root',
+    _columns = {
+            'chart_account_id': fields.many2one(
+                'account.account', 'Chart root',
                                 domain=[('parent_id', '=', False)]),
-               'period_id': fields.many2one('account.period', 'Period to use',required=True)}
-
+            'period_id': fields.many2one(
+                'account.period', 'Period to use',required=True),
+            }
 
     def print_report(self, cursor, uid, wid, data, context=None):
+        """
+        Show the report
+        """
         context = context or {}
         # we update form with display account value
         if isinstance(wid, list):

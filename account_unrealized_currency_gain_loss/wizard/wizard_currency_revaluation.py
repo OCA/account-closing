@@ -28,28 +28,31 @@ from tools.translate import _
 class WizardCurrencyrevaluation(orm.TransientModel):
     _name = 'wizard.currency.revaluation'
 
-    _columns = {'revaluation_date': fields.date('Revaluation Date',
-                                                 required=True),
-                'journal_id': fields.many2one(
-                    'account.journal',
-                    'Journal',
-                    domain="[('type','=','general')]",
-                    help="You can set the default "
-                         "journal in company settings.",
-                    required=True),
-                'currency_type': fields.many2one(
-                    'res.currency.rate.type',
-                    'Currency Type',
-                     help="If no currency_type is selected,"
-                          " only rates with no type will be browsed.",
-                     required=False),
-                'label': fields.char(
-                    'Entry description',
-                     size=100,
-                     help="This label will be inserted in entries description."
-                         " You can use %(account)s, %(currency)s"
-                         " and %(rate)s keywords.",
-                     required=True)}
+    _columns = {
+        'revaluation_date': fields.date(
+            'Revaluation Date',
+             required=True),
+        'journal_id': fields.many2one(
+            'account.journal',
+            'Journal',
+            domain="[('type','=','general')]",
+            help="You can set the default "
+                 "journal in company settings.",
+            required=True),
+        'currency_type': fields.many2one(
+            'res.currency.rate.type',
+            'Currency Type',
+             help="If no currency_type is selected,"
+                  " only rates with no type will be browsed.",
+             required=False),
+        'label': fields.char(
+            'Entry description',
+             size=100,
+             help="This label will be inserted in entries description."
+                 " You can use %(account)s, %(currency)s"
+                 " and %(rate)s keywords.",
+             required=True),
+        }
 
     def _get_default_revaluation_date(self, cr, uid, context):
         """
@@ -86,10 +89,12 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         journal = cp.default_currency_reval_journal_id
         return journal and journal.id or False
 
-    _defaults = {'label': "%(currency)s %(account)s "
-                          "%(rate)s currency revaluation",
-                 'revaluation_date': _get_default_revaluation_date,
-                 'journal_id': _get_default_journal_id}
+    _defaults = {
+        'label': "%(currency)s %(account)s "
+                     "%(rate)s currency revaluation",
+        'revaluation_date': _get_default_revaluation_date,
+        'journal_id': _get_default_journal_id,
+        }
 
     def on_change_revaluation_date(self, cr, uid, id, revaluation_date):
         if not revaluation_date:

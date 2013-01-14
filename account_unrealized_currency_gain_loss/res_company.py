@@ -25,45 +25,46 @@ from openerp.osv import fields, orm
 class ResCompany(orm.Model):
     _inherit = "res.company"
 
-    _columns = {'revaluation_loss_account_id':
-                    fields.many2one('account.account',
-                                    'Revaluation loss account',
-                                    domain=[('type', '=', 'other')]),
-                'revaluation_gain_account_id':
-                    fields.many2one('account.account',
-                                    'Revaluation gain account',
-                                    domain=[('type', '=', 'other')]),
-                'revaluation_analytic_account_id':
-                    fields.many2one('account.analytic.account',
-                                    'Revaluation Analytic account'),
-                'provision_bs_loss_account_id':
-                    fields.many2one('account.account',
-                                    'Provision B.S loss account',
-                                    domain=[('type', '=', 'other')]),
-                'provision_bs_gain_account_id':
-                    fields.many2one('account.account',
-                                    'Provision B.S gain account',
-                                    domain=[('type', '=', 'other')]),
-                'provision_pl_loss_account_id':
-                    fields.many2one('account.account',
-                                    'Provision P&L loss account',
-                                    domain=[('type', '=', 'other')]),
-                'provision_pl_gain_account_id':
-                    fields.many2one('account.account',
-                                    'Provision P&L gain account',
-                                    domain=[('type', '=', 'other')]),
-                'default_currency_reval_journal_id':
-                    fields.many2one('account.journal',
-                                    'Currency gain & loss Default Journal',
-                                    domain=[('type', '=', 'general')]),
-                'reversable_revaluations':
-                    fields.boolean('Reversable Revaluations',
-                    help="Revaluations entries will be created"
-                         " as \"To Be Reversed\".")
-                }
+    _columns = {
+        'revaluation_loss_account_id': fields.many2one(
+            'account.account',
+            'Revaluation loss account',
+            domain=[('type', '=', 'other')]),
+        'revaluation_gain_account_id': fields.many2one(
+            'account.account',
+            'Revaluation gain account',
+            domain=[('type', '=', 'other')]),
+        'revaluation_analytic_account_id': fields.many2one(
+            'account.analytic.account',
+            'Revaluation Analytic account'),
+        'provision_bs_loss_account_id': fields.many2one(
+            'account.account',
+            'Provision B.S loss account',
+            domain=[('type', '=', 'other')]),
+        'provision_bs_gain_account_id': fields.many2one(
+            'account.account',
+            'Provision B.S gain account',
+            domain=[('type', '=', 'other')]),
+        'provision_pl_loss_account_id': fields.many2one(
+            'account.account',
+            'Provision P&L loss account',
+            domain=[('type', '=', 'other')]),
+        'provision_pl_gain_account_id': fields.many2one(
+            'account.account',
+            'Provision P&L gain account',
+            domain=[('type', '=', 'other')]),
+        'default_currency_reval_journal_id': fields.many2one(
+            'account.journal',
+            'Currency gain & loss Default Journal',
+            domain=[('type', '=', 'general')]),
+        'reversable_revaluations': fields.boolean(
+            'Reversable Revaluations',
+            help="Revaluations entries will be created"
+                 " as \"To Be Reversed\".")
+        }
 
     _defaults = {
         'reversable_revaluations': True,
-    }
+        }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
