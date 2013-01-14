@@ -7,25 +7,29 @@
             <field name="model">wizard.currency.revaluation</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Currency Revaluation" col="4">
-                    <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
-                    <newline/>
-                    <field name="journal_id"/>
-                    <newline/>
-                    <field name="currency_type"/>
-                    <newline/>
-                    <separator string="" colspan="6"/>
-                    <field name="label"/>
-                    <newline/>
-                    <label/>
+                <form string="Currency Revaluation" version="7.0">
+                    <label string="This will reevaluate the currency gain &amp; loss"/>
+                    <group>
+                        <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
+                        <newline/>
+                        <field name="journal_id"/>
+                        <newline/>
+                        <field name="currency_type"/>
+                        <newline/>
+                        <separator string="" colspan="6"/>
+                        <field name="label"/>
+                        <newline/>
+                    </group>
                     <group>
                         <label string="%%(account)s : Account for which the revaluation is applied"/>
-                        <newline/>            
+                        <newline/>
                         <label string="%%(rate)s : Value of rate applied during revaluation"/>
                     </group>
                     <newline/>
-                    <button special="cancel" string="Cancel" icon="gtk-cancel" />
-                    <button name="revaluate_currency" string="Validate" type="object" icon="gtk-execute"/>
+                    <group>
+                        <button special="cancel" string="Cancel" icon="gtk-cancel" />
+                        <button name="revaluate_currency" string="Validate" type="object" icon="gtk-execute"/>
+                    </group>
                 </form>
             </field>
         </record>
