@@ -12,10 +12,11 @@
                         <field name="period_id"/>
                         <field name="chart_account_id"/>
                     </group>
-                    <group>
-                        <button special="cancel" string="Cancel" icon='gtk-cancel'/>
-                        <button name="print_report" string="Print" type="object" icon="gtk-execute"/>
-                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="_Print" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
                 </form>
             </field>
         </record>

@@ -26,10 +26,11 @@
                         <label string="%%(rate)s : Value of rate applied during revaluation"/>
                     </group>
                     <newline/>
-                    <group>
-                        <button special="cancel" string="Cancel" icon="gtk-cancel" />
-                        <button name="revaluate_currency" string="Validate" type="object" icon="gtk-execute"/>
-                    </group>
+                    <footer>
+                        <button name="revaluate_currency" string="_Validate" type="object" icon="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" icon="oe_link" />
+                    </footer>
                 </form>
             </field>
         </record>
