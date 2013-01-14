@@ -21,7 +21,7 @@
 
 from datetime import date
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, orm, osv
 from tools.translate import _
 
 
@@ -163,7 +163,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         ctx_rate['currency_rate_type_id'] = type_id
         user_obj = self.pool.get('res.users')
         cp_currency_id = user_obj.browse(cr, uid, uid, context=context).company_id.currency_id.id
- 
+
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
@@ -419,24 +419,24 @@ class WizardCurrencyrevaluation(orm.TransientModel):
 
         fiscalyear = fiscalyear_obj.browse(
             cr, uid, fiscalyear_ids[0], context=context)
-        
+
         special_period_ids = [p.id for p in fiscalyear.period_ids
                                       if p.special == True]
         if not special_period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('No special period found for the fiscalyear %s' %
                                    (fiscalyear.code,)))
-            
+
         opening_move_ids = []
         if special_period_ids:
-            
+
             opening_move_ids = move_obj.search(
                         cr, uid, [('period_id', '=', special_period_ids[0])])
             if not opening_move_ids or not special_period_ids:
                 raise osv.except_osv(_('Error!'),
                                      _('No opening entries in opening period for this fiscal year %s' %
                                    (fiscalyear.code,)))
-            
+
         period_ids = [p.id for p in fiscalyear.period_ids]
         if not period_ids:
             raise osv.except_osv(_('Error!'),
