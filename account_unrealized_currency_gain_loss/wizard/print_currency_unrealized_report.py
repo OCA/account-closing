@@ -19,9 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv.orm import TransientModel, fields
+from openerp.osv import fields, orm
 
-class UnrealizedCurrencyReportPrinter(TransientModel):
+
+class UnrealizedCurrencyReportPrinter(orm.TransientModel):
     _name = "unrealized.report.printer"
 
     _columns = {'chart_account_id': fields.many2one('account.account', 'Chart root',

@@ -19,11 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import fields, orm
 
 
-class ResCompany(osv.osv):
-
+class ResCompany(orm.Model):
     _inherit = "res.company"
 
     _columns = {'revaluation_loss_account_id':
@@ -66,7 +65,5 @@ class ResCompany(osv.osv):
     _defaults = {
         'reversable_revaluations': True,
     }
-
-ResCompany()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

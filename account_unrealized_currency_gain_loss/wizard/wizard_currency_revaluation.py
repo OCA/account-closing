@@ -21,10 +21,11 @@
 
 from datetime import date
 
-from osv import osv, fields
+from openerp.osv import fields, orm
 from tools.translate import _
 
-class WizardCurrencyrevaluation(osv.osv_memory):
+
+class WizardCurrencyrevaluation(orm.TransientModel):
     _name = 'wizard.currency.revaluation'
 
     _columns = {'revaluation_date': fields.date('Revaluation Date',
@@ -494,7 +495,5 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         else:
             raise osv.except_osv(_("Warning"),
                                  _("No accounting entry have been posted."))
-
-WizardCurrencyrevaluation()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

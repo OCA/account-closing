@@ -19,20 +19,19 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import fields, orm
 
 
-class AccountAccountLine(osv.osv):
-
+class AccountAccountLine(orm.Model):
     _inherit = 'account.move.line'
     # By convention added columns stats with gl_.
     _columns = {'gl_foreign_balance': fields.float('Aggregated Amount curency'),
                 'gl_balance': fields.float('Aggregated Amount'),
                 'gl_revaluated_balance': fields.float('Revaluated Amount'),
                 'gl_currency_rate': fields.float('Currency rate')}
-    
 
-class AccountAccount(osv.osv):
+
+class AccountAccount(orm.Model):
 
     _inherit = 'account.account'
 
@@ -101,7 +100,5 @@ class AccountAccount(osv.osv):
             accounts[account_id][currency_id][partner_id] = line
 
         return accounts
-
-AccountAccount()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
