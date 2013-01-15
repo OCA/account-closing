@@ -19,15 +19,15 @@
 #
 ##############################################################################
 
-{"name": "Unrealized currency gain & loss",
+{"name": "Multicurrency revaluation",
  "version": "6.1",
  "category": "Finance",
  "description": """
-=================================
- Unrealized currency gain & loss
-=================================
+===========================
+ Multicurrency revaluation
+===========================
 
-The Unrealized currency gain & loss provides wizards to revaluate and get a report on revaluation.
+The multicurrency revaluation module provides wizards to revaluate your gain & loss due to currency changes and print a report of revaluation.
 
 It supports different type of writing the gain & loss like UK Revaluation or CH provisioning.
 
