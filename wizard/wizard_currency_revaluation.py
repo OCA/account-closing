@@ -184,7 +184,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                     unrealized_gain_loss =  0.0 - balance
                 else:
                     unrealized_gain_loss = 0.0
-            else:    
+            else:
                 unrealized_gain_loss =  0.0
         return {'unrealized_gain_loss': unrealized_gain_loss,
                 'currency_rate': currency.rate,
@@ -413,9 +413,10 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             context=context)
 
         if not fiscalyear_ids:
-            raise osv.except_osv(_('Error!'),
-                                 _('No fiscalyear found for company %s on %s.'
-                                   % (company.name, form.revaluation_date)))
+            raise osv.except_osv(
+                    _('Error!'),
+                    _('No fiscalyear found for company %s on %s.' %
+                        (company.name, form.revaluation_date)))
 
         fiscalyear = fiscalyear_obj.browse(
             cr, uid, fiscalyear_ids[0], context=context)
@@ -423,19 +424,36 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         special_period_ids = [p.id for p in fiscalyear.period_ids
                                       if p.special == True]
         if not special_period_ids:
-            raise osv.except_osv(_('Error!'),
-                                 _('No special period found for the fiscalyear %s' %
-                                   (fiscalyear.code,)))
+            raise osv.except_osv(
+                    _('Error!'),
+                    _('No special period found for the fiscalyear %s' %
+                        (fiscalyear.code,)))
 
         opening_move_ids = []
         if special_period_ids:
 
             opening_move_ids = move_obj.search(
                         cr, uid, [('period_id', '=', special_period_ids[0])])
-            if not opening_move_ids or not special_period_ids:
-                raise osv.except_osv(_('Error!'),
-                                     _('No opening entries in opening period for this fiscal year %s' %
-                                   (fiscalyear.code,)))
+            if not opening_move_ids:
+
+                # if the first move is on this fiscalyear, this is the first
+                # financial year
+                first_move_id = move_obj.search(
+                        cr, uid, [('company_id', '=', company.id)],
+                        order='date', limit=1)
+
+                if not first_move_id:
+                    raise osv.except_osv(_('Error!'),
+                                         _('No fiscal entries found'))
+
+                first_move = move_obj.browse(
+                        cr, uid, first_move_id[0], context=context)
+
+                if fiscalyear != first_move.period_id.fiscalyear_id:
+                    raise osv.except_osv(
+                            _('Error!'),
+                            _('No opening entries in opening period for this fiscal year %s' %
+                                (fiscalyear.code,)))
 
         period_ids = [p.id for p in fiscalyear.period_ids]
         if not period_ids:
