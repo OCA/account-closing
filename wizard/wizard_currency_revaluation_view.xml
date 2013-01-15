@@ -11,25 +11,19 @@
                     <label string="This will reevaluate the currency gain &amp; loss"/>
                     <group>
                         <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
-                        <newline/>
                         <field name="journal_id"/>
-                        <newline/>
                         <field name="currency_type"/>
-                        <newline/>
                         <separator string="" colspan="6"/>
                         <field name="label"/>
-                        <newline/>
                     </group>
                     <group>
                         <label string="%%(account)s : Account for which the revaluation is applied"/>
-                        <newline/>
                         <label string="%%(rate)s : Value of rate applied during revaluation"/>
                     </group>
-                    <newline/>
                     <footer>
-                        <button name="revaluate_currency" string="_Validate" type="object" icon="oe_highlight"/>
+                        <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight"/>
                         or
-                        <button special="cancel" string="Cancel" icon="oe_link" />
+                        <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
                 </form>
             </field>
