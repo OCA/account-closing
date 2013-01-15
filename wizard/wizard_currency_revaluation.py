@@ -459,7 +459,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         if not period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('No period found for the fiscalyear %s' %
-                                   (fiscalyear.code,)))
+                                   fiscalyear.code))
 
 
         # Get balance sums
