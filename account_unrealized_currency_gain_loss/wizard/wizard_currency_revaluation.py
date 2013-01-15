@@ -157,7 +157,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         ctx_rate['currency_rate_type_id'] = type_id
         user_obj = self.pool.get('res.users')
         cp_currency_id = user_obj.browse(cr, uid, uid, context=context).company_id.currency_id.id
- 
+
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
@@ -178,7 +178,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
                     unrealized_gain_loss =  0.0 - balance
                 else:
                     unrealized_gain_loss = 0.0
-            else:    
+            else:
                 unrealized_gain_loss =  0.0
         return {'unrealized_gain_loss': unrealized_gain_loss,
                 'currency_rate': currency.rate,
@@ -419,7 +419,7 @@ class WizardCurrencyrevaluation(osv.osv_memory):
         if not special_period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('No special period found for the fiscalyear %s' %
-                                   (fiscalyear.code,)))
+                                   fiscalyear.code))
 
         opening_move_ids = []
         if special_period_ids:
