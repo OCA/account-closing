@@ -27,19 +27,17 @@
  Multicurrency revaluation
 ===========================
 
-The multicurrency revaluation module provides wizards to revaluate your gain & loss due to currency changes and print a report of revaluation.
+The *Multicurrency revaluation* module allows you generate automatically multicurrency revaluation journal entries. You will also find here a Revaluation report 
 
-It supports different type of writing the gain & loss like UK Revaluation or CH provisioning.
-
+Note that an extra aggregation by currency on general ledger & partner ledger (from module : *account_financial_report*) has been added in order to get more details.
 
 ---------------
  Main Features
 ---------------
 
-Adds two wizards to:
-
-* Generate the unrealized currency gain & loss entries. It adjusts accounts' balance of account with a foreign currency.
-* Print a report of unrealized gain & loss.
+* A checkbox *Allow currency revaluation* on accounts.
+* A wizard to generate the revaluation journal entries. It adjusts account balance having *Allow currency revaluation* checked.
+* A wizard to print a report of revaluation.
 
 The report uses webkit report system.
 
@@ -47,37 +45,42 @@ The report uses webkit report system.
  Configuration
 ---------------
 
-To configure it, *Foreign currency gain & loss* accounts have been added in company parameters.
+Due to the various legislation according the country, in the Company settings you can set the way you want to generate revaluation journal entries.
+
+Please, find below adviced account settings for 3 countries :
 
 For UK (Revaluation)
 ====================
+(l10n_uk Chart of account)
 
 ::
 
-                        LOSS  GAIN
-  Revaluation account    [x]  [x]
-  Provision B.S account  [ ]  [ ]
-  Provision P&L account  [ ]  [ ]
+                          LOSS    GAIN
+  Revaluation account    [7700]  [7700]
+  Provision B.S account  [    ]  [    ]
+  Provision P&L account  [    ]  [    ]
 
 For CH (Provision)
 ==================
+(l10n_ch Chart of account)
 
 ::
 
-                        LOSS  GAIN
-  Revaluation account    [ ]  [ ]
-  Provision B.S account  [x]  [ ]
-  Provision P&L account  [x]  [ ]
+                          LOSS    GAIN
+  Revaluation account    [    ]  [    ]
+  Provision B.S account  [2331]  [2331]
+  Provision P&L account  [3906]  [4906]
 
 For FR
 ======
+(l10n_fr Chart of account)
 
 ::
 
-                        LOSS  GAIN
-  Revaluation account    [x]  [x]
-  Provision B.S account  [x]  [ ]
-  Provision P&L account  [x]  [ ]
+                          LOSS    GAIN
+  Revaluation account    [ 476]  [ 477]
+  Provision B.S account  [1515]  [    ]
+  Provision P&L account  [6865]  [    ]
 """,
 
     "author": "Camptocamp",
