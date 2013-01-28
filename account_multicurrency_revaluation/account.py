@@ -19,25 +19,26 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import fields, orm
 
 
-class AccountAccountLine(osv.osv):
-
+class AccountAccountLine(orm.Model):
     _inherit = 'account.move.line'
     # By convention added columns stats with gl_.
-    _columns = {'gl_foreign_balance': fields.float('Aggregated Amount curency'),
-                'gl_balance': fields.float('Aggregated Amount'),
-                'gl_revaluated_balance': fields.float('Revaluated Amount'),
-                'gl_currency_rate': fields.float('Currency rate')}
-    
+    _columns = {
+            'gl_foreign_balance': fields.float('Aggregated Amount curency'),
+            'gl_balance': fields.float('Aggregated Amount'),
+            'gl_revaluated_balance': fields.float('Revaluated Amount'),
+            'gl_currency_rate': fields.float('Currency rate')}
 
-class AccountAccount(osv.osv):
 
+class AccountAccount(orm.Model):
     _inherit = 'account.account'
 
-    _columns = {'currency_revaluation':
-                    fields.boolean("Allow Currency revaluation")}
+    _columns = {
+            'currency_revaluation': fields.boolean(
+                "Allow Currency revaluation")
+            }
 
     _defaults = {'currency_revaluation': False}
 
@@ -45,10 +46,10 @@ class AccountAccount(osv.osv):
             'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
             'debit': "COALESCE(SUM(l.debit), 0) as debit",
             'credit': "COALESCE(SUM(l.credit), 0) as credit",
-            'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance"}
-    def _revaluation_query(self,
-                           cr, uid,
-                           ids,
+            'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
+            }
+
+    def _revaluation_query(self, cr, uid, ids,
                            revaluation_date,
                            context=None):
 
@@ -101,7 +102,5 @@ class AccountAccount(osv.osv):
             accounts[account_id][currency_id][partner_id] = line
 
         return accounts
-
-AccountAccount()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

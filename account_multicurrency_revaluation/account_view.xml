@@ -8,12 +8,12 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="account.view_account_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='General Information']/group[2]" position="after">
-                   <group col="2" colspan="2">
-                       <separator string="Currency Revaluation"/>
+                <label for="note" position="before">
+                   <separator string="Currency Revaluation"/>
+                   <group>
                        <field name="currency_revaluation"/>
                    </group>
-                </xpath>
+                </label>
             </field>
         </record>
 

@@ -7,18 +7,20 @@
             <field name="model">unrealized.report.printer</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-              <form>
-                <field name="period_id"/>
-                <field name="chart_account_id" />
-                <newline/>
-                <group col="3" colspan="4">
-                   <button special="cancel" string="Cancel" icon='gtk-cancel'/>
-                    <button name="print_report" string="Print" colspan="1" type="object" icon="gtk-execute"/>
-                </group>
-              </form>
+                <form string="Print Currency Unrealized" version="7.0">
+                    <group>
+                        <field name="period_id"/>
+                        <field name="chart_account_id"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="_Print" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
             </field>
         </record>
-       
+
         <record id="currency_urealized_report_action_wizard" model="ir.actions.act_window">
             <field name="name">Print Currency Unrealized</field>
             <field name="type">ir.actions.act_window</field>

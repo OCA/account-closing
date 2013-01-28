@@ -98,7 +98,6 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
                                   'period_name': self._get_period_name,
                                   'report_name': _('Exchange Rate Gain and Loss Report')})
 
-
     def sort_accounts_with_structure(self, root_account_ids, account_ids, context=None):
         """Sort accounts by code respecting their structure. code Take from
         financial webkit report in order not to depends from it"""
@@ -195,7 +194,6 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
             # keep sorting but filter ids
             res_ids = [res_id for res_id in res_ids if res_id in only_ids]
         return res_ids
-
 
     def set_context(self, objects, data, ids, report_type=None):
         """Populate a ledger_lines attribute on each browse record that will be used
