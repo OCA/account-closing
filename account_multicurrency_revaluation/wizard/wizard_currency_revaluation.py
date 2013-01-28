@@ -427,7 +427,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             raise osv.except_osv(
                     _('Error!'),
                     _('No special period found for the fiscalyear %s' %
-                        (fiscalyear.code,)))
+                      fiscalyear.code))
 
         opening_move_ids = []
         if special_period_ids:
@@ -453,7 +453,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                     raise osv.except_osv(
                             _('Error!'),
                             _('No opening entries in opening period for this fiscal year %s' %
-                                (fiscalyear.code,)))
+                              fiscalyear.code))
 
         period_ids = [p.id for p in fiscalyear.period_ids]
         if not period_ids:
@@ -506,7 +506,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                     created_ids.extend(new_ids)
 
         if created_ids:
-            return {'domain': "[('id','in', %s)]" % (created_ids,),
+            return {'domain': "[('id', 'in', %s)]" % created_ids,
                     'name': _("Created revaluation lines"),
                     'view_type': 'form',
                     'view_mode': 'tree,form',
