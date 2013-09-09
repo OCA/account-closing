@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2013 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+<odoo>
+
+<!-- Form view for lines -->
+<record id="account_cutoff_line_form" model="ir.ui.view">
+    <field name="model">account.cutoff.line</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
+    <field name="arch" type="xml">
+        <field name="parent_id" position="after">
+            <field name="sale_line_id" invisible="1" />
+            <field name="purchase_line_id" invisible="1" />
+            <field
+                    name="order_id"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+        </field>
+        <field name="name" position="before">
+            <field
+                    name="product_id"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+        </field>
+        <field name="quantity" position="before">
+            <field
+                    name="received_qty"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+            <field
+                    name="invoiced_qty"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+        </field>
+        <field name="amount" position="after">
+            <field
+                    name="invoice_line_ids"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                >
+                <tree>
+                    <field name="move_id" />
+                    <field name="quantity" />
+                    <field name="date" />
+                    <field name="parent_state" />
+                </tree>
+            </field>
+        </field>
+    </field>
+</record>
+
+<!-- Tree view for lines -->
+<record id="account_cutoff_line_tree" model="ir.ui.view">
+    <field name="model">account.cutoff.line</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+    <field name="arch" type="xml">
+        <field name="parent_id" position="after">
+            <field name="sale_line_id" invisible="1" />
+            <field name="purchase_line_id" invisible="1" />
+            <field
+                    name="order_id"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+        </field>
+        <field name="quantity" position="after">
+            <field
+                    name="received_qty"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+            <field
+                    name="invoiced_qty"
+                    attrs="{'invisible': [('sale_line_id', '=', False),('purchase_line_id', '=', False)]}"
+                />
+        </field>
+    </field>
+</record>
+
+</odoo>

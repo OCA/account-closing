@@ -1,25 +1,42 @@
-This module generates expense/revenue accruals and prepaid expense/revenue based on the status of orders, pickings and invoices. The module is named *account_cutoff_accrual_picking* because it initially only supported accruals ; support for prepaid expense/revenue was added later (it should be renamed in later versions).
+This module extends the functionality of account_cutoff_cutoff_base
+to allow the calculation of expense and revenue cutoffs on sale order and
+purchase order.
 
-To understand the behavior of this module, let's take the example of an expense accrual. When you click on the button *Re-Generate Lines* of an *Expense Accrual*:
+His name is a little misleading because following model changes in
+v10 of Odoo it now bases its calculation not on stock picking anymore but
+on sales and purchase orders.
 
-1. Odoo will look for all incoming picking in Done state with a *Transfer Date* <= *Cut-off Date*. For performance reasons, by default, the incoming picking dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential expense accrual.
-3. For each of these purchase order lines, Odoo will:
+The accrual is computed by comparing on the SO / PO, the quantity
+delivered/received and the quantity invoiced. In case, some moves or invoices
+have occurred after the cutoff date, those quantities can be affected and are
+recomputed. This allows to quickly generate a cutoff snapshot by processing few
+lines.
 
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
+For PO, you can make the difference between:
+* invoice to receive (received qty > invoiced qty)
+* goods to receive (prepayment) (received qty < invoiced qty)
 
-4. If, for a particular purchase order line, the quantity of products received before the cutoff-date (or on the same day) minus the quantity of products invoiced before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
+If you expect a refund, you can make it in draft. In standard, this update
+the PO and the quantity will not be accrued as goods to receive. You can accrue
+the draft credit note as "credit notes to receive".
 
-Now, let's take the example of a prepaid expense. When you click on the button *Re-Generate Lines* of a *Prepaid Expense*:
+For SO, you can make the difference between:
+* invoice to generate (delivered qty > invoiced qty)
+* goods to send (prepayment) (delivered qty < invoiced qty)
 
-1. Odoo will look for all vendor bills dated before (or equal to) *Cut-off Date*. For performance reasons, by default, the vendor bills dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential prepaid expense.
-3. For each of these purchase order lines, Odoo will:
+At each end of period, a cron job generates the cutoff entries for expenses (based
+on PO) and revenues (based on SO).
 
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
+You can configure to disable the generation of cutoff entries for closed SO/PO.
+For instance, if you know you will never receive the missing invoiced goods,
+you can close the PO.
 
-4. If, for a particular purchase order line, the quantity of products invoiced before the cutoff-date (or on the same day) minus the quantity of products received before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
+Once the cutoff lines have been generated but the accounting entries are not yet
+created, you are still able to create or modify invoices before the accounting
+butoff date. The cutoff lines will be adapted automatically to reflect the new
+situation.
 
-This module should work well with multiple units of measure (including products purchased and invoiced in different units of measure) and in multi-currency.
+Once the cutoff accounting entries are generated you cannot create or modify
+invoices before the accounting cutoff date.
+Nevertheless, you can still reset to draft a supplier invoice but you won't be
+able to modify any amount. You are then supposed to re-validate the invoice.
