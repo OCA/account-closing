@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2013 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+
+<record id="invoice_form" model="ir.ui.view">
+    <field name="name">prepaid.cutoff.invoice_form</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='invoice_line']/tree/field[@name='account_analytic_id']" position="after">
+            <field name="start_date" />
+            <field name="end_date" />
+        </xpath>
+        <!-- Code to test the form view of invoice lines -->
+        <!--
+        <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+            <attribute name="editable"></attribute>
+        </xpath>  -->
+    </field>
+</record>
+
+
+<record id="invoice_supplier_form" model="ir.ui.view">
+    <field name="name">prepaid.cutoff.invoice_supplier_form</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='invoice_line']/tree/field[@name='account_analytic_id']" position="after">
+            <field name="start_date" />
+            <field name="end_date" />
+        </xpath>
+    </field>
+</record>
+
+
+<record id="view_invoice_line_form" model="ir.ui.view">
+    <field name="name">prepaid.cutoff.invoice_line_form</field>
+    <field name="model">account.invoice.line</field>
+    <field name="inherit_id" ref="account.view_invoice_line_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='discount']/.." position="after">
+            <group name="start_end_dates">
+                <field name="start_date" />
+                <field name="end_date" />
+            </group>
+        </xpath>
+    </field>
+</record>
+
+
+</data>
+</openerp>
