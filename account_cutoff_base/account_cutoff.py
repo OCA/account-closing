@@ -20,12 +20,12 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, orm, fields
+from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 
 
-class account_cutoff(osv.Model):
+class account_cutoff(orm.Model):
     _name = 'account.cutoff'
     _rec_name = 'cutoff_date'
     _order = 'cutoff_date desc'
@@ -263,7 +263,7 @@ class account_cutoff(osv.Model):
         return action
 
 
-class account_cutoff_line(osv.Model):
+class account_cutoff_line(orm.Model):
     _name = 'account.cutoff.line'
     _description = 'Account Cut-off Line'
 
@@ -302,7 +302,7 @@ class account_cutoff_line(osv.Model):
     }
 
 
-class account_cutoff_tax_line(osv.Model):
+class account_cutoff_tax_line(orm.Model):
     _name = 'account.cutoff.tax.line'
     _description = 'Account Cut-off Tax Line'
 
@@ -334,7 +334,7 @@ class account_cutoff_tax_line(osv.Model):
             }
 
 
-class account_cutoff_mapping(osv.Model):
+class account_cutoff_mapping(orm.Model):
     _name = 'account.cutoff.mapping'
     _description = 'Account Cut-off Mapping'
     _rec_name = 'account_id'
