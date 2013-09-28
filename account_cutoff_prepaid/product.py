@@ -21,10 +21,10 @@
 ##############################################################################
 
 
-from openerp.osv import osv, fields
+from openerp.osv import orm, fields
 
 
-class product_template(osv.Model):
+class product_template(orm.Model):
     _inherit = 'product.template'
 
     _columns = {
