@@ -21,12 +21,12 @@
 ##############################################################################
 
 
-from openerp.osv import osv, orm, fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from datetime import datetime
 
 
-class account_cutoff(osv.Model):
+class account_cutoff(orm.Model):
     _inherit = 'account.cutoff'
 
 
@@ -143,7 +143,7 @@ class account_cutoff(osv.Model):
         return account_id
 
 
-class account_cutoff_line(osv.Model):
+class account_cutoff_line(orm.Model):
     _inherit = 'account.cutoff.line'
 
 
