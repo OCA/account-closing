@@ -20,5 +20,5 @@
 #
 ##############################################################################
 
-import account_cutoff
-import company
+from . import account_cutoff
+from . import company
