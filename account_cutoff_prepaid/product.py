@@ -28,6 +28,7 @@ class product_template(orm.Model):
     _inherit = 'product.template'
 
     _columns = {
-        'must_have_dates': fields.boolean('Must Have Start and End Dates',
+        'must_have_dates': fields.boolean(
+            'Must Have Start and End Dates',
             help="If this option is active, the user will have to enter a Start Date and an End Date on the invoice lines that have this product."),
     }
