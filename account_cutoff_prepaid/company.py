@@ -30,8 +30,8 @@ class res_company(orm.Model):
     _columns = {
         'default_prepaid_revenue_account_id': fields.many2one(
             'account.account', 'Default Account for Prepaid Revenue',
-            domain=[('type','<>','view')]), # FR : 487000
+            domain=[('type','<>','view')]),  # FR : 487000
         'default_prepaid_expense_account_id': fields.many2one(
             'account.account', 'Default Account for Prepaid Expense',
-            domain=[('type','<>','view')]), # FR : 486000
+            domain=[('type','<>','view')]),  # FR : 486000
     }
