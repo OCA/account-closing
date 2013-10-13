@@ -177,6 +177,8 @@ class account_cutoff(orm.Model):
         return True
 
     def _prepare_move(self, cr, uid, cur_cutoff, to_provision, context=None):
+        if context is None:
+            context = {}
         movelines_to_create = []
         amount_total = 0
         move_label = cur_cutoff.move_label
@@ -222,8 +224,6 @@ class account_cutoff(orm.Model):
 
     def create_move(self, cr, uid, ids, context=None):
         assert len(ids) == 1, 'This function should only be used for a single id at a time'
-        if context is None:
-            context = {}
         move_obj = self.pool['account.move']
         cur_cutoff = self.browse(cr, uid, ids[0], context=context)
         if cur_cutoff.move_id:
