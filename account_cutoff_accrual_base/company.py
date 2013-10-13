@@ -23,14 +23,15 @@
 
 from openerp.osv import orm, fields
 
+
 class res_company(orm.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'default_accrued_revenue_account_id': fields.many2one('account.account',
-            'Default Account for Accrued Revenues',
-            domain=[('type','<>','view')]), # FR : 418100
-        'default_accrued_expense_account_id': fields.many2one('account.account',
-            'Default Account for Accrued Expenses',
-            domain=[('type','<>','view')]), # FR : 408100
+        'default_accrued_revenue_account_id': fields.many2one(
+            'account.account', 'Default Account for Accrued Revenues',
+            domain=[('type','<>','view')]),  # FR : 418100
+        'default_accrued_expense_account_id': fields.many2one(
+            'account.account', 'Default Account for Accrued Expenses',
+            domain=[('type','<>','view')]),  # FR : 408100
     }
