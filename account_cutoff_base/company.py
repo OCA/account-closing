@@ -28,10 +28,8 @@ class res_company(orm.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'default_cutoff_journal_id': fields.many2one('account.journal',
-            'Default Cut-off Journal'),
-        'cutoff_account_mapping_ids': fields.one2many('account.cutoff.mapping',
-            'company_id', 'Cut-off Account Mapping'),
+        'default_cutoff_journal_id': fields.many2one(
+            'account.journal', 'Default Cut-off Journal'),
+        'cutoff_account_mapping_ids': fields.one2many(
+            'account.cutoff.mapping', 'company_id', 'Cut-off Account Mapping'),
     }
-
-
