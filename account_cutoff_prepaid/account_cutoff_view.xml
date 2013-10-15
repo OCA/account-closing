@@ -16,10 +16,10 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form"/>
     <field name="arch" type="xml">
         <button name="back2draft" position="after">
-            <button class="oe_highlight" name="get_prepaid_lines" string="Re-Generate Lines" type="object" states="draft" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <button class="oe_highlight" name="get_prepaid_lines" string="Re-Generate Lines" type="object" states="draft" invisible="'prepaid' not in context.get('type', '-')"/>
         </button>
         <field name="cutoff_date" position="after">
-            <field name="source_journal_ids" widget="many2many_tags" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <field name="source_journal_ids" widget="many2many_tags" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
     </field>
 </record>
@@ -31,17 +31,17 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form"/>
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="move_date" invisible="'prepaid' not in context.get('type', '-') and True or False" />
-            <field name="invoice_id" invisible="'prepaid' not in context.get('type', '-') and True or False" />
+            <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="move_date" invisible="'prepaid' not in context.get('type', '-')" />
+            <field name="invoice_id" invisible="'prepaid' not in context.get('type', '-')" />
         </field>
         <field name="name" position="after">
-            <field name="start_date" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="end_date" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <field name="start_date" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="end_date" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
         <field name="cutoff_amount" position="before">
-            <field name="total_days" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="after_cutoff_days" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <field name="total_days" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="after_cutoff_days" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
     </field>
 </record>
@@ -53,13 +53,13 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree"/>
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
         <field name="analytic_account_code" position="after">
-            <field name="start_date" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="end_date" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="total_days" string="Days Total" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
-            <field name="after_cutoff_days" string="Days after Cut-off" invisible="'prepaid' not in context.get('type', '-') and True or False"/>
+            <field name="start_date" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="end_date" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="total_days" string="Days Total" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="after_cutoff_days" string="Days after Cut-off" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
     </field>
 </record>
