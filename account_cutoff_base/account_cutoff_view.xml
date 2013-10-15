@@ -65,7 +65,7 @@
     <field name="model">account.cutoff</field>
     <field name="arch" type="xml">
         <tree string="Cut-offs" colors="blue:state=='draft'">
-            <field name="type" invisible="context.get('type') and True or False" />
+            <field name="type" invisible="context.get('type')" />
             <field name="cutoff_date" />
             <field name="total_cutoff_amount"/>
             <field name="company_currency_id"/>
@@ -99,7 +99,7 @@
                 <field name="account_id"/>
                 <field name="cutoff_account_id"/>
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
-                <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-') and True or False"/>
+                <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
                 <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 <field name="currency_id" invisible="1"/>
             </group>
@@ -107,7 +107,7 @@
                 <field name="cutoff_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="company_currency_id" invisible="1"/>
             </group>
-            <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('type', '-') and True or False">
+            <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('type', '-')">
                 <field name="tax_line_ids" nolabel="1"/>
             </group>
         </form>
@@ -125,7 +125,7 @@
             <field name="name"/>
             <field name="cutoff_account_code"/>
             <field name="analytic_account_code" groups="analytic.group_analytic_accounting"/>
-            <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-') and True or False"/>
+            <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
             <field name="amount"/>
             <field name="currency_id" groups="base.group_multi_currency"/>
             <field name="cutoff_amount"/>
