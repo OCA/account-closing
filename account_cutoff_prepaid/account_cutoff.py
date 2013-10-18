@@ -134,7 +134,8 @@ class account_cutoff(orm.Model):
         aml_ids = aml_obj.search(cr, uid, [
             ('start_date', '!=', False),
             ('journal_id', 'in', src_journal_ids),
-            ('end_date', '>', cutoff_date_str)
+            ('end_date', '>', cutoff_date_str),
+            ('date', '<=', cutoff_date_str)
             ], context=context)
         # Create mapping dict
         mapping = mapping_obj._get_mapping_dict(
