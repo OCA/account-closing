@@ -33,6 +33,8 @@ class account_cutoff(orm.Model):
         tax_obj = self.pool['account.tax']
         curr_obj = self.pool['res.currency']
         company_currency_id = cur_cutoff['company_currency_id'][0]
+        assert cur_cutoff['type'] in ('accrued_expense', 'accrued_revenue'),\
+            "The field 'type' has a wrong value"
         if cur_cutoff['type'] == 'accrued_expense':
             account_id = move_line.product_id.property_account_expense.id
             if not account_id:
@@ -73,8 +75,6 @@ class account_cutoff(orm.Model):
             partner_id = move_line.sale_line_id.order_id.partner_id.id
             tax_account_field_name = 'account_accrued_revenue_id'
             tax_account_field_label = 'Accrued Revenue Tax Account'
-        else:
-            raise
 
         currency_id = currency.id
         quantity = move_line.product_qty
