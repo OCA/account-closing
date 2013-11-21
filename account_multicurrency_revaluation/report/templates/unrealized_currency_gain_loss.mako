@@ -1,3 +1,4 @@
+## -*- coding: utf-8 -*-
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <style type="text/css">
