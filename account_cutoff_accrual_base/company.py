@@ -30,8 +30,8 @@ class res_company(orm.Model):
     _columns = {
         'default_accrued_revenue_account_id': fields.many2one(
             'account.account', 'Default Account for Accrued Revenues',
-            domain=[('type','<>','view')]),  # FR : 418100
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
         'default_accrued_expense_account_id': fields.many2one(
             'account.account', 'Default Account for Accrued Expenses',
-            domain=[('type','<>','view')]),  # FR : 408100
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
     }
