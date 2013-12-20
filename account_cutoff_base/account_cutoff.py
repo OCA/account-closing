@@ -80,7 +80,8 @@ class account_cutoff(orm.Model):
             help="This label will be written in the 'Name' field of the Cut-off Account Move Lines and in the 'Reference' field of the Cut-off Account Move."),
         'cutoff_account_id': fields.many2one(
             'account.account', 'Cut-off Account',
-            domain=[('type','<>','view')], required=True, readonly=True,
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
+            required=True, readonly=True,
             states={'draft': [('readonly', False)]}),
         'cutoff_journal_id': fields.many2one(
             'account.journal', 'Cut-off Account Journal', required=True,
@@ -140,7 +141,8 @@ class account_cutoff(orm.Model):
 
     def _default_cutoff_account_id(self, cr, uid, context=None):
         '''This function can't be inherited, so we use a second function'''
-        return self._inherit_default_cutoff_account_id(cr, uid, context=context)
+        return self._inherit_default_cutoff_account_id(
+            cr, uid, context=context)
 
     _defaults = {
         'state': 'draft',
@@ -182,7 +184,8 @@ class account_cutoff(orm.Model):
         movelines_to_create = []
         amount_total = 0
         move_label = cur_cutoff.move_label
-        for (cutoff_account_id, analytic_account_id), amount in to_provision.items():
+        for (cutoff_account_id, analytic_account_id), amount in \
+                to_provision.items():
             movelines_to_create.append((0, 0, {
                 'account_id': cutoff_account_id,
                 'name': move_label,
@@ -223,34 +226,56 @@ class account_cutoff(orm.Model):
         return res
 
     def create_move(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'This function should only be used for a single id at a time'
+        assert len(ids) == 1, \
+            'This function should only be used for a single id at a time'
         move_obj = self.pool['account.move']
         cur_cutoff = self.browse(cr, uid, ids[0], context=context)
         if cur_cutoff.move_id:
-            raise orm.except_orm(_('Error:'), _("The Cut-off Journal Entry already exists. You should delete it before running this function."))
+            raise orm.except_orm(
+                _('Error:'),
+                _("The Cut-off Journal Entry already exists. You should delete it before running this function."))
         if not cur_cutoff.line_ids:
-            raise orm.except_orm(_('Error:'), _("There are no lines on this Cut-off, so we can't create a Journal Entry."))
+            raise orm.except_orm(
+                _('Error:'),
+                _("There are no lines on this Cut-off, so we can't create a Journal Entry."))
         to_provision = {}
         # key = (cutoff_account_id, analytic_account_id)
         # value = amount
         for line in cur_cutoff.line_ids:
             # if it is already present
-            if (line.cutoff_account_id.id, line.analytic_account_id.id or False) in to_provision:
-                to_provision[(line.cutoff_account_id.id, line.analytic_account_id.id or False)] += line.cutoff_amount
+            if (
+                    line.cutoff_account_id.id,
+                    line.analytic_account_id.id or False
+                    ) in to_provision:
+                to_provision[(
+                    line.cutoff_account_id.id,
+                    line.analytic_account_id.id or False
+                    )] += line.cutoff_amount
             else:
             # if not already present
-                to_provision[(line.cutoff_account_id.id, line.analytic_account_id.id or False)] = line.cutoff_amount
+                to_provision[(
+                    line.cutoff_account_id.id,
+                    line.analytic_account_id.id or False
+                    )] = line.cutoff_amount
             # Same for tax lines
             for tax_line in line.tax_line_ids:
-                if (tax_line.cutoff_account_id.id, tax_line.analytic_account_id.id or False) in to_provision:
-                    to_provision[(tax_line.cutoff_account_id.id, tax_line.analytic_account_id.id or False)] += tax_line.cutoff_amount
+                if (
+                        tax_line.cutoff_account_id.id,
+                        tax_line.analytic_account_id.id or False
+                        ) in to_provision:
+                    to_provision[(
+                        tax_line.cutoff_account_id.id,
+                        tax_line.analytic_account_id.id or False
+                        )] += tax_line.cutoff_amount
                 else:
-                    to_provision[(tax_line.cutoff_account_id.id, tax_line.analytic_account_id.id or False)] = tax_line.cutoff_amount
-        #print "to_provision=", to_provision
+                    to_provision[(
+                        tax_line.cutoff_account_id.id,
+                        tax_line.analytic_account_id.id or False
+                        )] = tax_line.cutoff_amount
 
-        move_id = move_obj.create(cr, uid, self._prepare_move(
-                cr, uid, cur_cutoff, to_provision, context=context),
-            context=context)
+        vals = self._prepare_move(
+            cr, uid, cur_cutoff, to_provision, context=context)
+        move_id = move_obj.create(cr, uid, vals, context=context)
         move_obj.validate(cr, uid, [move_id], context=context)
         self.write(cr, uid, ids[0], {
             'move_id': move_id,
@@ -284,17 +309,19 @@ class account_cutoff_line(orm.Model):
             relation='res.currency', string="Company Currency", readonly=True),
         'partner_id': fields.many2one('res.partner', 'Partner', readonly=True),
         'account_id': fields.many2one(
-            'account.account', 'Account', domain=[('type','<>','view')],
+            'account.account', 'Account',
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
             required=True, readonly=True),
         'cutoff_account_id': fields.many2one(
-            'account.account', 'Cut-off Account', domain=[('type','<>','view')],
+            'account.account', 'Cut-off Account',
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
             required=True, readonly=True),
         'cutoff_account_code': fields.related(
             'cutoff_account_id', 'code', type='char',
             string='Cut-off Account Code', readonly=True),
         'analytic_account_id': fields.many2one(
             'account.analytic.account', 'Analytic Account',
-            domain=[('type','not in',('view','template'))],
+            domain=[('type', 'not in', ('view', 'template'))],
             readonly=True),
         'analytic_account_code': fields.related(
             'analytic_account_id', 'code', type='char',
@@ -328,11 +355,12 @@ class account_cutoff_tax_line(orm.Model):
             ondelete='cascade', required=True),
         'tax_id': fields.many2one('account.tax', 'Tax', required=True),
         'cutoff_account_id': fields.many2one(
-            'account.account', 'Cut-off Account', domain=[('type','<>','view')],
+            'account.account', 'Cut-off Account',
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
             required=True, readonly=True),
         'analytic_account_id': fields.many2one(
             'account.analytic.account', 'Analytic Account',
-            domain=[('type','not in',('view','template'))],
+            domain=[('type', 'not in', ('view', 'template'))],
             readonly=True),
         'base': fields.float(
             'Base', digits_compute=dp.get_precision('Account'),
@@ -364,10 +392,12 @@ class account_cutoff_mapping(orm.Model):
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'account_id': fields.many2one(
             'account.account', 'Regular Account',
-            domain=[('type','<>','view')], required=True),
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
+            required=True),
         'cutoff_account_id': fields.many2one(
             'account.account', 'Cut-off Account',
-            domain=[('type','<>','view')], required=True),
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
+            required=True),
         'cutoff_type': fields.selection([
             ('all', 'All Cut-off Types'),
             ('accrued_revenue', 'Accrued Revenue'),
