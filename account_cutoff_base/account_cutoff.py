@@ -35,7 +35,7 @@ class account_cutoff(orm.Model):
     _track = {
         'state': {
             'account_cutoff_base.cutoff_done':
-                lambda self, cr, uid, obj, ctx=None: obj['state'] == 'done',
+            lambda self, cr, uid, obj, ctx=None: obj['state'] == 'done',
             }
         }
 
@@ -77,7 +77,9 @@ class account_cutoff(orm.Model):
             'Label of the Cut-off Journal Entry',
             size=64, required=True, readonly=True,
             states={'draft': [('readonly', False)]},
-            help="This label will be written in the 'Name' field of the Cut-off Account Move Lines and in the 'Reference' field of the Cut-off Account Move."),
+            help="This label will be written in the 'Name' field of the "
+            "Cut-off Account Move Lines and in the 'Reference' field of "
+            "the Cut-off Account Move."),
         'cutoff_account_id': fields.many2one(
             'account.account', 'Cut-off Account',
             domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
@@ -103,7 +105,8 @@ class account_cutoff(orm.Model):
             ('done', 'Done'),
             ],
             'State', select=True, readonly=True, track_visibility='onchange',
-            help="State of the cutoff. When the Journal Entry is created, the state is set to 'Done' and the fields become read-only."),
+            help="State of the cutoff. When the Journal Entry is created, "
+            "the state is set to 'Done' and the fields become read-only."),
     }
 
     def _get_default_journal(self, cr, uid, context=None):
@@ -147,20 +150,22 @@ class account_cutoff(orm.Model):
     _defaults = {
         'state': 'draft',
         'company_id': lambda self, cr, uid, context:
-            self.pool['res.users'].browse(
-                cr, uid, uid, context=context).company_id.id,
+        self.pool['res.users'].browse(
+            cr, uid, uid, context=context).company_id.id,
         'cutoff_journal_id': _get_default_journal,
         'move_label': _default_move_label,
         'type': _default_type,
         'cutoff_account_id': _default_cutoff_account_id,
         }
 
-    _sql_constraints = [
-        ('date_type_company_uniq', 'unique(cutoff_date, company_id, type)',
-            'A cutoff of the same type already exists with this cut-off date !'),
-    ]
+    _sql_constraints = [(
+        'date_type_company_uniq',
+        'unique(cutoff_date, company_id, type)',
+        'A cutoff of the same type already exists with this cut-off date !'
+        )]
 
-    def cutoff_date_onchange(self, cr, uid, ids, type, cutoff_date, move_label):
+    def cutoff_date_onchange(
+            self, cr, uid, ids, type, cutoff_date, move_label):
         res = {'value': {}}
         if type and cutoff_date:
             context = {'type': type, 'cutoff_date': cutoff_date}
@@ -233,11 +238,13 @@ class account_cutoff(orm.Model):
         if cur_cutoff.move_id:
             raise orm.except_orm(
                 _('Error:'),
-                _("The Cut-off Journal Entry already exists. You should delete it before running this function."))
+                _("The Cut-off Journal Entry already exists. You should "
+                    "delete it before running this function."))
         if not cur_cutoff.line_ids:
             raise orm.except_orm(
                 _('Error:'),
-                _("There are no lines on this Cut-off, so we can't create a Journal Entry."))
+                _("There are no lines on this Cut-off, so we can't create "
+                    "a Journal Entry."))
         to_provision = {}
         # key = (cutoff_account_id, analytic_account_id)
         # value = amount
@@ -330,8 +337,11 @@ class account_cutoff_line(orm.Model):
             'res.currency', 'Amount Currency', readonly=True,
             help="Currency of the 'Amount' field."),
         'amount': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account'), readonly=True,
-            help="Amount that is used as base to compute the Cut-off Amount. This Amount is in the 'Amount Currency', which may be different from the 'Company Currency'."),
+            'Amount', digits_compute=dp.get_precision('Account'),
+            readonly=True,
+            help="Amount that is used as base to compute the Cut-off Amount. "
+            "This Amount is in the 'Amount Currency', which may be different "
+            "from the 'Company Currency'."),
         'cutoff_amount': fields.float(
             'Cut-off Amount', digits_compute=dp.get_precision('Account'),
             readonly=True,
@@ -409,8 +419,8 @@ class account_cutoff_mapping(orm.Model):
 
     _defaults = {
         'company_id': lambda self, cr, uid, context:
-            self.pool['res.users'].browse(
-                cr, uid, uid, context=context).company_id.id,
+        self.pool['res.users'].browse(
+            cr, uid, uid, context=context).company_id.id,
         }
 
     def _get_mapping_dict(
