@@ -57,10 +57,11 @@ class account_cutoff(orm.Model):
         'source_journal_ids': _get_default_source_journals,
         }
 
-    _sql_constraints = [
-        ('date_type_company_uniq', 'unique(cutoff_date, company_id, type)',
-            'A cut-off of the same type already exists with this cut-off date !'),
-    ]
+    _sql_constraints = [(
+        'date_type_company_uniq',
+        'unique(cutoff_date, company_id, type)',
+        'A cut-off of the same type already exists with this cut-off date !'
+        )]
 
     def _prepare_prepaid_lines(
             self, cr, uid, ids, aml, cur_cutoff, mapping, context=None):
@@ -82,7 +83,7 @@ class account_cutoff(orm.Model):
             else:
                 raise orm.except_orm(
                     _('Error:'),
-                    "This should never happen. Total days should always be > 0")
+                    "Should never happen. Total days should always be > 0")
 
         # we use account mapping here
         if aml['account_id'][0] in mapping:
@@ -99,8 +100,9 @@ class account_cutoff(orm.Model):
             'end_date': aml['end_date'],
             'account_id': aml['account_id'][0],
             'cutoff_account_id': cutoff_account_id,
-            'analytic_account_id': aml['analytic_account_id'] and
-                aml['analytic_account_id'][0] or False,
+            'analytic_account_id':
+            aml['analytic_account_id'] and aml['analytic_account_id'][0]
+            or False,
             'total_days': total_days,
             'after_cutoff_days': after_cutoff_days,
             'amount': aml['credit'] - aml['debit'],
