@@ -30,9 +30,7 @@ class account_tax(orm.Model):
         'account_accrued_revenue_id': fields.many2one(
             'account.account', 'Accrued Revenue Tax Account',
             domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-            # FR : 445870
         'account_accrued_expense_id': fields.many2one(
             'account.account', 'Accrued Expense Tax Account',
             domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-            # FR : 445860
         }
