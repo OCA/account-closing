@@ -38,17 +38,21 @@ class account_invoice_line(orm.Model):
             if invline.start_date and not invline.end_date:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Missing End Date for invoice line with Description '%s'.")
+                    _("Missing End Date for invoice line with "
+                        "Description '%s'.")
                     % (invline.name))
             if invline.end_date and not invline.start_date:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Missing Start Date for invoice line with Description '%s'.")
+                    _("Missing Start Date for invoice line with "
+                        "Description '%s'.")
                     % (invline.name))
-            if invline.end_date and invline.start_date and invline.start_date > invline.end_date:
+            if invline.end_date and invline.start_date and \
+                    invline.start_date > invline.end_date:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Start Date should be before or be the same as End Date for invoice line with Description '%s'.")
+                    _("Start Date should be before or be the same as "
+                        "End Date for invoice line with Description '%s'.")
                     % (invline.name))
             # Note : we can't check invline.product_id.must_have_dates
             # have start_date and end_date here, because it would
@@ -90,17 +94,22 @@ class account_move_line(orm.Model):
                     _('Error:'),
                     _("Missing Start Date for move line with Name '%s'.")
                     % (moveline.name))
-            if moveline.end_date and moveline.start_date and moveline.start_date > moveline.end_date:
+            if moveline.end_date and moveline.start_date and \
+                    moveline.start_date > moveline.end_date:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Start Date should be before End Date for move line with Name '%s'.")
+                    _("Start Date should be before End Date for move line "
+                        "with Name '%s'.")
                     % (moveline.name))
-        # should we check that it's related to an expense / revenue ? -> I don't think so
+        # should we check that it's related to an expense / revenue ?
+        # -> I don't think so
         return True
 
-    _constraints = [
-        (_check_start_end_dates, "Error msg in raise", ['start_date', 'end_date']),
-    ]
+    _constraints = [(
+        _check_start_end_dates,
+        "Error msg in raise",
+        ['start_date', 'end_date']
+        )]
 
 
 class account_invoice(orm.Model):
@@ -125,14 +134,17 @@ class account_invoice(orm.Model):
         return res
 
     def action_move_create(self, cr, uid, ids, context=None):
-        '''Check that products with must_have_dates=True have Start and End Dates'''
+        '''Check that products with must_have_dates=True have
+        Start and End Dates'''
         for invoice in self.browse(cr, uid, ids, context=context):
             for invline in invoice.invoice_line:
                 if invline.product_id and invline.product_id.must_have_dates:
                     if not invline.start_date or not invline.end_date:
                         raise orm.except_orm(
                             _('Error:'),
-                            _("Missing Start Date and End Date for invoice line with Product '%s' which has the property 'Must Have Start and End Dates'.")
+                            _("Missing Start Date and End Date for invoice "
+                                "line with Product '%s' which has the "
+                                "property 'Must Have Start and End Dates'.")
                             % (invline.product_id.name))
         return super(account_invoice, self).action_move_create(
             cr, uid, ids, context=context)
