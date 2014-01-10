@@ -72,7 +72,7 @@ class account_cutoff(orm.Model):
                 project_id.id or False
             discount = move_line.sale_line_id.discount
             price_unit = move_line.sale_line_id.price_unit *\
-                (1 - (discount or 0.0) / 100.0)
+                (1-(discount or 0.0)/100.0)
             taxes = move_line.sale_line_id.tax_id
             partner_id = move_line.sale_line_id.order_id.partner_id.id
             tax_account_field_name = 'account_accrued_revenue_id'
@@ -123,7 +123,7 @@ class account_cutoff(orm.Model):
                 tax_line['account_analytic_collected_id'],
                 # account_analytic_collected_id is for
                 # invoices IN and OUT
-            }))
+                }))
         if company_currency_id != currency_id:
             amount_company_currency = curr_obj.compute(
                 cr, uid, currency_id, company_currency_id, amount,
@@ -151,7 +151,7 @@ class account_cutoff(orm.Model):
             'amount': amount,
             'cutoff_amount': amount_company_currency,
             'tax_line_ids': tax_line_ids,
-        }
+            }
         return res
 
     def get_lines_from_picking(self, cr, uid, ids, context=None):
@@ -164,14 +164,14 @@ class account_cutoff(orm.Model):
         cur_cutoff = self.read(cr, uid, ids[0], [
             'line_ids', 'type', 'cutoff_date', 'company_id',
             'company_currency_id',
-        ],
+            ],
             context=context)
         # delete existing lines based on pickings
         to_delete_line_ids = line_obj.search(
             cr, uid, [
                 ('parent_id', '=', cur_cutoff['id']),
                 ('stock_move_id', '!=', False)
-            ],
+                ],
             context=context)
         if to_delete_line_ids:
             line_obj.unlink(cr, uid, to_delete_line_ids, context=context)
@@ -186,8 +186,8 @@ class account_cutoff(orm.Model):
             ('state', '=', 'done'),
             ('invoice_state', '=', '2binvoiced'),
             ('date_done', '<=', cur_cutoff['cutoff_date'])
-        ], context=context)
-        # print "pick_ids=", pick_ids
+            ], context=context)
+        #print "pick_ids=", pick_ids
         # Create account mapping dict
         account_mapping = mapping_obj._get_mapping_dict(
             cr, uid, cur_cutoff['company_id'][0], cur_cutoff['type'],
@@ -217,4 +217,4 @@ class account_cutoff_line(orm.Model):
         'picking_date_done': fields.related(
             'picking_id', 'date_done', type='date',
             string='Date Done of the Picking', readonly=True),
-    }
+        }
