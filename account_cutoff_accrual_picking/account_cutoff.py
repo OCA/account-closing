@@ -43,7 +43,8 @@ class account_cutoff(orm.Model):
             if not account_id:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Missing expense account on product '%s' or on its related product category.")
+                    _("Missing expense account on product '%s' or on its "
+                        "related product category.")
                     % (move_line.product_id.name))
             currency = move_line.purchase_line_id.order_id.\
                 pricelist_id.currency_id
@@ -63,7 +64,8 @@ class account_cutoff(orm.Model):
             if not account_id:
                 raise orm.except_orm(
                     _('Error:'),
-                    _("Missing income account on product '%s' or on its related product category.")
+                    _("Missing income account on product '%s' or on its "
+                        "related product category.")
                     % (move_line.product_id.name))
             currency = move_line.sale_line_id.order_id.pricelist_id.currency_id
             analytic_account_id = move_line.sale_line_id.order_id.\
@@ -178,7 +180,7 @@ class account_cutoff(orm.Model):
             'accrued_expense': 'in',
         }
         assert cur_cutoff['type'] in pick_type_map, \
-            "cur_cutoff['type'] should be oneof the values of pick_type_map.keys()"
+            "cur_cutoff['type'] should be in pick_type_map.keys()"
         pick_ids = pick_obj.search(cr, uid, [
             ('type', '=', pick_type_map[cur_cutoff['type']]),
             ('state', '=', 'done'),

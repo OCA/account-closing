@@ -31,8 +31,9 @@ class account_cutoff(orm.Model):
     def _inherit_default_cutoff_account_id(self, cr, uid, context=None):
         if context is None:
             context = {}
-        account_id = super(account_cutoff, self)._inherit_default_cutoff_account_id(
-            cr, uid, context=context)
+        account_id = super(account_cutoff, self).\
+            _inherit_default_cutoff_account_id(
+                cr, uid, context=context)
         type = context.get('type')
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
