@@ -50,7 +50,11 @@ class account_invoice_line(orm.Model):
                     _('Error:'),
                     _("Start Date should be before or be the same as End Date for invoice line with Description '%s'.")
                     % (invline.name))
-            # Note : we can't check invline.product_id.must_have_dates have start_date and end_date here, because it would block automatic invoice generation. So we do the check upon validation of the invoice (see below the function action_move_create)
+            # Note : we can't check invline.product_id.must_have_dates
+            # have start_date and end_date here, because it would
+            # block automatic invoice generation. So we do the check
+            # upon validation of the invoice (see below the function
+            # action_move_create)
         return True
 
     _constraints = [
