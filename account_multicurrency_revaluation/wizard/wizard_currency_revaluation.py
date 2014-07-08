@@ -162,7 +162,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         ctx_rate['date'] = form.revaluation_date
         ctx_rate['currency_rate_type_id'] = type_id
         user_obj = self.pool.get('res.users')
-        cp_currency_id = user_obj.browse(cr, uid, uid, context=context).company_id.currency_id.id
+        cp_currency_id = form.journal_id.company_id.currency_id.id
 
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
 
@@ -231,7 +231,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                          'journal_id': form.journal_id.id,
                          'period_id': period.id,
                          'date': form.revaluation_date,
-                         'to_be_reversed': company.reversable_revaluations}
+                         'to_be_reversed': form.journal_id.company_id.reversable_revaluations}
             return move_obj.create(cr, uid, base_move, context=context)
 
         def create_move_line(move_id, line_data, sums):
@@ -260,8 +260,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         period_obj = self.pool.get('account.period')
         user_obj = self.pool.get('res.users')
 
-        company = user_obj.browse(cr, uid, uid).company_id
-
+        company = form.journal_id.company_id or user_obj.browse(cr, uid, uid).company_id
         period_ids = period_obj.search(
             cr, uid,
             [('date_start', '<=', form.revaluation_date),
@@ -368,7 +367,11 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         move_obj = self.pool.get('account.move')
 
-        company = user_obj.browse(cr, uid, uid).company_id
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        form = self.browse(cr, uid, ids[0], context=context)
+
+        company = form.journal_id.company_id or user_obj.browse(cr, uid, uid).company_id
 
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
@@ -384,10 +387,6 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                   " a couple of provision account."))
 
         created_ids = []
-
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        form = self.browse(cr, uid, ids[0], context=context)
 
         # Search for accounts Balance Sheet to be eevaluated
         # on those criterions
