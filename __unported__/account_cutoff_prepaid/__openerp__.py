@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account Cut-off Accrual Picking module for OpenERP
+#    Account Cut-off Prepaid module for OpenERP
 #    Copyright (C) 2013 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
@@ -22,40 +22,36 @@
 
 
 {
-    'name': 'Account Accrual Picking',
+    'name': 'Account Cut-off Prepaid',
     'version': '0.1',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
-    'summary': 'Accrued Expense & Accrued Revenue from Pickings',
+    'summary': 'Prepaid Expense, Prepaid Revenue',
     'description': """
-Manage expense and revenue accruals from pickings
-=================================================
+Manage prepaid expense and revenue based on start and end dates
+===============================================================
 
-This module generates expense and revenue accruals based on the status of pickings.
-
-For revenue accruals, OpenERP will take into account all the delivery orders in *Delivered* state that have been shipped before the cut-off date and that have *Invoice Control* = *To Be Invoiced*.
-
-For expense accruals, OpenERP will take into account all the incoming shipments in *Received* state that have been received before the cut-off date and that have *Invoice Control* = *To Be Invoiced*.
-
-The current code of the module only works when :
-
-* on sale orders, the *Create Invoice* field is set to *On Delivery Order* ;
-* for purchase orders, the *Invoicing Control* field is set to *Based on incoming shipments*.
+This module adds a **Start Date** and **End Date** field on invoice lines. For example, if you have an insurance contrat for your company that run from April 1st 2013 to March 31st 2014, you will enter these dates as start and end dates on the supplier invoice line. If your fiscal year ends on December 31st 2013, 3 months of expenses are part of the 2014 fiscal year and should not be part of the 2013 fiscal year. So, thanks to this module, you will create a *Prepaid Expense* on December 31st 2013 and OpenERP will identify this expense with the 3 months that are after the cut-off date and propose to generate the appropriate cut-off journal entry.
 
 Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
-    'depends': ['account_cutoff_accrual_base', 'purchase', 'sale_stock'],
+    'depends': ['account_cutoff_base'],
     'data': [
+        'company_view.xml',
+        'product_view.xml',
+        'account_invoice_view.xml',
+        'account_view.xml',
         'account_cutoff_view.xml',
     ],
+    'demo': ['product_demo.xml'],
     'images': [
-        'images/accrued_expense_draft.jpg',
-        'images/accrued_expense_journal_entry.jpg',
-        'images/accrued_expense_done.jpg',
+        'images/prepaid_revenue_draft.jpg',
+        'images/prepaid_revenue_journal_entry.jpg',
+        'images/prepaid_revenue_done.jpg',
         ],
-    'installable': True,
+    'installable': False,
     'active': False,
     'application': True,
 }

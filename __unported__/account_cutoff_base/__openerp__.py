@@ -42,6 +42,6 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'account_cutoff_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
