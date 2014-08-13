@@ -1,11 +1,11 @@
 language: python
 
 python:
-  - "2.7"
+  - "2.6"
 
 env:
-  - VERSION="7.0" ODOO_REPO="odoo/odoo"
-  - VERSION="7.0" ODOO_REPO="OCA/OCB"
+  - VERSION="6.1" ODOO_REPO="odoo/odoo"
+  - VERSION="6.1" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
