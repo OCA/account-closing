@@ -61,10 +61,10 @@ class ResCompany(orm.Model):
             'Reversable Revaluations',
             help="Revaluations entries will be created"
                  " as \"To Be Reversed\".")
-        }
+    }
 
     _defaults = {
         'reversable_revaluations': True,
-        }
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

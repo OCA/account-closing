@@ -37,7 +37,8 @@ class ShellAccount(object):
         self.acc_id = acc_id
         self.pool = pool
         tmp = self.pool.get('account.account').read(cr, uid, [acc_id],
-                                                    ['id', 'name', 'code', 'currency_revaluation'],
+                                                    ['id', 'name', 'code',
+                                                        'currency_revaluation'],
                                                     self._context)
         self.name = tmp[0].get('name')
         self.code = tmp[0].get('code')
@@ -46,6 +47,7 @@ class ShellAccount(object):
         self.currency_revaluation = tmp[0].get('currency_revaluation', False)
         self.keys_to_sum = ['gl_foreign_balance', 'gl_currency_rate',
                             'gl_revaluated_balance', 'gl_balance', 'gl_ytd_balance']
+
     def get_lines(self, period_id):
         """Get all line account move line that are need on report for current account"""
         sql = """Select res_partner.name,
@@ -71,13 +73,12 @@ class ShellAccount(object):
 
     def compute_totals(self):
         """Compute the sum of values in self.ordered_lines"""
-        totals =  dict.fromkeys(self.keys_to_sum, 0.0)
+        totals = dict.fromkeys(self.keys_to_sum, 0.0)
         for line in self.ordered_lines:
             for tot in self.keys_to_sum:
                 totals[tot] += line.get(tot, 0.0)
         for key, val in totals.iteritems():
             setattr(self, key + '_total', val)
-
 
 
 class CurrencyUnrealizedReport(report_sxw.rml_parse):
@@ -86,12 +87,13 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         return data.get('form', {}).get('period_name', '')
 
     def __init__(self, cursor, uid, name, context):
-        super(CurrencyUnrealizedReport, self).__init__(cursor, uid, name, context=context)
+        super(CurrencyUnrealizedReport, self).__init__(
+            cursor, uid, name, context=context)
         self.pool = pooler.get_pool(self.cr.dbname)
         self.cursor = self.cr
 
-        self.company = self.pool.get('res.users').browse(self.cr, uid, uid, context=context).company_id
-
+        self.company = self.pool.get('res.users').browse(
+            self.cr, uid, uid, context=context).company_id
 
         self.localcontext.update({'cr': cursor,
                                   'uid': uid,
@@ -107,7 +109,8 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
             # add all accounts with same parent
             level_accounts = [account for account in accounts
                               if account['parent_id'] and account['parent_id'][0] == parent['id']]
-            # add consolidation children of parent, as they are logically on the same level
+            # add consolidation children of parent, as they are logically on
+            # the same level
             if parent.get('child_consol_ids'):
                 level_accounts.extend([account for account in accounts
                                        if account['id'] in parent['child_consol_ids']])
@@ -119,16 +122,18 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
 
             for level_account in level_accounts:
                 sorted_accounts.append(level_account['id'])
-                sorted_accounts.extend(recursive_sort_by_code(accounts, parent=level_account))
+                sorted_accounts.extend(
+                    recursive_sort_by_code(accounts, parent=level_account))
             return sorted_accounts
 
         if not account_ids:
             return []
 
         accounts_data = self.pool.get('account.account').read(self.cr, self.uid,
-                                                         account_ids,
-                                                         ['id', 'parent_id', 'level', 'code', 'child_consol_ids'],
-                                                         context=context)
+                                                              account_ids,
+                                                              ['id', 'parent_id', 'level',
+                                                                  'code', 'child_consol_ids'],
+                                                              context=context)
 
         sorted_accounts = []
 
@@ -136,7 +141,8 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
                               if account_data['id'] in root_account_ids]
         for root_account_data in root_accounts_data:
             sorted_accounts.append(root_account_data['id'])
-            sorted_accounts.extend(recursive_sort_by_code(accounts_data, root_account_data))
+            sorted_accounts.extend(
+                recursive_sort_by_code(accounts_data, root_account_data))
 
         # fallback to unsorted accounts when sort failed
         # sort fails when the levels are miscalculated by account.account
@@ -162,9 +168,11 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         acc_obj = self.pool.get('account.account')
         for account_id in account_ids:
             accounts.append(account_id)
-            accounts += acc_obj._get_children_and_consol(self.cursor, self.uid, account_id, context=context)
+            accounts += acc_obj._get_children_and_consol(
+                self.cursor, self.uid, account_id, context=context)
         res_ids = list(set(accounts))
-        res_ids = self.sort_accounts_with_structure(account_ids, res_ids, context=context)
+        res_ids = self.sort_accounts_with_structure(
+            account_ids, res_ids, context=context)
 
         if exclude_type or only_type or filter_report_type:
             sql_filters = {'ids': tuple(res_ids)}
@@ -200,14 +208,16 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         by mako template"""
         for mand in ['account_ids', 'period_id']:
             if not data['form'][mand]:
-                raise Exception(_('%s argument is not set in wizard') % (mand,))
-        #we replace object
+                raise Exception(
+                    _('%s argument is not set in wizard') % (mand,))
+        # we replace object
         objects = []
-        new_ids =  data['form']['account_ids']
+        new_ids = data['form']['account_ids']
         period_id = data['form']['period_id']
         # get_all_account is in charge of ordering the accounts
         for acc_id in self.get_all_accounts(new_ids):
-            acc = ShellAccount(self.cursor, self.uid, self.pool, acc_id, context=self.localcontext)
+            acc = ShellAccount(
+                self.cursor, self.uid, self.pool, acc_id, context=self.localcontext)
             if not acc.currency_revaluation:
                 continue
             acc.get_lines(period_id)

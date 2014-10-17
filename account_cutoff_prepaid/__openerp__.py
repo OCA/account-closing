@@ -50,7 +50,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'images/prepaid_revenue_draft.jpg',
         'images/prepaid_revenue_journal_entry.jpg',
         'images/prepaid_revenue_done.jpg',
-        ],
+    ],
     'installable': True,
     'active': False,
     'application': True,

@@ -26,28 +26,28 @@ class AccountAccountLine(orm.Model):
     _inherit = 'account.move.line'
     # By convention added columns stats with gl_.
     _columns = {
-            'gl_foreign_balance': fields.float('Aggregated Amount curency'),
-            'gl_balance': fields.float('Aggregated Amount'),
-            'gl_revaluated_balance': fields.float('Revaluated Amount'),
-            'gl_currency_rate': fields.float('Currency rate')}
+        'gl_foreign_balance': fields.float('Aggregated Amount curency'),
+        'gl_balance': fields.float('Aggregated Amount'),
+        'gl_revaluated_balance': fields.float('Revaluated Amount'),
+        'gl_currency_rate': fields.float('Currency rate')}
 
 
 class AccountAccount(orm.Model):
     _inherit = 'account.account'
 
     _columns = {
-            'currency_revaluation': fields.boolean(
-                "Allow Currency revaluation")
-            }
+        'currency_revaluation': fields.boolean(
+            "Allow Currency revaluation")
+    }
 
     _defaults = {'currency_revaluation': False}
 
     _sql_mapping = {
-            'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
-            'debit': "COALESCE(SUM(l.debit), 0) as debit",
-            'credit': "COALESCE(SUM(l.credit), 0) as credit",
-            'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
-            }
+        'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
+        'debit': "COALESCE(SUM(l.debit), 0) as debit",
+        'credit': "COALESCE(SUM(l.credit), 0) as credit",
+        'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
+    }
 
     def _revaluation_query(self, cr, uid, ids,
                            revaluation_date,
@@ -56,14 +56,14 @@ class AccountAccount(orm.Model):
         lines_where_clause = self.pool.get('account.move.line').\
             _query_get(cr, uid, context=context)
         query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
-                   ', '.join(self._sql_mapping.values()) +
-                   " FROM account_move_line l "
-                   " WHERE l.account_id IN %(account_ids)s AND "
-                   " l.date <= %(revaluation_date)s AND "
-                   " l.currency_id IS NOT NULL AND "
-                   " l.reconcile_id IS NULL AND "
-                        + lines_where_clause +
-                   " GROUP BY l.account_id, l.currency_id, l.partner_id")
+                 ', '.join(self._sql_mapping.values()) +
+                 " FROM account_move_line l "
+                 " WHERE l.account_id IN %(account_ids)s AND "
+                 " l.date <= %(revaluation_date)s AND "
+                 " l.currency_id IS NOT NULL AND "
+                 " l.reconcile_id IS NULL AND "
+                 + lines_where_clause +
+                 " GROUP BY l.account_id, l.currency_id, l.partner_id")
         params = {'revaluation_date': revaluation_date,
                   'account_ids': tuple(ids)}
         return query, params
@@ -75,7 +75,7 @@ class AccountAccount(orm.Model):
             context = {}
         accounts = {}
 
-        #compute for each account the balance/debit/credit from the move lines
+        # compute for each account the balance/debit/credit from the move lines
         ctx_query = context.copy()
         ctx_query['periods'] = period_ids
         query, params = self._revaluation_query(

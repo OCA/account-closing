@@ -109,7 +109,7 @@ class account_move_line(orm.Model):
         _check_start_end_dates,
         "Error msg in raise",
         ['start_date', 'end_date']
-        )]
+    )]
 
 
 class account_invoice(orm.Model):
@@ -123,7 +123,7 @@ class account_invoice(orm.Model):
         hashcode = '%s-%s-%s' % (
             code, invoice_line.get('start_date', 'False'),
             invoice_line.get('end_date', 'False'),
-            )
+        )
         return hashcode
 
     def line_get_convert(self, cr, uid, x, part, date, context=None):

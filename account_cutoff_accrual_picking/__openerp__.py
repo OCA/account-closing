@@ -54,7 +54,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'images/accrued_expense_draft.jpg',
         'images/accrued_expense_journal_entry.jpg',
         'images/accrued_expense_done.jpg',
-        ],
+    ],
     'installable': True,
     'active': False,
     'application': True,

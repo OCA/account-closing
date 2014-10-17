@@ -45,7 +45,7 @@ class account_cutoff(orm.Model):
         mapping = {
             'prepaid_expense': ('purchase', 'purchase_refund'),
             'prepaid_revenue': ('sale', 'sale_refund'),
-            }
+        }
         if type in mapping:
             src_journal_ids = journal_obj.search(
                 cr, uid, [('type', 'in', mapping[type])])
@@ -55,13 +55,13 @@ class account_cutoff(orm.Model):
 
     _defaults = {
         'source_journal_ids': _get_default_source_journals,
-        }
+    }
 
     _sql_constraints = [(
         'date_type_company_uniq',
         'unique(cutoff_date, company_id, type)',
         'A cut-off of the same type already exists with this cut-off date !'
-        )]
+    )]
 
     def _prepare_prepaid_lines(
             self, cr, uid, ids, aml, cur_cutoff, mapping, context=None):
@@ -108,7 +108,7 @@ class account_cutoff(orm.Model):
             'amount': aml['credit'] - aml['debit'],
             'currency_id': cur_cutoff['company_currency_id'][0],
             'cutoff_amount': cutoff_amount,
-            }
+        }
         return res
 
     def get_prepaid_lines(self, cr, uid, ids, context=None):
@@ -121,7 +121,7 @@ class account_cutoff(orm.Model):
             cr, uid, ids[0], [
                 'line_ids', 'source_journal_ids', 'cutoff_date', 'company_id',
                 'type', 'company_currency_id'
-                ],
+            ],
             context=context)
         src_journal_ids = cur_cutoff['source_journal_ids']
         if not src_journal_ids:
@@ -138,7 +138,7 @@ class account_cutoff(orm.Model):
             ('journal_id', 'in', src_journal_ids),
             ('end_date', '>', cutoff_date_str),
             ('date', '<=', cutoff_date_str)
-            ], context=context)
+        ], context=context)
         # Create mapping dict
         mapping = mapping_obj._get_mapping_dict(
             cr, uid, cur_cutoff['company_id'][0], cur_cutoff['type'],
@@ -149,7 +149,7 @@ class account_cutoff(orm.Model):
                 cr, uid, aml_ids, [
                     'credit', 'debit', 'start_date', 'end_date', 'account_id',
                     'analytic_account_id', 'partner_id', 'name'
-                    ],
+                ],
                 context=context):
 
             line_obj.create(
@@ -190,4 +190,4 @@ class account_cutoff_line(orm.Model):
         'total_days': fields.integer('Total Number of Days', readonly=True),
         'after_cutoff_days': fields.integer(
             'Number of Days after Cut-off Date', readonly=True),
-        }
+    }
