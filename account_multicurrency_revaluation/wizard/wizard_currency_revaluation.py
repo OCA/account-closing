@@ -31,7 +31,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
     _columns = {
         'revaluation_date': fields.date(
             'Revaluation Date',
-             required=True),
+            required=True),
         'journal_id': fields.many2one(
             'account.journal',
             'Journal',
@@ -42,17 +42,17 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         'currency_type': fields.many2one(
             'res.currency.rate.type',
             'Currency Type',
-             help="If no currency_type is selected,"
-                  " only rates with no type will be browsed.",
-             required=False),
+            help="If no currency_type is selected,"
+            " only rates with no type will be browsed.",
+            required=False),
         'label': fields.char(
             'Entry description',
-             size=100,
-             help="This label will be inserted in entries description."
-                 " You can use %(account)s, %(currency)s"
+            size=100,
+            help="This label will be inserted in entries description."
+            " You can use %(account)s, %(currency)s"
                  " and %(rate)s keywords.",
-             required=True),
-        }
+            required=True),
+    }
 
     def _get_default_revaluation_date(self, cr, uid, context):
         """
@@ -91,10 +91,10 @@ class WizardCurrencyrevaluation(orm.TransientModel):
 
     _defaults = {
         'label': "%(currency)s %(account)s "
-                     "%(rate)s currency revaluation",
+        "%(rate)s currency revaluation",
         'revaluation_date': _get_default_revaluation_date,
         'journal_id': _get_default_journal_id,
-        }
+    }
 
     def on_change_revaluation_date(self, cr, uid, id, revaluation_date):
         if not revaluation_date:
@@ -110,7 +110,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
              ('date_stop', '>=', revaluation_date),
              ('company_id', '=', company_id)],
             limit=1
-            )
+        )
         if fiscalyear_ids:
             fiscalyear = fiscalyear_obj.browse(
                 cr, uid, fiscalyear_ids[0])
@@ -122,20 +122,20 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                 limit=1)
             if previous_fiscalyear_ids:
                 special_period_ids = [p.id for p in fiscalyear.period_ids
-                                      if p.special == True]
+                                      if p.special]
                 opening_move_ids = []
                 if special_period_ids:
                     opening_move_ids = move_obj.search(
                         cr, uid, [('period_id', '=', special_period_ids[0])])
                 if not opening_move_ids or not special_period_ids:
-                     warning = {
+                    warning = {
                         'title': _('Warning!'),
-                        'message': _('No opening entries in opening period for this fiscal year')
-                }
+                        'message': _('No opening entries in opening period '
+                                     'for this fiscal year')
+                    }
 
-        res = {'value': {},'warning':warning}
+        res = {'value': {}, 'warning': warning}
         return res
-
 
     def _compute_unrealized_currency_gl(self, cr, uid,
                                         currency_id,
@@ -161,31 +161,30 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
         ctx_rate['currency_rate_type_id'] = type_id
-        user_obj = self.pool.get('res.users')
         cp_currency_id = form.journal_id.company_id.currency_id.id
 
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
-                                                'foreign_balance', 0.0)
+            'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
-        unrealized_gain_loss =  0.0
+        unrealized_gain_loss = 0.0
         if foreign_balance:
             ctx_rate['revaluation'] = True
             adjusted_balance = currency_obj.compute(
                 cr, uid, currency_id, cp_currency_id, foreign_balance,
                 currency_rate_type_to=type_id,
                 context=ctx_rate)
-            unrealized_gain_loss =  adjusted_balance - balance
-            #revaluated_balance =  balance + unrealized_gain_loss
+            unrealized_gain_loss = adjusted_balance - balance
+            # revaluated_balance =  balance + unrealized_gain_loss
         else:
             if balance:
                 if currency_id != cp_currency_id:
-                    unrealized_gain_loss =  0.0 - balance
+                    unrealized_gain_loss = 0.0 - balance
                 else:
                     unrealized_gain_loss = 0.0
             else:
-                unrealized_gain_loss =  0.0
+                unrealized_gain_loss = 0.0
         return {'unrealized_gain_loss': unrealized_gain_loss,
                 'currency_rate': currency.rate,
                 'revaluated_balance': adjusted_balance}
@@ -205,7 +204,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         currency_obj = self.pool.get('res.currency')
         account = account_obj.browse(cr, uid,
                                      account_id,
-                                    context=context)
+                                     context=context)
         currency = currency_obj.browse(cr, uid, currency_id, context=context)
         data = {'account': account.code or False,
                 'currency': currency.name or False,
@@ -213,7 +212,8 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         return text % data
 
     def _write_adjust_balance(self, cr, uid, account_id, currency_id,
-                              partner_id, amount, label, form, sums, context=None):
+                              partner_id, amount, label, form, sums,
+                              context=None):
         """
         Generate entries to adjust balance in the revaluation accounts
 
@@ -227,11 +227,12 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         context = context or {}
 
         def create_move():
+            reversable = form.journal_id.company_id.reversable_revaluations
             base_move = {'name': label,
                          'journal_id': form.journal_id.id,
                          'period_id': period.id,
                          'date': form.revaluation_date,
-                         'to_be_reversed': form.journal_id.company_id.reversable_revaluations}
+                         'to_be_reversed': reversable}
             return move_obj.create(cr, uid, base_move, context=context)
 
         def create_move_line(move_id, line_data, sums):
@@ -243,24 +244,24 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                          }
             base_line.update(line_data)
             # we can assume that keys should be equals columns name + gl_
-            # but it was not decide when the code was designed. So commented code may sucks
-            #for k, v in sums.items():
+            # but it was not decide when the code was designed. So commented
+            # code may sucks:
+            # for k, v in sums.items():
             #    line_data['gl_' + k] = v
             base_line['gl_foreign_balance'] = sums.get('foreign_balance', 0.0)
             base_line['gl_balance'] = sums.get('balance', 0.0)
-            base_line['gl_revaluated_balance'] = sums.get('revaluated_balance', 0.0)
+            base_line['gl_revaluated_balance'] = sums.get(
+                'revaluated_balance', 0.0)
             base_line['gl_currency_rate'] = sums.get('currency_rate', 0.0)
             return move_line_obj.create(cr, uid, base_line, context=context)
-
         if partner_id is None:
             partner_id = False
-
         move_obj = self.pool.get('account.move')
         move_line_obj = self.pool.get('account.move.line')
         period_obj = self.pool.get('account.period')
         user_obj = self.pool.get('res.users')
-
-        company = form.journal_id.company_id or user_obj.browse(cr, uid, uid).company_id
+        company = form.journal_id.company_id or user_obj.browse(
+            cr, uid, uid).company_id
         period_ids = period_obj.search(
             cr, uid,
             [('date_start', '<=', form.revaluation_date),
@@ -274,7 +275,6 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                                  _('There is no period for company %s on %s'
                                    % (company.name, form.revaluation_date)))
         period = period_obj.browse(cr, uid, period_ids[0], context=context)
-
         created_ids = []
         # over revaluation
         if amount >= 0.01:
@@ -287,14 +287,16 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                              }
                 created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit revaluation gain account
+                analytic_acc_id = (company.revaluation_analytic_account_id and
+                                   company.revaluation_analytic_account_id.id
+                                   or False)
                 line_data = {
                     'credit': amount,
                     'account_id': company.revaluation_gain_account_id.id,
-                    'move_id': move_id, 
-                    'analytic_account_id' : company.revaluation_analytic_account_id and company.revaluation_analytic_account_id.id or False,
-                    }
+                    'move_id': move_id,
+                    'analytic_account_id': analytic_acc_id,
+                }
                 created_ids.append(create_move_line(move_id, line_data, sums))
-
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
                 move_id = create_move()
@@ -317,22 +319,24 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             amount = -amount
             if company.revaluation_loss_account_id:
                 move_id = create_move()
-
                 # Create a move line to Debit revaluation loss account
+                analytic_acc_id = (company.revaluation_analytic_account_id and
+                                   company.revaluation_analytic_account_id.id
+                                   or False)
                 line_data = {
                     'debit': amount,
                     'move_id': move_id,
-                    'account_id': company.revaluation_loss_account_id.id, 
-                    'analytic_account_id' : company.revaluation_analytic_account_id and company.revaluation_analytic_account_id.id or False,
-                    }
+                    'account_id': company.revaluation_loss_account_id.id,
+                    'analytic_account_id': analytic_acc_id,
+                }
 
                 created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit account to be revaluated
                 line_data = {
                     'credit': amount,
                     'move_id': move_id,
-                    'account_id': account_id, 
-                    }
+                    'account_id': account_id,
+                }
                 created_ids.append(create_move_line(move_id, line_data, sums))
 
             if company.provision_bs_loss_account_id and \
@@ -360,19 +364,17 @@ class WizardCurrencyrevaluation(orm.TransientModel):
 
         @return: dict to open an Entries view filtered on generated move lines
         """
-        context = context or {}
-
+        if context is None:
+            context = {}
         user_obj = self.pool.get('res.users')
         account_obj = self.pool.get('account.account')
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         move_obj = self.pool.get('account.move')
-
         if isinstance(ids, (int, long)):
             ids = [ids]
         form = self.browse(cr, uid, ids[0], context=context)
-
-        company = form.journal_id.company_id or user_obj.browse(cr, uid, uid).company_id
-
+        company = form.journal_id.company_id or user_obj.browse(
+            cr, uid, uid).company_id
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
             not (company.provision_bs_loss_account_id and
@@ -385,9 +387,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                   " for your company.\n"
                   "You must specify at least one provision account or"
                   " a couple of provision account."))
-
         created_ids = []
-
         # Search for accounts Balance Sheet to be eevaluated
         # on those criterions
         # - deferral method of account type is not None
@@ -395,14 +395,12 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             cr, uid,
             [('user_type.close_method', '!=', 'none'),
              ('currency_revaluation', '=', True)])
-
         if not account_ids:
             raise osv.except_osv(
                 _('Settings Error!'),
                 _("No account to be revaluated found. "
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form."))
-
         fiscalyear_ids = fiscalyear_obj.search(
             cr, uid,
             [('date_start', '<=', form.revaluation_date),
@@ -410,57 +408,45 @@ class WizardCurrencyrevaluation(orm.TransientModel):
              ('company_id', '=', company.id)],
             limit=1,
             context=context)
-
         if not fiscalyear_ids:
             raise osv.except_osv(
-                    _('Error!'),
-                    _('No fiscalyear found for company %s on %s.' %
-                        (company.name, form.revaluation_date)))
-
+                _('Error!'),
+                _('No fiscalyear found for company %s on %s.' %
+                  (company.name, form.revaluation_date)))
         fiscalyear = fiscalyear_obj.browse(
             cr, uid, fiscalyear_ids[0], context=context)
-
         special_period_ids = [p.id for p in fiscalyear.period_ids
-                                      if p.special == True]
+                              if p.special]
         if not special_period_ids:
             raise osv.except_osv(
-                    _('Error!'),
-                    _('No special period found for the fiscalyear %s' %
-                      fiscalyear.code))
-
+                _('Error!'),
+                _('No special period found for the fiscalyear %s' %
+                  fiscalyear.code))
         opening_move_ids = []
         if special_period_ids:
-
             opening_move_ids = move_obj.search(
-                        cr, uid, [('period_id', '=', special_period_ids[0])])
+                cr, uid, [('period_id', '=', special_period_ids[0])])
             if not opening_move_ids:
-
                 # if the first move is on this fiscalyear, this is the first
                 # financial year
                 first_move_id = move_obj.search(
-                        cr, uid, [('company_id', '=', company.id)],
-                        order='date', limit=1)
-
+                    cr, uid, [('company_id', '=', company.id)],
+                    order='date', limit=1)
                 if not first_move_id:
                     raise osv.except_osv(_('Error!'),
                                          _('No fiscal entries found'))
-
                 first_move = move_obj.browse(
-                        cr, uid, first_move_id[0], context=context)
-
+                    cr, uid, first_move_id[0], context=context)
                 if fiscalyear != first_move.period_id.fiscalyear_id:
                     raise osv.except_osv(
-                            _('Error!'),
-                            _('No opening entries in opening period for this fiscal year %s' %
-                              fiscalyear.code))
-
+                        _('Error!'),
+                        _('No opening entries in opening period for this '
+                          'fiscal year %s' % fiscalyear.code))
         period_ids = [p.id for p in fiscalyear.period_ids]
         if not period_ids:
             raise osv.except_osv(_('Error!'),
                                  _('No period found for the fiscalyear %s' %
                                    fiscalyear.code))
-
-
         # Get balance sums
         account_sums = account_obj.compute_revaluations(
             cr, uid,
@@ -517,5 +503,3 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         else:
             raise osv.except_osv(_("Warning"),
                                  _("No accounting entry have been posted."))
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

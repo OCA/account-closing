@@ -31,9 +31,18 @@
 Manage prepaid expense and revenue based on start and end dates
 ===============================================================
 
-This module adds a **Start Date** and **End Date** field on invoice lines. For example, if you have an insurance contrat for your company that run from April 1st 2013 to March 31st 2014, you will enter these dates as start and end dates on the supplier invoice line. If your fiscal year ends on December 31st 2013, 3 months of expenses are part of the 2014 fiscal year and should not be part of the 2013 fiscal year. So, thanks to this module, you will create a *Prepaid Expense* on December 31st 2013 and OpenERP will identify this expense with the 3 months that are after the cut-off date and propose to generate the appropriate cut-off journal entry.
+This module adds a **Start Date** and **End Date** field on invoice lines. For
+example, if you have an insurance contrat for your company that run from April
+1st 2013 to March 31st 2014, you will enter these dates as start and end dates
+on the supplier invoice line. If your fiscal year ends on December 31st 2013,
+3 months of expenses are part of the 2014 fiscal year and should not be part of
+the 2013 fiscal year. So, thanks to this module, you will create a *Prepaid
+Expense* on December 31st 2013 and OpenERP will identify this expense with the
+3 months that are after the cut-off date and propose to generate the
+appropriate cut-off journal entry.
 
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
+Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com>
+for any help or question about this module.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
@@ -50,7 +59,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'images/prepaid_revenue_draft.jpg',
         'images/prepaid_revenue_journal_entry.jpg',
         'images/prepaid_revenue_done.jpg',
-        ],
+    ],
     'installable': True,
     'active': False,
     'application': True,

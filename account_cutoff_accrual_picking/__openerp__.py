@@ -31,18 +31,25 @@
 Manage expense and revenue accruals from pickings
 =================================================
 
-This module generates expense and revenue accruals based on the status of pickings.
+This module generates expense and revenue accruals based on the status of
+pickings.
 
-For revenue accruals, OpenERP will take into account all the delivery orders in *Delivered* state that have been shipped before the cut-off date and that have *Invoice Control* = *To Be Invoiced*.
+For revenue accruals, OpenERP will take into account all the delivery orders
+in *Delivered* state that have been shipped before the cut-off date and that
+have *Invoice Control* = *To Be Invoiced*.
 
-For expense accruals, OpenERP will take into account all the incoming shipments in *Received* state that have been received before the cut-off date and that have *Invoice Control* = *To Be Invoiced*.
+For expense accruals, OpenERP will take into account all the incoming
+shipments in *Received* state that have been received before the cut-off date
+and that have *Invoice Control* = *To Be Invoiced*.
 
 The current code of the module only works when :
 
 * on sale orders, the *Create Invoice* field is set to *On Delivery Order* ;
-* for purchase orders, the *Invoicing Control* field is set to *Based on incoming shipments*.
+* for purchase orders, the *Invoicing Control* field is set to *Based on
+incoming shipments*.
 
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
+Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com>
+for any help or question about this module.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
@@ -54,7 +61,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'images/accrued_expense_draft.jpg',
         'images/accrued_expense_journal_entry.jpg',
         'images/accrued_expense_done.jpg',
-        ],
+    ],
     'installable': True,
     'active': False,
     'application': True,
