@@ -43,10 +43,12 @@ class AccountAccount(orm.Model):
     _defaults = {'currency_revaluation': False}
 
     _sql_mapping = {
-        'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
+        'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as "
+                   "balance",
         'debit': "COALESCE(SUM(l.debit), 0) as debit",
         'credit': "COALESCE(SUM(l.credit), 0) as credit",
-        'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_balance",
+        'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_"
+                           "balance",
     }
 
     def _revaluation_query(self, cr, uid, ids,
@@ -102,5 +104,3 @@ class AccountAccount(orm.Model):
             accounts[account_id][currency_id][partner_id] = line
 
         return accounts
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
