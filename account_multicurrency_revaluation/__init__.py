@@ -23,6 +23,6 @@ from . import res_company
 from . import account
 from . import res_currency
 from . import wizard
-import report
+from . import report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
