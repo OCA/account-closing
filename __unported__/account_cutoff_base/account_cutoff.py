@@ -36,8 +36,8 @@ class account_cutoff(orm.Model):
         'state': {
             'account_cutoff_base.cutoff_done':
             lambda self, cr, uid, obj, ctx=None: obj['state'] == 'done',
-            }
         }
+    }
 
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:
@@ -47,7 +47,7 @@ class account_cutoff(orm.Model):
             'move_id': False,
             'state': 'draft',
             'line_ids': False,
-            })
+        })
         return super(account_cutoff, self).copy(
             cr, uid, id, default=default, context=context)
 
@@ -69,7 +69,7 @@ class account_cutoff(orm.Model):
             ('accrued_expense', 'Accrued Expense'),
             ('prepaid_revenue', 'Prepaid Revenue'),
             ('prepaid_expense', 'Prepaid Expense'),
-            ], 'Type', required=True, readonly=True,
+        ], 'Type', required=True, readonly=True,
             states={'draft': [('readonly', False)]}),
         'move_id': fields.many2one(
             'account.move', 'Cut-off Journal Entry', readonly=True),
@@ -103,7 +103,7 @@ class account_cutoff(orm.Model):
         'state': fields.selection([
             ('draft', 'Draft'),
             ('done', 'Done'),
-            ],
+        ],
             'State', select=True, readonly=True, track_visibility='onchange',
             help="State of the cutoff. When the Journal Entry is created, "
             "the state is set to 'Done' and the fields become read-only."),
@@ -156,13 +156,13 @@ class account_cutoff(orm.Model):
         'move_label': _default_move_label,
         'type': _default_type,
         'cutoff_account_id': _default_cutoff_account_id,
-        }
+    }
 
     _sql_constraints = [(
         'date_type_company_uniq',
         'unique(cutoff_date, company_id, type)',
         'A cutoff of the same type already exists with this cut-off date !'
-        )]
+    )]
 
     def cutoff_date_onchange(
             self, cr, uid, ids, type, cutoff_date, move_label):
@@ -227,7 +227,7 @@ class account_cutoff(orm.Model):
             'period_id': period_id,
             'ref': move_label,
             'line_id': movelines_to_create,
-            }
+        }
         return res
 
     def create_move(self, cr, uid, ids, context=None):
@@ -253,32 +253,32 @@ class account_cutoff(orm.Model):
             if (
                     line.cutoff_account_id.id,
                     line.analytic_account_id.id or False
-                    ) in to_provision:
+            ) in to_provision:
                 to_provision[(
                     line.cutoff_account_id.id,
                     line.analytic_account_id.id or False
-                    )] += line.cutoff_amount
+                )] += line.cutoff_amount
             else:
-            # if not already present
+                # if not already present
                 to_provision[(
                     line.cutoff_account_id.id,
                     line.analytic_account_id.id or False
-                    )] = line.cutoff_amount
+                )] = line.cutoff_amount
             # Same for tax lines
             for tax_line in line.tax_line_ids:
                 if (
                         tax_line.cutoff_account_id.id,
                         tax_line.analytic_account_id.id or False
-                        ) in to_provision:
+                ) in to_provision:
                     to_provision[(
                         tax_line.cutoff_account_id.id,
                         tax_line.analytic_account_id.id or False
-                        )] += tax_line.cutoff_amount
+                    )] += tax_line.cutoff_amount
                 else:
                     to_provision[(
                         tax_line.cutoff_account_id.id,
                         tax_line.analytic_account_id.id or False
-                        )] = tax_line.cutoff_amount
+                    )] = tax_line.cutoff_amount
 
         vals = self._prepare_move(
             cr, uid, cur_cutoff, to_provision, context=context)
@@ -287,7 +287,7 @@ class account_cutoff(orm.Model):
         self.write(cr, uid, ids[0], {
             'move_id': move_id,
             'state': 'done',
-            }, context=context)
+        }, context=context)
 
         action = {
             'name': 'Cut-off Account Move',
@@ -299,7 +299,7 @@ class account_cutoff(orm.Model):
             'type': 'ir.actions.act_window',
             'nodestroy': False,
             'target': 'current',
-            }
+        }
         return action
 
 
@@ -390,7 +390,7 @@ class account_cutoff_tax_line(orm.Model):
             'parent_id', 'company_currency_id',
             type='many2one', relation='res.currency',
             string="Company Currency", readonly=True),
-        }
+    }
 
 
 class account_cutoff_mapping(orm.Model):
@@ -414,14 +414,14 @@ class account_cutoff_mapping(orm.Model):
             ('accrued_expense', 'Accrued Expense'),
             ('prepaid_revenue', 'Prepaid Revenue'),
             ('prepaid_expense', 'Prepaid Expense'),
-            ], 'Cut-off Type', required=True),
+        ], 'Cut-off Type', required=True),
     }
 
     _defaults = {
         'company_id': lambda self, cr, uid, context:
         self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id.id,
-        }
+    }
 
     def _get_mapping_dict(
             self, cr, uid, company_id, cutoff_type='all', context=None):
@@ -436,7 +436,7 @@ class account_cutoff_mapping(orm.Model):
             cr, uid, [
                 ('company_id', '=', company_id),
                 ('cutoff_type', 'in', cutoff_type_filter),
-                ],
+            ],
             context=context)
         mapping_read = self.read(cr, uid, mapping_ids, context=context)
         mapping = {}

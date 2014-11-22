@@ -12,11 +12,12 @@ virtualenv:
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
+  - git clone https://github.com/OCA/webkit-tools ${HOME}/webkit-tools -b ${VERSION}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
 script:
-  - travis_run_flake8
   - travis_run_tests
 
 after_success:
