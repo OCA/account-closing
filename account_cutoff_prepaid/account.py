@@ -115,11 +115,11 @@ class account_move_line(orm.Model):
 class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
-    def inv_line_characteristic_hashcode(self, invoice, invoice_line):
+    def inv_line_characteristic_hashcode(self, invoice_line):
         '''Add start and end dates to hashcode used when the option "Group
         Invoice Lines" is active on the Account Journal'''
         code = super(account_invoice, self).inv_line_characteristic_hashcode(
-            invoice, invoice_line)
+            invoice_line)
         hashcode = '%s-%s-%s' % (
             code, invoice_line.get('start_date', 'False'),
             invoice_line.get('end_date', 'False'),
