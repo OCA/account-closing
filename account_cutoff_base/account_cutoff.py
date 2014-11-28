@@ -165,12 +165,15 @@ class account_cutoff(orm.Model):
     )]
 
     def cutoff_date_onchange(
-            self, cr, uid, ids, type, cutoff_date, move_label):
+            self, cr, uid, ids, type, cutoff_date, move_label, context=None):
+        if context is None:
+            context = {}
         res = {'value': {}}
         if type and cutoff_date:
-            context = {'type': type, 'cutoff_date': cutoff_date}
+            ctx = context.copy()
+            ctx.update({'type': type, 'cutoff_date': cutoff_date})
             res['value']['move_label'] = self._default_move_label(
-                cr, uid, context=context)
+                cr, uid, context=ctx)
         return res
 
     def back2draft(self, cr, uid, ids, context=None):
