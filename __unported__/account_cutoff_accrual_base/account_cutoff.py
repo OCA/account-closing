@@ -54,4 +54,4 @@ class account_cutoff_line(orm.Model):
         'price_unit': fields.float(
             'Unit Price', digits_compute=dp.get_precision('Product Price'),
             readonly=True, help="Price per unit (discount included)"),
-        }
+    }

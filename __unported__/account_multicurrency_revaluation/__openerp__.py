@@ -27,16 +27,21 @@
  Multicurrency revaluation
 ===========================
 
-The *Multicurrency revaluation* module allows you generate automatically multicurrency revaluation journal entries. You will also find here a Revaluation report 
+The *Multicurrency revaluation* module allows you generate automatically
+multicurrency revaluation journal entries. You will also find here a
+Revaluation report
 
-Note that an extra aggregation by currency on general ledger & partner ledger (from module : *account_financial_report*) has been added in order to get more details.
+Note that an extra aggregation by currency on general ledger & partner ledger
+(from module : *account_financial_report*) has been added in order to get more
+details.
 
 ---------------
  Main Features
 ---------------
 
 * A checkbox *Allow currency revaluation* on accounts.
-* A wizard to generate the revaluation journal entries. It adjusts account balance having *Allow currency revaluation* checked.
+* A wizard to generate the revaluation journal entries. It adjusts account
+balance having *Allow currency revaluation* checked.
 * A wizard to print a report of revaluation.
 
 The report uses webkit report system.
@@ -45,7 +50,8 @@ The report uses webkit report system.
  Configuration
 ---------------
 
-Due to the various legislation according the country, in the Company settings you can set the way you want to generate revaluation journal entries.
+Due to the various legislation according the country, in the Company settings
+you can set the way you want to generate revaluation journal entries.
 
 Please, find below adviced account settings for 3 countries :
 
@@ -89,16 +95,12 @@ For FR
                 "account",
                 "account_reversal",
                 "base_headers_webkit"],
-    "init_xml": ["res_company_view.xml",
-                 "res_currency_view.xml",
-                 "account_view.xml",
-                 "wizard/wizard_currency_revaluation_view.xml",
-                 "wizard/print_currency_unrealized_report_view.xml"],
-    "update_xml": ['report/report.xml'],
+    "data": ["res_company_view.xml",
+             "res_currency_view.xml",
+             "account_view.xml",
+             "wizard/wizard_currency_revaluation_view.xml",
+             "wizard/print_currency_unrealized_report_view.xml",
+             "report/report.xml"],
     #"test": ["test/currency_revaluation.yml"],
-    "demo_xml": [],
     'installable': False,
-    "active": False,
-#    'certificate': 'certificate',
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
