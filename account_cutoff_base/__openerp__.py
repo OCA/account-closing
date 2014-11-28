@@ -48,6 +48,6 @@ for any help or question about this module.
         'account_cutoff_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
