@@ -60,7 +60,7 @@ for any help or question about this module.
         'images/prepaid_revenue_journal_entry.jpg',
         'images/prepaid_revenue_done.jpg',
     ],
-    'installable': False,
+    'installable': True,
     'active': False,
     'application': True,
 }
