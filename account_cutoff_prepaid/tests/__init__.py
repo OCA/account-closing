@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-import test_account_cutoff_prepaid
+from . import test_account_cutoff_prepaid
