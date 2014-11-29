@@ -71,7 +71,7 @@ class TestCutoffPrepaid(common.TransactionCase):
             'cutoff_date': self._date(date),
             'type': 'prepaid_revenue',
             'cutoff_journal_id': self.ref('account.miscellaneous_journal'),
-            'cutoff_account_id': self.ref('account.cli'),
+            'cutoff_account_id': self.ref('account.o_expense'),
             'source_journal_ids': [
                 (6, 0, [self.ref('account.expenses_journal')]),
             ],
@@ -79,19 +79,43 @@ class TestCutoffPrepaid(common.TransactionCase):
         return cutoff_id
 
     def test_0(self):
-        self._create_invoice('01-15',
-                             amount=self._days('01-01', '03-31'),
-                             start_date='01-01',
-                             end_date='03-31')
-        # cutoff at %Y-01-31 of invoice period -> 59 days cutoff
+        """ basic test with cutoff before, after and in the middle """
+        amount = self._days('04-01', '06-30')
+        amount_2months = self._days('05-01', '06-30')
+        # invoice to be spread of 3 months
+        self._create_invoice('01-15', amount,
+                             start_date='04-01', end_date='06-30')
+        # cutoff after one month of invoice period -> 2 months cutoff
+        cutoff_id = self._create_cutoff('04-30')
+        self.cutoff_model.get_prepaid_lines(self.cr, self.uid, [cutoff_id])
+        cutoff = self.cutoff_model.browse(self.cr, self.uid, cutoff_id)
+        self.assertEqual(amount_2months, cutoff.total_cutoff_amount)
+        # cutoff at end of invoice period -> no cutoff
+        cutoff_id = self._create_cutoff('06-30')
+        self.cutoff_model.get_prepaid_lines(self.cr, self.uid, [cutoff_id])
+        cutoff = self.cutoff_model.browse(self.cr, self.uid, cutoff_id)
+        self.assertEqual(0, cutoff.total_cutoff_amount)
+        # cutoff before invoice period -> full value cutoff
         cutoff_id = self._create_cutoff('01-31')
         self.cutoff_model.get_prepaid_lines(self.cr, self.uid, [cutoff_id])
         cutoff = self.cutoff_model.browse(self.cr, self.uid, cutoff_id)
-        self.assertEqual(self._days('02-01', '03-31'),
-                         cutoff.total_cutoff_amount)
-        # cutoff at end of invoice period -> no cutoff
-        cutoff_id = self._create_cutoff('03-31')
+        self.assertEqual(amount, cutoff.total_cutoff_amount)
+
+    def tests_1(self):
+        """ generate move, and test move lines grouping """
+        # two invoices
+        amount = self._days('04-01', '06-30')
+        self._create_invoice('01-15', amount,
+                             start_date='04-01', end_date='06-30')
+        self._create_invoice('01-16', amount,
+                             start_date='04-01', end_date='06-30')
+        # cutoff before invoice period -> full value cutoff
+        cutoff_id = self._create_cutoff('01-31')
         self.cutoff_model.get_prepaid_lines(self.cr, self.uid, [cutoff_id])
+        self.cutoff_model.create_move(self.cr, self.uid, [cutoff_id])
         cutoff = self.cutoff_model.browse(self.cr, self.uid, cutoff_id)
-        self.assertEqual(0,
-                         cutoff.total_cutoff_amount)
+        self.assertEqual(amount * 2, cutoff.total_cutoff_amount)
+        self.assert_(cutoff.move_id, "move not generated")
+        # two invoices, but two lines (because the two cutoff lines
+        # have been grouped into one line plus one counterpart)
+        self.assertEqual(len(cutoff.move_id.line_id), 2)
