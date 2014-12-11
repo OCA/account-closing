@@ -1,0 +1,86 @@
+-
+  I create specific journal
+-
+  !record {model: account.journal, id: accrual_journal_0}:
+    code: acc0
+    company_id: base.main_company
+    name: Accrual Journal 0
+    type: general
+-
+  I set accrual information on partner
+-
+  !record {model: res.partner, id: base.res_partner_17}:
+    property_account_supplier_accrual: account.a_sale
+    property_account_customer_accrual: account.a_recv
+    property_journal_accrual: accrual_journal_0
+-
+  I create a new invoice
+-
+  !record {model: account.invoice, id: accrual_invoice_0}:
+    currency_id: base.EUR
+    company_id: base.main_company
+    partner_id: base.res_partner_17
+    journal_id: account.sales_journal
+    state: 'draft'
+    type: 'out_invoice'
+    account_id: account.a_sale
+    invoice_line:
+      - name: 'Otpez Laptop without OS'
+        price_unit: 642
+        quantity: 4
+        account_id: account.a_sale
+-
+  I check the invoice is draft
+-
+  !assert {model: account.invoice, id: accrual_invoice_0}:
+    - state == 'draft'
+-
+  I called the Accrual wizard
+-
+  !record {model: account.move.accrue, id: account_move_accrue_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_0")], "active_id": ref("accrual_invoice_0"), }'}:
+    {}
+-
+  I clicked on Accrual wizard confirm button
+-
+  !python {model: account.move.accrue}: |
+    self.action_accrue(cr, uid, [ref("account_move_accrue_0")], {"lang": 'en_US',
+      "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_0")], "active_id": ref("accrual_invoice_0"), })
+-
+  I check that accrual_move_id is not empty
+-
+    !python {model: account.invoice}: |
+      obj = self.browse(cr, uid, ref("accrual_invoice_0"))
+      accrual_move = obj.accrual_move_id
+      assert (accrual_move), "Accrual move doesn't exist"
+-
+  I confirm invoice
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: accrual_invoice_0}
+-
+  I check that the invoice state is "Open"
+-
+  !assert {model: account.invoice, id: accrual_invoice_0}:
+    - state == 'open'
+-
+  I check that accrual_move_id is removed
+-
+    !python {model: account.invoice}: |
+      obj=self.browse(cr, uid, ref("accrual_invoice_0"))
+      assert not(obj.accrual_move_id), "Accrual move is not removed from the invoice"
+-
+  I check reversal move exist
+-
+    !python {model: account.move}: |
+      ids = self.search(cr, uid, [('journal_id','=',ref('accrual_journal_0'))])
+      assert (len(ids) == 2), "It doesn't exist 2 entries on accrual journal"
+      obj = self.browse(cr,uid,ids)
+      move1 = obj[0]
+      move2 = obj[1]
+      reverse = False
+      if move1.reversal_id:
+        reverse = True
+        assert (move2.id == move1.reversal_id.id), "Movement don't correspond"
+      if move2.reversal_id:
+        reverse = True
+        assert (move1.id == move2.reversal_id.id), "Movement don't correspond"
+      assert reverse, "There is no reversal move"
