@@ -40,7 +40,7 @@ additionnal functionalities:
 Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com>
 for any help or question about this module.
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
     'depends': ['account_cutoff_base'],
     'data': [
