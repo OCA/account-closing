@@ -47,7 +47,7 @@ For FR
 
 """,
 
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": 'AGPL-3',
     "depends": ["base",
                 "account",
