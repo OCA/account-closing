@@ -287,9 +287,9 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                              }
                 created_ids.append(create_move_line(move_id, line_data, sums))
                 # Create a move line to Credit revaluation gain account
-                analytic_acc_id = (company.revaluation_analytic_account_id and
-                                   company.revaluation_analytic_account_id.id
-                                   or False)
+                analytic_acc_id = (company.revaluation_analytic_account_id.id
+                                   if company.revaluation_analytic_account_id
+                                   else False)
                 line_data = {
                     'credit': amount,
                     'account_id': company.revaluation_gain_account_id.id,
@@ -320,9 +320,9 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             if company.revaluation_loss_account_id:
                 move_id = create_move()
                 # Create a move line to Debit revaluation loss account
-                analytic_acc_id = (company.revaluation_analytic_account_id and
-                                   company.revaluation_analytic_account_id.id
-                                   or False)
+                analytic_acc_id = (company.revaluation_analytic_account_id.id
+                                   if company.revaluation_analytic_account_id
+                                   else False)
                 line_data = {
                     'debit': amount,
                     'move_id': move_id,

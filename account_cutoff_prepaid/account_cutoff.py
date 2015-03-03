@@ -100,9 +100,8 @@ class account_cutoff(orm.Model):
             'end_date': aml['end_date'],
             'account_id': aml['account_id'][0],
             'cutoff_account_id': cutoff_account_id,
-            'analytic_account_id':
-            aml['analytic_account_id'] and aml['analytic_account_id'][0]
-            or False,
+            'analytic_account_id': (aml['analytic_account_id'][0]
+                                    if aml['analytic_account_id'] else False),
             'total_days': total_days,
             'after_cutoff_days': after_cutoff_days,
             'amount': aml['credit'] - aml['debit'],
