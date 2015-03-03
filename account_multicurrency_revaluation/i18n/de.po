@@ -116,6 +116,12 @@ msgid "Revaluation Analytic account"
 msgstr "Kostenstelle für Neubewertung"
 
 #. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_analytic_account_id:0
+msgid "Provision P&l Analytic account"
+msgstr "Bereitstellung GuV-Konten analytische"
+
+
+#. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_balance:0
 #, fuzzy
 msgid "Aggregated Amount"
