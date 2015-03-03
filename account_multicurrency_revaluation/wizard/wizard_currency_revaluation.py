@@ -300,7 +300,9 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
                 move_id = create_move()
-
+                analytic_acc_id = (company.provision_pl_analytic_account_id and
+                                   company.provision_pl_analytic_account_id.id
+                                   or False)
                 # Create a move line to Debit provision BS gain
                 line_data = {
                     'debit': amount,
@@ -310,6 +312,7 @@ class WizardCurrencyrevaluation(orm.TransientModel):
                 # Create a move line to Credit provision P&L gain
                 line_data = {
                     'credit': amount,
+                    'analytic_account_id': analytic_acc_id,
                     'account_id': company.provision_pl_gain_account_id.id,
                     'move_id': move_id, }
                 created_ids.append(create_move_line(move_id, line_data, sums))
@@ -342,10 +345,13 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             if company.provision_bs_loss_account_id and \
                company.provision_pl_loss_account_id:
                 move_id = create_move()
-
+                analytic_acc_id = (company.provision_pl_analytic_account_id and
+                                   company.provision_pl_analytic_account_id.id
+                                   or False)
                 # Create a move line to Debit Provision P&L
                 line_data = {
                     'debit': amount,
+                    'analytic_account_id': analytic_acc_id,
                     'move_id': move_id,
                     'account_id': company.provision_pl_loss_account_id.id, }
                 created_ids.append(create_move_line(move_id, line_data, sums))

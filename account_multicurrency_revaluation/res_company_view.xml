@@ -36,7 +36,7 @@
                             <th><label string="Provision P&amp;L accounts"/></th>
                             <td> <field name="provision_pl_loss_account_id" nolabel="1"/> </td>
                             <td> <field name="provision_pl_gain_account_id" nolabel="1"/> </td>
-                            <td> </td>
+                            <td> <field name="provision_pl_analytic_account_id" nolabel="1"/> </td>
                         </tr>
                     </table>
                     <group>
