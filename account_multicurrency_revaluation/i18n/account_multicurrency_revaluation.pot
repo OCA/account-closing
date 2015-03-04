@@ -110,7 +110,7 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_pl_analytic_account_id:0
-msgid "Provision P&l Analytic account"
+msgid "Provision P&L Analytic account"
 msgstr ""
 
 #. module: account_multicurrency_revaluation

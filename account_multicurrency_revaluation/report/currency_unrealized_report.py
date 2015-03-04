@@ -51,6 +51,7 @@ class ShellAccount(object):
         self.keys_to_sum = ['gl_foreign_balance', 'gl_currency_rate',
                             'gl_revaluated_balance', 'gl_balance',
                             'gl_ytd_balance']
+
     def __contains__(self, key):
         return hasattr(self, key)
 

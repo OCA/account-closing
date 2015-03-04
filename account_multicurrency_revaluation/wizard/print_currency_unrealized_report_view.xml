@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <form string="Print Currency Unrealized" version="7.0">
                     <group>
-                        <field name="period_id"/>
+                        <field name="period_id" domain="[('state', '=', 'draft')]"/>
                         <field name="chart_account_id"/>
                     </group>
                     <footer>
