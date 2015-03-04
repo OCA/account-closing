@@ -162,6 +162,12 @@ msgstr ""
 "zum Datum: %s"
 
 #. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:0
+msgid "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.                       1 entry will be generated per account/partner/currency       You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
+msgstr "ODOO werden Kursdifferenz Einträge erzeugen für jedes Konto als 'Zulassen Währungsneubewertungs 'gesetzt. Wenn der Kontotyp, Verbindlichkeiten oder Forderungen: 1 Eintrag wird pro Konto / Währung / Partner für andere Kontotypen erstellt werden: 1 Eintrag wird pro Konto / Währung erzeugt werden können Details der Berechnung durch den Druck nicht realisierte Währungs Bericht in der generischen überprüfen Berichte."
+
+
+#. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,journal_id:0
 msgid "You can set the default journal in company settings."
 msgstr ""

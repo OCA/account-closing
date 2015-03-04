@@ -56,28 +56,27 @@ class WizardCurrencyrevaluation(orm.TransientModel):
 
     def _get_default_revaluation_date(self, cr, uid, context):
         """
-        Get last date of previous period
+        Get last date of previous fiscalyear
         """
         context = context or {}
 
-        period_obj = self.pool.get('account.period')
+        fiscalyear_obj = self.pool.get('account.fiscalyear')
         user_obj = self.pool.get('res.users')
         cp = user_obj.browse(cr, uid, uid, context=context).company_id
-        # find previous period
+        # find previous fiscalyear
         current_date = date.today().strftime('%Y-%m-%d')
-        previous_period_ids = period_obj.search(
+        previous_fiscalyear_ids = fiscalyear_obj.search(
             cr, uid,
             [('date_stop', '<', current_date),
-             ('company_id', '=', cp.id),
-             ('special', '=', False)],
+             ('company_id', '=', cp.id)],
             limit=1,
             order='date_start DESC',
             context=context)
-        if not previous_period_ids:
+        if not previous_fiscalyear_ids:
             return current_date
-        last_period = period_obj.browse(
-            cr, uid, previous_period_ids[0], context=context)
-        return last_period.date_stop
+        last_fiscalyear = fiscalyear_obj.browse(
+            cr, uid, previous_fiscalyear_ids[0], context=context)
+        return last_fiscalyear.date_stop
 
     def _get_default_journal_id(self, cr, uid, context):
         """

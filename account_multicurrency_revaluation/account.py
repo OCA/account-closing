@@ -59,13 +59,31 @@ class AccountAccount(orm.Model):
             _query_get(cr, uid, context=context)
         query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
                  ', '.join(self._sql_mapping.values()) +
-                 " FROM account_move_line l "
+                 " FROM account_move_line l, "
+                 " account_account aa"
                  " WHERE l.account_id IN %(account_ids)s AND "
+                 " aa.id = l.account_id AND"
+                 " aa.type in ('receivable','payable') AND "
                  " l.date <= %(revaluation_date)s AND "
                  " l.currency_id IS NOT NULL AND "
                  " l.reconcile_id IS NULL AND "
                  + lines_where_clause +
-                 " GROUP BY l.account_id, l.currency_id, l.partner_id")
+                 " GROUP BY l.account_id, l.currency_id, l.partner_id"
+                 " UNION "
+                 "SELECT l.account_id as id, null as partner_id, "
+                 "l.currency_id, " +
+                 ', '.join(self._sql_mapping.values()) +
+                 " FROM account_move_line l, "
+                 " account_account aa"
+                 " WHERE l.account_id IN %(account_ids)s AND "
+                 " aa.id = l.account_id AND"
+                 " aa.type not in ('receivable','payable') AND"
+                 " l.date <= %(revaluation_date)s AND "
+                 " l.currency_id IS NOT NULL AND "
+                 " l.reconcile_id IS NULL AND "
+                 + lines_where_clause +
+                 " GROUP BY l.account_id, l.currency_id"
+                 )
         params = {'revaluation_date': revaluation_date,
                   'account_ids': tuple(ids)}
         return query, params
@@ -84,7 +102,6 @@ class AccountAccount(orm.Model):
             cr, uid, ids,
             revaluation_date,
             context=ctx_query)
-
         cr.execute(query, params)
 
         lines = cr.dictfetchall()

@@ -28,7 +28,8 @@ class UnrealizedCurrencyReportPrinter(orm.TransientModel):
     _columns = {
         'chart_account_id': fields.many2one(
             'account.account', 'Chart root',
-            domain=[('parent_id', '=', False)]),
+            domain=[('parent_id', '=', False)],
+            required=True),
         'period_id': fields.many2one(
             'account.period', 'Period to use', required=True),
     }
