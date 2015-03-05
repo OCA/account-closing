@@ -110,7 +110,7 @@ class account_invoice(orm.Model):
         payment_term_obj = self.pool.get('account.payment.term')
         move_obj = self.pool.get('account.move')
         company_currency = self.pool['res.company'].browse(
-            cr, uid, invoice.company_id.id).currency_id.id
+            cr, uid, invoice.company_id.id).currency_id
         period_ctx = context.copy()
         period_ctx['company_id'] = invoice.company_id.id
         period_ctx['account_period_prefer_normal'] = True
@@ -128,16 +128,17 @@ class account_invoice(orm.Model):
         iml = self._get_analytic_lines(cr, uid, invoice.id, context=context)
         # check if taxes are all computed
         compute_taxes = ait_obj.compute(cr, uid, invoice.id, context=context)
-        self.check_tax_lines(cr, uid, invoice, compute_taxes, ait_obj)
+        self.check_tax_lines(cr, uid, [invoice.id], compute_taxes,
+                             context=context)
 
         # one move line per tax line
         iml += ait_obj.move_line_get(cr, uid, invoice.id)
 
-        diff_currency_p = invoice.currency_id.id != company_currency
+        diff_currency_p = invoice.currency_id.id != company_currency.id
         # create one move line for the total and possibly adjust the other
         # lines amount
         total, total_currency, iml = self.compute_invoice_totals(
-            cr, uid, invoice, company_currency, accrual_ref, iml,
+            cr, uid, [invoice.id], company_currency, accrual_ref, iml,
             context=period_ctx)
 
         name = '/'
@@ -151,9 +152,9 @@ class account_invoice(orm.Model):
             i = 0
             period_ctx.update({'date': invoice.date_invoice})
             for t in totlines:
-                if invoice.currency_id.id != company_currency:
+                if invoice.currency_id.id != company_currency.id:
                     amount_currency = cur_obj.compute(
-                        cr, uid, company_currency,
+                        cr, uid, company_currency.id,
                         invoice.currency_id.id, t[1], context=period_ctx)
                 else:
                     amount_currency = False
@@ -193,8 +194,8 @@ class account_invoice(orm.Model):
             invoice.partner_id)
         line = map(lambda x: (0, 0, self.line_get_convert(
             cr, uid, x, part.id, accrual_date, context=period_ctx)), iml)
-        line = self.group_lines(cr, uid, iml, line, invoice)
-        line = self.finalize_invoice_move_lines(cr, uid, invoice, line)
+        line = invoice.group_lines(iml, line)
+        line = self.finalize_invoice_move_lines(cr, uid, [invoice.id], line)
 
         if move_line_prefix:
             # update all move name with prefix
