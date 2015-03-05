@@ -39,7 +39,6 @@ class res_partner(orm.Model):
             type='many2one',
             relation='account.account',
             string="Accrual Account Supplier",
-            view_load=True,
             domain="[('type', '=', 'payable')]",
             help="This account will be used instead of the default one as \
                 the supplier accrual account for the current partner",
@@ -49,7 +48,6 @@ class res_partner(orm.Model):
             type='many2one',
             relation='account.account',
             string="Accrual Account Customer",
-            view_load=True,
             domain="[('type', '=', 'receivable')]",
             help="This account will be used instead of the default one as \
                 the customer accrual account for the current partner",
@@ -59,7 +57,6 @@ class res_partner(orm.Model):
             type='many2one',
             relation='account.journal',
             string="Accrual Journal",
-            view_load=True,
             domain="[('type', '=', 'general')]",
             help="This journal will be used as the default one for accrual \
                 operation for the current partner",
