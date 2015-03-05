@@ -35,7 +35,7 @@ class res_partner(orm.Model):
 
     _columns = {
         'property_account_supplier_accrual': fields.property(
-            'account.account',
+            model='account.account',
             type='many2one',
             relation='account.account',
             string="Accrual Account Supplier",
@@ -45,7 +45,7 @@ class res_partner(orm.Model):
                 the supplier accrual account for the current partner",
             required=True),
         'property_account_customer_accrual': fields.property(
-            'account.account',
+            model='account.account',
             type='many2one',
             relation='account.account',
             string="Accrual Account Customer",
@@ -55,7 +55,7 @@ class res_partner(orm.Model):
                 the customer accrual account for the current partner",
             required=True),
         'property_journal_accrual': fields.property(
-            'account.journal',
+            model='account.journal',
             type='many2one',
             relation='account.journal',
             string="Accrual Journal",
