@@ -29,6 +29,8 @@ class ShellAccount(object):
     # Browsing an account account object is not efficient
     # beacause of function fields
     # This object aim to be easly transpose to account account if needed
+    def exists(self):
+        return True
 
     def __init__(self, cr, uid, pool, acc_id, context=None):
         self._context = context or {}
@@ -43,10 +45,15 @@ class ShellAccount(object):
         self.code = tmp[0].get('code')
         self.account_id = tmp[0]['id']
         self.ordered_lines = []
+        self.company_id = self.pool['res.users'].browse(
+            cr, uid, uid, context=context).company_id
         self.currency_revaluation = tmp[0].get('currency_revaluation', False)
         self.keys_to_sum = ['gl_foreign_balance', 'gl_currency_rate',
                             'gl_revaluated_balance', 'gl_balance',
                             'gl_ytd_balance']
+
+    def __contains__(self, key):
+        return hasattr(self, key)
 
     def get_lines(self, period_id):
         """Get all line account move line that are need on report for current

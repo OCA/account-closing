@@ -116,6 +116,12 @@ msgid "Revaluation Analytic account"
 msgstr "Kostenstelle für Neubewertung"
 
 #. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_analytic_account_id:0
+msgid "Provision P&L Analytic account"
+msgstr "Bereitstellung GuV-Konten analytische"
+
+
+#. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_balance:0
 #, fuzzy
 msgid "Aggregated Amount"
@@ -154,6 +160,12 @@ msgstr ""
 "Kein Kurs gefunden\n"
 "für die Währung: %s \n"
 "zum Datum: %s"
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:0
+msgid "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.                       1 entry will be generated per account/partner/currency       You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
+msgstr "ODOO werden Kursdifferenz Einträge erzeugen für jedes Konto als 'Zulassen Währungsneubewertungs 'gesetzt. Wenn der Kontotyp, Verbindlichkeiten oder Forderungen: 1 Eintrag wird pro Konto / Währung / Partner für andere Kontotypen erstellt werden: 1 Eintrag wird pro Konto / Währung erzeugt werden können Details der Berechnung durch den Druck nicht realisierte Währungs Bericht in der generischen überprüfen Berichte."
+
 
 #. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,journal_id:0

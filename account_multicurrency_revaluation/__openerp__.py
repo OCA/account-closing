@@ -97,9 +97,11 @@ For FR
                 "base_headers_webkit"],
     "data": ["res_company_view.xml",
              "res_currency_view.xml",
+             "security/security.xml",
              "account_view.xml",
              "wizard/wizard_currency_revaluation_view.xml",
              "wizard/print_currency_unrealized_report_view.xml",
-             "report/report.xml"],
+             "report/report.xml"
+             ],
     'installable': True,
  }
