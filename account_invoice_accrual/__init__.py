@@ -27,6 +27,6 @@
 #
 #
 
-import res_partner
-import account_invoice
-import wizard
+from . import res_partner
+from . import account_invoice
+from . import wizard
