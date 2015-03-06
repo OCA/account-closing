@@ -29,12 +29,13 @@
 
 {
     "name": "Account invoice accrual",
-    "version" : "0.1",
-    "author" : "ACSONE SA/NV",
-    "category" : "Invoice",
-    "website" : "http://www.acsone.eu",
-    "depends" : ["account",
-                 "account_reversal",  # from account-financial-tools/7.0
+    "version": "0.1",
+    "author": "ACSONE SA/NV",
+    "category": "Invoice",
+    "website": "http://www.acsone.eu",
+    "depends": [
+        "account",
+        "account_reversal",  # from account-financial-tools/7.0
     ],
     "description": """
 
@@ -43,17 +44,17 @@ Account invoice accrual
 
 
 """,
-    "data" : [
-              "res_partner_view.xml",
-              "account_invoice_view.xml",
-              "wizard/account_move_accrue_view.xml",
+    "data": [
+        "res_partner_view.xml",
+        "account_invoice_view.xml",
+        "wizard/account_move_accrue_view.xml",
     ],
     "demo": [],
     "test": [
-             "test/account_invoice_accrual_confirm.yml",
-             "test/account_invoice_accrual_remove.yml",
-             "test/account_invoice_accrual_reversal.yml",
-     ],
+        "test/account_invoice_accrual_confirm.yml",
+        "test/account_invoice_accrual_remove.yml",
+        "test/account_invoice_accrual_reversal.yml",
+    ],
     "active": False,
     "license": "AGPL-3",
     "installable": True,

@@ -73,8 +73,8 @@ class account_move_accrual(orm.TransientModel):
     }
 
     def _default_date(self, cr, uid, context=None):
-        return (date(date.today().year, date.today().month, 1)
-                - timedelta(days=1)).strftime(tools.DEFAULT_SERVER_DATE_FORMAT)
+        return (date(date.today().year, date.today().month, 1) -
+                timedelta(days=1)).strftime(tools.DEFAULT_SERVER_DATE_FORMAT)
 
     def _default_journal(self, cr, uid, context=None):
         if context is None:
@@ -136,9 +136,10 @@ class account_move_accrual(orm.TransientModel):
                     False
                 if not rec_res_id and not pay_res_id:
                     raise orm.except_orm(
-                        _('Configuration Error!'),
-                        _('Cannot find a chart of account, you should create \
-                            one from Settings\Configuration\Accounting menu.'))
+                        _("Configuration Error!"),
+                        _("Cannot find a chart of account, you should create "
+                            "one from Settings/Configuration/Accounting menu.")
+                    )
                 if type in ('out_invoice', 'out_refund'):
                     acc_id = rec_res_id
                 else:

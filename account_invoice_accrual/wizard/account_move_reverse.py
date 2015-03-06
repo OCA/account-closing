@@ -26,12 +26,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+from openerp.osv import orm
+from openerp.tools.translate import _
+
 
 import logging
 _logger = logging.getLogger(__name__)
-
-from openerp.osv import orm
-from openerp.tools.translate import _
 
 
 class account_move_reversal(orm.TransientModel):

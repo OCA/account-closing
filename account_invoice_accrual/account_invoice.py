@@ -173,8 +173,8 @@ class account_invoice(orm.Model):
                     'date_maturity': t[0],
                     'amount_currency': diff_currency_p and
                     amount_currency or False,
-                    'currency_id': diff_currency_p and invoice.currency_id.id
-                    or False,
+                    'currency_id': diff_currency_p and
+                    invoice.currency_id.id or False,
                     'ref': accrual_ref,
                 })
         else:
@@ -185,8 +185,8 @@ class account_invoice(orm.Model):
                 'account_id': account_id,
                 'date_maturity': invoice.date_due or False,
                 'amount_currency': diff_currency_p and total_currency or False,
-                'currency_id': diff_currency_p and invoice.currency_id.id
-                or False,
+                'currency_id': diff_currency_p and invoice.currency_id.id or
+                False,
                 'ref': accrual_ref
             })
 
