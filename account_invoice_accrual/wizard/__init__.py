@@ -27,5 +27,5 @@
 #
 #
 
-import account_move_reverse
-import account_move_accrue
+from . import account_move_reverse
+from . import account_move_accrue
