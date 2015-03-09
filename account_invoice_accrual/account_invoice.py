@@ -84,6 +84,16 @@ class account_invoice(orm.Model):
             cr, uid, ids, context=context)
         return res
 
+    def line_get_convert(self, cr, uid, line, part, date, context=None):
+        res = super(account_invoice, self).line_get_convert(cr, uid, line,
+                                                            part, date,
+                                                            context=context)
+        for al in res.get('analytic_lines', []):
+            # al : (0, 0, {vals})
+            if not al[2].get('date', False):
+                al[2]['date'] = date
+        return res
+
     def _move_accrual(self, cr, uid, invoice, accrual_date, account_id,
                       accrual_period_id=False, accrual_journal_id=False,
                       move_prefix=False, move_line_prefix=False,
