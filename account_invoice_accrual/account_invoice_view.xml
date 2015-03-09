@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
                 <data>
-                <field name="move_id" position="after">
+                <field name="move_id" position="before">
                     <field name="accrual_move_id" groups="account.group_account_user" states="draft,proforma2"/>
                 </field>
                 <field name="type" position="before">
@@ -28,7 +28,7 @@
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
                 <data>
-                <field name="move_id" position="after">
+                <field name="move_id" position="before">
                     <field name="accrual_move_id" groups="account.group_account_user" states="draft,proforma2"/>
                 </field>
                 <field name="type" position="before">
