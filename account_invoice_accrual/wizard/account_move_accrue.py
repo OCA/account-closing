@@ -140,7 +140,7 @@ class account_move_accrual(orm.TransientModel):
                         _("Cannot find a chart of account, you should create "
                             "one from Settings/Configuration/Accounting menu.")
                     )
-                if type in ('out_invoice', 'out_refund'):
+                if inv.type in ('out_invoice', 'out_refund'):
                     acc_id = rec_res_id
                 else:
                     acc_id = pay_res_id
