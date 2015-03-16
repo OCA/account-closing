@@ -36,6 +36,7 @@
     "depends": [
         "account",
         "account_reversal",  # from account-financial-tools/7.0
+        "account_cutoff_accrual_base",
     ],
     "description": """
 
@@ -45,7 +46,6 @@ Account invoice accrual
 
 """,
     "data": [
-        "res_partner_view.xml",
         "account_invoice_view.xml",
         "wizard/account_move_accrue_view.xml",
     ],
