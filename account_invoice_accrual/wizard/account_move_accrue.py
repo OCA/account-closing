@@ -83,8 +83,8 @@ class account_move_accrual(orm.TransientModel):
                 and context['active_model'] == 'account.invoice':
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
-            if inv.partner_id.property_journal_accrual:
-                return inv.partner_id.property_journal_accrual.id
+            if inv.company_id.default_cutoff_journal_id.id:
+                return inv.company_id.default_cutoff_journal_id.id
         return None
 
     def _default_account(self, cr, uid, context=None):
@@ -95,55 +95,11 @@ class account_move_accrual(orm.TransientModel):
                 and context['active_model'] == 'account.invoice':
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
-            partner_obj = inv.partner_id
-            if partner_obj.property_account_supplier_accrual \
-                    and partner_obj.property_account_customer_accrual:
-                company_id = partner_obj.\
-                    property_account_supplier_accrual.company_id.id
-                part_id = partner_obj.id
-                property_obj = self.pool.get('ir.property')
-                rec_pro_id = property_obj.search(
-                    cr, uid,
-                    [('name', '=', 'property_account_customer_accrual'),
-                     ('res_id', '=', 'res.partner,' + str(part_id) + ''),
-                     ('company_id', '=', company_id)])
-                pay_pro_id = property_obj.search(
-                    cr, uid,
-                    [('name', '=', 'property_account_supplier_accrual'),
-                     ('res_id', '=', 'res.partner,' + str(part_id) + ''),
-                     ('company_id', '=', company_id)])
-                if not rec_pro_id:
-                    rec_pro_id = property_obj.search(
-                        cr, uid,
-                        [('name', '=', 'property_account_customer_accrual'),
-                         ('company_id', '=', company_id)])
-                if not pay_pro_id:
-                    pay_pro_id = property_obj.search(
-                        cr, uid,
-                        [('name', '=', 'property_account_supplier_accrual'),
-                         ('company_id', '=', company_id)])
-                rec_line_data = property_obj.read(
-                    cr, uid, rec_pro_id, ['name', 'value_reference', 'res_id'])
-                pay_line_data = property_obj.read(
-                    cr, uid, pay_pro_id, ['name', 'value_reference', 'res_id'])
-                rec_res_id = rec_line_data and \
-                    rec_line_data[0].get('value_reference', False) and \
-                    int(rec_line_data[0]['value_reference'].split(',')[1]) or \
-                    False
-                pay_res_id = pay_line_data and \
-                    pay_line_data[0].get('value_reference', False) and \
-                    int(pay_line_data[0]['value_reference'].split(',')[1]) or \
-                    False
-                if not rec_res_id and not pay_res_id:
-                    raise orm.except_orm(
-                        _("Configuration Error!"),
-                        _("Cannot find a chart of account, you should create "
-                            "one from Settings/Configuration/Accounting menu.")
-                    )
-                if inv.type in ('out_invoice', 'out_refund'):
-                    acc_id = rec_res_id
-                else:
-                    acc_id = pay_res_id
+            if inv.type in ('out_invoice', 'out_refund') \
+                    and inv.company_id.default_accrued_revenue_account_id.id:
+                acc_id = inv.company_id.default_accrued_revenue_account_id.id
+            elif inv.company_id.default_accrued_expense_account_id.id:
+                acc_id = inv.company_id.default_accrued_expense_account_id.id
         return acc_id
 
     _defaults = {

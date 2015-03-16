@@ -40,13 +40,12 @@ class account_move_reversal(orm.TransientModel):
     def _default_journal(self, cr, uid, context=None):
         if context is None:
             context = {}
-        if context.get('active_model') and \
-                context.get('active_ids') and \
-                context['active_model'] == 'account.invoice':
+        if context.get('active_model') and context.get('active_ids') \
+                and context['active_model'] == 'account.invoice':
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
-            if inv.partner_id.property_journal_accrual:
-                return inv.partner_id.property_journal_accrual.id
+            if inv.company_id.default_cutoff_journal_id.id:
+                return inv.company_id.default_cutoff_journal_id.id
         return None
 
     _defaults = {

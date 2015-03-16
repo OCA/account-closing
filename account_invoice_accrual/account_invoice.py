@@ -30,6 +30,26 @@
 from openerp.osv import fields, orm
 
 
+class account_invoice_line(orm.Model):
+    _inherit = 'account.invoice.line'
+
+    def move_line_get_item(self, cr, uid, line, context=None):
+        res = super(account_invoice_line, self)\
+            .move_line_get_item(cr, uid, line, context=None)
+        if context.get('move_accrual', False) and context.get('type', False):
+            mapping_obj = self.pool['account.cutoff.mapping']
+            if context.get('type', False) in ['out_invoice', 'out_refund']:
+                mapping_type = 'accrued_revenue'
+            else:
+                mapping_type = 'accrued_expense'
+            mapping = mapping_obj.\
+                _get_mapping_dict(cr, uid, line.invoice_id.company_id.id,
+                                  mapping_type, context=context)
+            res['account_id'] = mapping.get(line.account_id.id,
+                                            line.account_id.id)
+        return res
+
+
 class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
@@ -135,7 +155,9 @@ class account_invoice(orm.Model):
             [x for x in [move_prefix, invoice.reference and
                          invoice.reference or invoice.name, ] if x])
 
-        iml = self._get_analytic_lines(cr, uid, invoice.id, context=context)
+        ctx = context.copy()
+        ctx.update({'move_accrual': True})
+        iml = self._get_analytic_lines(cr, uid, invoice.id, context=ctx)
         # check if taxes are all computed
         compute_taxes = ait_obj.compute(cr, uid, invoice.id, context=context)
         self.check_tax_lines(cr, uid, [invoice.id], compute_taxes,
