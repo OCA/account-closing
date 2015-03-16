@@ -48,6 +48,6 @@ for any help or question about this module.
         'account_view.xml',
         'account_cutoff_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
