@@ -7,12 +7,12 @@
     name: Accrual Journal 1
     type: general
 -
-  I set accrual information on partner
+  I set accrual information on company
 -
-  !record {model: res.partner, id: base.res_partner_17}:
-    property_account_supplier_accrual: account.a_sale
-    property_account_customer_accrual: account.a_recv
-    property_journal_accrual: accrual_journal_1
+  !record {model: res.company, id: base.main_company}:
+    default_accrued_revenue_account_id: account.a_sale
+    default_accrued_expense_account_id: account.a_recv
+    default_cutoff_journal_id: accrual_journal_1
 -
   I create a new invoice
 -

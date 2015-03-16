@@ -25,8 +25,5 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-
-from . import res_partner
 from . import account_invoice
 from . import wizard
