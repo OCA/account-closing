@@ -27,19 +27,6 @@
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Base module for accrued expenses and revenues',
-    'description': """
-This module contains objets, fields and menu entries that are used by other
-accrual modules. So you need to install other accrual modules to get the
-additionnal functionalities:
-
-* the module 'account_cutoff_accrual_picking' will manage accrued expenses and
-  revenues based on pickings.
-* a not-developped-yet module will manage accrued expenses and revenues based
-  on timesheets.
-
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com>
-for any help or question about this module.
-    """,
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
     'depends': ['account_cutoff_base'],
