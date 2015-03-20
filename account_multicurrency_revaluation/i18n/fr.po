@@ -116,7 +116,7 @@ msgstr "Compte analytique"
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_balance:0
 msgid "Aggregated Amount"
-msgstr "Montant aggrégé"
+msgstr "Montant agrégé"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,revaluation_gain_account_id:0
@@ -136,7 +136,7 @@ msgstr "Solde à date"
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_foreign_balance:0
 msgid "Aggregated Amount curency"
-msgstr "Montant en devise aggrégé"
+msgstr "Montant en devise agrégé"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/res_currency.py:42
@@ -214,7 +214,7 @@ msgstr "Gain(+)/Perte(-) à date"
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:455
 #, python-format
 msgid "No opening entries in opening period for this fiscal year %s"
-msgstr "Pas d'écriture d'ouverture pour l'excercice comptable %s"
+msgstr "Pas d'écriture d'ouverture pour l'exercice comptable %s"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:461
