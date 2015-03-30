@@ -236,5 +236,5 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
 
 report_sxw.report_sxw(
     'report.currency_unrealized', 'account.account',
-    'addons/account_unrealized_currency_gain_loss/report/templates/'
+    'addons/account_multicurrency_revaluation/report/templates/'
     'unrealized_currency_gain_loss.mako', parser=CurrencyUnrealizedReport)

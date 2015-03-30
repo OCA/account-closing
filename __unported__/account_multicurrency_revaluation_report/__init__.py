@@ -19,9 +19,5 @@
 #
 ##############################################################################
 
-from . import res_company
-from . import account
-from . import res_currency
+from . import report
 from . import wizard
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
