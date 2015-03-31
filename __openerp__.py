@@ -87,13 +87,16 @@ For FR
 
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": 'AGPL-3',
-    "depends": ["base",
-                "account",
-                "account_reversal"],
-    "data": ["res_company_view.xml",
-             "security/security.xml",
-             "account_view.xml",
-             "wizard/wizard_currency_revaluation_view.xml",
-             ],
+    "depends": [
+        "base",
+        "account",
+        "account_reversal"
+    ],
+    "data": [
+        "views/res_company_view.xml",
+        "security/security.xml",
+        "views/account_view.xml",
+        "wizard/wizard_currency_revaluation_view.xml"
+    ],
     'installable': True,
  }
