@@ -19,5 +19,6 @@
 #
 ##############################################################################
 
-from . import wizard
-from . import model
+from . import res_company
+from . import account
+from . import res_currency
