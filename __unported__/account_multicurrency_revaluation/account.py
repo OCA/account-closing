@@ -63,8 +63,8 @@ class AccountAccount(orm.Model):
                  " WHERE l.account_id IN %(account_ids)s AND "
                  " l.date <= %(revaluation_date)s AND "
                  " l.currency_id IS NOT NULL AND "
-                 " l.reconcile_id IS NULL AND "
-                 + lines_where_clause +
+                 " l.reconcile_id IS NULL AND " +
+                 lines_where_clause +
                  " GROUP BY l.account_id, l.currency_id, l.partner_id")
         params = {'revaluation_date': revaluation_date,
                   'account_ids': tuple(ids)}
