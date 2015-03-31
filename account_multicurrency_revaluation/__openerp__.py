@@ -19,17 +19,17 @@
 #
 ##############################################################################
 
-{"name": "Multicurrency revaluation",
- "version": "6.1",
- "category": "Finance",
- "description": """
+{
+    "name": "Multicurrency revaluation",
+    "version": "6.1",
+    "category": "Finance",
+    "description": """
 ===========================
  Multicurrency revaluation
 ===========================
 
 The *Multicurrency revaluation* module allows you generate automatically
-multicurrency revaluation journal entries. You will also find here a
-Revaluation report
+multicurrency revaluation journal entries.
 
 Note that an extra aggregation by currency on general ledger & partner ledger
 (from module : *account_financial_report*) has been added in order to get more
@@ -42,9 +42,6 @@ details.
 * A checkbox *Allow currency revaluation* on accounts.
 * A wizard to generate the revaluation journal entries. It adjusts account
 balance having *Allow currency revaluation* checked.
-* A wizard to print a report of revaluation.
-
-The report uses webkit report system.
 
 ---------------
  Configuration
@@ -93,14 +90,10 @@ For FR
     "license": 'AGPL-3',
     "depends": ["base",
                 "account",
-                "account_reversal",
-                "base_headers_webkit"],
+                "account_reversal"],
     "data": ["res_company_view.xml",
-             "res_currency_view.xml",
              "account_view.xml",
-             "wizard/wizard_currency_revaluation_view.xml",
-             "wizard/print_currency_unrealized_report_view.xml",
-             "report/report.xml"],
-    #"test": ["test/currency_revaluation.yml"],
-    'installable': False,
-}
+             "wizard/wizard_currency_revaluation_view.xml"],
+    "test": ["test/currency_revaluation.yml"],
+    'installable': True,
+    }

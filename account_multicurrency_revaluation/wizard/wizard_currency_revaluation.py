@@ -22,7 +22,7 @@
 from datetime import date
 
 from openerp.osv import fields, orm, osv
-from tools.translate import _
+from openerp.tools.translate import _
 
 
 class WizardCurrencyrevaluation(orm.TransientModel):
@@ -39,12 +39,6 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             help="You can set the default "
                  "journal in company settings.",
             required=True),
-        'currency_type': fields.many2one(
-            'res.currency.rate.type',
-            'Currency Type',
-            help="If no currency_type is selected,"
-            " only rates with no type will be browsed.",
-            required=False),
         'label': fields.char(
             'Entry description',
             size=100,
@@ -155,12 +149,10 @@ class WizardCurrencyrevaluation(orm.TransientModel):
         context = context or {}
 
         currency_obj = self.pool.get('res.currency')
-        type_id = form.currency_type and form.currency_type.id or False
 
         # Compute unrealized gain loss
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
-        ctx_rate['currency_rate_type_id'] = type_id
         cp_currency_id = form.journal_id.company_id.currency_id.id
 
         currency = currency_obj.browse(cr, uid, currency_id, context=ctx_rate)
@@ -173,7 +165,6 @@ class WizardCurrencyrevaluation(orm.TransientModel):
             ctx_rate['revaluation'] = True
             adjusted_balance = currency_obj.compute(
                 cr, uid, currency_id, cp_currency_id, foreign_balance,
-                currency_rate_type_to=type_id,
                 context=ctx_rate)
             unrealized_gain_loss = adjusted_balance - balance
             # revaluated_balance =  balance + unrealized_gain_loss
