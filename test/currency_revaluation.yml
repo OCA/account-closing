@@ -161,6 +161,7 @@
     code: "acc1"
     #company_id: default
     #type: default
+    currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
     #currency_mode: default
@@ -171,6 +172,7 @@
     code: "acc2"
     #company_id: default
     #type: default
+    currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
     #currency_mode: default
@@ -183,8 +185,6 @@
     name: "A General Journal"
     code: "GJ"
     type: 'general'
-    view_id: !ref {model: account.journal.view,
-                   search: "[('name', '=', 'Bank/Cash Journal (Multi-Currency) View')]"}
 
 -
   I increase balance of my 2 accounts on 1st january (using old rate)
