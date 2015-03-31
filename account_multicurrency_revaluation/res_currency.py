@@ -21,11 +21,11 @@
 
 import time
 
-from osv import osv
-from tools.translate import _
+from openerp import models, _
+from openerp.exceptions import Warning
 
 
-class res_currency(osv.osv):
+class ResCurrency(models.Model):
 
     _inherit = 'res.currency'
 
@@ -38,15 +38,14 @@ class res_currency(osv.osv):
             rate = currency.rate
             if rate == 0.0:
                 date = context.get('date', time.strftime('%Y-%m-%d'))
-                raise osv.except_osv(_('Error'),
-                                     _('No rate found \n'
-                                       'for the currency: %s \n'
-                                       'at the date: %s') %
-                                     (currency.symbol, date))
+                raise Warning(
+                    _('No rate found '
+                      'for the currency: %s '
+                      'at the date: %s') %
+                    (currency.symbol, date)
+                )
             return 1.0 / rate
 
         else:
-            return super(res_currency, self)._get_conversion_rate(
+            return super(ResCurrency, self)._get_conversion_rate(
                 cr, uid, from_currency, to_currency, context=context)
-
-res_currency()
