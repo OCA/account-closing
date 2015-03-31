@@ -217,14 +217,6 @@ msgid "Revaluated Amount YTD"
 msgstr "Bis heute kumulierter neu bewerteter Betrag"
 
 #. module: account_multicurrency_revaluation
-#: help:wizard.currency.revaluation,currency_type:0
-msgid ""
-"If no currency_type is selected, only rates with no type will be browsed."
-msgstr ""
-"Wenn keine Währungsart (currency_type) ausgewählt ist, werden nur Währungen "
-"ohne Art durchsucht."
-
-#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
 msgid "Journal Items"
 msgstr "Journalposten"
@@ -445,12 +437,6 @@ msgstr "Währungsaktualisierungsdienst"
 #, fuzzy
 msgid "Currency revaluation"
 msgstr "Währung zur Aktivität"
-
-#. module: account_multicurrency_revaluation
-#: field:wizard.currency.revaluation,currency_type:0
-#, fuzzy
-msgid "Currency Type"
-msgstr "Servicetyp"
 
 #. module: account_multicurrency_revaluation
 #: view:unrealized.report.printer:0 view:wizard.currency.revaluation:0
