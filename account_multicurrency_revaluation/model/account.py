@@ -19,28 +19,25 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class AccountAccountLine(orm.Model):
+class AccountAccountLine(models.Model):
     _inherit = 'account.move.line'
     # By convention added columns stats with gl_.
-    _columns = {
-        'gl_foreign_balance': fields.float('Aggregated Amount curency'),
-        'gl_balance': fields.float('Aggregated Amount'),
-        'gl_revaluated_balance': fields.float('Revaluated Amount'),
-        'gl_currency_rate': fields.float('Currency rate')}
+    gl_foreign_balance = fields.Float(string='Aggregated Amount curency')
+    gl_balance = fields.Float(string='Aggregated Amount')
+    gl_revaluated_balance = fields.Float(string='Revaluated Amount')
+    gl_currency_rate = fields.Float(string='Currency rate')
 
 
-class AccountAccount(orm.Model):
+class AccountAccount(models.Model):
     _inherit = 'account.account'
 
-    _columns = {
-        'currency_revaluation': fields.boolean(
-            "Allow Currency revaluation")
-    }
-
-    _defaults = {'currency_revaluation': False}
+    currency_revaluation = fields.Boolean(
+        string="Allow Currency revaluation",
+        default=False,
+    )
 
     _sql_mapping = {
         'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as "

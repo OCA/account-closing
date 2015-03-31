@@ -21,33 +21,33 @@
 
 from datetime import date
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 from openerp.exceptions import Warning
 from openerp import _
 
 
-class WizardCurrencyrevaluation(orm.TransientModel):
+class WizardCurrencyrevaluation(models.TransientModel):
+
     _name = 'wizard.currency.revaluation'
 
-    _columns = {
-        'revaluation_date': fields.date(
-            'Revaluation Date',
-            required=True),
-        'journal_id': fields.many2one(
-            'account.journal',
-            'Journal',
-            domain="[('type','=','general')]",
-            help="You can set the default "
-                 "journal in company settings.",
-            required=True),
-        'label': fields.char(
-            'Entry description',
-            size=100,
-            help="This label will be inserted in entries description."
-            " You can use %(account)s, %(currency)s"
-                 " and %(rate)s keywords.",
-            required=True),
-    }
+    revaluation_date = fields.Date(
+        string='Revaluation Date',
+        required=True
+    )
+    journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Journal',
+        domain="[('type','=','general')]",
+        help="You can set the default journal in company settings.",
+        required=True
+    )
+    label = fields.Char(
+        string='Entry description',
+        size=100,
+        help="This label will be inserted in entries description. "
+             "You can use %(account)s, %(currency)s and %(rate)s keywords.",
+        required=True
+    )
 
     def _get_default_revaluation_date(self, cr, uid, context):
         """
