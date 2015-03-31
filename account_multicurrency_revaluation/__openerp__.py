@@ -19,10 +19,11 @@
 #
 ##############################################################################
 
-{"name": "Multicurrency revaluation",
- "version": "6.1",
- "category": "Finance",
- "description": """
+{
+    "name": "Multicurrency revaluation",
+    "version": "6.1",
+    "category": "Finance",
+    "description": """
 ===========================
  Multicurrency revaluation
 ===========================
@@ -89,10 +90,10 @@ For FR
     "license": 'AGPL-3',
     "depends": ["base",
                 "account",
-                "account_reversal",],
+                "account_reversal"],
     "data": ["res_company_view.xml",
              "account_view.xml",
-             "wizard/wizard_currency_revaluation_view.xml",],
+             "wizard/wizard_currency_revaluation_view.xml"],
     "test": ["test/currency_revaluation.yml"],
     'installable': True,
-}
+    }
