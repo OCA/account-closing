@@ -19,7 +19,33 @@
 #
 ##############################################################################
 
-from . import res_company
-from . import account
-from . import res_currency
-from . import wizard
+{"name": "Multicurrency revaluation report",
+ "version": "8.0",
+ "category": "Finance",
+ "description": """
+=================================
+ Multicurrency revaluation report
+=================================
+
+The *Multicurrency revaluation report* completes the module *Multicurrency
+revaluation* by adding a "Revaluation report"
+
+---------------
+ Main Features
+---------------
+* A wizard to print a report of revaluation.
+
+The report uses webkit report system.
+
+""",
+
+    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "license": 'AGPL-3',
+    "depends": ["account_multicurrency_revaluation",
+                "base_headers_webkit"],
+    "data": [
+        "wizard/print_currency_unrealized_report_view.xml",
+        "report/report.xml"
+    ],
+    'installable': True,
+ }

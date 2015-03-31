@@ -15,7 +15,6 @@
                     <group>
                         <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
                         <field name="journal_id"/>
-                        <field name="currency_type"/>
                         <separator string="" colspan="6"/>
                         <field name="label"/>
                     </group>

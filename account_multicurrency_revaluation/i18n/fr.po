@@ -196,11 +196,6 @@ msgid "Revaluated Amount YTD"
 msgstr "Montant à date réévalué"
 
 #. module: account_multicurrency_revaluation
-#: help:wizard.currency.revaluation,currency_type:0
-msgid "If no currency_type is selected, only rates with no type will be browsed."
-msgstr "Si aucun type de taux particulier n'est sélectionné, seuls les taux sans type seront appliqués"
-
-#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
 msgid "Journal Items"
 msgstr "Ecritures comptables"
@@ -396,11 +391,6 @@ msgstr "Détails écarts de change"
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
 msgstr "Ecarts de change"
-
-#. module: account_multicurrency_revaluation
-#: field:wizard.currency.revaluation,currency_type:0
-msgid "Currency Type"
-msgstr "Type de devise"
 
 #. module: account_multicurrency_revaluation
 #: view:unrealized.report.printer:0
