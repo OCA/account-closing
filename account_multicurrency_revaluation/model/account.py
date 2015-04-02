@@ -68,8 +68,7 @@ class AccountAccount(models.Model):
         return query, params
 
     @api.multi
-    def compute_revaluations(self, period_ids,
-            revaluation_date):
+    def compute_revaluations(self, period_ids, revaluation_date):
         context = self._context
         if context is None:
             context = {}
