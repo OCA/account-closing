@@ -21,7 +21,7 @@
 
 import time
 
-from openerp import models, _
+from openerp import models, api, _
 from openerp.exceptions import Warning
 
 
@@ -29,12 +29,11 @@ class ResCurrency(models.Model):
 
     _inherit = 'res.currency'
 
-    def _get_conversion_rate(self, cr, uid, from_currency,
-                             to_currency, context=None):
-        if context is None:
-            context = {}
+    @api.model
+    def _get_conversion_rate(self, from_currency, to_currency):
+        context = self._context or {}
         if 'revaluation' in context:
-            currency = self.browse(cr, uid, from_currency.id, context=context)
+            currency = self.with_context(context).browse(from_currency.id)
             rate = currency.rate
             if rate == 0.0:
                 date = context.get('date', time.strftime('%Y-%m-%d'))
@@ -48,4 +47,4 @@ class ResCurrency(models.Model):
 
         else:
             return super(ResCurrency, self)._get_conversion_rate(
-                cr, uid, from_currency, to_currency, context=context)
+                from_currency, to_currency, context=context)
