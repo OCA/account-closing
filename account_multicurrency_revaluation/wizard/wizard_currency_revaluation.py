@@ -336,7 +336,6 @@ class WizardCurrencyrevaluation(models.TransientModel):
                 created_ids.append(create_move_line(line_data, sums))
         return created_ids
 
-
     @api.multi
     def revaluate_currency(self):
         """
@@ -348,7 +347,6 @@ class WizardCurrencyrevaluation(models.TransientModel):
         context = self._context
         if context is None:
             context = {}
-        user_obj = self.env['res.users']
         account_obj = self.env['account.account']
         fiscalyear_obj = self.env['account.fiscalyear']
         move_obj = self.env['account.move']
