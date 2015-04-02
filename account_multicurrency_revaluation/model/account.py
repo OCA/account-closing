@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class AccountAccountLine(models.Model):
@@ -48,12 +48,12 @@ class AccountAccount(models.Model):
                            "balance",
     }
 
-    def _revaluation_query(self, cr, uid, ids,
-                           revaluation_date,
-                           context=None):
-
-        lines_where_clause = self.pool.get('account.move.line').\
-            _query_get(cr, uid, context=context)
+    @api.multi
+    def _revaluation_query(self, revaluation_date):
+        context = self._context
+        lines_where_clause = self.env['account.move.line'].with_context(
+            context
+        )._query_get()
         query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
                  ', '.join(self._sql_mapping.values()) +
                  " FROM account_move_line l "
@@ -64,12 +64,13 @@ class AccountAccount(models.Model):
                  lines_where_clause +
                  " GROUP BY l.account_id, l.currency_id, l.partner_id")
         params = {'revaluation_date': revaluation_date,
-                  'account_ids': tuple(ids)}
+                  'account_ids': tuple(self.ids)}
         return query, params
 
-    def compute_revaluations(
-            self, cr, uid, ids, period_ids,
-            revaluation_date, context=None):
+    @api.multi
+    def compute_revaluations(self, period_ids,
+            revaluation_date):
+        context = self._context
         if context is None:
             context = {}
         accounts = {}
@@ -77,14 +78,13 @@ class AccountAccount(models.Model):
         # compute for each account the balance/debit/credit from the move lines
         ctx_query = context.copy()
         ctx_query['periods'] = period_ids
-        query, params = self._revaluation_query(
-            cr, uid, ids,
-            revaluation_date,
-            context=ctx_query)
+        query, params = self.with_context(
+            context=ctx_query
+        )._revaluation_query(revaluation_date)
 
-        cr.execute(query, params)
+        self.env.cr.execute(query, params)
 
-        lines = cr.dictfetchall()
+        lines = self.env.cr.dictfetchall()
         for line in lines:
             # generate a tree
             # - account_id

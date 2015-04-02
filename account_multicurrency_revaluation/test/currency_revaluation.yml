@@ -262,7 +262,7 @@
     wiz_id = self.create(cr, uid, wiz_data)
     wiz = self.browse(cr, uid, wiz_id)
     # Call wizard computing
-    result = wiz.revaluate_currency(context=context)
+    result = wiz.with_context(context).revaluate_currency()
     assert result, "No result returned"
 
 -
