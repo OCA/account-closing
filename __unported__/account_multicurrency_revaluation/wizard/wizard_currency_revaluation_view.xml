@@ -8,7 +8,10 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Currency Revaluation" version="7.0">
-                    <label string="This will reevaluate the currency gain &amp; loss"/>
+                    <label string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'. 
+                    	if the account type is payable or receivable : 1 entry will be generated per account/currency/partner
+                    	for other account type : 1 entry will be generated per account/currency
+						You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."/>
                     <group>
                         <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
                         <field name="journal_id"/>
