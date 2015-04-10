@@ -53,6 +53,9 @@ class ResCompany(orm.Model):
             'account.account',
             'Provision P&L gain account',
             domain=[('type', '=', 'other')]),
+        'provision_pl_analytic_account_id': fields.many2one(
+            'account.analytic.account',
+            'Provision P&L Analytic account'),
         'default_currency_reval_journal_id': fields.many2one(
             'account.journal',
             'Currency gain & loss Default Journal',
