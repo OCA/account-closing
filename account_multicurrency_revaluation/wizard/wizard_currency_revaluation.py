@@ -24,7 +24,7 @@ from openerp.exceptions import Warning
 from openerp import _
 
 
-class WizardCurrencyrevaluation(models.TransientModel):
+class WizardCurrencyRevaluation(models.TransientModel):
 
     _name = 'wizard.currency.revaluation'
 
@@ -34,8 +34,8 @@ class WizardCurrencyrevaluation(models.TransientModel):
         Get last date of previous fiscalyear
         """
 
-        fiscalyear_obj = self.pool.get('account.fiscalyear')
-        cp = self._uid.company_id
+        fiscalyear_obj = self.env['account.fiscalyear']
+        cp = self.env.user.company_id
         # find previous fiscalyear
         current_date = fields.date.context_today
         previous_fiscalyear = fiscalyear_obj.search(
@@ -52,8 +52,7 @@ class WizardCurrencyrevaluation(models.TransientModel):
         """
         Get default journal if one is defined in company settings
         """
-        journal = self._uid.company_id.default_currency_reval_journal_id
-        return journal and journal.id or False
+        return self.env.user.company_id.default_currency_reval_journal_id
 
     revaluation_date = fields.Date(
         string='Revaluation Date',
@@ -85,7 +84,7 @@ class WizardCurrencyrevaluation(models.TransientModel):
             return {}
         warning = {}
         move_obj = self.env['account.move']
-        company_id = self._uid.company_id.id
+        company_id = self.env.user.company_id.id
         fiscalyear_obj = self.env['account.fiscalyear']
         fiscalyear = fiscalyear_obj.search(
             [('date_start', '<=', revaluation_date),
@@ -104,7 +103,7 @@ class WizardCurrencyrevaluation(models.TransientModel):
                 opening_move_ids = []
                 if special_period_ids:
                     opening_move_ids = move_obj.search(
-                        [('period_id', '=', special_period_ids.id)])
+                        [('period_id', '=', special_period_ids[0])])
                 if not opening_move_ids or not special_period_ids:
                     warning = {
                         'title': _('Warning!'),
@@ -130,16 +129,16 @@ class WizardCurrencyrevaluation(models.TransientModel):
 
         @return: updated data for foreign balance plus rate value used
         """
-        context = self._context
+        context = self.env.context
 
         currency_obj = self.env['res.currency']
 
         # Compute unrealized gain loss
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
-        cp_currency_id = form.journal_id.company_id.currency_id
+        cp_currency = form.journal_id.company_id.currency_id
 
-        currency = currency_obj.with_context(ctx_rate).browse(currency_id)
+        currency = currency_obj.browse(currency_id)
 
         foreign_balance = adjusted_balance = balances.get(
             'foreign_balance', 0.0)
@@ -150,17 +149,13 @@ class WizardCurrencyrevaluation(models.TransientModel):
             adjusted_balance = currency_obj.browse(
                 currency_id
             ).with_context(ctx_rate).compute(
-                foreign_balance, cp_currency_id)
+                foreign_balance, cp_currency)
             unrealized_gain_loss = adjusted_balance - balance
             # revaluated_balance =  balance + unrealized_gain_loss
         else:
             if balance:
-                if currency_id != cp_currency_id.id:
+                if currency_id != cp_currency.id:
                     unrealized_gain_loss = 0.0 - balance
-                else:
-                    unrealized_gain_loss = 0.0
-            else:
-                unrealized_gain_loss = 0.0
         return {'unrealized_gain_loss': unrealized_gain_loss,
                 'currency_rate': currency.rate,
                 'revaluated_balance': adjusted_balance}
@@ -176,17 +171,17 @@ class WizardCurrencyrevaluation(models.TransientModel):
         @param int currency_id: id of the currency to display
         @param float rate: rate to display
         """
-        context = self._context
+        context = self.env.context
         account_obj = self.env['account.account']
         currency_obj = self.env['res.currency']
-        account = account_obj.with_context(context).browse(account_id)
-        currency = currency_obj.with_context(context).browse(currency_id)
+        account = account_obj.browse(account_id)
+        currency = currency_obj.browse(currency_id)
         data = {'account': account.code or False,
                 'currency': currency.name or False,
                 'rate': rate or False}
         return text % data
 
-    @api.model
+    @api.multi
     def _write_adjust_balance(self, account_id, currency_id,
                               partner_id, amount, label, form, sums):
         """
@@ -199,7 +194,7 @@ class WizardCurrencyrevaluation(models.TransientModel):
 
         @return: ids of created move_lines
         """
-        context = self._context
+        context = self.env.context
 
         def create_move():
             reversable = form.journal_id.company_id.reversable_revaluations
@@ -234,7 +229,7 @@ class WizardCurrencyrevaluation(models.TransientModel):
         move_obj = self.env['account.move']
         move_line_obj = self.env['account.move.line']
         period_obj = self.env['account.period']
-        company = form.journal_id.company_id or self._uid.company_id
+        company = form.journal_id.company_id or self.env.user.company_id
         period = period_obj.with_context(context).search(
             [('date_start', '<=', form.revaluation_date),
              ('date_stop', '>=', form.revaluation_date),
@@ -344,13 +339,11 @@ class WizardCurrencyrevaluation(models.TransientModel):
 
         @return: dict to open an Entries view filtered on generated move lines
         """
-        context = self._context
-        if context is None:
-            context = {}
+        context = self.env.context
         account_obj = self.env['account.account']
         fiscalyear_obj = self.env['account.fiscalyear']
         move_obj = self.env['account.move']
-        company = self.journal_id.company_id or self._uid.company_id
+        company = self.journal_id.company_id or self.env.user.company_id
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
             not (company.provision_bs_loss_account_id and
