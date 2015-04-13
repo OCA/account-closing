@@ -31,20 +31,19 @@ class ResCurrency(models.Model):
 
     @api.model
     def _get_conversion_rate(self, from_currency, to_currency):
-        context = self._context or {}
+        context = self.env.context
         if 'revaluation' in context:
-            currency = self.with_context(context).browse(from_currency.id)
-            rate = currency.rate
+            rate = from_currency.rate
             if rate == 0.0:
                 date = context.get('date', time.strftime('%Y-%m-%d'))
                 raise Warning(
                     _('No rate found '
                       'for the currency: %s '
                       'at the date: %s') %
-                    (currency.symbol, date)
+                    (from_currency.symbol, date)
                 )
             return 1.0 / rate
 
         else:
             return super(ResCurrency, self)._get_conversion_rate(
-                from_currency, to_currency, context=context)
+                from_currency, to_currency)
