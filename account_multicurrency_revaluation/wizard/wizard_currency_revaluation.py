@@ -170,7 +170,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         @param int currency_id: id of the currency to display
         @param float rate: rate to display
         """
-        context = self.env.context
         account_obj = self.env['account.account']
         currency_obj = self.env['res.currency']
         account = account_obj.browse(account_id)
