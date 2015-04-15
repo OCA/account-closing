@@ -83,8 +83,6 @@ Credits
 Contributors
 ------------
 
-* Camptocamp
-* Odoo Community Association (OCA)
 * Alexandre Fayolle
 * Alexis de Lattre
 * Frédéric Clementi
