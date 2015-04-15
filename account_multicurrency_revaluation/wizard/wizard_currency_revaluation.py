@@ -192,7 +192,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         @return: ids of created move_lines
         """
-        context = self.env.context
 
         def create_move():
             reversable = form.journal_id.company_id.reversable_revaluations
@@ -228,7 +227,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         move_line_obj = self.env['account.move.line']
         period_obj = self.env['account.period']
         company = form.journal_id.company_id or self.env.user.company_id
-        period = period_obj.with_context(context).search(
+        period = period_obj.search(
             [('date_start', '<=', form.revaluation_date),
              ('date_stop', '>=', form.revaluation_date),
              ('company_id', '=', company.id),
@@ -410,9 +409,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                   fiscalyear.code)
             )
         # Get balance sums
-        account_sums = account_ids.with_context(
-            context
-        ).compute_revaluations(
+        account_sums = account_ids.compute_revaluations(
             period_ids,
             self.revaluation_date)
         for account_id, account_tree in account_sums.iteritems():
@@ -421,9 +418,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     if not sums['balance']:
                         continue
                     # Update sums with compute amount currency balance
-                    diff_balances = self.with_context(
-                        context
-                    )._compute_unrealized_currency_gl(
+                    diff_balances = self._compute_unrealized_currency_gl(
                         currency_id,
                         sums, self)
                     account_sums[account_id][currency_id][partner_id].\
@@ -437,18 +432,20 @@ class WizardCurrencyRevaluation(models.TransientModel):
                         continue
 
                     rate = sums.get('currency_rate', 0.0)
-                    label = self.with_context(context)._format_label(
-                        self.label, account_id, currency_id, rate)
+                    label = self._format_label(
+                        self.label, account_id, currency_id, rate
+                    )
 
                     # Write an entry to adjust balance
-                    new_ids = self.with_context(context)._write_adjust_balance(
+                    new_ids = self._write_adjust_balance(
                         account_id,
                         currency_id,
                         partner_id,
                         adj_balance,
                         label,
                         self,
-                        sums)
+                        sums
+                    )
                     created_ids.extend(new_ids)
 
         if created_ids:
