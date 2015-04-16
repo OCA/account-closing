@@ -159,23 +159,17 @@
   !record {model: account.account, id: wiz_test_acc1}:
     name: "Account 1"
     code: "acc1"
-    #company_id: default
-    #type: default
     currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
-    #currency_mode: default
     currency_id: currency1
 -
   !record {model: account.account, id: wiz_test_acc2}:
     name: "Account 2"
     code: "acc2"
-    #company_id: default
-    #type: default
     currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
-    #currency_mode: default
     currency_id: currency2
 
 -
@@ -190,15 +184,11 @@
   I increase balance of my 2 accounts on 1st january (using old rate)
 -
   !record {model: account.move, id: wiz_test_move1}:
-    #name: default
-    #period_id: default
     journal_id: !ref {model: account.journal,
                       search: "[('type', '=', 'sale')]"}
     state: 'posted'
     date: !eval "'%s-01-01' %(datetime.now().year)"
 - !record {model: account.move, id: wiz_test_move2}:
-    #name: default
-    #period_id: default
     journal_id: !ref {model: account.journal,
                       search: "[('type', '=', 'sale')]"}
     state: 'posted'
