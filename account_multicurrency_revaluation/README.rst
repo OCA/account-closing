@@ -24,6 +24,14 @@ Configuration
 Due to the various legislation according the country, in the Company settings
 you can set the way you want to generate revaluation journal entries.
 
+The user that can access to the edition of the 'Provision B.S loss account' and
+'Provision P&L accounts' need to be in the security group
+'Additional provisioning entries posting'.
+
+You also need to tick the box "Allow multi currencies" in the menu Settings/
+Configuration/ Invoicing to be able to select the currency on the account you
+want to revaluate.
+
 Please, find below advised account settings for 3 countries:
 
 For UK (Revaluation)
@@ -89,7 +97,7 @@ Contributors
 * Guewen Baconnier @ Camptocamp
 * Joel Grand-Guillaume
 * Kinner Vachhani
-* Matt Choplin
+* Matt Choplin choplin.mat@gmail.com
 * Matthieu Dietrich
 * moylop260
 * Pedro M. Baeza
