@@ -37,7 +37,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         fiscalyear_obj = self.env['account.fiscalyear']
         cp = self.env.user.company_id
         # find previous fiscalyear
-        current_date = fields.date.context_today
+        current_date = fields.date.today()
         previous_fiscalyear = fiscalyear_obj.search(
             [('date_stop', '<', current_date),
              ('company_id', '=', cp.id)],
@@ -82,7 +82,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         revaluation_date = self.revaluation_date
         if not revaluation_date:
             return {}
-        warning = {}
         move_obj = self.env['account.move']
         company_id = self.env.user.company_id.id
         fiscalyear_obj = self.env['account.fiscalyear']
@@ -105,14 +104,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     opening_move_ids = move_obj.search(
                         [('period_id', '=', special_period_ids[0])])
                 if not opening_move_ids or not special_period_ids:
-                    warning = {
-                        'title': _('Warning!'),
-                        'message': _('No opening entries in opening period '
-                                     'for this fiscal year')
-                    }
-
-        res = {'value': {}, 'warning': warning}
-        return res
+                    raise Warning(
+                        _('No opening entries in opening period '
+                          'for this fiscal year')
+                    )
 
     @api.model
     def _compute_unrealized_currency_gl(self,
@@ -354,8 +349,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
                   " a couple of provision account.")
             )
         created_ids = []
-        # Search for accounts Balance Sheet to be eevaluated
-        # on those criterions
+        # Search for accounts Balance Sheet to be revaluated
+        # on those criteria
         # - deferral method of account type is not None
         account_ids = account_obj.search(
             [('user_type.close_method', '!=', 'none'),
@@ -383,7 +378,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 _('No special period found for the fiscalyear %s' %
                   fiscalyear.code)
             )
-        opening_move_ids = []
         if special_period_ids:
             opening_move_ids = move_obj.search(
                 [('period_id', '=', special_period_ids[0])])
@@ -460,5 +454,5 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     'type': 'ir.actions.act_window'}
         else:
             raise Warning(
-                _("No accounting entry have been posted.")
+                _("No accounting entry has been posted.")
             )
