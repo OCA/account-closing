@@ -161,6 +161,8 @@ class account_invoice(orm.Model):
         period_ctx = context.copy()
         period_ctx['company_id'] = invoice.company_id.id
         period_ctx['account_period_prefer_normal'] = True
+        accrual_taxes = invoice.company_id.accrual_taxes
+        taxes_fields = ['taxes', 'tax_amount', 'tax_code_id']
 
         if not accrual_period_id:
             accrual_period_id = period_obj.find(
@@ -175,13 +177,18 @@ class account_invoice(orm.Model):
         ctx = context.copy()
         ctx.update({'move_accrual': True})
         iml = self._get_analytic_lines(cr, uid, invoice.id, context=ctx)
+        if not accrual_taxes:
+            for line in iml:
+                for field in taxes_fields:
+                    line.pop(field)
         # check if taxes are all computed
         compute_taxes = ait_obj.compute(cr, uid, invoice.id, context=context)
         self.check_tax_lines(cr, uid, [invoice.id], compute_taxes,
                              context=context)
 
         # one move line per tax line
-        iml += ait_obj.move_line_get(cr, uid, invoice.id)
+        if accrual_taxes:
+            iml += ait_obj.move_line_get(cr, uid, invoice.id)
 
         diff_currency_p = invoice.currency_id.id != company_currency.id
         # create one move line for the total and possibly adjust the other
