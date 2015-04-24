@@ -58,19 +58,8 @@
   !python {model: account.invoice}: |
      self.unlink(cr, uid, [ref("accrual_invoice_1")])
 -
-  I check reversal move exist
+  I check if accrual is deleted
 -
     !python {model: account.move}: |
       ids = self.search(cr, uid, [('journal_id','=',ref('accrual_journal_1'))])
-      assert (len(ids) == 2), "It doesn't exist 2 entries on accrual journal"
-      obj = self.browse(cr,uid,ids)
-      move1 = obj[0]
-      move2 = obj[1]
-      reverse = False
-      if move1.reversal_id:
-        reverse = True
-        assert (move2.id == move1.reversal_id.id), "Movement don't correspond"
-      if move2.reversal_id:
-        reverse = True
-        assert (move1.id == move2.reversal_id.id), "Movement don't correspond"
-      assert reverse, "There is no reversal move"
+      assert (len(ids) == 0), "It exist entries on accrual journal"
