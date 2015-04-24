@@ -48,6 +48,7 @@ Account invoice accrual
     "data": [
         "account_invoice_view.xml",
         "wizard/account_move_accrue_view.xml",
+        "company_view.xml",
     ],
     "demo": [],
     "test": [
