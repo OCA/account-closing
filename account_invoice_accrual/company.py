@@ -1,16 +1,9 @@
 # -*- coding: utf-8 -*-
 #
+##############################################################################
 #
-#    Authors: Laetitia Gangloff
-#    Copyright (c) 2014 Acsone SA/NV (http://www.acsone.eu)
-#    All Rights Reserved
-#
-#    WARNING: This program as such is intended to be used by professional
-#    programmers who take the whole responsibility of assessing all potential
-#    consequences resulting from its eventual inadequacies and bugs.
-#    End users who are looking for a ready-to-use solution with commercial
-#    guarantees and support are strongly advised to contact a Free Software
-#    Service Company.
+#     Authors: Adrien Peiffer
+#    Copyright (c) 2015 Acsone SA/NV (http://www.acsone.eu)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,6 +18,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from . import account_invoice
-from . import wizard
-from . import company
+##############################################################################
+
+from openerp.osv import orm, fields
+
+
+class res_company(orm.Model):
+    _inherit = 'res.company'
+
+    _columns = {
+        'accrual_taxes': fields.boolean(string='Accrual On Taxes')
+    }
