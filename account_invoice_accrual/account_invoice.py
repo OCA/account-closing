@@ -180,7 +180,8 @@ class account_invoice(orm.Model):
         if not accrual_taxes:
             for line in iml:
                 for field in taxes_fields:
-                    line.pop(field)
+                    if line.get(field, False):
+                        line.pop(field)
         # check if taxes are all computed
         compute_taxes = ait_obj.compute(cr, uid, invoice.id, context=context)
         self.check_tax_lines(cr, uid, [invoice.id], compute_taxes,
@@ -196,8 +197,10 @@ class account_invoice(orm.Model):
         total, total_currency, iml = self.compute_invoice_totals(
             cr, uid, [invoice.id], company_currency, accrual_ref, iml,
             context=period_ctx)
-
-        name = '/'
+        if invoice.origin:
+            name = invoice.origin
+        else:
+            name = '/'
         totlines = False
         if invoice.payment_term:
             totlines = payment_term_obj.compute(
