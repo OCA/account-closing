@@ -266,6 +266,7 @@ class account_invoice(orm.Model):
             'date': accrual_date,
             'narration': invoice.comment,
             'company_id': invoice.company_id.id,
+            'to_be_reversed': True,
         }
 
         move['period_id'] = accrual_period_id
