@@ -40,6 +40,17 @@
   !record {model: account.move.accrue, id: account_move_accrue_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_2")], "active_id": ref("accrual_invoice_2"), }'}:
     account_id: accrual_account_0
 -
+  I update date on the Accrual wizard
+-
+    !python {model: account.move.accrue}: |
+        from datetime import date, timedelta
+        from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+        wiz_data = {
+            'date': (date(date.today().year, date.today().month, 1) -
+            timedelta(days=1)).strftime(DEFAULT_SERVER_DATE_FORMAT),
+        }
+        wiz_id = self.write(cr, uid, [ref("account_move_accrue_0")], wiz_data)
+-
   I clicked on Accrual wizard confirm button
 -
   !python {model: account.move.accrue}: |
