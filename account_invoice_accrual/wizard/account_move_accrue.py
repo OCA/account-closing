@@ -44,7 +44,7 @@ class account_move_accrual(orm.TransientModel):
             'Accrual Date',
             required=True,
             help="Enter the date of the accrual account entries. "
-                 "By default, OpenERP proposes the last day of "
+                 "By default, Odoo proposes the last day of "
                  "the previous month."),
         'period_id': fields.many2one(
             'account.period',
