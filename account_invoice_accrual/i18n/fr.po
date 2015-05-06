@@ -33,8 +33,8 @@ msgstr "Impossible de trouver un plan comptable, il faut en créer un à partir 
 
 #. module: account_invoice_accrual
 #: help:account.move.accrue,date:0
-msgid "Enter the date of the accrual account entries. By default, OpenERP proposes the last day of the previous month."
-msgstr "Spécifier la date de provision. Par défaut, OpenERP propose le dernier jour du mois précédent."
+msgid "Enter the date of the accrual account entries. By default, Odoo proposes the last day of the previous month."
+msgstr "Spécifier la date de provision. Par défaut, Odoo propose le dernier jour du mois précédent."
 
 #. module: account_invoice_accrual
 #: view:account.move.accrue:0
