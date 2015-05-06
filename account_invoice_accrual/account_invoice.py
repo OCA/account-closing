@@ -35,7 +35,7 @@ class account_invoice_line(orm.Model):
 
     def move_line_get_item(self, cr, uid, line, context=None):
         res = super(account_invoice_line, self)\
-            .move_line_get_item(cr, uid, line, context=None)
+            .move_line_get_item(cr, uid, line, context=context)
         if context.get('move_accrual', False) and context.get('type', False):
             mapping_obj = self.pool['account.cutoff.mapping']
             if context.get('type', False) in ['out_invoice', 'out_refund']:
