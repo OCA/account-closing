@@ -65,7 +65,8 @@ class account_move_reversal(orm.TransientModel):
             move_ids = []
             invoice_ids = context['active_ids']
             for inv in invoices:
-                # if inv.state in ('draft', 'proforma2') and inv.accrual_move_id:
+                # if inv.state in ('draft', 'proforma2')
+                # and inv.accrual_move_id:
                 move_ids.append(inv.accrual_move_id.id)
             if move_ids:
                 context['active_ids'] = move_ids
