@@ -98,24 +98,18 @@ class account_invoice(orm.Model):
                                              context=context)
 
     def action_cancel(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
         res = super(account_invoice, self).action_cancel(
             cr, uid, ids, context=context)
         self.reverse_invoice(cr, uid, ids, context)
         return res
 
     def invoice_validate(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
         res = super(account_invoice, self).invoice_validate(
             cr, uid, ids, context=context)
         self.reverse_invoice(cr, uid, ids, context)
         return res
 
     def unlink(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
         self.reverse_invoice(cr, uid, ids, context)
         res = super(account_invoice, self).unlink(
             cr, uid, ids, context=context)
