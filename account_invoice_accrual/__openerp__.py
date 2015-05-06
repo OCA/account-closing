@@ -38,13 +38,6 @@
         "account_reversal",  # from account-financial-tools/7.0
         "account_cutoff_accrual_base",
     ],
-    "description": """
-
-Account invoice accrual
-=========================
-
-
-""",
     "data": [
         "account_invoice_view.xml",
         "wizard/account_move_accrue_view.xml",
