@@ -68,6 +68,8 @@ class account_invoice(orm.Model):
 
     def reverse_invoice(self, cr, uid, ids, context=None):
         # get the list of invoice to reverse
+        if context is None:
+            context = {}
         ids_to_reverse = []
         move_ids_to_unlink = []
         invoice_to_unlink_move = []
