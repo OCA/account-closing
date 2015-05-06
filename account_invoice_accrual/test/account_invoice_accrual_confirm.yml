@@ -7,11 +7,20 @@
     name: Accrual Journal 0
     type: general
 -
+  I create specific account
+-
+  !record {model: account.account, id: accrual_account_0}:
+    name: "Accrual account"
+    code: "ACC480000"
+    company_id: base.main_company
+    name: Accrual Account
+    user_type: account.data_account_type_liability
+-
   I set accrual information on company
 -
   !record {model: res.company, id: base.main_company}:
-    default_accrued_revenue_account_id: account.a_sale
-    default_accrued_expense_account_id: account.a_recv
+    default_accrued_revenue_account_id: accrual_account_0
+    default_accrued_expense_account_id: accrual_account_0
     default_cutoff_journal_id: accrual_journal_0
 -
   I create a new invoice
@@ -38,7 +47,7 @@
   I called the Accrual wizard
 -
   !record {model: account.move.accrue, id: account_move_accrue_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_0")], "active_id": ref("accrual_invoice_0"), }'}:
-    {}
+    account_id: accrual_account_0
 -
   I clicked on Accrual wizard confirm button
 -

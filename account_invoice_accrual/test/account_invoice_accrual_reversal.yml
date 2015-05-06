@@ -38,7 +38,7 @@
   I called the Accrual wizard
 -
   !record {model: account.move.accrue, id: account_move_accrue_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_2")], "active_id": ref("accrual_invoice_2"), }'}:
-    {}
+    account_id: accrual_account_0
 -
   I clicked on Accrual wizard confirm button
 -
