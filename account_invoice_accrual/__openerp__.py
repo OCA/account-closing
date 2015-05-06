@@ -30,7 +30,7 @@
 {
     "name": "Account invoice accrual",
     "version": "0.1",
-    "author": "ACSONE SA/NV",
+    "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Invoice",
     "website": "http://www.acsone.eu",
     "depends": [
