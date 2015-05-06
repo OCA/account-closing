@@ -185,7 +185,7 @@ class account_invoice(orm.Model):
 
         # one move line per tax line
         if accrual_taxes:
-            iml += ait_obj.move_line_get(cr, uid, invoice.id)
+            iml += ait_obj.move_line_get(cr, uid, invoice.id, context=context)
 
         diff_currency_p = invoice.currency_id.id != company_currency.id
         # create one move line for the total and possibly adjust the other
