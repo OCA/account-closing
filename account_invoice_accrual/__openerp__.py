@@ -49,7 +49,6 @@
         "test/account_invoice_accrual_remove.yml",
         "test/account_invoice_accrual_reversal.yml",
     ],
-    "active": False,
     "license": "AGPL-3",
     "installable": True,
     "auto_install": False,
