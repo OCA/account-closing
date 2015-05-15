@@ -108,7 +108,9 @@ class account_invoice(orm.Model):
     def invoice_validate(self, cr, uid, ids, context=None):
         res = super(account_invoice, self).invoice_validate(
             cr, uid, ids, context=context)
-        self.reverse_invoice(cr, uid, ids, context)
+        ctx = context.copy()
+        ctx['from_invoice_validate'] = True
+        self.reverse_invoice(cr, uid, ids, ctx)
         return res
 
     def unlink(self, cr, uid, ids, context=None):
