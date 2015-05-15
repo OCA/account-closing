@@ -66,7 +66,7 @@ class account_invoice(orm.Model):
             store=False, readonly=True),
     }
 
-    def reverse_invoice(self, cr, uid, ids, context=None):
+    def reverse_accrual(self, cr, uid, ids, context=None):
         # get the list of invoice to reverse
         if context is None:
             context = {}
@@ -102,7 +102,7 @@ class account_invoice(orm.Model):
     def action_cancel(self, cr, uid, ids, context=None):
         res = super(account_invoice, self).action_cancel(
             cr, uid, ids, context=context)
-        self.reverse_invoice(cr, uid, ids, context)
+        self.reverse_accrual(cr, uid, ids, context)
         return res
 
     def invoice_validate(self, cr, uid, ids, context=None):
@@ -110,11 +110,11 @@ class account_invoice(orm.Model):
             cr, uid, ids, context=context)
         ctx = context.copy()
         ctx['from_invoice_validate'] = True
-        self.reverse_invoice(cr, uid, ids, ctx)
+        self.reverse_accrual(cr, uid, ids, ctx)
         return res
 
     def unlink(self, cr, uid, ids, context=None):
-        self.reverse_invoice(cr, uid, ids, context)
+        self.reverse_accrual(cr, uid, ids, context)
         res = super(account_invoice, self).unlink(
             cr, uid, ids, context=context)
         return res
