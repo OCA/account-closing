@@ -21,6 +21,7 @@
 ##############################################################################
 
 from openerp.osv import orm
+from openerp.tools.translate import _
 
 
 class account_move(orm.Model):
@@ -36,9 +37,15 @@ class account_move(orm.Model):
                     return False
         return True
 
+    def _check_period_msg(self, cr, uid, ids, context=None):
+        """Return message for check_period """
+        return _(
+            'You try to save a journal item with a closed period; '
+            'please change your period or contact your responsible account'
+        )
+
     _constraints = [
         (_check_period,
-         'You try to save a journal item with a closed period; '
-         'please change your period or contact your responsible account',
-         ['period_id']),
+         _check_period_msg,
+         ['period_id'])
     ]

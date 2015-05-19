@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-05 15:43+0000\n"
-"PO-Revision-Date: 2015-05-05 11:43-0500\n"
+"POT-Creation-Date: 2015-05-19 19:06+0000\n"
+"PO-Revision-Date: 2015-05-19 15:06-0500\n"
 "Last-Translator: EL Hadji DEM <elhadji.dem@savoirfairelinux.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,8 @@ msgid "Account Entry"
 msgstr ""
 
 #. module: account_move_check_period
-#: constraint:account.move:0
+#: code:addons/account_move_check_period/account_move.py:42
+#, python-format
 msgid ""
 "You try to save a journal item with a closed period; please change your "
 "period or contact your responsible account"
