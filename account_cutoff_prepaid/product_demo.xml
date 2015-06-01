@@ -16,7 +16,6 @@
     <field name="categ_id" ref="product.product_category_5"/>
     <field name="must_have_dates" eval="True" />
     <field name="sale_ok" eval="True" />
-    <field name="purchase_ok" eval="True" />
     <field name="list_price" eval="1200.0"/>
     <field name="standard_price" eval="600.0"/>
 </record>
