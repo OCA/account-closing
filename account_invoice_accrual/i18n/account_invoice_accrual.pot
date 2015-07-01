@@ -195,10 +195,3 @@ msgstr ""
 #, python-format
 msgid "There is nothing to reverse"
 msgstr ""
-
-#. module: account_invoice_accrual
-#: field:account.invoice,accrual_move_id:0
-#: field:account.invoice,accrual_move_name:0
-msgid "Accrual Journal Entry"
-msgstr ""
-
