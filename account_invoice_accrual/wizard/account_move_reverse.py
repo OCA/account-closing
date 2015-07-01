@@ -44,8 +44,8 @@ class account_move_reversal(orm.TransientModel):
                 and context['active_model'] == 'account.invoice':
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
-            if inv.company_id.default_cutoff_journal_id.id:
-                return inv.company_id.default_cutoff_journal_id.id
+            if inv.company_id.default_accrual_journal_id.id:
+                return inv.company_id.default_accrual_journal_id.id
         return None
 
     _defaults = {
