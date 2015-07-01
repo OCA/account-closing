@@ -276,11 +276,8 @@ class account_invoice(orm.Model):
 
         period_ctx.update(invoice=invoice)
         accrual_move_id = move_obj.create(cr, uid, move, context=period_ctx)
-        new_move_name = move_obj.browse(
-            cr, uid, accrual_move_id, context=period_ctx).name
         # make the invoice point to that move
-        self.write(cr, uid, [invoice.id], {'accrual_move_id': accrual_move_id,
-                                           'accrual_move_name': new_move_name},
+        self.write(cr, uid, [invoice.id], {'accrual_move_id': accrual_move_id},
                    context=period_ctx)
         # Pass invoice in context in method post: used if you want to get the
         # same account move reference when creating the same invoice after a

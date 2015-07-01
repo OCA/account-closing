@@ -84,6 +84,5 @@ class account_move_reversal(orm.TransientModel):
             cr, uid, ids, context=context)
         if invoice_ids:
             inv_obj.write(
-                cr, uid, invoice_ids, {'accrual_move_name': False,
-                                       'accrual_move_id': False})
+                cr, uid, invoice_ids, {'accrual_move_id': False})
         return res
