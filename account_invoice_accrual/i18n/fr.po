@@ -195,10 +195,3 @@ msgstr "Journal de provision"
 #, python-format
 msgid "There is nothing to reverse"
 msgstr "Il n'y a rien à extourner"
-
-#. module: account_invoice_accrual
-#: field:account.invoice,accrual_move_id:0
-#: field:account.invoice,accrual_move_name:0
-msgid "Accrual Journal Entry"
-msgstr "Pièce comptable de provision"
-
