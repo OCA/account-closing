@@ -230,6 +230,7 @@ class account_cutoff(orm.Model):
             'date': cur_cutoff.cutoff_date,
             'period_id': period_id,
             'ref': move_label,
+            'to_be_reversed': True,
             'line_id': movelines_to_create,
         }
         return res
