@@ -58,8 +58,6 @@ class account_invoice(orm.Model):
             'account.move', 'Accrual Journal Entry',
             readonly=True, ondelete='set null', copy=False,
             help="Link to the Accrual Journal Items."),
-        'accrual_move_name': fields.char('Accrual Journal Entry', size=64,
-                                         readonly=True, copy=False),
         'to_be_reversed': fields.related(
             'accrual_move_id', 'to_be_reversed', type='boolean',
             relation='account.move', string='To be reversed',
