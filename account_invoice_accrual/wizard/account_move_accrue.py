@@ -41,6 +41,8 @@ class account_move_accrual(orm.TransientModel):
         'period_id': fields.many2one(
             'account.period',
             'Accrual Period',
+            domain=[('special', '=', False),
+                    ('state', '=', 'draft')],
             help="If empty, take the period of the date."),
         'account_id': fields.many2one(
             'account.account',
