@@ -46,12 +46,12 @@
     self.action_accrue(cr, uid, [ref("account_move_accrue_0")], {"lang": 'en_US',
       "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_1")], "active_id": ref("accrual_invoice_1"), })
 -
-  I check that accrual_move_id is not empty
+  I check that accrual_move_id is not empty, the I remove it so I can later delete the invoice
 -
     !python {model: account.invoice}: |
       obj = self.browse(cr, uid, ref("accrual_invoice_1"))
-      accrual_move = obj.accrual_move_id
-      assert (accrual_move), "Accrual move doesn't exist"
+      assert obj.accrual_move_id, "Accrual move doesn't exist"
+      obj.accrual_move_id.unlink()
 -
   I remove invoice
 -
