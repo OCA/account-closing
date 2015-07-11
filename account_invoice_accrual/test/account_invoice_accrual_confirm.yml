@@ -78,22 +78,16 @@
 -
   !workflow {model: account.invoice, action: invoice_open, ref: accrual_invoice_0}
 -
-  I Post the move
+  I check that accrual_move_id is reversed
 -
     !python {model: account.invoice}: |
       obj=self.browse(cr, uid, ref("accrual_invoice_0"))
-      assert not(obj.accrual_move_id), "Accrual move is not removed from the invoice"
+      assert obj.accrual_move_id.reversal_id, "Accrual move is not reversed"
 -
   I check that the invoice state is "Open"
 -
   !assert {model: account.invoice, id: accrual_invoice_0}:
     - state == 'open'
--
-  I check that accrual_move_id is removed
--
-    !python {model: account.invoice}: |
-      obj=self.browse(cr, uid, ref("accrual_invoice_0"))
-      assert not(obj.accrual_move_id), "Accrual move is not removed from the invoice"
 -
   I check reversal move exist
 -
