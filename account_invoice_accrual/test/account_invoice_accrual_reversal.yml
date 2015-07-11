@@ -65,22 +65,23 @@
       accrual_move = obj.accrual_move_id
       assert (accrual_move), "Accrual move doesn't exist"
 -
-  I called the Reversal wizard
+  I cal the Reversal wizard
 -
-  !record {model: account.move.reverse, id: account_move_reverse_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_2")], "active_id": ref("accrual_invoice_2"), }'}:
+  !record {model: account.move.reverse, id: account_move_reverse_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.move", }'}:
     {}
 -
   I clicked on Reversal wizard confirm button
 -
   !python {model: account.move.reverse}: |
+    inv = self.pool['account.invoice'].browse(cr, uid, ref("accrual_invoice_2"))
     self.action_reverse(cr, uid, [ref("account_move_reverse_0")], {"lang": 'en_US',
-      "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_2")], "active_id": ref("accrual_invoice_2"), })
+      "tz": False, "active_model": "account.move", "active_ids": [inv.accrual_move_id.id], "active_id": inv .accrual_move_id.id, })
 -
   I check that accrual_move_id is removed
 -
     !python {model: account.invoice}: |
       obj=self.browse(cr, uid, ref("accrual_invoice_2"))
-      assert not(obj.accrual_move_id), "Accrual move is not removed from the invoice"
+      assert not(obj.accrual_move_id.to_be_reversed), "Accrual move is not reversed"
 -
   I check reversal move exist
 -

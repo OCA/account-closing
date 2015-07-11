@@ -15,7 +15,10 @@
                 <div class="oe_right oe_button_box" name="buttons">
                     <field name="to_be_reversed" invisible="1"/>
                     <button name="account_invoice_accrual.act_account_move_accrue" string="Accrual" type="action" attrs="{'invisible': ['|','!',('state','in',['draft','proforma2']),('accrual_move_id','&lt;&gt;',False)]}" />
-                    <button name="account_reversal.act_account_move_reverse" string="Reversal" type="action" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                    <!-- TODO: make this a dynamic action that shows act_account_move_reverse on invoice.accrual_move_id
+                               in the meantime, the user can open the accural move, and reverse from there
+                    <button name="account_reversal.act_account_move_reverse" string="Reverse Accrual" type="action" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                     -->
                 </div>
                 </field>
                 </data>
@@ -34,8 +37,11 @@
                 <field name="type" position="before">
                 <div class="oe_right oe_button_box" name="buttons">
                     <field name="to_be_reversed" invisible="1"/>
-                    <button name="account_invoice_accrual.act_account_move_accrue" string="Accrual" type="action" attrs="{'invisible': ['|','!',('state','in',['draft','proforma2']),('accrual_move_id','&lt;&gt;',False)]}" />
-                    <button name="account_reversal.act_account_move_reverse" string="Reversal" type="action" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                    <button name="account_invoice_accrual.act_account_move_accrue" string="Accrue" type="action" attrs="{'invisible': ['|','!',('state','in',['draft','proforma2']),('accrual_move_id','&lt;&gt;',False)]}" />
+                    <!-- TODO: make this a dynamic action that shows act_account_move_reverse on invoice.accrual_move_id
+                               in the meantime, the user can open the accural move, and reverse from there
+                    <button name="account_reversal.act_account_move_reverse" string="Reverse Accrual" type="action" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                    -->
                 </div>
                 </field>
                 </data>

@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
+from openerp import api, models, fields, exceptions, _
 
 
 class account_invoice_line(orm.Model):
@@ -42,72 +43,61 @@ class account_invoice_line(orm.Model):
         return res
 
 
-class account_invoice(orm.Model):
+class account_invoice(models.Model):
     _inherit = "account.invoice"
 
-    _columns = {
-        'accrual_move_id': fields.many2one(
-            'account.move', 'Accrual Journal Entry',
-            readonly=True, ondelete='set null', copy=False,
-            help="Link to the Accrual Journal Items."),
-        'to_be_reversed': fields.related(
-            'accrual_move_id', 'to_be_reversed', type='boolean',
-            relation='account.move', string='To be reversed',
-            store=False, readonly=True),
-    }
+    accrual_move_id = fields.Many2one(
+        'account.move', 'Accrual Journal Entry',
+        readonly=True, ondelete='set null', copy=False,
+        help="Link to the Accrual Journal Items.")
+    to_be_reversed = fields.Boolean(
+        'To be reversed', related='accrual_move_id.to_be_reversed')
 
-    def reverse_accrual(self, cr, uid, ids, context=None):
-        # get the list of invoice to reverse
-        if context is None:
-            context = {}
-        ids_to_reverse = []
-        move_ids_to_unlink = []
-        invoice_to_unlink_move = []
-        period_id = False
-        for invoice in self.browse(cr, uid, ids, context=context):
-            if invoice.accrual_move_id:
-                accrual_period_id = invoice.accrual_move_id.period_id.id
-                if invoice.state not in ('draft', 'cancel'):
-                    period_id = invoice.move_id.period_id.id
-                if (not period_id or period_id == accrual_period_id) and \
-                        (not invoice.move_id.id or
-                         invoice.move_id.state == 'draft'):
-                    move_ids_to_unlink.append(invoice.accrual_move_id.id)
-                    invoice_to_unlink_move.append(invoice.id)
+    def reverse_accruals(self):
+        for invoice in self:
+            if not invoice.to_be_reversed:
+                continue
+            accrual_move = invoice.accrual_move_id
+            if (accrual_move.state == 'draft' and
+                    accrual_move.period_id == invoice.period_id):
+                # reversal in same period as accrual
+                # and accrual move is still draft:
+                # we simply remove it
+                accrual_move.unlink()
+            else:
+                if (invoice.date_invoice >= invoice.period_id.date_start and
+                        invoice.date_invoice <= invoice.period_id.date_stop):
+                    reversal_date = invoice.date_invoice
                 else:
-                    ids_to_reverse.append(invoice.id)
-        # call reverse method
-        if ids_to_reverse:
-            wiz_obj = self.pool.get("account.move.reverse")
-            wiz_context = dict(context, active_ids=ids_to_reverse,
-                               active_model="account.invoice")
-            wizard_id = wiz_obj.create(cr, uid, {}, context=wiz_context)
-            wiz_obj.action_reverse(cr, uid, [wizard_id], context=wiz_context)
-        if move_ids_to_unlink:
-            self.write(cr, uid, invoice_to_unlink_move,
-                       {'accrual_move_id': False})
-            self.pool['account.move'].unlink(cr, uid, move_ids_to_unlink,
-                                             context=context)
+                    reversal_date = invoice.period_id.date_start
+                accrual_move.create_reversals(
+                    reversal_date=reversal_date,
+                    reversal_period_id=invoice.period_id.id,
+                    reversal_journal_id=False,
+                    move_prefix=_('REV - '),
+                    move_line_prefix=_('REV - '))
 
-    def action_cancel(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).action_cancel(
-            cr, uid, ids, context=context)
-        self.reverse_accrual(cr, uid, ids, context)
+    @api.multi
+    def invoice_validate(self):
+        res = super(account_invoice, self).invoice_validate()
+        self.reverse_accruals()
         return res
 
-    def invoice_validate(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).invoice_validate(
-            cr, uid, ids, context=context)
-        ctx = context.copy()
-        ctx['from_invoice_validate'] = True
-        self.reverse_accrual(cr, uid, ids, ctx)
-        return res
+    @api.multi
+    def action_cancel(self):
+        for invoice in self:
+            if invoice.to_be_reversed:
+                raise exceptions.Warning(
+                    _('Please reverse accrual before cancelling invoice'))
+        return super(account_invoice, self).action_cancel()
 
-    def unlink(self, cr, uid, ids, context=None):
-        self.reverse_accrual(cr, uid, ids, context)
-        res = super(account_invoice, self).unlink(
-            cr, uid, ids, context=context)
-        return res
+    @api.multi
+    def unlink(self):
+        for invoice in self:
+            if invoice.to_be_reversed:
+                raise exceptions.Warning(
+                    _('Please reverse accrual before deleting invoice'))
+        return super(account_invoice, self).unlink()
 
     def line_get_convert(self, cr, uid, line, part, date, context=None):
         res = super(account_invoice, self).line_get_convert(cr, uid, line,
@@ -276,10 +266,10 @@ class account_invoice(orm.Model):
 
         return accrual_move_id
 
-    def create_accruals(self, cr, uid, ids, accrual_date, account_id,
+    @api.multi
+    def create_accruals(self, accrual_date, account_id,
                         accrual_period_id=False, accrual_journal_id=False,
-                        move_prefix=False, move_line_prefix=False,
-                        context=None):
+                        move_prefix=False, move_line_prefix=False):
         """
         Create the accrual of one or multiple invoices
 
@@ -294,17 +284,23 @@ class account_invoice(orm.Model):
         :return: Returns a list of ids of the created accrual moves
         """
 
+        inv_obj = self.env.registry['account.invoice']
+
         accrued_move_ids = []
-        for invoice in self.browse(cr, uid, ids, context=context):
+        for invoice in self:
             if invoice.state not in ('draft', 'proforma2'):
                 continue  # skip the accrual creation if state is not draft
 
-            accrual_move_id = self._move_accrual(
-                cr, uid, invoice, accrual_date,
-                account_id, accrual_period_id=accrual_period_id,
+            accrual_move_id = inv_obj._move_accrual(
+                self.env.cr, self.env.uid,
+                invoice,
+                accrual_date,
+                account_id,
+                accrual_period_id=accrual_period_id,
                 accrual_journal_id=accrual_journal_id,
-                move_prefix=move_prefix, move_line_prefix=move_line_prefix,
-                context=context)
+                move_prefix=move_prefix,
+                move_line_prefix=move_line_prefix,
+                context=self.env.context)
 
             if accrual_move_id:
                 accrued_move_ids.append(accrual_move_id)

@@ -110,8 +110,6 @@ class account_move_accrual(orm.TransientModel):
 
         form = self.read(cr, uid, ids, context=context)[0]
 
-        mod_obj = self.pool.get('ir.model.data')
-        act_obj = self.pool.get('ir.actions.act_window')
         inv_obj = self.pool.get('account.invoice')
         inv_ids = context['active_ids']
 
@@ -129,9 +127,10 @@ class account_move_accrual(orm.TransientModel):
             move_line_prefix=form['move_line_prefix'],
             context=context)
 
-        __, action_id = mod_obj.get_object_reference(
-            cr, uid, 'account', 'action_move_journal_line')
-        action = act_obj.read(cr, uid, [action_id], context=context)[0]
-        action['domain'] = unicode([('id', 'in', accrual_move_ids)])
-        action['name'] = _('Accrual Entries')
-        return action
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Accrual Entries'),
+            'res_model': 'account.move',
+            'domain': [('id', 'in', accrual_move_ids)],
+            "views": [[False, "tree"], [False, "form"]],
+        }
