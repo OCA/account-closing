@@ -109,7 +109,9 @@ class account_invoice(models.Model):
                 al[2]['date'] = date
         return res
 
-    def _move_accrual(self, cr, uid, invoice, accrual_date, account_id,
+    @api.cr_uid_id_context
+    def _move_accrual(self, cr, uid, id,
+                      accrual_date, account_id,
                       accrual_period_id=False, accrual_journal_id=False,
                       move_prefix=False, move_line_prefix=False,
                       context=None):
@@ -134,6 +136,8 @@ class account_invoice(models.Model):
         cur_obj = self.pool.get('res.currency')
         payment_term_obj = self.pool.get('account.payment.term')
         move_obj = self.pool.get('account.move')
+
+        invoice = self.browse(cr, uid, id, context=context)
         company_currency = self.pool['res.company'].browse(
             cr, uid, invoice.company_id.id).currency_id
         period_ctx = context.copy()
@@ -284,25 +288,41 @@ class account_invoice(models.Model):
         :return: Returns a list of ids of the created accrual moves
         """
 
-        inv_obj = self.env.registry['account.invoice']
-
         accrued_move_ids = []
         for invoice in self:
             if invoice.state not in ('draft', 'proforma2'):
                 continue  # skip the accrual creation if state is not draft
 
-            accrual_move_id = inv_obj._move_accrual(
-                self.env.cr, self.env.uid,
-                invoice,
+            accrual_move_id = self._move_accrual(
                 accrual_date,
                 account_id,
                 accrual_period_id=accrual_period_id,
                 accrual_journal_id=accrual_journal_id,
                 move_prefix=move_prefix,
-                move_line_prefix=move_line_prefix,
-                context=self.env.context)
+                move_line_prefix=move_line_prefix)
 
             if accrual_move_id:
                 accrued_move_ids.append(accrual_move_id)
 
         return accrued_move_ids
+
+    @api.multi  # because api.one wraps the result dict in a list
+    def button_reversal(self):
+        self.ensure_one()
+        if not self.to_be_reversed:
+            return False
+        action = self.env.ref('account_reversal.act_account_move_reverse')
+        return {
+            'type': action.type,
+            'name': action.name,
+            'res_model': action.res_model,
+            'view_type': action.view_type,
+            'view_mode': action.view_mode,
+            'view_id': action.view_id.id,
+            'target': action.target,
+            'context': {
+                'active_model': 'account.move',
+                'active_id': self.accrual_move_id.id,
+                'active_ids': [self.accrual_move_id.id],
+            }
+        }
