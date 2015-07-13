@@ -73,13 +73,20 @@ class account_move_accrual(orm.TransientModel):
     def _default_journal(self, cr, uid, context=None):
         if context is None:
             context = {}
+        journal_id = False
         if context.get('active_model') and context.get('active_ids') \
                 and context['active_model'] == 'account.invoice':
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
-            if inv.company_id.default_accrual_journal_id.id:
-                return inv.company_id.default_accrual_journal_id.id
-        return None
+            if inv.type in ('out_invoice', 'out_refund'):
+                journal_id = inv.company_id\
+                    .default_accrual_revenue_journal_id.id or\
+                    inv.company_id.default_cutoff_journal_id.id
+            else:
+                journal_id = inv.company_id\
+                    .default_accrual_expense_journal_id.id or\
+                    inv.company_id.default_cutoff_journal_id.id
+        return journal_id
 
     def _default_account(self, cr, uid, context=None):
         if context is None:
