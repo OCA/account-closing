@@ -62,7 +62,7 @@ class account_cutoff(orm.Model):
         'unique(cutoff_date, company_id, type)',
         'A cut-off of the same type already exists with this cut-off date !'
     )]
-    
+
     def _prepare_prepaid_lines(
             self, cr, uid, ids, aml, cur_cutoff, mapping, context=None):
         start_date = datetime.strptime(aml['start_date'], '%Y-%m-%d')
