@@ -34,6 +34,8 @@ class res_company(orm.Model):
         'default_accrued_expense_account_id': fields.many2one(
             'account.account', 'Default Account for Accrued Expenses',
             domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-        'default_accrual_journal_id': fields.many2one(
-            'account.journal', 'Default Accrual Cut-off Journal'),
+        'default_accrual_revenue_journal_id': fields.many2one(
+            'account.journal', 'Default Journal for Accrued Revenues'),
+        'default_accrual_expense_journal_id': fields.many2one(
+            'account.journal', 'Default Journal for Accrued Expenses'),
     }
