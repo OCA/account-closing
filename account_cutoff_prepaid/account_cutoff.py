@@ -138,7 +138,7 @@ class account_cutoff(orm.Model):
             ('end_date', '>', cutoff_date_str),
             ('date', '<=', cutoff_date_str)
         ], context=context)
-        # Create mapping dict                
+        # Create mapping dict
         mapping = mapping_obj._get_mapping_dict(
             cr, uid, cur_cutoff['company_id'][0], cur_cutoff['type'],
             context=context)
