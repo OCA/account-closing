@@ -51,11 +51,13 @@ class account_cutoff(orm.Model):
         default_journal_id = cur_user.company_id\
             .default_cutoff_journal_id.id or False
         if cutoff_type == 'accrued_expense':
-            journal_id = cur_user.company_id\
-                .default_accrual_expense_journal_id.id or default_journal_id
+            journal_id =\
+                cur_user.company_id.default_accrual_expense_journal_id.id or\
+                default_journal_id
         elif cutoff_type == 'accrued_revenue':
-            journal_id = cur_user.company_id\
-                .default_accrual_revenue_journal_id.id or default_journal_id
+            journal_id = \
+                cur_user.company_id.default_accrual_revenue_journal_id.id or\
+                default_journal_id
         return journal_id
 
 
