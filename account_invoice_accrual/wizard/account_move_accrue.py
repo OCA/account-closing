@@ -79,12 +79,12 @@ class account_move_accrual(orm.TransientModel):
             inv = self.pool.get('account.invoice').browse(
                 cr, uid, context['active_ids'])[0]
             if inv.type in ('out_invoice', 'out_refund'):
-                journal_id = inv.company_id\
-                    .default_accrual_revenue_journal_id.id or\
+                journal_id = \
+                    inv.company_id.default_accrual_revenue_journal_id.id or\
                     inv.company_id.default_cutoff_journal_id.id
             else:
-                journal_id = inv.company_id\
-                    .default_accrual_expense_journal_id.id or\
+                journal_id =\
+                    inv.company_id.default_accrual_expense_journal_id.id or\
                     inv.company_id.default_cutoff_journal_id.id
         return journal_id
 
