@@ -182,7 +182,8 @@ class account_cutoff_line(orm.Model):
                                               type="many2one",
                                               relation="account.period",
                                               string="Move Line Period",
-                                              readonly=True),
+                                              readonly=True,
+                                              store=True),
         'move_date': fields.related(
             'move_line_id', 'date', type='date',
             string='Account Move Date', readonly=True),
