@@ -77,12 +77,6 @@
     self.write(cr, uid, cp_id, data_accounts)
 
 -
-  I create a rate type
--
-  !record {model: res.currency.rate.type, id: rate_type1}:
-    name: "Type 1"
-
--
   I ensure there is an opening entry if a previous fiscalyear exists
 -
   !python {model: account.fiscalyear}: |
@@ -135,8 +129,7 @@
     for cur in currencies:
       rate_data = {'name': "2010-01-01",
                    'rate': cur.rate,
-                   'currency_id': cur.id,
-                   'currency_rate_type_id': ref('rate_type1')}
+                   'currency_id': cur.id}
       rate_obj.create(cr, uid, rate_data)
 
 -
@@ -148,10 +141,8 @@
     rate_ids:
     - name: !eval "'%s-01-01' %(datetime.now().year)"
       rate: 100
-      currency_rate_type_id: rate_type1
     - name: !eval "'%s-01-11' %(datetime.now().year)"
       rate: 50
-      currency_rate_type_id: rate_type1
 -
   !record {model: res.currency, id: currency2}:
     name: "Sesterce"
@@ -159,10 +150,8 @@
     rate_ids:
     - name: !eval "'%s-01-01' %(datetime.now().year)"
       rate: 2
-      currency_rate_type_id: rate_type1
     - name: !eval "'%s-01-11' %(datetime.now().year)"
       rate: 4
-      currency_rate_type_id: rate_type1
 
 -
   I define a 2 accounts
@@ -170,21 +159,17 @@
   !record {model: account.account, id: wiz_test_acc1}:
     name: "Account 1"
     code: "acc1"
-    #company_id: default
-    #type: default
+    currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
-    #currency_mode: default
     currency_id: currency1
 -
   !record {model: account.account, id: wiz_test_acc2}:
     name: "Account 2"
     code: "acc2"
-    #company_id: default
-    #type: default
+    currency_revaluation: True
     user_type: !ref {model: account.account.type,
                      search: "[('code','=','asset'), ('close_method', '!=', 'none')]"}
-    #currency_mode: default
     currency_id: currency2
 
 -
@@ -194,22 +179,16 @@
     name: "A General Journal"
     code: "GJ"
     type: 'general'
-    view_id: !ref {model: account.journal.view,
-                   search: "[('name', '=', 'Bank/Cash Journal (Multi-Currency) View')]"}
 
 -
   I increase balance of my 2 accounts on 1st january (using old rate)
 -
   !record {model: account.move, id: wiz_test_move1}:
-    #name: default
-    #period_id: default
     journal_id: !ref {model: account.journal,
                       search: "[('type', '=', 'sale')]"}
     state: 'posted'
     date: !eval "'%s-01-01' %(datetime.now().year)"
 - !record {model: account.move, id: wiz_test_move2}:
-    #name: default
-    #period_id: default
     journal_id: !ref {model: account.journal,
                       search: "[('type', '=', 'sale')]"}
     state: 'posted'
@@ -269,12 +248,11 @@
     # Enter wizard data
     wiz_data = {'revaluation_date': '%s-01-20' %(datetime.now().year),
                 'journal_id': ref('wiz_general_journal'),
-                'currency_type': ref('rate_type1'),
                 'label': '[%(account)s] wiz_test'}
     wiz_id = self.create(cr, uid, wiz_data)
     wiz = self.browse(cr, uid, wiz_id)
     # Call wizard computing
-    result = wiz.revaluate_currency(context=context)
+    result = wiz.revaluate_currency()
     assert result, "No result returned"
 
 -

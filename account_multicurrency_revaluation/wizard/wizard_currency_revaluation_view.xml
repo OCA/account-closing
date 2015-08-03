@@ -13,9 +13,8 @@
                     	for other account type : 1 entry will be generated per account/currency
 						You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."/>
                     <group>
-                        <field name="revaluation_date" on_change="on_change_revaluation_date(revaluation_date)"/>
+                        <field name="revaluation_date" />
                         <field name="journal_id"/>
-                        <field name="currency_type"/>
                         <separator string="" colspan="6"/>
                         <field name="label"/>
                     </group>
