@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account Cut-off Accrual Picking module for OpenERP
-#    Copyright (C) 2013 Akretion (http://www.akretion.com)
+#    Account Cut-off Accrual Picking module for Odoo
+#    Copyright (C) 2013-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -176,13 +176,13 @@ class account_cutoff(orm.Model):
         if to_delete_line_ids:
             line_obj.unlink(cr, uid, to_delete_line_ids, context=context)
         pick_type_map = {
-            'accrued_revenue': 'out',
-            'accrued_expense': 'in',
+            'accrued_revenue': 'outgoing',
+            'accrued_expense': 'incoming',
         }
         assert cur_cutoff['type'] in pick_type_map, \
             "cur_cutoff['type'] should be in pick_type_map.keys()"
         pick_ids = pick_obj.search(cr, uid, [
-            ('type', '=', pick_type_map[cur_cutoff['type']]),
+            ('picking_type_code', '=', pick_type_map[cur_cutoff['type']]),
             ('state', '=', 'done'),
             ('invoice_state', '=', '2binvoiced'),
             ('date_done', '<=', cur_cutoff['cutoff_date'])
