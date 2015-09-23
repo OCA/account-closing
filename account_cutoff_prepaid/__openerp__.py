@@ -46,5 +46,4 @@
     'installable': True,
     'active': False,
     'application': True,
-    'license': 'AGPL-3'
 }
