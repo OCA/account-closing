@@ -23,7 +23,7 @@
 
 {
     'name': 'Account Accrual Base',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Base module for accrued expenses and revenues',
