@@ -23,7 +23,7 @@
 
 {
     'name': 'Account Cut-off Prepaid',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Prepaid Expense, Prepaid Revenue',
