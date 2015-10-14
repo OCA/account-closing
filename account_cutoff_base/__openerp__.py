@@ -49,6 +49,6 @@ for any help or question about this module.
         'security/ir.model.access.csv',
         'security/account_cutoff_base_security.xml',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
