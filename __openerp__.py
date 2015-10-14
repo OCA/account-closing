@@ -37,5 +37,5 @@
      "wizard/wizard_currency_revaluation_view.xml"
  ],
  "test": ["test/currency_revaluation.yml"],
- "installable": True,
+ 'installable': False,
  }
