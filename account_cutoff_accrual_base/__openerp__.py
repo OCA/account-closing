@@ -35,6 +35,6 @@
         'account_view.xml',
         'account_cutoff_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
