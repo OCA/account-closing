@@ -43,7 +43,7 @@
         'images/prepaid_revenue_journal_entry.jpg',
         'images/prepaid_revenue_done.jpg',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
     'application': True,
 }
