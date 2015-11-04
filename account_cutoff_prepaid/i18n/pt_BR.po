@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2015-10-31 23:10+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -47,12 +47,12 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Zaključevanje konta"
+msgstr "Conta de corte"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Postavka zaključevanja konta"
+msgstr "Linha da conta de corte"
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_date:0
@@ -72,7 +72,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
 msgid "Companies"
-msgstr "Družbe"
+msgstr "Companias"
 
 #. module: account_cutoff_prepaid
 #: view:account.cutoff.line:account_cutoff_prepaid.account_cutoff_line_tree
@@ -117,7 +117,7 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/account_cutoff.py:128
 #, python-format
 msgid "Error:"
-msgstr "Napaka:"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: help:product.template,must_have_dates:0
@@ -140,7 +140,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
 msgid "Journal Items"
-msgstr "Dnevniške postavke"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:41

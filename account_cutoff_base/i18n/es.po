@@ -3,20 +3,20 @@
 # * account_cutoff_base
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-31 23:10+0000\n"
-"PO-Revision-Date: 2015-11-02 13:41+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
+"PO-Revision-Date: 2015-11-03 17:59+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -27,163 +27,163 @@ msgid ""
 "        These account mappings allow you to have an cutoff account for expense/revenue that is not the same as the original expense/revenue account, using the same concept as the fiscal positions.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Ustvari novo mapiranje razmejitev.\n        </p><p>\n        Ta kontna mapiranja omogočajo konto razmejitev za stroške/prihodke, ki ni isti kot izvorni konto stroškov/prihodkov, z uporabo istih konceptov kot fiskalni položaji.\n        </p>\n    "
+msgstr "<p class=\"oe_view_nocontent_create\">\nPulse para iniciar un nuevo mapeo de cuentas de cierre.\n</p><p>\nEste mapeo de cuentas le permite tener una cuenta de cierre para gastos/ingresos que no es la misma que la cuenta original, usando el mismo concepto que las posiciones fiscales.\n</p>"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
 msgid "A cutoff of the same type already exists with this cut-off date !"
-msgstr "Razmejitev istega tipa s tem datumom razmejitve že obstaja!"
+msgstr "Ya existe una operación de cierre del mismo tipo en esta fecha"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,account_id:0
 msgid "Account"
-msgstr "Konto"
+msgstr "Cuenta"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Računovodska razmejitev"
+msgstr "Cuenta de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,parent_id:0
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Postavka računovodske razmejitve"
+msgstr "Línea de cuenta de cierre"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.mapping:account_cutoff_base.account_cutoff_mapping_form
 #: view:account.cutoff.mapping:account_cutoff_base.account_cutoff_mapping_tree
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
 msgid "Account Cut-off Mapping"
-msgstr "Mapiranje računovodskih razmejitev"
+msgstr "Mapeo de cuenta de cierre"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
 msgid "Account Cut-off Tax Line"
-msgstr "Postavka razmejenega davka"
+msgstr "Línea de impuesto de cuenta de cierre"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Expense"
-msgstr "Razmejeni strošek"
+msgstr "Gasto devengado"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:127
 #, python-format
 msgid "Accrued Expense%s"
-msgstr "Razmejeni strošek %s"
+msgstr "Gasto devengado%s"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Revenue"
-msgstr "Razmejeni prihodek"
+msgstr "Ingreso devengado"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:129
 #, python-format
 msgid "Accrued Revenue%s"
-msgstr "Razmejeni prihodek %s"
+msgstr "Ingreso devengado%s"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "All Cut-off Types"
-msgstr "Vsi tipi razmejitev"
+msgstr "Todos los tipos de operaciones de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
 msgid "Amount"
-msgstr "Znesek"
+msgstr "Importe"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
 msgid "Amount Currency"
-msgstr "Valuta zneska"
+msgstr "Moneda de la compañía"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,amount:0
 msgid ""
 "Amount that is used as base to compute the Cut-off Amount. This Amount is in"
 " the 'Amount Currency', which may be different from the 'Company Currency'."
-msgstr "Valuta, ki se uporablja za izračun zneska razmejitve. Ta znesek je v 'Valuti zneska', ki je lahko drugačna od privzete valute družbe."
+msgstr "Importe que es usado como base para el cálculo del importe de cierre. Este importe está en la moneda del importe, que puede ser diferente a la moneda de la compañía."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_id:0
 #: field:account.cutoff.tax.line,analytic_account_id:0
 msgid "Analytic Account"
-msgstr "Analitični konto"
+msgstr "Cuenta analítica"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_code:0
 msgid "Analytic Account Code"
-msgstr "Koda analitičnega konta"
+msgstr "Código de cuenta analítica"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
-msgstr "Povrni v osnutek"
+msgstr "Volver a borrador"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
 msgid "Base"
-msgstr "Osnova"
+msgstr "Base"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,base:0
 msgid "Base Amount in the currency of the PO."
-msgstr "Osnovni znesek v valuti nabavnega naloga."
+msgstr "Importe base en la moneda del PC."
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Družbe"
+msgstr "Compañías"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr "Družba"
+msgstr "Compañía"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
 #: field:account.cutoff.line,company_currency_id:0
 #: field:account.cutoff.tax.line,company_currency_id:0
 msgid "Company Currency"
-msgstr "Valuta družbe"
+msgstr "Moneda de la compañía"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 msgid "Create Journal Entry"
-msgstr "Ustvari dnevniški vnos"
+msgstr "Crear asiento contable"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_uid:0 field:account.cutoff.line,create_uid:0
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Creado por"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Creado en"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
 msgid "Currency"
-msgstr "Valuta"
+msgstr "Moneda"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,currency_id:0
 msgid "Currency of the 'Amount' field."
-msgstr "Valuta polja 'znesek'."
+msgstr "Moneda del campo 'Importe'."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,parent_id:0
 msgid "Cut-off"
-msgstr "Razmejitev"
+msgstr "Cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_account_id:0
@@ -191,85 +191,85 @@ msgstr "Razmejitev"
 #: field:account.cutoff.mapping,cutoff_account_id:0
 #: field:account.cutoff.tax.line,cutoff_account_id:0
 msgid "Cut-off Account"
-msgstr "Konto razmejitev"
+msgstr "Cuenta de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,cutoff_account_code:0
 msgid "Cut-off Account Code"
-msgstr "Koda konta razmejitev"
+msgstr "Código de cuenta de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_journal_id:0
 msgid "Cut-off Account Journal"
-msgstr "Dnevnik konta razmejitev"
+msgstr "Diario de la operación de cierre"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
 #: field:res.company,cutoff_account_mapping_ids:0
 msgid "Cut-off Account Mapping"
-msgstr "Mapiranje konta razmejitev"
+msgstr "Mapeo de cuentas de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount"
-msgstr "Znesek razmejitev"
+msgstr "Importe de la operación de cierre"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount without taxes in the Company Currency."
-msgstr "Znesek razmejitev brez davkov v valuti družbe."
+msgstr "Importe de la operación de cierre sin impuestos en la moneda de la compañía."
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Cut-off Computation"
-msgstr "Izračun razmejitve"
+msgstr "Cálculo de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_date:0
 msgid "Cut-off Date"
-msgstr "Datum razmejitve"
+msgstr "Fecha de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_id:0
 msgid "Cut-off Journal Entry"
-msgstr "Dnevniški vnos razmejitve"
+msgstr "Asiento de la operación de cierre"
 
 #. module: account_cutoff_base
 #: model:mail.message.subtype,description:account_cutoff_base.cutoff_done
 #: model:mail.message.subtype,name:account_cutoff_base.cutoff_done
 msgid "Cut-off Journal Entry Created"
-msgstr "Dnevniški vnos razmejitve ustvarjen"
+msgstr "Asiento de operación de cierre creado"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,line_ids:0
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_tree
 msgid "Cut-off Lines"
-msgstr "Postavke razmejitve"
+msgstr "Líneas de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,cutoff_amount:0
 msgid "Cut-off Tax Amount"
-msgstr "Znesek razmejenega davka"
+msgstr "Importe del impuesto de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_line_ids:0
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_tree
 msgid "Cut-off Tax Lines"
-msgstr "Postavke razmejenih davkov"
+msgstr "Líneas de impuesto de la operación de cierre"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Cut-off Taxes Lines"
-msgstr "Postavke razmejenih davkov"
+msgstr "Líneas de impuesto de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,cutoff_type:0
 msgid "Cut-off Type"
-msgstr "Tip razmejitve"
+msgstr "Tipo de operación de cierre"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
@@ -277,53 +277,53 @@ msgstr "Tip razmejitve"
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
 #: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs"
-msgstr "Razmejitve"
+msgstr "Operaciones de cierre"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Datum zadnjega objavljenega sporočila pod zapisom."
+msgstr "Fecha del último mensaje publicado en el registro."
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
 msgid "Default Cut-off Journal"
-msgstr "Privzeti razmejitveni dnevnik"
+msgstr "Diario por defecto de las operaciones de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr "Opis"
+msgstr "Descripción"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
-msgstr "Opravljeno"
+msgstr "Realizada"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr "Osnutek"
+msgstr "Borrador"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:298
 #: code:addons/account_cutoff_base/account_cutoff.py:303
 #, python-format
 msgid "Error:"
-msgstr "Napaka:"
+msgstr "Error:"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr "Sledilci"
+msgstr "Seguidores"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Contiene el resumen del chatter (nº de mensajes, ...). Este resumen está directamente en formato html para ser insertado en vistas kanban."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
@@ -334,138 +334,138 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "Es un seguidor"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_label:0
 msgid "Label of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Etiqueta del asiento de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Fecha del último mensaje"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Última actualización por"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Última actualización en"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Mensajes e historial de comunicación"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Prepaid Expense"
-msgstr ""
+msgstr "Gasto anticipado"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:133
 #, python-format
 msgid "Prepaid Expense%s"
-msgstr ""
+msgstr "Gasto anticipado%s"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Prepaid Revenue"
-msgstr ""
+msgstr "Ingreso anticipado"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:131
 #, python-format
 msgid "Prepaid Revenue%s"
-msgstr ""
+msgstr "Ingreso anticipado%s"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,account_id:0
 msgid "Regular Account"
-msgstr ""
+msgstr "Cuenta regular"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 msgid "Search Cut-offs"
-msgstr ""
+msgstr "Buscar operaciones de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "Origen"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,state:0
 msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
-msgstr ""
+msgstr "Estado de la operación de cierre. Cuando se crea el asiento, el estado se establece en 'Realizada' y los campos se ponen como de solo lectura."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Resumen"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr "Davek"
+msgstr "Impuesto"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
 msgid "Tax Amount"
-msgstr ""
+msgstr "Importe del impuesto"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,amount:0
 msgid "Tax Amount in the currency of the PO."
-msgstr ""
+msgstr "Importe del impuesto en la moneda del PC."
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,cutoff_amount:0
 msgid "Tax Cut-off Amount in the company currency."
-msgstr "Znesek razmejenih davkov v valuti družbe."
+msgstr "Importe de cierre del impuesto en la moneda de la compañía."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_ids:0
 msgid "Taxes"
-msgstr ""
+msgstr "Impuestos"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:299
@@ -473,33 +473,33 @@ msgstr ""
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
-msgstr ""
+msgstr "El asiento contable de la operación de cierre ya existe. Debería eliminarlo antes de utilizar esta función."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:304
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."
-msgstr ""
+msgstr "No hay líneas en esta operación de cierre, por lo que no se puede crear un asiento."
 
 #. module: account_cutoff_base
 #: help:account.cutoff,move_label:0
 msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
-msgstr ""
+msgstr "Esta etiqueta se utilizará como nombre para los apuntes generados y como referencia del asiento de la operación de cierre."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "Importe total de la operación de cierre"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes sin leer"
