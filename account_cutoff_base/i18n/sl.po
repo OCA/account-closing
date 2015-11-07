@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-31 23:10+0000\n"
-"PO-Revision-Date: 2015-11-02 13:41+0000\n"
+"POT-Creation-Date: 2015-11-04 01:06+0000\n"
+"PO-Revision-Date: 2015-11-04 06:00+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr "Sledilci"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Povzetek komunikacij (število sporočil) neposredno v html formatu, da se lahko neposredno vstavlja v prikaze tipa kanban."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
@@ -334,22 +334,22 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Če označeno, zahtevajo nova sporočila vašo pozornost."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "Je sledilec"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_label:0
 msgid "Label of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Oznaka dnevniškega vnosa razmejitve"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Datum zadnjega sporočila"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
@@ -368,78 +368,78 @@ msgstr "Zadnjič posodobljeno"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Sporočila in kronologija komunikacij"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Prepaid Expense"
-msgstr ""
+msgstr "Predplačilni strošek"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:133
 #, python-format
 msgid "Prepaid Expense%s"
-msgstr ""
+msgstr "Predplačilni strošek %s"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Prepaid Revenue"
-msgstr ""
+msgstr "Predplačilni prihodek"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:131
 #, python-format
 msgid "Prepaid Revenue%s"
-msgstr ""
+msgstr "Predplačilni prihodek %s"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,account_id:0
 msgid "Regular Account"
-msgstr ""
+msgstr "Običajni konto"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 msgid "Search Cut-offs"
-msgstr ""
+msgstr "Iskanje razmejitev"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Zaporedje"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
 msgid "State"
-msgstr ""
+msgstr "Stanje"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,state:0
 msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
-msgstr ""
+msgstr "Stanje razmejitve. Ob nastanku dnevniškega vnosa je stanje nastavljeno kot 'opravljeno', polja pa postanejo le za branje."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Povzetek"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
@@ -450,12 +450,12 @@ msgstr "Davek"
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
 msgid "Tax Amount"
-msgstr ""
+msgstr "Znesek davka"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,amount:0
 msgid "Tax Amount in the currency of the PO."
-msgstr ""
+msgstr "Znesek davka v valuti nabavnega naloga."
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,cutoff_amount:0
@@ -465,7 +465,7 @@ msgstr "Znesek razmejenih davkov v valuti družbe."
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_ids:0
 msgid "Taxes"
-msgstr ""
+msgstr "Davki"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:299
@@ -473,33 +473,33 @@ msgstr ""
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
-msgstr ""
+msgstr "Dnevnik razmejitvenih vnosov že obstaja. Izbrišite ga pred zagonom te funkcije."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:304
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."
-msgstr ""
+msgstr "Ta razmejitev nima postavk, zato ne moremo ustvariti dnevniškega vnosa."
 
 #. module: account_cutoff_base
 #: help:account.cutoff,move_label:0
 msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
-msgstr ""
+msgstr "Oznaka, ki bo zapisana v polje 'naziv' postavke kontnega premika razmejitve in v polje 'sklic' kontnega premika razmejitve."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "Skupni znesek razmejitve"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Neprebrana sporočila"
