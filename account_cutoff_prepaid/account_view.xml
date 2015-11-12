@@ -41,10 +41,14 @@
     <field name="model">account.move</field>
     <field name="inherit_id" ref="account.view_move_form" />
     <field name="arch" type="xml">
-        <field name="date_maturity" position="after">
+        <xpath expr="//field[@name='line_id']/form//field[@name='date_maturity']" position="after">
             <field name="start_date" />
             <field name="end_date" />
-        </field>
+        </xpath>
+        <xpath expr="//field[@name='line_id']/tree//field[@name='date_maturity']" position="after">
+            <field name="start_date" />
+            <field name="end_date" />
+        </xpath>
     </field>
 </record>
 
