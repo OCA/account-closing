@@ -42,7 +42,10 @@ for any help or question about this module.
     """,
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
-    'depends': ['account_accountant'],
+    'depends': [
+        'account_accountant',
+        'account_reversal',
+    ],
     'data': [
         'company_view.xml',
         'account_cutoff_view.xml',
