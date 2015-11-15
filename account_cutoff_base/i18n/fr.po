@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 17:54+0000\n"
+"POT-Creation-Date: 2015-11-12 18:28+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
@@ -306,8 +306,8 @@ msgid "Draft"
 msgstr ""
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:298
-#: code:addons/account_cutoff_base/account_cutoff.py:303
+#: code:addons/account_cutoff_base/account_cutoff.py:299
+#: code:addons/account_cutoff_base/account_cutoff.py:304
 #, python-format
 msgid "Error:"
 msgstr "Erreur:"
@@ -467,7 +467,7 @@ msgid "Taxes"
 msgstr ""
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:299
+#: code:addons/account_cutoff_base/account_cutoff.py:300
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -475,7 +475,7 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:304
+#: code:addons/account_cutoff_base/account_cutoff.py:305
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 01:06+0000\n"
+"POT-Creation-Date: 2015-11-12 18:28+0000\n"
 "PO-Revision-Date: 2015-11-04 06:00+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
@@ -307,8 +307,8 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:298
-#: code:addons/account_cutoff_base/account_cutoff.py:303
+#: code:addons/account_cutoff_base/account_cutoff.py:299
+#: code:addons/account_cutoff_base/account_cutoff.py:304
 #, python-format
 msgid "Error:"
 msgstr "Napaka:"
@@ -468,7 +468,7 @@ msgid "Taxes"
 msgstr "Davki"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:299
+#: code:addons/account_cutoff_base/account_cutoff.py:300
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -476,7 +476,7 @@ msgid ""
 msgstr "Dnevnik razmejitvenih vnosov že obstaja. Izbrišite ga pred zagonom te funkcije."
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:304
+#: code:addons/account_cutoff_base/account_cutoff.py:305
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."
