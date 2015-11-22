@@ -3,13 +3,14 @@
 # * account_multicurrency_revaluation
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 17:54+0000\n"
-"PO-Revision-Date: 2015-10-14 17:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-11-15 02:46+0000\n"
+"PO-Revision-Date: 2015-11-20 12:49+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,22 +31,22 @@ msgstr "%(rate)s: Angewendeter Kurswert bei Neubewertung"
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "ANALYTIC ACCOUNT"
-msgstr ""
+msgstr "KOSTENSTELLE"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: account_multicurrency_revaluation
 #: model:res.groups,name:account_multicurrency_revaluation.group_revaluation_additonal
 msgid "Additional provisioning entries posting"
-msgstr ""
+msgstr "Zusätzliche Buchung von Rückstellungen"
 
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_balance:0
 msgid "Aggregated Amount"
-msgstr ""
+msgstr "Kumulierter Betrag"
 
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_foreign_balance:0
@@ -60,22 +61,22 @@ msgstr "Währungs-Neubewertung"
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Angelegt durch"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Angelegt am"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
@@ -86,7 +87,7 @@ msgstr "Neubewertungspositionen angelegt"
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: account_multicurrency_revaluation
 #: view:account.account:account_multicurrency_revaluation.view_account_form_inherit
@@ -102,18 +103,18 @@ msgstr "Vorgabe-Journal für Währungsgewinne & -verluste"
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_currency_rate:0
 msgid "Currency rate"
-msgstr ""
+msgstr "Wechselkurs"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
-msgstr ""
+msgstr "Währungsneuberwertung"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,label:0
 msgid "Entry description"
-msgstr ""
+msgstr "Postenbeschreibung"
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
@@ -128,12 +129,12 @@ msgstr "GEWINN"
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
@@ -143,17 +144,17 @@ msgstr "Journalposten"
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "LOSS"
-msgstr ""
+msgstr "VERLUST"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert durch"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
@@ -167,7 +168,7 @@ msgstr "Kein neu zu bewertendes Konto gefunden. Wählen Sie das 'Erlaube Währun
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:457
 #, python-format
 msgid "No accounting entry has been posted."
-msgstr ""
+msgstr "Es wurde kein Posten gebucht."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:392
@@ -197,13 +198,13 @@ msgstr "Keine Eröffnungsbuchungen in Eröffnungsperiode dieses Geschäftsjahres
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:402
 #, python-format
 msgid "No period found for the fiscalyear %s"
-msgstr ""
+msgstr "Für das Geschäftsjahr %s wurde keine Periode gefunden"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/model/res_currency.py:40
 #, python-format
 msgid "No rate found for the currency: %s at the date: %s"
-msgstr ""
+msgstr "Kein Kurs zur Währung %s und Datum %s gefunden"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
@@ -229,12 +230,12 @@ msgid ""
 "entry will be generated per account/currency       You can check details of "
 "calculation thanks to the Print Currency unrealized report in the generic "
 "reports."
-msgstr ""
+msgstr "Odoo wird Kursdifferenzen für jedes Konto buchen, welches 'Erlaube Währungs-Neuberwertung' gesetzt hat. Ist es ein Verbindlichkeits- oder ein Forderungskonto wird 1 Posten je Konto/Währung/Partner erstellt, für andere Konten je 1 Posten je Konto/Währung. Sie können Details der Berechnung, dank des Berichts Nicht realisierte Währungsgewinne/-verluste bei den allgemeinen Berichten, prüfen."
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "Provision B.S accounts"
-msgstr ""
+msgstr "Rückstellungen Bilanzkonten"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_bs_gain_account_id:0
@@ -244,17 +245,17 @@ msgstr "Rückstellungen für Gewinne aus Kursdifferenzen"
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_bs_loss_account_id:0
 msgid "Provision B.S loss account"
-msgstr ""
+msgstr "Rückstellungen für Verluste aus Kursdifferenzen"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_pl_analytic_account_id:0
 msgid "Provision P&L Analytic account"
-msgstr "Bereitstellung GuV-Konten analytische"
+msgstr "Rückstellung GuV-Konten Kostenstellenkonto"
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "Provision P&L accounts"
-msgstr ""
+msgstr "Rückstellung GuV-Konten"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_pl_gain_account_id:0
@@ -264,12 +265,12 @@ msgstr "Konto für Gewinne aus GuV"
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_pl_loss_account_id:0
 msgid "Provision P&L loss account"
-msgstr ""
+msgstr "Konto für Verluste aus GuV"
 
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_revaluated_balance:0
 msgid "Revaluated Amount"
-msgstr ""
+msgstr "Neuberwertungsbetrag"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,revaluation_analytic_account_id:0
@@ -284,17 +285,17 @@ msgstr "Neubewertungsdatum"
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "Revaluation accounts"
-msgstr ""
+msgstr "Neubewertungskonten"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,revaluation_gain_account_id:0
 msgid "Revaluation gain account"
-msgstr ""
+msgstr "Konto für Neubewertungsgewinne"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,revaluation_loss_account_id:0
 msgid "Revaluation loss account"
-msgstr ""
+msgstr "Konto für Neubewertungsverluste"
 
 #. module: account_multicurrency_revaluation
 #: help:res.company,reversable_revaluations:0
@@ -327,9 +328,9 @@ msgstr "Sie können das Vorgabejournal in den Unternehmenseinstellungen festlege
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "_Validate"
-msgstr ""
+msgstr "Freigeben"
 
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "or"
-msgstr ""
+msgstr "oder"
