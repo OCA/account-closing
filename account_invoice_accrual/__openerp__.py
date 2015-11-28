@@ -21,13 +21,13 @@
 
 {
     "name": "Account invoice accrual",
-    "version": "0.1",
+    "version": "8.0.1.0.0",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Invoice",
     "website": "http://www.acsone.eu",
     "depends": [
         "account",
-        "account_reversal",  # from account-financial-tools/7.0
+        "account_reversal",  # from account-financial-tools
         "account_cutoff_accrual_base",
     ],
     "data": [
