@@ -32,6 +32,7 @@
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
             <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="move_line_period_id" invisible="'prepaid' not in context.get('type', '-')"/>
             <field name="move_date" invisible="'prepaid' not in context.get('type', '-')" />
             <field name="invoice_id" invisible="'prepaid' not in context.get('type', '-')" />
         </field>
@@ -54,6 +55,7 @@
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
             <field name="move_line_id" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="move_line_period_id" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
         <field name="analytic_account_code" position="after">
             <field name="start_date" invisible="'prepaid' not in context.get('type', '-')"/>
