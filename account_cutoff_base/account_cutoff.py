@@ -152,7 +152,8 @@ class account_cutoff(orm.Model):
         'company_id': lambda self, cr, uid, context:
         self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id.id,
-        'cutoff_journal_id': _get_default_journal,
+        'cutoff_journal_id': lambda self, cr, uid, context: self.
+            _get_default_journal(cr, uid, context=context),
         'move_label': _default_move_label,
         'type': _default_type,
         'cutoff_account_id': _default_cutoff_account_id,

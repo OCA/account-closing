@@ -43,6 +43,23 @@ class account_cutoff(orm.Model):
             account_id = company.default_accrued_revenue_account_id.id or False
         return account_id
 
+    def _get_default_journal(self, cr, uid, context=None):
+        journal_id = super(account_cutoff, self)\
+            ._get_default_journal(cr, uid, context=context)
+        cur_user = self.pool['res.users'].browse(cr, uid, uid, context=context)
+        cutoff_type = context.get('type', False)
+        default_journal_id = cur_user.company_id\
+            .default_cutoff_journal_id.id or False
+        if cutoff_type == 'accrued_expense':
+            journal_id =\
+                cur_user.company_id.default_accrual_expense_journal_id.id or\
+                default_journal_id
+        elif cutoff_type == 'accrued_revenue':
+            journal_id = \
+                cur_user.company_id.default_accrual_revenue_journal_id.id or\
+                default_journal_id
+        return journal_id
+
 
 class account_cutoff_line(orm.Model):
     _inherit = 'account.cutoff.line'

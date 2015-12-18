@@ -34,4 +34,8 @@ class res_company(orm.Model):
         'default_prepaid_expense_account_id': fields.many2one(
             'account.account', 'Default Account for Prepaid Expense',
             domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
+        'default_prepaid_revenue_journal_id': fields.many2one(
+            'account.journal', 'Default Journal for Prepaid Revenues'),
+        'default_prepaid_expense_journal_id': fields.many2one(
+            'account.journal', 'Default Journal for Prepaid Expenses'),
     }
