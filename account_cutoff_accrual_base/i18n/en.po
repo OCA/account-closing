@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 17:54+0000\n"
-"PO-Revision-Date: 2015-10-14 17:54+0000\n"
+"POT-Creation-Date: 2015-12-18 13:31+0000\n"
+"PO-Revision-Date: 2015-12-18 09:04+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-account-closing-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,16 @@ msgstr "Default Account for Accrued Expenses"
 #: field:res.company,default_accrued_revenue_account_id:0
 msgid "Default Account for Accrued Revenues"
 msgstr "Default Account for Accrued Revenues"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_expense_journal_id:0
+msgid "Default Journal for Accrued Expenses"
+msgstr "Default Journal for Accrued Expenses"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_revenue_journal_id:0
+msgid "Default Journal for Accrued Revenues"
+msgstr "Default Journal for Accrued Revenues"
 
 #. module: account_cutoff_accrual_base
 #: help:account.cutoff.line,price_unit:0
