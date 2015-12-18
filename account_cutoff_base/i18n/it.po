@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 18:28+0000\n"
-"PO-Revision-Date: 2015-10-20 16:34+0000\n"
-"Last-Translator: Giacomo Grasso <giac_grasso@fastwebnet.it>\n"
+"POT-Creation-Date: 2015-12-18 13:31+0000\n"
+"PO-Revision-Date: 2015-12-18 09:04+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -275,9 +275,18 @@ msgstr "Rateo/risconto"
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 #: view:account.cutoff:account_cutoff_base.account_cutoff_tree
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
-#: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs"
 msgstr "Fine periodo"
+
+#. module: account_cutoff_base
+#: view:res.company:account_cutoff_base.view_company_form
+msgid "Cut-offs Accounts"
+msgstr ""
+
+#. module: account_cutoff_base
+#: view:res.company:account_cutoff_base.view_company_form
+msgid "Cut-offs Journals"
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
@@ -307,8 +316,8 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:299
-#: code:addons/account_cutoff_base/account_cutoff.py:304
+#: code:addons/account_cutoff_base/account_cutoff.py:300
+#: code:addons/account_cutoff_base/account_cutoff.py:305
 #, python-format
 msgid "Error:"
 msgstr "Errore:"
@@ -468,7 +477,7 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:300
+#: code:addons/account_cutoff_base/account_cutoff.py:301
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -476,7 +485,7 @@ msgid ""
 msgstr "La scrittura di fine periodo esiste già. Devi cancellarla prima di eseguire questa funzione."
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/account_cutoff.py:305
+#: code:addons/account_cutoff_base/account_cutoff.py:306
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."

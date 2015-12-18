@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 17:54+0000\n"
-"PO-Revision-Date: 2015-10-14 17:55+0000\n"
+"POT-Creation-Date: 2015-12-18 13:31+0000\n"
+"PO-Revision-Date: 2015-12-18 09:04+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-account-closing-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -61,8 +61,8 @@ msgstr "Account Move Date"
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_line_id:0
-msgid "Accout Move Line"
-msgstr "Accout Move Line"
+msgid "Account Move Line"
+msgstr "Account Move Line"
 
 #. module: account_cutoff_prepaid
 #: model:product.template,name:account_cutoff_prepaid.product_insurance_contrat_product_template
@@ -93,6 +93,16 @@ msgstr "Default Account for Prepaid Expense"
 #: field:res.company,default_prepaid_revenue_account_id:0
 msgid "Default Account for Prepaid Revenue"
 msgstr "Default Account for Prepaid Revenue"
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_expense_journal_id:0
+msgid "Default Journal for Prepaid Expenses"
+msgstr "Default Journal for Prepaid Expenses"
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_revenue_journal_id:0
+msgid "Default Journal for Prepaid Revenues"
+msgstr "Default Journal for Prepaid Revenues"
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,end_date:0 field:account.invoice.line,end_date:0
@@ -173,6 +183,11 @@ msgstr "Missing Start Date for invoice line with Description '%s'."
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
 msgstr "Missing Start Date for move line with Name '%s'."
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,move_line_period_id:0
+msgid "Move Line Period"
+msgstr "Move Line Period"
 
 #. module: account_cutoff_prepaid
 #: field:product.template,must_have_dates:0
