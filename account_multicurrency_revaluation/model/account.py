@@ -42,7 +42,8 @@ class AccountAccount(models.Model):
     currency_revaluation_rate_type_id = fields.Many2one(
         'res.currency.rate.type',
         'Currency Revaluation Rate Type',
-        help="Currency rate type which will be used while revaluating this account.",
+        help="Currency rate type which will be used while revaluating this "
+             "account.",
     )
 
     _sql_mapping = {
