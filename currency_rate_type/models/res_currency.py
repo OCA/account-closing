@@ -79,9 +79,9 @@ class ResCurrency(models.Model):
     def _compute(self, cr, uid, from_currency, to_currency, from_amount,
                  round=True, context=None):
         context = context or {}
-        if to_currency.id == from_currency.id and context.get(
-                'currency_rate_type_from') == context.get(
-            'currency_rate_type_to'):
+        if to_currency.id == from_currency.id \
+                and context.get('currency_rate_type_from') \
+                        == context.get('currency_rate_type_to'):
             rate = 1.0
         else:
             rate = self._get_conversion_rate(cr, uid, from_currency,
