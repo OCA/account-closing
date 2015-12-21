@@ -20,7 +20,7 @@
 ##############################################################################
 
 {"name": "Multicurrency revaluation",
- "version": "8.0.1.0.0",
+ "version": "8.0.2.0.0",
  "category": "Finance",
  "summary": "Manage revaluation for multicurrency environment",
  "author": "Camptocamp,Odoo Community Association (OCA)",
@@ -28,7 +28,8 @@
  "depends": [
      "base",
      "account",
-     "account_reversal"
+     "account_reversal",
+     "currency_rate_type"
  ],
  "data": [
      "views/res_company_view.xml",

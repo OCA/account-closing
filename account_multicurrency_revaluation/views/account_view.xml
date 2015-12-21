@@ -13,6 +13,9 @@
                    <group>
                        <field name="currency_revaluation"/>
                    </group>
+                   <group>
+                       <field name="currency_revaluation_rate_type_id"/>
+                   </group>
                 </label>
             </field>
         </record>

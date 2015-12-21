@@ -449,3 +449,12 @@ msgstr ""
 msgid "Journal"
 msgstr ""
 
+#. module: account_multicurrency_revaluation
+#: field:account.account,currency_revaluation_rate_type_id:0
+msgid "Currency Revaluation Rate Type"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: help:account.account,currency_revaluation_rate_type_id:0
+msgid "Currency rate type which will be used while revaluating this account."
+msgstr ""

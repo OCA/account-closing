@@ -112,6 +112,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     @api.model
     def _compute_unrealized_currency_gl(self,
                                         currency_id,
+                                        type_id,
                                         balances,
                                         form):
         """
@@ -131,9 +132,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # Compute unrealized gain loss
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
+        ctx_rate['currency_rate_type_id'] = type_id
         cp_currency = form.journal_id.company_id.currency_id
 
-        currency = currency_obj.browse(currency_id)
+        currency = currency_obj.with_context(ctx_rate).browse(currency_id)
 
         foreign_balance = adjusted_balance = balances.get(
             'foreign_balance', 0.0)
@@ -141,6 +143,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         unrealized_gain_loss = 0.0
         if foreign_balance:
             ctx_rate['revaluation'] = True
+            ctx_rate['currency_rate_type_to'] = type_id
             adjusted_balance = currency.with_context(ctx_rate).compute(
                 foreign_balance, cp_currency
             )
@@ -412,8 +415,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     if not sums['balance']:
                         continue
                     # Update sums with compute amount currency balance
+                    type_id = self.env['account.account'].browse(account_id).currency_revaluation_rate_type_id
                     diff_balances = self._compute_unrealized_currency_gl(
                         currency_id,
+                        type_id and type_id.id or False,
                         sums, self)
                     account_sums[account_id][currency_id][partner_id].\
                         update(diff_balances)
