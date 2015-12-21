@@ -23,7 +23,6 @@
 
 
 import time
-
 from openerp import api, models, _
 from openerp.exceptions import Warning
 
@@ -31,7 +30,8 @@ from openerp.exceptions import Warning
 class ResCurrency(models.Model):
     _inherit = "res.currency"
 
-    def _get_current_rate(self, cr, uid, ids, raise_on_no_rate=True, context=None):
+    def _get_current_rate(self, cr, uid, ids, raise_on_no_rate=True,
+                          context=None):
         context = context or {}
         res = {}
         date = context.get('date') or time.strftime('%Y-%m-%d')
@@ -51,14 +51,17 @@ class ResCurrency(models.Model):
                 res[id] = 0
             else:
                 currency = self.browse(cr, uid, id, context=context)
-                raise Warning(_("No currency rate associated for currency '%s' for the given period") % currency.name)
+                raise Warning(_("No currency rate associated for currency "
+                                "'%s' for the given period") % currency.name)
         return res
 
-    def _get_conversion_rate(self, cr, uid, from_currency, to_currency, context=None):
+    def _get_conversion_rate(self, cr, uid, from_currency, to_currency,
+                             context=None):
         if context is None:
             context = {}
         ctx = context.copy()
-        ctx.update({'currency_rate_type_id': ctx.get('currency_rate_type_from')})
+        ctx.update(
+            {'currency_rate_type_id': ctx.get('currency_rate_type_from')})
         from_currency = self.browse(cr, uid, from_currency.id, context=ctx)
         ctx.update({'currency_rate_type_id': ctx.get('currency_rate_type_to')})
         to_currency = self.browse(cr, uid, to_currency.id, context=ctx)
@@ -71,25 +74,33 @@ class ResCurrency(models.Model):
                 currency_symbol = to_currency.symbol
             raise Warning(_('No rate found \n for the currency: %s \n'
                             'at the date: %s') % (currency_symbol, date))
-        return to_currency.rate/from_currency.rate
+        return to_currency.rate / from_currency.rate
 
-    def _compute(self, cr, uid, from_currency, to_currency, from_amount, round=True, context=None):
+    def _compute(self, cr, uid, from_currency, to_currency, from_amount,
+                 round=True, context=None):
         context = context or {}
         if to_currency.id == from_currency.id and \
-                context.get('currency_rate_type_from') == context.get('currency_rate_type_to'):
+                        context.get('currency_rate_type_from') == context.get(
+                    'currency_rate_type_to'):
             rate = 1.0
         else:
-            rate = self._get_conversion_rate(cr, uid, from_currency, to_currency, context=context)
-        return self.round(cr, uid, to_currency, from_amount * rate) if round else from_amount * rate
+            rate = self._get_conversion_rate(cr, uid, from_currency,
+                                             to_currency, context=context)
+        return self.round(cr, uid, to_currency,
+                          from_amount * rate) if round else from_amount * rate
 
     @api.v7
     def compute(self, cr, uid, from_currency_id, to_currency_id, from_amount,
-                round=True, currency_rate_type_from=False, currency_rate_type_to=False,
+                round=True, currency_rate_type_from=False,
+                currency_rate_type_to=False,
                 context=None):
         context = context or {}
         ctx = context.copy()
-        ctx.update({'currency_rate_type_from': currency_rate_type_from, 'currency_rate_type_to': currency_rate_type_to})
-        return super(ResCurrency, self).compute(cr, uid, from_currency_id, to_currency_id, from_amount, round, ctx)
+        ctx.update({'currency_rate_type_from': currency_rate_type_from,
+                    'currency_rate_type_to': currency_rate_type_to})
+        return super(ResCurrency, self).compute(cr, uid, from_currency_id,
+                                                to_currency_id, from_amount,
+                                                round, ctx)
 
     @api.v8
     def compute(self, from_amount, to_currency, round=True,
@@ -98,9 +109,11 @@ class ResCurrency(models.Model):
         assert self, "compute from unknown currency"
         assert to_currency, "compute to unknown currency"
         # apply conversion rate
-        if self == to_currency and currency_rate_type_from == currency_rate_type_to:
+        if self == to_currency and \
+                        currency_rate_type_from == currency_rate_type_to:
             to_amount = from_amount
         else:
-            to_amount = from_amount * self._get_conversion_rate(self, to_currency)
+            to_amount = from_amount * self._get_conversion_rate(self,
+                                                                to_currency)
         # apply rounding
         return to_currency.round(to_amount) if round else to_amount

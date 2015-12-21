@@ -22,8 +22,7 @@
 ##############################################################################
 
 
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm, Warning
+from openerp import models, fields
 
 
 class ResCurrencyRate(models.Model):
@@ -32,5 +31,6 @@ class ResCurrencyRate(models.Model):
     currency_rate_type_id = fields.Many2one(
         'res.currency.rate.type',
         'Currency Rate Type',
-        help="Allow you to define your own currency rate types, like 'Average' or 'Year to Date'. "
-             "Leave empty if you simply want to use the normal 'spot' rate type")
+        help="Allow you to define your own currency rate types, like 'Average' "
+             "or 'Year to Date'. Leave empty if you simply want to use the "
+             "normal 'spot' rate type")
