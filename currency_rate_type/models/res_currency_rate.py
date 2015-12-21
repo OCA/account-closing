@@ -31,6 +31,6 @@ class ResCurrencyRate(models.Model):
     currency_rate_type_id = fields.Many2one(
         'res.currency.rate.type',
         'Currency Rate Type',
-        help="Allow you to define your own currency rate types, like 'Average' "
-             "or 'Year to Date'. Leave empty if you simply want to use the "
+        help="Allow you to define your own currency rate types, like 'Average'"
+             " or 'Year to Date'. Leave empty if you simply want to use the "
              "normal 'spot' rate type")

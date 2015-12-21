@@ -415,7 +415,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     if not sums['balance']:
                         continue
                     # Update sums with compute amount currency balance
-                    type_id = self.env['account.account'].browse(account_id).currency_revaluation_rate_type_id
+                    type_id = self.env['account.account'].browse(
+                        account_id).currency_revaluation_rate_type_id
                     diff_balances = self._compute_unrealized_currency_gl(
                         currency_id,
                         type_id and type_id.id or False,
