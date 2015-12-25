@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-31 23:10+0000\n"
-"PO-Revision-Date: 2015-11-02 13:32+0000\n"
+"POT-Creation-Date: 2015-12-18 23:11+0000\n"
+"PO-Revision-Date: 2015-12-20 06:41+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -91,6 +91,16 @@ msgstr "Privzeti konto razmejenih stroškov"
 #: field:res.company,default_accrued_revenue_account_id:0
 msgid "Default Account for Accrued Revenues"
 msgstr "Privzeti konto razmejenih prihodkov"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_expense_journal_id:0
+msgid "Default Journal for Accrued Expenses"
+msgstr "Privzeti dnevnik razmejenih stroškov"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_revenue_journal_id:0
+msgid "Default Journal for Accrued Revenues"
+msgstr "Privzeti dnevnik razmejenih prihodkov"
 
 #. module: account_cutoff_accrual_base
 #: help:account.cutoff.line,price_unit:0

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:31+0000\n"
-"PO-Revision-Date: 2015-12-18 09:04+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-12-18 23:11+0000\n"
+"PO-Revision-Date: 2015-12-20 06:40+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -281,12 +281,12 @@ msgstr "Razmejitve"
 #. module: account_cutoff_base
 #: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs Accounts"
-msgstr ""
+msgstr "Konti razmejitev"
 
 #. module: account_cutoff_base
 #: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs Journals"
-msgstr ""
+msgstr "Dnevniki razmejitev"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
