@@ -54,6 +54,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
         """
         return self.env.user.company_id.default_currency_reval_journal_id
 
+    @api.model
+    def _get_default_label(self):
+        return _("%(currency)s %(account)s %(rate)s currency revaluation")
+
     revaluation_date = fields.Date(
         string='Revaluation Date',
         required=True,
@@ -73,8 +77,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         help="This label will be inserted in entries description. "
              "You can use %(account)s, %(currency)s and %(rate)s keywords.",
         required=True,
-        default="%(currency)s %(account)s "
-                "%(rate)s currency revaluation"
+        default=_get_default_label
     )
 
     @api.onchange('revaluation_date')
@@ -174,7 +177,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         currency = currency_obj.browse(currency_id)
         data = {'account': account.code or False,
                 'currency': currency.name or False,
-                'rate': rate or False}
+                'rate': rate or False,
+                'inverse': 1/rate or False}
         return text % data
 
     @api.multi

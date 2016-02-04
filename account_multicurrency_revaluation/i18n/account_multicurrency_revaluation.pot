@@ -458,3 +458,16 @@ msgstr ""
 #: help:account.account,currency_revaluation_rate_type_id:0
 msgid "Currency rate type which will be used while revaluating this account."
 msgstr ""
+
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:59
+#, python-format
+msgid "%(currency)s %(account)s %(rate)s currency revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:0
+msgid "%(inverse)s : Inversed value of rate applied during revaluation"
+msgstr ""
+
