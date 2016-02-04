@@ -28,6 +28,7 @@
     'license': 'AGPL-3',
     'depends': [
         'base',
+        'account',
     ],
     'data': [
         'security/ir.model.access.csv',
