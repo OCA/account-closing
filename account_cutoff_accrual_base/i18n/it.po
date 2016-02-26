@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Giacomo Grasso <giac_grasso@fastwebnet.it>, 2015
+# Marius Marolla <mariusmarolla@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-17 22:10+0000\n"
-"PO-Revision-Date: 2015-10-20 16:34+0000\n"
-"Last-Translator: Giacomo Grasso <giac_grasso@fastwebnet.it>\n"
+"POT-Creation-Date: 2015-12-25 23:13+0000\n"
+"PO-Revision-Date: 2016-02-22 19:08+0000\n"
+"Last-Translator: Marius Marolla <mariusmarolla@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +92,16 @@ msgstr "Conto predefinito ratei passivi"
 #: field:res.company,default_accrued_revenue_account_id:0
 msgid "Default Account for Accrued Revenues"
 msgstr "Conto predefinito ratei attivi"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_expense_journal_id:0
+msgid "Default Journal for Accrued Expenses"
+msgstr "Sezionale Predefinito per le Spese Maturate"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrual_revenue_journal_id:0
+msgid "Default Journal for Accrued Revenues"
+msgstr "Sezionale Predefinito per le Entrate Maturate"
 
 #. module: account_cutoff_accrual_base
 #: help:account.cutoff.line,price_unit:0
