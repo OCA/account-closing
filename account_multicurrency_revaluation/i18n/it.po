@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Giacomo Grasso <giac_grasso@fastwebnet.it>, 2015
+# Marius Marolla <mariusmarolla@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 17:54+0000\n"
-"PO-Revision-Date: 2015-10-15 09:49+0000\n"
-"Last-Translator: Giacomo Grasso <giac_grasso@fastwebnet.it>\n"
+"POT-Creation-Date: 2015-12-25 23:13+0000\n"
+"PO-Revision-Date: 2016-02-22 19:27+0000\n"
+"Last-Translator: Marius Marolla <mariusmarolla@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,7 +231,7 @@ msgid ""
 "entry will be generated per account/currency       You can check details of "
 "calculation thanks to the Print Currency unrealized report in the generic "
 "reports."
-msgstr ""
+msgstr "Odoo genererà registrazioni relative alla differenza di cambio per ciascun Conto impostato su \"Consenti Rivalutazione Valuta\". Se il conto è di credito o di debito:\n1 registrazione verrà generata  per conto/valuta/partner per altri tipi di conto;\n1 registrazione verrà generata per conto/valuta.\nPuoi verificare i dettagli del calcolo tramite il Report 'Stampa valuta', reperibile tra i Report generici. "
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts

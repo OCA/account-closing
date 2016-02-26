@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Giacomo Grasso <giac_grasso@fastwebnet.it>, 2015
+# Marius Marolla <mariusmarolla@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:31+0000\n"
-"PO-Revision-Date: 2015-12-18 09:04+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-12-25 23:13+0000\n"
+"PO-Revision-Date: 2016-02-22 19:21+0000\n"
+"Last-Translator: Marius Marolla <mariusmarolla@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "Data scritture fine periodo"
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_line_id:0
 msgid "Account Move Line"
-msgstr ""
+msgstr "Riga Movimento Conto"
 
 #. module: account_cutoff_prepaid
 #: model:product.template,name:account_cutoff_prepaid.product_insurance_contrat_product_template
@@ -98,12 +99,12 @@ msgstr "Conto predefinito risconto passivo"
 #. module: account_cutoff_prepaid
 #: field:res.company,default_prepaid_expense_journal_id:0
 msgid "Default Journal for Prepaid Expenses"
-msgstr ""
+msgstr "Conto Predefinito per le Spese Prepagate"
 
 #. module: account_cutoff_prepaid
 #: field:res.company,default_prepaid_revenue_journal_id:0
 msgid "Default Journal for Prepaid Revenues"
-msgstr ""
+msgstr "Conto Predefinito per le Entrate Prepagate"
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,end_date:0 field:account.invoice.line,end_date:0
@@ -188,7 +189,7 @@ msgstr "Manca la Data iniziale nella riga '%s'"
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_line_period_id:0
 msgid "Move Line Period"
-msgstr ""
+msgstr "Periodo Riga"
 
 #. module: account_cutoff_prepaid
 #: field:product.template,must_have_dates:0
