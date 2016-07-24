@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-    Copyright (C) 2013 Akretion (http://www.akretion.com/)
-    @author Alexis de Lattre <alexis.delattre@akretion.com>
-    The licence is in the file __openerp__.py
+  © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<openerp>
+<odoo>
 <data>
 
-<!-- Form view -->
+<!-- ACCOUNT CUTOFF -->
+<record id="account_cutoff_tree" model="ir.ui.view">
+    <field name="name">account.cutoff.prepaid.tree</field>
+    <field name="model">account.cutoff</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_tree"/>
+    <field name="arch" type="xml">
+        <field name="cutoff_date" position="after">
+            <field name="forecast" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="start_date" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="end_date" invisible="'prepaid' not in context.get('type', '-')"/>
+        </field>
+    </field>
+</record>
+
 <record id="account_cutoff_form" model="ir.ui.view">
     <field name="name">account.cutoff.prepaid.form</field>
     <field name="model">account.cutoff</field>
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form"/>
     <field name="arch" type="xml">
+        <field name="cutoff_date" position="before">
+            <field name="forecast"
+                invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="start_date"
+                attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"/>
+            <field name="end_date"
+                attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"/>
+        </field>
+        <field name="cutoff_date" position="attributes">
+            <attribute name="attrs">{'invisible': [('forecast', '=', True)], 'required': [('forecast', '=', False)]}</attribute>
+            <attribute name="required">0</attribute>
+        </field>
+        <group name="accounting-params" position="attributes">
+            <attribute name="attrs">{'invisible': [('forecast', '=', True)]}</attribute>
+        </group>
+        <field name="cutoff_journal_id" position="attributes">
+            <attribute name="required">0</attribute>
+            <attribute name="attrs">{'required': [('forecast', '=', False)]}</attribute>
+        </field>
+        <field name="cutoff_account_id" position="attributes">
+            <attribute name="required">0</attribute>
+            <attribute name="attrs">{'required': [('forecast', '=', False)]}</attribute>
+        </field>
+        <field name="move_label" position="attributes">
+            <attribute name="required">0</attribute>
+            <attribute name="attrs">{'required': [('forecast', '=', False)]}</attribute>
+        </field>
+        <button name="create_move" position="attributes">
+            <attribute name="attrs">{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
+        </button>
         <button name="back2draft" position="after">
             <button class="oe_highlight" name="get_prepaid_lines" string="Re-Generate Lines" type="object" states="draft" invisible="'prepaid' not in context.get('type', '-')"/>
         </button>
@@ -24,7 +65,21 @@
     </field>
 </record>
 
-<!-- Form view for lines -->
+<record id="account_cutoff_filter" model="ir.ui.view">
+    <field name="name">prepaid.account.cutoff.prepaid.search</field>
+    <field name="model">account.cutoff</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_filter"/>
+    <field name="arch" type="xml">
+        <filter name="done" position="after">
+            <filter name="forecast" string="Forecast" domain="[('forecast', '=', True)]" />
+        </filter>
+        <filter name="state_groupby" position="after">
+            <filter name="forecast_groupby" string="Forecast" context="{'group_by': 'forecast'}"/>
+        </filter>
+    </field>
+</record>
+
+<!-- ACCOUNT CUTOFF LINES -->
 <record id="account_cutoff_line_form" model="ir.ui.view">
     <field name="name">account.cutoff.line.prepaid.form</field>
     <field name="model">account.cutoff.line</field>
@@ -41,12 +96,11 @@
         </field>
         <field name="cutoff_amount" position="before">
             <field name="total_days" invisible="'prepaid' not in context.get('type', '-')"/>
-            <field name="after_cutoff_days" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="prepaid_days" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
     </field>
 </record>
 
-<!-- Tree view for lines -->
 <record id="account_cutoff_line_tree" model="ir.ui.view">
     <field name="name">account.cutoff.line.prepaid.tree</field>
     <field name="model">account.cutoff.line</field>
@@ -59,7 +113,7 @@
             <field name="start_date" invisible="'prepaid' not in context.get('type', '-')"/>
             <field name="end_date" invisible="'prepaid' not in context.get('type', '-')"/>
             <field name="total_days" string="Days Total" invisible="'prepaid' not in context.get('type', '-')"/>
-            <field name="after_cutoff_days" string="Days after Cut-off" invisible="'prepaid' not in context.get('type', '-')"/>
+            <field name="prepaid_days" string="Days after Cut-off" invisible="'prepaid' not in context.get('type', '-')"/>
         </field>
     </field>
 </record>
@@ -68,7 +122,6 @@
 <record id="account_cutoff_prepaid_expense_action" model="ir.actions.act_window">
     <field name="name">Prepaid Expense</field>
     <field name="res_model">account.cutoff</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('type', '=', 'prepaid_expense')]</field>
     <field name="context">{'type': 'prepaid_expense'}</field>
@@ -91,7 +144,6 @@
 <record id="account_cutoff_prepaid_revenue_action" model="ir.actions.act_window">
     <field name="name">Prepaid Revenue</field>
     <field name="res_model">account.cutoff</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('type', '=', 'prepaid_revenue')]</field>
     <field name="context">{'type': 'prepaid_revenue'}</field>
@@ -112,4 +164,4 @@
 
 
 </data>
-</openerp>
+</odoo>
