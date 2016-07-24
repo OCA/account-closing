@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-24 15:26+0000\n"
-"PO-Revision-Date: 2013-12-24 15:26+0000\n"
+"POT-Creation-Date: 2014-03-09 00:05+0000\n"
+"PO-Revision-Date: 2014-03-09 00:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,7 @@ msgid "Accout Move Line"
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: field:account.cutoff,end_date:0
 #: field:account.cutoff.line,end_date:0
 #: field:account.invoice.line,end_date:0
 #: field:account.move.line,end_date:0
@@ -35,6 +36,16 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: field:product.template,must_have_dates:0
 msgid "Must Have Start and End Dates"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff,forecast:0
+msgid "Forecast"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff:0
+msgid "{'invisible': [('forecast', '=', True)], 'required': [('forecast', '=', False)]}"
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -62,6 +73,11 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/account.py:47
 #, python-format
 msgid "Missing Start Date for invoice line with Description '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff:0
+msgid "{'invisible': [('forecast', '=', True)]}"
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -104,6 +120,11 @@ msgid "Re-Generate Lines"
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: help:account.cutoff,forecast:0
+msgid "The Forecast mode allows the user to compute the prepaid revenue/expense between 2 dates in the future."
+msgstr ""
+
+#. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
 msgid "Account Cut-off"
 msgstr ""
@@ -119,16 +140,6 @@ msgid "Account Cut-off Line"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: sql_constraint:account.cutoff:0
-msgid "A cut-off of the same type already exists with this cut-off date !"
-msgstr ""
-
-#. module: account_cutoff_prepaid
-#: field:account.cutoff.line,after_cutoff_days:0
-msgid "Number of Days after Cut-off Date"
-msgstr ""
-
-#. module: account_cutoff_prepaid
 #: model:product.template,name:account_cutoff_prepaid.product_insurance_contrat_product_template
 msgid "Car Insurance"
 msgstr ""
@@ -141,8 +152,8 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/account.py:94
 #: code:addons/account_cutoff_prepaid/account.py:100
 #: code:addons/account_cutoff_prepaid/account.py:144
-#: code:addons/account_cutoff_prepaid/account_cutoff.py:85
-#: code:addons/account_cutoff_prepaid/account_cutoff.py:129
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:132
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:177
 #, python-format
 msgid "Error:"
 msgstr ""
@@ -170,7 +181,7 @@ msgid "Missing Start Date and End Date for invoice line with Product '%s' which 
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account_cutoff.py:129
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:177
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr ""
@@ -182,14 +193,29 @@ msgid "Missing End Date for invoice line with Description '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: constraint:account.cutoff:0
+msgid "The start date is after the end date!"
+msgstr ""
+
+#. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:90
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: help:account.cutoff.line,prepaid_days:0
+msgid "In regular mode, this is the number of days after the cut-off date. In forecast mode, this is the number of days between the start date and the end date."
+msgstr ""
+
+#. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_product_template
 msgid "Product Template"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff:0
+msgid "{'required': [('forecast', '=', False)]}"
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -224,6 +250,12 @@ msgid "Invoice"
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: sql_constraint:account.cutoff:0
+msgid "A cut-off of the same type already exists with the same date(s) !"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff,start_date:0
 #: field:account.cutoff.line,start_date:0
 #: field:account.invoice.line,start_date:0
 #: field:account.move.line,start_date:0
@@ -233,6 +265,11 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: view:account.cutoff.line:0
 msgid "Days after Cut-off"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,prepaid_days:0
+msgid "Prepaid Days"
 msgstr ""
 
 #. module: account_cutoff_prepaid
