@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-    Copyright (C) 2013 Akretion (http://www.akretion.com/)
-    @author Alexis de Lattre <alexis.delattre@akretion.com>
-    The licence is in the file __openerp__.py
+  © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<openerp>
+<odoo>
 <data>
 
 <menuitem id="cutoff_menu"
-    parent="account.menu_finance_periodical_processing"
+    parent="account.menu_finance"
     name="Cut-offs"
-    sequence="24"
-    groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"/>
+    sequence="5"
+    groups="account.group_account_user,account.group_account_manager"/>
 
 <!-- Form view -->
 <record id="account_cutoff_form" model="ir.ui.view">
     <field name="name">account.cutoff.form</field>
     <field name="model">account.cutoff</field>
     <field name="arch" type="xml">
-        <form string="Cut-offs" version="7.0">
+        <form string="Cut-offs">
             <header>
                 <button name="back2draft" string="Back to Draft" type="object" states="done" />
                 <!-- here, we have the 'get_lines' button that is supplied by the other cutoff modules -->
-                <button class="oe_highlight" name="create_move" string="Create Journal Entry" type="object" states="draft" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
+                <button class="oe_highlight" name="create_move" string="Create Journal Entry" type="object" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
                 <field name="state" widget="statusbar" />
             </header>
             <sheet>
@@ -35,15 +33,15 @@
                 </div>
                 <group name="top">
                     <group name="general-params">
-                        <field name="cutoff_date" on_change="cutoff_date_onchange(type, cutoff_date, move_label, context)"/>
-                        <field name="total_cutoff_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                        <field name="cutoff_date"/>
+                        <field name="total_cutoff_amount"/>
                         <field name="company_id" groups="base.group_multi_company" widget="selection" />
                         <field name="company_currency_id" invisible="1"/>
                     </group>
                     <group name="accounting-params">
-                        <field name="cutoff_journal_id"/>
-                        <field name="cutoff_account_id"/>
-                        <field name="move_label"/>
+                        <field name="cutoff_journal_id" required="1"/>
+                        <field name="cutoff_account_id" required="1"/>
+                        <field name="move_label" required="1"/>
                         <field name="move_id"/>
                     </group>
                 </group>
@@ -68,7 +66,7 @@
             <field name="type" invisible="context.get('type')" />
             <field name="cutoff_date" />
             <field name="total_cutoff_amount"/>
-            <field name="company_currency_id"/>
+            <field name="company_currency_id" invisible="1"/>
             <field name="state"/>
         </tree>
     </field>
@@ -82,6 +80,9 @@
         <search string="Search Cut-offs">
             <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]" />
             <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+            <group string="Group By" name="groupby">
+                <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+            </group>
         </search>
     </field>
 </record>
@@ -91,7 +92,7 @@
     <field name="name">account.cutoff.line.form</field>
     <field name="model">account.cutoff.line</field>
     <field name="arch" type="xml">
-        <form string="Cut-off Lines" version="7.0">
+        <form string="Cut-off Lines">
             <group name="source" string="Source">
                 <field name="parent_id" invisible="not context.get('account_cutoff_line_main_view', False)"/>
                 <field name="partner_id"/>
@@ -100,11 +101,11 @@
                 <field name="cutoff_account_id"/>
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                 <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
-                <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="amount"/>
                 <field name="currency_id" invisible="1"/>
             </group>
             <group name="cutoff" string="Cut-off Computation">
-                <field name="cutoff_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="cutoff_amount"/>
                 <field name="company_currency_id" invisible="1"/>
             </group>
             <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('type', '-')">
@@ -127,9 +128,9 @@
             <field name="analytic_account_code" groups="analytic.group_analytic_accounting"/>
             <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
             <field name="amount"/>
-            <field name="currency_id" groups="base.group_multi_currency"/>
+            <field name="currency_id" invisible="1"/>
             <field name="cutoff_amount"/>
-            <field name="company_currency_id" groups="base.group_multi_currency"/>
+            <field name="company_currency_id" invisible="1"/>
         </tree>
     </field>
 </record>
@@ -139,20 +140,20 @@
     <field name="name">account.cutoff.tax.line.form</field>
     <field name="model">account.cutoff.tax.line</field>
     <field name="arch" type="xml">
-        <form string="Cut-off Tax Lines" version="7.0">
+        <form string="Cut-off Tax Lines">
             <group name="tax" string="Tax">
                 <field name="parent_id" invisible="not context.get('account_cutoff_tax_line_main_view', False)"/>
                 <field name="tax_id"/>
                 <field name="sequence"/>
                 <field name="cutoff_account_id"/>
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
-                <field name="base" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                <field name="currency_id" invisible="True"/>
+                <field name="base"/>
+                <field name="amount"/>
+                <field name="currency_id" invisible="1"/>
             </group>
             <group name="cutoff" string="Cut-off Computation">
-                <field name="cutoff_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="company_currency_id" invisible="True"/>
+                <field name="cutoff_amount"/>
+                <field name="company_currency_id" invisible="1"/>
             </group>
         </form>
     </field>
@@ -170,20 +171,12 @@
             <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
             <field name="base"/>
             <field name="amount"/>
-            <field name="currency_id" groups="base.group_multi_currency"/>
+            <field name="currency_id" invisible="1"/>
             <field name="cutoff_amount"/>
-            <field name="company_currency_id" groups="base.group_multi_currency"/>
-            <field name="sequence" invisible="True"/>
+            <field name="company_currency_id" invisible="1"/>
+            <field name="sequence" invisible="1"/>
         </tree>
     </field>
-</record>
-
-<!-- Notification in the chatter -->
-<record id="cutoff_done" model="mail.message.subtype">
-    <field name="name">Cut-off Journal Entry Created</field>
-    <field name="res_model">account.cutoff</field>
-    <field name="default" eval="False"/>
-    <field name="description">Cut-off Journal Entry Created</field>
 </record>
 
 <!-- Form view for account mappings -->
@@ -191,7 +184,7 @@
     <field name="name">account.cutoff.mapping.form</field>
     <field name="model">account.cutoff.mapping</field>
     <field name="arch" type="xml">
-        <form string="Account Cut-off Mapping" version="7.0">
+        <form string="Account Cut-off Mapping">
             <field name="company_id" groups="base.group_multi_company" widget="selection" invisible="not context.get('account_cutoff_mapping_main_view', False)" />
             <field name="account_id"/>
             <field name="cutoff_account_id"/>
@@ -218,7 +211,6 @@
 <record id="account_cutoff_mapping_action" model="ir.actions.act_window">
     <field name="name">Cut-off Account Mapping</field>
     <field name="res_model">account.cutoff.mapping</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
     <field name="context">{'account_cutoff_mapping_main_view': True}</field>
     <field name="help" type="html">
@@ -237,4 +229,4 @@
     sequence="100"/>
 
 </data>
-</openerp>
+</odoo>
