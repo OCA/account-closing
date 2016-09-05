@@ -4,7 +4,6 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import UserError
-from collections import defaultdict
 
 
 class AccountCutoff(models.Model):
@@ -114,21 +113,32 @@ class AccountCutoff(models.Model):
             self.move_id.unlink()
         self.state = 'draft'
 
+    def _get_merge_keys(self):
+        """ Return merge criteria for provision lines
+
+        The returned list must contain valid field names
+        for account.move.line. Provision lines with the
+        same values for these fields will be merged.
+        The list must at least contain account_id.
+        """
+        return ['account_id', 'analytic_account_id']
+
     @api.multi
     def _prepare_move(self, to_provision):
         self.ensure_one()
         movelines_to_create = []
         amount_total = 0
         move_label = self.move_label
-        for (cutoff_account_id, analytic_account_id), amount in \
-                to_provision.items():
-            movelines_to_create.append((0, 0, {
-                'account_id': cutoff_account_id,
+        merge_keys = self._get_merge_keys()
+        for merge_values, amount in to_provision.items():
+            vals = {
                 'name': move_label,
                 'debit': amount < 0 and amount * -1 or 0,
                 'credit': amount >= 0 and amount or 0,
-                'analytic_account_id': analytic_account_id,
-            }))
+            }
+            for k, v in zip(merge_keys, merge_values):
+                vals[k] = v
+            movelines_to_create.append((0, 0, vals))
             amount_total += amount
 
         # add contre-partie
@@ -150,6 +160,51 @@ class AccountCutoff(models.Model):
         return res
 
     @api.multi
+    def _prepare_provision_line(self, cutoff_line):
+        """ Convert a cutoff line to elements of a move line
+
+        The returned dictionary must at least contain 'account_id'
+        and 'amount' (< 0 means debit).
+
+        If you override this, the added fields must also be
+        added in an override of _get_merge_keys.
+        """
+        return {
+            'account_id': cutoff_line.cutoff_account_id.id,
+            'analytic_account_id': cutoff_line.analytic_account_id.id,
+            'amount': cutoff_line.cutoff_amount,
+        }
+
+    @api.multi
+    def _prepare_provision_tax_line(self, cutoff_tax_line):
+        """ Convert a cutoff tax line to elements of a move line
+
+        See _prepare_provision_line for more info.
+        """
+        return {
+            'account_id': cutoff_tax_line.cutoff_account_id.id,
+            'analytic_account_id': cutoff_tax_line.analytic_account_id.id,
+            'amount': cutoff_tax_line.cutoff_amount,
+        }
+
+    @api.multi
+    def _merge_provision_lines(self, provision_lines):
+        """ merge provision line
+
+        Returns a dictionary {key, amount} where key is
+        a tuple containing the values of the properties in _get_merge_keys()
+        """
+        to_provision = {}
+        merge_keys = self._get_merge_keys()
+        for provision_line in provision_lines:
+            key = tuple([provision_line.get(key) for key in merge_keys])
+            if key in to_provision:
+                to_provision[key] += provision_line['amount']
+            else:
+                to_provision[key] = provision_line['amount']
+        return to_provision
+
+    @api.multi
     def create_move(self):
         self.ensure_one()
         move_obj = self.env['account.move']
@@ -161,22 +216,14 @@ class AccountCutoff(models.Model):
             raise UserError(_(
                 "There are no lines on this Cut-off, so we can't create "
                 "a Journal Entry."))
-        to_provision = defaultdict(float)
-        # key = (cutoff_account_id, analytic_account_id)
-        # value = amount
+        provision_lines = []
         for line in self.line_ids:
-            # if it is already present
-            to_provision[(
-                line.cutoff_account_id.id,
-                line.analytic_account_id.id or False
-                )] += line.cutoff_amount
-            # Same for tax lines
+            provision_lines.append(
+                self._prepare_provision_line(line))
             for tax_line in line.tax_line_ids:
-                to_provision[(
-                    tax_line.cutoff_account_id.id,
-                    tax_line.analytic_account_id.id or False
-                    )] += tax_line.cutoff_amount
-
+                provision_lines.append(
+                    self._prepare_provision_tax_line(tax_line))
+        to_provision = self._merge_provision_lines(provision_lines)
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
         self.write({'move_id': move.id, 'state': 'done'})
