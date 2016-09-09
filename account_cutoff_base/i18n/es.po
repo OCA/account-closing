@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:31+0000\n"
-"PO-Revision-Date: 2015-12-18 09:04+0000\n"
+"POT-Creation-Date: 2016-08-19 22:38+0000\n"
+"PO-Revision-Date: 2016-09-09 12:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -304,6 +304,14 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: account_cutoff_base
+#: field:account.cutoff,display_name:0
+#: field:account.cutoff.line,display_name:0
+#: field:account.cutoff.mapping,display_name:0
+#: field:account.cutoff.tax.line,display_name:0
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
@@ -359,6 +367,14 @@ msgstr "Etiqueta del asiento de la operación de cierre"
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
 msgstr "Fecha del último mensaje"
+
+#. module: account_cutoff_base
+#: field:account.cutoff,__last_update:0
+#: field:account.cutoff.line,__last_update:0
+#: field:account.cutoff.mapping,__last_update:0
+#: field:account.cutoff.tax.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0

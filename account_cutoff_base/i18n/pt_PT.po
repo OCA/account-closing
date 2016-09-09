@@ -3,20 +3,19 @@
 # * account_cutoff_base
 # 
 # Translators:
-# Wagner Pereira <wagner@wagner.pereira.nom.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2016-09-08 13:37+0000\n"
+"PO-Revision-Date: 2016-08-15 17:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -37,18 +36,18 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,account_id:0
 msgid "Account"
-msgstr "Conta"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Conta de corte"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,parent_id:0
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Linha da conta de corte"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff.mapping:account_cutoff_base.account_cutoff_mapping_form
@@ -66,7 +65,7 @@ msgstr ""
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Expense"
-msgstr "Despesa acrescida"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:127
@@ -78,7 +77,7 @@ msgstr ""
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Revenue"
-msgstr "Receita Acrescida"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:129
@@ -137,7 +136,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Companias"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
@@ -346,7 +345,7 @@ msgstr ""
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
@@ -381,14 +380,14 @@ msgstr ""
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Atualizado pela última vez por"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Atualizado pela última vez em"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
@@ -470,7 +469,7 @@ msgstr ""
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr "Imposto"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
