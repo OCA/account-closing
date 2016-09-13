@@ -23,6 +23,7 @@
 
 from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
+from openerp.tools import float_is_zero
 
 
 class account_cutoff(orm.Model):
@@ -64,11 +65,29 @@ class account_cutoff(orm.Model):
 class account_cutoff_line(orm.Model):
     _inherit = 'account.cutoff.line'
 
+    def _compute_price_unit(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        qty_prec = self.pool['decimal.precision'].precision_get(
+            cr, uid, 'Product Unit of Measure')
+        for line in self.browse(cr, uid, ids, context=context):
+            price_unit = 0.0
+            if not float_is_zero(line.quantity, precision_digits=qty_prec):
+                price_unit = line.amount / float(line.quantity)
+            res[line.id] = price_unit
+        return res
+
     _columns = {
         'quantity': fields.float(
-            'Quantity', digits_compute=dp.get_precision('Product UoS'),
+            'Quantity',
+            digits_compute=dp.get_precision('Product Unit of Measure'),
             readonly=True),
-        'price_unit': fields.float(
-            'Unit Price', digits_compute=dp.get_precision('Product Price'),
-            readonly=True, help="Price per unit (discount included)"),
-    }
+        'price_unit': fields.function(
+            _compute_price_unit, type='float', string='Unit Price',
+            digits_compute=dp.get_precision('Product Price'),
+            readonly=True, store={
+                'account.cutoff.line': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['quantity', 'amount'], 10),
+                },
+            help="Price per unit without taxes (discount included)"),
+        }
