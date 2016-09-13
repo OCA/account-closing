@@ -12,27 +12,29 @@
 Manage expense and revenue accruals from pickings
 =================================================
 
-This module generates expense and revenue accruals based on the invoices linked to pickings.
+This module generates expense and revenue accruals based on the status of pickings.
 
-For revenue accruals, Odoo will take into account all the customer invoices (including draft invoices) that have an invoice date after the cut-off date (or, for a draft invoice, that have no invoice date) that are linked to pickings in *Delivered* state that have been shipped before the cut-off date.
+For revenue accruals, Odoo will take into account all the delivery orders in *Delivered* state that have been shipped before the cut-off date with *Invoice Control* = *Invoiced* with an invoice date after the cut-off date or *Invoice Control* = *To Be Invoiced*.
 
-The logic is the same for expense accruals, using supplier invoices instead of customer invoices.
+For expense accruals, OpenERP will take into account all the incoming shipments in *Received* state that have been received before the cut-off date with *Invoice Control* = *Invoiced* with an invoice date after the cut-off date or *Invoice Control* = *To Be Invoiced*.
 
-The current code of the module only works when :
+The current code of the module only works when:
 
 * on sale orders, the *Create Invoice* field is set to *On Delivery Order* ;
 * for purchase orders, the *Invoicing Control* field is set to *Based on incoming shipments*.
 
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
+This module has been written by Alexis de Lattre from Akretion <alexis.delattre@akretion.com>.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
     'depends': [
         'account_cutoff_accrual_base',
         'stock_picking_invoice_link',
+        'purchase',
+        'sale_stock',
         ],
     'data': [
-        'account_cutoff_view.xml',
+        'views/account_cutoff.xml',
     ],
     'images': [
         'images/accrued_expense_draft.jpg',
