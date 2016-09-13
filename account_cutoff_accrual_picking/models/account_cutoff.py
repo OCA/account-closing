@@ -26,12 +26,15 @@ class AccountCutoff(models.Model):
             # should be in the same state and have the same date
             inv_line = stock_move.invoice_line_ids[0]
             inv = inv_line.invoice_id
-            if inv.date_invoice <= cutoff.cutoff_date:
+            if (
+                    inv.state not in ('open', 'paid') and
+                    inv.date_invoice <= cutoff.cutoff_date):
                 return False
             account = inv_line.account_id
             currency = inv.currency_id
             analytic_account_id = inv_line.account_analytic_id.id or False
-            price_unit = inv_line.price_unit * (1 - inv_line.discount) / 100.0
+            price_unit = inv_line.price_unit * \
+                (1 - (inv_line.discount or 0.0) / 100.0)
             uom = inv_line.uos_id
             taxes = inv_line.invoice_line_tax_id
             partner = inv.commercial_partner_id
@@ -74,7 +77,8 @@ class AccountCutoff(models.Model):
             account = so.fiscal_position.map_account(account)
             currency = so.currency_id
             analytic_account_id = so.project_id.id or False
-            price_unit = so_line.price_unit * (1 - so_line.discount) / 100.0
+            price_unit = so_line.price_unit *\
+                (1 - (so_line.discount or 0.0) / 100.0)
             uom = so_line.product_uom
             taxes = so_line.tax_id
             partner = so.partner_id.commercial_partner_id
@@ -169,11 +173,11 @@ class AccountCutoff(models.Model):
             '|',
             # when invoice_state = 2binvoiced
             # and invoice_state = invoiced / draft
-            ('date_invoice', '=', False),
-            ('date_invoice', '>', self.cutoff_date)
+            ('max_date_invoice', '=', False),
+            ('max_date_invoice', '>', self.cutoff_date)
             ])
 
-        print "pick_ids=", pickings
+        # print "pick_ids=", pickings
         # Create account mapping dict
         account_mapping = acmo._get_mapping_dict(
             self.company_id.id, self.type)

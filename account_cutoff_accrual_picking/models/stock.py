@@ -11,7 +11,7 @@ class StockPicking(models.Model):
     # I know, in v8, there is a M2M from pickings to invoice
     # (in v7, it was a many2one), so we can have several invoice dates
     # But, in real life, one invoice date should be enough
-    date_invoice = fields.Date(
+    max_date_invoice = fields.Date(
         compute='compute_date_invoice', string='Invoice Date',
         store=True, readonly=True)
     # picking_type_code is refined in the stock module
@@ -21,9 +21,10 @@ class StockPicking(models.Model):
     @api.one
     @api.depends('invoice_ids.date_invoice', 'invoice_ids.state')
     def compute_date_invoice(self):
-        date_invoice = False
+        max_date_invoice = False
         for inv in self.invoice_ids:
-            if inv.state in ('open', 'paid') and inv.date_invoice:
-                date_invoice = inv.date_invoice
-                break
-        self.date_invoice = date_invoice
+            if (
+                    inv.state in ('open', 'paid') and
+                    inv.date_invoice > max_date_invoice):
+                max_date_invoice = inv.date_invoice
+        self.max_date_invoice = max_date_invoice
