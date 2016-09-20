@@ -14,10 +14,11 @@ class AccountCutoff(models.Model):
     def _prepare_lines_from_move_lines(
             self, cutoff, stock_move, account_mapping):
         ato = self.env['account.tax']
+        dpo = self.env['decimal.precision']
         assert cutoff.type in ('accrued_expense', 'accrued_revenue'),\
             "The field 'type' has a wrong value"
-        qty_prec = self.env['decimal.precision'].precision_get(
-            'Product Unit of Measure')
+        qty_prec = dpo.precision_get('Product Unit of Measure')
+        acc_prec = dpo.precision_get('Account')
         qty = stock_move.product_qty
         if float_is_zero(qty, precision_digits=qty_prec):
             return False
@@ -51,8 +52,9 @@ class AccountCutoff(models.Model):
             if not account:
                 raise UserError(_(
                     "Missing expense account on product '%s' or on its "
-                    "related product category.")
-                    % (stock_move.product_id.name))
+                    "related product category '%s'.") % (
+                        stock_move.product_id.name,
+                        stock_move.product_id.categ_id.complete_name))
             account = purchase.fiscal_position.map_account(account)
             currency = purchase.currency_id
             analytic_account_id = pur_line.account_analytic_id.id or False
@@ -73,7 +75,9 @@ class AccountCutoff(models.Model):
             if not account:
                 raise UserError(_(
                     "Missing income account on product '%s' or on its "
-                    "related product category.") % stock_move.product_id.name)
+                    "related product category '%s'.") % (
+                        stock_move.product_id.name,
+                        stock_move.product_id.categ_id.complete_name))
             account = so.fiscal_position.map_account(account)
             currency = so.currency_id
             analytic_account_id = so.project_id.id or False
@@ -96,7 +100,8 @@ class AccountCutoff(models.Model):
         price_unit_without_tax = amount / qty
         for tax_line in tax_res['taxes']:
             tax = ato.browse(tax_line['id'])
-
+            if float_is_zero(tax_line['amount'], precision_digits=acc_prec):
+                continue
             if cutoff.type == 'accrued_expense':
                 tax_accrual_account_id = tax.account_accrued_expense_id.id
                 tax_account_field_label = 'Accrued Expense Tax Account'
