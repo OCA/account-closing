@@ -20,6 +20,7 @@ class AccountCutoff(models.Model):
         qty_prec = dpo.precision_get('Product Unit of Measure')
         acc_prec = dpo.precision_get('Account')
         qty = stock_move.product_qty
+        product = stock_move.product_id
         if float_is_zero(qty, precision_digits=qty_prec):
             return False
         if stock_move.invoice_line_ids:
@@ -45,16 +46,16 @@ class AccountCutoff(models.Model):
             if not pur_line:
                 return False
             purchase = pur_line.order_id
-            account = stock_move.product_id.property_account_expense
+            account = product.property_account_expense
             if not account:
-                account = stock_move.product_id.categ_id.\
-                    property_account_expense_categ
+                account = product.categ_id.property_account_expense_categ
             if not account:
                 raise UserError(_(
                     "Missing expense account on product '%s' or on its "
-                    "related product category '%s'.") % (
-                        stock_move.product_id.name,
-                        stock_move.product_id.categ_id.complete_name))
+                    "related product category '%s' (Picking '%s').") % (
+                        product.name_get()[0][1],
+                        product.categ_id.complete_name,
+                        stock_move.picking_id.name))
             account = purchase.fiscal_position.map_account(account)
             currency = purchase.currency_id
             analytic_account_id = pur_line.account_analytic_id.id or False
@@ -68,16 +69,16 @@ class AccountCutoff(models.Model):
             if not so_line:
                 return False
             so = so_line.order_id
-            account = stock_move.product_id.property_account_income
+            account = product.property_account_income
             if not account:
-                account = stock_move.product_id.categ_id.\
-                    property_account_income_categ
+                account = product.categ_id.property_account_income_categ
             if not account:
                 raise UserError(_(
                     "Missing income account on product '%s' or on its "
-                    "related product category '%s'.") % (
-                        stock_move.product_id.name,
-                        stock_move.product_id.categ_id.complete_name))
+                    "related product category '%s' (Picking '%s').") % (
+                        product.name_get()[0][1],
+                        product.categ_id.complete_name,
+                        stock_move.picking_id.name))
             account = so.fiscal_position.map_account(account)
             currency = so.currency_id
             analytic_account_id = so.project_id.id or False
