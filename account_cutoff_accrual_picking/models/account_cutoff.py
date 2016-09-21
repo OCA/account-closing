@@ -111,8 +111,12 @@ class AccountCutoff(models.Model):
                 tax_account_field_label = 'Accrued Revenue Tax Account'
             if not tax_accrual_account_id:
                 raise UserError(_(
-                    "Missing '%s' on tax '%s'.")
-                    % (tax_account_field_label, tax.name))
+                    "Missing '%s' on tax '%s' "
+                    "(Picking '%s', product '%s').") % (
+                        tax_account_field_label,
+                        tax.name,
+                        stock_move.picking_id.name,
+                        product.name_get()[0][1]))
             tax_amount = tax_line['amount'] * sign
             tax_accrual_amount = currency.with_context(
                 date=cutoff.cutoff_date).compute(
