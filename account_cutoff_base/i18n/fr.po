@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-09 22:40+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
+"POT-Creation-Date: 2016-09-23 14:12+0000\n"
+"PO-Revision-Date: 2016-09-17 19:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Montant"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
@@ -126,7 +126,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,base:0
@@ -141,7 +141,7 @@ msgstr "Sociétés"
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
