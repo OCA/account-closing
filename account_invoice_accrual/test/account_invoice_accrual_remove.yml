@@ -1,0 +1,65 @@
+-
+  I create specific journal
+-
+  !record {model: account.journal, id: accrual_journal_1}:
+    code: acc1
+    company_id: base.main_company
+    name: Accrual Journal 1
+    type: general
+-
+  I set accrual information on company
+-
+  !record {model: res.company, id: base.main_company}:
+    default_accrued_revenue_account_id: account.a_sale
+    default_accrued_expense_account_id: account.a_recv
+    default_cutoff_journal_id: accrual_journal_1
+-
+  I create a new invoice
+-
+  !record {model: account.invoice, id: accrual_invoice_1}:
+    currency_id: base.EUR
+    company_id: base.main_company
+    partner_id: base.res_partner_17
+    journal_id: account.sales_journal
+    state: 'draft'
+    type: 'out_invoice'
+    account_id: account.a_sale
+    invoice_line:
+      - name: 'Otpez Laptop without OS'
+        price_unit: 642
+        quantity: 4
+        account_id: account.a_sale
+-
+  I check the invoice is draft
+-
+  !assert {model: account.invoice, id: accrual_invoice_1}:
+    - state == 'draft'
+-
+  I called the Accrual wizard
+-
+  !record {model: account.move.accrue, id: account_move_accrue_0, context: '{"lang": "en_US", "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_1")], "active_id": ref("accrual_invoice_1"), }'}:
+    account_id: accrual_account_0
+-
+  I clicked on Accrual wizard confirm button
+-
+  !python {model: account.move.accrue}: |
+    self.action_accrue(cr, uid, [ref("account_move_accrue_0")], {"lang": 'en_US',
+      "tz": False, "active_model": "account.invoice", "active_ids": [ref("accrual_invoice_1")], "active_id": ref("accrual_invoice_1"), })
+-
+  I check that accrual_move_id is not empty, the I remove it so I can later delete the invoice
+-
+    !python {model: account.invoice}: |
+      obj = self.browse(cr, uid, ref("accrual_invoice_1"))
+      assert obj.accrual_move_id, "Accrual move doesn't exist"
+      obj.accrual_move_id.unlink()
+-
+  I remove invoice
+-
+  !python {model: account.invoice}: |
+     self.unlink(cr, uid, [ref("accrual_invoice_1")])
+-
+  I check if accrual is deleted
+-
+    !python {model: account.move}: |
+      ids = self.search(cr, uid, [('journal_id','=',ref('accrual_journal_1'))])
+      assert (len(ids) == 0), "It exist entries on accrual journal"
