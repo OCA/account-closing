@@ -3,19 +3,18 @@
 # * account_cutoff_base
 # 
 # Translators:
-# Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-26 10:17+0000\n"
-"PO-Revision-Date: 2016-09-30 08:46+0000\n"
-"Last-Translator: Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>\n"
-"Language-Team: Croatian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr/)\n"
+"PO-Revision-Date: 2016-09-30 09:38+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
+"Language: hr_HR\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: account_cutoff_base
@@ -37,7 +36,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,account_id:0
 msgid "Account"
-msgstr "Konto"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
@@ -66,7 +65,7 @@ msgstr ""
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Expense"
-msgstr "Obračunati troškovi"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:127
@@ -78,7 +77,7 @@ msgstr ""
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Revenue"
-msgstr "Obračunati prihod"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:129
@@ -137,7 +136,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Poduzeća"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
@@ -309,7 +308,7 @@ msgstr ""
 #: field:account.cutoff.mapping,display_name:0
 #: field:account.cutoff.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -346,7 +345,7 @@ msgstr ""
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
@@ -374,21 +373,21 @@ msgstr ""
 #: field:account.cutoff.mapping,__last_update:0
 #: field:account.cutoff.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji ažurirao"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
@@ -432,7 +431,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,account_id:0
 msgid "Regular Account"
-msgstr "Regularni konto"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -442,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr "Sekvenca"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -464,23 +463,23 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
 msgid "Summary"
-msgstr "Sažetak"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr "Porez"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
 msgid "Tax Amount"
-msgstr "Iznos poreza"
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,amount:0
 msgid "Tax Amount in the currency of the PO."
-msgstr "Iznos poreza u valuti narudžbenice."
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,cutoff_amount:0
@@ -490,7 +489,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_ids:0
 msgid "Taxes"
-msgstr "Porezi"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:301
@@ -522,9 +521,9 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr "Vrsta"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr "Nepročitane poruke"
+msgstr ""

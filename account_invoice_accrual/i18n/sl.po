@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 14:12+0000\n"
-"PO-Revision-Date: 2016-09-23 14:12+0000\n"
+"POT-Creation-Date: 2016-09-26 10:17+0000\n"
+"PO-Revision-Date: 2016-09-26 10:17+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,58 +22,58 @@ msgstr ""
 #. module: account_invoice_accrual
 #: view:account.invoice:account_invoice_accrual.invoice_supplier_form
 msgid "Accrual"
-msgstr ""
+msgstr "Razmejitev"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,date:0
 msgid "Accrual Date"
-msgstr ""
+msgstr "Datum razmejitve"
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:139
 #, python-format
 msgid "Accrual Entries"
-msgstr ""
+msgstr "Razmejitveni vnosi"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,journal_id:0
 msgid "Accrual Journal"
-msgstr ""
+msgstr "Dnevnik razmejitev"
 
 #. module: account_invoice_accrual
 #: field:account.invoice,accrual_move_id:0
 msgid "Accrual Journal Entry"
-msgstr ""
+msgstr "Vnos dnevnika razmejitev"
 
 #. module: account_invoice_accrual
 #: field:res.company,accrual_taxes:0
 msgid "Accrual On Taxes"
-msgstr ""
+msgstr "Razmejitev na davke"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,period_id:0
 msgid "Accrual Period"
-msgstr ""
+msgstr "Razmejitveno obdobje"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,account_id:0
 msgid "Accrual account"
-msgstr ""
+msgstr "Razmejitveni konto"
 
 #. module: account_invoice_accrual
 #: view:account.invoice:account_invoice_accrual.invoice_form
 msgid "Accrue"
-msgstr ""
+msgstr "Razmejitev"
 
 #. module: account_invoice_accrual
 #: view:account.move.accrue:account_invoice_accrual.view_account_move_accrue
 msgid "Accrue Entries"
-msgstr ""
+msgstr "Razmejitev vnosov"
 
 #. module: account_invoice_accrual
 #: model:ir.actions.act_window,name:account_invoice_accrual.act_account_move_accrue
 msgid "Accrue Invoices"
-msgstr ""
+msgstr "Razmejitev računov"
 
 #. module: account_invoice_accrual
 #: view:account.move.accrue:account_invoice_accrual.view_account_move_accrue
@@ -93,12 +93,12 @@ msgstr "Družbe"
 #. module: account_invoice_accrual
 #: view:account.move.accrue:account_invoice_accrual.view_account_move_accrue
 msgid "Create accrual journal entries"
-msgstr ""
+msgstr "Ustvari razmejitvene dnevniške vnose"
 
 #. module: account_invoice_accrual
 #: model:ir.model,name:account_invoice_accrual.model_account_move_accrue
 msgid "Create accrual of draft invoices"
-msgstr ""
+msgstr "Ustvari razmejitev osnutkov računov"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,create_uid:0
@@ -121,6 +121,8 @@ msgid ""
 "Enter the date of the accrual account entries. By default, Odoo proposes the"
 " last day of the previous month."
 msgstr ""
+"Vnos datuma za razmejitvene kontne vnose. Privzeto Odoo predlaga zadnji dan "
+"v prejšnjem mesecu."
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,move_prefix:0
@@ -170,19 +172,19 @@ msgstr "Zadnjič posodobljeno"
 #. module: account_invoice_accrual
 #: help:account.invoice,accrual_move_id:0
 msgid "Link to the Accrual Journal Items."
-msgstr ""
+msgstr "Povezava do razmejitvenih dnevniških postavk"
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/account_invoice.py:91
 #, python-format
 msgid "Please reverse accrual before cancelling invoice"
-msgstr ""
+msgstr "Pred preklicem računa izvedite obratno razmejitev"
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/account_invoice.py:99
 #, python-format
 msgid "Please reverse accrual before deleting invoice"
-msgstr ""
+msgstr "Pred izbrisom računa izvedite obratno razmejitev"
 
 #. module: account_invoice_accrual
 #: help:account.move.accrue,move_prefix:0
@@ -190,6 +192,8 @@ msgid ""
 "Prefix that will be added to the 'Ref' of the journal entry to create the "
 "'Ref' of the accrual journal entry (no space added after the prefix)."
 msgstr ""
+"Predpona, ki bo dodana sklicu dnevniškega vnosa za ustvarjanje sklica "
+"razmejitvenega dnevniškega vnosa (brez dodajanja prostora po predponi)."
 
 #. module: account_invoice_accrual
 #: help:account.move.accrue,move_line_prefix:0
@@ -197,19 +201,21 @@ msgid ""
 "Prefix that will be added to the name of the journal item to create the name"
 " of the accrual journal item (a space is added after the prefix)."
 msgstr ""
+"Predpona, ki bo dodana nazivu dnevniškega vnosa za ustvarjanje naziva "
+"razmejitvenega dnevniškega vnosa (po predponi se doda prostor)."
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/account_invoice.py:77
 #: code:addons/account_invoice_accrual/account_invoice.py:78
 #, python-format
 msgid "REV - "
-msgstr ""
+msgstr "REV - "
 
 #. module: account_invoice_accrual
 #: view:account.invoice:account_invoice_accrual.invoice_form
 #: view:account.invoice:account_invoice_accrual.invoice_supplier_form
 msgid "Reverse Accrual"
-msgstr ""
+msgstr "Obratna razmejitev"
 
 #. module: account_invoice_accrual
 #: view:account.move.accrue:account_invoice_accrual.view_account_move_accrue
@@ -217,11 +223,13 @@ msgid ""
 "This will create accrual for all selected draft invoices without accrual "
 "journal entries"
 msgstr ""
+"Ustvari razmejitev za vse izbrane osnutke računov brez razmejitvenih "
+"dnevniških vnosov"
 
 #. module: account_invoice_accrual
 #: field:account.invoice,to_be_reversed:0
 msgid "To be reversed"
-msgstr ""
+msgstr "Za preobrnitev"
 
 #. module: account_invoice_accrual
 #: view:account.move.accrue:account_invoice_accrual.view_account_move_accrue
