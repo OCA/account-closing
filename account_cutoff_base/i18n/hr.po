@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-26 10:17+0000\n"
-"PO-Revision-Date: 2016-09-30 08:46+0000\n"
+"POT-Creation-Date: 2016-09-30 22:40+0000\n"
+"PO-Revision-Date: 2016-10-05 06:37+0000\n"
 "Last-Translator: Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -161,14 +161,14 @@ msgstr ""
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
@@ -309,7 +309,7 @@ msgstr ""
 #: field:account.cutoff.mapping,display_name:0
 #: field:account.cutoff.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv "
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -346,7 +346,7 @@ msgstr ""
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
@@ -374,7 +374,7 @@ msgstr ""
 #: field:account.cutoff.mapping,__last_update:0
 #: field:account.cutoff.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
@@ -403,7 +403,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
