@@ -14,3 +14,7 @@ class ResCompany(models.Model):
     default_accrued_expense_account_id = fields.Many2one(
         'account.account', string='Default Account for Accrued Expenses',
         domain=[('type', '<>', 'view'), ('type', '<>', 'closed')])
+    default_accrual_revenue_journal_id = fields.Many2one(
+        'account.journal', string='Default Journal for Accrued Revenues')
+    default_accrual_expense_journal_id = fields.Many2one(
+        'account.journal', string='Default Journal for Accrued Expenses')
