@@ -5,7 +5,7 @@
 -->
 
 <odoo>
-<data>
+
 
 <!-- ACCOUNT CUTOFF -->
 <record id="account_cutoff_tree" model="ir.ui.view">
@@ -163,5 +163,4 @@
         sequence="20"/>
 
 
-</data>
 </odoo>
