@@ -4,8 +4,8 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo>
-<data>
+<odoo noupdate="1">
+
 
 <record id="product_insurance_contrat" model="product.product">
     <field name="name">Car Insurance</field>
@@ -30,5 +30,4 @@
 </record>
 
 
-</data>
 </odoo>
