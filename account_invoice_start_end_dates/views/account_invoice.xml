@@ -5,7 +5,6 @@
 -->
 
 <odoo>
-<data>
 
 
 <record id="invoice_form" model="ir.ui.view">
@@ -71,5 +70,4 @@
 </record>
 
 
-</data>
 </odoo>

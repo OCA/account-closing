@@ -5,7 +5,6 @@
 -->
 
 <odoo>
-<data>
 
 
 <record id="view_move_line_form" model="ir.ui.view">
@@ -45,5 +44,4 @@
 </record>
 
 
-</data>
 </odoo>
