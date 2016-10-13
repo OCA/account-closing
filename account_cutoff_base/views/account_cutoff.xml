@@ -5,7 +5,7 @@
 -->
 
 <odoo>
-<data>
+
 
 <menuitem id="cutoff_menu"
     parent="account.menu_finance"
@@ -228,5 +228,5 @@
     action="account_cutoff_mapping_action"
     sequence="100"/>
 
-</data>
+
 </odoo>

@@ -38,12 +38,12 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _inherit_default_cutoff_account_id(self):
-        '''Function designed to be inherited by other cutoff modules'''
+        """Function designed to be inherited by other cutoff modules"""
         return None
 
     @api.model
     def _default_cutoff_account_id(self):
-        '''This function can't be inherited, so we use a second function'''
+        """This function can't be inherited, so we use a second function"""
         return self._inherit_default_cutoff_account_id()
 
     cutoff_date = fields.Date(
@@ -141,7 +141,7 @@ class AccountCutoff(models.Model):
             movelines_to_create.append((0, 0, vals))
             amount_total += amount
 
-        # add contre-partie
+        # add counter-part
         counterpart_amount = amount_total * -1
         movelines_to_create.append((0, 0, {
             'account_id': self.cutoff_account_id.id,
@@ -342,9 +342,9 @@ class AccountCutoffMapping(models.Model):
 
     @api.model
     def _get_mapping_dict(self, company_id, cutoff_type='all'):
-        '''return a dict with:
+        """return a dict with:
         key = ID of account,
-        value = ID of cutoff_account'''
+        value = ID of cutoff_account"""
         if cutoff_type == 'all':
             cutoff_type_filter = ('all')
         else:
