@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-13 06:35+0000\n"
-"PO-Revision-Date: 2016-10-13 06:35+0000\n"
+"PO-Revision-Date: 2016-10-13 08:57+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,58 +18,64 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Charges et produits constatés d'avance"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Ligne constatée d'avance"
 
 #. module: account_cutoff_accrual_picking
 #: field:stock.picking,max_date_invoice:0
 msgid "Invoice Date"
-msgstr ""
+msgstr "Date de facturation"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:113
 #, python-format
 msgid "Missing '%s' on tax '%s' (Picking '%s', product '%s')."
-msgstr ""
+msgstr "'%s' manquante sur la taxe '%s' (opération de manutention '%s', produit '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:53
 #, python-format
 msgid "Missing expense account on product '%s' or on its related product category '%s' (Picking '%s')."
 msgstr ""
+"Compte de charge manquant sur le produit '%s' ou sur la catégorie de produit\n"
+"'%s' (Opération de manutention '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:76
 #, python-format
 msgid "Missing income account on product '%s' or on its related product category '%s' (Picking '%s')."
 msgstr ""
+"Compte de revenu manquant sur le produit '%s' ou sur la catégorie de produit\n"
+"'%s' (Opération de manutention '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: help:account.cutoff.line,stock_move_date:0
 msgid "Move date: scheduled date until move is done, then date of actual move processing"
 msgstr ""
+"Date du mouvement de stock : date planifiée tant que le mouvement n'est pas\n"
+"fait, date réelle ensuite."
 
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,picking_id:0
 msgid "Picking"
-msgstr ""
+msgstr "Opération de manutention"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "List d'opérations de manutention"
 
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,stock_move_id:0
 msgid "Stock Move"
-msgstr "Stock Move"
+msgstr "Mouvement de stock"
 
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,stock_move_date:0
 msgid "Transfer Date"
-msgstr ""
+msgstr "Date de transfert"
 

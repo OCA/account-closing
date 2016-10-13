@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-09-23 14:12+0000\n"
+"PO-Revision-Date: 2016-10-13 09:38+0200\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -27,16 +27,24 @@ msgid ""
 "        </p>\n"
 "    "
 msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Cliquer pour créer une correspondance de compte.\n"
+"        </p><p>\n"
+"        Ces correspondances permettent d'avoir un compte pour les charges et\n"
+"        produits constatés d'avance qui est différent du compte de produit ou\n"
+"        de charge initial, en utilisant les mêmes concepts que celui des\n"
+"        positions fiscales.\n"
+"        </p>\n"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
 msgid "A cutoff of the same type already exists with this cut-off date !"
-msgstr ""
+msgstr "Un cut-off du même type existe déjà pour cette date de clôture."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,account_id:0
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
@@ -54,24 +62,24 @@ msgstr "Ligne de report"
 #: view:account.cutoff.mapping:account_cutoff_base.account_cutoff_mapping_tree
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
 msgid "Account Cut-off Mapping"
-msgstr ""
+msgstr "Correspondances de compte de report"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
 msgid "Account Cut-off Tax Line"
-msgstr ""
+msgstr "Ligne de taxe de report"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "Accrued Expense"
-msgstr "Dépense cumulée"
+msgstr "Charge à payer"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:127
 #, python-format
 msgid "Accrued Expense%s"
-msgstr ""
+msgstr "Charge%s à payer"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -83,12 +91,12 @@ msgstr "Revenu cumulé"
 #: code:addons/account_cutoff_base/account_cutoff.py:129
 #, python-format
 msgid "Accrued Revenue%s"
-msgstr ""
+msgstr "Revenu%s cumulé"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
 msgid "All Cut-off Types"
-msgstr ""
+msgstr "Tous les types de report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
@@ -98,7 +106,7 @@ msgstr "Montant"
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
 msgid "Amount Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,amount:0
@@ -106,22 +114,24 @@ msgid ""
 "Amount that is used as base to compute the Cut-off Amount. This Amount is in"
 " the 'Amount Currency', which may be different from the 'Company Currency'."
 msgstr ""
+"Montant utilisé comme base pour calculer le montant à reporter. Ce montant\n"
+"utilise la devise du champ Devise, qui peut être différent de la devise de la société."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_id:0
 #: field:account.cutoff.tax.line,analytic_account_id:0
 msgid "Analytic Account"
-msgstr ""
+msgstr "Compte analytique"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_code:0
 msgid "Analytic Account Code"
-msgstr ""
+msgstr "Code du compte analytique"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
-msgstr ""
+msgstr "Retour en brouillon"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
@@ -131,7 +141,7 @@ msgstr "Base"
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,base:0
 msgid "Base Amount in the currency of the PO."
-msgstr ""
+msgstr "Montant de base dans la devise du bon de commande fournisseur"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
@@ -139,7 +149,8 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: account_cutoff_base
-#: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
+#: field:account.cutoff,company_id:0
+#: field:account.cutoff.mapping,company_id:0
 msgid "Company"
 msgstr "Société"
 
@@ -148,12 +159,12 @@ msgstr "Société"
 #: field:account.cutoff.line,company_currency_id:0
 #: field:account.cutoff.tax.line,company_currency_id:0
 msgid "Company Currency"
-msgstr ""
+msgstr "Devis de la société"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 msgid "Create Journal Entry"
-msgstr ""
+msgstr "Créer une pièce comptable"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_uid:0 field:account.cutoff.line,create_uid:0
@@ -172,17 +183,17 @@ msgstr "Date"
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,currency_id:0
 msgid "Currency of the 'Amount' field."
-msgstr ""
+msgstr "Devise du champ \"Montant\""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,parent_id:0
 msgid "Cut-off"
-msgstr ""
+msgstr "Report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_account_id:0
@@ -190,112 +201,112 @@ msgstr ""
 #: field:account.cutoff.mapping,cutoff_account_id:0
 #: field:account.cutoff.tax.line,cutoff_account_id:0
 msgid "Cut-off Account"
-msgstr ""
+msgstr "Compte de report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,cutoff_account_code:0
 msgid "Cut-off Account Code"
-msgstr ""
+msgstr "Code du compte de report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_journal_id:0
 msgid "Cut-off Account Journal"
-msgstr ""
+msgstr "Journal de report"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
 #: field:res.company,cutoff_account_mapping_ids:0
 msgid "Cut-off Account Mapping"
-msgstr ""
+msgstr "Correspondance de compte de report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount"
-msgstr ""
+msgstr "Montant reporté"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount without taxes in the Company Currency."
-msgstr ""
+msgstr "Montant reporté, HT, dans la devise de la société"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Cut-off Computation"
-msgstr ""
+msgstr "Calcul du report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,cutoff_date:0
 msgid "Cut-off Date"
-msgstr ""
+msgstr "Date de clôture"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_id:0
 msgid "Cut-off Journal Entry"
-msgstr ""
+msgstr "Pièce comptable du report"
 
 #. module: account_cutoff_base
 #: model:mail.message.subtype,description:account_cutoff_base.cutoff_done
 #: model:mail.message.subtype,name:account_cutoff_base.cutoff_done
 msgid "Cut-off Journal Entry Created"
-msgstr ""
+msgstr "Pièce comptable créée"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,line_ids:0
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_tree
 msgid "Cut-off Lines"
-msgstr ""
+msgstr "Lignes de report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,cutoff_amount:0
 msgid "Cut-off Tax Amount"
-msgstr ""
+msgstr "Montant des taxes du report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_line_ids:0
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_tree
 msgid "Cut-off Tax Lines"
-msgstr ""
+msgstr "Lignes de taxe du report"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Cut-off Taxes Lines"
-msgstr ""
+msgstr "Lignes de taxes de reports"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,cutoff_type:0
 msgid "Cut-off Type"
-msgstr ""
+msgstr "Type de report"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 #: view:account.cutoff:account_cutoff_base.account_cutoff_tree
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
 msgid "Cut-offs"
-msgstr ""
+msgstr "Reports"
 
 #. module: account_cutoff_base
 #: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs Accounts"
-msgstr ""
+msgstr "Comptes de report"
 
 #. module: account_cutoff_base
 #: view:res.company:account_cutoff_base.view_company_form
 msgid "Cut-offs Journals"
-msgstr ""
+msgstr "Journaux de report"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Date du dernier message posté sur l'enregistrement"
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
 msgid "Default Cut-off Journal"
-msgstr ""
+msgstr "Journal de report par défaut"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
@@ -320,7 +331,7 @@ msgstr "Terminé"
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -342,30 +353,32 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_base
-#: field:account.cutoff,id:0 field:account.cutoff.line,id:0
-#: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
+#: field:account.cutoff,id:0
+#: field:account.cutoff.line,id:0
+#: field:account.cutoff.mapping,id:0
+#: field:account.cutoff.tax.line,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si coché, de nouveaux messages demandent votre attention"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "Est abonné"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_label:0
 msgid "Label of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Étiquette de l'entrée de report dans le journal"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Date du dernier message"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -376,14 +389,16 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: account_cutoff_base
-#: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
+#: field:account.cutoff,write_uid:0
+#: field:account.cutoff.line,write_uid:0
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: account_cutoff_base
-#: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
+#: field:account.cutoff,write_date:0
+#: field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
@@ -392,12 +407,12 @@ msgstr "Dernière mise à jour le"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Historique des messages"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
@@ -414,7 +429,7 @@ msgstr "Report de Charges"
 #: code:addons/account_cutoff_base/account_cutoff.py:133
 #, python-format
 msgid "Prepaid Expense%s"
-msgstr ""
+msgstr "Charge%s constatées d'avance"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -426,27 +441,27 @@ msgstr "Report de Produits"
 #: code:addons/account_cutoff_base/account_cutoff.py:131
 #, python-format
 msgid "Prepaid Revenue%s"
-msgstr ""
+msgstr "Produit%s constatés d'avance"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.mapping,account_id:0
 msgid "Regular Account"
-msgstr ""
+msgstr "Compte normal"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 msgid "Search Cut-offs"
-msgstr ""
+msgstr "Chercher les reports"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
@@ -459,11 +474,13 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
+"État du report. Quand l'écriture est créée, l'état est 'Terminé', et les champs\n"
+"passent en lecture seule."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Résumé"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
@@ -474,22 +491,22 @@ msgstr "Taxes"
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
 msgid "Tax Amount"
-msgstr ""
+msgstr "Montant de taxes"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,amount:0
 msgid "Tax Amount in the currency of the PO."
-msgstr ""
+msgstr "Montants des taxes dans la devise du Bon de commande"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,cutoff_amount:0
 msgid "Tax Cut-off Amount in the company currency."
-msgstr ""
+msgstr "Montant des taxes reportées dans la devise de la société"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_ids:0
 msgid "Taxes"
-msgstr ""
+msgstr "Taxes"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:301
@@ -498,13 +515,15 @@ msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
 msgstr ""
+"L'écriture de report existe déjà. Vous devez la supprimer avant d'exécuter\n"
+"cette opération."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:306
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."
-msgstr ""
+msgstr "Il n'y a pas de lignes à reporter, il n'est pas possible de créer un écriture."
 
 #. module: account_cutoff_base
 #: help:account.cutoff,move_label:0
@@ -512,11 +531,13 @@ msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
 msgstr ""
+"Cette étiquette figurera dans le champ 'Référence' de l'écriture de report, et\n"
+"dans le champ 'Nom' des lignes."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "Montant total du report"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
@@ -526,4 +547,4 @@ msgstr "Type"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messages non lus"
