@@ -25,6 +25,7 @@ Contributors
 
 * Alexis de Lattre <alexis@via.ecp.fr>
 * Stéphane Bidoul <stephane.bidoul@acsone.eu>
+* Daniel Rodríguez Lijo <drl.9319@gmail.com>
 
 Maintainer
 ----------
