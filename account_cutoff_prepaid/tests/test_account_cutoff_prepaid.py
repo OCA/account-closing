@@ -6,8 +6,8 @@
 
 
 import time
-from openerp import fields
-from openerp.tests.common import TransactionCase
+from odoo import fields
+from odoo.tests.common import TransactionCase
 
 
 class TestCutoffPrepaid(TransactionCase):
@@ -60,7 +60,7 @@ class TestCutoffPrepaid(TransactionCase):
                 'end_date': self._date(end_date),
             })],
         })
-        invoice.signal_workflow('invoice_open')
+        invoice.action_invoice_open()
         self.assertEqual(amount, invoice.amount_untaxed)
         return invoice
 
