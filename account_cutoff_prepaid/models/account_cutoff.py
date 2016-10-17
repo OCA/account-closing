@@ -2,8 +2,8 @@
 # © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import UserError, ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountCutoff(models.Model):
@@ -12,14 +12,14 @@ class AccountCutoff(models.Model):
     @api.model
     def _get_default_source_journals(self):
         res = []
-        type = self._context.get('type')
+        cutoff_type = self._context.get('type')
         mapping = {
             'prepaid_expense': 'purchase',
             'prepaid_revenue': 'sale',
             }
-        if type in mapping:
+        if cutoff_type in mapping:
             src_journals = self.env['account.journal'].search(
-                [('type', '=', mapping[type])])
+                [('type', '=', mapping[cutoff_type])])
             if src_journals:
                 res = src_journals.ids
         return res
@@ -154,11 +154,11 @@ class AccountCutoff(models.Model):
     def _inherit_default_cutoff_account_id(self):
         account_id = super(AccountCutoff, self).\
             _inherit_default_cutoff_account_id()
-        type = self._context.get('type')
+        cutoff_type = self._context.get('type')
         company = self.env.user.company_id
-        if type == 'prepaid_revenue':
+        if cutoff_type == 'prepaid_revenue':
             account_id = company.default_prepaid_revenue_account_id.id or False
-        elif type == 'prepaid_expense':
+        elif cutoff_type == 'prepaid_expense':
             account_id = company.default_prepaid_expense_account_id.id or False
         return account_id
 
