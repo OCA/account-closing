@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Cut-off Base',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Base module for Account Cut-offs',
