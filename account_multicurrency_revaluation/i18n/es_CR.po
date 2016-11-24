@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-19 22:39+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/es_CR/)\n"
@@ -75,7 +75,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
@@ -133,7 +133,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0

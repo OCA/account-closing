@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 14:12+0000\n"
-"PO-Revision-Date: 2016-09-23 14:12+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-10-13 07:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr ""
 #. module: account_invoice_accrual
 #: field:account.move.accrue,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "建立者"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,create_date:0
@@ -112,7 +112,7 @@ msgstr "建立於"
 #. module: account_invoice_accrual
 #: field:account.move.accrue,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "顯示名稱"
 
 #. module: account_invoice_accrual
 #: help:account.move.accrue,date:0
@@ -154,17 +154,17 @@ msgstr ""
 #. module: account_invoice_accrual
 #: field:account.move.accrue,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最後修改:"
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "最後更新："
 
 #. module: account_invoice_accrual
 #: field:account.move.accrue,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "最後更新於"
 
 #. module: account_invoice_accrual
 #: help:account.invoice,accrual_move_id:0

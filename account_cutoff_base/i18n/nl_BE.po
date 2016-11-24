@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 02:38+0000\n"
-"PO-Revision-Date: 2016-04-16 06:34+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-10-17 15:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
@@ -160,14 +160,14 @@ msgstr ""
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Gemaakt door"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Gemaakt op"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
@@ -290,7 +290,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Datum laatste bericht voor dit record."
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -300,7 +300,15 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
+
+#. module: account_cutoff_base
+#: field:account.cutoff,display_name:0
+#: field:account.cutoff.line,display_name:0
+#: field:account.cutoff.mapping,display_name:0
+#: field:account.cutoff.tax.line,display_name:0
+msgid "Display Name"
+msgstr "Schermnaam"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -324,7 +332,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Volgers"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -337,12 +345,12 @@ msgstr ""
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Als dit is ingeschakeld, zijn er nieuwe berichten die uw aandacht vragen."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
@@ -357,31 +365,39 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Datum laatste bericht"
+
+#. module: account_cutoff_base
+#: field:account.cutoff,__last_update:0
+#: field:account.cutoff.line,__last_update:0
+#: field:account.cutoff.mapping,__last_update:0
+#: field:account.cutoff.tax.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Laatst Aangepast op"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Berichten"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Berichten en communicatiehistoriek"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
@@ -425,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Volgorde"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -505,9 +521,9 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Ongelezen berichten"

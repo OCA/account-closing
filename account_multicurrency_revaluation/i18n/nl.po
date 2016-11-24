@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 14:12+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl/)\n"
@@ -70,12 +70,12 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
@@ -133,7 +133,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0
@@ -158,12 +158,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
@@ -342,4 +342,4 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "or"
-msgstr ""
+msgstr "of"

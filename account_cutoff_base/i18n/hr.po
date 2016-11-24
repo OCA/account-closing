@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-05 06:37+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-11-22 16:24+0000\n"
 "Last-Translator: Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Datum zadnjeg zapisa"
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -301,7 +301,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,display_name:0
@@ -315,7 +315,7 @@ msgstr "Naziv "
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -333,7 +333,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Pratitelji"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -351,7 +351,7 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Ako je odabrano, nove poruke zahtijevaju Vašu pažnju."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
@@ -366,7 +366,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Datum zadnje poruke"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -393,12 +393,12 @@ msgstr "Zadnje ažuriranje"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Poruke"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Poruke i povijest"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
@@ -452,7 +452,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,state:0

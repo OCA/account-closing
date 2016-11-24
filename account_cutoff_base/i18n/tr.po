@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-11-22 16:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Kayıda eklenen son mesajın tarihi."
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -320,7 +320,7 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Taslak"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -332,7 +332,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Takipçiler"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -350,7 +350,7 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Eğer işaretlenirse yeni mesajlar dikkatinizi ister."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
@@ -365,7 +365,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Son mesaj tarihi"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -392,7 +392,7 @@ msgstr "Son güncelleme"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Mesajlar"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
@@ -451,7 +451,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,state:0
@@ -526,4 +526,4 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Okunmamış mesajlar"

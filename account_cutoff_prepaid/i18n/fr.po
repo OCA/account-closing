@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:31+0000\n"
-"PO-Revision-Date: 2015-12-18 09:04+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-11-11 18:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -214,7 +214,7 @@ msgstr "Report de Produits"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modèle d'article"
 
 #. module: account_cutoff_prepaid
 #: view:account.cutoff:account_cutoff_prepaid.account_cutoff_form
