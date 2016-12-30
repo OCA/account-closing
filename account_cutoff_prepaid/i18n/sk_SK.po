@@ -1,0 +1,259 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_prepaid
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: account-closing (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-23 23:09+0000\n"
+"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Slovak (Slovakia) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sk_SK/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. module: account_cutoff_prepaid
+#: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to start preparing a new prepaid expense.\n"
+"        </p><p>\n"
+"        This view can be used by accountants in order to collect information about prepaid expenses based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click.\n"
+"        </p>\n"
+"    "
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to start preparing a new prepaid revenue.\n"
+"        </p><p>\n"
+"        This view can be used by accountants in order to collect information about prepaid revenues based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click.\n"
+"        </p>\n"
+"    "
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: sql_constraint:account.cutoff:0
+msgid "A cut-off of the same type already exists with this cut-off date !"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
+msgid "Account Cut-off"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,move_date:0
+msgid "Account Move Date"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,move_line_id:0
+msgid "Account Move Line"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:product.template,name:account_cutoff_prepaid.product_insurance_contrat_product_template
+msgid "Car Insurance"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff.line:account_cutoff_prepaid.account_cutoff_line_tree
+msgid "Days Total"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff.line:account_cutoff_prepaid.account_cutoff_line_tree
+msgid "Days after Cut-off"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_expense_account_id:0
+msgid "Default Account for Prepaid Expense"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_revenue_account_id:0
+msgid "Default Account for Prepaid Revenue"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_expense_journal_id:0
+msgid "Default Journal for Prepaid Expenses"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:res.company,default_prepaid_revenue_journal_id:0
+msgid "Default Journal for Prepaid Revenues"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,end_date:0 field:account.invoice.line,end_date:0
+#: field:account.move.line,end_date:0
+msgid "End Date"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: constraint:account.invoice.line:0 constraint:account.move.line:0
+msgid "Error msg in raise"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:40
+#: code:addons/account_cutoff_prepaid/account.py:46
+#: code:addons/account_cutoff_prepaid/account.py:53
+#: code:addons/account_cutoff_prepaid/account.py:89
+#: code:addons/account_cutoff_prepaid/account.py:94
+#: code:addons/account_cutoff_prepaid/account.py:100
+#: code:addons/account_cutoff_prepaid/account.py:144
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:85
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:128
+#, python-format
+msgid "Error:"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: help:product.template,must_have_dates:0
+msgid ""
+"If this option is active, the user will have to enter a Start Date and an "
+"End Date on the invoice lines that have this product."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,invoice_id:0
+#: model:ir.model,name:account_cutoff_prepaid.model_account_invoice
+msgid "Invoice"
+msgstr "Faktúra"
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
+msgid "Journal Items"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:41
+#, python-format
+msgid "Missing End Date for invoice line with Description '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:90
+#, python-format
+msgid "Missing End Date for move line with Name '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:145
+#, python-format
+msgid ""
+"Missing Start Date and End Date for invoice line with Product '%s' which has"
+" the property 'Must Have Start and End Dates'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:47
+#, python-format
+msgid "Missing Start Date for invoice line with Description '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:95
+#, python-format
+msgid "Missing Start Date for move line with Name '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,move_line_period_id:0
+msgid "Move Line Period"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:product.template,must_have_dates:0
+msgid "Must Have Start and End Dates"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,after_cutoff_days:0
+msgid "Number of Days after Cut-off Date"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
+#: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_menu
+msgid "Prepaid Expense"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
+#: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
+msgid "Prepaid Revenue"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: view:account.cutoff:account_cutoff_prepaid.account_cutoff_form
+msgid "Re-Generate Lines"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff,source_journal_ids:0
+msgid "Source Journals"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,start_date:0
+#: field:account.invoice.line,start_date:0
+#: field:account.move.line,start_date:0
+msgid "Start Date"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:101
+#, python-format
+msgid "Start Date should be before End Date for move line with Name '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account.py:54
+#, python-format
+msgid ""
+"Start Date should be before or be the same as End Date for invoice line with"
+" Description '%s'."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: field:account.cutoff.line,total_days:0
+msgid "Total Number of Days"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/account_cutoff.py:128
+#, python-format
+msgid "You should set at least one Source Journal."
+msgstr ""

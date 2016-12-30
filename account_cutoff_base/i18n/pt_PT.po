@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 23:12+0000\n"
-"PO-Revision-Date: 2016-12-15 10:12+0000\n"
+"POT-Creation-Date: 2016-12-23 23:09+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -402,7 +402,7 @@ msgstr "História das mensagens e comunicações"
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Parceiro"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
