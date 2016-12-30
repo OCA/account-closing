@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:21+0000\n"
+"PO-Revision-Date: 2016-12-27 08:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/el_GR/)\n"
+"Language-Team: Slovak (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -79,7 +79,7 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
 msgid "Companies"
-msgstr "Εταιρίες"
+msgstr "Spoločnosti"
 
 #. module: account_cutoff_accrual_base
 #: field:res.company,default_accrued_expense_account_id:0
@@ -114,7 +114,7 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: view:account.tax:account_cutoff_accrual_base.view_tax_form
 msgid "Refunds"
-msgstr "Επιστροφές χρημάτων"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
