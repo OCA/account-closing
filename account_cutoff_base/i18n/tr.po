@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-30 19:17+0000\n"
+"POT-Creation-Date: 2017-01-06 23:11+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Tutar"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
@@ -469,7 +469,7 @@ msgstr ""
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr ""
+msgstr "Vergi"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
