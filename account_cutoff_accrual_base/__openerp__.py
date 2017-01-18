@@ -23,18 +23,18 @@
 
 {
     'name': 'Account Accrual Base',
-    'version': '8.0.0.1.0',
+    'version': '9.0.1.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Base module for accrued expenses and revenues',
-    'author': "Akretion,Odoo Community Association (OCA)",
+    'author': "Akretion,Odoo Community Association (OCA),Camptocamp SA",
     'website': 'http://www.akretion.com',
     'depends': ['account_cutoff_base'],
     'data': [
-        'company_view.xml',
-        'account_view.xml',
-        'account_cutoff_view.xml',
+        'views/company_view.xml',
+        'views/account_view.xml',
+        'views/account_cutoff_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'active': False,
 }

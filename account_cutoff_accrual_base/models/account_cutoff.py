@@ -21,22 +21,23 @@
 ##############################################################################
 
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
-class account_cutoff(orm.Model):
+class AccountCutoff(models.Model):
     _inherit = 'account.cutoff'
 
-    def _inherit_default_cutoff_account_id(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        account_id = super(account_cutoff, self).\
-            _inherit_default_cutoff_account_id(
-                cr, uid, context=context)
-        type = context.get('type')
-        company = self.pool['res.users'].browse(
-            cr, uid, uid, context=context).company_id
+    @api.model
+    def _inherit_default_cutoff_account_id(self):
+        if self.env.context is None:
+            self.env.context = {}
+        account_id = super(AccountCutoff,
+                           self)._inherit_default_cutoff_account_id()
+
+        type = self.env.context.get('type')
+        company = self.env['res.users'].browse(self.env.uid).company_id
+
         if type == 'accrued_expense':
             account_id = company.default_accrued_expense_account_id.id or False
         elif type == 'accrued_revenue':
@@ -44,14 +45,13 @@ class account_cutoff(orm.Model):
         return account_id
 
 
-class account_cutoff_line(orm.Model):
+class AccountCutoffLine(models.Model):
     _inherit = 'account.cutoff.line'
 
-    _columns = {
-        'quantity': fields.float(
+    quantity = fields.Float(
             'Quantity', digits_compute=dp.get_precision('Product UoS'),
-            readonly=True),
-        'price_unit': fields.float(
+            readonly=True)
+
+    price_unit = fields.Float(
             'Unit Price', digits_compute=dp.get_precision('Product Price'),
-            readonly=True, help="Price per unit (discount included)"),
-    }
+            readonly=True, help="Price per unit (discount included)")

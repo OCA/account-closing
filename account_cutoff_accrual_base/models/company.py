@@ -20,17 +20,17 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+
+from openerp import models, fields
 
 
-class account_tax(orm.Model):
-    _inherit = 'account.tax'
+class ResCompany(models.Model):
+    _inherit = 'res.company'
 
-    _columns = {
-        'account_accrued_revenue_id': fields.many2one(
-            'account.account', 'Accrued Revenue Tax Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-        'account_accrued_expense_id': fields.many2one(
-            'account.account', 'Accrued Expense Tax Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-    }
+    default_accrued_revenue_account_id = fields.Many2one(
+            'account.account', 'Default Account for Accrued Revenues',
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')])
+
+    default_accrued_expense_account_id = fields.Many2one(
+            'account.account', 'Default Account for Accrued Expenses',
+            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')])

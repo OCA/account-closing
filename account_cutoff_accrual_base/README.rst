@@ -24,6 +24,7 @@ Contributors
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Adrien Peiffer (ACSONE) <adrien.peiffer@acsone.eu>
+* Akim Juillerat <akim.juillerat@camptocamp.com>
 
 Maintainer
 ----------
