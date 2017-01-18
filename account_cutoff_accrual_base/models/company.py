@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Account Cut-off Accrual Base module for OpenERP
@@ -27,10 +27,14 @@ from openerp import models, fields
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    default_accrued_revenue_account_id = fields.Many2one(
-            'account.account', 'Default Account for Accrued Revenues',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')])
+    default_accrued_revenue_account_id = \
+        fields.Many2one('account.account',
+                        'Default Account for Accrued Revenues',
+                        domain=[('type', '<>', 'view'),
+                                ('type', '<>', 'closed')])
 
-    default_accrued_expense_account_id = fields.Many2one(
-            'account.account', 'Default Account for Accrued Expenses',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')])
+    default_accrued_expense_account_id = \
+        fields.Many2one('account.account',
+                        'Default Account for Accrued Expenses',
+                        domain=[('type', '<>', 'view'),
+                                ('type', '<>', 'closed')])

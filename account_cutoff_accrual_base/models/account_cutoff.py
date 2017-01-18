@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Account Cut-off Accrual Base module for OpenERP
@@ -48,10 +48,11 @@ class AccountCutoff(models.Model):
 class AccountCutoffLine(models.Model):
     _inherit = 'account.cutoff.line'
 
-    quantity = fields.Float(
-            'Quantity', digits_compute=dp.get_precision('Product UoS'),
-            readonly=True)
+    quantity = fields.Float('Quantity',
+                            digits_compute=dp.get_precision('Product UoS'),
+                            readonly=True)
 
-    price_unit = fields.Float(
-            'Unit Price', digits_compute=dp.get_precision('Product Price'),
-            readonly=True, help="Price per unit (discount included)")
+    price_unit = fields.Float('Unit Price',
+                              digits_compute=dp.get_precision('Product Price'),
+                              readonly=True,
+                              help="Price per unit (discount included)")

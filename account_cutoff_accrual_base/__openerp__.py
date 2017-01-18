@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Account Cutoff Accrual Base module for OpenERP
@@ -19,8 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
 {
     'name': 'Account Accrual Base',
     'version': '9.0.1.0.0',
@@ -36,5 +34,4 @@
         'views/account_cutoff_view.xml',
     ],
     'installable': True,
-    'active': False,
 }
