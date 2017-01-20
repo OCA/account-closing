@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 23:11+0000\n"
-"PO-Revision-Date: 2017-01-11 15:39+0000\n"
+"POT-Creation-Date: 2017-01-13 23:11+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Data da última mensagem postada no registro"
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -351,7 +351,7 @@ msgstr "Identificação"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Se marcado novas mensagens requerem sua atenção."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
@@ -366,7 +366,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Última data de mensagem"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -393,7 +393,7 @@ msgstr "Última atualização em"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Mensagens"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
@@ -527,4 +527,4 @@ msgstr "Tipo"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensagens não lidas"

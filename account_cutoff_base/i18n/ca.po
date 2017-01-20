@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 23:11+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-13 23:11+0000\n"
+"PO-Revision-Date: 2017-01-17 19:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-account-closing-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Import"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
@@ -111,7 +111,7 @@ msgstr ""
 #: field:account.cutoff.line,analytic_account_id:0
 #: field:account.cutoff.tax.line,analytic_account_id:0
 msgid "Analytic Account"
-msgstr ""
+msgstr "Compte analític"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_code:0
@@ -126,7 +126,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,base:0
@@ -141,7 +141,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
