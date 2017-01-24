@@ -38,10 +38,9 @@ class ResCompany(models.Model):
         domain=[('deprecated', '=', False)])
 
     default_accrual_revenue_journal_id = fields.Many2one(
-        comodel_name='account.journal', 
+        comodel_name='account.journal',
         string='Default Journal for Accrued Revenues')
 
     default_accrual_expense_journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Default Journal for Accrued Expenses')
-
