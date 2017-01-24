@@ -104,6 +104,7 @@ Contributors
 * Stéphane Bidoul
 * Vincent Renaville
 * Yannick Vaucher
+* Akim Juillerat
 
 
 Maintainer
