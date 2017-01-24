@@ -20,17 +20,19 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import fields, models
 
 
-class account_tax(orm.Model):
+class AccountTax(models.Model):
     _inherit = 'account.tax'
 
-    _columns = {
-        'account_accrued_revenue_id': fields.many2one(
-            'account.account', 'Accrued Revenue Tax Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-        'account_accrued_expense_id': fields.many2one(
-            'account.account', 'Accrued Expense Tax Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')]),
-    }
+    account_accrued_revenue_id = fields.Many2one(
+        comodel_name='account.account',
+        string='Accrued Revenue Tax Account',
+        domain=[('deprecated', '=', False)]
+    )
+    account_accrued_expense_id = fields.Many2one(
+        comodel_name='account.account',
+        string='Accrued Expense Tax Account',
+        domain=[('deprecated', '=', False)]
+    )
