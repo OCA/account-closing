@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
-        <record id="view_account_form_inherit" model="ir.ui.view">
-            <field name="name">account.account.form</field>
-            <field name="model">account.account</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_account_form"/>
-            <field name="arch" type="xml">
-                <label for="note" position="before">
-                   <separator string="Currency Revaluation"/>
-                   <group>
-                       <field name="currency_revaluation"/>
-                   </group>
-                </label>
-            </field>
-        </record>
-
-    </data>
-</openerp>
+<odoo>
+    <record id="view_account_form_inherit" model="ir.ui.view">
+        <field name="name">account.account.form</field>
+        <field name="model">account.account</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <!--<label for="note" position="before">-->
+            <xpath expr="//group/group[2]" position="after">
+               <separator string="Currency Revaluation"/>
+               <group>
+                   <field name="currency_revaluation"/>
+               </group>
+            </xpath>
+            <!--</label>-->
+        </field>
+    </record>
+</odoo>
