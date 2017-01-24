@@ -10,7 +10,6 @@
                     <label string="This will create accrual for all selected draft invoices without accrual journal entries"/>
                     <group>
                         <field name="date"/>
-                        <field name="period_id"/>
                         <field name="journal_id"/>
                         <field name="account_id"/>
                         <newline/>
