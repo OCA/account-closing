@@ -67,12 +67,10 @@ class AccountAccount(models.Model):
         return query, params
 
     @api.multi
-    def compute_revaluations(self, period_ids, revaluation_date):
+    def compute_revaluations(self, revaluation_date):
         accounts = {}
         # compute for each account the balance/debit/credit from the move lines
-        query, params = self.with_context(
-            periods=period_ids
-        )._revaluation_query(revaluation_date)
+        query, params = self._revaluation_query(revaluation_date)
         self.env.cr.execute(query, params)
 
         lines = self.env.cr.dictfetchall()
