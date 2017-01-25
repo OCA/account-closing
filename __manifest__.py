@@ -28,15 +28,18 @@
  "depends": [
      "base",
      "account",
-     "account_accountant",
-     # "account_reversal"
+     "account_reversal",
  ],
  "data": [
+     "demo/currency_demo.xml",
+     "demo/account_demo.xml",
      "views/res_company_view.xml",
      "security/security.xml",
      "views/account_view.xml",
      "wizard/wizard_currency_revaluation_view.xml"
  ],
- "test": ["test/currency_revaluation.yml"],
+ "tests": [
+     "tests/test_currency_revaluation.py",
+ ],
  'installable': True,
  }
