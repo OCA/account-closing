@@ -33,19 +33,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         """
         Get last date of previous fiscalyear
         """
-
-        fiscalyear_obj = self.env['account.fiscalyear']
-        cp = self.env.user.company_id
-        # find previous fiscalyear
         current_date = fields.date.today()
-        previous_fiscalyear = fiscalyear_obj.search(
-            [('date_stop', '<', current_date),
-             ('company_id', '=', cp.id)],
-            limit=1,
-            order='date_start DESC')
-        if not previous_fiscalyear:
-            return current_date
-        return previous_fiscalyear.date_stop
+        return current_date
 
     @api.model
     def _get_default_journal_id(self):
@@ -77,43 +66,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 "%(rate)s currency revaluation"
     )
 
-    @api.onchange('revaluation_date')
-    def on_change_revaluation_date(self):
-        revaluation_date = self.revaluation_date
-        if not revaluation_date:
-            return {}
-        move_obj = self.env['account.move']
-        company_id = self.env.user.company_id.id
-        fiscalyear_obj = self.env['account.fiscalyear']
-        fiscalyear = fiscalyear_obj.search(
-            [('date_start', '<=', revaluation_date),
-             ('date_stop', '>=', revaluation_date),
-             ('company_id', '=', company_id)],
-            limit=1
-        )
-        if fiscalyear:
-            previous_fiscalyear_ids = fiscalyear_obj.search(
-                [('date_stop', '<', fiscalyear.date_start),
-                 ('company_id', '=', company_id)],
-                limit=1)
-            if previous_fiscalyear_ids:
-                special_period_ids = [p.id for p in fiscalyear.period_ids
-                                      if p.special]
-                opening_move_ids = []
-                if special_period_ids:
-                    opening_move_ids = move_obj.search(
-                        [('period_id', '=', special_period_ids[0])])
-                if not opening_move_ids or not special_period_ids:
-                    raise Warning(
-                        _('No opening entries in opening period '
-                          'for this fiscal year')
-                    )
-
     @api.model
-    def _compute_unrealized_currency_gl(self,
-                                        currency_id,
-                                        balances,
-                                        form):
+    def _compute_unrealized_currency_gl(self, currency_id, balances, form):
         """
         Update data dict with the unrealized currency gain and loss
         plus add 'currency_rate' which is the value used for rate in
@@ -192,7 +146,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             reversable = form.journal_id.company_id.reversable_revaluations
             base_move = {'name': label,
                          'journal_id': form.journal_id.id,
-                         'period_id': period.id,
+                         # 'period_id': period.id,
                          'date': form.revaluation_date,
                          'to_be_reversed': reversable}
             return move_obj.create(base_move).id
@@ -220,19 +174,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             partner_id = False
         move_obj = self.env['account.move']
         move_line_obj = self.env['account.move.line']
-        period_obj = self.env['account.period']
         company = form.journal_id.company_id or self.env.user.company_id
-        period = period_obj.search(
-            [('date_start', '<=', form.revaluation_date),
-             ('date_stop', '>=', form.revaluation_date),
-             ('company_id', '=', company.id),
-             ('special', '=', False)],
-            limit=1)
-        if not period:
-            raise Warning(
-                _('There is no period for company %s on %s'
-                  % (company.name, form.revaluation_date))
-            )
         created_ids = []
         # over revaluation
         if amount >= 0.01:
@@ -333,7 +275,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         """
         context = self.env.context
         account_obj = self.env['account.account']
-        fiscalyear_obj = self.env['account.fiscalyear']
         move_obj = self.env['account.move']
         company = self.journal_id.company_id or self.env.user.company_id
         if (not company.revaluation_loss_account_id and
@@ -361,50 +302,9 @@ class WizardCurrencyRevaluation(models.TransientModel):
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form.")
             )
-        fiscalyear = fiscalyear_obj.with_context(context).search(
-            [('date_start', '<=', self.revaluation_date),
-             ('date_stop', '>=', self.revaluation_date),
-             ('company_id', '=', company.id)],
-            limit=1)
-        if not fiscalyear:
-            raise Warning(
-                _('No fiscalyear found for company %s on %s.' %
-                  (company.name, self.revaluation_date))
-            )
-        special_period_ids = [p.id for p in fiscalyear.period_ids
-                              if p.special]
-        if not special_period_ids:
-            raise Warning(
-                _('No special period found for the fiscalyear %s' %
-                  fiscalyear.code)
-            )
-        if special_period_ids:
-            opening_move_ids = move_obj.search(
-                [('period_id', '=', special_period_ids[0])])
-            if not opening_move_ids:
-                # if the first move is on this fiscalyear, this is the first
-                # financial year
-                first_move = move_obj.search(
-                    [('company_id', '=', company.id)],
-                    order='date', limit=1)
-                if not first_move:
-                    raise Warning(
-                        _('No fiscal entries found')
-                    )
-                if fiscalyear != first_move.period_id.fiscalyear_id:
-                    raise Warning(
-                        _('No opening entries in opening period for this '
-                          'fiscal year %s' % fiscalyear.code)
-                    )
-        period_ids = [p.id for p in fiscalyear.period_ids]
-        if not period_ids:
-            raise Warning(
-                _('No period found for the fiscalyear %s' %
-                  fiscalyear.code)
-            )
         # Get balance sums
         account_sums = account_ids.compute_revaluations(
-            period_ids,
+            # period_ids,
             self.revaluation_date)
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
