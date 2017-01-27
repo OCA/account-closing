@@ -142,127 +142,122 @@ class WizardCurrencyRevaluation(models.TransientModel):
         @return: ids of created move_lines
         """
 
-        def create_move():
+        def create_move_and_lines(amount, debit_account_id, credit_account_id,
+                                  sums, analytic_debit_acc_id=False,
+                                  analytic_credit_acc_id=False,):
+
             reversable = form.journal_id.company_id.reversable_revaluations
             base_move = {'name': label,
                          'journal_id': form.journal_id.id,
-                         # 'period_id': period.id,
                          'date': form.revaluation_date,
                          'to_be_reversed': reversable}
-            return move_obj.create(base_move).id
 
-        def create_move_line(line_data, sums):
             base_line = {'name': label,
                          'partner_id': partner_id,
                          'currency_id': currency_id,
                          'amount_currency': 0.0,
-                         'date': form.revaluation_date,
-                         }
-            base_line.update(line_data)
-            # we can assume that keys should be equals columns name + gl_
-            # but it was not decide when the code was designed. So commented
-            # code may sucks:
-            # for k, v in sums.items():
-            #    line_data['gl_' + k] = v
+                         'date': form.revaluation_date}
+
             base_line['gl_foreign_balance'] = sums.get('foreign_balance', 0.0)
             base_line['gl_balance'] = sums.get('balance', 0.0)
             base_line['gl_revaluated_balance'] = sums.get(
                 'revaluated_balance', 0.0)
             base_line['gl_currency_rate'] = sums.get('currency_rate', 0.0)
-            return move_line_obj.create(base_line).id
+
+            debit_line = base_line.copy()
+            credit_line = base_line.copy()
+
+            debit_line.update({
+                'debit': amount,
+                'credit': 0.0,
+                'account_id': debit_account_id,
+            })
+            if analytic_debit_acc_id:
+                credit_line.update({
+                    'analytic_account_id': analytic_debit_acc_id,
+                })
+
+            credit_line.update({
+                'debit': 0.0,
+                'credit': amount,
+                'account_id': credit_account_id,
+            })
+            if analytic_credit_acc_id:
+                credit_line.update({
+                    'analytic_account_id': analytic_credit_acc_id,
+                })
+            base_move['line_ids'] = [(0, 0, debit_line), (0, 0, credit_line)]
+            created_move = self.env['account.move'].create(base_move)
+            created_move.post()
+            return created_move.line_ids
+
         if partner_id is None:
             partner_id = False
-        move_obj = self.env['account.move']
-        move_line_obj = self.env['account.move.line']
+
         company = form.journal_id.company_id or self.env.user.company_id
         created_ids = []
         # over revaluation
         if amount >= 0.01:
-            if company.revaluation_gain_account_id:
-                move_id = create_move()
-                # Create a move line to Debit account to be revaluated
-                line_data = {'debit': amount,
-                             'move_id': move_id,
-                             'account_id': account_id,
-                             }
-                created_ids.append(create_move_line(line_data, sums))
-                # Create a move line to Credit revaluation gain account
+            reval_gain_account = company.revaluation_gain_account_id
+            if reval_gain_account:
+
                 analytic_acc_id = (company.revaluation_analytic_account_id.id
                                    if company.revaluation_analytic_account_id
                                    else False)
-                line_data = {
-                    'credit': amount,
-                    'account_id': company.revaluation_gain_account_id.id,
-                    'move_id': move_id,
-                    'analytic_account_id': analytic_acc_id,
-                }
-                created_ids.append(create_move_line(line_data, sums))
+
+                line_ids = create_move_and_lines(amount, account_id,
+                                                 reval_gain_account.id, sums,
+                                                 analytic_credit_acc_id=
+                                                 analytic_acc_id)
+                created_ids.append(line_ids)
+
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
-                move_id = create_move()
+
                 analytic_acc_id = (
                     company.provision_pl_analytic_account_id and
                     company.provision_pl_analytic_account_id.id or
                     False)
-                # Create a move line to Debit provision BS gain
-                line_data = {
-                    'debit': amount,
-                    'move_id': move_id,
-                    'account_id': company.provision_bs_gain_account_id.id, }
-                created_ids.append(create_move_line(line_data, sums))
-                # Create a move line to Credit provision P&L gain
-                line_data = {
-                    'credit': amount,
-                    'analytic_account_id': analytic_acc_id,
-                    'account_id': company.provision_pl_gain_account_id.id,
-                    'move_id': move_id, }
-                created_ids.append(create_move_line(line_data, sums))
+
+                line_ids = create_move_and_lines(amount,
+                                                 company.provision_bs_gain_account_id.id,
+                                                 company.provision_pl_gain_account_id.id,
+                                                 sums, analytic_credit_acc_id=
+                                                 analytic_acc_id)
+                created_ids.append(line_ids)
 
         # under revaluation
         elif amount <= -0.01:
             amount = -amount
-            if company.revaluation_loss_account_id:
-                move_id = create_move()
-                # Create a move line to Debit revaluation loss account
+            reval_loss_account = company.revaluation_loss_account_id
+            if reval_loss_account:
+
                 analytic_acc_id = (company.revaluation_analytic_account_id.id
                                    if company.revaluation_analytic_account_id
                                    else False)
-                line_data = {
-                    'debit': amount,
-                    'move_id': move_id,
-                    'account_id': company.revaluation_loss_account_id.id,
-                    'analytic_account_id': analytic_acc_id,
-                }
 
-                created_ids.append(create_move_line(line_data, sums))
-                # Create a move line to Credit account to be revaluated
-                line_data = {
-                    'credit': amount,
-                    'move_id': move_id,
-                    'account_id': account_id,
-                }
-                created_ids.append(create_move_line(line_data, sums))
+                line_ids = create_move_and_lines(amount, reval_loss_account.id,
+                                                 account_id, sums,
+                                                 analytic_debit_acc_id=
+                                                 analytic_acc_id)
+                created_ids.append(line_ids)
 
             if company.provision_bs_loss_account_id and \
                company.provision_pl_loss_account_id:
-                move_id = create_move()
+
                 analytic_acc_id = (
                     company.provision_pl_analytic_account_id and
                     company.provision_pl_analytic_account_id.id or
                     False)
-                # Create a move line to Debit Provision P&L
-                line_data = {
-                    'debit': amount,
-                    'analytic_account_id': analytic_acc_id,
-                    'move_id': move_id,
-                    'account_id': company.provision_pl_loss_account_id.id, }
-                created_ids.append(create_move_line(line_data, sums))
-                # Create a move line to Credit Provision BS
-                line_data = {
-                    'credit': amount,
-                    'move_id': move_id,
-                    'account_id': company.provision_bs_loss_account_id.id, }
-                created_ids.append(create_move_line(line_data, sums))
+
+                line_ids = create_move_and_lines(amount,
+                                                 company.provision_pl_loss_account_id.id,
+                                                 company.provision_bs_loss_account_id.id,
+                                                 sums, analytic_debit_acc_id=
+                                                 analytic_acc_id)
+
+                created_ids.append(line_ids)
+
         return created_ids
 
     @api.multi
@@ -294,7 +289,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # on those criteria
         # - deferral method of account type is not None
         account_ids = account_obj.search(
-            [('user_type.close_method', '!=', 'none'),
+            [
+                ('user_type_id.include_initial_balance', '=', 'True'),
              ('currency_revaluation', '=', True)])
         if not account_ids:
             raise Warning(
@@ -302,10 +298,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form.")
             )
+
         # Get balance sums
-        account_sums = account_ids.compute_revaluations(
-            # period_ids,
-            self.revaluation_date)
+        account_sums = account_ids.compute_revaluations(self.revaluation_date)
+
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
                 for partner_id, sums in currency_tree.iteritems():
@@ -317,6 +313,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                         sums, self)
                     account_sums[account_id][currency_id][partner_id].\
                         update(diff_balances)
+
         # Create entries only after all computation have been done
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
