@@ -25,7 +25,7 @@ from openerp import models, fields, api
 class AccountAccountLine(models.Model):
     _inherit = 'account.move.line'
     # By convention added columns stats with gl_.
-    gl_foreign_balance = fields.Float(string='Aggregated Amount curency')
+    gl_foreign_balance = fields.Float(string='Aggregated Amount currency')
     gl_balance = fields.Float(string='Aggregated Amount')
     gl_revaluated_balance = fields.Float(string='Revaluated Amount')
     gl_currency_rate = fields.Float(string='Currency rate')
@@ -40,30 +40,35 @@ class AccountAccount(models.Model):
     )
 
     _sql_mapping = {
-        'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as "
+        'balance': "COALESCE(SUM(debit),0) - COALESCE(SUM(credit), 0) as "
                    "balance",
-        'debit': "COALESCE(SUM(l.debit), 0) as debit",
-        'credit': "COALESCE(SUM(l.credit), 0) as credit",
-        'foreign_balance': "COALESCE(SUM(l.amount_currency), 0) as foreign_"
+        'debit': "COALESCE(SUM(debit), 0) as debit",
+        'credit': "COALESCE(SUM(credit), 0) as credit",
+        'foreign_balance': "COALESCE(SUM(amount_currency), 0) as foreign_"
                            "balance",
     }
 
     @api.multi
     def _revaluation_query(self, revaluation_date):
-        lines_where_clause = self.env['account.move.line']._query_get()
-        query = ("SELECT l.account_id as id, l.partner_id, l.currency_id, " +
+
+        tables, where_clause, where_clause_params = self.env['account.move.line']._query_get()
+
+        query = ("SELECT account_id as id, partner_id, currency_id, " +
                  ', '.join(self._sql_mapping.values()) +
-                 " FROM account_move_line l "
-                 " WHERE l.account_id IN %(account_ids)s AND "
-                 " l.date <= %(revaluation_date)s AND "
-                 " l.currency_id IS NOT NULL AND "
-                 " l.reconcile_id IS NULL AND " +
-                 lines_where_clause +
-                 " GROUP BY l.account_id, l.currency_id, l.partner_id")
-        params = {
-            'revaluation_date': revaluation_date,
-            'account_ids': tuple(self.ids)
-        }
+                 " FROM account_move_line"
+                 " WHERE account_id IN %s AND "
+                 " date <= %s AND "
+                 " currency_id IS NOT NULL " +
+                 # " currency_id IS NOT NULL AND "
+                 # " reconciled = False " +
+                 (("AND " + where_clause) if where_clause else " ") +
+                 " GROUP BY account_id, currency_id, partner_id")
+
+        params = []
+        params.append(tuple(self.ids))
+        params.append(revaluation_date)
+        params += where_clause_params
+
         return query, params
 
     @api.multi
