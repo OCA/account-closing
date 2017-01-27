@@ -30,9 +30,11 @@
      "account",
      "account_reversal",
  ],
- "data": [
+ "demo": [
      "demo/currency_demo.xml",
      "demo/account_demo.xml",
+ ],
+ "data": [
      "views/res_company_view.xml",
      "security/security.xml",
      "views/account_view.xml",
