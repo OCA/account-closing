@@ -13,11 +13,14 @@ class TestCurrencyRevaluation(TransactionCase):
         data = {
             'revaluation_date': '2017-03-15',
             'journal_id':
-                self.env.ref('account_multicurrency_revaluation.reval_journal').id,
+                self.env.ref('account_multicurrency_revaluation.'
+                             'reval_journal').id,
             'label': '[%(account)s] wiz_test',
         }
         wiz = wizard.create(data)
         result = wiz.revaluate_currency()
+
+        self.assertEquals(result.get('name'), "Created revaluation lines")
 
         # TODO asserts
 

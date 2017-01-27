@@ -51,7 +51,8 @@ class AccountAccount(models.Model):
     @api.multi
     def _revaluation_query(self, revaluation_date):
 
-        tables, where_clause, where_clause_params = self.env['account.move.line']._query_get()
+        tables, where_clause, where_clause_params = \
+            self.env['account.move.line']._query_get()
 
         query = ("SELECT account_id as id, partner_id, currency_id, " +
                  ', '.join(self._sql_mapping.values()) +

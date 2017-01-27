@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, api
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from openerp import _
 
 
@@ -205,10 +205,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                                    if company.revaluation_analytic_account_id
                                    else False)
 
-                line_ids = create_move_and_lines(amount, account_id,
-                                                 reval_gain_account.id, sums,
-                                                 analytic_credit_acc_id=
-                                                 analytic_acc_id)
+                line_ids = create_move_and_lines(
+                    amount, account_id, reval_gain_account.id, sums,
+                    analytic_credit_acc_id=analytic_acc_id)
+
                 created_ids.append(line_ids)
 
             if company.provision_bs_gain_account_id and \
@@ -219,11 +219,11 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     company.provision_pl_analytic_account_id.id or
                     False)
 
-                line_ids = create_move_and_lines(amount,
-                                                 company.provision_bs_gain_account_id.id,
-                                                 company.provision_pl_gain_account_id.id,
-                                                 sums, analytic_credit_acc_id=
-                                                 analytic_acc_id)
+                line_ids = create_move_and_lines(
+                    amount, company.provision_bs_gain_account_id.id,
+                    company.provision_pl_gain_account_id.id, sums,
+                    analytic_credit_acc_id=analytic_acc_id)
+
                 created_ids.append(line_ids)
 
         # under revaluation
@@ -236,10 +236,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                                    if company.revaluation_analytic_account_id
                                    else False)
 
-                line_ids = create_move_and_lines(amount, reval_loss_account.id,
-                                                 account_id, sums,
-                                                 analytic_debit_acc_id=
-                                                 analytic_acc_id)
+                line_ids = create_move_and_lines(
+                    amount, reval_loss_account.id, account_id, sums,
+                    analytic_debit_acc_id=analytic_acc_id)
+
                 created_ids.append(line_ids)
 
             if company.provision_bs_loss_account_id and \
@@ -250,11 +250,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     company.provision_pl_analytic_account_id.id or
                     False)
 
-                line_ids = create_move_and_lines(amount,
-                                                 company.provision_pl_loss_account_id.id,
-                                                 company.provision_bs_loss_account_id.id,
-                                                 sums, analytic_debit_acc_id=
-                                                 analytic_acc_id)
+                line_ids = create_move_and_lines(
+                    amount, company.provision_pl_loss_account_id.id,
+                    company.provision_bs_loss_account_id.id, sums,
+                    analytic_debit_acc_id=analytic_acc_id)
 
                 created_ids.append(line_ids)
 
@@ -268,9 +267,9 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         @return: dict to open an Entries view filtered on generated move lines
         """
-        context = self.env.context
+
         account_obj = self.env['account.account']
-        move_obj = self.env['account.move']
+
         company = self.journal_id.company_id or self.env.user.company_id
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
@@ -288,12 +287,12 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # Search for accounts Balance Sheet to be revaluated
         # on those criteria
         # - deferral method of account type is not None
-        account_ids = account_obj.search(
-            [
-                ('user_type_id.include_initial_balance', '=', 'True'),
-             ('currency_revaluation', '=', True)])
+        account_ids = account_obj.search([
+            ('user_type_id.include_initial_balance', '=', 'True'),
+            ('currency_revaluation', '=', True)])
+
         if not account_ids:
-            raise Warning(
+            raise UserError(
                 _("No account to be revaluated found. "
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form.")
@@ -350,6 +349,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     'search_view_id': False,
                     'type': 'ir.actions.act_window'}
         else:
-            raise Warning(
+            raise UserError(
                 _("No accounting entry has been posted.")
             )
