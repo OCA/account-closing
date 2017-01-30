@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_currency_unrealized">
+            <t t-call="report.html_container">
+                <div class="act_as_table data_table">
+                    <div class="act_as_row labels">
+                        <div class="act_as_cell">Report</div>
+                        <!--<div class="act_as_cell">Fiscal Period</div>-->
+                        <div class="act_as_cell">Company</div>
+                        <div class="act_as_cell">Company currency</div>
+                    </div>
+                    <div class="act_as_row">
+                        <div class="act_as_cell">Currency Gain and Loss</div>
+                        <!--<div class="act_as_cell">${data.get('form', dict()).get('period_name')}</div>-->
+                        <div class="act_as_cell"><span t-field="user.company_id.name"/></div>
+                        <div class="act_as_cell"><span t-field="user.company_id.currency_id.name"/></div>
+                    </div>
+                </div>
+                <t t-foreach="docs" t-as="account">
+                    <div class="act_as_table list_table" style="margin-top: 10px;">
+                        <div class="act_as_caption account_title">
+                            <span t-field="account.code"/> - <span t-field="account.name"/>
+                        </div>
+                        <div class="act_as_thead">
+                            <div class="act_as_row labels">
+                                <div class="act_as_cell first_column">Partner</div>
+                                <div class="act_as_cell first_column amount" style="width: 100px;">Curr. Balance YTD</div>
+                                <div class="act_as_cell first_column amount" style="width: 50px;"></div>
+                                <div class="act_as_cell first_column amount" style="width: 80px;">Revaluation Rate</div>
+                                <div class="act_as_cell first_column amount" style="width: 150px;">Revaluated Amount YTD</div>
+                                <div class="act_as_cell first_column amount" style="width: 100px;">Balance YTD</div>
+                                <div class="act_as_cell first_column amount" style="width: 100px;">'Gain(+)/Loss(-) YTD</div>
+                            </div>
+                            <t t-foreach="account.ordered_lines" t-as="line">
+                                <div class="act_as_row lines">
+                                    <div class="act_as_cell">
+                                        <t t-if="line.name"><span t-field="line.name"/></t>
+                                        <t t-if="not line.name">--</t>
+                                    </div>
+                                    <div class="act_as_cell amount" style="width: 100px;">
+                                        <t t-if="line.gl_foreign_balance"><span t-field="line.gl_foreign_balance"/></t>
+                                        <t t-if="not line.gl_foreign_balance">0.0</t>
+                                    </div>
+                                    <div class="act_as_cell" style="width: 50px;">
+                                        <t t-if="line.curr_name"><span t-field="line.curr_name"/></t>
+                                        <t t-if="not line.curr_name">--</t>
+                                    </div>
+                                    <div class="act_as_cell amount" style="width: 80px;">
+                                        <t t-if="line.gl_currency_rate"><span t-field="line.gl_currency_rate"/></t>
+                                        <t t-if="not line.gl_currency_rate">0.0</t>
+                                    </div>
+                                    <div class="act_as_cell amount" style="width: 150px;">
+                                        <t t-if="line.gl_revaluated_balance"><span t-field="line.gl_revaluated_balance"/></t>
+                                        <t t-if="not line.gl_revaluated_balance">0.0</t>
+                                    </div>
+                                    <div class="act_as_cell amount" style="width: 100px;">
+                                        <t t-if="line.gl_balance"><span t-field="line.gl_balance"/></t>
+                                        <t t-if="not line.gl_balance">0.0</t>
+                                    </div>
+                                    <div class="act_as_cell amount" style="width: 100px;">
+                                        <t t-if="line.gl_ytd_balance"><span t-field="line.gl_ytd_balance"/></t>
+                                        <t t-if="not line.gl_ytd_balance">0.0</t>
+                                    </div>
+                                </div>
+                            </t>
+                            <div class="act_as_row lines labels">
+                                <div class="act_as_cell"><b>TOTAL</b></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <t t-if="account.gl_revaluated_balance_total"><span t-field="account.gl_revaluated_balance_total"/></t>
+                                        <t t-if="not account.gl_revaluated_balance_total">0.0</t>
+                                    </b>
+                                </div>
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <t t-if="account.gl_balance_total"><span t-field="account.gl_balance_total"/></t>
+                                        <t t-if="not account.gl_balance_total">0.0</t>
+                                    </b>
+                                </div>
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <t t-if="account.gl_ytd_balance_total"><span t-field="account.gl_ytd_balance_total"/></t>
+                                        <t t-if="not account.gl_ytd_balance_total">0.0</t>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

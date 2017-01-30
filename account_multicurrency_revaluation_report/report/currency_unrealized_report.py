@@ -20,7 +20,7 @@
 
 from openerp.report import report_sxw
 from openerp.tools.translate import _
-from openerp import pooler
+from openerp import pooler, models
 
 
 class ShellAccount(object):
@@ -55,7 +55,7 @@ class ShellAccount(object):
     def __contains__(self, key):
         return hasattr(self, key)
 
-    def get_lines(self, period_id):
+    def get_lines(self):
         """Get all line account move line that are need on report for current
         account.
         """
@@ -78,11 +78,10 @@ class ShellAccount(object):
                  WHERE account_move_line.account_id = %s
                    AND account_move.to_be_reversed = true
                    AND account_move_line.gl_balance is not null
-                   AND account_move_line.period_id = %s
                  ORDER BY res_partner.name,
                    account_move_line.gl_foreign_balance,
                    account_move_line.date"""
-        self.cursor.execute(sql, (self.account_id, period_id))
+        self.cursor.execute(sql, self.account_id)
         self.ordered_lines = self.cursor.dictfetchall()
         return self.ordered_lines
 
@@ -98,8 +97,8 @@ class ShellAccount(object):
 
 class CurrencyUnrealizedReport(report_sxw.rml_parse):
 
-    def _get_period_name(self, data):
-        return data.get('form', {}).get('period_name', '')
+    # def _get_period_name(self, data):
+    #     return data.get('form', {}).get('period_name', '')
 
     def __init__(self, cursor, uid, name, context):
         super(CurrencyUnrealizedReport, self).__init__(
@@ -111,7 +110,7 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         self.localcontext.update({
             'cr': cursor,
             'uid': uid,
-            'period_name': self._get_period_name,
+            # 'period_name': self._get_period_name,
             'report_name': _('Exchange Rate Gain and Loss Report')}
         )
 
@@ -177,11 +176,11 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         accounts = []
         if not isinstance(account_ids, list):
             account_ids = [account_ids]
-        acc_obj = self.pool.get('account.account')
+        # acc_obj = self.pool.get('account.account')
         for account_id in account_ids:
             accounts.append(account_id)
-            accounts += acc_obj._get_children_and_consol(
-                self.cursor, self.uid, account_id, context=context)
+            # accounts += acc_obj._get_children_and_consol(
+            #     self.cursor, self.uid, account_id, context=context)
         res_ids = list(set(accounts))
         res_ids = self.sort_accounts_with_structure(
             account_ids, res_ids, context=context)
@@ -219,14 +218,14 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         """Populate a ledger_lines attribute on each browse record that will
         be used by mako template.
         """
-        for mand in ['account_ids', 'period_id']:
-            if not data['form'][mand]:
-                raise Exception(
-                    _('%s argument is not set in wizard') % (mand,))
+        # for mand in ['account_ids', 'period_id']:
+        #     if not data['form'][mand]:
+        #         raise Exception(
+        #             _('%s argument is not set in wizard') % (mand,))
         # we replace object
         objects = []
-        new_ids = data['form']['account_ids']
-        period_id = data['form']['period_id']
+        new_ids = data['form'].get('account_ids')
+        # period_id = data['form']['period_id']
         # get_all_account is in charge of ordering the accounts
         for acc_id in self.get_all_accounts(new_ids):
             acc = ShellAccount(
@@ -234,14 +233,21 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
                 context=self.localcontext)
             if not acc.currency_revaluation:
                 continue
-            acc.get_lines(period_id)
+            acc.get_lines()
             if acc.ordered_lines:
                 objects.append(acc)
                 acc.compute_totals()
         return super(CurrencyUnrealizedReport, self).set_context(
             objects, data, ids, report_type=None)
 
-report_sxw.report_sxw(
-    'report.currency_unrealized', 'account.account',
-    'addons/account_multicurrency_revaluation/report/templates/'
-    'unrealized_currency_gain_loss.mako', parser=CurrencyUnrealizedReport)
+
+class ReportPrintCurrencyUnrealized(models.AbstractModel):
+    _name = 'account_multicurrency_revaluation_report.currency_unrealized'
+    _inherit = 'report.abstract_report'
+    _template = 'account_multicurrency_revaluation_report.unrealized_currency_gain_loss'
+    _wrapped_report_class = CurrencyUnrealizedReport
+
+# report_sxw.report_sxw(
+#     'report.currency_unrealized', 'account.account',
+#     'addons/account_multicurrency_revaluation/report/templates/'
+#     'unrealized_currency_gain_loss.mako', parser=CurrencyUnrealizedReport)
