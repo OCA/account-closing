@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api
+from openerp import models, api
 
 
 class UnrealizedCurrencyReportPrinter(models.TransientModel):
@@ -38,9 +38,11 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
         form = {}
         # form['period_id'] = current.period_id.id
         # form['period_name'] = current.period_id.name
-        form['account_ids'] = [account.id for account in self.env['account.account'].search([])]
+        form['account_ids'] = [account.id for account in
+                               self.env['account.account'].search([])]
         data['form'] = form
 
         return {'type': 'ir.actions.report.xml',
-                'report_name': 'account_multicurrency_revaluation_report.curr_unrealized',
+                'report_name':
+                    'account_multicurrency_revaluation_report.curr_unrealized',
                 'datas': data}

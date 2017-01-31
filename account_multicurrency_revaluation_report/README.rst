@@ -40,7 +40,7 @@ Known issues / Roadmap
 ======================
 
 * The module depends on the module *base headers webkit* which is in work in
-progress in this pull request: https://github.com/OCA/webkit-tools/pull/10
+  progress in this pull request: https://github.com/OCA/webkit-tools/pull/10
 
 However, this PR has been blocked since September 2014 now by this issue:
 https://github.com/odoo/odoo/issues/2334

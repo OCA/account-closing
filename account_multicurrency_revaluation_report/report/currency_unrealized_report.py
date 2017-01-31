@@ -97,9 +97,6 @@ class ShellAccount(object):
 
 class CurrencyUnrealizedReport(report_sxw.rml_parse):
 
-    # def _get_period_name(self, data):
-    #     return data.get('form', {}).get('period_name', '')
-
     def __init__(self, cursor, uid, name, context):
         super(CurrencyUnrealizedReport, self).__init__(
             cursor, uid, name, context=context)
@@ -107,14 +104,10 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         self.pool = pooler.get_pool(self.cr.dbname)
         self.cursor = self.cr
         self.uid = uid
-        # self.company = self.pool.get('res.users').browse(
-        #     self.cr, uid, uid, context=context).company_id
+        self.company = self.pool.get('res.users').browse(
+            self.cr, uid, uid, context=context).company_id
         self.localcontext.update({
-            # 'cr': cursor,
-            # 'uid': uid,
-            # 'period_name': self._get_period_name,
             'report_name': _('Exchange Rate Gain and Loss Report'),
-            # 'ordered_lines': [line.name for line in move_lines]
         })
 
     def sort_accounts_with_structure(self, root_account_ids, account_ids,
@@ -154,8 +147,6 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
                               if account_data['id'] in root_account_ids]
         for root_account_data in root_accounts_data:
             sorted_accounts.append(root_account_data['id'])
-            # sorted_accounts.extend(
-            #     recursive_sort_by_code(accounts_data, root_account_data))
         # fallback to unsorted accounts when sort failed
         # sort fails when the levels are miscalculated by account.account
         # check lp:783670
@@ -179,11 +170,8 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         accounts = []
         if not isinstance(account_ids, list):
             account_ids = [account_ids]
-        # acc_obj = self.pool.get('account.account')
         for account_id in account_ids:
             accounts.append(account_id)
-            # accounts += acc_obj._get_children_and_consol(
-            #     self.cursor, self.uid, account_id, context=context)
         res_ids = list(set(accounts))
         res_ids = self.sort_accounts_with_structure(
             account_ids, res_ids, context=context)
@@ -222,17 +210,20 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         be used by mako template.
         """
 
-        # for mand in ['account_ids', 'period_id']:
-        #     if not data['form'][mand]:
-        #         raise Exception(
-        #             _('%s argument is not set in wizard') % (mand,))
         # we replace object
-
-        import pdb; pdb.set_trace()
-
         objects = []
+
+        # Redefine data['form'] so we can call report as HTML without wizard
+        if not data.get('form'):
+            data['form'] = {}
+            data['form']['account_ids'] = self.pool['account.account'].search(
+                self.cr, self.uid, [])
+            data['lang'] = 'en_US'
+            data['uid'] = self.uid
+            data['params'] = {}
+
         new_ids = data['form'].get('account_ids')
-        # period_id = data['form']['period_id']
+
         # get_all_account is in charge of ordering the accounts
         for acc_id in self.get_all_accounts(new_ids):
             acc = ShellAccount(
@@ -253,8 +244,3 @@ class ReportPrintCurrencyUnrealized(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'account_multicurrency_revaluation_report.curr_unrealized'
     _wrapped_report_class = CurrencyUnrealizedReport
-
-# report_sxw.report_sxw(
-#     'report.currency_unrealized', 'account.account',
-#     'addons/account_multicurrency_revaluation/report/templates/'
-#     'unrealized_currency_gain_loss.mako', parser=CurrencyUnrealizedReport)
