@@ -42,5 +42,5 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
         data['form'] = form
 
         return {'type': 'ir.actions.report.xml',
-                'report_name': 'account_multicurrency_revaluation_report.report_currency_unrealized',
+                'report_name': 'account_multicurrency_revaluation_report.curr_unrealized',
                 'datas': data}

@@ -1,10 +1,10 @@
 <openerp>
   <data>
-    <report name="account_multicurrency_revaluation_report.report_currency_unrealized"
+    <report name="account_multicurrency_revaluation_report.curr_unrealized"
             string="Unrealized currency report"
             id="action_report_currency_unrealized"
             model="account.account"
-            file="account_multicurrency_revaluation_report.report_currency_unrealized"
+            file="account_multicurrency_revaluation_report.curr_unrealized"
             report_type="qweb-pdf"
             />
   </data>
