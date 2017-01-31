@@ -81,7 +81,7 @@ class ShellAccount(object):
                  ORDER BY res_partner.name,
                    account_move_line.gl_foreign_balance,
                    account_move_line.date"""
-        self.cursor.execute(sql, self.account_id)
+        self.cursor.execute(sql, [self.account_id])
         self.ordered_lines = self.cursor.dictfetchall()
         return self.ordered_lines
 
@@ -103,16 +103,19 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
     def __init__(self, cursor, uid, name, context):
         super(CurrencyUnrealizedReport, self).__init__(
             cursor, uid, name, context=context)
+
         self.pool = pooler.get_pool(self.cr.dbname)
         self.cursor = self.cr
-        self.company = self.pool.get('res.users').browse(
-            self.cr, uid, uid, context=context).company_id
+        self.uid = uid
+        # self.company = self.pool.get('res.users').browse(
+        #     self.cr, uid, uid, context=context).company_id
         self.localcontext.update({
-            'cr': cursor,
-            'uid': uid,
+            # 'cr': cursor,
+            # 'uid': uid,
             # 'period_name': self._get_period_name,
-            'report_name': _('Exchange Rate Gain and Loss Report')}
-        )
+            'report_name': _('Exchange Rate Gain and Loss Report'),
+            # 'ordered_lines': [line.name for line in move_lines]
+        })
 
     def sort_accounts_with_structure(self, root_account_ids, account_ids,
                                      context=None):
@@ -144,15 +147,15 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
             return []
         accounts_data = self.pool['account.account'].read(
             self.cr, self.uid, account_ids,
-            ['id', 'parent_id', 'level', 'code', 'child_consol_ids'],
+            ['id', 'code'],
             context=context)
         sorted_accounts = []
         root_accounts_data = [account_data for account_data in accounts_data
                               if account_data['id'] in root_account_ids]
         for root_account_data in root_accounts_data:
             sorted_accounts.append(root_account_data['id'])
-            sorted_accounts.extend(
-                recursive_sort_by_code(accounts_data, root_account_data))
+            # sorted_accounts.extend(
+            #     recursive_sort_by_code(accounts_data, root_account_data))
         # fallback to unsorted accounts when sort failed
         # sort fails when the levels are miscalculated by account.account
         # check lp:783670
@@ -218,11 +221,15 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
         """Populate a ledger_lines attribute on each browse record that will
         be used by mako template.
         """
+
         # for mand in ['account_ids', 'period_id']:
         #     if not data['form'][mand]:
         #         raise Exception(
         #             _('%s argument is not set in wizard') % (mand,))
         # we replace object
+
+        import pdb; pdb.set_trace()
+
         objects = []
         new_ids = data['form'].get('account_ids')
         # period_id = data['form']['period_id']
@@ -242,9 +249,9 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
 
 
 class ReportPrintCurrencyUnrealized(models.AbstractModel):
-    _name = 'account_multicurrency_revaluation_report.currency_unrealized'
+    _name = 'report.account_multicurrency_revaluation_report.curr_unrealized'
     _inherit = 'report.abstract_report'
-    _template = 'account_multicurrency_revaluation_report.unrealized_currency_gain_loss'
+    _template = 'account_multicurrency_revaluation_report.curr_unrealized'
     _wrapped_report_class = CurrencyUnrealizedReport
 
 # report_sxw.report_sxw(

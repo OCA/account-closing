@@ -7,7 +7,7 @@
             <field name="model">unrealized.report.printer</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Print Currency Unrealized" version="7.0">
+                <form name="Print Currency Unrealized">
                     <!--<group>-->
                         <!--<field name="period_id" domain="[('state', '=', 'draft')]"/>-->
                         <!--<field name="chart_account_id"/>-->
