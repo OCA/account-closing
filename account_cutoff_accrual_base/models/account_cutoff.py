@@ -36,7 +36,7 @@ class AccountCutoff(models.Model):
                            self)._inherit_default_cutoff_account_id()
 
         type = self.env.context.get('type')
-        company = self.env['res.users'].browse(self.env.uid).company_id
+        company = self.env.user.company_id
 
         if type == 'accrued_expense':
             account_id = company.default_accrued_expense_account_id.id or False
