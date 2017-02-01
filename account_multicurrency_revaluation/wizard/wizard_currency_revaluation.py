@@ -189,7 +189,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             base_move['line_ids'] = [(0, 0, debit_line), (0, 0, credit_line)]
             created_move = self.env['account.move'].create(base_move)
             created_move.post()
-            return created_move.line_ids
+            return [x.id for x in created_move.line_ids]
 
         if partner_id is None:
             partner_id = False
@@ -209,7 +209,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     amount, account_id, reval_gain_account.id, sums,
                     analytic_credit_acc_id=analytic_acc_id)
 
-                created_ids.append(line_ids)
+                created_ids.extend(line_ids)
 
             if company.provision_bs_gain_account_id and \
                company.provision_pl_gain_account_id:
@@ -224,7 +224,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     company.provision_pl_gain_account_id.id, sums,
                     analytic_credit_acc_id=analytic_acc_id)
 
-                created_ids.append(line_ids)
+                created_ids.extend(line_ids)
 
         # under revaluation
         elif amount <= -0.01:
@@ -240,7 +240,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     amount, reval_loss_account.id, account_id, sums,
                     analytic_debit_acc_id=analytic_acc_id)
 
-                created_ids.append(line_ids)
+                created_ids.extend(line_ids)
 
             if company.provision_bs_loss_account_id and \
                company.provision_pl_loss_account_id:
@@ -255,7 +255,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     company.provision_bs_loss_account_id.id, sums,
                     analytic_debit_acc_id=analytic_acc_id)
 
-                created_ids.append(line_ids)
+                created_ids.extend(line_ids)
 
         return created_ids
 
