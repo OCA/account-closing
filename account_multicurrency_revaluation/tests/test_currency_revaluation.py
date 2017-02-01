@@ -7,7 +7,86 @@ from openerp.tests.common import TransactionCase
 
 class TestCurrencyRevaluation(TransactionCase):
 
-    def test_wizard(self):
+    def test_uk_revaluation(self):
+        # Set accounts on company
+        company = self.env['res.company'].search([])
+        values = {
+            'revaluation_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_loss').id,
+            'revaluation_gain_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_gain').id,
+        }
+        company.write(values)
+
+        wizard = self.env['wizard.currency.revaluation']
+        data = {
+            'revaluation_date': '2017-03-15',
+            'journal_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'reval_journal').id,
+            'label': '[%(account)s] wiz_test',
+        }
+        wiz = wizard.create(data)
+        result = wiz.revaluate_currency()
+
+        self.assertEquals(result.get('name'), "Created revaluation lines")
+
+        # TODO asserts
+
+    def test_ch_revaluation(self):
+        # Set accounts on company
+        company = self.env['res.company'].search([])
+        values = {
+            'provision_bs_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_bs_loss').id,
+            'provision_bs_gain_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_bs_gain').id,
+            'provision_pl_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_pl_loss').id,
+            'provision_pl_gain_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_pl_gain').id,
+        }
+        company.write(values)
+
+        wizard = self.env['wizard.currency.revaluation']
+        data = {
+            'revaluation_date': '2017-03-15',
+            'journal_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'reval_journal').id,
+            'label': '[%(account)s] wiz_test',
+        }
+        wiz = wizard.create(data)
+        result = wiz.revaluate_currency()
+
+        self.assertEquals(result.get('name'), "Created revaluation lines")
+
+        # TODO asserts
+
+    def test_fr_revaluation(self):
+        # Set accounts on company
+        company = self.env['res.company'].search([])
+        values = {
+            'revaluation_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_loss').id,
+            'revaluation_gain_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_gain').id,
+            'provision_bs_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_bs_loss').id,
+            'provision_pl_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_prov_pl_loss').id,
+        }
+        company.write(values)
 
         wizard = self.env['wizard.currency.revaluation']
         data = {
@@ -27,27 +106,9 @@ class TestCurrencyRevaluation(TransactionCase):
     def setUp(self):
         super(TestCurrencyRevaluation, self).setUp()
 
-        # Set accounts on company
+        # Set currency EUR on company
         company = self.env['res.company'].search([])
         values = {
-            'revaluation_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_reval_loss').id,
-            'revaluation_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_reval_gain').id,
-            'provision_bs_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_bs_loss').id,
-            'provision_bs_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_bs_gain').id,
-            'provision_pl_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_pl_loss').id,
-            'provision_pl_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_pl_gain').id,
             'currency_id': self.env.ref('base.EUR').id
         }
         company.write(values)
@@ -59,9 +120,11 @@ class TestCurrencyRevaluation(TransactionCase):
 
         receivable_acc = \
             self.env.ref('account_multicurrency_revaluation.'
-                         'wiz_test_acc_usd_receivable')
+                         'demo_acc_receivable')
+        receivable_acc.write({'reconcile': True})
+
         revenue_acc = self.env.ref('account_multicurrency_revaluation.'
-                                   'wiz_test_acc_usd_revenue')
+                                   'demo_acc_revenue')
 
         usd_currency = self.env.ref('base.USD')
 

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!--<record model="account.account.type" id="data_account_type_current_assets">-->
-          <!--<field name="name">Current Assets</field>-->
-          <!--<field name="type">other</field>-->
-          <!--<field name="include_initial_balance" eval="True"/>-->
-    <!--</record>-->
     <record id="acc_reval_loss" model="account.account">
         <field name="name">Reval Loss</field>
         <field name="code">XR001</field>
@@ -35,102 +30,38 @@
         <field name="code">XPPL002</field>
         <field name="user_type_id" ref="account.data_account_type_revenue" />
     </record>
-    <record id="wiz_test_acc_usd_receivable" model="account.account">
-        <field name="name">Account USD Receivable</field>
-        <field name="code">usdrec</field>
+    <record id="demo_acc_receivable" model="account.account">
+        <field name="name">Account Receivable</field>
+        <field name="code">accrec</field>
         <field name="user_type_id" ref="account.data_account_type_receivable" />
-        <!--<field name="currency_id" ref="base.USD" />-->
         <field name="currency_revaluation">True</field>
         <field name="reconcile">True</field>
     </record>
-    <record id="wiz_test_acc_usd_revenue" model="account.account">
-        <field name="name">Account USD Revenue</field>
-        <field name="code">usdrev</field>
+    <record id="demo_acc_revenue" model="account.account">
+        <field name="name">Account Revenue</field>
+        <field name="code">accrev</field>
         <field name="user_type_id" ref="account.data_account_type_revenue" />
-        <!--<field name="currency_id" ref="base.USD" />-->
         <field name="currency_revaluation">True</field>
     </record>
-    <record id="wiz_test_acc_usd_liquidity" model="account.account">
-        <field name="name">Account USD Liquidity</field>
-        <field name="code">usdliq</field>
+    <record id="demo_acc_liquidity" model="account.account">
+        <field name="name">Account Liquidity</field>
+        <field name="code">accliq</field>
         <field name="user_type_id" ref="account.data_account_type_liquidity" />
-        <!--<field name="currency_id" ref="base.USD" />-->
         <field name="currency_revaluation">True</field>
     </record>
     <record id="reval_journal" model="account.journal">
         <field name="name">Revaluation Journal</field>
         <field name="code">RJ</field>
         <field name="type">general</field>
-        <!--<field name="currency_id" ref="base.USD" />-->
     </record>
     <record id="bank_journal" model="account.journal">
         <field name="name">Bank Journal</field>
         <field name="code">BJ</field>
         <field name="type">bank</field>
-        <!--<field name="currency_id" ref="base.USD" />-->
     </record>
     <record id="sales_journal" model="account.journal">
         <field name="name">A Sales Journal</field>
         <field name="code">SJ</field>
         <field name="type">sale</field>
-        <!--<field name="currency_id" ref="base.USD" />-->
     </record>
-    <!--<record id="wiz_move_invoicing" model="account.move">-->
-        <!--<field name="name">Invoicing</field>-->
-        <!--<field name="journal_id" ref="wiz_reval_journal" />-->
-        <!--<field name="state">draft</field>-->
-        <!--<field name="date">2017-01-15</field>-->
-    <!--</record>-->
-    <!--<record id="invoicing_move_line_credit" model="account.move.line">-->
-        <!--<field name="account_id" ref="wiz_test_acc_usd_revenue" />-->
-        <!--<field name="amount_currency">-800</field>-->
-        <!--<field name="currency_id" ref="base.USD" />-->
-        <!--<field name="credit" eval="1200.0" />-->
-        <!--<field name="date">2017-01-15</field>-->
-        <!--<field name="debit" eval="0.0" />-->
-        <!--<field name="name">Invoicing credit</field>-->
-        <!--<field name="quantity">1.0</field>-->
-        <!--<field name="move_id" ref="wiz_move_invoicing" />-->
-        <!--<field name="state">draft</field>-->
-    <!--</record>-->
-    <!--<record id="invoicing_move_line_debit" model="account.move.line">-->
-        <!--<field name="account_id" ref="wiz_test_acc_usd_receivable" />-->
-        <!--<field name="amount_currency">800</field>-->
-        <!--<field name="currency_id" ref="base.USD" />-->
-        <!--<field name="credit" eval="0.0" />-->
-        <!--<field name="date">2017-01-15</field>-->
-        <!--<field name="debit" eval="1200.0" />-->
-        <!--<field name="name">Invoicing debit</field>-->
-        <!--<field name="quantity">1.0</field>-->
-        <!--<field name="move_id" ref="wiz_move_invoicing" />-->
-        <!--<field name="state">draft</field>-->
-    <!--</record>-->
-    <!--<record id="wiz_move_payment" model="account.move">-->
-        <!--<field name="name">Payment</field>-->
-        <!--<field name="journal_id" ref="wiz_reval_journal" />-->
-        <!--<field name="state">draft</field>-->
-        <!--<field name="date">2017-02-15</field>-->
-    <!--</record>-->
-    <!--<record id="payment_move_line_credit" model="account.move.line">-->
-        <!--<field name="account_id" ref="wiz_test_acc_usd_receivable" />-->
-        <!--<field name="amount_currency">-700</field>-->
-        <!--<field name="currency_id" ref="base.USD" />-->
-        <!--<field name="credit" eval="910.0" />-->
-        <!--<field name="date">2017-02-15</field>-->
-        <!--<field name="debit" eval="0.0" />-->
-        <!--<field name="name">Payment credit</field>-->
-        <!--<field name="quantity">1.0</field>-->
-        <!--<field name="move_id" ref="wiz_move_invoicing" />-->
-    <!--</record>-->
-    <!--<record id="payment_move_line_debit" model="account.move.line">-->
-        <!--<field name="account_id" ref="wiz_test_acc_usd_liquidity" />-->
-        <!--<field name="amount_currency">700</field>-->
-        <!--<field name="currency_id" ref="base.USD" />-->
-        <!--<field name="credit" eval="0.0" />-->
-        <!--<field name="date">2017-02-15</field>-->
-        <!--<field name="debit" eval="910.0" />-->
-        <!--<field name="name">Payment debit</field>-->
-        <!--<field name="quantity">1.0</field>-->
-        <!--<field name="move_id" ref="wiz_move_invoicing" />-->
-    <!--</record>-->
 </odoo>
