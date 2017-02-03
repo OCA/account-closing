@@ -6,14 +6,9 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.view_account_form"/>
         <field name="arch" type="xml">
-            <!--<label for="note" position="before">-->
-            <xpath expr="//group/group[2]" position="after">
-               <separator string="Currency Revaluation"/>
-               <group>
-                   <field name="currency_revaluation"/>
-               </group>
+            <xpath expr="//group/group" position="inside">
+               <field name="currency_revaluation"/>
             </xpath>
-            <!--</label>-->
         </field>
     </record>
 </odoo>

@@ -24,13 +24,13 @@
                         <td> <field name="revaluation_gain_account_id" nolabel="1"/> </td>
                         <td> <field name="revaluation_analytic_account_id" nolabel="1"/> </td>
                     </tr>
-                    <tr groups="account_multicurrency_revaluation.group_revaluation_additonal">
-                        <th><label string="Provision B.S accounts"/></th>
+                    <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
+                        <th><label string="Provision B.S. accounts"/></th>
                         <td> <field name="provision_bs_loss_account_id" nolabel="1"/> </td>
                         <td> <field name="provision_bs_gain_account_id" nolabel="1"/> </td>
                         <td> </td>
                     </tr>
-                    <tr groups="account_multicurrency_revaluation.group_revaluation_additonal">
+                    <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
                         <th><label string="Provision P&amp;L accounts"/></th>
                         <td> <field name="provision_pl_loss_account_id" nolabel="1"/> </td>
                         <td> <field name="provision_pl_gain_account_id" nolabel="1"/> </td>
