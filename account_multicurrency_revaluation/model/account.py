@@ -54,22 +54,37 @@ class AccountAccount(models.Model):
         tables, where_clause, where_clause_params = \
             self.env['account.move.line']._query_get()
 
-        query = ("SELECT account_id as id, partner_id, currency_id, " +
+        query = ("with amount as ( SELECT aml.account_id, aml.partner_id, "
+                 "aml.currency_id, aml.debit, aml.credit, aml.amount_currency "
+                 "FROM account_move_line aml LEFT JOIN "
+                 "account_partial_reconcile aprc ON (aml.balance < 0 "
+                 "AND aml.id = aprc.credit_move_id) LEFT JOIN "
+                 "account_move_line amlcf ON (aml.balance < 0 "
+                 "AND aprc.debit_move_id = amlcf.id "
+                 "AND amlcf.date < %s ) LEFT JOIN "
+                 "account_partial_reconcile aprd ON (aml.balance > 0 "
+                 "AND aml.id = aprd.debit_move_id) LEFT JOIN "
+                 "account_move_line amldf ON (aml.balance > 0 "
+                 "AND aprd.credit_move_id = amldf.id "
+                 "AND amldf.date < %s ) "
+                 "WHERE aml.account_id IN %s "
+                 "AND aml.date <= %s "
+                 "AND aml.currency_id IS NOT NULL "
+                 "GROUP BY aml.id "
+                 "HAVING aml.full_reconcile_id IS NULL "
+                 "OR (MAX(amldf.id) IS NULL AND MAX(amlcf.id) IS NULL)"
+                 ") SELECT account_id as id, partner_id, currency_id, " +
                  ', '.join(self._sql_mapping.values()) +
-                 " FROM account_move_line"
-                 " WHERE account_id IN %s AND "
-                 " date <= %s AND "
-                 " currency_id IS NOT NULL " +
-                 # " currency_id IS NOT NULL AND "
-                 # " reconciled = False " +
-                 (("AND " + where_clause) if where_clause else " ") +
+                 " FROM amount " +
+                 (("WHERE " + where_clause) if where_clause else " ") +
                  " GROUP BY account_id, currency_id, partner_id")
 
         params = []
+        params.append(revaluation_date)
+        params.append(revaluation_date)
         params.append(tuple(self.ids))
         params.append(revaluation_date)
         params += where_clause_params
-
         return query, params
 
     @api.multi
@@ -80,6 +95,7 @@ class AccountAccount(models.Model):
         self.env.cr.execute(query, params)
 
         lines = self.env.cr.dictfetchall()
+
         for line in lines:
             # generate a tree
             # - account_id
