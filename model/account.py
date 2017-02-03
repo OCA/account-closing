@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Yannick Vaucher, Guewen Baconnier
-#    Copyright 2012 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2012-2017 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
 
@@ -54,22 +37,37 @@ class AccountAccount(models.Model):
         tables, where_clause, where_clause_params = \
             self.env['account.move.line']._query_get()
 
-        query = ("SELECT account_id as id, partner_id, currency_id, " +
+        query = ("with amount as ( SELECT aml.account_id, aml.partner_id, "
+                 "aml.currency_id, aml.debit, aml.credit, aml.amount_currency "
+                 "FROM account_move_line aml LEFT JOIN "
+                 "account_partial_reconcile aprc ON (aml.balance < 0 "
+                 "AND aml.id = aprc.credit_move_id) LEFT JOIN "
+                 "account_move_line amlcf ON (aml.balance < 0 "
+                 "AND aprc.debit_move_id = amlcf.id "
+                 "AND amlcf.date < %s ) LEFT JOIN "
+                 "account_partial_reconcile aprd ON (aml.balance > 0 "
+                 "AND aml.id = aprd.debit_move_id) LEFT JOIN "
+                 "account_move_line amldf ON (aml.balance > 0 "
+                 "AND aprd.credit_move_id = amldf.id "
+                 "AND amldf.date < %s ) "
+                 "WHERE aml.account_id IN %s "
+                 "AND aml.date <= %s "
+                 "AND aml.currency_id IS NOT NULL "
+                 "GROUP BY aml.id "
+                 "HAVING aml.full_reconcile_id IS NULL "
+                 "OR (MAX(amldf.id) IS NULL AND MAX(amlcf.id) IS NULL)"
+                 ") SELECT account_id as id, partner_id, currency_id, " +
                  ', '.join(self._sql_mapping.values()) +
-                 " FROM account_move_line"
-                 " WHERE account_id IN %s AND "
-                 " date <= %s AND "
-                 " currency_id IS NOT NULL " +
-                 # " currency_id IS NOT NULL AND "
-                 # " reconciled = False " +
-                 (("AND " + where_clause) if where_clause else " ") +
+                 " FROM amount " +
+                 (("WHERE " + where_clause) if where_clause else " ") +
                  " GROUP BY account_id, currency_id, partner_id")
 
         params = []
+        params.append(revaluation_date)
+        params.append(revaluation_date)
         params.append(tuple(self.ids))
         params.append(revaluation_date)
         params += where_clause_params
-
         return query, params
 
     @api.multi
@@ -80,6 +78,7 @@ class AccountAccount(models.Model):
         self.env.cr.execute(query, params)
 
         lines = self.env.cr.dictfetchall()
+
         for line in lines:
             # generate a tree
             # - account_id
