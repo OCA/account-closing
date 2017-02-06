@@ -320,7 +320,9 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     adj_balance = sums.get('unrealized_gain_loss', 0.0)
                     if not adj_balance:
                         continue
-
+                    account_type = account_obj.browse(account_id).internal_type
+                    if account_type not in ['receivable', 'payable']:
+                        partner_id = None
                     rate = sums.get('currency_rate', 0.0)
                     label = self._format_label(
                         self.label, account_id, currency_id, rate
