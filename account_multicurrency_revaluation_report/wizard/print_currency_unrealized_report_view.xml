@@ -8,10 +8,9 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form name="Print Currency Unrealized">
-                    <!--<group>-->
-                        <!--<field name="period_id" domain="[('state', '=', 'draft')]"/>-->
-                        <!--<field name="chart_account_id"/>-->
-                    <!--</group>-->
+                    <group>
+                        <field name="account_ids"/>
+                    </group>
                     <footer>
                         <button name="print_report" type="object" string="_Print" class="oe_highlight"/>
                         or

@@ -24,11 +24,13 @@ from openerp import pooler, models
 
 
 class ShellAccount(object):
+
     # Small class that avoid to override account account object
     # only for pure perfomance reason.
     # Browsing an account account object is not efficient
     # beacause of function fields
     # This object aim to be easly transpose to account account if needed
+
     def exists(self):
         return True
 
@@ -110,124 +112,30 @@ class CurrencyUnrealizedReport(report_sxw.rml_parse):
             'report_name': _('Exchange Rate Gain and Loss Report'),
         })
 
-    def sort_accounts_with_structure(self, root_account_ids, account_ids,
-                                     context=None):
-        """Sort accounts by code respecting their structure. code Take from
-        financial webkit report in order not to depends from it"""
-
-        def recursive_sort_by_code(accounts, parent):
-            sorted_accounts = []
-            # add all accounts with same parent
-            level_accounts = [account for account in accounts
-                              if account['parent_id'] and
-                              account['parent_id'][0] == parent['id']]
-            # add consolidation children of parent, as they are logically on
-            # the same level
-            if parent.get('child_consol_ids'):
-                level_accounts.extend([account for account in accounts
-                                       if account['id'] in
-                                       parent['child_consol_ids']])
-            # stop recursion if no children found
-            if not level_accounts:
-                return []
-            level_accounts = sorted(level_accounts, key=lambda a: a['code'])
-            for level_account in level_accounts:
-                sorted_accounts.append(level_account['id'])
-                sorted_accounts.extend(
-                    recursive_sort_by_code(accounts, parent=level_account))
-            return sorted_accounts
-        if not account_ids:
-            return []
-        accounts_data = self.pool['account.account'].read(
-            self.cr, self.uid, account_ids,
-            ['id', 'code'],
-            context=context)
-        sorted_accounts = []
-        root_accounts_data = [account_data for account_data in accounts_data
-                              if account_data['id'] in root_account_ids]
-        for root_account_data in root_accounts_data:
-            sorted_accounts.append(root_account_data['id'])
-        # fallback to unsorted accounts when sort failed
-        # sort fails when the levels are miscalculated by account.account
-        # check lp:783670
-        if len(sorted_accounts) != len(account_ids):
-            sorted_accounts = account_ids
-
-        return sorted_accounts
-
-    def get_all_accounts(self, account_ids, exclude_type=None, only_type=None,
-                         filter_report_type=None, context=None):
-        """Get all account passed in params with their childrens.
-        TAKEN FROM webkit general ledger
-
-        @param exclude_type: list of types to exclude (view, receivable,
-          payable, consolidation, other)
-        @param only_type: list of types to filter on (view, receivable,
-          payable, consolidation, other)
-        @param filter_report_type: list of report type to filter on
-        """
-        context = context or {}
-        accounts = []
-        if not isinstance(account_ids, list):
-            account_ids = [account_ids]
-        for account_id in account_ids:
-            accounts.append(account_id)
-        res_ids = list(set(accounts))
-        res_ids = self.sort_accounts_with_structure(
-            account_ids, res_ids, context=context)
-
-        if exclude_type or only_type or filter_report_type:
-            sql_filters = {'ids': tuple(res_ids)}
-            sql_select = "SELECT a.id FROM account_account a"
-            sql_join = ""
-            sql_where = "WHERE a.id IN %(ids)s"
-            if exclude_type:
-                sql_where += " AND a.type not in %(exclude_type)s"
-                sql_filters.update({'exclude_type': tuple(exclude_type)})
-            if only_type:
-                sql_where += " AND a.type IN %(only_type)s"
-                sql_filters.update({'only_type': tuple(only_type)})
-            if filter_report_type:
-                sql_join += "INNER JOIN account_account_type t" \
-                            " ON t.id = a.user_type"
-                sql_join += " AND t.report_type IN %(report_type)s"
-                sql_filters.update({'report_type': tuple(filter_report_type)})
-
-            sql_join += " order by account_account.code"
-
-            sql = ' '.join((sql_select, sql_join, sql_where))
-            self.cursor.execute(sql, sql_filters)
-            fetch_only_ids = self.cursor.fetchall()
-            if not fetch_only_ids:
-                return []
-            only_ids = [only_id[0] for only_id in fetch_only_ids]
-            # keep sorting but filter ids
-            res_ids = [res_id for res_id in res_ids if res_id in only_ids]
-        return res_ids
-
     def set_context(self, objects, data, ids, report_type=None):
         """Populate a ledger_lines attribute on each browse record that will
         be used by mako template.
         """
-
         # we replace object
         objects = []
 
-        # Redefine data['form'] so we can call report as HTML without wizard
+        # Redefine data['form'] so we can call report as HTML without
+        # wizard on          https://root_server_address/report/html/
+        # account_multicurrency_revaluation_report.curr_unrealized
         if not data.get('form'):
             data['form'] = {}
-            data['form']['account_ids'] = self.pool['account.account'].search(
-                self.cr, self.uid, [])
+            data['form']['account_ids'] = self.pool('account.account').search(
+                self.cr, self.uid, [('currency_revaluation', '=', True)])
             data['lang'] = 'en_US'
             data['uid'] = self.uid
             data['params'] = {}
 
-        new_ids = data['form'].get('account_ids')
+        accounts = self.pool.get('account.account').browse(
+            self.cr, self.uid, data['form'].get('account_ids')).sorted()
 
-        # get_all_account is in charge of ordering the accounts
-        for acc_id in self.get_all_accounts(new_ids):
+        for account in accounts:
             acc = ShellAccount(
-                self.cursor, self.uid, self.pool, acc_id,
+                self.cursor, self.uid, self.pool, account.id,
                 context=self.localcontext)
             if not acc.currency_revaluation:
                 continue
