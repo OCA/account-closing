@@ -10,6 +10,9 @@ class TestCurrencyRevaluation(TransactionCase):
     def test_uk_revaluation(self):
         # Set accounts on company
         company = self.env['res.company'].search([])
+
+        reval_journal = self.env.ref(
+            'account_multicurrency_revaluation.reval_journal')
         values = {
             'revaluation_loss_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
@@ -17,91 +20,47 @@ class TestCurrencyRevaluation(TransactionCase):
             'revaluation_gain_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
                              'acc_reval_gain').id,
+            'default_currency_reval_journal_id': reval_journal.id,
         }
         company.write(values)
 
         wizard = self.env['wizard.currency.revaluation']
         data = {
             'revaluation_date': '2017-03-15',
-            'journal_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'reval_journal').id,
+            'journal_id': reval_journal.id,
             'label': '[%(account)s] wiz_test',
         }
         wiz = wizard.create(data)
         result = wiz.revaluate_currency()
 
+        # Assert the wizard show the created revaluation lines
         self.assertEquals(result.get('name'), "Created revaluation lines")
 
-        # TODO asserts
+        reval_move_lines = self.env['account.move.line'].search([
+            ('name', 'like', 'wiz_test')])
 
-    def test_ch_revaluation(self):
-        # Set accounts on company
-        company = self.env['res.company'].search([])
-        values = {
-            'provision_bs_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_bs_loss').id,
-            'provision_bs_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_bs_gain').id,
-            'provision_pl_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_pl_loss').id,
-            'provision_pl_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_pl_gain').id,
-        }
-        company.write(values)
+        # Assert 8 account.move.line were generated
+        self.assertEquals(len(reval_move_lines), 8)
 
-        wizard = self.env['wizard.currency.revaluation']
-        data = {
-            'revaluation_date': '2017-03-15',
-            'journal_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'reval_journal').id,
-            'label': '[%(account)s] wiz_test',
-        }
-        wiz = wizard.create(data)
-        result = wiz.revaluate_currency()
-
-        self.assertEquals(result.get('name'), "Created revaluation lines")
-
-        # TODO asserts
-
-    def test_fr_revaluation(self):
-        # Set accounts on company
-        company = self.env['res.company'].search([])
-        values = {
-            'revaluation_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_reval_loss').id,
-            'revaluation_gain_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_reval_gain').id,
-            'provision_bs_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_bs_loss').id,
-            'provision_pl_loss_account_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'acc_prov_pl_loss').id,
-        }
-        company.write(values)
-
-        wizard = self.env['wizard.currency.revaluation']
-        data = {
-            'revaluation_date': '2017-03-15',
-            'journal_id':
-                self.env.ref('account_multicurrency_revaluation.'
-                             'reval_journal').id,
-            'label': '[%(account)s] wiz_test',
-        }
-        wiz = wizard.create(data)
-        result = wiz.revaluate_currency()
-
-        self.assertEquals(result.get('name'), "Created revaluation lines")
-
-        # TODO asserts
+        for reval_line in reval_move_lines:
+            if reval_line.account_id.name == 'Account Liquidity USD':
+                self.assertFalse(reval_line.partner_id)
+                self.assertEquals(reval_line.credit, 0.0)
+                self.assertEquals(reval_line.debit, 105.0)
+            elif reval_line.account_id.name == 'Account Liquidity GBP':
+                self.assertFalse(reval_line.partner_id)
+                self.assertEquals(reval_line.credit, 0.0)
+                self.assertEquals(reval_line.debit, 105.0)
+            elif reval_line.account_id.name == 'Account Receivable':
+                self.assertIsNotNone(reval_line.partner_id.id)
+                self.assertEquals(reval_line.credit, 185.0)
+                self.assertEquals(reval_line.debit, 0.0)
+            elif reval_line.account_id.name == 'Reval Gain':
+                self.assertEquals(reval_line.credit, 105.0)
+                self.assertEquals(reval_line.debit, 0.0)
+            elif reval_line.account_id.name == 'Reval Loss':
+                self.assertEquals(reval_line.credit, 0.0)
+                self.assertEquals(reval_line.debit, 185.0)
 
     def setUp(self):
         super(TestCurrencyRevaluation, self).setUp()
@@ -113,8 +72,6 @@ class TestCurrencyRevaluation(TransactionCase):
         }
         company.write(values)
 
-        bank_journal = \
-            self.env.ref('account_multicurrency_revaluation.bank_journal')
         sales_journal = \
             self.env.ref('account_multicurrency_revaluation.sales_journal')
 
@@ -129,16 +86,22 @@ class TestCurrencyRevaluation(TransactionCase):
         # create invoice in USD
         usd_currency = self.env.ref('base.USD')
 
+        bank_journal_usd = \
+            self.env.ref('account_multicurrency_revaluation.bank_journal_usd')
+        bank_journal_usd.currency_id = usd_currency.id
+
         invoice_line_data = {
             'product_id': self.env.ref('product.product_product_5').id,
             'quantity': 1.0,
             'account_id': revenue_acc.id,
             'name': 'product test 5',
             'price_unit': 800.00,
+            'currency_id': usd_currency.id
         }
 
         invoice = self.env['account.invoice'].create({
             'name': "Customer Invoice",
+            'date_invoice': '2017-01-16',
             'currency_id': usd_currency.id,
             'journal_id': sales_journal.id,
             'partner_id': self.env.ref('base.res_partner_3').id,
@@ -160,7 +123,7 @@ class TestCurrencyRevaluation(TransactionCase):
             'communication': 'Invoice partial payment',
             'partner_id': invoice.partner_id.id,
             'partner_type': 'customer',
-            'journal_id': bank_journal.id,
+            'journal_id': bank_journal_usd.id,
             'payment_type': 'inbound',
             'payment_method_id': payment_method.id,
             'payment_difference_handling': 'open',
@@ -171,16 +134,23 @@ class TestCurrencyRevaluation(TransactionCase):
         # create invoice in GBP
         gbp_currency = self.env.ref('base.GBP')
 
+        bank_journal_gbp = \
+            self.env.ref('account_multicurrency_revaluation.bank_journal_gbp')
+
+        bank_journal_gbp.currency_id = gbp_currency.id
+
         invoice_line_data = {
             'product_id': self.env.ref('product.product_product_5').id,
             'quantity': 1.0,
             'account_id': revenue_acc.id,
             'name': 'product test 5',
             'price_unit': 800.00,
+            'currency_id': gbp_currency.id
         }
 
         invoice = self.env['account.invoice'].create({
             'name': "Customer Invoice",
+            'date_invoice': '2017-01-16',
             'currency_id': gbp_currency.id,
             'journal_id': sales_journal.id,
             'partner_id': self.env.ref('base.res_partner_3').id,
@@ -202,49 +172,10 @@ class TestCurrencyRevaluation(TransactionCase):
             'communication': 'Invoice partial payment',
             'partner_id': invoice.partner_id.id,
             'partner_type': 'customer',
-            'journal_id': bank_journal.id,
+            'journal_id': bank_journal_gbp.id,
             'payment_type': 'inbound',
             'payment_method_id': payment_method.id,
             'payment_difference_handling': 'open',
-            'writeoff_account_id': False,
-        })
-        payment.post()
-
-        # Create a third invoice in GBP
-        invoice_line_data = {
-            'product_id': self.env.ref('product.product_product_5').id,
-            'quantity': 1.0,
-            'account_id': revenue_acc.id,
-            'name': 'product test 5',
-            'price_unit': 800.00,
-        }
-
-        invoice = self.env['account.invoice'].create({
-            'name': "Customer Invoice",
-            'currency_id': gbp_currency.id,
-            'journal_id': sales_journal.id,
-            'partner_id': self.env.ref('base.res_partner_3').id,
-            'account_id': receivable_acc.id,
-            'invoice_line_ids': [(0, 0, invoice_line_data)]
-        })
-        # Validate invoice
-        invoice.signal_workflow('invoice_open')
-
-        payment_method = \
-            self.env.ref('account.account_payment_method_manual_in')
-
-        # Register full payment
-        payment = self.env['account.payment'].create({
-            'invoice_ids': [(4, invoice.id, 0)],
-            'amount': 800,
-            'currency_id': gbp_currency.id,
-            'payment_date': '2017-02-15',
-            'communication': 'Invoice full payment',
-            'partner_id': invoice.partner_id.id,
-            'partner_type': 'customer',
-            'journal_id': bank_journal.id,
-            'payment_type': 'inbound',
-            'payment_method_id': payment_method.id,
             'writeoff_account_id': False,
         })
         payment.post()
