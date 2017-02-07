@@ -21,8 +21,8 @@
 
 import time
 
-from openerp import models, api, _
-from openerp.exceptions import Warning as UserError
+from odoo import models, api, _
+from odoo.exceptions import Warning as UserError
 
 
 class ResCurrency(models.Model):
