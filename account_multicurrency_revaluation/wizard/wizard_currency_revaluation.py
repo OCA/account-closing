@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-from openerp.exceptions import Warning as UserError
-from openerp import _
+from odoo import models, fields, api
+from odoo.exceptions import Warning as UserError
+from odoo import _
 
 
 class WizardCurrencyRevaluation(models.TransientModel):
