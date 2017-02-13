@@ -61,10 +61,10 @@ class AccountCutoffLine(models.Model):
 
     quantity = fields.Float(
         string='Quantity',
-        digits_compute=dp.get_precision('Product UoS'),
+        digits=dp.get_precision('Product UoS'),
         readonly=True)
     price_unit = fields.Float(
         string='Unit Price',
-        digits_compute=dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         readonly=True,
         help="Price per unit (discount included)")
