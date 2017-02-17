@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-13 07:33+0000\n"
-"PO-Revision-Date: 2016-11-11 13:00+0000\n"
+"POT-Creation-Date: 2017-02-10 23:10+0000\n"
+"PO-Revision-Date: 2017-02-17 15:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "Fatura"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "LInha da fatura"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
