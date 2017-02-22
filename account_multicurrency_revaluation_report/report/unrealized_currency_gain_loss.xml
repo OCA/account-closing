@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
         <template id="assets_specific" inherit_id="report.assets_common">
             <xpath expr="." position="inside">
                 <link href="/account_multicurrency_revaluation_report/static/src/css/reports.css" rel="stylesheet"/>
             </xpath>
         </template>
+
         <template id="curr_unrealized">
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <t t-foreach="docs" t-as="account">
+                            <t t-set="sh_acc" t-value="shell_accounts[account.id]"/>
                             <div class="act_as_table list_table" style="margin-top: 10px;">
                                 <div class="act_as_caption account_title">
                                     <span t-esc="account.code"/> - <span t-esc="account.name"/>
@@ -37,37 +38,30 @@
                                         <div class="act_as_cell first_column amount" style="width: 80px;">Revaluation Rate</div>
                                         <div class="act_as_cell first_column amount" style="width: 150px;">Revaluated Amount YTD</div>
                                         <div class="act_as_cell first_column amount" style="width: 100px;">Balance YTD</div>
-                                        <div class="act_as_cell first_column amount" style="width: 100px;">'Gain(+)/Loss(-) YTD</div>
+                                        <div class="act_as_cell first_column amount" style="width: 100px;">Gain(+)/Loss(-) YTD</div>
                                     </div>
-                                    <t t-foreach="account.ordered_lines" t-as="line">
+                                    <t t-foreach="sh_acc.ordered_lines" t-as="line">
                                         <div class="act_as_row lines">
                                             <div class="act_as_cell">
-                                                <t t-if="line.get('name')"><span t-esc="line.get('name')"/></t>
-                                                <t t-if="not line.get('name')">--</t>
+                                                <span t-esc="line.get('name') or '--'"/>
                                             </div>
                                             <div class="act_as_cell amount" style="width: 100px;">
-                                                <t t-if="line.get('gl_foreign_balance')"><span t-esc="line.get('gl_foreign_balance')"/></t>
-                                                <t t-if="not line.get('gl_foreign_balance')">0.0</t>
+                                                <span t-esc="line.get('gl_foreign_balance') or 0.0"/>
                                             </div>
                                             <div class="act_as_cell" style="width: 50px;">
-                                                <t t-if="line.get('curr_name')"><span t-esc="line.get('curr_name')"/></t>
-                                                <t t-if="not line.get('curr_name')">--</t>
+                                                <span t-esc="line.get('curr_name') or '--'"/>
                                             </div>
                                             <div class="act_as_cell amount" style="width: 80px;">
-                                                <t t-if="line.get('gl_currency_rate')"><span t-esc="line.get('gl_currency_rate')"/></t>
-                                                <t t-if="not line.get('gl_currency_rate')">0.0</t>
+                                                <span t-esc="line.get('gl_currency_rate') or 0.0"/>
                                             </div>
                                             <div class="act_as_cell amount" style="width: 150px;">
-                                                <t t-if="line.get('gl_revaluated_balance')"><span t-esc="line.get('gl_revaluated_balance')"/></t>
-                                                <t t-if="not line.get('gl_revaluated_balance')">0.0</t>
+                                                <span t-esc="line.get('gl_revaluated_balance') or 0.0"/>
                                             </div>
                                             <div class="act_as_cell amount" style="width: 100px;">
-                                                <t t-if="line.get('gl_balance')"><span t-esc="line.get('gl_balance')"/></t>
-                                                <t t-if="line.get('gl_balance')">0.0</t>
+                                                <span t-esc="line.get('gl_balance') or 0.0"/>
                                             </div>
                                             <div class="act_as_cell amount" style="width: 100px;">
-                                                <t t-if="line.get('gl_ytd_balance')"><span t-esc="line.get('gl_ytd_balance')"/></t>
-                                                <t t-if="not line.get('gl_ytd_balance')">0.0</t>
+                                                <span t-esc="line.get('gl_ytd_balance') or 0.0"/>
                                             </div>
                                         </div>
                                     </t>
@@ -78,20 +72,17 @@
                                         <div class="act_as_cell"></div>
                                         <div class="act_as_cell amount">
                                             <b>
-                                                <t t-if="account.gl_revaluated_balance_total"><span t-esc="account.gl_revaluated_balance_total"/></t>
-                                                <t t-if="not account.gl_revaluated_balance_total">0.0</t>
+                                                <span t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
                                             </b>
                                         </div>
                                         <div class="act_as_cell amount">
                                             <b>
-                                                <t t-if="account.gl_balance_total"><span t-esc="account.gl_balance_total"/></t>
-                                                <t t-if="not account.gl_balance_total">0.0</t>
+                                                <span t-esc="sh_acc.gl_balance_total or 0.0"/>
                                             </b>
                                         </div>
                                         <div class="act_as_cell amount">
                                             <b>
-                                                <t t-if="account.gl_ytd_balance_total"><span t-esc="account.gl_ytd_balance_total"/></t>
-                                                <t t-if="not account.gl_ytd_balance_total">0.0</t>
+                                                <span t-esc="sh_acc.gl_ytd_balance_total or 0.0"/>
                                             </b>
                                         </div>
                                     </div>
@@ -102,5 +93,4 @@
                 </t>
             </t>
         </template>
-    </data>
-</openerp>
+</odoo>
