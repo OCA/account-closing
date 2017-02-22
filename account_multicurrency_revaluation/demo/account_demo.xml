@@ -66,6 +66,7 @@
         <field name="name">Bank Journal USD</field>
         <field name="code">BJ USD</field>
         <field name="type">bank</field>
+        <field name="currency_id" ref="base.USD"/>
         <field name="default_debit_account_id" ref="demo_acc_liquidity_usd"/>
         <field name="default_credit_account_id" ref="demo_acc_liquidity_usd"/>
     </record>
@@ -73,6 +74,7 @@
         <field name="name">Bank Journal GBP</field>
         <field name="code">BJ GBP</field>
         <field name="type">bank</field>
+        <field name="currency_id" ref="base.GBP"/>
         <field name="default_debit_account_id" ref="demo_acc_liquidity_gbp"/>
         <field name="default_credit_account_id" ref="demo_acc_liquidity_gbp"/>
     </record>

@@ -64,34 +64,39 @@ class TestCurrencyRevaluation(TransactionCase):
 
     def setUp(self):
         super(TestCurrencyRevaluation, self).setUp()
+        ref = self.env.ref
 
         # Set currency EUR on company
-        company = self.env['res.company'].search([])
+        company = ref('base.main_company')
         values = {
-            'currency_id': self.env.ref('base.EUR').id
+            'currency_id': ref('base.EUR').id,
+            'revaluation_loss_account_id': ref('acc_reval_loss').id,
+            'revaluation_gain_account_id': ref('acc_reval_gain').id,
+            'provision_bs_loss_account_id': ref('acc_prov_bs_loss').id,
+            'provision_bs_gain_account_id': ref('acc_prov_bs_gain').id,
+            'provision_pl_loss_account_id': ref('acc_prov_pl_loss').id,
+            'provision_pl_gain_account_id': ref('acc_prov_pl_gain').id
         }
         company.write(values)
 
-        sales_journal = \
-            self.env.ref('account_multicurrency_revaluation.sales_journal')
+        sales_journal = ref('account_multicurrency_revaluation.sales_journal')
 
-        receivable_acc = \
-            self.env.ref('account_multicurrency_revaluation.'
-                         'demo_acc_receivable')
+        receivable_acc = ref(
+            'account_multicurrency_revaluation.demo_acc_receivable')
         receivable_acc.write({'reconcile': True})
 
-        revenue_acc = self.env.ref('account_multicurrency_revaluation.'
-                                   'demo_acc_revenue')
+        revenue_acc = ref('account_multicurrency_revaluation.'
+                          'demo_acc_revenue')
 
         # create invoice in USD
-        usd_currency = self.env.ref('base.USD')
+        usd_currency = ref('base.USD')
 
-        bank_journal_usd = \
-            self.env.ref('account_multicurrency_revaluation.bank_journal_usd')
+        bank_journal_usd = ref(
+            'account_multicurrency_revaluation.bank_journal_usd')
         bank_journal_usd.currency_id = usd_currency.id
 
         invoice_line_data = {
-            'product_id': self.env.ref('product.product_product_5').id,
+            'product_id': ref('product.product_product_5').id,
             'quantity': 1.0,
             'account_id': revenue_acc.id,
             'name': 'product test 5',
@@ -104,15 +109,14 @@ class TestCurrencyRevaluation(TransactionCase):
             'date_invoice': '2017-01-16',
             'currency_id': usd_currency.id,
             'journal_id': sales_journal.id,
-            'partner_id': self.env.ref('base.res_partner_3').id,
+            'partner_id': ref('base.res_partner_3').id,
             'account_id': receivable_acc.id,
             'invoice_line_ids': [(0, 0, invoice_line_data)]
         })
         # Validate invoice
         invoice.signal_workflow('invoice_open')
 
-        payment_method = \
-            self.env.ref('account.account_payment_method_manual_in')
+        payment_method = ref('account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
@@ -132,10 +136,10 @@ class TestCurrencyRevaluation(TransactionCase):
         payment.post()
 
         # create invoice in GBP
-        gbp_currency = self.env.ref('base.GBP')
+        gbp_currency = ref('base.GBP')
 
-        bank_journal_gbp = \
-            self.env.ref('account_multicurrency_revaluation.bank_journal_gbp')
+        bank_journal_gbp = ref(
+            'account_multicurrency_revaluation.bank_journal_gbp')
 
         bank_journal_gbp.currency_id = gbp_currency.id
 
@@ -153,15 +157,14 @@ class TestCurrencyRevaluation(TransactionCase):
             'date_invoice': '2017-01-16',
             'currency_id': gbp_currency.id,
             'journal_id': sales_journal.id,
-            'partner_id': self.env.ref('base.res_partner_3').id,
+            'partner_id': ref('base.res_partner_3').id,
             'account_id': receivable_acc.id,
             'invoice_line_ids': [(0, 0, invoice_line_data)]
         })
         # Validate invoice
         invoice.signal_workflow('invoice_open')
 
-        payment_method = \
-            self.env.ref('account.account_payment_method_manual_in')
+        payment_method = ref('account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
