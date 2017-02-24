@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-13 07:33+0000\n"
-"PO-Revision-Date: 2016-10-17 15:17+0000\n"
+"POT-Creation-Date: 2017-02-17 23:10+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-account-closing-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -136,12 +136,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Enpresak"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Enpresa"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -402,7 +402,7 @@ msgstr "Messages and communication history"
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Kidea"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
