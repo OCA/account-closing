@@ -86,11 +86,12 @@ class AccountInvoice(models.Model):
         return super(AccountInvoice, self).unlink()
 
     @api.model
-    def line_get_convert(self, line, part, date=False):
+    def line_get_convert(self, line, part):
         res = super(AccountInvoice, self).line_get_convert(line, part)
-        for al in res.get('analytic_lines', []):
+        date = self.env.context.get('accrual_date')
+        for al in res.get('analytic_line_ids', []):
             # al : (0, 0, {vals})
-            if not al[2].get('date', False):
+            if not al[2].get('date', False) and date:
                 al[2]['date'] = date
         return res
 
@@ -197,8 +198,11 @@ class AccountInvoice(models.Model):
 
         part = self.env['res.partner']._find_accounting_partner(
             self.partner_id)
-        line = map(lambda x: (0, 0, self.line_get_convert(
-                x, part.id, accrual_date)), iml)
+        line = []
+        for x in iml:
+            vals = self.with_context(accrual_date=accrual_date)\
+                .line_get_convert(x, part.id)
+            line.append((0, 0, vals))
         line = self.group_lines(iml, line)
         line = self.finalize_invoice_move_lines(line)
 
