@@ -279,8 +279,8 @@ class AccountCutoffLine(models.Model):
         readonly=True,
         help="Cut-off Amount without taxes in the Company Currency.")
     tax_ids = fields.Many2many(
-        'account.tax', id1='cutoff_line_id', id2='tax_id', string='Taxes',
-        readonly=True)
+        'account.tax', column1='cutoff_line_id', column2='tax_id',
+        string='Taxes', readonly=True)
     tax_line_ids = fields.One2many(
         'account.cutoff.tax.line', 'parent_id', string='Cut-off Tax Lines',
         readonly=True)
