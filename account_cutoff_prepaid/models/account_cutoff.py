@@ -25,7 +25,7 @@ class AccountCutoff(models.Model):
         return res
 
     source_journal_ids = fields.Many2many(
-        'account.journal', id1='cutoff_id', id2='journal_id',
+        'account.journal', column1='cutoff_id', column2='journal_id',
         string='Source Journals', readonly=True,
         default=_get_default_source_journals,
         states={'draft': [('readonly', False)]})
