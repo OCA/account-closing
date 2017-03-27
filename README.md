@@ -18,6 +18,7 @@ addon | version | summary
 [account_invoice_accrual](account_invoice_accrual/) | 8.0.1.0.0 | Account invoice accrual
 [account_multicurrency_revaluation](account_multicurrency_revaluation/) | 8.0.1.0.0 | Manage revaluation for multicurrency environment
 
+
 Unported addons
 ---------------
 addon | version | summary
