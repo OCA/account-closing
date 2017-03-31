@@ -88,7 +88,6 @@ class TestCurrencyRevaluation(TransactionCase):
 
         bank_journal_usd = \
             self.env.ref('account_multicurrency_revaluation.bank_journal_usd')
-        bank_journal_usd.currency_id = usd_currency.id
 
         invoice_line_data = {
             'product_id': self.env.ref('product.product_product_5').id,
@@ -136,8 +135,6 @@ class TestCurrencyRevaluation(TransactionCase):
 
         bank_journal_gbp = \
             self.env.ref('account_multicurrency_revaluation.bank_journal_gbp')
-
-        bank_journal_gbp.currency_id = gbp_currency.id
 
         invoice_line_data = {
             'product_id': self.env.ref('product.product_product_5').id,
