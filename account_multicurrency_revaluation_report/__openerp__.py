@@ -33,7 +33,7 @@
  "data": [
      "wizard/print_currency_unrealized_report_view.xml",
      "report/report.xml",
-     "report/templates/unrealized_currency_gain_loss.xml"
+     "report/unrealized_currency_gain_loss.xml"
  ],
  'installable': True,
  }
