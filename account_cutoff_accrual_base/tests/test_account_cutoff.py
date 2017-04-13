@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestAccountCutoff(TransactionCase):
@@ -17,13 +17,13 @@ class TestAccountCutoff(TransactionCase):
 
         account_id = \
             self.env['account.cutoff'].with_context(type='accrued_expense').\
-                _inherit_default_cutoff_account_id()
+            _inherit_default_cutoff_account_id()
         self.assertEqual(account_id, default_accrued_expense_account_id,
-                          'The account must be equals to %s' %
-                          default_accrued_expense_account_id)
+                         'The account must be equals to %s' %
+                         default_accrued_expense_account_id)
         account_id = \
-            self.env['account.cutoff'].with_context(type='accrued_revenue'). \
-                _inherit_default_cutoff_account_id()
+            self.env['account.cutoff'].with_context(type='accrued_revenue').\
+            _inherit_default_cutoff_account_id()
         self.assertEqual(account_id, default_accrued_revenue_account_id,
-                          'The account must be equals to %s' %
-                          default_accrued_revenue_account_id)
+                         'The account must be equals to %s' %
+                         default_accrued_revenue_account_id)
