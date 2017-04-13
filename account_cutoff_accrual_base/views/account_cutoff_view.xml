@@ -6,8 +6,7 @@
     The licence is in the file __openerp__.py
 -->
 
-<openerp>
-<data>
+<odoo>
 
 <!-- Form view for lines -->
 <record id="account_cutoff_line_form" model="ir.ui.view">
@@ -82,5 +81,4 @@
         sequence="30"/>
 
 
-</data>
-</openerp>
+</odoo>
