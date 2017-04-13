@@ -85,7 +85,7 @@ class TestAccountReversal(TransactionCase):
 
         moves = self.env['account.move'].search(
             [('journal_id', '=', self.accrual_journal.id)])
-        self.assertEqual (len(moves), 2)
+        self.assertEqual(len(moves), 2)
         move1 = moves[0]
         move2 = moves[1]
         reverse = False

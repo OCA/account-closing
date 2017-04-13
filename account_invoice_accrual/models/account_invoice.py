@@ -112,7 +112,6 @@ class AccountInvoice(models.Model):
         :return: Returns the id of the created accrual move
         """
         self.ensure_one()
-        ait_obj = self.env['account.invoice.tax']
         move_obj = self.env['account.move']
 
         company_currency = self.company_id.currency_id
@@ -223,13 +222,12 @@ class AccountInvoice(models.Model):
         }
 
         accrual_move_id = move_obj.with_context(
-                        date=self.date_invoice,
-                        invoice=self).create(move)
+            date=self.date_invoice, invoice=self).\
+            create(move)
         # make the invoice point to that move
         self.with_context(
-                        date=self.date_invoice,
-                        invoice=self).write(
-            {'accrual_move_id': accrual_move_id.id})
+            date=self.date_invoice, invoice=self).\
+            write({'accrual_move_id': accrual_move_id.id})
         # Pass invoice in context in method post: used if you want to get the
         # same account move reference when creating the same invoice after a
         # cancelled one:

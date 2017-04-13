@@ -5,10 +5,6 @@
 from openerp import api, fields, models
 from openerp.tools.translate import _
 
-from openerp import tools
-
-from datetime import date, timedelta
-
 
 class AccountMoveAccrual(models.TransientModel):
     _name = "account.move.accrue"
