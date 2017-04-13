@@ -6,8 +6,7 @@
     The licence is in the file __openerp__.py
 -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="view_tax_form" model="ir.ui.view">
     <field name="name">account.cutoff.accrual.view_tax_form</field>
@@ -24,5 +23,4 @@
 </record>
 
 
-</data>
-</openerp>
+</odoo>
