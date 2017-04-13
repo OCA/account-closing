@@ -3,57 +3,57 @@
 # * account_cutoff_accrual_base
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"POT-Creation-Date: 2017-05-19 22:06+0000\n"
+"PO-Revision-Date: 2017-05-19 22:06+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Arrêté de comptes"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Ligne d'arrêté de comptes"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
 msgid "Accruals"
-msgstr "Charges à payer"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
-msgstr "Dépense cumulée"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
 msgid "Accrued Expense Tax Account"
-msgstr "Dépense fiscale cumulée"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
 msgid "Accrued Revenue"
-msgstr "Revenu cumulé"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
 msgid "Accrued Revenue Tax Account"
-msgstr "Recette fiscale cumulée"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -68,17 +68,17 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr "Bedrijven"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr "Compte de dépenses cumulées par défaut"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr "Compte de recettes cumulées par défaut"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
@@ -93,17 +93,17 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Price per unit (discount included)"
-msgstr "Prix à l'unité (ristourne incluse)"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_quantity
 msgid "Quantity"
-msgstr "Quantité"
+msgstr "Aantal"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
 msgid "Tax"
-msgstr "Taxes"
+msgstr "Belasting"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -124,4 +124,4 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Unit Price"
-msgstr "Prix unitaire"
+msgstr "Eenheidsprijs"
