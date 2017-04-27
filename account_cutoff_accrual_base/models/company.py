@@ -38,3 +38,6 @@ class ResCompany(models.Model):
                         'Default Account for Accrued Expenses',
                         domain=[('type', '<>', 'view'),
                                 ('type', '<>', 'closed')])
+
+    default_accrual_journal_id = fields.many2one(
+        'account.journal', 'Default Accrual Cut-off Journal')
