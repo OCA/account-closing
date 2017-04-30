@@ -18,11 +18,8 @@
     "data": [
         "security/account_fiscalyear_closing_security.xml",
         "security/ir.model.access.csv",
-        "views/account_fiscalyear_closing_view.xml",
-        "views/account_fiscalyear_closing_mapping_view.xml",
-        "views/account_fiscalyear_closing_type_view.xml",
-        "views/account_fiscalyear_closing_config_view.xml",
-        "views/account_move_view.xml",
-        "views/account_move_line_view.xml",
+        "views/account_fiscalyear_closing_views.xml",
+        "views/account_fiscalyear_closing_template_views.xml",
+        "views/account_move_views.xml",
     ],
 }

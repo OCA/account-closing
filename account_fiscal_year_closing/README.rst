@@ -6,15 +6,12 @@
 Fiscal year closing
 ===================
 
-This module implements a generic fiscal year closing for those countries
-where closing and opening moves are mandatory in accounting books.
+This module implements a generic fiscal year closing system for those
+countries where closing/opening moves or other kind of closing operations are
+mandatory in accounting books.
 
-Installation
-============
-
-To install this module, you need to:
-
-#. Do this ...
+It includes a template mechanism that can be used in localizations for
+providing the possible configurations to be used by the closing engine.
 
 Configuration
 =============
@@ -38,7 +35,8 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* ...
+* When selecting a closing template, not all data are transferred to the
+  closing for now.
 
 Bug Tracker
 ===========

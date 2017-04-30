@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
@@ -13,15 +14,14 @@ class AccountMoveLine(models.Model):
         string="Fiscal year closing", readonly=True)
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    def search2(self, args, offset=0, limit=None, order=None, count=False):
         # Filter out move lines from fiscal year closing unless they
-        # were explicitely asked for
+        # were explicitly asked for
         if not self.env.context.get('search_fyc_moves', False):
             if args:
                 if not any(item[0] == 'fyc_id' for item in args):
                     args.insert(0, ('fyc_id', '=', False))
             else:
                 args = [('fyc_id', '=', False)]
-
         return super(AccountMoveLine, self).search(
             args, offset=offset, limit=limit, order=order, count=count)
