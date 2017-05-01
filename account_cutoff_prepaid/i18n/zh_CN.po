@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:25+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-20 03:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
 msgid "Journal Items"
-msgstr ""
+msgstr "日记帐项目"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:41

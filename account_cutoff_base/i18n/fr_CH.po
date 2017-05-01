@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 20:49+0000\n"
-"PO-Revision-Date: 2016-12-01 10:26+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300

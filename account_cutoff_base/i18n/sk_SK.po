@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-27 15:01+0000\n"
-"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"PO-Revision-Date: 2017-03-31 13:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/zh_CN/)\n"
+"Language-Team: Slovak (Slovakia) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sk_SK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -111,7 +111,7 @@ msgstr ""
 #: field:account.cutoff.line,analytic_account_id:0
 #: field:account.cutoff.tax.line,analytic_account_id:0
 msgid "Analytic Account"
-msgstr "核算科目"
+msgstr "Analytický účet"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_code:0
@@ -136,12 +136,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "公司"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr "公司"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -160,14 +160,14 @@ msgstr ""
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr "创建者"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr "创建时间"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
@@ -290,7 +290,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "发布到记录上的最后消息的日期"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -300,7 +300,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr "说明"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,display_name:0
@@ -308,19 +308,19 @@ msgstr "说明"
 #: field:account.cutoff.mapping,display_name:0
 #: field:account.cutoff.tax.line,display_name:0
 msgid "Display Name"
-msgstr "显示名称"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
-msgstr "已完成"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr "草稿"
+msgstr ""
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -332,30 +332,30 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr "关注者"
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "HTML格式的简介，包括了各种项目的总结信息（比如消息数，作业数……）"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "查看是否有需要留意的新信息。"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
 msgid "Is a Follower"
-msgstr "关注者"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_label:0
@@ -365,7 +365,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr "最后消息日期"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -373,36 +373,36 @@ msgstr "最后消息日期"
 #: field:account.cutoff.mapping,__last_update:0
 #: field:account.cutoff.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr "最后修改时间"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr "消息"
+msgstr ""
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr "消息和通信历史"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr "业务伙伴"
+msgstr ""
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -441,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr "序号"
+msgstr ""
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -521,9 +521,9 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr "类型"
+msgstr ""
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr "未读消息"
+msgstr ""

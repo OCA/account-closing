@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-13 07:33+0000\n"
-"PO-Revision-Date: 2016-11-22 16:21+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "ID"
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journaal"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line

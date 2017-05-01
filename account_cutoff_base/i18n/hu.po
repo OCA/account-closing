@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Vállalat"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -320,7 +320,7 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Tervezet"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
