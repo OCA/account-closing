@@ -3,13 +3,14 @@
 # * account_invoice_start_end_dates
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-30 23:10+0000\n"
-"PO-Revision-Date: 2016-12-30 23:10+0000\n"
+"POT-Creation-Date: 2017-04-29 10:40+0000\n"
+"PO-Revision-Date: 2017-04-29 10:40+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -28,10 +29,11 @@ msgstr "Osiguranje vozila"
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_end_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line_end_date
 msgid "End Date"
-msgstr ""
+msgstr "Datum završetka"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product_must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template_must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
@@ -41,7 +43,7 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice_line
@@ -93,6 +95,7 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product_must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template_must_have_dates
 msgid "Must Have Start and End Dates"
 msgstr ""
