@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 01:40+0000\n"
-"PO-Revision-Date: 2017-12-06 01:40+0000\n"
+"POT-Creation-Date: 2017-05-19 00:37+0000\n"
+"PO-Revision-Date: 2017-05-19 00:37+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
@@ -26,17 +26,17 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Arrêté de comptes"
+msgstr "Cuenta de la operación de cierre"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Ligne d'arrêté de comptes"
+msgstr "Línea de cuenta de la operación de cierre"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_move_date
 msgid "Account Move Date"
-msgstr "Date de la pièce"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_move_line_id
@@ -56,27 +56,27 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr "Compañías"
 
 #. module: account_cutoff_prepaid
 #: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
 msgid "Days Total"
-msgstr "Nombre total de jours"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
 msgid "Days after Cut-off"
-msgstr "Jours après cut-off"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
-msgstr "Compte par défaut pour les charges à reporter"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
-msgstr "Compte par défaut pour les produits à reporter"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
@@ -89,7 +89,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_end_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_end_date
 msgid "End Date"
-msgstr "Fin"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_forecast
@@ -108,7 +108,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_invoice_id
 msgid "Invoice"
-msgstr "Facture"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
@@ -119,29 +119,29 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_menu
 msgid "Prepaid Expense"
-msgstr "Report de Charges"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
-msgstr "Report de Produits"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
 msgid "Re-Generate Lines"
-msgstr "Regénérer les lignes"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_source_journal_ids
 msgid "Source Journals"
-msgstr "Journaux source"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_start_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_start_date
 msgid "Start Date"
-msgstr "Début"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_forecast
@@ -175,7 +175,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_total_days
 msgid "Total Number of Days"
-msgstr "Nombre de jours total"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:59
@@ -187,4 +187,4 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:124
 #, python-format
 msgid "You should set at least one Source Journal."
-msgstr "Vous devez indiquer au moins un journal source."
+msgstr ""
