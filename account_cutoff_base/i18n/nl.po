@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-27 15:01+0000\n"
-"PO-Revision-Date: 2017-04-25 17:36+0000\n"
+"POT-Creation-Date: 2017-05-01 13:02+0000\n"
+"PO-Revision-Date: 2017-05-11 14:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -463,7 +463,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Samenvatting"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
