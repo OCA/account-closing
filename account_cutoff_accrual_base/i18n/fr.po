@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_accrual_base
+# 
+# Translators:
+# LS Development <ls.development.nc@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: account-closing (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-17 22:10+0000\n"
+"PO-Revision-Date: 2015-10-20 17:17+0000\n"
+"Last-Translator: LS Development <ls.development.nc@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to start preparing a new expense accrual.\n"
+"        </p><p>\n"
+"        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        </p>\n"
+"    "
+msgstr "<p class=\"oe_view_nocontent_create\">\nCliquez ici pour commencer à préparer une nouvelle régularisation de charges.</p>\n<p>\nCette vue peut être utilisée par les comptables dans le but de recueillir les données de charges. Cela permet ensuite de générer, en un clic, les écritures de clôture.\n</p>"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to start preparing a new revenue accrual.\n"
+"        </p><p>\n"
+"        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        </p>\n"
+"    "
+msgstr "<p class=\"oe_view_nocontent_create\">\nCliquez ici pour commencer à préparer une nouvelle régularisation de recette.\n</p><p>\nCette vue peut être utilisée par les comptables dans le but de recueillir les données de recettes. Cela permet ensuite de générer, en un clic, les écritures de clôture.\n</p>"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Arrêté de comptes"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr "Ligne d'arrêté de comptes"
+
+#. module: account_cutoff_accrual_base
+#: view:account.tax:account_cutoff_accrual_base.view_tax_form
+msgid "Accruals"
+msgstr "Charges à payer"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
+#: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
+msgid "Accrued Expense"
+msgstr "Dépense cumulée"
+
+#. module: account_cutoff_accrual_base
+#: field:account.tax,account_accrued_expense_id:0
+msgid "Accrued Expense Tax Account"
+msgstr "Dépense fiscale cumulée"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
+#: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
+msgid "Accrued Revenue"
+msgstr "Revenu cumulé"
+
+#. module: account_cutoff_accrual_base
+#: field:account.tax,account_accrued_revenue_id:0
+msgid "Accrued Revenue Tax Account"
+msgstr "Recette fiscale cumulée"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrued_expense_account_id:0
+msgid "Default Account for Accrued Expenses"
+msgstr "Compte de dépenses cumulées par défaut"
+
+#. module: account_cutoff_accrual_base
+#: field:res.company,default_accrued_revenue_account_id:0
+msgid "Default Account for Accrued Revenues"
+msgstr "Compte de recettes cumulées par défaut"
+
+#. module: account_cutoff_accrual_base
+#: help:account.cutoff.line,price_unit:0
+msgid "Price per unit (discount included)"
+msgstr "Prix à l'unité (ristourne incluse)"
+
+#. module: account_cutoff_accrual_base
+#: field:account.cutoff.line,quantity:0
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: account_cutoff_accrual_base
+#: view:account.tax:account_cutoff_accrual_base.view_tax_form
+msgid "Refunds"
+msgstr "Remboursements"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
+msgid "Tax"
+msgstr "Taxes"
+
+#. module: account_cutoff_accrual_base
+#: field:account.cutoff.line,price_unit:0
+msgid "Unit Price"
+msgstr "Prix unitaire"

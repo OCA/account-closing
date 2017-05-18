@@ -6,23 +6,21 @@
     The licence is in the file __openerp__.py
 -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="view_tax_form" model="ir.ui.view">
     <field name="name">account.cutoff.accrual.view_tax_form</field>
     <field name="model">account.tax</field>
     <field name="inherit_id" ref="account.view_tax_form" />
     <field name="arch" type="xml">
-        <group string="Refunds" position="after">
+        <field name="children_tax_ids" position="before">
             <group string="Accruals" name="accrual">
                 <field name="account_accrued_revenue_id" attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"/>
                 <field name="account_accrued_expense_id" attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"/>
             </group>
-        </group>
+        </field>
     </field>
 </record>
 
 
-</data>
-</openerp>
+</odoo>

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account Cutoff Accrual Base module for OpenERP
+#    Account Cut-off Accrual Base module for OpenERP
 #    Copyright (C) 2013 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
@@ -21,19 +21,26 @@
 ##############################################################################
 
 
-{
-    'name': 'Account Accrual Base',
-    'version': '10.0.0.1.0',
-    'category': 'Accounting & Finance',
-    'license': 'AGPL-3',
-    'summary': 'Base module for accrued expenses and revenues',
-    'author': "Akretion,Odoo Community Association (OCA)",
-    'website': 'http://www.akretion.com',
-    'depends': ['account_cutoff_base'],
-    'data': [
-        'views/company_view.xml',
-        'views/account_view.xml',
-        'views/account_cutoff_view.xml',
-    ],
-    'installable': True,
-}
+from openerp import fields, models
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    default_accrued_revenue_account_id = fields.Many2one(
+        comodel_name='account.account',
+        string='Default Account for Accrued Revenues',
+        domain=[('deprecated', '=', False)])
+
+    default_accrued_expense_account_id = fields.Many2one(
+        comodel_name='account.account',
+        string='Default Account for Accrued Expenses',
+        domain=[('deprecated', '=', False)])
+
+    default_accrual_revenue_journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Default Journal for Accrued Revenues')
+
+    default_accrual_expense_journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Default Journal for Accrued Expenses')

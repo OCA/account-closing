@@ -6,21 +6,21 @@
     The licence is in the file __openerp__.py
 -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="view_company_form" model="ir.ui.view">
     <field name="name">accrual.base.company.form</field>
     <field name="model">res.company</field>
     <field name="inherit_id" ref="account_cutoff_base.view_company_form" />
     <field name="arch" type="xml">
-        <field name="default_cutoff_journal_id" position="after">
+        <xpath expr="//field[@name='default_cutoff_journal_id']" position="after">
+            <field name="default_accrual_revenue_journal_id" />
+            <field name="default_accrual_expense_journal_id" />
             <field name="default_accrued_revenue_account_id" />
             <field name="default_accrued_expense_account_id" />
-        </field>
+        </xpath>
     </field>
 </record>
 
 
-</data>
-</openerp>
+</odoo>
