@@ -57,11 +57,7 @@ class AccountInvoice(models.Model):
                 # we simply remove it
                 accrual_move.unlink()
             else:
-                reverse_wizard = self.env[
-                    'account.move.reversal'].with_context(active_ids=[
-                        accrual_move.id]).create({
-                            'date': invoice.date_invoice})
-                reverse_wizard.reverse_moves()
+                accrual_move.create_reversals()
 
     @api.multi
     def invoice_validate(self):
