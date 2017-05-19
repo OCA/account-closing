@@ -2,8 +2,7 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, exceptions, fields, models, _, tools
-from datetime import datetime
+from openerp import api, exceptions, fields, models, _
 
 
 class AccountInvoiceLine(models.Model):
@@ -44,14 +43,12 @@ class AccountInvoice(models.Model):
             if not invoice.to_be_reversed:
                 continue
             accrual_move = invoice.accrual_move_id
-            accrual_month = datetime.strptime(accrual_move.date,
-                                              tools.DEFAULT_SERVER_DATE_FORMAT)
-            accrual_month = datetime.strftime(accrual_month, '%Y-%m')
-            invoice_month = datetime.strptime(invoice.date_invoice,
-                                              tools.DEFAULT_SERVER_DATE_FORMAT)
-            invoice_month = datetime.strftime(invoice_month, '%Y-%m')
+            accrual_date = fields.Date.from_string(accrual_move.date)
+            invoice_date = fields.Date.from_string(invoice.date_invoice)
+
             if (accrual_move.state == 'draft' and
-                    accrual_month == invoice_month):
+                    accrual_date.year == invoice_date.year and
+                    accrual_date.month == invoice_date.month):
                 # reversal in same month as accrual
                 # and accrual move is still draft:
                 # we simply remove it
