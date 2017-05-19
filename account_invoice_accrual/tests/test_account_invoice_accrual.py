@@ -110,7 +110,7 @@ class TestAccountReversal(TransactionCase):
         with self.assertRaises(exceptions.Warning):
             self.accrual_invoice.unlink()
 
-        self.accrual_invoice.accrual_move_id.reverse_moves()
+        self.accrual_invoice.accrual_move_id.create_reversals()
         self.accrual_invoice.unlink()
 
         moves = self.env['account.move'].search(
