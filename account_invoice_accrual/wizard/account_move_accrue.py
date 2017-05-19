@@ -2,8 +2,8 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
-from openerp.tools.translate import _
+from odoo import api, fields, models
+from odoo.tools.translate import _
 
 
 class AccountMoveAccrual(models.TransientModel):

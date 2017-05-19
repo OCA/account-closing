@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
+<odoo>
         <record id="view_account_move_accrue" model="ir.ui.view">
             <field name="name">account.move.accrue.form</field>
             <field name="model">account.move.accrue</field>
@@ -36,5 +34,4 @@
             <field name="target">new</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

@@ -2,8 +2,8 @@
 # Copyright 2017 Cédric Pigeon <cedric.pigeon@acsone.eu>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
-from openerp import exceptions, fields
+from odoo.tests.common import TransactionCase
+from odoo import exceptions, fields
 
 
 class TestAccountReversal(TransactionCase):
