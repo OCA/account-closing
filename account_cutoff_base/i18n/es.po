@@ -3,20 +3,20 @@
 # * account_cutoff_base
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-19 00:37+0000\n"
 "PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -31,13 +31,13 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Etalements"
+msgstr "Cuenta de la operación de cierre"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_parent_id
 msgid "Account Cut-off Line"
-msgstr "Ligne de report"
+msgstr "Línea de cuenta de la operación de cierre"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
@@ -57,7 +57,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:30
 #, python-format
 msgid "Accrued Expense"
-msgstr "Dépense cumulée"
+msgstr "Gasto devengado"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -65,7 +65,7 @@ msgstr "Dépense cumulée"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:32
 #, python-format
 msgid "Accrued Revenue"
-msgstr "Revenu cumulé"
+msgstr "Ingreso devengado"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
@@ -123,20 +123,20 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr "Compañías"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_company_id
 msgid "Company"
-msgstr "Société"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_company_currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_company_currency_id
 msgid "Company Currency"
-msgstr "Devise de la société"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -149,7 +149,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_uid
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_create_date
@@ -157,12 +157,12 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_date
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_currency_id
 msgid "Currency"
-msgstr "Devise"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_currency_id
@@ -345,7 +345,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:36
 #, python-format
 msgid "Prepaid Expense"
-msgstr "Report de Charges"
+msgstr ""
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -353,7 +353,7 @@ msgstr "Report de Charges"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:34
 #, python-format
 msgid "Prepaid Revenue"
-msgstr "Report de Produits"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_account_id
@@ -392,7 +392,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_tax_id
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Tax"
-msgstr "Taxes"
+msgstr "Impuesto"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_amount
