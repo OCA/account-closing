@@ -1,3 +1,4 @@
 account-financial-tools
 reporting-engine
+stock-logistics-workflow
 webkit-tools

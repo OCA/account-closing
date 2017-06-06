@@ -16,8 +16,12 @@
     <field name="arch" type="xml">
         <group string="Refunds" position="after">
             <group string="Accruals" name="accrual">
-                <field name="account_accrued_revenue_id" attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"/>
-                <field name="account_accrued_expense_id" attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"/>
+                <!-- Always display both fields (we need
+                account_accrued_expense_id on sale taxes for example).
+                Because Accrued Expenses can be a return from a customer,
+                linked to a customer refund with a sale tax -->
+                <field name="account_accrued_revenue_id"/>
+                <field name="account_accrued_expense_id"/>
             </group>
         </group>
     </field>
