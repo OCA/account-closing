@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 14:12+0000\n"
-"PO-Revision-Date: 2016-10-13 09:38+0200\n"
+"POT-Creation-Date: 2017-02-17 23:10+0000\n"
+"PO-Revision-Date: 2017-02-21 13:30+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr "Code du compte analytique"
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
-msgstr "Retour en brouillon"
+msgstr "Remettre en brouillon"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
@@ -301,7 +301,7 @@ msgstr "Journaux de report"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Date du dernier message posté sur l'enregistrement"
+msgstr "Date du dernier message publié sur cet enregistrement"
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -343,14 +343,14 @@ msgstr "Erreur:"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Contient le résumé de la discussion (nombre de messages, ...). Ce résumé est au format HTML pour permettre son utilisation dans la vue kanban."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0
@@ -363,12 +363,12 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Si coché, de nouveaux messages demandent votre attention"
+msgstr "Si coché, les nouveaux messages seront portés à votre attention."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Est abonné"
+msgstr "Est un abonné"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,move_label:0
@@ -412,7 +412,7 @@ msgstr "Messages"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr "Historique des messages"
+msgstr "Historique des messages et communications"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
@@ -456,7 +456,7 @@ msgstr "Chercher les reports"
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr "Séquence"
+msgstr "Sequence"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -547,4 +547,4 @@ msgstr "Type"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr "Messages non lus"
+msgstr "Messages non-lus"

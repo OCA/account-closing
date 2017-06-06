@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-05 06:36+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-10-10 07:37+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -140,12 +140,12 @@ msgstr ""
 #: field:account.cutoff.line,invoice_id:0
 #: model:ir.model,name:account_cutoff_prepaid.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Stavka računa"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line

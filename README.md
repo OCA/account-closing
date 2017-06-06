@@ -7,6 +7,7 @@ Account Closing
 This project aim to deal with modules related to manage account closing.
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
@@ -16,6 +17,7 @@ addon | version | summary
 [account_cutoff_prepaid](account_cutoff_prepaid/) | 8.0.0.1.0 | Prepaid Expense, Prepaid Revenue
 [account_invoice_accrual](account_invoice_accrual/) | 8.0.1.0.0 | Account invoice accrual
 [account_multicurrency_revaluation](account_multicurrency_revaluation/) | 8.0.1.0.0 | Manage revaluation for multicurrency environment
+
 
 Unported addons
 ---------------

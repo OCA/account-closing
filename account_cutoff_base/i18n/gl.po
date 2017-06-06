@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-account-closing-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -320,7 +320,7 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -373,7 +373,7 @@ msgstr ""
 #: field:account.cutoff.mapping,__last_update:0
 #: field:account.cutoff.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
@@ -402,7 +402,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -441,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form

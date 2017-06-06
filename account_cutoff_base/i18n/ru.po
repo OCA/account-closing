@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2017-05-01 13:02+0000\n"
+"PO-Revision-Date: 2017-05-11 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Компания"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -160,14 +160,14 @@ msgstr ""
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
@@ -314,13 +314,13 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
-msgstr ""
+msgstr "Завершен"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Черновик"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -345,7 +345,7 @@ msgstr ""
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
 #: field:account.cutoff.mapping,id:0 field:account.cutoff.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
@@ -380,14 +380,14 @@ msgstr ""
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
@@ -402,7 +402,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Контрагент"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -441,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Последовательность"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form

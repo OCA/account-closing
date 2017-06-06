@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-account-closing-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,account_id:0
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
@@ -93,7 +93,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Import"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,currency_id:0
@@ -111,7 +111,7 @@ msgstr ""
 #: field:account.cutoff.line,analytic_account_id:0
 #: field:account.cutoff.tax.line,analytic_account_id:0
 msgid "Analytic Account"
-msgstr ""
+msgstr "Compte analític"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_code:0
@@ -126,7 +126,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,base:0
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: account_cutoff_base
 #: help:account.cutoff.tax.line,base:0
@@ -136,12 +136,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empreses"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -300,7 +300,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,display_name:0
@@ -308,7 +308,7 @@ msgstr ""
 #: field:account.cutoff.mapping,display_name:0
 #: field:account.cutoff.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -320,7 +320,7 @@ msgstr ""
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:300
@@ -332,7 +332,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -373,7 +373,7 @@ msgstr ""
 #: field:account.cutoff.mapping,__last_update:0
 #: field:account.cutoff.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_uid:0 field:account.cutoff.line,write_uid:0
@@ -392,7 +392,7 @@ msgstr "Darrera Actualització el"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Missatges"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
@@ -402,7 +402,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -441,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -451,7 +451,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,state:0
@@ -521,7 +521,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0

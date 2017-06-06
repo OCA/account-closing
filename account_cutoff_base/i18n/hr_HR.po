@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:40+0000\n"
-"PO-Revision-Date: 2016-10-05 06:30+0000\n"
+"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"PO-Revision-Date: 2017-04-25 10:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -136,12 +136,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Poduzeća"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -402,7 +402,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -469,7 +469,7 @@ msgstr ""
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr ""
+msgstr "Porez"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0

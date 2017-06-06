@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-26 10:17+0000\n"
-"PO-Revision-Date: 2016-09-25 14:54+0000\n"
+"POT-Creation-Date: 2016-10-13 07:33+0000\n"
+"PO-Revision-Date: 2016-11-22 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: help:account.cutoff,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Дата на последното съобщение, публикувано на записа."
 
 #. module: account_cutoff_base
 #: field:res.company,default_cutoff_journal_id:0
@@ -308,13 +308,13 @@ msgstr "Описание"
 #: field:account.cutoff.mapping,display_name:0
 #: field:account.cutoff.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
 #: selection:account.cutoff,state:0
 msgid "Done"
-msgstr ""
+msgstr "Готово"
 
 #. module: account_cutoff_base
 #: view:account.cutoff:account_cutoff_base.account_cutoff_filter
@@ -332,7 +332,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Последователи"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_summary:0
@@ -350,7 +350,7 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Ако е отбелязано, новите съобщения ще изискват внимание."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
@@ -365,7 +365,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Дата на последното съобщение"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,__last_update:0
@@ -392,12 +392,12 @@ msgstr "Последно обновено на"
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Съобщения"
 
 #. module: account_cutoff_base
 #: help:account.cutoff,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "История на събщенията и комуникациите"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,partner_id:0
@@ -441,7 +441,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Последователност"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -521,9 +521,9 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Непрочетени съобщения"
