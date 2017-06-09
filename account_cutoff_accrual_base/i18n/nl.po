@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-06-07 02:50+0000\n"
+"PO-Revision-Date: 2017-06-06 12:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -102,9 +102,24 @@ msgid "Default Journal for Accrued Revenues"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
-#: help:account.cutoff.line,price_unit:0
-msgid "Price per unit (discount included)"
+#: selection:account.cutoff.line,price_source:0
+msgid "Invoice"
+msgstr "Factuur"
+
+#. module: account_cutoff_accrual_base
+#: field:account.cutoff.line,price_source:0
+msgid "Price Source"
 msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: help:account.cutoff.line,price_unit:0
+msgid "Price per unit without taxes (discount included)"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: selection:account.cutoff.line,price_source:0
+msgid "Purchase Order"
+msgstr "Inkooporder"
 
 #. module: account_cutoff_accrual_base
 #: field:account.cutoff.line,quantity:0
@@ -112,9 +127,19 @@ msgid "Quantity"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: view:account.cutoff:account_cutoff_accrual_base.account_cutoff_form
+msgid "Re-Generate Lines"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
 #: view:account.tax:account_cutoff_accrual_base.view_tax_form
 msgid "Refunds"
 msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: selection:account.cutoff.line,price_source:0
+msgid "Sale Order"
+msgstr "Verkooporder"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax

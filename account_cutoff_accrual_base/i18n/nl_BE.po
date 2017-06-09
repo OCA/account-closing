@@ -3,14 +3,14 @@
 # * account_cutoff_accrual_base
 # 
 # Translators:
-# Shadania Sherwood <sarah.druyts@gmail.com>, 2016
+# Sarah Druyts <sarah.druyts@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 02:38+0000\n"
-"PO-Revision-Date: 2016-04-16 06:35+0000\n"
-"Last-Translator: Shadania Sherwood <sarah.druyts@gmail.com>\n"
+"POT-Creation-Date: 2017-06-07 02:50+0000\n"
+"PO-Revision-Date: 2017-06-06 12:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,9 +103,24 @@ msgid "Default Journal for Accrued Revenues"
 msgstr "Standaard Logboek voor Transistorische Opbrengsten"
 
 #. module: account_cutoff_accrual_base
+#: selection:account.cutoff.line,price_source:0
+msgid "Invoice"
+msgstr "Factuur"
+
+#. module: account_cutoff_accrual_base
+#: field:account.cutoff.line,price_source:0
+msgid "Price Source"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
 #: help:account.cutoff.line,price_unit:0
-msgid "Price per unit (discount included)"
-msgstr "Prijs per eenheid (inclusief korting)"
+msgid "Price per unit without taxes (discount included)"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: selection:account.cutoff.line,price_source:0
+msgid "Purchase Order"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: field:account.cutoff.line,quantity:0
@@ -113,9 +128,19 @@ msgid "Quantity"
 msgstr "Hoeveelheid"
 
 #. module: account_cutoff_accrual_base
+#: view:account.cutoff:account_cutoff_accrual_base.account_cutoff_form
+msgid "Re-Generate Lines"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
 #: view:account.tax:account_cutoff_accrual_base.view_tax_form
 msgid "Refunds"
 msgstr "Terugbetalingen"
+
+#. module: account_cutoff_accrual_base
+#: selection:account.cutoff.line,price_source:0
+msgid "Sale Order"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax

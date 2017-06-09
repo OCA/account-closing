@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-13 07:33+0000\n"
-"PO-Revision-Date: 2016-11-11 18:07+0000\n"
+"POT-Creation-Date: 2017-06-07 02:50+0000\n"
+"PO-Revision-Date: 2017-06-06 12:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-account-closing-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -27,14 +27,6 @@ msgid ""
 "        </p>\n"
 "    "
 msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"        Cliquer pour créer une nouvelle charge constatée d'avance.\n"
-"        </p><p>\n"
-"        Cette vue peut être utilisée par les comptables pour collecter des\n"
-"        informations concernant les charges constatées d'avance à partir de\n"
-"        leur dates de début et de fin. Elle permet ensuite de générer les\n"
-"        écritures correspondantes dans les journaux concernés en un clic.\n"
-"        </p>\n"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
@@ -46,14 +38,6 @@ msgid ""
 "        </p>\n"
 "    "
 msgstr ""
-"*<p class=\"oe_view_nocontent_create\">\n"
-"        Cliquez pour créer un nouveau produit constaté d'avance.\n"
-"        </p><p>\n"
-"        Cette vue peut être utilisée par les comptables pour collecter des\n"
-"        informations concernant les produits constatés d'avance à partir de\n"
-"        leur dates de début et de fin. Elle permet ensuite de générer les\n"
-"        écritures correspondantes dans les journaux concernés en un clic.\n"
-"        </p>\n"
 
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
@@ -63,7 +47,7 @@ msgstr "Un report de ce type existe déjà pour cette date de cut-off !"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Étalements"
+msgstr "Etalements"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
@@ -78,7 +62,7 @@ msgstr "Date de la pièce"
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_line_id:0
 msgid "Account Move Line"
-msgstr "Ligne"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:product.template,name:account_cutoff_prepaid.product_insurance_contrat_product_template
@@ -113,12 +97,12 @@ msgstr "Compte par défaut pour les produits à reporter"
 #. module: account_cutoff_prepaid
 #: field:res.company,default_prepaid_expense_journal_id:0
 msgid "Default Journal for Prepaid Expenses"
-msgstr "Journal par défaut pour les charges à reporter"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: field:res.company,default_prepaid_revenue_journal_id:0
 msgid "Default Journal for Prepaid Revenues"
-msgstr "Journal par défaut pour les produits à reporter"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,end_date:0 field:account.invoice.line,end_date:0
@@ -154,7 +138,7 @@ msgstr "Ligne de facture"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
 msgid "Journal Items"
-msgstr "Écriture"
+msgstr "Ecriture"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:41
@@ -171,17 +155,19 @@ msgstr "Date de fin manquante pour l'écriture avec label '%s'."
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:129
 #, python-format
-msgid "Missing Start Date and End Date for invoice line with Product '%s' which has the property 'Must Have Start and End Dates'."
+msgid ""
+"Missing Start Date and End Date for invoice line with Product '%s' which has"
+" the property 'Must Have Start and End Dates'."
 msgstr "Dates de début et fin manquantes pour la ligne de facture avec produit '%s' qui a la propriété 'Dates de début et fin obligatoires'."
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:47
+#: code:addons/account_cutoff_prepaid/account.py:46
 #, python-format
 msgid "Missing Start Date for invoice line with Description '%s'."
 msgstr "Date de début manquante pour la ligne de facture avec description '%s'."
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:95
+#: code:addons/account_cutoff_prepaid/account.py:86
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
 msgstr "Date de début manquante pour l'écriture avec le label '%s'."
@@ -189,7 +175,7 @@ msgstr "Date de début manquante pour l'écriture avec le label '%s'."
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_line_period_id:0
 msgid "Move Line Period"
-msgstr "Période de la ligne"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: field:product.template,must_have_dates:0
@@ -244,7 +230,9 @@ msgstr "La date de début doit précéder la date de fin pour l'écriture avec l
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account.py:52
 #, python-format
-msgid "Start Date should be before or be the same as End Date for invoice line with Description '%s'."
+msgid ""
+"Start Date should be before or be the same as End Date for invoice line with"
+" Description '%s'."
 msgstr "La date de début doit précéder la date de fin pour la ligne de facture avec description '%s'."
 
 #. module: account_cutoff_prepaid
