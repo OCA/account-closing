@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2017-06-07 02:50+0000\n"
+"POT-Creation-Date: 2017-06-09 22:16+0000\n"
+"PO-Revision-Date: 2017-06-09 22:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Datum računa"
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:113
 #, python-format
 msgid "Missing '%s' on tax '%s' (Picking '%s', product '%s')."
-msgstr ""
+msgstr "Manjkajoči '%s' za davek '%s' (Zbirnik '%s', proizvod '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:53
@@ -47,6 +47,8 @@ msgid ""
 "Missing expense account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Manjkajoči konto stroškov pri proizvodu '%s' ali na z njim povezani "
+"kategoriji proizvoda '%s' (Zbirnik '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:76
@@ -55,6 +57,8 @@ msgid ""
 "Missing income account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Manjkajoči konto prihodkov pri proizvodu '%s' ali na z njim povezani "
+"kategoriji proizvoda '%s' (Zbirnik '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: help:account.cutoff.line,stock_move_date:0
@@ -83,4 +87,4 @@ msgstr "Premik zaloge"
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,stock_move_date:0
 msgid "Transfer Date"
-msgstr ""
+msgstr "Datum transferja"
