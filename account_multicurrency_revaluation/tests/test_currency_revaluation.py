@@ -70,12 +70,6 @@ class TestCurrencyRevaluation(TransactionCase):
         company = ref('base.main_company')
         values = {
             'currency_id': ref('base.EUR').id,
-            'revaluation_loss_account_id': ref('acc_reval_loss').id,
-            'revaluation_gain_account_id': ref('acc_reval_gain').id,
-            'provision_bs_loss_account_id': ref('acc_prov_bs_loss').id,
-            'provision_bs_gain_account_id': ref('acc_prov_bs_gain').id,
-            'provision_pl_loss_account_id': ref('acc_prov_pl_loss').id,
-            'provision_pl_gain_account_id': ref('acc_prov_pl_gain').id
         }
         company.write(values)
 
@@ -114,7 +108,7 @@ class TestCurrencyRevaluation(TransactionCase):
             'invoice_line_ids': [(0, 0, invoice_line_data)]
         })
         # Validate invoice
-        invoice.signal_workflow('invoice_open')
+        invoice.action_invoice_open()
 
         payment_method = ref('account.account_payment_method_manual_in')
 
@@ -162,7 +156,7 @@ class TestCurrencyRevaluation(TransactionCase):
             'invoice_line_ids': [(0, 0, invoice_line_data)]
         })
         # Validate invoice
-        invoice.signal_workflow('invoice_open')
+        invoice.action_invoice_open()
 
         payment_method = ref('account.account_payment_method_manual_in')
 
