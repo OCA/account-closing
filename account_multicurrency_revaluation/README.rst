@@ -24,7 +24,7 @@ To install this module, you need to:
 Configuration
 =============
 
-Due to the various legislation according the country, in the Company settings
+Due to the various legislation according the country, in the Accouting settings
 you can set the way you want to generate revaluation journal entries.
 
 The user that can access to the edition of the 'Provision B.S loss account' and
@@ -70,25 +70,15 @@ For FR
   Provision B.S account  [1515]  [    ]
   Provision P&L account  [6865]  [    ]
 
-
-Main Features
--------------
-
-* A checkbox *Allow currency revaluation* on accounts.
-* A wizard to generate the revaluation journal entries. It adjusts account
-  balance having *Allow currency revaluation* checked.
-
-
-.. figure:: path/to/local/image.png
-   :alt: alternative description
-   :width: 600 px
-
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to ...
+* Check *Allow currency revaluation* on accounts you want to revaluate.
+* Open the wizard 'Invoicing > Adviser > Currency Revaluation' to generate the
+  revaluation journal entries. It adjusts account balance having
+  *Allow currency revaluation* checked.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
