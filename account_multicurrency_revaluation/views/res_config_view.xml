@@ -5,7 +5,7 @@
         <field name="model">account.config.settings</field>
         <field name="inherit_id" ref="account.view_account_config_settings"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[field[@name='overdue_msg']]" position="after">
+            <separator name="analytic_account" position="before">
                 <group string="Multicurrency revaluation">
                     <!--<separator string="Foreign currency gain &amp; loss"  colspan="5"/>-->
                     <group>
@@ -41,7 +41,7 @@
                         <field name="default_currency_reval_journal_id"/>
                     </group>
                 </group>
-            </xpath>
+            </separator>
         </field>
     </record>
 </odoo>
