@@ -16,7 +16,7 @@
      "demo/account_demo.xml",
  ],
  "data": [
-     "views/res_company_view.xml",
+     "views/res_config_view.xml",
      "security/security.xml",
      "views/account_view.xml",
      "wizard/wizard_currency_revaluation_view.xml"
