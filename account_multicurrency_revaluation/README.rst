@@ -24,7 +24,7 @@ To install this module, you need to:
 Configuration
 =============
 
-Due to the various legislation according the country, in the Accouting settings
+Due to the various legislation according the country, in the Accounting settings
 you can set the way you want to generate revaluation journal entries.
 
 The user that can access to the edition of the 'Provision B.S loss account' and
