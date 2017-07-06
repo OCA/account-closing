@@ -1,0 +1,345 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_multicurrency_revaluation
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: account-closing (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-23 23:09+0000\n"
+"PO-Revision-Date: 2015-10-14 17:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Danish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(account)s : Account for which the revaluation is applied"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(rate)s : Value of rate applied during revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "ANALYTIC ACCOUNT"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_account_account
+msgid "Account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:res.groups,name:account_multicurrency_revaluation.group_revaluation_additonal
+msgid "Additional provisioning entries posting"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_balance:0
+msgid "Aggregated Amount"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_foreign_balance:0
+msgid "Aggregated Amount curency"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:account.account,currency_revaluation:0
+msgid "Allow Currency revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "Cancel"
+msgstr "Annuller"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_res_company
+msgid "Companies"
+msgstr "Virksomheder"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,create_uid:0
+msgid "Created by"
+msgstr "Oprettet af"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,create_date:0
+msgid "Created on"
+msgstr "Oprettet den"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
+#, python-format
+msgid "Created revaluation lines"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
+msgid "Currency"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:account.account:account_multicurrency_revaluation.view_account_form_inherit
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "Currency Revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,default_currency_reval_journal_id:0
+msgid "Currency gain & loss Default Journal"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_currency_rate:0
+msgid "Currency rate"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
+msgid "Currency revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,display_name:0
+msgid "Display Name"
+msgstr "Vist navn"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,label:0
+msgid "Entry description"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Foreign currency gain & loss"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "GAIN"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,id:0
+msgid "ID"
+msgstr "Id"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
+msgid "Journal Items"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "LOSS"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,__last_update:0
+msgid "Last Modified on"
+msgstr "Sidst ændret den"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,write_uid:0
+msgid "Last Updated by"
+msgstr "Sidst opdateret af"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,write_date:0
+msgid "Last Updated on"
+msgstr "Sidst opdateret den"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
+#, python-format
+msgid ""
+"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
+" for at least one account in account form."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:457
+#, python-format
+msgid "No accounting entry has been posted."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:392
+#, python-format
+msgid "No fiscal entries found"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:372
+#, python-format
+msgid "No fiscalyear found for company %s on %s."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:108
+#, python-format
+msgid "No opening entries in opening period for this fiscal year"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:396
+#, python-format
+msgid "No opening entries in opening period for this fiscal year %s"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:402
+#, python-format
+msgid "No period found for the fiscalyear %s"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/model/res_currency.py:40
+#, python-format
+msgid "No rate found for the currency: %s at the date: %s"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
+#, python-format
+msgid ""
+"No revaluation or provision account are defined for your company.\n"
+"You must specify at least one provision account or a couple of provision account."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:378
+#, python-format
+msgid "No special period found for the fiscalyear %s"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid ""
+"Odoo will generate exchange rate difference entries for each account set as "
+"'Allow Currency revaluation'.                       if the account type is "
+"payable or receivable : 1 entry will be generated per "
+"account/currency/partner                      for other account type : 1 "
+"entry will be generated per account/currency       You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Provision B.S accounts"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_bs_gain_account_id:0
+msgid "Provision B.S gain account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_bs_loss_account_id:0
+msgid "Provision B.S loss account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_analytic_account_id:0
+msgid "Provision P&L Analytic account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Provision P&L accounts"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_gain_account_id:0
+msgid "Provision P&L gain account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_loss_account_id:0
+msgid "Provision P&L loss account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_revaluated_balance:0
+msgid "Revaluated Amount"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_analytic_account_id:0
+msgid "Revaluation Analytic account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,revaluation_date:0
+msgid "Revaluation Date"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Revaluation accounts"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_gain_account_id:0
+msgid "Revaluation gain account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_loss_account_id:0
+msgid "Revaluation loss account"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: help:res.company,reversable_revaluations:0
+msgid "Revaluations entries will be created as \"To Be Reversed\"."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,reversable_revaluations:0
+msgid "Reversable Revaluations"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:234
+#, python-format
+msgid "There is no period for company %s on %s"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: help:wizard.currency.revaluation,label:0
+msgid ""
+"This label will be inserted in entries description. You can use %(account)s,"
+" %(currency)s and %(rate)s keywords."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: help:wizard.currency.revaluation,journal_id:0
+msgid "You can set the default journal in company settings."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "_Validate"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "or"
+msgstr "eller"
