@@ -7,10 +7,9 @@
             <field name="model">unrealized.report.printer</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Print Currency Unrealized" version="7.0">
+                <form name="Print Currency Unrealized">
                     <group>
-                        <field name="period_id" domain="[('state', '=', 'draft')]"/>
-                        <field name="chart_account_id"/>
+                        <field name="account_ids"/>
                     </group>
                     <footer>
                         <button name="print_report" type="object" string="_Print" class="oe_highlight"/>
@@ -34,7 +33,7 @@
         <menuitem
                 name="Print Currency Unrealized"
                 action="currency_urealized_report_action_wizard"
-                parent="account.final_accounting_reports"
+                parent="account.menu_finance_reports"
                 id="currency_urealized_report_wizard_menu"/>
 
     </data>

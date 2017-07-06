@@ -1,13 +1,11 @@
 <openerp>
   <data>
-    <report auto="False"
-            name="currency_unrealized"
+    <report name="account_multicurrency_revaluation_report.curr_unrealized"
             string="Unrealized currency report"
-            id="report_currency_unrealized"
+            id="action_report_currency_unrealized"
             model="account.account"
-            menu="False"
-            file="account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako"
-            report_type="webkit"
-            webkit_header="base_headers_webkit.financial_landscape_header"/>
+            file="account_multicurrency_revaluation_report.curr_unrealized"
+            report_type="qweb-pdf"
+            />
   </data>
 </openerp>

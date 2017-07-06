@@ -12,7 +12,7 @@ Installation
 
 To install this module, you need to:
 
-* clone the branch 8.0 of the repository https://github.com/OCA/account-closing
+* clone the branch 9.0 of the repository https://github.com/OCA/account-closing
 * add the path to this repository in your configuration (addons-path)
 * update the module list
 * search for "Multicurrency revaluation report" in your addons
@@ -40,7 +40,7 @@ Known issues / Roadmap
 ======================
 
 * The module depends on the module *base headers webkit* which is in work in
-progress in this pull request: https://github.com/OCA/webkit-tools/pull/10
+  progress in this pull request: https://github.com/OCA/webkit-tools/pull/10
 
 However, this PR has been blocked since September 2014 now by this issue:
 https://github.com/odoo/odoo/issues/2334
@@ -68,6 +68,7 @@ Contributors
 * Stéphane Bidoul
 * Vincent Renaville
 * Yannick Vaucher
+* Akim Juillerat
 
 
 Maintainer

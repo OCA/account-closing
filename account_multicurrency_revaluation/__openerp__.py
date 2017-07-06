@@ -1,41 +1,28 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Yannick Vaucher
-#    Copyright 2012 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2012-2017 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {"name": "Multicurrency revaluation",
- "version": "8.0.1.0.0",
+ "version": "9.0.1.0.0",
  "category": "Finance",
  "summary": "Manage revaluation for multicurrency environment",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": 'AGPL-3',
  "depends": [
-     "base",
-     "account",
-     "account_reversal"
+     "account_reversal",
+ ],
+ "demo": [
+     "demo/currency_demo.xml",
+     "demo/account_demo.xml",
  ],
  "data": [
-     "views/res_company_view.xml",
+     "views/res_config_view.xml",
      "security/security.xml",
      "views/account_view.xml",
      "wizard/wizard_currency_revaluation_view.xml"
  ],
- "test": ["test/currency_revaluation.yml"],
- 'installable': False,
+ "tests": [
+     "tests/test_currency_revaluation.py",
+ ],
+ 'installable': True,
  }

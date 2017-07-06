@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-
-        <record id="view_company_form_add_currency_gain_loss_accounts" model="ir.ui.view">
-            <field name="name">res.company.form.add.currency.gain.loss.accounts</field>
-            <field name="model">res.company</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="base.view_company_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//page[@string='Configuration']" position="inside">
-                    <separator string="Foreign currency gain &amp; loss"  colspan="5"/>
+<odoo>
+    <record id="view_account_config_settings" model="ir.ui.view">
+        <field name="name">account settings currency revaluation</field>
+        <field name="model">account.config.settings</field>
+        <field name="inherit_id" ref="account.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <separator name="analytic_account" position="before">
+                <group string="Multicurrency revaluation">
+                    <!--<separator string="Foreign currency gain &amp; loss"  colspan="5"/>-->
                     <group>
                         <field name="reversable_revaluations"/>
                     </group>
@@ -21,19 +19,19 @@
                             <th width="250px"><label string="ANALYTIC ACCOUNT"/></th>
                         </tr>
                         <tr>
-                            <th><label string="Revaluation accounts"/></th>
+                            <th><label string="Revaluation accounts *"/></th>
                             <td> <field name="revaluation_loss_account_id" nolabel="1"/> </td>
                             <td> <field name="revaluation_gain_account_id" nolabel="1"/> </td>
                             <td> <field name="revaluation_analytic_account_id" nolabel="1"/> </td>
                         </tr>
-                        <tr groups="account_multicurrency_revaluation.group_revaluation_additonal">
-                            <th><label string="Provision B.S accounts"/></th>
+                        <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
+                            <th><label string="Provision B.S accounts *"/></th>
                             <td> <field name="provision_bs_loss_account_id" nolabel="1"/> </td>
                             <td> <field name="provision_bs_gain_account_id" nolabel="1"/> </td>
                             <td> </td>
                         </tr>
-                        <tr groups="account_multicurrency_revaluation.group_revaluation_additonal">
-                            <th><label string="Provision P&amp;L accounts"/></th>
+                        <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
+                            <th><label string="Provision P&amp;L accounts *"/></th>
                             <td> <field name="provision_pl_loss_account_id" nolabel="1"/> </td>
                             <td> <field name="provision_pl_gain_account_id" nolabel="1"/> </td>
                             <td> <field name="provision_pl_analytic_account_id" nolabel="1"/> </td>
@@ -42,9 +40,8 @@
                     <group>
                         <field name="default_currency_reval_journal_id"/>
                     </group>
-                </xpath>
-            </field>
-        </record>
-
-    </data>
-</openerp>
+                </group>
+            </separator>
+        </field>
+    </record>
+</odoo>

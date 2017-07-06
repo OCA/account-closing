@@ -1,148 +1,52 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#
+# * account_multicurrency_revaluation
+# 
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-21 09:06+0000\n"
-"PO-Revision-Date: 2015-02-06 01:07+0100\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: \n"
-"Language: de\n"
+"POT-Creation-Date: 2016-09-23 14:12+0000\n"
+"PO-Revision-Date: 2016-09-23 09:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_multicurrency_revaluation
-#: field:wizard.currency.revaluation,revaluation_date:0
-msgid "Revaluation Date"
-msgstr "Neubewertungsdatum"
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(account)s : Account for which the revaluation is applied"
+msgstr "%(account)s: Konto auf das Neubewertung angewendet wird"
 
 #. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:56
-#, fuzzy
-msgid "TOTAL"
-msgstr "Gesamt"
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(rate)s : Value of rate applied during revaluation"
+msgstr "%(rate)s: Angewendeter Kurswert bei Neubewertung"
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
-msgid "unrealized.report.printer"
-msgstr "unrealized.report.printer"
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "ANALYTIC ACCOUNT"
+msgstr "KOSTENSTELLE"
 
 #. module: account_multicurrency_revaluation
-#: help:wizard.currency.revaluation,label:0
-msgid ""
-"This label will be inserted in entries description. You can use %(account)s, "
-"%(currency)s and %(rate)s keywords."
-msgstr ""
-"Dieser Text wird in der Beschreibung der Posten eingesetzt. Sie können "
-"%(account)s, %(currency)s und %(rate)s Schlüsselwörter verwenden."
+#: model:ir.model,name:account_multicurrency_revaluation.model_account_account
+msgid "Account"
+msgstr "Konto"
 
 #. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:38
-msgid "Revaluation Rate"
-msgstr "Neubewertungsdatum"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,provision_bs_gain_account_id:0
-msgid "Provision B.S gain account"
-msgstr "Rückstellungen für Gewinne aus Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-msgid "Foreign currency gain & loss"
-msgstr "Fremdwährungsverlsute und -gewinne"
-
-#. module: account_multicurrency_revaluation
-#: field:res.currency,rate_silent:0
-#, fuzzy
-msgid "Current Rate"
-msgstr "Umrechnungskurs"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,provision_bs_loss_account_id:0
-#, fuzzy
-msgid "Provision B.S loss account"
-msgstr "Konto für Verluste aus Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
-#: view:account.account:0 view:wizard.currency.revaluation:0
-msgid "Currency Revaluation"
-msgstr "Währungs-Neubewertung"
-
-#. module: account_multicurrency_revaluation
-#: help:res.company,reversable_revaluations:0
-msgid "Revaluations entries will be created as \"To Be Reversed\"."
-msgstr "Neubewertungsbuchungen werden angelegt als \"Zurück zu buchen\"."
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,provision_pl_gain_account_id:0
-msgid "Provision P&L gain account"
-msgstr "Konto für Gewinne aus GuV"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:520
-#, python-format
-msgid "No accounting entry have been posted."
-msgstr "Kein Buchhaltungsposten wurde gebucht."
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:22
-msgid "Currency Gain and Loss"
-msgstr "Kursgewinne und -verluste"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:19
-#, fuzzy
-msgid "Company currency"
-msgstr "Hauswährung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:276
-#, python-format
-msgid "There is no period for company %s on %s"
-msgstr "Es existiert noch keine Periode für Unternehmen %s in %s"
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-msgid "GAIN"
-msgstr "GEWINN"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,revaluation_analytic_account_id:0
-msgid "Revaluation Analytic account"
-msgstr "Kostenstelle für Neubewertung"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,provision_pl_analytic_account_id:0
-msgid "Provision P&L Analytic account"
-msgstr "Bereitstellung GuV-Konten analytische"
-
+#: model:res.groups,name:account_multicurrency_revaluation.group_revaluation_additonal
+msgid "Additional provisioning entries posting"
+msgstr "Zusätzliche Buchung von Rückstellungen"
 
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_balance:0
-#, fuzzy
 msgid "Aggregated Amount"
-msgstr "Gesamtsumme."
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,revaluation_gain_account_id:0
-#, fuzzy
-msgid "Revaluation gain account"
-msgstr "Konto für Gewinne aus Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.actions.report.xml,name:account_multicurrency_revaluation.report_currency_unrealized
-msgid "Unrealized currency report"
-msgstr "Unrealisierte Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:40
-#, fuzzy
-msgid "Balance YTD"
-msgstr "Errechneter Saldo"
+msgstr "Kumulierter Betrag"
 
 #. module: account_multicurrency_revaluation
 #: field:account.move.line,gl_foreign_balance:0
@@ -150,353 +54,46 @@ msgid "Aggregated Amount curency"
 msgstr "Kumulierte Währungssumme"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/res_currency.py:42
-#, python-format
-msgid ""
-"No rate found \n"
-"for the currency: %s \n"
-"at the date: %s"
-msgstr ""
-"Kein Kurs gefunden\n"
-"für die Währung: %s \n"
-"zum Datum: %s"
-
-#. module: account_multicurrency_revaluation
-#: view:wizard.currency.revaluation:0
-msgid "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.                       1 entry will be generated per account/partner/currency       You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
-msgstr "ODOO werden Kursdifferenz Einträge erzeugen für jedes Konto als 'Zulassen Währungsneubewertungs 'gesetzt. Wenn der Kontotyp, Verbindlichkeiten oder Forderungen: 1 Eintrag wird pro Konto / Währung / Partner für andere Kontotypen erstellt werden: 1 Eintrag wird pro Konto / Währung erzeugt werden können Details der Berechnung durch den Druck nicht realisierte Währungs Bericht in der generischen überprüfen Berichte."
-
-
-#. module: account_multicurrency_revaluation
-#: help:wizard.currency.revaluation,journal_id:0
-msgid "You can set the default journal in company settings."
-msgstr ""
-"Sie können das Vorgabejournal in den Unternehmenseinstellungen festlegen."
-
-#. module: account_multicurrency_revaluation
 #: field:account.account,currency_revaluation:0
 msgid "Allow Currency revaluation"
 msgstr "Währungs-Neubewertung"
 
 #. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:18
-#, fuzzy
-msgid "Company"
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_res_company
+msgid "Companies"
 msgstr "Unternehmen"
 
 #. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:16
-msgid "Report"
-msgstr "Bericht"
+#: field:wizard.currency.revaluation,create_uid:0
+msgid "Created by"
+msgstr "Angelegt durch"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:510
+#: field:wizard.currency.revaluation,create_date:0
+msgid "Created on"
+msgstr "Angelegt am"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Neubewertungspositionen angelegt"
 
 #. module: account_multicurrency_revaluation
-#: view:wizard.currency.revaluation:0
-msgid "%(account)s : Account for which the revaluation is applied"
-msgstr "%(account)s: Konto auf das Neubewertung angewendet wird"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,reversable_revaluations:0
-msgid "Reversable Revaluations"
-msgstr "Umkehrbare Neuberwertung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
-#, python-format
-msgid "No fiscal entries found"
-msgstr "Keine Bilanzeinträge gefunden"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:39
-msgid "Revaluated Amount YTD"
-msgstr "Bis heute kumulierter neu bewerteter Betrag"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
-msgid "Journal Items"
-msgstr "Journalposten"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:41
-msgid "Gain(+)/Loss(-) YTD"
-msgstr "Gewinn(+)/Verlust(-) bis heute"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:455
-#, python-format
-msgid "No opening entries in opening period for this fiscal year %s"
-msgstr ""
-"Keine Eröffnungsbuchungen in Eröffnungsperiode dieses Geschäftsjahres %s"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:461
-#, fuzzy, python-format
-msgid "No period found for the fiscalyear %s"
-msgstr "Keine Datensätze für Ihre Auswahl getroffen!"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/report/currency_unrealized_report.py:99
-#, python-format
-msgid "Exchange Rate Gain and Loss Report"
-msgstr "Bericht zu Kursgewinnen und -verlusten"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_account_account
-#, fuzzy
-msgid "Account"
-msgstr "Conto"
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-#, fuzzy
-msgid "Revaluation accounts"
-msgstr "Bankkonten"
-
-#. module: account_multicurrency_revaluation
-#: field:account.move.line,gl_revaluated_balance:0
-#, fuzzy
-msgid "Revaluated Amount"
-msgstr "Gesamtsumme."
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-#, fuzzy
-msgid "Provision P&L accounts"
-msgstr "Bankkonten"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:381
-#, python-format
-msgid ""
-"No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision "
-"account."
-msgstr ""
-"Kein Neubewertungs- oder Rückstellungskonto für Ihr Unternehmen festgelegt.\n"
-"Sie müssen zumindest ein Rückstellungskonto oder mehrere Rückstellungskonten "
-"festlegen."
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:419
-#, python-format
-msgid "No fiscalyear found for company %s on %s."
-msgstr "Kein Geschäftsjahr für das Unternehmen %s in %s gefunden."
-
-#. module: account_multicurrency_revaluation
-#: view:wizard.currency.revaluation:0
-#, fuzzy
-msgid "_Validate"
-msgstr "Prüfen"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_res_company
-#, fuzzy
-msgid "Companies"
-msgstr "Unternehmen"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
-#, fuzzy
-msgid "wizard.currency.revaluation"
-msgstr "Währungsaktualisierungsdienst"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:36
-#, fuzzy
-msgid "Curr. Balance YTD"
-msgstr "{'invisible_balance': False}"
-
-#. module: account_multicurrency_revaluation
-#: view:wizard.currency.revaluation:0
-msgid "This will reevaluate the currency gain & loss"
-msgstr "Dies wird die Kursgewinne & -verluste neu bewerten"
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-#, fuzzy
-msgid "ANALYTIC ACCOUNT"
-msgstr "Kostenstellenkonto"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:274
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:380
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:417
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:428
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:446
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:454
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:460
-#, fuzzy, python-format
-msgid "Error!"
-msgstr "Fehler!"
-
-#. module: account_multicurrency_revaluation
-#: field:unrealized.report.printer,period_id:0
-#, fuzzy
-msgid "Period to use"
-msgstr "Zu nutzender Webdienst"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/res_currency.py:41
-#, fuzzy, python-format
-msgid "Error"
-msgstr "Fehler"
-
-#. module: account_multicurrency_revaluation
-#: view:wizard.currency.revaluation:0
-msgid "%(rate)s : Value of rate applied during revaluation"
-msgstr "%(rate)s: Angewendeter Kurswert bei Neubewertung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:402
-#, fuzzy, python-format
-msgid "Settings Error!"
-msgstr "Fehler im 'Key' !"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/report/currency_unrealized_report.py:203
-#, fuzzy, python-format
-msgid "%s argument is not set in wizard"
-msgstr "Aktive ID ist im Kontext nicht gesetzt."
-
-#. module: account_multicurrency_revaluation
-#: help:res.currency,rate_silent:0
-#, fuzzy
-msgid ""
-"The rate of the currency to the currency of rate 1 (0 if no rate defined)."
-msgstr ""
-"Der Kurs der Währung zur Währung mit Kurs 1 (0 wenn kein Wert festgelegt)."
-
-#. module: account_multicurrency_revaluation
-#: field:account.move.line,gl_currency_rate:0
-#, fuzzy
-msgid "Currency rate"
-msgstr "Währungskursaktualisierung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:403
-#, python-format
-msgid ""
-"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
-"for at least one account in account form."
-msgstr ""
-"Kein neu zu bewertendes Konto gefunden. Wählen Sie das 'Erlaube Währungs-"
-"Neubewertung' für mindestens ein Konto der Kontenpflege."
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-#, fuzzy
-msgid "Provision B.S accounts"
-msgstr "Bankkonten"
-
-#. module: account_multicurrency_revaluation
-#: view:res.company:0
-#, fuzzy
-msgid "LOSS"
-msgstr "Point Of Sale Verlust"
-
-#. module: account_multicurrency_revaluation
-#: field:wizard.currency.revaluation,label:0
-#, fuzzy
-msgid "Entry description"
-msgstr "Featurebeschreibung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:429
-#, python-format
-msgid "No special period found for the fiscalyear %s"
-msgstr "Keine Sonderperioden für das Geschäftsjahr %s gefunden"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:17
-#, fuzzy
-msgid "Fiscal Period"
-msgstr "Abrechnungsperiode"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,provision_pl_loss_account_id:0
-#, fuzzy
-msgid "Provision P&L loss account"
-msgstr "Konto für Verluste aus Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
-#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_urealized_report_wizard_menu
-#: view:unrealized.report.printer:0
-#, fuzzy
-msgid "Print Currency Unrealized"
-msgstr "Währungsaktualisierungsdienst"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
-#: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
-#, fuzzy
-msgid "Currency revaluation"
-msgstr "Währung zur Aktivität"
-
-#. module: account_multicurrency_revaluation
-#: view:unrealized.report.printer:0 view:wizard.currency.revaluation:0
-#, fuzzy
-msgid "or"
-msgstr "oder"
-
-#. module: account_multicurrency_revaluation
-#: field:res.company,revaluation_loss_account_id:0
-#, fuzzy
-msgid "Revaluation loss account"
-msgstr "Konto für Verluste aus Kursdifferenzen"
-
-#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
-#, fuzzy
 msgid "Currency"
 msgstr "Währung"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:519
-#, fuzzy, python-format
-msgid "Warning"
-msgstr "Warnung"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:133
-#, python-format
-msgid "No opening entries in opening period for this fiscal year"
-msgstr "Keine Eröffnungsbuchungen in der Eröffnungsperiode des Geschäftsjahrs"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:132
-#, fuzzy, python-format
-msgid "Warning!"
-msgstr "Warnung!"
-
-#. module: account_multicurrency_revaluation
-#: view:unrealized.report.printer:0
-#, fuzzy
-msgid "_Print"
-msgstr "Drucken"
-
-#. module: account_multicurrency_revaluation
-#: view:unrealized.report.printer:0 view:wizard.currency.revaluation:0
-#, fuzzy
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#. module: account_multicurrency_revaluation
-#: report:addons/account_multicurrency_revaluation/report/templates/unrealized_currency_gain_loss.mako:35
-#, fuzzy
-msgid "Partner"
-msgstr "Partner"
-
-#. module: account_multicurrency_revaluation
-#: field:unrealized.report.printer,chart_account_id:0
-#, fuzzy
-msgid "Chart root"
-msgstr "Kontenplan"
+#: view:account.account:account_multicurrency_revaluation.view_account_form_inherit
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "Currency Revaluation"
+msgstr "Währungs-Neubewertung"
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,default_currency_reval_journal_id:0
@@ -504,7 +101,246 @@ msgid "Currency gain & loss Default Journal"
 msgstr "Vorgabe-Journal für Währungsgewinne & -verluste"
 
 #. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_currency_rate:0
+msgid "Currency rate"
+msgstr "Wechselkurs"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
+msgid "Currency revaluation"
+msgstr "Währungsneuberwertung"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,label:0
+msgid "Entry description"
+msgstr "Postenbeschreibung"
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Foreign currency gain & loss"
+msgstr "Fremdwährungsverlsute und -gewinne"
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "GAIN"
+msgstr "GEWINN"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0
-#, fuzzy
 msgid "Journal"
 msgstr "Journal"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
+msgid "Journal Items"
+msgstr "Journalposten"
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "LOSS"
+msgstr "VERLUST"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,write_uid:0
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,write_date:0
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
+#, python-format
+msgid ""
+"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
+" for at least one account in account form."
+msgstr "Kein neu zu bewertendes Konto gefunden. Wählen Sie das 'Erlaube Währungs-Neubewertung' für mindestens ein Konto der Kontenpflege."
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:457
+#, python-format
+msgid "No accounting entry has been posted."
+msgstr "Es wurde kein Posten gebucht."
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:392
+#, python-format
+msgid "No fiscal entries found"
+msgstr "Keine Bilanzeinträge gefunden"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:372
+#, python-format
+msgid "No fiscalyear found for company %s on %s."
+msgstr "Kein Geschäftsjahr für das Unternehmen %s in %s gefunden."
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:108
+#, python-format
+msgid "No opening entries in opening period for this fiscal year"
+msgstr "Keine Eröffnungsbuchungen in der Eröffnungsperiode des Geschäftsjahrs"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:396
+#, python-format
+msgid "No opening entries in opening period for this fiscal year %s"
+msgstr "Keine Eröffnungsbuchungen in Eröffnungsperiode dieses Geschäftsjahres %s"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:402
+#, python-format
+msgid "No period found for the fiscalyear %s"
+msgstr "Für das Geschäftsjahr %s wurde keine Periode gefunden"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/model/res_currency.py:40
+#, python-format
+msgid "No rate found for the currency: %s at the date: %s"
+msgstr "Kein Kurs zur Währung %s und Datum %s gefunden"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
+#, python-format
+msgid ""
+"No revaluation or provision account are defined for your company.\n"
+"You must specify at least one provision account or a couple of provision account."
+msgstr "Kein Neubewertungs- oder Rückstellungskonto für Ihr Unternehmen festgelegt.\nSie müssen zumindest ein Rückstellungskonto oder mehrere Rückstellungskonten festlegen."
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:378
+#, python-format
+msgid "No special period found for the fiscalyear %s"
+msgstr "Keine Sonderperioden für das Geschäftsjahr %s gefunden"
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid ""
+"Odoo will generate exchange rate difference entries for each account set as "
+"'Allow Currency revaluation'.                       if the account type is "
+"payable or receivable : 1 entry will be generated per "
+"account/currency/partner                      for other account type : 1 "
+"entry will be generated per account/currency       You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
+msgstr "Odoo wird Kursdifferenzen für jedes Konto buchen, welches 'Erlaube Währungs-Neuberwertung' gesetzt hat. Ist es ein Verbindlichkeits- oder ein Forderungskonto wird 1 Posten je Konto/Währung/Partner erstellt, für andere Konten je 1 Posten je Konto/Währung. Sie können Details der Berechnung, dank des Berichts Nicht realisierte Währungsgewinne/-verluste bei den allgemeinen Berichten, prüfen."
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Provision B.S accounts"
+msgstr "Rückstellungen Bilanzkonten"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_bs_gain_account_id:0
+msgid "Provision B.S gain account"
+msgstr "Rückstellungen für Gewinne aus Kursdifferenzen"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_bs_loss_account_id:0
+msgid "Provision B.S loss account"
+msgstr "Rückstellungen für Verluste aus Kursdifferenzen"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_analytic_account_id:0
+msgid "Provision P&L Analytic account"
+msgstr "Rückstellung GuV-Konten Kostenstellenkonto"
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Provision P&L accounts"
+msgstr "Rückstellung GuV-Konten"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_gain_account_id:0
+msgid "Provision P&L gain account"
+msgstr "Konto für Gewinne aus GuV"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,provision_pl_loss_account_id:0
+msgid "Provision P&L loss account"
+msgstr "Konto für Verluste aus GuV"
+
+#. module: account_multicurrency_revaluation
+#: field:account.move.line,gl_revaluated_balance:0
+msgid "Revaluated Amount"
+msgstr "Neuberwertungsbetrag"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_analytic_account_id:0
+msgid "Revaluation Analytic account"
+msgstr "Kostenstelle für Neubewertung"
+
+#. module: account_multicurrency_revaluation
+#: field:wizard.currency.revaluation,revaluation_date:0
+msgid "Revaluation Date"
+msgstr "Neubewertungsdatum"
+
+#. module: account_multicurrency_revaluation
+#: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
+msgid "Revaluation accounts"
+msgstr "Neubewertungskonten"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_gain_account_id:0
+msgid "Revaluation gain account"
+msgstr "Konto für Neubewertungsgewinne"
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,revaluation_loss_account_id:0
+msgid "Revaluation loss account"
+msgstr "Konto für Neubewertungsverluste"
+
+#. module: account_multicurrency_revaluation
+#: help:res.company,reversable_revaluations:0
+msgid "Revaluations entries will be created as \"To Be Reversed\"."
+msgstr "Neubewertungsbuchungen werden angelegt als \"Zurück zu buchen\"."
+
+#. module: account_multicurrency_revaluation
+#: field:res.company,reversable_revaluations:0
+msgid "Reversable Revaluations"
+msgstr "Umkehrbare Neuberwertung"
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:234
+#, python-format
+msgid "There is no period for company %s on %s"
+msgstr "Es existiert noch keine Periode für Unternehmen %s in %s"
+
+#. module: account_multicurrency_revaluation
+#: help:wizard.currency.revaluation,label:0
+msgid ""
+"This label will be inserted in entries description. You can use %(account)s,"
+" %(currency)s and %(rate)s keywords."
+msgstr "Dieser Text wird in der Beschreibung der Posten eingesetzt. Sie können %(account)s, %(currency)s und %(rate)s Schlüsselwörter verwenden."
+
+#. module: account_multicurrency_revaluation
+#: help:wizard.currency.revaluation,journal_id:0
+msgid "You can set the default journal in company settings."
+msgstr "Sie können das Vorgabejournal in den Unternehmenseinstellungen festlegen."
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "_Validate"
+msgstr "Freigeben"
+
+#. module: account_multicurrency_revaluation
+#: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "or"
+msgstr "oder"
