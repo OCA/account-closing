@@ -4,9 +4,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp import _, api, fields, models
-from openerp.tools import float_is_zero
-from openerp.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.tools import float_is_zero
+from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
 _logger = logging.getLogger(__name__)

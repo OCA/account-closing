@@ -59,6 +59,7 @@ Contributors
 
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Angel Moya <angel.moya@pesol.es>
 
 Maintainer
 ----------
