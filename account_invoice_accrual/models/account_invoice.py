@@ -221,12 +221,17 @@ class AccountInvoice(models.Model):
         self.with_context(
             date=self.date_invoice, invoice=self).\
             write({'accrual_move_id': accrual_move_id.id})
+        self._post_accrual_move(accrual_move_id)
+
+        return accrual_move_id.id
+
+    @api.multi
+    def _post_accrual_move(self, accrual_move_id):
+        self.ensure_one()
         # Pass invoice in context in method post: used if you want to get the
         # same account move reference when creating the same invoice after a
         # cancelled one:
         accrual_move_id.with_context(invoice=self).post()
-
-        return accrual_move_id.id
 
     @api.multi
     def create_accruals(self, accrual_date, account_id,
