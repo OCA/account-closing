@@ -54,7 +54,7 @@ class AccountInvoice(models.Model):
                 # we simply remove it
                 accrual_move.unlink()
             else:
-                args = self._get_create_reverse_accruals_kwargs()
+                args = invoice._get_create_reverse_accruals_kwargs()
                 accrual_move.create_reversals(**args)
 
     @api.multi
