@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-30 22:25+0000\n"
-"PO-Revision-Date: 2017-08-11 11:58+0000\n"
+"POT-Creation-Date: 2017-08-11 22:16+0000\n"
+"PO-Revision-Date: 2017-08-21 07:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -489,7 +489,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,tax_ids:0
 msgid "Taxes"
-msgstr ""
+msgstr "Impuestos"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:301
@@ -521,7 +521,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_unread:0
