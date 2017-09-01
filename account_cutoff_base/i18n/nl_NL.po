@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-23 22:17+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-25 22:14+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -160,14 +160,14 @@ msgstr ""
 #: field:account.cutoff.mapping,create_uid:0
 #: field:account.cutoff.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,create_date:0 field:account.cutoff.line,create_date:0
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
@@ -300,7 +300,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: field:account.cutoff.line,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,display_name:0
@@ -380,14 +380,14 @@ msgstr "Laatst gewijzigd op"
 #: field:account.cutoff.mapping,write_uid:0
 #: field:account.cutoff.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,write_date:0 field:account.cutoff.line,write_date:0
 #: field:account.cutoff.mapping,write_date:0
 #: field:account.cutoff.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_ids:0
@@ -446,7 +446,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,state:0
