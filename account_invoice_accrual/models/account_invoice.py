@@ -54,18 +54,12 @@ class AccountInvoice(models.Model):
                 # we simply remove it
                 accrual_move.unlink()
             else:
-                args = invoice._get_create_reverse_accruals_kwargs()
-                accrual_move.create_reversals(**args)
-
-    @api.multi
-    def _get_create_reverse_accruals_kwargs(self):
-        """
-        This method is designed to be inherited to provide keywargs to
-        create_reversals method when reversing invoice accruals
-        :return:
-        """
-        self.ensure_one()
-        return {}
+                # Use default values of the reversal wizard to create the
+                # reverse
+                reverse_obj = self.env['account.move.reverse']
+                reverse_wizard = reverse_obj.create({})
+                reverse_wizard.with_context(active_ids=accrual_move.ids) \
+                    .action_reverse()
 
     @api.multi
     def invoice_validate(self):
