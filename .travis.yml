@@ -1,22 +1,29 @@
+language: python
 sudo: false
-cache: pip
+cache:
+  apt: true
+  directories:
+    - $HOME/.cache/pip
+
+python:
+  - "2.7"
 
 addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
 
-language: python
-
-python:
-  - "2.7"
 
 env:
   global:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
   - TRANSIFEX_USER='transbot@odoo-community.org'
   - secure: "z1XJzAw3IBv62Jw8Piyb0pyHpiNDcivt9QoDeYFW0ZHH9BLlyjF09H3f6BGoW9SpK2T22EkSZyRJjjPpL+vVfKfpFalT7cOpWsFJyZwr7xxb96hYm6S/PcPPn0g3P/iKSyqv12s4GiumOJIG05Nq4XhcwiKvEzCHvUjHyUC59u8="
+  - WKHTMLTOPDF_VERSION="0.12.4"
 
   matrix:
   - LINT_CHECK="1"
