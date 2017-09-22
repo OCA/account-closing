@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-25 22:14+0000\n"
-"PO-Revision-Date: 2017-08-28 21:14+0000\n"
+"POT-Creation-Date: 2017-09-01 22:35+0000\n"
+"PO-Revision-Date: 2017-09-22 16:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Bedrijven"
 
 #. module: account_cutoff_prepaid
 #: view:account.cutoff.line:account_cutoff_prepaid.account_cutoff_line_tree

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-25 22:14+0000\n"
+"POT-Creation-Date: 2017-09-01 22:36+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/nl_NL/)\n"
@@ -65,7 +65,7 @@ msgstr "Verwijderen"
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Bedrijven"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_uid:0
