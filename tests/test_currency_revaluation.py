@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from odoo import fields
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
 
 class TestCurrencyRevaluation(TransactionCase):
@@ -11,8 +13,6 @@ class TestCurrencyRevaluation(TransactionCase):
         # Set accounts on company
         company = self.env['res.company'].search([])
 
-        reval_journal = self.env.ref(
-            'account_multicurrency_revaluation.reval_journal')
         values = {
             'revaluation_loss_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
@@ -20,14 +20,14 @@ class TestCurrencyRevaluation(TransactionCase):
             'revaluation_gain_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
                              'acc_reval_gain').id,
-            'default_currency_reval_journal_id': reval_journal.id,
+            'default_currency_reval_journal_id': self.reval_journal.id,
         }
         company.write(values)
 
         wizard = self.env['wizard.currency.revaluation']
         data = {
             'revaluation_date': '2017-03-15',
-            'journal_id': reval_journal.id,
+            'journal_id': self.reval_journal.id,
             'label': '[%(account)s] wiz_test',
         }
         wiz = wizard.create(data)
@@ -62,6 +62,23 @@ class TestCurrencyRevaluation(TransactionCase):
                 self.assertEquals(reval_line.credit, 0.0)
                 self.assertEquals(reval_line.debit, 185.0)
 
+    def test_defaults(self):
+        self.env['account.config.settings'].create({
+            'default_currency_reval_journal_id': self.reval_journal.id,
+            'revaluation_loss_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_loss').id,
+            'revaluation_gain_account_id':
+                self.env.ref('account_multicurrency_revaluation.'
+                             'acc_reval_gain').id
+        }).execute()
+
+        wizard = self.env['wizard.currency.revaluation'].create({})
+
+        self.assertEqual(wizard.revaluation_date,
+                         fields.date.today().strftime(DATE_FORMAT))
+        self.assertEqual(wizard.journal_id, self.reval_journal)
+
     def setUp(self):
         super(TestCurrencyRevaluation, self).setUp()
         ref = self.env.ref
@@ -72,6 +89,9 @@ class TestCurrencyRevaluation(TransactionCase):
             'currency_id': ref('base.EUR').id,
         }
         company.write(values)
+
+        self.reval_journal = ref(
+            'account_multicurrency_revaluation.reval_journal')
 
         sales_journal = ref('account_multicurrency_revaluation.sales_journal')
 
@@ -98,12 +118,14 @@ class TestCurrencyRevaluation(TransactionCase):
             'currency_id': usd_currency.id
         }
 
+        partner = ref('base.res_partner_3')
+
         invoice = self.env['account.invoice'].create({
             'name': "Customer Invoice",
             'date_invoice': '2017-01-16',
             'currency_id': usd_currency.id,
             'journal_id': sales_journal.id,
-            'partner_id': ref('base.res_partner_3').id,
+            'partner_id': partner.id,
             'account_id': receivable_acc.id,
             'invoice_line_ids': [(0, 0, invoice_line_data)]
         })

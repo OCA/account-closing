@@ -71,7 +71,7 @@ class CurrencyUnrealizedReport(models.AbstractModel):
 
     @api.model
     def render_html(self, docids, data=None):
-        shell_accounts= {}
+        shell_accounts = {}
         docs = self.env['account.account']
         data = data if data is not None else {}
         accounts = self.env['account.account'].search(
