@@ -23,6 +23,7 @@
  ],
  "tests": [
      "tests/test_currency_revaluation.py",
+     "tests/test_currency_revaluation_report.py"
  ],
  'installable': True,
  }
