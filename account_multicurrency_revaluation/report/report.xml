@@ -1,11 +1,9 @@
-<openerp>
-  <data>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
     <report name="account_multicurrency_revaluation_report.curr_unrealized"
             string="Unrealized currency report"
             id="action_report_currency_unrealized"
             model="account.account"
             file="account_multicurrency_revaluation_report.curr_unrealized"
-            report_type="qweb-pdf"
-            />
-  </data>
-</openerp>
+            report_type="qweb-pdf" />
+</odoo>
