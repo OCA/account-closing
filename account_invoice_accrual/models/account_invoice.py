@@ -44,7 +44,8 @@ class AccountInvoice(models.Model):
                 continue
             accrual_move = invoice.accrual_move_id
             accrual_date = fields.Date.from_string(accrual_move.date)
-            invoice_date = fields.Date.from_string(invoice.date_invoice)
+            date = self.date or self.date_invoice
+            invoice_date = fields.Date.from_string(date)
 
             if (accrual_move.state == 'draft' and
                     accrual_date.year == invoice_date.year and
@@ -57,7 +58,8 @@ class AccountInvoice(models.Model):
                 # Use default values of the reversal wizard to create the
                 # reverse
                 reverse_obj = self.env['account.move.reverse']
-                reverse_wizard = reverse_obj.create({})
+                reverse_wizard =\
+                    reverse_obj.create({'date': invoice_date})
                 reverse_wizard.with_context(active_ids=accrual_move.ids) \
                     .action_reverse()
 
@@ -277,6 +279,7 @@ class AccountInvoice(models.Model):
         if not self.to_be_reversed:
             return False
         action = self.env.ref('account_reversal.act_account_move_reverse')
+        date = self.date or self.date_invoice
         return {
             'type': action.type,
             'name': action.name,
@@ -289,5 +292,6 @@ class AccountInvoice(models.Model):
                 'active_model': 'account.move',
                 'active_id': self.accrual_move_id.id,
                 'active_ids': [self.accrual_move_id.id],
+                'default_date': date,
             }
         }
