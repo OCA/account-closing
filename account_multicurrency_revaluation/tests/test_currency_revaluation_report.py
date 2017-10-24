@@ -11,7 +11,6 @@ class TestCurrencyRevaluationReport(TransactionCase):
         wizard = self.env['unrealized.report.printer']
         wiz = wizard.create({})
         data = {'lang': 'en_US',
-                'params': {'action': 254},
                 'tz': 'Europe/Brussels',
                 'uid': 1}
         result = wiz.print_report(data)
