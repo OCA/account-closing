@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Frédéric Siffert <frederic@treyvaud.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 20:53+0000\n"
-"PO-Revision-Date: 2016-11-28 20:53+0000\n"
-"Last-Translator: Frédéric Siffert <frederic@treyvaud.com>, 2017\n"
+"POT-Creation-Date: 2017-11-03 03:53+0000\n"
+"PO-Revision-Date: 2017-11-03 03:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,7 +288,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom à afficher"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,state:0
@@ -329,7 +328,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_message_unread
@@ -362,7 +361,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping___last_update
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_write_uid
@@ -370,7 +369,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_write_uid
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_write_date
@@ -378,7 +377,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_write_date
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_message_ids
