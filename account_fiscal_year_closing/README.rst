@@ -18,7 +18,7 @@ Configuration
 
 If you want to add a closing template or check existing ones:
 
-#. Go to *Accounting > Configuration > Fiscal year closing > Closing templates*.
+#. Go to *Accounting/Invoicing > Configuration > Fiscal year closing > Closing templates*.
 #. Click on Create.
 #. Put a name for the template.
 #. Mark if you want to check if there's any draft move in the date range
@@ -79,7 +79,7 @@ For closing a fiscal year:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/89/10.0
+   :target: https://runbot.odoo-community.org/runbot/89/11.0
 
 
 Known issues / Roadmap
