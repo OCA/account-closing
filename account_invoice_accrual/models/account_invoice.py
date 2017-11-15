@@ -159,8 +159,8 @@ class AccountInvoice(models.Model):
             for t in totlines:
                 if self.currency_id.id != company_currency.id:
                     amount_currency = company_currency.with_context(
-                        date=self.date_invoice).compute(self.currency_id.id,
-                                                        t[1])
+                        date=self.date_invoice).compute(
+                        t[1], self.currency_id)
                 else:
                     amount_currency = False
 
