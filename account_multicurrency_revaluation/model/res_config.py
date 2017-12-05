@@ -2,7 +2,7 @@
 # Copyright 2012-2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -67,30 +67,3 @@ class AccountConfigSettings(models.TransientModel):
              "as \"To Be Reversed\".",
         default=True,
     )
-
-    @api.multi
-    def onchange_company_id(self, company_id):
-        res = super(AccountConfigSettings, self
-                    ).onchange_company_id(company_id)
-        company = self.env['res.company'].browse(company_id)
-        res['value']['revaluation_loss_account_id'] = (
-            company.revaluation_loss_account_id.id)
-        res['value']['revaluation_gain_account_id'] = (
-            company.revaluation_gain_account_id.id)
-        res['value']['revaluation_analytic_account_id'] = (
-            company.revaluation_analytic_account_id.id)
-        res['value']['provision_bs_loss_account_id'] = (
-            company.provision_bs_loss_account_id.id)
-        res['value']['provision_bs_gain_account_id'] = (
-            company.provision_bs_gain_account_id.id)
-        res['value']['provision_pl_loss_account_id'] = (
-            company.provision_pl_loss_account_id.id)
-        res['value']['provision_pl_gain_account_id'] = (
-            company.provision_pl_gain_account_id.id)
-        res['value']['provision_pl_analytic_account_id'] = (
-            company.provision_pl_analytic_account_id.id)
-        res['value']['default_currency_reval_journal_id'] = (
-            company.default_currency_reval_journal_id.id)
-        res['value']['reversable_revaluations'] = (
-            company.reversable_revaluations.id)
-        return res
