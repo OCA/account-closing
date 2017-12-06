@@ -25,6 +25,5 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [account_cutoff_accrual_picking](account_cutoff_accrual_picking/) | 0.1 (unported) | Accrued Expense & Accrued Revenue from Pickings
-[account_multicurrency_revaluation_report](account_multicurrency_revaluation_report/) | 8.0.1.0.0 (unported) | Module for printing reports that completes the module Multicurrency Revaluation
 
 [//]: # (end addons)
