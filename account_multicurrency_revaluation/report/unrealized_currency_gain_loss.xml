@@ -2,7 +2,7 @@
 <odoo>
         <template id="assets_specific" inherit_id="report.assets_common">
             <xpath expr="." position="inside">
-                <link href="/account_multicurrency_revaluation_report/static/src/css/reports.css" rel="stylesheet"/>
+                <link href="/account_multicurrency_revaluation/static/src/css/reports.css" rel="stylesheet"/>
             </xpath>
         </template>
 
