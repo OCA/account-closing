@@ -17,7 +17,7 @@ addon | version | summary
 [account_cutoff_prepaid](account_cutoff_prepaid/) | 10.0.1.0.0 | Prepaid Expense, Prepaid Revenue
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 10.0.1.0.0 | Generic fiscal year closing wizard
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 10.0.1.0.0 | Adds start/end dates on invoice lines and move lines
-[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 10.0.1.0.0 | Manage revaluation for multicurrency environment
+[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 10.0.2.0.1 | Manage revaluation for multicurrency environment
 
 
 Unported addons
