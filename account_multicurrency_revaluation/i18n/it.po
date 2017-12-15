@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Stefano <stefano.sforzi@agilebg.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 01:40+0000\n"
-"PO-Revision-Date: 2017-12-06 01:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-13 03:39+0000\n"
+"PO-Revision-Date: 2017-12-13 03:39+0000\n"
+"Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +52,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
-msgstr ""
+msgstr "Conto"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer_account_ids
@@ -279,7 +280,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Stefano <stefano.sforzi@agilebg.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-13 03:39+0000\n"
+"PO-Revision-Date: 2017-12-13 03:39+0000\n"
+"Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_account_id
 msgid "Account"
-msgstr ""
+msgstr "Conto"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
@@ -270,7 +271,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_name
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_display_name
@@ -284,13 +285,13 @@ msgstr ""
 #: selection:account.cutoff,state:0
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Done"
-msgstr ""
+msgstr "Fatto"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,state:0
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Draft"
-msgstr ""
+msgstr "Bozza"
 
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -337,7 +338,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -368,7 +369,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
@@ -412,7 +413,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_tax_ids
 msgid "Taxes"
-msgstr ""
+msgstr "Tasse"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:212
@@ -447,9 +448,9 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_total_cutoff_amount
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "Totale Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
