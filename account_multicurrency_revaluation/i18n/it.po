@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 03:39+0000\n"
-"PO-Revision-Date: 2017-12-13 03:39+0000\n"
+"POT-Creation-Date: 2017-12-15 23:09+0000\n"
+"PO-Revision-Date: 2017-12-15 23:09+0000\n"
 "Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Società"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized
 msgid "Company"
-msgstr ""
+msgstr "Società"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized
@@ -131,7 +131,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized

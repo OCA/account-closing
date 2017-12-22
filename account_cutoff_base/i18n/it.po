@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 03:39+0000\n"
-"PO-Revision-Date: 2017-12-13 03:39+0000\n"
+"POT-Creation-Date: 2017-12-15 23:09+0000\n"
+"PO-Revision-Date: 2017-12-15 23:09+0000\n"
 "Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_amount
 msgid "Amount"
-msgstr ""
+msgstr "Totale"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_currency_id
@@ -94,22 +94,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_analytic_account_id
 msgid "Analytic Account"
-msgstr ""
+msgstr "Conto Analitico"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_code
 msgid "Analytic Account Code"
-msgstr ""
+msgstr "Conto Analitico"
 
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
-msgstr ""
+msgstr "Torna Bozza"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_base
@@ -130,7 +130,7 @@ msgstr "Società"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_company_id
 msgid "Company"
-msgstr ""
+msgstr "Società"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_currency_id
@@ -142,7 +142,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Create Journal Entry"
-msgstr ""
+msgstr "Crea Registrazioni"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_create_uid
@@ -163,7 +163,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_currency_id
@@ -182,17 +182,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_cutoff_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_cutoff_account_id
 msgid "Cut-off Account"
-msgstr ""
+msgstr "Conto Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_code
 msgid "Cut-off Account Code"
-msgstr ""
+msgstr "Conto Contabile Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_journal_id
 msgid "Cut-off Account Journal"
-msgstr ""
+msgstr "Giornale Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
@@ -203,7 +203,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_amount
 msgid "Cut-off Amount"
-msgstr ""
+msgstr "Totale Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_cutoff_amount
@@ -219,12 +219,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_date
 msgid "Cut-off Date"
-msgstr ""
+msgstr "Data Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_move_id
 msgid "Cut-off Journal Entry"
-msgstr ""
+msgstr "Registrazione Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_ids
@@ -309,7 +309,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_move_label
 msgid "Label of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Descrizione Registrazione"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff___last_update
@@ -346,7 +346,7 @@ msgstr "Partner"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:36
 #, python-format
 msgid "Prepaid Expense"
-msgstr ""
+msgstr "Costi prepagati"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -354,7 +354,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:34
 #, python-format
 msgid "Prepaid Revenue"
-msgstr ""
+msgstr "Ricavi Prepagati"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_account_id
@@ -374,7 +374,7 @@ msgstr "Sequenza"
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "Origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_state
