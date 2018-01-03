@@ -1,0 +1,467 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_base
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+# Pedro Castro Silva <pedrocs@exo.pt>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-23 23:20+0000\n"
+"PO-Revision-Date: 2018-03-23 23:20+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_cutoff_base
+#: sql_constraint:account.cutoff:0
+#: code:addons/account_cutoff_base/models/account_cutoff.py:138
+#, python-format
+msgid "A cutoff of the same type already exists with this cut-off date !"
+msgstr "Um diferimento do mesmo tipo já existe com esta data!"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_account_id
+msgid "Account"
+msgstr "Conta"
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Conta de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_parent_id
+msgid "Account Cut-off Line"
+msgstr "Linha de conta de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_mapping_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_mapping_tree
+msgid "Account Cut-off Mapping"
+msgstr "Mapa de contas de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
+msgid "Account Cut-off Tax Line"
+msgstr "Linha de conta de imposto diferido"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff.mapping,cutoff_type:0
+#: code:addons/account_cutoff_base/models/account_cutoff.py:27
+#, python-format
+msgid "Accrued Expense"
+msgstr "Acréscimos de gastos"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff.mapping,cutoff_type:0
+#: code:addons/account_cutoff_base/models/account_cutoff.py:28
+#, python-format
+msgid "Accrued Revenue"
+msgstr "Acréscimos de rendimentos"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff.mapping,cutoff_type:0
+msgid "All Cut-off Types"
+msgstr "Todo o tipo de acréscimos ou diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_amount
+msgid "Amount"
+msgstr "Valor"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_currency_id
+msgid "Amount Currency"
+msgstr "Moeda"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_amount
+msgid ""
+"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
+"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgstr ""
+"Valor que é usado como base para calcular o valor de corte. Este valor está "
+"na 'Moeda' que pode ser diferente da 'Moeda da Empresa'."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_analytic_account_id
+msgid "Analytic Account"
+msgstr "Conta analítica"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_code
+msgid "Analytic Account Code"
+msgstr "Código de conta analítica"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Back to Draft"
+msgstr "Voltar ao rascunho"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_base
+msgid "Base"
+msgstr "Base"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_base
+msgid "Base Amount in the currency of the PO."
+msgstr "Valor base na moeda da encomenda de compra."
+
+#. module: account_cutoff_base
+#: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
+msgid "Click to start a new cutoff account mapping."
+msgstr "Clique para iniciar um novo mapeamento de conta de diferimento."
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_currency_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_company_currency_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_company_currency_id
+msgid "Company Currency"
+msgstr "Moeda da empresa"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Create Journal Entry"
+msgstr "Criar registo em diário"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_currency_id
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_currency_id
+msgid "Currency of the 'Amount' field."
+msgstr "Moeda do campo 'Valor'."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_parent_id
+msgid "Cut-off"
+msgstr "Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_cutoff_account_id
+msgid "Cut-off Account"
+msgstr "Conta de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_code
+msgid "Cut-off Account Code"
+msgstr "Código da Conta de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_journal_id
+msgid "Cut-off Account Journal"
+msgstr "Diário de Diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
+#: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
+msgid "Cut-off Account Mapping"
+msgstr "Mapeamento de Contas de Diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_amount
+msgid "Cut-off Amount"
+msgstr "Valor do Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_cutoff_amount
+msgid "Cut-off Amount without taxes in the Company Currency."
+msgstr "Valor do diferimento sem impostos na moeda da empresa."
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+msgid "Cut-off Computation"
+msgstr "Cálculo do Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_date
+msgid "Cut-off Date"
+msgstr "Data do Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_move_id
+msgid "Cut-off Journal Entry"
+msgstr "Entrada no Diário de Diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_ids
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
+msgid "Cut-off Lines"
+msgstr "Linhas de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_cutoff_amount
+msgid "Cut-off Tax Amount"
+msgstr "Valor do imposto da operação de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_tax_line_ids
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_tree
+msgid "Cut-off Tax Lines"
+msgstr "Linhas do imposto da operação de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Cut-off Taxes Lines"
+msgstr "Linhas dos impostos da operação de diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_cutoff_type
+msgid "Cut-off Type"
+msgstr "Tipo de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tree
+#: model:ir.ui.view,arch_db:account_cutoff_base.view_company_form
+msgid "Cut-offs"
+msgstr "Diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company_default_cutoff_journal_id
+msgid "Default Cut-off Journal"
+msgstr "Diário de Diferimentos Predefinido"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_name
+msgid "Description"
+msgstr "Descrição"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_display_name
+msgid "Display Name"
+msgstr "Nome"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff,state:0
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Done"
+msgstr "Concluído"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff,state:0
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Draft"
+msgstr "Rascunho"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_move_label
+msgid "Label of the Cut-off Journal Entry"
+msgstr "Etiqueta da entrada de diário de diferimentos"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff___last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line___last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping___last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line___last_update
+msgid "Last Modified on"
+msgstr "Data da última modificação"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff.mapping,cutoff_type:0
+#: code:addons/account_cutoff_base/models/account_cutoff.py:30
+#, python-format
+msgid "Prepaid Expense"
+msgstr "Gasto não diferido"
+
+#. module: account_cutoff_base
+#: selection:account.cutoff.mapping,cutoff_type:0
+#: code:addons/account_cutoff_base/models/account_cutoff.py:29
+#, python-format
+msgid "Prepaid Revenue"
+msgstr "Rendimento não diferido"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_account_id
+msgid "Regular Account"
+msgstr "Conta normal"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Search Cut-offs"
+msgstr "Pesquisar Operações de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_sequence
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Source"
+msgstr "Origem"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_state
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_state
+msgid ""
+"State of the cutoff. When the Journal Entry is created, the state is set to "
+"'Done' and the fields become read-only."
+msgstr ""
+"Estado da operação de diferimento. Quando é publicado, o estado passa para "
+"'Publicado' e os campos ficam só como leitura."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_tax_id
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+msgid "Tax"
+msgstr "Imposto"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_amount
+msgid "Tax Amount"
+msgstr "Valor do Imposto"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_amount
+msgid "Tax Amount in the currency of the PO."
+msgstr "Valor do Imposto na moeda da encomenda de compra."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_cutoff_amount
+msgid "Tax Cut-off Amount in the company currency."
+msgstr "Valor do Diferimento na Moeda da Empresa."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_tax_ids
+msgid "Taxes"
+msgstr "Impostos"
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:244
+#, python-format
+msgid ""
+"The Cut-off Journal Entry already exists. You should delete it before "
+"running this function."
+msgstr ""
+"A entrada no diário de diferimentos já existe. Eliminar antes de correr esta "
+"função."
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:248
+#, python-format
+msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
+msgstr ""
+"Não há linhas neste diferimentos nesta operação, logo não se consegue "
+"publicar esta entrada de diário."
+
+#. module: account_cutoff_base
+#: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
+msgid ""
+"These account mappings allow you to have an cutoff account for expense/"
+"revenue that is not the same as the original expense/revenue account, using "
+"the same concept as the fiscal positions."
+msgstr ""
+"Estes mapas de conta permitem ter uma conta de rendimento/gasto que não seja "
+"a mesma conta de rendimento/gasto original, usando o mesmo conceito que as "
+"posições fiscais."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_move_label
+msgid ""
+"This label will be written in the 'Name' field of the Cut-off Account Move "
+"Lines and in the 'Reference' field of the Cut-off Account Move."
+msgstr ""
+"Esta etiqueta será registada no campo 'Nome' nas linhas de conta de "
+"diferimento e ainda no campo 'Referência' do movimento da conta de "
+"diferimento."
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_total_cutoff_amount
+msgid "Total Cut-off Amount"
+msgstr "Valor Total de Diferimento"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_type
+msgid "Type"
+msgstr "Tipo"
