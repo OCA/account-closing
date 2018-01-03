@@ -1,38 +1,38 @@
-# -*- coding: utf-8 -*-
-# © 2014 ACSONE SA/NV (http://acsone.eu)
+# Copyright 2014 ACSONE SA/NV (http://acsone.eu)
 # @author Stéphane Bidoul <stephane.bidoul@acsone.eu>
-# © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 import time
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestCutoffPrepaid(TransactionCase):
+class TestCutoffPrepaid(SavepointCase):
 
-    def setUp(self):
-        super(TestCutoffPrepaid, self).setUp()
-        self.inv_model = self.env['account.invoice']
-        self.cutoff_model = self.env['account.cutoff']
-        self.account_model = self.env['account.account']
-        self.journal_model = self.env['account.journal']
-        self.account_expense = self.account_model.search([(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.inv_model = cls.env['account.invoice']
+        cls.cutoff_model = cls.env['account.cutoff']
+        cls.account_model = cls.env['account.account']
+        cls.journal_model = cls.env['account.journal']
+        cls.account_expense = cls.account_model.search([(
             'user_type_id',
             '=',
-            self.env.ref('account.data_account_type_expenses').id)], limit=1)
-        self.account_payable = self.account_model.search([(
+            cls.env.ref('account.data_account_type_expenses').id)], limit=1)
+        cls.account_payable = cls.account_model.search([(
             'user_type_id',
             '=',
-            self.env.ref('account.data_account_type_payable').id)], limit=1)
-        self.account_cutoff = self.account_model.search([(
+            cls.env.ref('account.data_account_type_payable').id)], limit=1)
+        cls.account_cutoff = cls.account_model.search([(
             'user_type_id',
             '=',
-            self.env.ref('account.data_account_type_current_liabilities').id)],
+            cls.env.ref('account.data_account_type_current_liabilities').id)],
             limit=1)
-        self.cutoff_journal = self.journal_model.search([], limit=1)
-        self.purchase_journal = self.journal_model.search([(
+        cls.cutoff_journal = cls.journal_model.search([], limit=1)
+        cls.purchase_journal = cls.journal_model.search([(
             'type', '=', 'purchase')], limit=1)
 
     def _date(self, date):
@@ -67,14 +67,14 @@ class TestCutoffPrepaid(TransactionCase):
     def _create_cutoff(self, date):
         cutoff = self.cutoff_model.create({
             'cutoff_date': self._date(date),
-            'type': 'prepaid_revenue',
+            'cutoff_type': 'prepaid_revenue',
             'cutoff_journal_id': self.cutoff_journal.id,
             'cutoff_account_id': self.account_cutoff.id,
             'source_journal_ids': [(6, 0, [self.purchase_journal.id])],
         })
         return cutoff
 
-    def test_0(self):
+    def test_with_cutoff_before_after_and_in_the_middle(self):
         """ basic test with cutoff before, after and in the middle """
         amount = self._days('04-01', '06-30')
         amount_2months = self._days('05-01', '06-30')
@@ -107,7 +107,7 @@ class TestCutoffPrepaid(TransactionCase):
         cutoff.get_prepaid_lines()
         cutoff.create_move()
         self.assertEqual(amount * 2, cutoff.total_cutoff_amount)
-        self.assert_(cutoff.move_id, "move not generated")
+        self.assertTrue(cutoff.move_id, "move not generated")
         # two invoices, but two lines (because the two cutoff lines
         # have been grouped into one line plus one counterpart)
         self.assertEqual(len(cutoff.move_id.line_ids), 2)
