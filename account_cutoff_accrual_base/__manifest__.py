@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    Account Cutoff Accrual Base module for OpenERP
@@ -23,13 +22,15 @@
 
 {
     'name': 'Account Accrual Base',
-    'version': '10.0.0.1.0',
+    'version': '11.0.1.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Base module for accrued expenses and revenues',
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
-    'depends': ['account_cutoff_base'],
+    'depends': [
+        'account_cutoff_base',
+    ],
     'data': [
         'views/company_view.xml',
         'views/account_view.xml',

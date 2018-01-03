@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    Account Cut-off Accrual Base module for OpenERP
@@ -30,8 +29,7 @@ class AccountCutOff(models.Model):
 
     @api.model
     def _inherit_default_cutoff_account_id(self):
-        account_id = super(AccountCutOff,
-                           self)._inherit_default_cutoff_account_id()
+        account_id = super()._inherit_default_cutoff_account_id()
         type = self.env.context.get('type')
         company = self.env.user.company_id
         if type == 'accrued_expense':
@@ -42,8 +40,7 @@ class AccountCutOff(models.Model):
 
     @api.model
     def _get_default_journal(self):
-        journal_id = super(AccountCutOff, self)\
-            ._get_default_journal()
+        journal_id = super()._get_default_journal()
         cutoff_type = self.env.context.get('type', False)
         default_journal_id = self.env.user.company_id\
             .default_cutoff_journal_id.id or False
