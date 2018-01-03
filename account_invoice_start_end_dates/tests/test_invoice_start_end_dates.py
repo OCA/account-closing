@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -11,7 +10,7 @@ from odoo.tests.common import TransactionCase
 class TestInvoiceStartEndDates(TransactionCase):
 
     def setUp(self):
-        super(TestInvoiceStartEndDates, self).setUp()
+        super().setUp()
         self.inv_model = self.env['account.invoice']
         self.account_model = self.env['account.account']
         self.journal_model = self.env['account.journal']
