@@ -6,7 +6,7 @@
 Account Cutoff Base
 ===================
 
-This module contains objets, fields and menu entries that are used by
+This module contains models, fields and menu entries that are used by
 other cut-off modules ; it doesn't provide useful features by itself. You
 need to install other cut-off modules to get the useful features:
 
@@ -21,7 +21,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/89/10.0
+   :target: https://runbot.odoo-community.org/runbot/89/11.0
 
 
 Bug Tracker
@@ -39,6 +39,10 @@ Contributors
 ------------
 
 * Alexis de Lattre <alexis.delattre@akretion.com>
+* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Stéphane Bidoul (ACSONE)
+* Adrien Peiffer (ACSONE)
+* Pedro M. Baeza <pedro.baeza@gmail.com>
 
 Maintainer
 ----------

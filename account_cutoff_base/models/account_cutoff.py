@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2013-2016 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
@@ -22,88 +21,121 @@ class AccountCutoff(models.Model):
                 tamount += line.cutoff_amount
             cutoff.total_cutoff_amount = tamount
 
-    @api.model
-    def _default_move_label(self):
-        type = self._context.get('type')
-        label = ''
-        if type == 'accrued_expense':
-            label = _('Accrued Expense')
-        elif type == 'accrued_revenue':
-            label = _('Accrued Revenue')
-        elif type == 'prepaid_revenue':
-            label = _('Prepaid Revenue')
-        elif type == 'prepaid_expense':
-            label = _('Prepaid Expense')
-        return label
+    @property
+    def cutoff_type_label_map(self):
+        return {
+            'accrued_expense': _('Accrued Expense'),
+            'accrued_revenue': _('Accrued Revenue'),
+            'prepaid_revenue': _('Prepaid Revenue'),
+            'prepaid_expense': _('Prepaid Expense'),
+        }
 
     @api.model
-    def _inherit_default_cutoff_account_id(self):
-        """Function designed to be inherited by other cutoff modules"""
-        return None
+    def _default_move_label(self):
+        cutoff_type = self.env.context.get('cutoff_type')
+        label = self.cutoff_type_label_map.get(cutoff_type, '')
+        return label
+
+    def _selection_cutoff_type(self):
+        # generate cutoff types from mapping
+        return list(self.cutoff_type_label_map.items())
 
     @api.model
     def _default_cutoff_account_id(self):
-        """This function can't be inherited, so we use a second function"""
-        return self._inherit_default_cutoff_account_id()
+        """Default account muast always be None"""
+        return None
+
+    @api.model
+    def _default_cutoff_journal_id(self):
+        return self.env.user.company_id.default_cutoff_journal_id
 
     cutoff_date = fields.Date(
         string='Cut-off Date', readonly=True,
         states={'draft': [('readonly', False)]}, copy=False,
-        track_visibility='onchange')
-    type = fields.Selection([
-        ('accrued_revenue', 'Accrued Revenue'),
-        ('accrued_expense', 'Accrued Expense'),
-        ('prepaid_revenue', 'Prepaid Revenue'),
-        ('prepaid_expense', 'Prepaid Expense'),
-        ], string='Type', required=True, readonly=True,
-        default=lambda self: self._context.get('type'),
-        states={'draft': [('readonly', False)]})
+        track_visibility='onchange'
+    )
+    cutoff_type = fields.Selection(
+        selection='_selection_cutoff_type',
+        string='Type',
+        required=True,
+        readonly=True,
+        default=lambda self: self.env.context.get('cutoff_type'),
+        states={'draft': [('readonly', False)]},
+        oldname='type'
+    )
     move_id = fields.Many2one(
-        'account.move', string='Cut-off Journal Entry', readonly=True,
-        copy=False)
+        'account.move',
+        string='Cut-off Journal Entry',
+        readonly=True,
+        copy=False
+    )
     move_label = fields.Char(
-        string='Label of the Cut-off Journal Entry', readonly=True,
-        states={'draft': [('readonly', False)]}, default=_default_move_label,
+        string='Label of the Cut-off Journal Entry',
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        default=lambda self: self._default_move_label(),
         help="This label will be written in the 'Name' field of the "
         "Cut-off Account Move Lines and in the 'Reference' field of "
-        "the Cut-off Account Move.")
+        "the Cut-off Account Move."
+    )
     cutoff_account_id = fields.Many2one(
-        'account.account', string='Cut-off Account',
+        comodel_name='account.account',
+        string='Cut-off Account',
         domain=[('deprecated', '=', False)],
-        readonly=True, states={'draft': [('readonly', False)]},
-        default=_default_cutoff_account_id)
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        default=lambda self: self._default_cutoff_account_id()
+    )
     cutoff_journal_id = fields.Many2one(
-        'account.journal', string='Cut-off Account Journal',
-        default=lambda self: self.env.user.company_id.
-        default_cutoff_journal_id,
-        readonly=True, states={'draft': [('readonly', False)]})
+        comodel_name='account.journal',
+        string='Cut-off Account Journal',
+        default=lambda self: self._default_cutoff_journal_id(),
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+    )
     total_cutoff_amount = fields.Monetary(
-        compute='_compute_total_cutoff', string="Total Cut-off Amount",
+        compute='_compute_total_cutoff',
+        string="Total Cut-off Amount",
         currency_field='company_currency_id',
-        readonly=True, track_visibility='onchange')
+        readonly=True, track_visibility='onchange'
+    )
     company_id = fields.Many2one(
-        'res.company', string='Company', required=True, readonly=True,
+        'res.company',
+        string='Company',
+        required=True,
+        readonly=True,
         states={'draft': [('readonly', False)]},
         default=lambda self: self.env['res.company']._company_default_get(
-            'account.cutoff'))
+            'account.cutoff')
+    )
     company_currency_id = fields.Many2one(
-        related='company_id.currency_id', readonly=True,
-        string='Company Currency')
+        related='company_id.currency_id',
+        readonly=True,
+        string='Company Currency'
+    )
     line_ids = fields.One2many(
-        'account.cutoff.line', 'parent_id', string='Cut-off Lines',
-        readonly=True, states={'draft': [('readonly', False)]})
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('done', 'Done'),
-        ], string='State', index=True, readonly=True,
-        track_visibility='onchange', default='draft', copy=False,
+        comodel_name='account.cutoff.line',
+        inverse_name='parent_id',
+        string='Cut-off Lines',
+        readonly=True,
+        states={'draft': [('readonly', False)]}
+    )
+    state = fields.Selection(
+        selection=[('draft', 'Draft'), ('done', 'Done')],
+        string='State',
+        index=True,
+        readonly=True,
+        track_visibility='onchange',
+        default='draft',
+        copy=False,
         help="State of the cutoff. When the Journal Entry is created, "
-        "the state is set to 'Done' and the fields become read-only.")
+        "the state is set to 'Done' and the fields become read-only."
+    )
 
     _sql_constraints = [(
         'date_type_company_uniq',
-        'unique(cutoff_date, company_id, type)',
-        'A cutoff of the same type already exists with this cut-off date !'
+        'unique(cutoff_date, company_id, cutoff_type)',
+        _('A cutoff of the same type already exists with this cut-off date !')
         )]
 
     @api.multi
@@ -156,12 +188,12 @@ class AccountCutoff(models.Model):
             'date': self.cutoff_date,
             'ref': move_label,
             'line_ids': movelines_to_create,
-            }
+        }
         return res
 
     @api.multi
     def _prepare_provision_line(self, cutoff_line):
-        """ Convert a cutoff line to elements of a move line
+        """ Convert a cutoff line to elements of a move line.
 
         The returned dictionary must at least contain 'account_id'
         and 'amount' (< 0 means debit).
@@ -177,7 +209,7 @@ class AccountCutoff(models.Model):
 
     @api.multi
     def _prepare_provision_tax_line(self, cutoff_tax_line):
-        """ Convert a cutoff tax line to elements of a move line
+        """ Convert a cutoff tax line to elements of a move line.
 
         See _prepare_provision_line for more info.
         """
@@ -189,7 +221,7 @@ class AccountCutoff(models.Model):
 
     @api.multi
     def _merge_provision_lines(self, provision_lines):
-        """ merge provision line
+        """ Merge provision line.
 
         Returns a dictionary {key, amount} where key is
         a tuple containing the values of the properties in _get_merge_keys()
@@ -235,7 +267,7 @@ class AccountCutoff(models.Model):
             'res_id': move.id,
             'view_id': False,
             'views': False,
-            })
+        })
         return action
 
 
@@ -346,7 +378,7 @@ class AccountCutoffMapping(models.Model):
         key = ID of account,
         value = ID of cutoff_account"""
         if cutoff_type == 'all':
-            cutoff_type_filter = ('all')
+            cutoff_type_filter = ('all', )
         else:
             cutoff_type_filter = ('all', cutoff_type)
         mappings = self.search([
