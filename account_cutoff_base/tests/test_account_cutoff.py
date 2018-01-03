@@ -1,15 +1,12 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestAccountCutoff(TransactionCase):
+class TestAccountCutoff(SavepointCase):
 
-    def test_inherit_default_cutoff_account_id(self):
+    def test_default_cutoff_account_id(self):
         account_id = \
-            self.env['account.cutoff']._inherit_default_cutoff_account_id()
+            self.env['account.cutoff']._default_cutoff_account_id()
 
         self.assertIsNone(account_id, 'The account must be none')
