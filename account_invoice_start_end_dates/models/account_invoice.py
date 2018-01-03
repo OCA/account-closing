@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -47,19 +46,19 @@ class AccountInvoice(models.Model):
     def inv_line_characteristic_hashcode(self, invoice_line):
         """Add start and end dates to hashcode used when the option "Group
         Invoice Lines" is active on the Account Journal"""
-        code = super(AccountInvoice, self).inv_line_characteristic_hashcode(
+        code = super().inv_line_characteristic_hashcode(
             invoice_line)
         hashcode = '%s-%s-%s' % (
             code,
             invoice_line.get('start_date', 'False'),
             invoice_line.get('end_date', 'False'),
-            )
+        )
         return hashcode
 
     @api.model
     def line_get_convert(self, line, part):
         """Copy from invoice to move lines"""
-        res = super(AccountInvoice, self).line_get_convert(line, part)
+        res = super().line_get_convert(line, part)
         res['start_date'] = line.get('start_date', False)
         res['end_date'] = line.get('end_date', False)
         return res
@@ -67,7 +66,7 @@ class AccountInvoice(models.Model):
     @api.model
     def invoice_line_move_line_get(self):
         """Copy from invoice line to move lines"""
-        res = super(AccountInvoice, self).invoice_line_move_line_get()
+        res = super().invoice_line_move_line_get()
         ailo = self.env['account.invoice.line']
         for move_line_dict in res:
             iline = ailo.browse(move_line_dict['invl_id'])
@@ -88,4 +87,4 @@ class AccountInvoice(models.Model):
                             "line with Product '%s' which has the "
                             "property 'Must Have Start and End Dates'.")
                             % (iline.product_id.name))
-        return super(AccountInvoice, self).action_move_create()
+        return super().action_move_create()
