@@ -15,7 +15,7 @@ Installation
 
 To install this module, you need to:
 
-* clone the branch 10.0 of the repository https://github.com/OCA/account-closing
+* clone the branch 11.0 of the repository https://github.com/OCA/account-closing
 * add the path to this repository in your configuration (addons-path)
 * update the module list
 * search for "Multicurrency revaluation" in your addons
@@ -85,7 +85,7 @@ To use this module, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/89/10.0
+   :target: https://runbot.odoo-community.org/runbot/89/11.0
 
 
 Bug Tracker

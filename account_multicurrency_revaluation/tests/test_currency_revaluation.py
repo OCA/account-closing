@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -34,36 +33,36 @@ class TestCurrencyRevaluation(TransactionCase):
         result = wiz.revaluate_currency()
 
         # Assert the wizard show the created revaluation lines
-        self.assertEquals(result.get('name'), "Created revaluation lines")
+        self.assertEqual(result.get('name'), "Created revaluation lines")
 
         reval_move_lines = self.env['account.move.line'].search([
             ('name', 'like', 'wiz_test')])
 
         # Assert 8 account.move.line were generated
-        self.assertEquals(len(reval_move_lines), 8)
+        self.assertEqual(len(reval_move_lines), 8)
 
         for reval_line in reval_move_lines:
             if reval_line.account_id.name == 'Account Liquidity USD':
                 self.assertFalse(reval_line.partner_id)
-                self.assertEquals(reval_line.credit, 0.0)
-                self.assertEquals(reval_line.debit, 105.0)
+                self.assertEqual(reval_line.credit, 0.0)
+                self.assertEqual(reval_line.debit, 105.0)
             elif reval_line.account_id.name == 'Account Liquidity GBP':
                 self.assertFalse(reval_line.partner_id)
-                self.assertEquals(reval_line.credit, 0.0)
-                self.assertEquals(reval_line.debit, 105.0)
+                self.assertEqual(reval_line.credit, 0.0)
+                self.assertEqual(reval_line.debit, 105.0)
             elif reval_line.account_id.name == 'Account Receivable':
                 self.assertIsNotNone(reval_line.partner_id.id)
-                self.assertEquals(reval_line.credit, 185.0)
-                self.assertEquals(reval_line.debit, 0.0)
+                self.assertEqual(reval_line.credit, 185.0)
+                self.assertEqual(reval_line.debit, 0.0)
             elif reval_line.account_id.name == 'Reval Gain':
-                self.assertEquals(reval_line.credit, 105.0)
-                self.assertEquals(reval_line.debit, 0.0)
+                self.assertEqual(reval_line.credit, 105.0)
+                self.assertEqual(reval_line.debit, 0.0)
             elif reval_line.account_id.name == 'Reval Loss':
-                self.assertEquals(reval_line.credit, 0.0)
-                self.assertEquals(reval_line.debit, 185.0)
+                self.assertEqual(reval_line.credit, 0.0)
+                self.assertEqual(reval_line.debit, 185.0)
 
     def test_defaults(self):
-        self.env['account.config.settings'].create({
+        self.env['res.config.settings'].create({
             'default_currency_reval_journal_id': self.reval_journal.id,
             'revaluation_loss_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
@@ -80,7 +79,7 @@ class TestCurrencyRevaluation(TransactionCase):
         self.assertEqual(wizard.journal_id, self.reval_journal)
 
     def setUp(self):
-        super(TestCurrencyRevaluation, self).setUp()
+        super().setUp()
         ref = self.env.ref
 
         # Set currency EUR on company
