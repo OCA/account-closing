@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import time
@@ -28,5 +27,4 @@ class ResCurrency(models.Model):
             return 1.0 / rate
 
         else:
-            return super(ResCurrency, self)._get_conversion_rate(
-                from_currency, to_currency)
+            return super()._get_conversion_rate(from_currency, to_currency)

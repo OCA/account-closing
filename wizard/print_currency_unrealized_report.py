@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
@@ -31,7 +30,7 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
 
         data['form'] = form
 
-        return {'type': 'ir.actions.report.xml',
+        return {'type': 'ir.actions.report',
                 'report_name':
                     'account_multicurrency_revaluation_report.curr_unrealized',
                 'datas': data}

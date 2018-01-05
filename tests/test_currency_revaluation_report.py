@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -15,7 +14,7 @@ class TestCurrencyRevaluationReport(TransactionCase):
                 'uid': 1}
         result = wiz.print_report(data)
 
-        self.assertEquals(result.get('type'), "ir.actions.report.xml")
-        self.assertEquals(
+        self.assertEqual(result.get('type'), "ir.actions.report")
+        self.assertEqual(
             result.get('report_name'),
             "account_multicurrency_revaluation_report.curr_unrealized")

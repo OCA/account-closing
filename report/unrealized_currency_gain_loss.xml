@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <template id="assets_specific" inherit_id="report.assets_common">
+        <template id="assets_specific" inherit_id="web.assets_common">
             <xpath expr="." position="inside">
                 <link href="/account_multicurrency_revaluation/static/src/css/reports.css" rel="stylesheet"/>
             </xpath>
         </template>
 
         <template id="curr_unrealized">
-            <t t-call="report.html_container">
+            <t t-call="web.external_layout">
                 <t t-call="report.internal_layout">
                     <div class="page">
                         <div class="act_as_table data_table">

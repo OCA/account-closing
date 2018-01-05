@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import api, models
@@ -8,10 +7,10 @@ from odoo import api, models
 class ShellAccount(object):
 
     # Small class that avoid to override account account object
-    # only for pure perfomance reason.
+    # only for pure performance reason.
     # Browsing an account account object is not efficient
-    # beacause of function fields
-    # This object aim to be easly transpose to account account if needed
+    # because of function fields
+    # This object aims to be easily transposed to account account if needed
 
     def __init__(self, account):
         self.cursor = account.env.cr
@@ -30,7 +29,7 @@ class ShellAccount(object):
         """Get all line account move line that are need on report for current
         account.
         """
-        sql = """Select res_partner.name,
+        sql = """SELECT res_partner.name,
                    account_move_line.date,
                    account_move_line.gl_foreign_balance,
                    account_move_line.gl_currency_rate,
@@ -62,7 +61,7 @@ class ShellAccount(object):
         for line in self.ordered_lines:
             for tot in self.keys_to_sum:
                 totals[tot] += line.get(tot, 0.0)
-        for key, val in totals.iteritems():
+        for key, val in totals.items():
             setattr(self, key + '_total', val)
 
 
