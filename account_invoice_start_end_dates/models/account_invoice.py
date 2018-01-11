@@ -11,7 +11,8 @@ class AccountInvoiceLine(models.Model):
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
     must_have_dates = fields.Boolean(
-        related='product_id.must_have_dates', readonly=True)
+        related='product_id.must_have_dates', readonly=True
+    )
 
     @api.multi
     @api.constrains('start_date', 'end_date')
@@ -47,7 +48,8 @@ class AccountInvoice(models.Model):
         """Add start and end dates to hashcode used when the option "Group
         Invoice Lines" is active on the Account Journal"""
         code = super().inv_line_characteristic_hashcode(
-            invoice_line)
+            invoice_line
+        )
         hashcode = '%s-%s-%s' % (
             code,
             invoice_line.get('start_date', 'False'),
