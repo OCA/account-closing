@@ -27,7 +27,7 @@
     'license': 'AGPL-3',
     'summary': 'Base module for accrued expenses and revenues',
     'author': "Akretion,Odoo Community Association (OCA)",
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/account-closing',
     'depends': [
         'account_cutoff_base',
     ],
