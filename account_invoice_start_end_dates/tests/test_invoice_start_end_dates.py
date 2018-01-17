@@ -1,33 +1,34 @@
-# © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 import time
 from odoo.tools import float_compare
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestInvoiceStartEndDates(TransactionCase):
+class TestInvoiceStartEndDates(SavepointCase):
 
-    def setUp(self):
-        super().setUp()
-        self.inv_model = self.env['account.invoice']
-        self.account_model = self.env['account.account']
-        self.journal_model = self.env['account.journal']
-        self.account_revenue = self.account_model.search([(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.inv_model = cls.env['account.invoice']
+        cls.account_model = cls.env['account.account']
+        cls.journal_model = cls.env['account.journal']
+        cls.account_revenue = cls.account_model.search([(
             'user_type_id',
             '=',
-            self.env.ref('account.data_account_type_revenue').id)], limit=1)
-        self.account_receivable = self.account_model.search([(
+            cls.env.ref('account.data_account_type_revenue').id)], limit=1)
+        cls.account_receivable = cls.account_model.search([(
             'user_type_id',
             '=',
-            self.env.ref('account.data_account_type_receivable').id)], limit=1)
-        self.cutoff_journal = self.journal_model.search([], limit=1)
-        self.sale_journal = self.journal_model.search([(
+            cls.env.ref('account.data_account_type_receivable').id)], limit=1)
+        cls.cutoff_journal = cls.journal_model.search([], limit=1)
+        cls.sale_journal = cls.journal_model.search([(
             'type', '=', 'sale')], limit=1)
         # enable grouping on sale journal
-        self.sale_journal.group_invoice_lines = True
-        self.maint_product = self.env.ref(
+        cls.sale_journal.group_invoice_lines = True
+        cls.maint_product = cls.env.ref(
             'account_invoice_start_end_dates.product_maintenance_contrat')
 
     def _date(self, date):
