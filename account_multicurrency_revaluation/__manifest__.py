@@ -21,12 +21,9 @@
         "views/account_view.xml",
         "wizard/print_currency_unrealized_report_view.xml",
         "wizard/wizard_currency_revaluation_view.xml",
+        "report/assets.xml",
         "report/report.xml",
         "report/unrealized_currency_gain_loss.xml",
-    ],
-    "tests": [
-        "tests/test_currency_revaluation.py",
-        "tests/test_currency_revaluation_report.py"
     ],
     'installable': True,
 }

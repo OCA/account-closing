@@ -6,7 +6,7 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.view_account_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group/group" position="inside">
+            <xpath expr="//field[@name='name']/parent::group" position="inside">
                <field name="currency_revaluation"/>
             </xpath>
         </field>

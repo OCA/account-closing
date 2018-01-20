@@ -26,7 +26,7 @@ act_as_colgroup {
     display: table-column-group;
 }
 .list_table, .data_table {
-    width: 690px;
+    width: 850px;
     table-layout: fixed
 }
 .bg, .act_as_row.labels {
@@ -36,7 +36,7 @@ act_as_colgroup {
     border-left:0px;
     border-right:0px;
     text-align:left;
-    font-size:9px;
+    font-size:12px;
     padding-right:3px;
     padding-left:3px;
     padding-top:2px;

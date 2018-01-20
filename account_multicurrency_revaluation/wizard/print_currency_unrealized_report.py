@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import models, api, fields
+from odoo import models, api, fields, _
+from odoo.exceptions import ValidationError
 
 
 class UnrealizedCurrencyReportPrinter(models.TransientModel):
@@ -10,27 +11,31 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
 
     account_ids = fields.Many2many(
         'account.account',
-        string='Accounts (leave blank to select all)',
-        domain="[('currency_revaluation', '=', True)]"
+        string='Accounts',
+        domain="[('currency_revaluation', '=', True)]",
+        default=lambda self: self._default_account_ids(),
     )
+
+    def _default_account_ids(self):
+        account_model = self.env["account.account"]
+        account_ids = account_model.search([
+            ('currency_revaluation', '=', True)
+        ]).ids
+        return [(6, 0, account_ids)]
 
     @api.multi
     def print_report(self, data):
         """
         Show the report
         """
-        form = {}
-
-        if not self.account_ids:
-            form['account_ids'] = self.env['account.account'].search([
-                ('currency_revaluation', '=', True)
-            ]).ids
+        if self.account_ids:
+            docids = self.account_ids.ids
+            # in Odoo 11 we no longer call render, but report_action
+            # config should be false as otherwise it will call configuration
+            # wizard that works weirdly
+            return self.env.ref(
+                'account_multicurrency_revaluation.'
+                'action_report_currency_unrealized'
+            ).report_action(docids, config=False)
         else:
-            form['account_ids'] = self.account_ids.ids
-
-        data['form'] = form
-
-        return {'type': 'ir.actions.report',
-                'report_name':
-                    'account_multicurrency_revaluation_report.curr_unrealized',
-                'datas': data}
+            raise ValidationError(_("Please, select the accounts!"))
