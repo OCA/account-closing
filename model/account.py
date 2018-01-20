@@ -30,6 +30,34 @@ class AccountAccount(models.Model):
                            "balance",
     }
 
+    def init(self):
+        # all receivable, payable and Bank and Cash accounts should
+        # have currency_revaluation True by default
+        res = super().init()
+        accounts = self.env["account.account"].search([
+            ('user_type_id.id', 'in', self._get_revaluation_account_types()),
+            ('currency_revaluation', '=', False),
+        ])
+        accounts.write({
+            'currency_revaluation': True,
+        })
+        return res
+
+    def _get_revaluation_account_types(self):
+        return [
+            self.env.ref("account.data_account_type_receivable").id,
+            self.env.ref("account.data_account_type_payable").id,
+            self.env.ref("account.data_account_type_liquidity").id,
+        ]
+
+    @api.multi
+    @api.onchange('user_type_id')
+    def _onchange_user_type_id(self):
+        revaluation_accounts = self._get_revaluation_account_types()
+        for rec in self:
+            if rec.user_type_id.id in revaluation_accounts:
+                rec.currency_revaluation = True
+
     @api.multi
     def _revaluation_query(self, revaluation_date):
 

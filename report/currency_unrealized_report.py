@@ -6,11 +6,13 @@ from odoo import api, models
 
 class ShellAccount(object):
 
-    # Small class that avoid to override account account object
-    # only for pure performance reason.
-    # Browsing an account account object is not efficient
-    # because of function fields
-    # This object aims to be easily transposed to account account if needed
+    """Small class that avoid to override account account object.
+
+    only for pure performance reason.
+    Browsing an account account object is not efficient
+    because of function fields
+    This object aims to be easily transposed to account account if needed
+    """
 
     def __init__(self, account):
         self.cursor = account.env.cr
@@ -66,15 +68,14 @@ class ShellAccount(object):
 
 
 class CurrencyUnrealizedReport(models.AbstractModel):
-    _name = 'report.account_multicurrency_revaluation_report.curr_unrealized'
+    _name = 'report.account_multicurrency_revaluation.curr_unrealized_report'
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         shell_accounts = {}
         docs = self.env['account.account']
         data = data if data is not None else {}
-        accounts = self.env['account.account'].search(
-            [('currency_revaluation', '=', True)])
+        accounts = docs.browse(docids)
         for account in accounts:
             acc = ShellAccount(account)
             acc.get_lines()
@@ -87,8 +88,6 @@ class CurrencyUnrealizedReport(models.AbstractModel):
             'doc_model': 'account.account',
             'docs': docs,
             'shell_accounts': shell_accounts,
-            'data': dict(
-                data,
-            ),
+            'data': data.get('form', False),
         }
-        return self.env['report'].render(self._name[7:], docargs)
+        return docargs

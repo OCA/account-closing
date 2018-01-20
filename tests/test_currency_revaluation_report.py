@@ -17,4 +17,4 @@ class TestCurrencyRevaluationReport(TransactionCase):
         self.assertEqual(result.get('type'), "ir.actions.report")
         self.assertEqual(
             result.get('report_name'),
-            "account_multicurrency_revaluation_report.curr_unrealized")
+            "account_multicurrency_revaluation.curr_unrealized_report")

@@ -256,6 +256,15 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         return created_ids
 
+    @staticmethod
+    def _check_company(company):
+        return (not company.revaluation_loss_account_id and
+                not company.revaluation_gain_account_id and
+                not (company.provision_bs_loss_account_id and
+                     company.provision_pl_loss_account_id) and
+                not (company.provision_bs_gain_account_id and
+                     company.provision_pl_gain_account_id))
+
     @api.multi
     def revaluate_currency(self):
         """
@@ -268,12 +277,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         account_obj = self.env['account.account']
 
         company = self.journal_id.company_id or self.env.user.company_id
-        if (not company.revaluation_loss_account_id and
-            not company.revaluation_gain_account_id and
-            not (company.provision_bs_loss_account_id and
-                 company.provision_pl_loss_account_id) and
-            not (company.provision_bs_gain_account_id and
-                 company.provision_pl_gain_account_id)):
+        if self._check_company(company):
             raise UserError(
                 _("No revaluation or provision account are defined"
                   " for your company.\n"
