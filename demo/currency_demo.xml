@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record model="res.currency.rate" id="currency_rate_usd_2017_01">
-        <field name="name">2017-01-15</field>
+    <record model="res.currency.rate" id="currency_rate_usd_01">
+        <field eval="time.strftime('%Y-01-15')" name="name" />
         <field name="rate">2</field>
         <field name="currency_id" ref="base.USD"/>
     </record>
-    <record model="res.currency.rate" id="currency_rate_usd_2017_02">
-        <field name="name">2017-02-15</field>
+    <record model="res.currency.rate" id="currency_rate_usd_02">
+        <field eval="time.strftime('%Y-02-15')" name="name" />
         <field name="rate">4</field>
         <field name="currency_id" ref="base.USD"/>
     </record>
-    <record model="res.currency.rate" id="currency_rate_usd_2017_03">
-        <field name="name">2017-03-15</field>
+    <record model="res.currency.rate" id="currency_rate_usd_03">
+        <field eval="time.strftime('%Y-03-15')" name="name" />
         <field name="rate">2.5</field>
         <field name="currency_id" ref="base.USD"/>
     </record>
-    <record model="res.currency.rate" id="currency_rate_gbp_2017_01">
-        <field name="name">2017-01-15</field>
+    <record model="res.currency.rate" id="currency_rate_gbp_01">
+        <field eval="time.strftime('%Y-01-15')" name="name" />
         <field name="rate">2</field>
         <field name="currency_id" ref="base.GBP"/>
     </record>
-    <record model="res.currency.rate" id="currency_rate_gbp_2017_02">
-        <field name="name">2017-02-15</field>
+    <record model="res.currency.rate" id="currency_rate_gbp_02">
+        <field eval="time.strftime('%Y-02-15')" name="name" />
         <field name="rate">4</field>
         <field name="currency_id" ref="base.GBP"/>
     </record>
-    <record model="res.currency.rate" id="currency_rate_gbp_2017_03">
-        <field name="name">2017-03-15</field>
+    <record model="res.currency.rate" id="currency_rate_gbp_03">
+        <field eval="time.strftime('%Y-03-15')" name="name" />
         <field name="rate">2.5</field>
         <field name="currency_id" ref="base.GBP"/>
     </record>
