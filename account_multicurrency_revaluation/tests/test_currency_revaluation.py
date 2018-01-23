@@ -50,9 +50,11 @@ class TestCurrencyRevaluation(SavepointCase):
 
         partner = ref('base.res_partner_3')
 
+        year = fields.Date.from_string(fields.Date.today()).strftime('%Y')
+
         invoice = cls.env['account.invoice'].create({
             'name': "Customer Invoice",
-            'date_invoice': '2017-01-16',
+            'date_invoice': '%s-01-16' % year,
             'currency_id': usd_currency.id,
             'journal_id': sales_journal.id,
             'partner_id': partner.id,
@@ -69,7 +71,7 @@ class TestCurrencyRevaluation(SavepointCase):
             'invoice_ids': [(4, invoice.id, 0)],
             'amount': 700,
             'currency_id': usd_currency.id,
-            'payment_date': '2017-02-15',
+            'payment_date': '%s-02-15' % year,
             'communication': 'Invoice partial payment',
             'partner_id': invoice.partner_id.id,
             'partner_type': 'customer',
@@ -100,7 +102,7 @@ class TestCurrencyRevaluation(SavepointCase):
 
         invoice = cls.env['account.invoice'].create({
             'name': "Customer Invoice",
-            'date_invoice': '2017-01-16',
+            'date_invoice': '%s-01-16' % year,
             'currency_id': gbp_currency.id,
             'journal_id': sales_journal.id,
             'partner_id': ref('base.res_partner_3').id,
@@ -117,7 +119,7 @@ class TestCurrencyRevaluation(SavepointCase):
             'invoice_ids': [(4, invoice.id, 0)],
             'amount': 700,
             'currency_id': gbp_currency.id,
-            'payment_date': '2017-02-15',
+            'payment_date': '%s-02-15' % year,
             'communication': 'Invoice partial payment',
             'partner_id': invoice.partner_id.id,
             'partner_type': 'customer',
@@ -146,7 +148,8 @@ class TestCurrencyRevaluation(SavepointCase):
 
         wizard = self.env['wizard.currency.revaluation']
         data = {
-            'revaluation_date': '2017-03-15',
+            'revaluation_date': '%s-03-15' % fields.Date.from_string(
+                fields.Date.today()).strftime('%Y'),
             'journal_id': self.reval_journal.id,
             'label': '[%(account)s] wiz_test',
         }
