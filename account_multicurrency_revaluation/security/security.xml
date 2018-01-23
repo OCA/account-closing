@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.groups" id="group_revaluation_additional">
+        <field name="name">Additional provisioning entries posting</field>
+        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+    </record>
+</odoo>
