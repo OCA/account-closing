@@ -67,7 +67,7 @@ class ShellAccount(object):
 
 
 class CurrencyUnrealizedReport(models.AbstractModel):
-    _name = 'report.account_multicurrency_revaluation_report.curr_unrealized'
+    _name = 'report.account_multicurrency_revaluation.curr_unrealized'
 
     @api.model
     def render_html(self, docids, data=None):
