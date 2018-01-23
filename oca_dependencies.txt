@@ -13,5 +13,5 @@
 #
 # To provide both the URL and a branch, use:
 # sale-workflow https://github.com/OCA/sale-workflow branchname
-
-account-closing https://github.com/oleksandrpaziuk/account-closing 11.0-mig-account_cutoff_base
+account-financial-tools
+account-closing
