@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_accrual_base
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-19 00:37+0000\n"
+"PO-Revision-Date: 2017-05-19 00:37+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Scritture di fine periodo"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr "Righe scritture fine periodo"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
+msgid "Accruals"
+msgstr "Ratei attivi e passivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
+#: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
+msgid "Accrued Expense"
+msgstr "Ratei passivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
+msgid "Accrued Expense Tax Account"
+msgstr "Conto imposte - ratei passivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
+#: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
+msgid "Accrued Revenue"
+msgstr "Ratei Attivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
+msgid "Accrued Revenue Tax Account"
+msgstr "Imposte - ratei attivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
+msgid "Click to start preparing a new expense accrual."
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
+msgid "Click to start preparing a new revenue accrual."
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_res_company
+msgid "Companies"
+msgstr "Società"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
+msgid "Default Account for Accrued Expenses"
+msgstr "Conto predefinito ratei passivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
+msgid "Default Account for Accrued Revenues"
+msgstr "Conto predefinito ratei attivi"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
+msgid "Default Journal for Accrued Expenses"
+msgstr "Sezionale Predefinito per le Spese Maturate"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
+msgid "Default Journal for Accrued Revenues"
+msgstr "Sezionale Predefinito per le Entrate Maturate"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
+msgid "Price per unit (discount included)"
+msgstr "Prezzo unitario (sconto incluso)"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_quantity
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
+msgid "Tax"
+msgstr "Tasse"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
+msgid ""
+"This view can be used by accountants in order to collect information about "
+"accrued expenses. It then allows to generate the corresponding cut-off "
+"journal entry in one click."
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
+msgid ""
+"This view can be used by accountants in order to collect information about "
+"accrued revenue. It then allows to generate the corresponding cut-off "
+"journal entry in one click."
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
+msgid "Unit Price"
+msgstr "Prezzo unitario"
