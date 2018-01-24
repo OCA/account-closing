@@ -32,6 +32,7 @@
     'depends': ['account_cutoff_accrual_base', 'purchase', 'sale_stock'],
     'data': [
         'views/account_cutoff_view.xml',
+        'data/ir_cron.xml',
     ],
     'images': [
         'images/accrued_expense_draft.jpg',
