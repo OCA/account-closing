@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Account Cut-off Accrual Picking module for OpenERP
+#    Copyright (C) 2018 Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 #    Copyright (C) 2013 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
@@ -21,8 +22,10 @@
 ##############################################################################
 
 import logging
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models, registry
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -188,6 +191,49 @@ class AccountCutoff(models.Model):
         for line in lines:
             self.env['account.cutoff.line'].create(
                 self._prepare_line(line))
+
+    @api.model
+    def _cron_cutoff(self, type):
+        # Cron is expected to run at begin of new period. We need the last day
+        # of previous month. Support some time difference and compute last day
+        # of previous period.
+        last_day = datetime.today()
+        if last_day.day > 20:
+            last_day += relativedelta(months=1)
+        last_day = last_day.replace(day=1)
+        last_day -= relativedelta(days=1)
+
+        try:
+            cr = registry(self._cr.dbname).cursor()
+            self = self.with_env(self.env(cr=cr))
+            cutoff = self.with_context(type=type).create({
+                'cutoff_date': last_day,
+                'type': type,
+                })
+            cutoff.generate_from_orders()
+            cr.commit()
+
+            cutoff.create_move()
+            move = cutoff.move_id
+            next_day = last_day + relativedelta(days=1)
+            rev_move = move._reverse_move(next_day, move.journal_id)
+            rev_move.ref = _('reversal of: ') + move.ref
+            cr.commit()
+        except Exception, e:
+            _logger.error("Accrual Cron Error: %s" % e)
+        finally:
+            try:
+                cr.close()
+            except Exception:
+                pass
+
+    @api.model
+    def _cron_cutoff_expense(self):
+        self._cron_cutoff('accrued_expense')
+
+    @api.model
+    def _cron_cutoff_revenue(self):
+        self._cron_cutoff('accrued_revenue')
 
 
 class AccountCutoffLine(models.Model):

@@ -47,6 +47,7 @@ Known issues / Roadmap
 ======================
 
 * Although a cut-off date can be given for generating the accruals, it does not work correctly with the module as it is, and the calculation is done on the current date only.
+  To workaround this issue, cron jobs generate the cutoff entries at end of period
 
 Bug Tracker
 ===========
@@ -68,6 +69,7 @@ The module was developped by
 * Alexis de Lattre from Akretion <alexis.delattre@akretion.com>
 And migrated to Odoo v10 by
 * Thierry Ducrest <thierry.ducrest@camptocamp.com>
+* Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 
 Do not contact contributors directly about support or help with technical issues.
 
