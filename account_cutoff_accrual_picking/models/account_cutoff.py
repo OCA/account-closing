@@ -20,8 +20,12 @@
 #
 ##############################################################################
 
+import logging
+
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountCutoff(models.Model):
@@ -59,17 +63,16 @@ class AccountCutoff(models.Model):
                         _(map_type), line.product_id.name))
         return account
 
-    def _prepare_lines(self, line):
+    def _prepare_line(self, line):
         """
         Calculate accrued expense using purchase.order.line
         or accrued revenu using sale.order.line
         """
         assert self.type in ('accrued_expense', 'accrued_revenue'),\
             "The field 'type' has a wrong value"
-        company_currency_id = self.company_id.currency_id
-        currency = line.currency_id
 
-        fpos = line.order_id.partner_id.property_account_position_id
+        partner = line.order_id.partner_id
+        fpos = partner.property_account_position_id
         account_id = self._get_account(line, self.type, fpos).id
         accrual_account_id = self._get_account_mapping().get(
             account_id, account_id)
@@ -94,12 +97,12 @@ class AccountCutoff(models.Model):
             tax_account_field_label = 'Accrued Revenue Tax Account'
             quantity = line.qty_to_invoice
 
-        partner_id = line.order_id.partner_id.id
-        currency_id = currency.id
         # Processing the taxes
+        company_currency = self.company_id.currency_id
+        currency = line.currency_id
         tax_line_ids = []
         tax_res = taxes.compute_all(price_unit, currency, quantity,
-                                    line.product_id, line.order_id.partner_id)
+                                    line.product_id, partner)
         amount = tax_res['total_excluded']
         if self.type == 'accrued_expense':
             amount = amount * -1
@@ -114,10 +117,10 @@ class AccountCutoff(models.Model):
                 tax_accrual_account_id = tax_accrual_account_id[0]
             if self.type == 'accrued_expense':
                 tax_line['amount'] = tax_line['amount'] * -1
-            if company_currency_id != currency_id:
+            if company_currency != currency:
                 currency_at_date = currency.with_context(date=self.cutoff_date)
                 tax_accrual_amount = currency_at_date.compute(
-                    tax_line['amount'], company_currency_id)
+                    tax_line['amount'], company_currency.id)
             else:
                 tax_accrual_amount = tax_line['amount']
             tax_line_ids.append((0, 0, {
@@ -131,21 +134,21 @@ class AccountCutoff(models.Model):
                 # tax_line['account_analytic_collected_id'],
                 # account_analytic_collected_id is for invoices IN and OUT
             }))
-        if company_currency_id != currency_id:
+        if company_currency != currency:
             currency_at_date = currency.with_context(date=self.cutoff_date)
             amount_company_currency = currency_at_date.compute(
-                amount, company_currency_id)
+                amount, company_currency)
         else:
             amount_company_currency = amount
         res = {
+            'product_id': line.product_id.id,
             'parent_id': self.id,
-            'partner_id': partner_id,
-            'stock_move_id': '',
+            'partner_id': partner.id,
             'name': line.name,
             'account_id': account_id,
             'cutoff_account_id': accrual_account_id,
             'analytic_account_id': analytic_account_id,
-            'currency_id': currency_id,
+            'currency_id': currency.id,
             'quantity': quantity,
             'price_unit': price_unit,
             'tax_ids': [(6, 0, [tax.id for tax in taxes])],
@@ -184,7 +187,7 @@ class AccountCutoff(models.Model):
             to_delete_line_ids.unlink()
         for line in lines:
             self.env['account.cutoff.line'].create(
-                self._prepare_lines(line))
+                self._prepare_line(line))
 
 
 class AccountCutoffLine(models.Model):
@@ -208,21 +211,6 @@ class AccountCutoffLine(models.Model):
         string='Product',
         readonly=True
     )
-    # stock_move_id = fields.Many2one(
-    #     comodel_name='stock.move',
-    #     string='Stock Move',
-    #     readonly=True
-    # )
-    # picking_id = fields.Many2one(
-    #     related='stock_move_id.picking_id',
-    #     string='Picking',
-    #     readonly=True
-    # )
-    # picking_date_done = fields.Datetime(
-    #     related='picking_id.date_done',
-    #     string='Date Done of the Picking',
-    #     readonly=True
-    # )
 
     @api.depends('sale_line_id', 'purchase_line_id')
     def _compute_order_id(self):
