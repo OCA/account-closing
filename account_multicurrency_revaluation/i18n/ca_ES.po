@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-27 15:01+0000\n"
+"POT-Creation-Date: 2017-12-01 23:17+0000\n"
 "PO-Revision-Date: 2015-10-14 17:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-account-closing-8-0/language/ca_ES/)\n"
@@ -70,12 +70,12 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:447
@@ -113,7 +113,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,label:0
@@ -153,17 +153,17 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
