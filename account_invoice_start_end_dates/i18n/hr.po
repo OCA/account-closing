@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_invoice_start_end_dates
-# 
+#
 # Translators:
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-06-30 22:21+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_insurance_contrat
@@ -67,17 +68,17 @@ msgid "Missing End Date for invoice line with Description '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:21
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:20
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:86
+#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:87
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start and End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -87,7 +88,7 @@ msgid "Missing Start Date for invoice line with Description '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:25
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:24
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
 msgstr ""
@@ -111,7 +112,7 @@ msgid "Start Date"
 msgstr "Početni datum"
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:29
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:28
 #, python-format
 msgid "Start Date should be before End Date for move line with Name '%s'."
 msgstr ""
@@ -120,6 +121,6 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:34
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for invoice line with"
-" Description '%s'."
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""
