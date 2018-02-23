@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-22 23:09+0000\n"
+"PO-Revision-Date: 2017-12-22 23:09+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,17 +22,17 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Cuenta de la operación de cierre"
+msgstr "Operación de cierre de cuenta"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Línea de cuenta de la operación de cierre"
+msgstr "Línea de operación de cierre de cuenta"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
 msgid "Accruals"
-msgstr ""
+msgstr "Devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
@@ -42,7 +43,7 @@ msgstr "Gasto devengado"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
 msgid "Accrued Expense Tax Account"
-msgstr ""
+msgstr "Cuenta de impuestos de gasto devengado"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -53,47 +54,47 @@ msgstr "Ingreso devengado"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
 msgid "Accrued Revenue Tax Account"
-msgstr ""
+msgstr "Cuenta de impuestos de ingreso devengado"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
-msgstr ""
+msgstr "Pulse para preparar un nuevo gasto devengado."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
 msgid "Click to start preparing a new revenue accrual."
-msgstr ""
+msgstr "Pulse para preparar un nuevo ingreso devengado."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
 msgid "Companies"
-msgstr "Compañías"
+msgstr "Empresas"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr ""
+msgstr "Cuenta predeterminada para gastos devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr ""
+msgstr "Cuenta predeterminada para ingresos devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
 msgid "Default Journal for Accrued Expenses"
-msgstr ""
+msgstr "Diario predeterminado para gastos devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
-msgstr ""
+msgstr "Diario predeterminado para ingresos devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Price per unit (discount included)"
-msgstr "Precio por unidad (descuento incluido)"
+msgstr "Precio unitario (descuento incluido)"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_quantity
@@ -103,7 +104,7 @@ msgstr "Cantidad"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
 msgid "Tax"
-msgstr "Impuesto"
+msgstr "Impuestos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -112,6 +113,9 @@ msgid ""
 "accrued expenses. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Los contables pueden utilizar esta vista para obtener información sobre los "
+"gastos devengados. Después les permitirá generar la entrada de operación de "
+"cierre correspondiente en una única acción."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -120,6 +124,9 @@ msgid ""
 "accrued revenue. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Los contables pueden utilizar esta vista para obtener información sobre los "
+"ingresos devengados. Después les permitirá generar la entrada de operación "
+"de cierre correspondiente en una única acción."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
