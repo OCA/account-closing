@@ -74,17 +74,15 @@ class TestAccountCutoffAccrualPicking(TransactionCase):
         lines = cutoff.get_lines_for_cutoff()
         self.assertTrue(len(lines) == 2,
                         '2 lines should be found to calculate cutoff')
-        account_mapping = cutoff._get_account_mapping()
-        l = cutoff._prepare_lines(lines[0], account_mapping)
+        l = cutoff._prepare_line(lines[0])
         self.assertTrue(l['cutoff_amount'] == 560,
                         'So line 0 cutoff amount incorrect')
-        l = cutoff._prepare_lines(lines[1], account_mapping)
+        l = cutoff._prepare_line(lines[1])
         self.assertTrue(l['cutoff_amount'] == 180,
                         'So line 1 cutoff amount incorrect')
 
     def test_accrued_expense(self):
         """ Test partial po to process """
-        #pp = pprint.PrettyPrinter(indent=4)
         cutoff = self.env['account.cutoff'].create({
             'type': 'accrued_expense',
             'company_id': 1
@@ -101,7 +99,6 @@ class TestAccountCutoffAccrualPicking(TransactionCase):
         lines = cutoff.get_lines_for_cutoff()
         self.assertTrue(len(lines) == 1,
                         '1 lines should be found to calculate expense cutoff')
-        account_mapping = cutoff._get_account_mapping()
-        l = cutoff._prepare_lines(lines[0], account_mapping)
+        l = cutoff._prepare_line(lines[0])
         self.assertTrue(l['cutoff_amount'] == -2000,
                         'Line 0 cutoff amount incorrect')
