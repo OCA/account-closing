@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# leemannd <denis.leemann@camptocamp.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-02-23 23:13+0000\n"
+"PO-Revision-Date: 2018-02-23 23:13+0000\n"
+"Last-Translator: leemannd <denis.leemann@camptocamp.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +84,7 @@ msgstr "Compte de recettes cumulées par défaut"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
 msgid "Default Journal for Accrued Expenses"
-msgstr ""
+msgstr "Journal par défaut pour les charges à payer"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
