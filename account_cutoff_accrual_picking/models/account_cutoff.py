@@ -123,7 +123,7 @@ class AccountCutoff(models.Model):
             if company_currency != currency:
                 currency_at_date = currency.with_context(date=self.cutoff_date)
                 tax_accrual_amount = currency_at_date.compute(
-                    tax_line['amount'], company_currency.id)
+                    tax_line['amount'], company_currency)
             else:
                 tax_accrual_amount = tax_line['amount']
             tax_line_ids.append((0, 0, {
