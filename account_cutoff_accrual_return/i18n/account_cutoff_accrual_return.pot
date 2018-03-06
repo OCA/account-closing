@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * account_cutoff_accrual_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-06 12:16+0000\n"
+"PO-Revision-Date: 2018-03-06 12:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_cutoff_accrual_return
+#: model:ir.model.fields,field_description:account_cutoff_accrual_return.field_stock_location_accrued_customer_return
+msgid "Accrued Customer Return"
+msgstr "Accrued Customer Return"
+
+#. module: account_cutoff_accrual_return
+#: code:addons/account_cutoff_accrual_return/models/account_cutoff.py:48
+#, python-format
+msgid "Accrued Expense Returns"
+msgstr "Accrued Expense Returns"
+
+#. module: account_cutoff_accrual_return
+#: model:ir.actions.act_window,name:account_cutoff_accrual_return.account_expense_return_accrual_action
+#: model:ir.ui.menu,name:account_cutoff_accrual_return.account_expense_return_accrual_menu
+msgid "Accrued Returns to Supplier"
+msgstr "Accrued Returns to Supplier"
+
+#. module: account_cutoff_accrual_return
+#: code:addons/account_cutoff_accrual_return/models/account_cutoff.py:50
+#, python-format
+msgid "Accrued Revenue Returns"
+msgstr "Accrued Revenue Returns"
+
+#. module: account_cutoff_accrual_return
+#: model:ir.model.fields,field_description:account_cutoff_accrual_return.field_stock_location_accrued_supplier_return
+msgid "Accrued Supplier Return"
+msgstr "Accrued Supplier Return"
+
+#. module: account_cutoff_accrual_return
+#: model:ir.model.fields,field_description:account_cutoff_accrual_return.field_res_company_default_accrued_expense_return_account_id
+msgid "Default Account for Accrued Expenses Returns"
+msgstr "Default Account for Accrued Expenses Returns"
+
+#. module: account_cutoff_accrual_return
+#: model:ir.model.fields,field_description:account_cutoff_accrual_return.field_res_company_default_accrued_revenue_return_account_id
+msgid "Default Account for Accrued Revenues Returns"
+msgstr "Default Account for Accrued Revenues Returns"
+
+#. module: account_cutoff_accrual_return
+#: code:addons/account_cutoff_accrual_return/models/account_cutoff.py:72
+#, python-format
+msgid "Error: Missing expense account on product '%s' or on related product category."
+msgstr "Error: Missing expense account on product '%s' or on related product category."
+
+#. module: account_cutoff_accrual_return
+#: code:addons/account_cutoff_accrual_return/models/account_cutoff.py:82
+#, python-format
+msgid "Error: Missing income account on product '%s' or on related product category."
+msgstr "Error: Missing income account on product '%s' or on related product category."

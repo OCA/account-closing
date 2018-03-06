@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_location_form_inherit" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+
+            <field name="return_location" position="after">
+                <field name="accrued_supplier_return" />
+                <field name="accrued_customer_return" />
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

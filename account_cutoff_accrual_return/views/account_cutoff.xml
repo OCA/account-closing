@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="account_expense_return_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Returns to Supplier</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('type', '=', 'accrued_expense_return')]</field>
+        <field name="context">{'default_type': 'accrued_expense_return'}</field>
+    </record>
+
+    <menuitem id="account_expense_return_accrual_menu"
+            parent="account_cutoff_base.cutoff_menu"
+            action="account_expense_return_accrual_action"
+            sequence="50"/>
+
+
+    <record id="account_revenue_return_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Returns from Customer</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('type', '=', 'accrued_revenue_return')]</field>
+        <field name="context">{'default_type': 'accrued_revenue_return'}</field>
+    </record>
+
+    <menuitem id="account_revenue_return_accrual_menu"
+            parent="account_cutoff_base.cutoff_menu"
+            action="account_revenue_return_accrual_action"
+            sequence="60"/>
+
+</data>
+</odoo>
