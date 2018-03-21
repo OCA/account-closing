@@ -258,6 +258,16 @@ class AccountCutoff(models.Model):
                     "in draft state."))
         return super(AccountCutoff, self).unlink()
 
+    def button_line_tree(self):
+        action = self.env['ir.actions.act_window'].for_xml_id(
+            'account_cutoff_base', 'account_cutoff_line_action')
+        action.update({
+            'domain': [('parent_id', '=', self.id)],
+            'views': False,
+            'context': self._context,
+            })
+        return action
+
 
 class AccountCutoffLine(models.Model):
     _name = 'account.cutoff.line'
@@ -313,7 +323,8 @@ class AccountCutoffTaxLine(models.Model):
     parent_id = fields.Many2one(
         'account.cutoff.line', string='Account Cut-off Line',
         ondelete='cascade', required=True)
-    tax_id = fields.Many2one('account.tax', string='Tax', required=True)
+    tax_id = fields.Many2one(
+        'account.tax', string='Tax', required=True, readonly=True)
     cutoff_account_id = fields.Many2one(
         'account.account', string='Cut-off Account',
         domain=[('deprecated', '=', False)], required=True, readonly=True)
