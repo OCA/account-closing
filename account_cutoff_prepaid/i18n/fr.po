@@ -26,12 +26,12 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Arrêté de comptes"
+msgstr "Provisions comptables"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Ligne d'arrêté de comptes"
+msgstr "Lignes de provisions comptables"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_move_date
@@ -71,12 +71,12 @@ msgstr "Jours après cut-off"
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
-msgstr "Compte par défaut pour les charges à reporter"
+msgstr "Compte par défaut pour les charges constatées d'avance"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
-msgstr "Compte par défaut pour les produits à reporter"
+msgstr "Compte par défaut pour les produits constatés d'avance"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
@@ -119,13 +119,13 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_menu
 msgid "Prepaid Expense"
-msgstr "Report de Charges"
+msgstr "Charges constatées d'avance"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
-msgstr "Report de Produits"
+msgstr "Produits constatés d'avance"
 
 #. module: account_cutoff_prepaid
 #: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
