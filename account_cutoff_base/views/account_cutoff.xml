@@ -21,8 +21,8 @@
         <form string="Cut-offs">
             <header>
                 <button name="back2draft" string="Back to Draft" type="object" states="done" />
-                <!-- here, we have the 'get_lines' button that is supplied by the other cutoff modules -->
-                <button class="oe_highlight" name="create_move" string="Create Journal Entry" type="object" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
+                <button class="btn-primary" name="get_lines" string="Re-Generate Lines" type="object" states="draft"/>
+                <button class="btn-primary" name="create_move" string="Create Journal Entry" type="object" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
                 <field name="state" widget="statusbar" />
             </header>
             <sheet>
@@ -62,7 +62,7 @@
     <field name="name">account.cutoff.tree</field>
     <field name="model">account.cutoff</field>
     <field name="arch" type="xml">
-        <tree string="Cut-offs" colors="blue:state=='draft'">
+        <tree string="Cut-offs" decoration-info="state == 'draft'">
             <field name="type" invisible="context.get('type')" />
             <field name="cutoff_date" />
             <field name="total_cutoff_amount"/>

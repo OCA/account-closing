@@ -4,8 +4,8 @@
 
 {
     'name': 'Account Cut-off Prepaid',
-    'version': '10.0.1.0.0',
-    'category': 'Accounting & Finance',
+    'version': '10.0.1.1.0',
+    'category': 'Accounting',
     'license': 'AGPL-3',
     'summary': 'Prepaid Expense, Prepaid Revenue',
     'author': 'Akretion,Odoo Community Association (OCA)',
@@ -15,7 +15,7 @@
         'account_invoice_start_end_dates',
         ],
     'data': [
-        'views/company.xml',
+        'views/account_config_settings.xml',
         'views/account_cutoff.xml',
     ],
     'images': [
