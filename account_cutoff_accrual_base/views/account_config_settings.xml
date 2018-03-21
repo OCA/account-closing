@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013-2018 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+
+<record id="view_account_config_settings" model="ir.ui.view">
+    <field name="name">accrual.base.account.config.form</field>
+    <field name="model">account.config.settings</field>
+    <field name="inherit_id" ref="account_cutoff_base.view_account_config_settings"/>
+    <field name="arch" type="xml">
+        <field name="default_cutoff_journal_id" position="after">
+            <field name="default_accrual_revenue_journal_id" />
+            <field name="default_accrual_expense_journal_id" />
+            <field name="default_accrued_revenue_account_id" />
+            <field name="default_accrued_expense_account_id" />
+        </field>
+    </field>
+</record>
+
+
+</odoo>
