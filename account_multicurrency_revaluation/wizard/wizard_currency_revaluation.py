@@ -12,7 +12,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     @api.model
     def _get_default_revaluation_date(self):
         """
-        Get last date of previous fiscalyear
+        Get today's date
         """
         return fields.date.today()
 
@@ -282,7 +282,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 _("No revaluation or provision account are defined"
                   " for your company.\n"
                   "You must specify at least one provision account or"
-                  " a couple of provision account.")
+                  " a couple of provision account in the accounting settings.")
             )
         created_ids = []
         # Search for accounts Balance Sheet to be revaluated
