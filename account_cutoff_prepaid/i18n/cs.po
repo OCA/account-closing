@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:21+0000\n"
+"POT-Creation-Date: 2018-03-20 12:40+0000\n"
+"PO-Revision-Date: 2018-03-27 12:23+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Czech (http://www.transifex.com/oca/OCA-account-closing-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -111,18 +111,6 @@ msgid "End Date"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: constraint:account.invoice.line:0 constraint:account.move.line:0
-msgid "Error msg in raise"
-msgstr ""
-
-#. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:40
-#: code:addons/account_cutoff_prepaid/account.py:46
-#: code:addons/account_cutoff_prepaid/account.py:53
-#: code:addons/account_cutoff_prepaid/account.py:89
-#: code:addons/account_cutoff_prepaid/account.py:94
-#: code:addons/account_cutoff_prepaid/account.py:100
-#: code:addons/account_cutoff_prepaid/account.py:144
 #: code:addons/account_cutoff_prepaid/account_cutoff.py:85
 #: code:addons/account_cutoff_prepaid/account_cutoff.py:128
 #, python-format
@@ -145,7 +133,7 @@ msgstr "Faktura"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Řádek faktury"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_move_line
@@ -159,13 +147,13 @@ msgid "Missing End Date for invoice line with Description '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:90
+#: code:addons/account_cutoff_prepaid/account.py:82
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:145
+#: code:addons/account_cutoff_prepaid/account.py:129
 #, python-format
 msgid ""
 "Missing Start Date and End Date for invoice line with Product '%s' which has"
@@ -173,13 +161,13 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:47
+#: code:addons/account_cutoff_prepaid/account.py:46
 #, python-format
 msgid "Missing Start Date for invoice line with Description '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:95
+#: code:addons/account_cutoff_prepaid/account.py:86
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
 msgstr ""
@@ -234,13 +222,13 @@ msgid "Start Date"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:101
+#: code:addons/account_cutoff_prepaid/account.py:91
 #, python-format
 msgid "Start Date should be before End Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/account.py:54
+#: code:addons/account_cutoff_prepaid/account.py:52
 #, python-format
 msgid ""
 "Start Date should be before or be the same as End Date for invoice line with"
