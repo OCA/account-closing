@@ -82,7 +82,7 @@ Main Features
 
 * A checkbox *Allow currency revaluation* on accounts.
 * A wizard to generate the revaluation journal entries. It adjusts account
-balance having *Allow currency revaluation* checked.
+  balance having *Allow currency revaluation* checked.
 
 
 Credits
@@ -97,6 +97,7 @@ Contributors
 * Guewen Baconnier @ Camptocamp
 * Joel Grand-Guillaume
 * Kinner Vachhani
+* Levent Karakaş
 * Matt Choplin choplin.mat@gmail.com
 * Matthieu Dietrich
 * moylop260
@@ -104,7 +105,6 @@ Contributors
 * Stéphane Bidoul
 * Vincent Renaville
 * Yannick Vaucher
-
 
 Maintainer
 ----------

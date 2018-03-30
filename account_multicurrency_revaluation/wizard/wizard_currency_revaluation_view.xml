@@ -21,6 +21,7 @@
                     <group>
                         <label string="%%(account)s : Account for which the revaluation is applied"/>
                         <label string="%%(rate)s : Value of rate applied during revaluation"/>
+                        <label string="%%(inverse)s : Inversed value of rate applied during revaluation"/>
                     </group>
                     <footer>
                         <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight"/>

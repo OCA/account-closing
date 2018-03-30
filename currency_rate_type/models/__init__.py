@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher
-#    Copyright 2012 Camptocamp SA
+#    Copyright (C) 2015, Eska Yazılım ve Danışmanlık A.Ş.
+#    http://www.eskayazilim.com.tr
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,24 +19,6 @@
 #
 ##############################################################################
 
-{"name": "Multicurrency revaluation",
- "version": "8.0.2.0.0",
- "category": "Finance",
- "summary": "Manage revaluation for multicurrency environment",
- "author": "Camptocamp,Odoo Community Association (OCA)",
- "license": 'AGPL-3',
- "depends": [
-     "base",
-     "account",
-     "account_reversal",
-     "currency_rate_type"
- ],
- "data": [
-     "views/res_company_view.xml",
-     "security/security.xml",
-     "views/account_view.xml",
-     "wizard/wizard_currency_revaluation_view.xml"
- ],
- "test": ["test/currency_revaluation.yml"],
- "installable": True,
- }
+from . import res_currency_rate_type
+from . import res_currency_rate
+from . import res_currency

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_currency_form_rate_type" model="ir.ui.view">
+            <field name="name">res.currency.form.rate.type</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='rate']" position="before">
+                        <field name="currency_rate_type_id"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
