@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Pedro Castro Silva <pedrocs@exo.pt>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-23 23:15+0000\n"
+"PO-Revision-Date: 2018-03-23 23:15+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +22,12 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Conta de Diferimentos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Linha da Conta de Diferimentos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
@@ -37,7 +38,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
-msgstr ""
+msgstr "Acréscimos de gastos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
@@ -48,7 +49,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
 msgid "Accrued Revenue"
-msgstr ""
+msgstr "Acréscimos de rendimentos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
@@ -68,7 +69,7 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
@@ -103,7 +104,7 @@ msgstr "Quantidade"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Imposto"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
