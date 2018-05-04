@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 23:16+0000\n"
-"PO-Revision-Date: 2018-03-02 23:16+0000\n"
+"POT-Creation-Date: 2018-04-20 22:12+0000\n"
+"PO-Revision-Date: 2018-04-20 22:12+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_create_uid
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_create_date
@@ -214,7 +214,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_create_date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_credit
@@ -276,7 +276,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_display_name
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
@@ -381,7 +381,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
@@ -413,7 +413,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_journal_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing___last_update
@@ -554,7 +554,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0

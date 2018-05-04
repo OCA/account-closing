@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 23:16+0000\n"
-"PO-Revision-Date: 2018-03-02 23:16+0000\n"
+"POT-Creation-Date: 2018-04-20 22:12+0000\n"
+"PO-Revision-Date: 2018-04-20 22:12+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_uid
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_create_date
@@ -158,12 +158,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_create_date
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_currency_id
@@ -279,7 +279,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,state:0
@@ -304,7 +304,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_move_label
@@ -338,7 +338,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
