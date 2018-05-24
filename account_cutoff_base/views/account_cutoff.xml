@@ -21,11 +21,22 @@
         <form string="Cut-offs">
             <header>
                 <button name="back2draft" string="Back to Draft" type="object" states="done" />
-                <!-- here, we have the 'get_lines' button that is supplied by the other cutoff modules -->
-                <button class="oe_highlight" name="create_move" string="Create Journal Entry" type="object" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
+                <button class="btn-primary" name="get_lines" string="Re-Generate Lines" type="object" states="draft"/>
+                <button class="btn-primary" name="create_move" string="Create Journal Entry" type="object" attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"/>
                 <field name="state" widget="statusbar" />
             </header>
             <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="button_line_tree"
+                        class="oe_stat_button"
+                        icon="fa-building-o"
+                        type="object"
+                        help="List view of lines">
+                        <div class="o_form_field o_stat_info">
+                            <span class="o_stat_text">Lines Fullscreen</span>
+                        </div>
+                    </button>
+                </div>
                 <div class="oe_title">
                     <h1>
                         <field name="type" readonly="1" />
@@ -46,7 +57,7 @@
                     </group>
                 </group>
                 <group name="lines">
-                    <field name="line_ids" nolabel="1" context="{'type': type}"/>
+                    <field name="line_ids" nolabel="1" context="{'default_type': default_type}"/>
                 </group>
             </sheet>
             <div class="oe_chatter">
@@ -62,8 +73,8 @@
     <field name="name">account.cutoff.tree</field>
     <field name="model">account.cutoff</field>
     <field name="arch" type="xml">
-        <tree string="Cut-offs" colors="blue:state=='draft'">
-            <field name="type" invisible="context.get('type')" />
+        <tree string="Cut-offs" decoration-info="state == 'draft'">
+            <field name="type" invisible="context.get('default_type')" />
             <field name="cutoff_date" />
             <field name="total_cutoff_amount"/>
             <field name="company_currency_id" invisible="1"/>
@@ -100,7 +111,7 @@
                 <field name="account_id"/>
                 <field name="cutoff_account_id"/>
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
-                <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
+                <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('default_type', '-')"/>
                 <field name="amount"/>
                 <field name="currency_id" invisible="1"/>
             </group>
@@ -108,7 +119,7 @@
                 <field name="cutoff_amount"/>
                 <field name="company_currency_id" invisible="1"/>
             </group>
-            <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('type', '-')">
+            <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('default_type', '-')">
                 <field name="tax_line_ids" nolabel="1"/>
             </group>
         </form>
@@ -126,13 +137,19 @@
             <field name="name"/>
             <field name="cutoff_account_code"/>
             <field name="analytic_account_code" groups="analytic.group_analytic_accounting"/>
-            <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('type', '-')"/>
+            <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('default_type', '-')"/>
             <field name="amount"/>
             <field name="currency_id" invisible="1"/>
             <field name="cutoff_amount"/>
             <field name="company_currency_id" invisible="1"/>
         </tree>
     </field>
+</record>
+
+<record id="account_cutoff_line_action" model="ir.actions.act_window">
+    <field name="name">Cutoff Lines</field>
+    <field name="res_model">account.cutoff.line</field>
+    <field name="view_mode">tree,form</field>
 </record>
 
 <!-- Form view for tax lines -->

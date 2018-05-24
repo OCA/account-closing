@@ -12,7 +12,7 @@ class AccountInvoiceLine(models.Model):
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
     must_have_dates = fields.Boolean(
-        related='product_id.must_have_dates', readonly=True)
+        related='product_id.must_have_dates', readonly=True, store=True)
 
     @api.multi
     @api.constrains('start_date', 'end_date')

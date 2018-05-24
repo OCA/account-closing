@@ -5,7 +5,7 @@
 {
     'name': 'Account Invoice Start End Dates',
     'version': '10.0.1.0.0',
-    'category': 'Accounting & Finance',
+    'category': 'Accounting',
     'license': 'AGPL-3',
     'summary': 'Adds start/end dates on invoice lines and move lines',
     'author': 'Akretion,Odoo Community Association (OCA)',

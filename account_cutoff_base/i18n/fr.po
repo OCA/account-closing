@@ -32,13 +32,13 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Arrêté de comptes"
+msgstr "Provisions comptables"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_parent_id
 msgid "Account Cut-off Line"
-msgstr "Ligne d'arrêté de comptes"
+msgstr "Ligne de provisions comptables"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
@@ -58,7 +58,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:30
 #, python-format
 msgid "Accrued Expense"
-msgstr "Dépense cumulée"
+msgstr "Factures non parvenues"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -66,7 +66,7 @@ msgstr "Dépense cumulée"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:32
 #, python-format
 msgid "Accrued Revenue"
-msgstr "Revenu cumulé"
+msgstr "Factures à établir"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
@@ -338,7 +338,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -346,7 +346,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:36
 #, python-format
 msgid "Prepaid Expense"
-msgstr "Report de Charges"
+msgstr "Charges constatées d'avance"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff,type:0
@@ -354,7 +354,7 @@ msgstr "Report de Charges"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:34
 #, python-format
 msgid "Prepaid Revenue"
-msgstr "Report de Produits"
+msgstr "Produits constatés d'avance"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_account_id
@@ -393,7 +393,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_tax_id
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Tax"
-msgstr "Taxes"
+msgstr "Taxe"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_amount

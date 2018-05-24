@@ -4,6 +4,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from dateutil.relativedelta import relativedelta
 
 
 class AccountCutoff(models.Model):
@@ -13,7 +14,6 @@ class AccountCutoff(models.Model):
     _inherit = ['mail.thread']
     _description = 'Account Cut-off'
 
-    @api.multi
     @api.depends('line_ids', 'line_ids.cutoff_amount')
     def _compute_total_cutoff(self):
         for cutoff in self:
@@ -24,7 +24,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_move_label(self):
-        type = self._context.get('type')
+        type = self._context.get('default_type')
         label = ''
         if type == 'accrued_expense':
             label = _('Accrued Expense')
@@ -37,33 +37,45 @@ class AccountCutoff(models.Model):
         return label
 
     @api.model
-    def _inherit_default_cutoff_account_id(self):
-        """Function designed to be inherited by other cutoff modules"""
+    def _default_cutoff_account_id(self):
         return None
 
     @api.model
-    def _default_cutoff_account_id(self):
-        """This function can't be inherited, so we use a second function"""
-        return self._inherit_default_cutoff_account_id()
+    def _get_default_journal(self):
+        return self.env.user.company_id.default_cutoff_journal_id
+
+    @api.model
+    def _default_cutoff_date(self):
+        company = self.env.user.company_id
+        today_str = fields.Date.context_today(self)
+        today_dt = fields.Date.from_string(today_str)
+        date_dt = today_dt + relativedelta(
+            month=company.fiscalyear_last_month,
+            day=company.fiscalyear_last_day)
+        if date_dt > today_dt:
+            date_dt -= relativedelta(years=1)
+        date_str = fields.Date.to_string(date_dt)
+        return date_str
 
     cutoff_date = fields.Date(
         string='Cut-off Date', readonly=True,
         states={'draft': [('readonly', False)]}, copy=False,
-        track_visibility='onchange')
+        track_visibility='onchange',
+        default=lambda self: self._default_cutoff_date())
     type = fields.Selection([
         ('accrued_revenue', 'Accrued Revenue'),
         ('accrued_expense', 'Accrued Expense'),
         ('prepaid_revenue', 'Prepaid Revenue'),
         ('prepaid_expense', 'Prepaid Expense'),
         ], string='Type', required=True, readonly=True,
-        default=lambda self: self._context.get('type'),
         states={'draft': [('readonly', False)]})
     move_id = fields.Many2one(
         'account.move', string='Cut-off Journal Entry', readonly=True,
         copy=False)
     move_label = fields.Char(
         string='Label of the Cut-off Journal Entry', readonly=True,
-        states={'draft': [('readonly', False)]}, default=_default_move_label,
+        states={'draft': [('readonly', False)]},
+        default=lambda self: self._default_move_label(),
         help="This label will be written in the 'Name' field of the "
         "Cut-off Account Move Lines and in the 'Reference' field of "
         "the Cut-off Account Move.")
@@ -71,11 +83,10 @@ class AccountCutoff(models.Model):
         'account.account', string='Cut-off Account',
         domain=[('deprecated', '=', False)],
         readonly=True, states={'draft': [('readonly', False)]},
-        default=_default_cutoff_account_id)
+        default=lambda self: self._default_cutoff_account_id())
     cutoff_journal_id = fields.Many2one(
         'account.journal', string='Cut-off Account Journal',
-        default=lambda self: self.env.user.company_id.
-        default_cutoff_journal_id,
+        default=lambda self: self._get_default_journal(),
         readonly=True, states={'draft': [('readonly', False)]})
     total_cutoff_amount = fields.Monetary(
         compute='_compute_total_cutoff', string="Total Cut-off Amount",
@@ -106,7 +117,6 @@ class AccountCutoff(models.Model):
         'A cutoff of the same type already exists with this cut-off date !'
         )]
 
-    @api.multi
     def back2draft(self):
         self.ensure_one()
         if self.move_id:
@@ -123,7 +133,6 @@ class AccountCutoff(models.Model):
         """
         return ['account_id', 'analytic_account_id']
 
-    @api.multi
     def _prepare_move(self, to_provision):
         self.ensure_one()
         movelines_to_create = []
@@ -159,7 +168,6 @@ class AccountCutoff(models.Model):
             }
         return res
 
-    @api.multi
     def _prepare_provision_line(self, cutoff_line):
         """ Convert a cutoff line to elements of a move line
 
@@ -175,7 +183,6 @@ class AccountCutoff(models.Model):
             'amount': cutoff_line.cutoff_amount,
         }
 
-    @api.multi
     def _prepare_provision_tax_line(self, cutoff_tax_line):
         """ Convert a cutoff tax line to elements of a move line
 
@@ -187,7 +194,6 @@ class AccountCutoff(models.Model):
             'amount': cutoff_tax_line.cutoff_amount,
         }
 
-    @api.multi
     def _merge_provision_lines(self, provision_lines):
         """ merge provision line
 
@@ -204,7 +210,6 @@ class AccountCutoff(models.Model):
                 to_provision[key] = provision_line['amount']
         return to_provision
 
-    @api.multi
     def create_move(self):
         self.ensure_one()
         move_obj = self.env['account.move']
@@ -238,6 +243,31 @@ class AccountCutoff(models.Model):
             })
         return action
 
+    def get_lines(self):
+        """This method is designed to be inherited in other modules"""
+        self.ensure_one()
+        # Delete existing lines
+        self.line_ids.unlink()
+        return True
+
+    def unlink(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_(
+                    "You cannot delete cutoff records that are not "
+                    "in draft state."))
+        return super(AccountCutoff, self).unlink()
+
+    def button_line_tree(self):
+        action = self.env['ir.actions.act_window'].for_xml_id(
+            'account_cutoff_base', 'account_cutoff_line_action')
+        action.update({
+            'domain': [('parent_id', '=', self.id)],
+            'views': False,
+            'context': self._context,
+            })
+        return action
+
 
 class AccountCutoffLine(models.Model):
     _name = 'account.cutoff.line'
@@ -259,13 +289,13 @@ class AccountCutoffLine(models.Model):
         domain=[('deprecated', '=', False)], required=True, readonly=True)
     cutoff_account_code = fields.Char(
         related='cutoff_account_id.code',
-        string='Cut-off Account Code', readonly=True)
+        string='Cut-off Account', readonly=True)
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
     analytic_account_code = fields.Char(
         related='analytic_account_id.code',
-        string='Analytic Account Code', readonly=True)
+        string='Analytic Account', readonly=True)
     currency_id = fields.Many2one(
         'res.currency', string='Amount Currency', readonly=True,
         help="Currency of the 'Amount' field.")
@@ -293,7 +323,8 @@ class AccountCutoffTaxLine(models.Model):
     parent_id = fields.Many2one(
         'account.cutoff.line', string='Account Cut-off Line',
         ondelete='cascade', required=True)
-    tax_id = fields.Many2one('account.tax', string='Tax', required=True)
+    tax_id = fields.Many2one(
+        'account.tax', string='Tax', required=True, readonly=True)
     cutoff_account_id = fields.Many2one(
         'account.account', string='Cut-off Account',
         domain=[('deprecated', '=', False)], required=True, readonly=True)
