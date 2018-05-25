@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo10-addon-account_cutoff_accrual_base',
+        'odoo10-addon-account_cutoff_accrual_dates',
         'odoo10-addon-account_cutoff_base',
         'odoo10-addon-account_cutoff_prepaid',
         'odoo10-addon-account_fiscal_year_closing',
