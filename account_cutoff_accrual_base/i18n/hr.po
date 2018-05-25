@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-05-25 02:35+0000\n"
+"PO-Revision-Date: 2018-05-25 02:35+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,6 @@ msgstr ""
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
 msgstr ""
-
-#. module: account_cutoff_accrual_base
-#: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
-msgid "Accruals"
-msgstr "Dospijeća"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
@@ -71,21 +67,25 @@ msgid "Companies"
 msgstr "Poduzeća"
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
 msgstr "Konto za dospjele troškove"
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
 msgstr "Konto za dospjele prihode"
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_expense_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
 msgid "Default Journal for Accrued Expenses"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_revenue_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
 msgstr ""
@@ -125,3 +125,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Unit Price"
 msgstr "Jedinična cijena"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model,name:account_cutoff_accrual_base.model_account_config_settings
+msgid "account.config.settings"
+msgstr "account.config.settings"
