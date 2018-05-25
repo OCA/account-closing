@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-23 23:15+0000\n"
-"PO-Revision-Date: 2018-03-23 23:15+0000\n"
+"POT-Creation-Date: 2018-05-25 02:35+0000\n"
+"PO-Revision-Date: 2018-05-25 02:35+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -59,21 +59,18 @@ msgid "Companies"
 msgstr "Empresas"
 
 #. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days Total"
-msgstr "Total de Dias"
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
+msgid "Cutoff Days"
+msgstr ""
 
 #. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days after Cut-off"
-msgstr "Dias subsequentes à Data de Diferimento"
-
-#. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
 msgstr "Conta por defeito para o deferimento de gastos"
 
 #. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
 msgstr "Conta por defeito para o deferimento de rendimentos"
@@ -98,25 +95,18 @@ msgid "Forecast"
 msgstr "Relatório"
 
 #. module: account_cutoff_prepaid
-#: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
-msgid ""
-"In regular mode, this is the number of days after the cut-off date. In "
-"forecast mode, this is the number of days between the start date and the end"
-" date."
-msgstr ""
-"Normalmente, este é o número de dias depois da data de diferimento. No modo "
-"proEn modo previsión, éste es el número de días entre la fecha de inicio y "
-"fecha de fin."
-
-#. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_invoice_id
 msgid "Invoice"
 msgstr "Fatura"
 
 #. module: account_cutoff_prepaid
-#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
-msgid "Prepaid Days"
-msgstr "Dias de diferimento"
+#: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
+msgid ""
+"On a prepaid revenue/expense, this is the number of days after the cut-off "
+"date (in forecast mode, this is the number of days between the start date "
+"and the end date). In accrued revenue/expense, this is the number of days "
+"before the cut-off date."
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -129,11 +119,6 @@ msgstr "Gasto diferido"
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
 msgstr "Rendimento diferido"
-
-#. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
-msgid "Re-Generate Lines"
-msgstr "Regenerar Linhas"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_source_journal_ids
@@ -156,7 +141,7 @@ msgstr ""
 "rendimentos/gastos entre duas datas no futuro."
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:53
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
 #, python-format
 msgid "The start date is after the end date!"
 msgstr "A data de início é posterior à data de fim!"
@@ -199,3 +184,8 @@ msgstr "Aviso"
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve estabelecer pelo menos um diário pré-definido."
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_config_settings
+msgid "account.config.settings"
+msgstr ""

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-23 23:15+0000\n"
-"PO-Revision-Date: 2018-03-23 23:15+0000\n"
+"POT-Creation-Date: 2018-05-25 02:35+0000\n"
+"PO-Revision-Date: 2018-05-25 02:35+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
+msgstr ""
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -92,15 +97,11 @@ msgstr ""
 "na 'Moeda' que pode ser diferente da 'Moeda da Empresa'."
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_code
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_analytic_account_id
 msgid "Analytic Account"
 msgstr "Conta analítica"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_analytic_account_code
-msgid "Analytic Account Code"
-msgstr "Código de conta analítica"
 
 #. module: account_cutoff_base
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -179,16 +180,12 @@ msgstr "Diferimento"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_code
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_cutoff_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_cutoff_account_id
 msgid "Cut-off Account"
 msgstr "Conta de Diferimento"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_cutoff_account_code
-msgid "Cut-off Account Code"
-msgstr "Código da Conta de Diferimento"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_journal_id
@@ -260,11 +257,17 @@ msgstr "Tipo de Diferimento"
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tree
-#: model:ir.ui.view,arch_db:account_cutoff_base.view_company_form
+#: model:ir.ui.view,arch_db:account_cutoff_base.view_account_config_settings
 msgid "Cut-offs"
 msgstr "Diferimentos"
 
 #. module: account_cutoff_base
+#: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
+msgid "Cutoff Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_config_settings_default_cutoff_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company_default_cutoff_journal_id
 msgid "Default Cut-off Journal"
 msgstr "Diário de Diferimentos Predefinido"
@@ -337,6 +340,11 @@ msgid "Last Updated on"
 msgstr "Última atualização em"
 
 #. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "List view of lines"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
 msgid "Partner"
 msgstr "Empresa"
@@ -356,6 +364,11 @@ msgstr "Gasto não diferido"
 #, python-format
 msgid "Prepaid Revenue"
 msgstr "Rendimento não diferido"
+
+#. module: account_cutoff_base
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Re-Generate Lines"
+msgstr "Regenerar Linhas"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping_account_id
@@ -419,7 +432,7 @@ msgid "Taxes"
 msgstr "Impostos"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:212
+#: code:addons/account_cutoff_base/models/account_cutoff.py:217
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -429,7 +442,7 @@ msgstr ""
 " função."
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:216
+#: code:addons/account_cutoff_base/models/account_cutoff.py:221
 #, python-format
 msgid ""
 "There are no lines on this Cut-off, so we can't create a Journal Entry."
@@ -467,3 +480,14 @@ msgstr "Valor Total de Diferimento"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_type
 msgid "Type"
 msgstr "Tipo"
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:256
+#, python-format
+msgid "You cannot delete cutoff records that are not in draft state."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_config_settings
+msgid "account.config.settings"
+msgstr ""
