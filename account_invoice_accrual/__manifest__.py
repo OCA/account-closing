@@ -16,7 +16,6 @@
     "data": [
         "views/account_invoice_view.xml",
         "wizard/account_move_accrue_view.xml",
-        "views/company_view.xml",
     ],
     "demo": [],
     "license": "AGPL-3",
