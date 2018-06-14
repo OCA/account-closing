@@ -17,6 +17,7 @@
             <field name="default_accrual_expense_journal_id" />
             <field name="default_accrued_revenue_account_id" />
             <field name="default_accrued_expense_account_id" />
+            <field name="accrual_taxes" />
         </field>
     </field>
 </record>
