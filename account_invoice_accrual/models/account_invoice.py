@@ -58,13 +58,10 @@ class AccountInvoice(models.Model):
             else:
                 # Use default values of the reversal wizard to create the
                 # reverse
-                reverse_obj = self.env['account.move.reverse']
-                reverse_wizard =\
-                    reverse_obj.create({
-                        'date': invoice_date,
-                        'journal_id': accrual_move.journal_id.id})
-                reverse_wizard.with_context(active_ids=accrual_move.ids) \
-                    .action_reverse()
+                reverse_obj = self.env['account.move.reverse'].with_context(
+                    active_id=accrual_move.id, active_ids=accrual_move.ids)
+                reverse_wizard = reverse_obj.create({'date': invoice_date})
+                reverse_wizard.action_reverse()
 
     @api.multi
     def invoice_validate(self):
