@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_accrual_base
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-25 02:35+0000\n"
+"PO-Revision-Date: 2018-05-25 02:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
+msgid "Default Account for Accrued Expenses"
+msgstr "Compte par défaut pour factures à recevoir"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_prepayment_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_prepayment_account_id
+msgid "Default Account for Accrued Prepaid Expenses"
+msgstr "Compte par défaut pour les marchandises à recevoir"

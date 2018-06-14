@@ -46,14 +46,17 @@
                     <group name="general-params">
                         <field name="cutoff_date"/>
                         <field name="total_cutoff_amount"/>
+                        <field name="auto_reverse"/>
                         <field name="company_id" groups="base.group_multi_company" widget="selection" />
                         <field name="company_currency_id" invisible="1"/>
                     </group>
                     <group name="accounting-params">
                         <field name="cutoff_journal_id" required="1"/>
                         <field name="cutoff_account_id" required="1"/>
+                        <field name="cutoff_account_prepayment_id" invisible="'accrued' not in context.get('default_type', '-')"/>
                         <field name="move_label" required="1"/>
                         <field name="move_id"/>
+                        <field name="move_reversal_id"/>
                     </group>
                 </group>
                 <group name="lines">
@@ -119,7 +122,7 @@
                 <field name="cutoff_amount"/>
                 <field name="company_currency_id" invisible="1"/>
             </group>
-            <group name="tax" string="Cut-off Taxes Lines" invisible="'accrued' not in context.get('default_type', '-')">
+            <group name="tax" string="Cut-off Tax Lines" invisible="'accrued' not in context.get('default_type', '-')">
                 <field name="tax_line_ids" nolabel="1"/>
             </group>
         </form>
@@ -147,7 +150,7 @@
 </record>
 
 <record id="account_cutoff_line_action" model="ir.actions.act_window">
-    <field name="name">Cutoff Lines</field>
+    <field name="name">Cut-off Lines</field>
     <field name="res_model">account.cutoff.line</field>
     <field name="view_mode">tree,form</field>
 </record>

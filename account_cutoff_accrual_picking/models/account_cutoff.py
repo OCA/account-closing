@@ -25,7 +25,7 @@ import logging
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, exceptions, fields, models, registry
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -80,15 +80,24 @@ class AccountCutoff(models.Model):
         accrual_account_id = self._get_account_mapping().get(
             account_id, account_id)
 
+        received_qty = line.qty_received
+
         if self.type == 'accrued_expense':
             # Processing purchase order line
             analytic_account_id = line.account_analytic_id.id
             price_unit = line.price_unit
             taxes = line.taxes_id
             taxes = fpos.map_tax(taxes)
-            tax_account_field_name = 'account_accrued_expense_id'
-            tax_account_field_label = 'Accrued Expense Tax Account'
-            quantity = line.qty_received - line.qty_invoiced
+            # The quantity received on PO line must be deducted of all moves
+            # done after the cutoff date.
+            moves_after = line.move_ids.filtered(
+                lambda r: r.state == 'done' and r.date > self.cutoff_date)
+            for move in moves_after:
+                if move.product_uom != line.product_uom:
+                    received_qty -= move.product_uom._compute_quantity(
+                        move.product_uom_qty, line.product_uom)
+                else:
+                    received_qty -= move.product_uom_qty
 
         elif self.type == 'accrued_revenue':
             # Processing sale order line
@@ -96,53 +105,17 @@ class AccountCutoff(models.Model):
             price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             taxes = line.tax_id
             taxes = fpos.map_tax(taxes)
-            tax_account_field_name = 'account_accrued_revenue_id'
-            tax_account_field_label = 'Accrued Revenue Tax Account'
-            quantity = line.qty_to_invoice
 
-        # Processing the taxes
-        company_currency = self.company_id.currency_id
-        currency = line.currency_id
-        tax_line_ids = []
-        tax_res = taxes.compute_all(price_unit, currency, quantity,
-                                    line.product_id, partner)
-        amount = tax_res['total_excluded']
-        if self.type == 'accrued_expense':
-            amount = amount * -1
-        for tax_line in tax_res['taxes']:
-            tax_read = self.env['account.tax'].browse(tax_line['id'])
-            tax_accrual_account_id = tax_read[tax_account_field_name]
-            if not tax_accrual_account_id:
-                raise exceptions.UserError(
-                    _("Error: Missing '%s' on tax '%s'.")
-                    % (tax_account_field_label, tax_read['name']))
-            else:
-                tax_accrual_account_id = tax_accrual_account_id[0]
-            if self.type == 'accrued_expense':
-                tax_line['amount'] = tax_line['amount'] * -1
-            if company_currency != currency:
-                currency_at_date = currency.with_context(date=self.cutoff_date)
-                tax_accrual_amount = currency_at_date.compute(
-                    tax_line['amount'], company_currency)
-            else:
-                tax_accrual_amount = tax_line['amount']
-            tax_line_ids.append((0, 0, {
-                'tax_id': tax_line['id'],
-                'base': self.env['res.currency'].round(price_unit * quantity),
-                'amount': tax_line['amount'],
-                'sequence': tax_line['sequence'],
-                'cutoff_account_id': tax_accrual_account_id.id,
-                'cutoff_amount': tax_accrual_amount,
-                'analytic_account_id': tax_line['analytic'],
-                # tax_line['account_analytic_collected_id'],
-                # account_analytic_collected_id is for invoices IN and OUT
-            }))
-        if company_currency != currency:
-            currency_at_date = currency.with_context(date=self.cutoff_date)
-            amount_company_currency = currency_at_date.compute(
-                amount, company_currency)
-        else:
-            amount_company_currency = amount
+        invoiced_qty = []
+        for il in line.invoice_lines:
+            if ((il.invoice_id.date or il.invoice_id.date_invoice) <=
+                    self.cutoff_date):
+                sign = -1 if il.invoice_id.type == 'in_refund' else 1
+                invoiced_qty.append((0, 0, {
+                    'invoice_line_id': il.id,
+                    'quantity': il.quantity * sign,
+                    }))
+
         res = {
             'product_id': line.product_id.id,
             'parent_id': self.id,
@@ -151,22 +124,22 @@ class AccountCutoff(models.Model):
             'account_id': account_id,
             'cutoff_account_id': accrual_account_id,
             'analytic_account_id': analytic_account_id,
-            'currency_id': currency.id,
-            'quantity': quantity,
+            'currency_id': line.currency_id.id,
             'price_unit': price_unit,
             'tax_ids': [(6, 0, [tax.id for tax in taxes])],
-            'amount': amount,
-            'cutoff_amount': amount_company_currency,
-            'tax_line_ids': tax_line_ids,
+            'received_qty': received_qty,
+            'invoiced_qty_ids': invoiced_qty,
         }
+
         if self.type == 'accrued_revenue':
             res['sale_line_id'] = line.id
         elif self.type == 'accrued_expense':
             res['purchase_line_id'] = line.id
+
         return res
 
-    def get_lines_for_cutoff(self):
-        """ Get the purchase or sale order lines to generate cutoff with"""
+    def get_lines(self):
+        res = super(AccountCutoff, self).get_lines()
         if self.type == 'accrued_revenue':
             lines = self.env['sale.order.line'].search([
                 ['qty_to_invoice', '!=', 0],
@@ -176,18 +149,8 @@ class AccountCutoff(models.Model):
                 [('qty_to_invoice', '!=', 0)]
             )
         else:
-            raise exceptions.UserError(
-                _("Error: account.cutoff type is incorrect"))
-        return lines
+            return res
 
-    def generate_from_orders(self):
-        """ Generate accrued lines from sale and purchase orders """
-        lines = self.get_lines_for_cutoff()
-        # Delete existing cutoff lines from previous run
-        to_delete_line_ids = self.env['account.cutoff.line'].search([
-            ('parent_id', '=', self.id)])
-        if to_delete_line_ids:
-            to_delete_line_ids.unlink()
         for line in lines:
             self.env['account.cutoff.line'].create(
                 self._prepare_line(line))
@@ -202,30 +165,12 @@ class AccountCutoff(models.Model):
             last_day += relativedelta(months=1)
         last_day = last_day.replace(day=1)
         last_day -= relativedelta(days=1)
-
-        try:
-            cr = registry(self._cr.dbname).cursor()
-            self = self.with_env(self.env(cr=cr))
-            cutoff = self.with_context(type=type).create({
-                'cutoff_date': last_day,
-                'type': type,
-                })
-            cutoff.generate_from_orders()
-            cr.commit()
-
-            cutoff.create_move()
-            move = cutoff.move_id
-            next_day = last_day + relativedelta(days=1)
-            rev_move = move._reverse_move(next_day, move.journal_id)
-            rev_move.ref = _('reversal of: ') + move.ref
-            cr.commit()
-        except Exception, e:
-            _logger.error("Accrual Cron Error: %s" % e)
-        finally:
-            try:
-                cr.close()
-            except Exception:
-                pass
+        cutoff = self.with_context(type=type).create({
+            'cutoff_date': last_day,
+            'type': type,
+            'auto_reverse': True,
+            })
+        cutoff.get_lines()
 
     @api.model
     def _cron_cutoff_expense(self):
@@ -250,6 +195,7 @@ class AccountCutoffLine(models.Model):
         readonly=True
     )
     order_id = fields.Char(
+        'Order',
         compute='_compute_order_id',
     )
     product_id = fields.Many2one(
@@ -257,6 +203,28 @@ class AccountCutoffLine(models.Model):
         string='Product',
         readonly=True
     )
+    received_qty = fields.Float(
+        'Received Quantity',
+        readonly=True)
+    invoiced_qty_ids = fields.One2many(
+        'account.cutoff.line.invoice', 'cutoff_line_id',
+        'Invoice Lines',
+        readonly=True,
+    )
+    invoiced_qty = fields.Float(
+        'Invoiced Quantity',
+        compute='_get_invoiced_qty',
+        store=True)
+
+    @api.depends('invoiced_qty_ids.quantity')
+    def _get_invoiced_qty(self):
+        for rec in self:
+            rec.invoiced_qty = sum(rec.invoiced_qty_ids.mapped('quantity'))
+
+    @api.constrains('invoiced_qty')
+    def _update_invoiced_qty(self):
+        for rec in self:
+            rec.quantity = rec.received_qty - rec.invoiced_qty
 
     @api.depends('sale_line_id', 'purchase_line_id')
     def _compute_order_id(self):
@@ -265,3 +233,86 @@ class AccountCutoffLine(models.Model):
                 rec.order_id = rec.sale_line_id.order_id.name
             elif rec.purchase_line_id:
                 rec.order_id = rec.purchase_line_id.order_id.name
+
+    @api.constrains('quantity')
+    def _calc_cutoff_amount(self):
+        company = self.env.user.company_id
+        for rec in self:
+            if not rec.purchase_line_id and not rec.sale_line_id:
+                continue
+            tax_line_ids = [(5, 0, 0)]
+            tax_res = rec.tax_ids.compute_all(
+                rec.price_unit, rec.currency_id, rec.quantity,
+                rec.product_id, rec.partner_id)
+            amount = tax_res['total_excluded']
+            if rec.parent_id.type == 'accrued_expense':
+                amount = amount * -1
+                tax_account_field_name = 'account_accrued_expense_id'
+                tax_account_field_label = 'Accrued Expense Tax Account'
+            elif rec.parent_id.type == 'accrued_revenue':
+                tax_account_field_name = 'account_accrued_revenue_id'
+                tax_account_field_label = 'Accrued Revenue Tax Account'
+            for tax_line in tax_res['taxes']:
+                tax_read = rec.env['account.tax'].browse(tax_line['id'])
+                tax_accrual_account_id = tax_read[tax_account_field_name]
+                if not tax_accrual_account_id:
+                    if not company.accrual_taxes:
+                        continue
+                    raise UserError(
+                        _("Error: Missing '%s' on tax '%s'.")
+                        % (tax_account_field_label, tax_read['name']))
+                else:
+                    tax_accrual_account_id = tax_accrual_account_id[0]
+                if rec.parent_id.type == 'accrued_expense':
+                    tax_line['amount'] = tax_line['amount'] * -1
+                if rec.company_currency_id != rec.currency_id:
+                    currency_at_date = rec.currency_id.with_context(
+                        date=rec.parent_id.cutoff_date)
+                    tax_accrual_amount = currency_at_date.compute(
+                        tax_line['amount'], rec.company_currency_id)
+                else:
+                    tax_accrual_amount = tax_line['amount']
+                tax_line_ids.append((0, 0, {
+                    'tax_id': tax_line['id'],
+                    'base': rec.env['res.currency'].round(
+                        rec.price_unit * rec.quantity),
+                    'amount': tax_line['amount'],
+                    'sequence': tax_line['sequence'],
+                    'cutoff_account_id': tax_accrual_account_id.id,
+                    'cutoff_amount': tax_accrual_amount,
+                    'analytic_account_id': tax_line['analytic'],
+                    # tax_line['account_analytic_collected_id'],
+                    # account_analytic_collected_id is for invoices IN and OUT
+                }))
+            if rec.company_currency_id != rec.currency_id:
+                currency_at_date = rec.currency_id.with_context(
+                    date=rec.cutoff_date)
+                amount_company_currency = currency_at_date.compute(
+                    amount, rec.company_currency_id)
+            else:
+                amount_company_currency = amount
+            rec.write({
+                'amount': amount,
+                'cutoff_amount': amount_company_currency,
+                'tax_line_ids': tax_line_ids,
+            })
+
+
+class AccountCutoffLineInvoice(models.Model):
+    _name = 'account.cutoff.line.invoice'
+
+    cutoff_line_id = fields.Many2one(
+        'account.cutoff.line',
+        'Cutoff Line',
+        required=True,
+        ondelete='cascade',
+        )
+    invoice_line_id = fields.Many2one(
+        'account.invoice.line',
+        'Invoice Line',
+        required=True,
+        ondelete='restrict',
+        )
+    invoice_id = fields.Many2one(
+        related='invoice_line_id.invoice_id')
+    quantity = fields.Float('Quantity')

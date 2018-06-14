@@ -16,6 +16,17 @@ on sale and purchase order.
 The calculation is done on purchase/order lines with a difference between
 the quantity received/send and the quantity invoiced.
 
+A cron job generates at each end of period cutoff entries for expenses (based
+on PO) and revenues (based on SO). This is because we cannot identify in the
+past, entries for which a cutoff must be generated. That cutoff entry store the
+quantity received and invoiced at that date. Note that the invoiced quantity is
+increased as soon as a draft invoice is created. We consider that the invoice
+will be validated and the invoice accounting date will not change. If you
+modify the quantity in an invoce or create a new invoice after the cutoff has
+been generated, that cutoff will be updated when the invoice is validated. It is
+also updated when the invoice is deleted. Nevertheless, this will be forbidden
+if the accounting entry related to the cutoff is created.
+
 Installation
 ============
 
@@ -26,11 +37,11 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to the setting page of the company on the cutoff tab to select the
-   journals and accounts used for the calculation.
+#. Go to the accounting settings to select the journals and accounts used for
+   the cutoff.
 #. Analytic accounting needs to be enable in Accounting - Settings.
-#. In Accounting - Taxes, for each type of taxes  an accrued revenue tax
-   account must be specified.
+#. If you want to also accrue the taxes, you need in Accounting - Taxes, for
+   each type of taxes an accrued tax account.
 
 Usage
 =====
@@ -42,6 +53,29 @@ To use this module, you need to:
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/account-closing/10.0
+
+Examples
+========
+
+* Purchase Order with quantity received: 0, quantity invoiced: 0
+  This will not make an accrual entry
+
+* Purchase Order with quantity received: 10, quantity invoiced: 0
+  This will make an accrual entry with invoice to receive: 10
+
+* Purchase Order with quantity received: 0, quantity invoiced: 10
+  This will make an accrual entry with goods to receive: 10
+
+* Purchase Order with quantity received: 10, quantity invoiced: 0
+  This will make an accrual entry with invoice to receive: 10
+  Invoice is encoded after the cut-off date but dated before the cut-off date
+  The accrual entry is updated in the existing cut-off
+
+* Purchase Order with quantity received: 0, quantity invoiced: 0
+  This will not make an accrual entry
+  Invoice is encoded after the cut-off date but dated before the cut-off date
+  An accrual entry is added in the existing cut-off
+
 
 Known issues / Roadmap
 ======================
