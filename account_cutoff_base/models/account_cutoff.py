@@ -90,7 +90,11 @@ class AccountCutoff(models.Model):
     move_id = fields.Many2one(
         'account.move', string='Cut-off Journal Entry', readonly=True,
         copy=False)
-    auto_reverse = fields.Boolean()
+    auto_reverse = fields.Boolean(
+        'Auto Reverse'
+        help="Automatically reverse created move on following day. Use this if "
+             "you accrue a value end of period that you want to reverse begin "
+             "of next period")
     move_reversal_id = fields.Many2one(
         'account.move', string='Cut-off Journal Entry Reversal', readonly=True,
         copy=False)
