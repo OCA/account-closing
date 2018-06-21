@@ -1,0 +1,197 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * account_invoice_accrual
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-05 14:42+0000\n"
+"PO-Revision-Date: 2013-07-05 14:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,move_line_prefix:0
+msgid "Items Name Prefix"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.move.accrue:0
+msgid "This will create accrual for all selected draft invoices without accrual journal entries"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:110
+#, python-format
+msgid "Cannot find a chart of account, you should create one from Settings\\Configuration\\Accounting menu."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:account.move.accrue,date:0
+msgid "Enter the date of the accrual account entries. By default, Odoo proposes the last day of the previous month."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.move.accrue:0
+msgid "Accrue Entries"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: model:ir.actions.act_window,name:account_invoice_accrual.act_account_move_accrue
+msgid "Accrue Invoices"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:account.move.accrue,period_id:0
+msgid "If empty, take the period of the date."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:res.partner,property_account_customer_accrual:0
+msgid "This account will be used instead of the default one as the customer accrual account for the current partner"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:res.partner,property_journal_accrual:0
+msgid "This journal will be used as the default one for accrual operation for the current partner"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:account.invoice,accrual_move_id:0
+msgid "Link to the Accrual Journal Items."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:account.move.accrue,move_line_prefix:0
+msgid "Prefix that will be added to the name of the journal item to create the name of the accrual journal item (a space is added after the prefix)."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:res.partner,property_account_supplier_accrual:0
+msgid "Account Supplier Accrual"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.invoice:0
+msgid "Accrual"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_move_accrue
+msgid "Create accrual of draft invoices"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,period_id:0
+msgid "Accrual Period"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:res.partner,property_journal_accrual:0
+msgid "Journal Accrual"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.invoice:0
+msgid "Reversal"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:res.partner,property_account_customer_accrual:0
+msgid "Account Customer Accrual"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:res.partner,property_account_supplier_accrual:0
+msgid "This account will be used instead of the default one as the supplier accrual account for the current partner"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: help:account.move.accrue,move_prefix:0
+msgid "Prefix that will be added to the 'Ref' of the journal entry to create the 'Ref' of the accrual journal entry (no space added after the prefix)."
+msgstr ""
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,account_id:0
+msgid "Accrual account"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:153
+#, python-format
+msgid "Accrual Entries"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_reverse.py:70
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_move_reverse
+msgid "Create reversal of account moves"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.invoice,to_be_reversed:0
+msgid "To be reversed"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.move.accrue:0
+msgid "or"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.move.accrue:0
+msgid "Create accrual journal entries"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,date:0
+msgid "Accrual Date"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:109
+#, python-format
+msgid "Configuration Error!"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,move_prefix:0
+msgid "Entries Ref. Prefix"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: view:account.move.accrue:0
+msgid "Cancel"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: field:account.move.accrue,journal_id:0
+msgid "Accrual Journal"
+msgstr ""
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_reverse.py:69
+#: code:addons/account_invoice_accrual/wizard/account_move_reverse.py:70
+#, python-format
+msgid "There is nothing to reverse"
+msgstr ""

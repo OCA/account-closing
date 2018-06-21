@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * account_cutoff_accrual_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 08:58+0000\n"
+"PO-Revision-Date: 2018-06-14 08:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Etalements"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr "Ligne de report"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_purchase_order_line_account_cutoff_line_ids
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_sale_order_line_account_cutoff_line_ids
+msgid "Account Cutoff Lines"
+msgstr "Account Cutoff Lines"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_cutoff_line_id
+msgid "Cutoff Line"
+msgstr "Cutoff Line"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:64
+#, python-format
+msgid "Error: Missing %s account on product '%s' or on related product category."
+msgstr "Error: Missing %s account on product '%s' or on related product category."
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_invoice_line
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_invoice_line_id
+msgid "Invoice Line"
+msgstr "Ligne de facturation"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoiced_qty_ids
+msgid "Invoice Lines"
+msgstr "Lignes de factures"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_invoice_id
+msgid "Invoice Reference"
+msgstr "Référence de la facture"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoiced_qty
+msgid "Invoiced Quantity"
+msgstr "Quantité facturée"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_order_id
+msgid "Order"
+msgstr "Commande"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_purchase_order_line
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_purchase_line_id
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_purchase_order_line_qty_to_invoice
+msgid "Qty to invoice"
+msgstr "Quantité à facturer"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_invoice_quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_received_qty
+msgid "Received Quantity"
+msgstr "Quantité reçue"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff_line_sale_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de commande"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne du bon de commande"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_invoice.py:77
+#, python-format
+msgid "You cannot delete an invoice for an accounting date where the cutoff accounting entry has already been created"
+msgstr "Vous ne pouvez pas supprimer une facture pour une date comptable où une entrée comptable de cutoff a déjà créée"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_invoice.py:38
+#, python-format
+msgid "You cannot validate an invoice for an accounting date where the cutoff accounting entry has already been created"
+msgstr "Vous ne pouvez pas valider une facture pour une date comptable où une entrée comptable de cutoff a déjà créée"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff_line_invoice
+msgid "account.cutoff.line.invoice"
+msgstr "account.cutoff.line.invoice"
+

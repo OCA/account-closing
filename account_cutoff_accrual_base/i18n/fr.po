@@ -32,7 +32,7 @@ msgstr "Ligne de provision comptable"
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
-msgstr "Factures non parvenues"
+msgstr "Cut-off sur achats"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
@@ -43,7 +43,7 @@ msgstr "Compte de taxe pour factures non parvenues"
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
 msgid "Accrued Revenue"
-msgstr "Factures à établir"
+msgstr "Cut-off sur ventes"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
@@ -72,6 +72,12 @@ msgid "Default Account for Accrued Expenses"
 msgstr "Compte par défaut pour factures non parvenues"
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_prepayment_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_prepayment_account_id
+msgid "Default Account for Accrued Prepaid Expenses"
+msgstr "Compte par défaut pour les charges constatées d'avance"
+
+#. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
@@ -81,13 +87,13 @@ msgstr "Compte par défaut pour factures à établir"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_expense_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
 msgid "Default Journal for Accrued Expenses"
-msgstr "Journal par défaut pour les factures non parvenues"
+msgstr "Journal par défaut pour les dépenses"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_revenue_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
-msgstr "Journal par défaut pour les factures à établir"
+msgstr "Journal par défaut pour les revenus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
