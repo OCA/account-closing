@@ -6,8 +6,7 @@
     The licence is in the file __openerp__.py
 -->
 
-<openerp>
-<data>
+<odoo>
 
 <!-- Form view for lines -->
 <record id="account_cutoff_line_form" model="ir.ui.view">
@@ -16,10 +15,19 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form"/>
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field name="stock_move_id" invisible="'accrued' not in context.get('default_type', '-')"/>
+            <field name="order_id" invisible="'accrued' not in context.get('default_type', '-')" />
+        </field>
+        <field name="name" position="before">
             <field name="product_id" invisible="'accrued' not in context.get('default_type', '-')" />
-            <field name="picking_id" invisible="'accrued' not in context.get('default_type', '-')"/>
-            <field name="picking_date_done" invisible="'accrued' not in context.get('default_type', '-')"/>
+        </field>
+        <field name="amount" position="after">
+            <field name="received_qty" invisible="'accrued' not in context.get('default_type', '-')" />
+            <field name="invoiced_qty_ids" invisible="'accrued' not in context.get('default_type', '-')" >
+                <tree>
+                    <field name="invoice_id"/>
+                    <field name="quantity"/>
+                </tree>
+            </field>
         </field>
     </field>
 </record>
@@ -31,12 +39,13 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree"/>
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field name="stock_move_id" invisible="'accrued' not in context.get('default_type', '-')"/>
-            <field name="picking_date_done" invisible="'accrued' not in context.get('default_type', '-')"/>
+            <field name="order_id" invisible="'accrued' not in context.get('default_type', '-')" />
+        </field>
+        <field name="analytic_account_code" position="after">
+            <field name="received_qty" invisible="'accrued' not in context.get('default_type', '-')" />
+            <field name="invoiced_qty" invisible="'accrued' not in context.get('default_type', '-')" />
         </field>
     </field>
 </record>
 
-
-</data>
-</openerp>
+</odoo>

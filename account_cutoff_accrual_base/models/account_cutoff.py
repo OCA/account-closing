@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2013-2018 Akretion (http://www.akretion.com)
+# Copyright 2018 Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -19,6 +20,15 @@ class AccountCutOff(models.Model):
             account_id = company.default_accrued_expense_account_id.id or False
         elif type == 'accrued_revenue':
             account_id = company.default_accrued_revenue_account_id.id or False
+        return account_id
+
+    @api.model
+    def _default_cutoff_account_prepayment_id(self):
+        account_id = super(AccountCutOff, self)._default_cutoff_account_id()
+        type = self.env.context.get('default_type')
+        company = self.env.user.company_id
+        if type == 'accrued_expense':
+            account_id = company.default_accrued_expense_prepayment_account_id.id or False
         return account_id
 
     @api.model
