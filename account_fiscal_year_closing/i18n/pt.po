@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_fiscal_year_closing
-# 
+#
 # Translators:
 # Pedro Castro Silva <pedrocs@exo.pt>, 2018
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-23 23:15+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_fiscal_year_closing
@@ -33,8 +33,8 @@ msgstr ""
 msgid ""
 "Account code pattern for the mapping destination account. Only the first "
 "match will be considered. If this field is not filled, the performed "
-"operation will be to remove any existing balance on the source accounts with"
-" an equivalent counterpart in the same account."
+"operation will be to remove any existing balance on the source accounts with "
+"an equivalent counterpart in the same account."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -361,8 +361,10 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid ""
 "Generating the closing moves, an unbalanced move has been detected.\n"
-"                        You need to check the closing configuration or your journal entries\n"
-"                        to find the problem, fix it and then press again on \"Calculate\"."
+"                        You need to check the closing configuration or your "
+"journal entries\n"
+"                        to find the problem, fix it and then press again on "
+"\"Calculate\"."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -639,8 +641,7 @@ msgstr ""
 #: sql_constraint:account.fiscalyear.closing:0
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:122
 #, python-format
-msgid ""
-"There should be only one fiscal year closing for that year and company!"
+msgid "There should be only one fiscal year closing for that year and company!"
 msgstr ""
 
 #. module: account_fiscal_year_closing

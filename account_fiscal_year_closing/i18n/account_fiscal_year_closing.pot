@@ -1,27 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_fiscal_year_closing
+#	* account_fiscal_year_closing
 #
-# Translators:
-# Stefano <stefano.sforzi@agilebg.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2017-12-15 23:09+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
-"Language: it\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_account_id
 msgid "Account"
-msgstr "Conto"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_move
@@ -30,11 +25,7 @@ msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template_dest_account
-msgid ""
-"Account code pattern for the mapping destination account. Only the first "
-"match will be considered. If this field is not filled, the performed "
-"operation will be to remove any existing balance on the source accounts with "
-"an equivalent counterpart in the same account."
+msgid "Account code pattern for the mapping destination account. Only the first match will be considered. If this field is not filled, the performed operation will be to remove any existing balance on the source accounts with an equivalent counterpart in the same account."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -119,10 +110,7 @@ msgstr ""
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_check_draft_moves
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_check_draft_moves
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_template_check_draft_moves
-msgid ""
-"Checks that there are no draft moves on the fiscal year that is being "
-"closed. Non-confirmed moves won't be taken in account on the closing "
-"operations."
+msgid "Checks that there are no draft moves on the fiscal year that is being closed. Non-confirmed moves won't be taken in account on the closing operations."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -174,7 +162,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template_company_id
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Company"
-msgstr "Società"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_inverse
@@ -252,7 +240,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_name
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template_name
 msgid "Description"
-msgstr "Descrizione"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_dest_account_id
@@ -283,7 +271,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Draft"
-msgstr "Bozza"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_enabled
@@ -359,12 +347,9 @@ msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
-msgid ""
-"Generating the closing moves, an unbalanced move has been detected.\n"
-"                        You need to check the closing configuration or your "
-"journal entries\n"
-"                        to find the problem, fix it and then press again on "
-"\"Calculate\"."
+msgid "Generating the closing moves, an unbalanced move has been detected.\n"
+"                        You need to check the closing configuration or your journal entries\n"
+"                        to find the problem, fix it and then press again on \"Calculate\"."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -392,9 +377,7 @@ msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_year
-msgid ""
-"Introduce here the year to close. If the fiscal year is between several "
-"natural years, you have to put here the last one."
+msgid "Introduce here the year to close. If the fiscal year is between several natural years, you have to put here the last one."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -532,6 +515,7 @@ msgstr ""
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:276
 #, python-format
 msgid "One or more draft moves found: \n"
+""
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -556,7 +540,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_partner_id
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
@@ -604,7 +588,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_sequence
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_sequence
 msgid "Sequence"
-msgstr "Sequenza"
+msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
@@ -646,15 +630,13 @@ msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
-msgid ""
-"This screen will help you to identify the problem, showing you\n"
+msgid "This screen will help you to identify the problem, showing you\n"
 "                        the unbalanced journal entry:"
 msgstr ""
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
-msgid ""
-"This will remove all the closing moves. Are you sure you want to continue?"
+msgid "This will remove all the closing moves. Are you sure you want to continue?"
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -770,3 +752,4 @@ msgstr ""
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move_line
 msgid "account.fiscalyear.closing.unbalanced.move.line"
 msgstr ""
+
