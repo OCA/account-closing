@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_multicurrency_revaluation
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-11-03 03:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_multicurrency_revaluation
@@ -179,8 +179,8 @@ msgstr ""
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:296
 #, python-format
 msgid ""
-"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
-" for at least one account in account form."
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
 msgstr ""
 "Nessun conto è stato selezionato per la rivalutazione. Selezionare "
 "\"Consenti rivalutazione monetaria\" per almeno un conto nelle opzioni del "
@@ -203,9 +203,11 @@ msgstr "Nessun tasso definito per la valuta: %s in data %s"
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account."
+"You must specify at least one provision account or a couple of provision "
+"account."
 msgstr ""
-"Nessun conto di rivalutazione o accantonamento è stato definito per la Società.\n"
+"Nessun conto di rivalutazione o accantonamento è stato definito per la "
+"Società.\n"
 "Bisogna indicare almento uno o un paio di conti di accantonamento."
 
 #. module: account_multicurrency_revaluation
@@ -213,11 +215,11 @@ msgstr ""
 msgid ""
 "Odoo will generate exchange rate difference entries for each account set as "
 "'Allow Currency revaluation'.                     If the account type is "
-"payable or receivable : 1 entry will be generated per "
-"account/currency/partner                     for other account type : 1 "
-"entry will be generated per account/currency                     You can "
-"check details of calculation thanks to the Print Currency unrealized report "
-"in the generic reports."
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner                     for other account type : 1 entry will be "
+"generated per account/currency                     You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -345,8 +347,8 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation_label
 msgid ""
-"This label will be inserted in entries description. You can use %(account)s,"
-" %(currency)s and %(rate)s keywords."
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
 msgstr ""
 "Questa etichetta sarà inserita nella descrizione delle scritture. E' "
 "possibile visualizzare le parole chiave per %(account)s, %(currency)s e "
