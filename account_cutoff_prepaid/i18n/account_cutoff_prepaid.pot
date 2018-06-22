@@ -1,24 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_cutoff_prepaid
+#	* account_cutoff_prepaid
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/"
-"hr_HR/)\n"
-"Language: hr_HR\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: \n"
 
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
@@ -58,7 +51,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
 msgid "Companies"
-msgstr "Poduzeća"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
@@ -80,15 +73,14 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
 #, python-format
-msgid ""
-"Don't forget to Re-Generate Lines after entering or leaving forecast mode."
+msgid "Don't forget to Re-Generate Lines after entering or leaving forecast mode."
 msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_end_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_end_date
 msgid "End Date"
-msgstr "Datum završetka"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_forecast
@@ -99,15 +91,11 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_invoice_id
 msgid "Invoice"
-msgstr "Račun"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
-msgid ""
-"On a prepaid revenue/expense, this is the number of days after the cut-off "
-"date (in forecast mode, this is the number of days between the start date "
-"and the end date). In accrued revenue/expense, this is the number of days "
-"before the cut-off date."
+msgid "On a prepaid revenue/expense, this is the number of days after the cut-off date (in forecast mode, this is the number of days between the start date and the end date). In accrued revenue/expense, this is the number of days before the cut-off date."
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -135,9 +123,7 @@ msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_forecast
-msgid ""
-"The Forecast mode allows the user to compute the prepaid revenue/expense "
-"between 2 dates in the future."
+msgid "The Forecast mode allows the user to compute the prepaid revenue/expense between 2 dates in the future."
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -148,18 +134,12 @@ msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
-msgid ""
-"This view can be used by accountants in order to collect information about "
-"prepaid expenses based on start date and end date. It then allows to "
-"generate the corresponding cutoff journal entry in one click."
+msgid "This view can be used by accountants in order to collect information about prepaid expenses based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click."
 msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
-msgid ""
-"This view can be used by accountants in order to collect information about "
-"prepaid revenues based on start date and end date. It then allows to "
-"generate the corresponding cutoff journal entry in one click."
+msgid "This view can be used by accountants in order to collect information about prepaid revenues based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click."
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -183,3 +163,4 @@ msgstr ""
 #: model:ir.model,name:account_cutoff_prepaid.model_account_config_settings
 msgid "account.config.settings"
 msgstr ""
+

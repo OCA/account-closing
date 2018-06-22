@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_prepaid
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-05-19 00:37+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
@@ -59,21 +60,18 @@ msgid "Companies"
 msgstr "Companii"
 
 #. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days Total"
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
+msgid "Cutoff Days"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days after Cut-off"
-msgstr ""
-
-#. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
 msgstr ""
 
 #. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
 msgstr ""
@@ -98,21 +96,17 @@ msgid "Forecast"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
-msgid ""
-"In regular mode, this is the number of days after the cut-off date. In "
-"forecast mode, this is the number of days between the start date and the end"
-" date."
-msgstr ""
-
-#. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_invoice_id
 msgid "Invoice"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
-msgid "Prepaid Days"
+#: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
+msgid ""
+"On a prepaid revenue/expense, this is the number of days after the cut-off "
+"date (in forecast mode, this is the number of days between the start date "
+"and the end date). In accrued revenue/expense, this is the number of days "
+"before the cut-off date."
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -125,11 +119,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
-msgstr ""
-
-#. module: account_cutoff_prepaid
-#: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
-msgid "Re-Generate Lines"
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -151,7 +140,7 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:53
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
 #, python-format
 msgid "The start date is after the end date!"
 msgstr ""
@@ -187,4 +176,9 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:124
 #, python-format
 msgid "You should set at least one Source Journal."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model,name:account_cutoff_prepaid.model_account_config_settings
+msgid "account.config.settings"
 msgstr ""
