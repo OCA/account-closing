@@ -71,10 +71,11 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_cancel(self):
-        for invoice in self:
-            if invoice.to_be_reversed:
-                raise exceptions.Warning(
-                    _('Please reverse accrual before cancelling invoice'))
+        if 'is_merge' not in self.context:  # See account_invoice_merge module
+            for invoice in self:
+                if invoice.to_be_reversed:
+                    raise exceptions.Warning(
+                        _('Please reverse accrual before cancelling invoice'))
         return super(AccountInvoice, self).action_cancel()
 
     @api.multi
