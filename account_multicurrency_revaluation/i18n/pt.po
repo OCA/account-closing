@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_multicurrency_revaluation
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # Pedro Castro Silva <pedrocs@exo.pt>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-23 23:20+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_multicurrency_revaluation
@@ -247,8 +247,8 @@ msgstr ""
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:297
 #, python-format
 msgid ""
-"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
-" for at least one account in account form."
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -268,7 +268,8 @@ msgstr ""
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account in the accounting settings."
+"You must specify at least one provision account or a couple of provision "
+"account in the accounting settings."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -276,11 +277,11 @@ msgstr ""
 msgid ""
 "Odoo will generate exchange rate difference entries for each account set as "
 "'Allow Currency revaluation'.                     If the account type is "
-"payable or receivable : 1 entry will be generated per "
-"account/currency/partner.                     For other account types : 1 "
-"entry will be generated per account/currency.                     You can "
-"check details of calculation thanks to the Print Currency unrealized report "
-"in the generic reports."
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner.                     For other account types : 1 entry will be "
+"generated per account/currency.                     You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -407,8 +408,8 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation_label
 msgid ""
-"This label will be inserted in entries description. You can use %(account)s,"
-" %(currency)s and %(rate)s keywords."
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
