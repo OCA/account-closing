@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_multicurrency_revaluation
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-23 14:12+0000\n"
 "PO-Revision-Date: 2016-09-23 09:50+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_multicurrency_revaluation
@@ -170,9 +171,11 @@ msgstr "Zuletzt aktualisiert am"
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
 #, python-format
 msgid ""
-"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
-" for at least one account in account form."
-msgstr "Kein neu zu bewertendes Konto gefunden. Wählen Sie das 'Erlaube Währungs-Neubewertung' für mindestens ein Konto der Kontenpflege."
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
+msgstr ""
+"Kein neu zu bewertendes Konto gefunden. Wählen Sie das 'Erlaube Währungs-"
+"Neubewertung' für mindestens ein Konto der Kontenpflege."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:457
@@ -202,7 +205,8 @@ msgstr "Keine Eröffnungsbuchungen in der Eröffnungsperiode des Geschäftsjahrs
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:396
 #, python-format
 msgid "No opening entries in opening period for this fiscal year %s"
-msgstr "Keine Eröffnungsbuchungen in Eröffnungsperiode dieses Geschäftsjahres %s"
+msgstr ""
+"Keine Eröffnungsbuchungen in Eröffnungsperiode dieses Geschäftsjahres %s"
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:402
@@ -221,8 +225,12 @@ msgstr "Kein Kurs zur Währung %s und Datum %s gefunden"
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account."
-msgstr "Kein Neubewertungs- oder Rückstellungskonto für Ihr Unternehmen festgelegt.\nSie müssen zumindest ein Rückstellungskonto oder mehrere Rückstellungskonten festlegen."
+"You must specify at least one provision account or a couple of provision "
+"account."
+msgstr ""
+"Kein Neubewertungs- oder Rückstellungskonto für Ihr Unternehmen festgelegt.\n"
+"Sie müssen zumindest ein Rückstellungskonto oder mehrere Rückstellungskonten "
+"festlegen."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:378
@@ -235,12 +243,17 @@ msgstr "Keine Sonderperioden für das Geschäftsjahr %s gefunden"
 msgid ""
 "Odoo will generate exchange rate difference entries for each account set as "
 "'Allow Currency revaluation'.                       if the account type is "
-"payable or receivable : 1 entry will be generated per "
-"account/currency/partner                      for other account type : 1 "
-"entry will be generated per account/currency       You can check details of "
-"calculation thanks to the Print Currency unrealized report in the generic "
-"reports."
-msgstr "Odoo wird Kursdifferenzen für jedes Konto buchen, welches 'Erlaube Währungs-Neuberwertung' gesetzt hat. Ist es ein Verbindlichkeits- oder ein Forderungskonto wird 1 Posten je Konto/Währung/Partner erstellt, für andere Konten je 1 Posten je Konto/Währung. Sie können Details der Berechnung, dank des Berichts Nicht realisierte Währungsgewinne/-verluste bei den allgemeinen Berichten, prüfen."
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner                      for other account type : 1 entry will be "
+"generated per account/currency       You can check details of calculation "
+"thanks to the Print Currency unrealized report in the generic reports."
+msgstr ""
+"Odoo wird Kursdifferenzen für jedes Konto buchen, welches 'Erlaube Währungs-"
+"Neuberwertung' gesetzt hat. Ist es ein Verbindlichkeits- oder ein "
+"Forderungskonto wird 1 Posten je Konto/Währung/Partner erstellt, für andere "
+"Konten je 1 Posten je Konto/Währung. Sie können Details der Berechnung, dank "
+"des Berichts Nicht realisierte Währungsgewinne/-verluste bei den allgemeinen "
+"Berichten, prüfen."
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
@@ -326,14 +339,17 @@ msgstr "Es existiert noch keine Periode für Unternehmen %s in %s"
 #. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,label:0
 msgid ""
-"This label will be inserted in entries description. You can use %(account)s,"
-" %(currency)s and %(rate)s keywords."
-msgstr "Dieser Text wird in der Beschreibung der Posten eingesetzt. Sie können %(account)s, %(currency)s und %(rate)s Schlüsselwörter verwenden."
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
+msgstr ""
+"Dieser Text wird in der Beschreibung der Posten eingesetzt. Sie können "
+"%(account)s, %(currency)s und %(rate)s Schlüsselwörter verwenden."
 
 #. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,journal_id:0
 msgid "You can set the default journal in company settings."
-msgstr "Sie können das Vorgabejournal in den Unternehmenseinstellungen festlegen."
+msgstr ""
+"Sie können das Vorgabejournal in den Unternehmenseinstellungen festlegen."
 
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard

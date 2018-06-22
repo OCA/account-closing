@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_multicurrency_revaluation
-# 
+#
 # Translators:
 # Giacomo Grasso <giac_grasso@fastwebnet.it>, 2015
 # Marius Marolla <mariusmarolla@gmail.com>, 2016
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-08-19 22:39+0000\n"
 "PO-Revision-Date: 2016-09-09 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_multicurrency_revaluation
@@ -171,9 +172,12 @@ msgstr "Data ultimo aggiornamento"
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:360
 #, python-format
 msgid ""
-"No account to be revaluated found. Please check 'Allow Currency Revaluation'"
-" for at least one account in account form."
-msgstr "Nessun conto è stato selezionato per la rivalutazione. Selezionare \"Consenti rivalutazione monetaria\" per almeno un conto nelle opzioni del conto."
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
+msgstr ""
+"Nessun conto è stato selezionato per la rivalutazione. Selezionare "
+"\"Consenti rivalutazione monetaria\" per almeno un conto nelle opzioni del "
+"conto."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:457
@@ -222,8 +226,12 @@ msgstr "Nessun tasso definito per la valuta: %s in data %s"
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account."
-msgstr "Nessun conto di rivalutazione o accantonamento è stato definito per la Società.\nBisogna indicare almento uno o un paio di conti di accantonamento."
+"You must specify at least one provision account or a couple of provision "
+"account."
+msgstr ""
+"Nessun conto di rivalutazione o accantonamento è stato definito per la "
+"Società.\n"
+"Bisogna indicare almento uno o un paio di conti di accantonamento."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:378
@@ -236,12 +244,19 @@ msgstr "Nessun periodo speciale definito per l'anno fiscale %s"
 msgid ""
 "Odoo will generate exchange rate difference entries for each account set as "
 "'Allow Currency revaluation'.                       if the account type is "
-"payable or receivable : 1 entry will be generated per "
-"account/currency/partner                      for other account type : 1 "
-"entry will be generated per account/currency       You can check details of "
-"calculation thanks to the Print Currency unrealized report in the generic "
-"reports."
-msgstr "Odoo genererà registrazioni relative alla differenza di cambio per ciascun Conto impostato su \"Consenti Rivalutazione Valuta\". Se il conto è di credito o di debito:\n1 registrazione verrà generata  per conto/valuta/partner per altri tipi di conto;\n1 registrazione verrà generata per conto/valuta.\nPuoi verificare i dettagli del calcolo tramite il Report 'Stampa valuta', reperibile tra i Report generici. "
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner                      for other account type : 1 entry will be "
+"generated per account/currency       You can check details of calculation "
+"thanks to the Print Currency unrealized report in the generic reports."
+msgstr ""
+"Odoo genererà registrazioni relative alla differenza di cambio per ciascun "
+"Conto impostato su \"Consenti Rivalutazione Valuta\". Se il conto è di "
+"credito o di debito:\n"
+"1 registrazione verrà generata  per conto/valuta/partner per altri tipi di "
+"conto;\n"
+"1 registrazione verrà generata per conto/valuta.\n"
+"Puoi verificare i dettagli del calcolo tramite il Report 'Stampa valuta', "
+"reperibile tra i Report generici. "
 
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
@@ -311,7 +326,8 @@ msgstr "Conto perdita da rivalutazione"
 #. module: account_multicurrency_revaluation
 #: help:res.company,reversable_revaluations:0
 msgid "Revaluations entries will be created as \"To Be Reversed\"."
-msgstr "Scritture di rivalutazione saranno create come \"Genera scrittura inversa\""
+msgstr ""
+"Scritture di rivalutazione saranno create come \"Genera scrittura inversa\""
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,reversable_revaluations:0
@@ -327,14 +343,19 @@ msgstr "Nessun periodo definito per la società %s in %s"
 #. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,label:0
 msgid ""
-"This label will be inserted in entries description. You can use %(account)s,"
-" %(currency)s and %(rate)s keywords."
-msgstr "Questa etichetta sarà inserita nella descrizione delle scritture. E' possibile visualizzare le parole chiave per %(account)s, %(currency)s e %(rate)s."
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
+msgstr ""
+"Questa etichetta sarà inserita nella descrizione delle scritture. E' "
+"possibile visualizzare le parole chiave per %(account)s, %(currency)s e "
+"%(rate)s."
 
 #. module: account_multicurrency_revaluation
 #: help:wizard.currency.revaluation,journal_id:0
 msgid "You can set the default journal in company settings."
-msgstr "E' possibile definire un sezionale predefinito nella configurazione della Società."
+msgstr ""
+"E' possibile definire un sezionale predefinito nella configurazione della "
+"Società."
 
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
