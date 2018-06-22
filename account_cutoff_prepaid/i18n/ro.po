@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_prepaid
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2017-08-25 22:14+0000\n"
 "PO-Revision-Date: 2017-08-28 12:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Romanian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/ro/)\n"
+"Language-Team: Romanian (http://www.transifex.com/oca/OCA-account-"
+"closing-8-0/language/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -23,7 +25,9 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new prepaid expense.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about prepaid expenses based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about prepaid expenses based on start date and end date. It then allows to "
+"generate the corresponding cutoff journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
@@ -34,7 +38,9 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new prepaid revenue.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about prepaid revenues based on start date and end date. It then allows to generate the corresponding cutoff journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about prepaid revenues based on start date and end date. It then allows to "
+"generate the corresponding cutoff journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
@@ -156,8 +162,8 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/account.py:129
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start and End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
@@ -231,8 +237,8 @@ msgstr ""
 #: code:addons/account_cutoff_prepaid/account.py:52
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for invoice line with"
-" Description '%s'."
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""
 
 #. module: account_cutoff_prepaid
