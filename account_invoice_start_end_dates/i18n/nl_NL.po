@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_invoice_start_end_dates
-# 
+#
 # Translators:
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-05-19 22:06+0000\n"
 "PO-Revision-Date: 2017-05-19 22:06+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_invoice_start_end_dates
@@ -76,8 +77,8 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:86
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start and End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -120,6 +121,6 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:34
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for invoice line with"
-" Description '%s'."
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""

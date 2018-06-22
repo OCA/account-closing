@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_invoice_start_end_dates
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2016-11-17 01:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: account_invoice_start_end_dates
@@ -32,6 +32,7 @@ msgstr "Fin"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product_must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template_must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
@@ -75,8 +76,8 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:86
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start and End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -93,6 +94,7 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product_must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template_must_have_dates
 msgid "Must Have Start and End Dates"
 msgstr ""
@@ -118,6 +120,6 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:34
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for invoice line with"
-" Description '%s'."
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""
