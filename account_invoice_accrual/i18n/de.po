@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_invoice_accrual
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-01-20 23:09+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_invoice_accrual
@@ -119,8 +119,8 @@ msgstr "Anzeigename"
 #. module: account_invoice_accrual
 #: help:account.move.accrue,date:0
 msgid ""
-"Enter the date of the accrual account entries. By default, Odoo proposes the"
-" last day of the previous month."
+"Enter the date of the accrual account entries. By default, Odoo proposes the "
+"last day of the previous month."
 msgstr ""
 "Geben Sie das Datum der Abgrenzungsposten an. Per Vorgabe schlägt Odoo den "
 "letzten Tag des Vormonats vor."
@@ -199,8 +199,8 @@ msgstr ""
 #. module: account_invoice_accrual
 #: help:account.move.accrue,move_line_prefix:0
 msgid ""
-"Prefix that will be added to the name of the journal item to create the name"
-" of the accrual journal item (a space is added after the prefix)."
+"Prefix that will be added to the name of the journal item to create the name "
+"of the accrual journal item (a space is added after the prefix)."
 msgstr ""
 "Präfix, der der Bezeichnung des Journalpostens, zur Erstellung der "
 "jeweiligen Abgrenzungsbezeichnung, (unter Ergänzung mit einem Leerzeichen) "

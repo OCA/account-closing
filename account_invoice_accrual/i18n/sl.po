@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_invoice_accrual
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2016-09-26 10:17+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: account_invoice_accrual
 #: view:account.invoice:account_invoice_accrual.invoice_supplier_form
@@ -118,8 +119,8 @@ msgstr "Prikazni naziv"
 #. module: account_invoice_accrual
 #: help:account.move.accrue,date:0
 msgid ""
-"Enter the date of the accrual account entries. By default, Odoo proposes the"
-" last day of the previous month."
+"Enter the date of the accrual account entries. By default, Odoo proposes the "
+"last day of the previous month."
 msgstr ""
 "Vnos datuma za razmejitvene kontne vnose. Privzeto Odoo predlaga zadnji dan "
 "v prejšnjem mesecu."
@@ -198,8 +199,8 @@ msgstr ""
 #. module: account_invoice_accrual
 #: help:account.move.accrue,move_line_prefix:0
 msgid ""
-"Prefix that will be added to the name of the journal item to create the name"
-" of the accrual journal item (a space is added after the prefix)."
+"Prefix that will be added to the name of the journal item to create the name "
+"of the accrual journal item (a space is added after the prefix)."
 msgstr ""
 "Predpona, ki bo dodana nazivu dnevniškega vnosa za ustvarjanje naziva "
 "razmejitvenega dnevniškega vnosa (po predponi se doda prostor)."
