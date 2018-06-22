@@ -1,45 +1,34 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_cutoff_accrual_base
+#	* account_cutoff_accrual_base
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: account-closing (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2017-06-06 12:56+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-account-"
-"closing-8-0/language/zh_TW/)\n"
-"Language: zh_TW\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
+msgid "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new expense accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information "
-"about accrued expenses. It then allows to generate the corresponding cut-off "
-"journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
+msgid "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new revenue accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information "
-"about accrued revenue. It then allows to generate the corresponding cut-off "
-"journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
@@ -109,7 +98,7 @@ msgstr ""
 #. module: account_cutoff_accrual_base
 #: selection:account.cutoff.line,price_source:0
 msgid "Invoice"
-msgstr "發票"
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: field:account.cutoff.line,price_source:0
@@ -155,3 +144,4 @@ msgstr ""
 #: field:account.cutoff.line,price_unit:0
 msgid "Unit Price"
 msgstr ""
+

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_accrual_base
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015,2017
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2017-06-09 22:16+0000\n"
 "PO-Revision-Date: 2017-06-14 04:33+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-closing-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-account-"
+"closing-8-0/language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -24,10 +26,19 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new expense accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued expenses. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Pripravi nov razmejeni strošek.\n        </p><p>\n        Ta prikaz omogoča knjigovodjem zbiranje informacij o razmejenih stroških. Omogoča ustvarjanje ustrezajočih dnevniških vnosov razmejitev.\n        </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Pripravi nov razmejeni strošek.\n"
+"        </p><p>\n"
+"        Ta prikaz omogoča knjigovodjem zbiranje informacij o razmejenih "
+"stroških. Omogoča ustvarjanje ustrezajočih dnevniških vnosov razmejitev.\n"
+"        </p>\n"
+"    "
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -35,10 +46,19 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new revenue accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued revenue. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Pripravi novo razmejeni prihodek.\n        </p><p>\n        Ta prikaz omogoča knjigovodjem zbiranje informacij o razmejenih prihodkih. Omogoča ustvarjanje ustrezajočih dnevniških vnosov razmejitev.\n        </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Pripravi novo razmejeni prihodek.\n"
+"        </p><p>\n"
+"        Ta prikaz omogoča knjigovodjem zbiranje informacij o razmejenih "
+"prihodkih. Omogoča ustvarjanje ustrezajočih dnevniških vnosov razmejitev.\n"
+"        </p>\n"
+"    "
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff

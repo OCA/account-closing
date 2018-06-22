@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_accrual_base
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
 "PO-Revision-Date: 2017-06-06 12:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_accrual_base
@@ -24,10 +25,20 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new expense accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued expenses. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Klicken, um Anlage einer neuen Kostenabgrenzung einzuleiten.\n        </p><p>\n        Diese Sicht kann durch Buchhalter verwendet werden, um kumulierte Kosten zu bilden. Es ermöglicht dann die Anlage der Abgrenzungsposten im entsprechenden Journal mit einem Klick.\n        </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Klicken, um Anlage einer neuen Kostenabgrenzung einzuleiten.\n"
+"        </p><p>\n"
+"        Diese Sicht kann durch Buchhalter verwendet werden, um kumulierte "
+"Kosten zu bilden. Es ermöglicht dann die Anlage der Abgrenzungsposten im "
+"entsprechenden Journal mit einem Klick.\n"
+"        </p>\n"
+"    "
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -35,10 +46,20 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new revenue accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued revenue. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Klicken, um Anlage einer neuen Erlösabgrenzung einzuleiten.\n        </p><p>\n        Diese Sicht kann durch Buchhalter verwendet werden, um kumulierte Erlöse zu bilden Es ermöglicht dann die Anlage der Abgrenzungsposten im entsprechenden Journal mit einem Klick.\n        </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Klicken, um Anlage einer neuen Erlösabgrenzung einzuleiten.\n"
+"        </p><p>\n"
+"        Diese Sicht kann durch Buchhalter verwendet werden, um kumulierte "
+"Erlöse zu bilden Es ermöglicht dann die Anlage der Abgrenzungsposten im "
+"entsprechenden Journal mit einem Klick.\n"
+"        </p>\n"
+"    "
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff

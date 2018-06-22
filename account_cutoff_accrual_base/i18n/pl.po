@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_accrual_base
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,15 @@ msgstr ""
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
 "PO-Revision-Date: 2017-06-06 12:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Polish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/pl/)\n"
+"Language-Team: Polish (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/pl/)\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -23,7 +26,9 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new expense accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued expenses. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
@@ -34,7 +39,9 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start preparing a new revenue accrual.\n"
 "        </p><p>\n"
-"        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.\n"
+"        This view can be used by accountants in order to collect information "
+"about accrued revenue. It then allows to generate the corresponding cut-off "
+"journal entry in one click.\n"
 "        </p>\n"
 "    "
 msgstr ""
