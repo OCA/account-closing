@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_fiscal_year_closing
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-11-03 03:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_fiscal_year_closing
@@ -33,13 +33,13 @@ msgstr "Asiento contable"
 msgid ""
 "Account code pattern for the mapping destination account. Only the first "
 "match will be considered. If this field is not filled, the performed "
-"operation will be to remove any existing balance on the source accounts with"
-" an equivalent counterpart in the same account."
+"operation will be to remove any existing balance on the source accounts with "
+"an equivalent counterpart in the same account."
 msgstr ""
 "Patrón de código de cuenta para el mapeado de la cuenta destino. Sólo se "
 "considerará la primera coincidencia. Si este campo no está rellenado, "
-"entonces la operación realizada será eliminar cualquier saldo en las cuentas"
-" origen con una contrapartida equivalente en la misma cuenta."
+"entonces la operación realizada será eliminar cualquier saldo en las cuentas "
+"origen con una contrapartida equivalente en la misma cuenta."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template_src_accounts
@@ -368,12 +368,16 @@ msgstr "Desde"
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid ""
 "Generating the closing moves, an unbalanced move has been detected.\n"
-"                        You need to check the closing configuration or your journal entries\n"
-"                        to find the problem, fix it and then press again on \"Calculate\"."
+"                        You need to check the closing configuration or your "
+"journal entries\n"
+"                        to find the problem, fix it and then press again on "
+"\"Calculate\"."
 msgstr ""
 "Generando los asientos de cierre, se ha detectado un asiento descuadrado.\n"
-"                        Necesita comprobar la configuración de cierre o sus asientos\n"
-"                        para encontrar el problema, arreglarlo y pulsar otra vez en \"Calcular\"."
+"                        Necesita comprobar la configuración de cierre o sus "
+"asientos\n"
+"                        para encontrar el problema, arreglarlo y pulsar otra "
+"vez en \"Calcular\"."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_id
@@ -651,8 +655,7 @@ msgstr "La plantilla del plan de la compañía (si existe)"
 #: sql_constraint:account.fiscalyear.closing:0
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:122
 #, python-format
-msgid ""
-"There should be only one fiscal year closing for that year and company!"
+msgid "There should be only one fiscal year closing for that year and company!"
 msgstr ""
 "Debe haber solamente un cierre de ejercicio fiscal para este año y compañía"
 
