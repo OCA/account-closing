@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_base
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # Pedro Castro Silva <pedrocs@exo.pt>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-23 23:20+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
@@ -86,8 +86,8 @@ msgstr "Moeda"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_amount
 msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in"
-" the 'Amount Currency', which may be different from the 'Company Currency'."
+"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
+"the 'Amount Currency', which may be different from the 'Company Currency'."
 msgstr ""
 "Valor que é usado como base para calcular o valor de corte. Este valor está "
 "na 'Moeda' que pode ser diferente da 'Moeda da Empresa'."
@@ -424,14 +424,13 @@ msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
 msgstr ""
-"A entrada no diário de diferimentos já existe. Eliminar antes de correr esta"
-" função."
+"A entrada no diário de diferimentos já existe. Eliminar antes de correr esta "
+"função."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:248
 #, python-format
-msgid ""
-"There are no lines on this Cut-off, so we can't create a Journal Entry."
+msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
 "Não há linhas neste diferimentos nesta operação, logo não se consegue "
 "publicar esta entrada de diário."
@@ -439,12 +438,12 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
 msgid ""
-"These account mappings allow you to have an cutoff account for "
-"expense/revenue that is not the same as the original expense/revenue "
-"account, using the same concept as the fiscal positions."
+"These account mappings allow you to have an cutoff account for expense/"
+"revenue that is not the same as the original expense/revenue account, using "
+"the same concept as the fiscal positions."
 msgstr ""
-"Estes mapas de conta permitem ter uma conta de rendimento/gasto que não seja"
-" a mesma conta de rendimento/gasto original, usando o mesmo conceito que as "
+"Estes mapas de conta permitem ter uma conta de rendimento/gasto que não seja "
+"a mesma conta de rendimento/gasto original, usando o mesmo conceito que as "
 "posições fiscais."
 
 #. module: account_cutoff_base
