@@ -1,24 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_cutoff_base
+#	* account_cutoff_base
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/"
-"hr_HR/)\n"
-"Language: hr_HR\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: \n"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -86,9 +79,7 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line_amount
-msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
-"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgid "Amount that is used as base to compute the Cut-off Amount. This Amount is in the 'Amount Currency', which may be different from the 'Company Currency'."
 msgstr ""
 
 #. module: account_cutoff_base
@@ -125,7 +116,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Poduzeća"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_company_id
@@ -383,16 +374,14 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_state
-msgid ""
-"State of the cutoff. When the Journal Entry is created, the state is set to "
-"'Done' and the fields become read-only."
+msgid "State of the cutoff. When the Journal Entry is created, the state is set to 'Done' and the fields become read-only."
 msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_tax_id
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Tax"
-msgstr "Porez"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_amount
@@ -417,9 +406,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:244
 #, python-format
-msgid ""
-"The Cut-off Journal Entry already exists. You should delete it before "
-"running this function."
+msgid "The Cut-off Journal Entry already exists. You should delete it before running this function."
 msgstr ""
 
 #. module: account_cutoff_base
@@ -430,17 +417,12 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
-msgid ""
-"These account mappings allow you to have an cutoff account for expense/"
-"revenue that is not the same as the original expense/revenue account, using "
-"the same concept as the fiscal positions."
+msgid "These account mappings allow you to have an cutoff account for expense/revenue that is not the same as the original expense/revenue account, using the same concept as the fiscal positions."
 msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_move_label
-msgid ""
-"This label will be written in the 'Name' field of the Cut-off Account Move "
-"Lines and in the 'Reference' field of the Cut-off Account Move."
+msgid "This label will be written in the 'Name' field of the Cut-off Account Move Lines and in the 'Reference' field of the Cut-off Account Move."
 msgstr ""
 
 #. module: account_cutoff_base
@@ -452,3 +434,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_cutoff_type
 msgid "Type"
 msgstr ""
+
