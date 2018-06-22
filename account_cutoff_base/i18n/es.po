@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_base
-# 
+#
 # Translators:
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015-2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-10-13 07:33+0000\n"
 "PO-Revision-Date: 2016-11-22 16:35+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-account-closing-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
@@ -24,10 +25,19 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start a new cutoff account mapping.\n"
 "        </p><p>\n"
-"        These account mappings allow you to have an cutoff account for expense/revenue that is not the same as the original expense/revenue account, using the same concept as the fiscal positions.\n"
+"        These account mappings allow you to have an cutoff account for "
+"expense/revenue that is not the same as the original expense/revenue "
+"account, using the same concept as the fiscal positions.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\nPulse para iniciar un nuevo mapeo de cuentas de cierre.\n</p><p>\nEste mapeo de cuentas le permite tener una cuenta de cierre para gastos/ingresos que no es la misma que la cuenta original, usando el mismo concepto que las posiciones fiscales.\n</p>"
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"Pulse para iniciar un nuevo mapeo de cuentas de cierre.\n"
+"</p><p>\n"
+"Este mapeo de cuentas le permite tener una cuenta de cierre para gastos/"
+"ingresos que no es la misma que la cuenta original, usando el mismo concepto "
+"que las posiciones fiscales.\n"
+"</p>"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -104,9 +114,12 @@ msgstr "Moneda de la compañía"
 #. module: account_cutoff_base
 #: help:account.cutoff.line,amount:0
 msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in"
-" the 'Amount Currency', which may be different from the 'Company Currency'."
-msgstr "Importe que es usado como base para el cálculo del importe de cierre. Este importe está en la moneda del importe, que puede ser diferente a la moneda de la compañía."
+"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
+"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgstr ""
+"Importe que es usado como base para el cálculo del importe de cierre. Este "
+"importe está en la moneda del importe, que puede ser diferente a la moneda "
+"de la compañía."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_id:0
@@ -218,7 +231,8 @@ msgstr "Importe de la operación de cierre"
 #. module: account_cutoff_base
 #: help:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount without taxes in the Company Currency."
-msgstr "Importe de la operación de cierre sin impuestos en la moneda de la compañía."
+msgstr ""
+"Importe de la operación de cierre sin impuestos en la moneda de la compañía."
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
@@ -340,7 +354,9 @@ msgstr "Seguidores"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Contiene el resumen del chatter (nº de mensajes, ...). Este resumen está directamente en formato html para ser insertado en vistas kanban."
+msgstr ""
+"Contiene el resumen del chatter (nº de mensajes, ...). Este resumen está "
+"directamente en formato html para ser insertado en vistas kanban."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
@@ -459,7 +475,9 @@ msgstr "Estado"
 msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
-msgstr "Estado de la operación de cierre. Cuando se crea el asiento, el estado se establece en 'Realizada' y los campos se ponen como de solo lectura."
+msgstr ""
+"Estado de la operación de cierre. Cuando se crea el asiento, el estado se "
+"establece en 'Realizada' y los campos se ponen como de solo lectura."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
@@ -498,21 +516,26 @@ msgstr "Impuestos"
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
-msgstr "El asiento contable de la operación de cierre ya existe. Debería eliminarlo antes de utilizar esta función."
+msgstr ""
+"El asiento contable de la operación de cierre ya existe. Debería eliminarlo "
+"antes de utilizar esta función."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:306
 #, python-format
-msgid ""
-"There are no lines on this Cut-off, so we can't create a Journal Entry."
-msgstr "No hay líneas en esta operación de cierre, por lo que no se puede crear un asiento."
+msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
+msgstr ""
+"No hay líneas en esta operación de cierre, por lo que no se puede crear un "
+"asiento."
 
 #. module: account_cutoff_base
 #: help:account.cutoff,move_label:0
 msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
-msgstr "Esta etiqueta se utilizará como nombre para los apuntes generados y como referencia del asiento de la operación de cierre."
+msgstr ""
+"Esta etiqueta se utilizará como nombre para los apuntes generados y como "
+"referencia del asiento de la operación de cierre."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0

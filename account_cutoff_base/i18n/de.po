@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_base
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-23 14:12+0000\n"
 "PO-Revision-Date: 2016-09-23 09:50+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-account-closing-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_base
@@ -24,10 +25,21 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "        Click to start a new cutoff account mapping.\n"
 "        </p><p>\n"
-"        These account mappings allow you to have an cutoff account for expense/revenue that is not the same as the original expense/revenue account, using the same concept as the fiscal positions.\n"
+"        These account mappings allow you to have an cutoff account for "
+"expense/revenue that is not the same as the original expense/revenue "
+"account, using the same concept as the fiscal positions.\n"
 "        </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Klicken, um eine neue Zuordnung zu Abgrenzungskonten anzulegen.\n        </p><p>\n        Diese Kontenzuordnungen ermöglichen die Nutzung eines Abgrenzungskontos für Kosten/Erlöse, welches sich vom ursprünglichen Kosten-/Erlöskonto unterscheidet, etwas nach dem Verfahren, wie es bereits bei Steuer-Zuordnungen gemacht wird.\n        </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Klicken, um eine neue Zuordnung zu Abgrenzungskonten anzulegen.\n"
+"        </p><p>\n"
+"        Diese Kontenzuordnungen ermöglichen die Nutzung eines "
+"Abgrenzungskontos für Kosten/Erlöse, welches sich vom ursprünglichen Kosten-/"
+"Erlöskonto unterscheidet, etwas nach dem Verfahren, wie es bereits bei "
+"Steuer-Zuordnungen gemacht wird.\n"
+"        </p>\n"
+"    "
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -104,9 +116,12 @@ msgstr "Betragswährung"
 #. module: account_cutoff_base
 #: help:account.cutoff.line,amount:0
 msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in"
-" the 'Amount Currency', which may be different from the 'Company Currency'."
-msgstr "Betrag, der als Basis zur Berechnung des Abgrenzungsbetrags herangezogen wird. Dieser ist in 'Betragswährung' angegeben, welche von der 'Hauswährung' abweichen kann."
+"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
+"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgstr ""
+"Betrag, der als Basis zur Berechnung des Abgrenzungsbetrags herangezogen "
+"wird. Dieser ist in 'Betragswährung' angegeben, welche von der 'Hauswährung' "
+"abweichen kann."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_id:0
@@ -340,7 +355,10 @@ msgstr "Follower"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Stellt die Nachrichten zusammenfassend dar (Anzahl Menldungen, ...). Diese Zusammenfassung liegt im HTML vor, so dass diese direkt in der Kanban-Ansicht verwendet werden kann."
+msgstr ""
+"Stellt die Nachrichten zusammenfassend dar (Anzahl Menldungen, ...). Diese "
+"Zusammenfassung liegt im HTML vor, so dass diese direkt in der Kanban-"
+"Ansicht verwendet werden kann."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,id:0 field:account.cutoff.line,id:0
@@ -459,7 +477,9 @@ msgstr "Status"
 msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
-msgstr "Status der Abgrenzung. Wenn der Journalposten angelegt ist, ist der Status 'Erledigt' und die Felder werden schreibgeschützt."
+msgstr ""
+"Status der Abgrenzung. Wenn der Journalposten angelegt ist, ist der Status "
+"'Erledigt' und die Felder werden schreibgeschützt."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_summary:0
@@ -498,21 +518,26 @@ msgstr "Steuern"
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
-msgstr "Der Abgrenungsposten besteht im Journal bereits. Sie müssen diesen löschen bevor Sie diese Funktion nutzen können."
+msgstr ""
+"Der Abgrenungsposten besteht im Journal bereits. Sie müssen diesen löschen "
+"bevor Sie diese Funktion nutzen können."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/account_cutoff.py:306
 #, python-format
-msgid ""
-"There are no lines on this Cut-off, so we can't create a Journal Entry."
-msgstr "Es gibt keine Buchungen zu dieser Abgrenzung, also können wir auch keinen Journalposten erstellen."
+msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
+msgstr ""
+"Es gibt keine Buchungen zu dieser Abgrenzung, also können wir auch keinen "
+"Journalposten erstellen."
 
 #. module: account_cutoff_base
 #: help:account.cutoff,move_label:0
 msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
-msgstr "Dieser Titel wird in das Feld 'Bezeichnung' der Abgrenzungsposten und das Referenz-Feld des Abgrenzungsbuchungssatzes geschrieben."
+msgstr ""
+"Dieser Titel wird in das Feld 'Bezeichnung' der Abgrenzungsposten und das "
+"Referenz-Feld des Abgrenzungsbuchungssatzes geschrieben."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0
