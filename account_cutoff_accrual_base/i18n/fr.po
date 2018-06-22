@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_cutoff_accrual_base
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # Quentin THEURET <odoo@kerpeo.com>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-01-27 03:39+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: account_cutoff_accrual_base
@@ -60,8 +60,7 @@ msgstr "Recette fiscale cumulée"
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
 msgstr ""
-"Cliquez pour démarrer la préparation d'une nouvelle accumulation de "
-"dépenses."
+"Cliquez pour démarrer la préparation d'une nouvelle accumulation de dépenses."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -116,9 +115,9 @@ msgid ""
 "accrued expenses. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
-"Cette vue peut être utilisée par les comptables dans le but de collecter des"
-" informations à propos des dépenses accumulées. Il permettra alors de "
-"générer les entrées de journal d'arrêté en un clic."
+"Cette vue peut être utilisée par les comptables dans le but de collecter des "
+"informations à propos des dépenses accumulées. Il permettra alors de générer "
+"les entrées de journal d'arrêté en un clic."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -127,8 +126,8 @@ msgid ""
 "accrued revenue. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
-"Cette vue peut être utilisée par les comptables dans le but de collecter des"
-" informations à propos des revenus accumulés. Il permettra alors de générer "
+"Cette vue peut être utilisée par les comptables dans le but de collecter des "
+"informations à propos des revenus accumulés. Il permettra alors de générer "
 "les entrées de journal d'arrêté en un clic."
 
 #. module: account_cutoff_accrual_base
