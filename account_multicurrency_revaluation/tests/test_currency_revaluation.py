@@ -13,8 +13,11 @@ class TestCurrencyRevaluation(SavepointCase):
         super().setUpClass()
         ref = cls.env.ref
 
+        company = cls.env['res.company'].create({
+            'name': 'new_company'
+        })
+
         # Set currency EUR on company
-        company = ref('base.main_company')
         values = {
             'currency_id': ref('base.EUR').id,
         }
