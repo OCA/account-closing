@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 ACSONE SA/NV
+# Copyright 2018 Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -65,18 +66,25 @@ class AccountMoveAccrual(models.TransientModel):
 
     @api.model
     def _default_account(self):
-        acc_id = False
+        account = False
         if self.env.context.get('active_model') and self.env.context.get(
                 'active_ids') \
                 and self.env.context['active_model'] == 'account.invoice':
             inv = self.env['account.invoice'].browse(
                 self.env.context['active_ids'])[0]
-            if inv.type in ('out_invoice', 'out_refund') \
-                    and inv.company_id.default_accrued_revenue_account_id.id:
-                acc_id = inv.company_id.default_accrued_revenue_account_id.id
-            elif inv.company_id.default_accrued_expense_account_id.id:
-                acc_id = inv.company_id.default_accrued_expense_account_id.id
-        return acc_id
+            if inv.type == 'out_invoice':
+                account = inv.company_id.default_accrued_revenue_account_id
+            elif inv.type == 'out_refund':
+                account = inv.company_id\
+                    .default_accrued_revenue_return_account_id or\
+                    inv.company_id.default_accrued_revenue_account_id
+            elif inv.type == 'in_invoice':
+                account = inv.company_id.default_accrued_expense_account_id
+            elif inv.type == 'in_refund':
+                account = inv.company_id\
+                    .default_accrued_expense_return_account_id or\
+                    inv.company_id.default_accrued_expense_account_id
+        return account
 
     @api.multi
     def action_accrue(self):
