@@ -69,13 +69,25 @@ msgstr "Sociétés"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr "Compte par défaut pour factures non parvenues"
+msgstr "Compte par défaut pour les factures non parvenues"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_return_account_id
+msgid "Default Account for Accrued Expenses Returns"
+msgstr "Compte par défaut pour les notes de crédit à recevoir"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr "Compte par défaut pour factures à établir"
+msgstr "Compte par défaut pour les factures à établir"
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_return_account_id
+msgid "Default Account for Accrued Revenues Returns"
+msgstr "Compte par défaut pour les notes de crédit à établir"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_expense_journal_id
