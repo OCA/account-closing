@@ -96,6 +96,32 @@
                                 options="{'no_create_edit': True, 'no_open': True}"
                             />
                         </div>
+                        <div
+                            class="row mt16"
+                            id="dft_accrued_revenue_return_account_id"
+                        >
+                            <label
+                                for="dft_accrued_revenue_return_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_revenue_return_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div
+                            class="row mt16"
+                            id="dft_accrued_expense_return_account_id"
+                        >
+                            <label
+                                for="dft_accrued_expense_return_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_expense_return_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
                     </setting>
                 </block>
             </xpath>
