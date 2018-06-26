@@ -261,7 +261,7 @@ class AccountInvoice(models.Model):
             if invoice.state not in ('draft', 'proforma2'):
                 continue  # skip the accrual creation if state is not draft
 
-            accrual_move_id = self._move_accrual(
+            accrual_move_id = invoice._move_accrual(
                 accrual_date,
                 account_id,
                 accrual_journal_id=accrual_journal_id,
