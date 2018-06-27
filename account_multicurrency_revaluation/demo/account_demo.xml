@@ -50,6 +50,13 @@
         <field name="currency_revaluation">True</field>
         <field name="currency_id" ref="base.USD" />
     </record>
+    <record id="demo_acc_liquidity_eur" model="account.account">
+        <field name="name">Account Liquidity EUR</field>
+        <field name="code">accliq_eur</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity" />
+        <field name="currency_revaluation">True</field>
+        <field name="currency_id" ref="base.EUR" />
+    </record>
     <record id="demo_acc_liquidity_gbp" model="account.account">
         <field name="name">Account Liquidity GBP</field>
         <field name="code">accliq_gbp</field>
@@ -69,6 +76,14 @@
         <field name="currency_id" ref="base.USD"/>
         <field name="default_debit_account_id" ref="demo_acc_liquidity_usd"/>
         <field name="default_credit_account_id" ref="demo_acc_liquidity_usd"/>
+    </record>
+    <record id="bank_journal_eur" model="account.journal">
+        <field name="name">Bank Journal EUR</field>
+        <field name="code">BJ EUR</field>
+        <field name="type">bank</field>
+        <field name="currency_id" ref="base.EUR"/>
+        <field name="default_debit_account_id" ref="demo_acc_liquidity_eur"/>
+        <field name="default_credit_account_id" ref="demo_acc_liquidity_eur"/>
     </record>
     <record id="bank_journal_gbp" model="account.journal">
         <field name="name">Bank Journal GBP</field>

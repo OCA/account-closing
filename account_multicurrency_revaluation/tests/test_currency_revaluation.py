@@ -84,11 +84,16 @@ class TestCurrencyRevaluation(TransactionCase):
         ref = self.env.ref
 
         # Set currency EUR on company
-        company = ref('base.main_company')
-        values = {
-            'currency_id': ref('base.EUR').id,
-        }
-        company.write(values)
+        # company = ref('base.main_company')
+        # values = {
+        #     'currency_id': ref('base.EUR').id,
+        # }
+        # company.write(values)
+
+        currency = ref('base.main_company').currency_id
+        self.env['res.currency.rate'].search([
+            ('currency_id', '=', currency.id)
+        ]).write({'rate': 1})
 
         self.reval_journal = ref(
             'account_multicurrency_revaluation.reval_journal')
@@ -102,12 +107,12 @@ class TestCurrencyRevaluation(TransactionCase):
         revenue_acc = ref('account_multicurrency_revaluation.'
                           'demo_acc_revenue')
 
-        # create invoice in USD
-        usd_currency = ref('base.USD')
+        # create invoice in EUR
+        eur_currency = ref('base.EUR')
 
         bank_journal_usd = ref(
-            'account_multicurrency_revaluation.bank_journal_usd')
-        bank_journal_usd.currency_id = usd_currency.id
+            'account_multicurrency_revaluation.bank_journal_eur')
+        bank_journal_usd.currency_id = eur_currency.id
 
         invoice_line_data = {
             'product_id': ref('product.product_product_5').id,
@@ -115,7 +120,7 @@ class TestCurrencyRevaluation(TransactionCase):
             'account_id': revenue_acc.id,
             'name': 'product test 5',
             'price_unit': 800.00,
-            'currency_id': usd_currency.id
+            'currency_id': eur_currency.id
         }
 
         partner = ref('base.res_partner_3')
@@ -123,7 +128,7 @@ class TestCurrencyRevaluation(TransactionCase):
         invoice = self.env['account.invoice'].create({
             'name': "Customer Invoice",
             'date_invoice': '2017-01-16',
-            'currency_id': usd_currency.id,
+            'currency_id': eur_currency.id,
             'journal_id': sales_journal.id,
             'partner_id': partner.id,
             'account_id': receivable_acc.id,
@@ -138,7 +143,7 @@ class TestCurrencyRevaluation(TransactionCase):
         payment = self.env['account.payment'].create({
             'invoice_ids': [(4, invoice.id, 0)],
             'amount': 700,
-            'currency_id': usd_currency.id,
+            'currency_id': eur_currency.id,
             'payment_date': '2017-02-15',
             'communication': 'Invoice partial payment',
             'partner_id': invoice.partner_id.id,
