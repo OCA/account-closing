@@ -12,8 +12,8 @@
         "account_reversal",
     ],
     "demo": [
-        "demo/currency_demo.xml",
         "demo/account_demo.xml",
+        "demo/currency_demo.xml",
     ],
     "data": [
         "views/res_config_view.xml",
