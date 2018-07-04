@@ -56,8 +56,7 @@ class TestCurrencyRevaluation(SavepointCase):
         partner.property_account_payable_id = receivable_acc.id
         partner.property_account_receivable_id = payable_acc.id
 
-        payment_term = ref(
-            'account.account_payment_term')
+        payment_term = ref('account.account_payment_term')
 
         year = fields.Date.from_string(fields.Date.today()).strftime('%Y')
 
