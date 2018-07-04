@@ -129,6 +129,5 @@
         <field name="name">Manual</field>
         <field name="code">manual</field>
         <field name="payment_type">inbound</field>
-        <field name="company_id" ref="res_company_reval" />
     </record>
 </odoo>
