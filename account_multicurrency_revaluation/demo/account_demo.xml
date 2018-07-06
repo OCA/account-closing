@@ -4,10 +4,10 @@
         <field name="name">Revaluation Company</field>
         <field eval="1" name="customer"/>
         <field eval="1" name="supplier"/>
-        <field name="is_company">1</field>
+        <field eval="1" name="is_company"/>
         <field eval="1" name="active"/>
         <field name="street">90 Streets Avenue</field>
-        <field model="res.country" name="country_id" search="[('code','ilike','ch')]"/>
+        <field name="country_id" ref="base.ch"/>
         <field name="zip">1000</field>
         <field name="city">Lausanne</field>
         <field name="email">revaluation@yourcompany.com</field>
