@@ -42,15 +42,13 @@
     <field name="model">account.invoice.line</field>
     <field name="inherit_id" ref="account.view_invoice_line_form"/>
     <field name="arch" type="xml">
-        <xpath expr="//field[@name='discount']/.." position="after">
-            <group name="start_end_dates">
-                <field name="start_date"
-                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
-                <field name="end_date"
-                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
-                <field name="must_have_dates" invisible="1"/>
-            </group>
-        </xpath>
+        <field name="discount" position="after">
+            <field name="start_date"
+                attrs="{'required': [('must_have_dates', '=', True)]}"/>
+            <field name="end_date"
+                attrs="{'required': [('must_have_dates', '=', True)]}"/>
+            <field name="must_have_dates" invisible="1"/>
+        </field>
     </field>
 </record>
 
