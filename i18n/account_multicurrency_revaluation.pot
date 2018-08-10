@@ -165,6 +165,18 @@ msgid "Currency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
+msgid "Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Default revaluation journal"
 msgstr ""
@@ -230,6 +242,11 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Loss"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
+msgid "Manual"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
