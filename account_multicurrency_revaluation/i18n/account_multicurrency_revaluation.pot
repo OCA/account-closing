@@ -164,7 +164,19 @@ msgid "Currency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_report_curr_unrealized_display_name
+#: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
+msgid "Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer_display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation_display_name
 msgid "Display Name"
@@ -186,7 +198,7 @@ msgid "Gain(+)/Loss(-) YTD"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_report_curr_unrealized_id
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation_id
 msgid "ID"
@@ -208,7 +220,7 @@ msgid "LOSS"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_report_curr_unrealized___last_update
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized___last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer___last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation___last_update
 msgid "Last Modified on"
@@ -224,6 +236,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer_write_date
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation_write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
+msgid "Manual"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -438,8 +455,8 @@ msgid "account.config.settings"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_report_account_multicurrency_revaluation_report_curr_unrealized
-msgid "report.account_multicurrency_revaluation_report.curr_unrealized"
+#: model:ir.model,name:account_multicurrency_revaluation.model_report_account_multicurrency_revaluation_curr_unrealized
+msgid "report.account_multicurrency_revaluation.curr_unrealized"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
