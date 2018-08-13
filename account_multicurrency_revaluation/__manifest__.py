@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {"name": "Multicurrency revaluation",
- "version": "10.0.2.0.1",
+ "version": "10.0.2.1.0",
  "category": "Finance",
  "summary": "Manage revaluation for multicurrency environment",
  "author": "Camptocamp,Odoo Community Association (OCA)",
@@ -12,8 +12,8 @@
      "account_reversal",
  ],
  "demo": [
-     "demo/currency_demo.xml",
      "demo/account_demo.xml",
+     "demo/currency_demo.xml",
  ],
  "data": [
      "views/res_config_view.xml",

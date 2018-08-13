@@ -18,4 +18,4 @@ class TestCurrencyRevaluationReport(TransactionCase):
         self.assertEquals(result.get('type'), "ir.actions.report.xml")
         self.assertEquals(
             result.get('report_name'),
-            "account_multicurrency_revaluation_report.curr_unrealized")
+            "account_multicurrency_revaluation.curr_unrealized")

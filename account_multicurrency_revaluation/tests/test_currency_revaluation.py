@@ -11,8 +11,6 @@ class TestCurrencyRevaluation(TransactionCase):
 
     def test_uk_revaluation(self):
         # Set accounts on company
-        company = self.env['res.company'].search([])
-
         values = {
             'revaluation_loss_account_id':
                 self.env.ref('account_multicurrency_revaluation.'
@@ -22,7 +20,8 @@ class TestCurrencyRevaluation(TransactionCase):
                              'acc_reval_gain').id,
             'default_currency_reval_journal_id': self.reval_journal.id,
         }
-        company.write(values)
+        self.company.write(values)
+        self.assertEqual(self.company.currency_id, self.env.ref('base.EUR'))
 
         wizard = self.env['wizard.currency.revaluation']
         data = {
@@ -84,11 +83,12 @@ class TestCurrencyRevaluation(TransactionCase):
         ref = self.env.ref
 
         # Set currency EUR on company
-        company = ref('base.main_company')
-        values = {
-            'currency_id': ref('base.EUR').id,
-        }
-        company.write(values)
+        self.company = ref(
+            'account_multicurrency_revaluation.res_company_reval')
+        self.env.user.write({
+            'company_ids': [(4, self.company.id, False)]
+        })
+        self.env.user.company_id = self.company
 
         self.reval_journal = ref(
             'account_multicurrency_revaluation.reval_journal')
@@ -98,6 +98,8 @@ class TestCurrencyRevaluation(TransactionCase):
         receivable_acc = ref(
             'account_multicurrency_revaluation.demo_acc_receivable')
         receivable_acc.write({'reconcile': True})
+        payable_acc = ref(
+            'account_multicurrency_revaluation.demo_acc_payable')
 
         revenue_acc = ref('account_multicurrency_revaluation.'
                           'demo_acc_revenue')
@@ -119,20 +121,29 @@ class TestCurrencyRevaluation(TransactionCase):
         }
 
         partner = ref('base.res_partner_3')
+        partner.company_id = self.company.id
+        partner.property_account_payable_id = receivable_acc.id
+        partner.property_account_receivable_id = payable_acc.id
+
+        payment_term = ref(
+            'account.account_payment_term')
 
         invoice = self.env['account.invoice'].create({
             'name': "Customer Invoice",
             'date_invoice': '2017-01-16',
             'currency_id': usd_currency.id,
+            'company_id': self.company.id,
             'journal_id': sales_journal.id,
             'partner_id': partner.id,
             'account_id': receivable_acc.id,
-            'invoice_line_ids': [(0, 0, invoice_line_data)]
+            'invoice_line_ids': [(0, 0, invoice_line_data)],
+            'payment_term_id': payment_term.id
         })
         # Validate invoice
         invoice.action_invoice_open()
 
-        payment_method = ref('account.account_payment_method_manual_in')
+        payment_method = ref('account_multicurrency_revaluation.'
+                             'account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
@@ -173,14 +184,14 @@ class TestCurrencyRevaluation(TransactionCase):
             'date_invoice': '2017-01-16',
             'currency_id': gbp_currency.id,
             'journal_id': sales_journal.id,
+            'company_id': self.company.id,
             'partner_id': ref('base.res_partner_3').id,
             'account_id': receivable_acc.id,
-            'invoice_line_ids': [(0, 0, invoice_line_data)]
+            'invoice_line_ids': [(0, 0, invoice_line_data)],
+            'payment_term_id': payment_term.id
         })
         # Validate invoice
         invoice.action_invoice_open()
-
-        payment_method = ref('account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
