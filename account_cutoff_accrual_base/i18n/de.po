@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 02:35+0000\n"
-"PO-Revision-Date: 2018-05-25 02:35+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-08-19 12:52+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
@@ -53,12 +54,12 @@ msgstr "Steuerkonto für Erlösabgrenzung"
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
-msgstr ""
+msgstr "Klicken Sie, um eine neue Kostenabgrenzung anzulegen."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
 msgid "Click to start preparing a new revenue accrual."
-msgstr ""
+msgstr "Klicken Sie, um eine neue Erlösabgrenzung anzulegen."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
@@ -111,6 +112,9 @@ msgid ""
 "accrued expenses. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Diese Ansicht kann von Buchhaltern verwendet werden, um Informationen über "
+"die angefallenen Kosten zu sammeln. Sie ermöglicht dann die Generierung der "
+"entsprechenden Abgrenzungs-Journalbuchung mit einem Klick."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -119,6 +123,9 @@ msgid ""
 "accrued revenue. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Diese Sicht kann von den Buchhaltern genutzt werden, um Informationen über "
+"die aufgelaufenen Erlöse zu sammeln. Sie ermöglicht dann die Generierung der "
+"entsprechenden Abgrenzungsbuchungen im Journal mit einem Klick."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
@@ -128,4 +135,4 @@ msgstr "Einzelpreis"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_config_settings
 msgid "account.config.settings"
-msgstr ""
+msgstr "account.config.settings"
