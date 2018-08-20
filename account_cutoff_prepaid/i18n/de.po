@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2017-05-19 00:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-08-20 10:51+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
 msgid "A cut-off of the same type already exists with the same date(s) !"
-msgstr ""
+msgstr "Eine gleichartige Abgrenzung besteht zu diesem Datum bereits!"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
@@ -36,22 +37,22 @@ msgstr "Abgrenzungsposten"
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_move_date
 msgid "Account Move Date"
-msgstr ""
+msgstr "Umbuchungsdatum"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_move_line_id
 msgid "Account Move Line"
-msgstr ""
+msgstr "Umbuchungszeile"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
 msgid "Click to start preparing a new prepaid expense."
-msgstr ""
+msgstr "Klicken, um eine neue im Voraus bezahlte Ausgabe vorzubereiten."
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 msgid "Click to start preparing a new prepaid revenue."
-msgstr ""
+msgstr "Klicken, um einen neuen im Voraus bezahlten Umsatz vorzubereiten."
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
@@ -61,19 +62,19 @@ msgstr "Unternehmen"
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
 msgid "Cutoff Days"
-msgstr ""
+msgstr "Abgrenzungstage"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
-msgstr ""
+msgstr "Vorgabekonto für vorausbezahlten Aufwand"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_config_settings_default_prepaid_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company_default_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
-msgstr ""
+msgstr "Vorgabekonto für vorausbezahlte Erlöse"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
@@ -81,23 +82,25 @@ msgstr ""
 msgid ""
 "Don't forget to Re-Generate Lines after entering or leaving forecast mode."
 msgstr ""
+"Nicht vergessen, Positionen neu zu ermitteln, nachdem Sie den Prognosemodus "
+"betreten oder verlassen."
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_end_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_end_date
 msgid "End Date"
-msgstr ""
+msgstr "Enddatum"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_forecast
 #: model:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_filter
 msgid "Forecast"
-msgstr ""
+msgstr "Prognose"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_invoice_id
 msgid "Invoice"
-msgstr ""
+msgstr "Rechnung"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line_prepaid_days
@@ -107,29 +110,33 @@ msgid ""
 "and the end date). In accrued revenue/expense, this is the number of days "
 "before the cut-off date."
 msgstr ""
+"Bei einem vorausbezahlten Erlös/Aufwand ist dies die Anzahl der Tage nach "
+"dem Stichtag (im Prognosemodus die Anzahl der Tage zwischen dem Anfangs- und "
+"dem Enddatum). Bei den abgegrenzten Erlösen/Aufwendungen ist dies die Anzahl "
+"der Tage vor dem Stichtag."
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_expense_menu
 msgid "Prepaid Expense"
-msgstr ""
+msgstr "Vorausbezahlter Aufwand"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
-msgstr ""
+msgstr "Vorausbezahlter Erlös"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_source_journal_ids
 msgid "Source Journals"
-msgstr ""
+msgstr "Quell-Journale"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_start_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_start_date
 msgid "Start Date"
-msgstr ""
+msgstr "Anfangsdatum"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_forecast
@@ -137,12 +144,14 @@ msgid ""
 "The Forecast mode allows the user to compute the prepaid revenue/expense "
 "between 2 dates in the future."
 msgstr ""
+"Der Prognosemodus ermöglicht dem Anwender, den vorausbezahlten Erlös/Aufwand "
+"zwischen zwei zukünftigen Tage zu ermitteln."
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
 #, python-format
 msgid "The start date is after the end date!"
-msgstr ""
+msgstr "Das Anfangsdatum liegt nach dem Enddatum!"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -151,6 +160,10 @@ msgid ""
 "prepaid expenses based on start date and end date. It then allows to "
 "generate the corresponding cutoff journal entry in one click."
 msgstr ""
+"Diese Ansicht kann von Buchhaltern verwendet werden, um Informationen über "
+"vorausbezahlten Aufwand auf der Grundlage des Beginn- und Enddatums zu "
+"sammeln. Es ermöglicht dann die Generierung der entsprechenden Abgrenzungs-"
+"Journalbuchung mit einem Klick."
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
@@ -159,25 +172,29 @@ msgid ""
 "prepaid revenues based on start date and end date. It then allows to "
 "generate the corresponding cutoff journal entry in one click."
 msgstr ""
+"Diese Sicht kann von Buchhaltern verwendet werden, um Informationen über "
+"vorausbezahlte Erlöse basierend auf dem Start- und Enddatum zu sammeln. Es "
+"ermöglicht dann die Generierung der entsprechenden Abgrenzungs-"
+"Journalbuchung mit einem Klick."
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line_total_days
 msgid "Total Number of Days"
-msgstr ""
+msgstr "Gesamtzahl der Tage"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:59
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Warnung"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/models/account_cutoff.py:124
 #, python-format
 msgid "You should set at least one Source Journal."
-msgstr ""
+msgstr "Sie müssen mindestens ein Quell-Journal pflegen."
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_config_settings
 msgid "account.config.settings"
-msgstr ""
+msgstr "account.config.settings"
