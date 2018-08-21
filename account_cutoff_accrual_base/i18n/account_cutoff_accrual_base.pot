@@ -24,6 +24,12 @@ msgid "Account Cut-off Line"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_accrual_taxes
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_accrual_taxes
+msgid "Accrual On Taxes"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
@@ -67,9 +73,21 @@ msgid "Default Account for Accrued Expenses"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_return_account_id
+msgid "Default Account for Accrued Expenses Returns"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_return_account_id
+msgid "Default Account for Accrued Revenues Returns"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
