@@ -19,7 +19,7 @@ class AccountInvoice(models.Model):
                 raise UserError(_(
                     "You cannot merge invoices where only some of them have "
                     "an accrual entry"))
-            elif to_be_reversed == ["True"]:
+            elif to_be_reversed == [True]:
                 old_invoices.reverse_accruals()
                 new_invoice = self.browse(new_invoice_id)
                 accrual = self.env['account.move.accrue'].with_context(
