@@ -71,7 +71,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_cancel(self):
-        if 'is_merge' not in self.context:  # See account_invoice_merge module
+        if 'is_merge' not in self.env.context:  # See account_invoice_merge module
             for invoice in self:
                 if invoice.to_be_reversed:
                     raise exceptions.Warning(
