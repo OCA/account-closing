@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_account_move_accrue" model="ir.ui.view">
+            <field name="name">account.move.accrue.form</field>
+            <field name="model">account.move.accrue</field>
+            <field name="arch" type="xml">
+                <form string="Create accrual journal entries" version="7.0">
+                    <label string="This will create accrual for all selected draft invoices without accrual journal entries"/>
+                    <group>
+                        <field name="date"/>
+                        <field name="journal_id"/>
+                        <field name="account_id"/>
+                        <newline/>
+                        <field name="move_prefix" />
+                        <field name="move_line_prefix" />
+                    </group>
+
+                    <footer>
+                        <button name="action_accrue" string="Accrue Entries"
+                            type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_account_move_accrue" model="ir.actions.act_window">
+            <field name="name">Accrue Invoices</field>
+            <field name="res_model">account.move.accrue</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_move_accrue"/>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

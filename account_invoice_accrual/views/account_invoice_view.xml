@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form (account_invoice_accrual)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <data>
+                <field name="move_id" position="before">
+                    <field name="accrual_move_id" groups="account.group_account_user" states="draft,proforma2"/>
+                </field>
+                <field name="type" position="before">
+                <div class="oe_right oe_button_box" name="buttons">
+                    <field name="to_be_reversed" invisible="1"/>
+                    <button name="account_invoice_accrual.act_account_move_accrue" string="Accrual" type="action" attrs="{'invisible': ['|','!',('state','in',['draft','proforma2']),('accrual_move_id','&lt;&gt;',False)]}" />
+                    <button name="button_reversal" string="Reverse Accrual" type="object" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                </div>
+                </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form (account_invoice_accrual)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <data>
+                <field name="move_id" position="before">
+                    <field name="accrual_move_id" groups="account.group_account_user" states="draft,proforma2"/>
+                </field>
+                <field name="type" position="before">
+                <div class="oe_right oe_button_box" name="buttons">
+                    <field name="to_be_reversed" invisible="1"/>
+                    <button name="account_invoice_accrual.act_account_move_accrue" string="Accrue" type="action" attrs="{'invisible': ['|','!',('state','in',['draft','proforma2']),('accrual_move_id','&lt;&gt;',False)]}" />
+                    <button name="button_reversal" string="Reverse Accrual" type="object" attrs="{'invisible': ['|',('accrual_move_id','=',False),('to_be_reversed','=',False)]}" />
+                </div>
+                </field>
+                </data>
+            </field>
+        </record>
+
+</odoo>
