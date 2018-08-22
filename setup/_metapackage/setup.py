@@ -13,6 +13,8 @@ setuptools.setup(
         'odoo10-addon-account_cutoff_base',
         'odoo10-addon-account_cutoff_prepaid',
         'odoo10-addon-account_fiscal_year_closing',
+        'odoo10-addon-account_invoice_accrual',
+        'odoo10-addon-account_invoice_accrual_merge',
         'odoo10-addon-account_invoice_start_end_dates',
         'odoo10-addon-account_multicurrency_revaluation',
     ],
