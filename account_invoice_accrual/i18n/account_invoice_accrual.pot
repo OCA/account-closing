@@ -145,13 +145,13 @@ msgid "Link to the Accrual Journal Items."
 msgstr ""
 
 #. module: account_invoice_accrual
-#: code:addons/account_invoice_accrual/models/account_invoice.py:78
+#: code:addons/account_invoice_accrual/models/account_invoice.py:79
 #, python-format
 msgid "Please reverse accrual before cancelling invoice"
 msgstr ""
 
 #. module: account_invoice_accrual
-#: code:addons/account_invoice_accrual/models/account_invoice.py:86
+#: code:addons/account_invoice_accrual/models/account_invoice.py:87
 #, python-format
 msgid "Please reverse accrual before deleting invoice"
 msgstr ""
