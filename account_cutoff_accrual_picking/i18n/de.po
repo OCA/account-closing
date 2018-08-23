@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2017-06-07 02:50+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"PO-Revision-Date: 2018-08-23 10:24+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
@@ -38,7 +39,7 @@ msgstr "Rechnungsdatum"
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:113
 #, python-format
 msgid "Missing '%s' on tax '%s' (Picking '%s', product '%s')."
-msgstr ""
+msgstr "'%s' fehlt bei Steuer '%s' (Kommissionierung '%s', Produkt '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:53
@@ -47,6 +48,8 @@ msgid ""
 "Missing expense account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Fehlendes Aufwandskonto beim Produkt '%s' oder in dessen Produktkategorie '%"
+"s' (Kommissionierung '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:76
@@ -55,6 +58,8 @@ msgid ""
 "Missing income account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Fehlendes Ertragskonto im Produkt '%s' oder dessen Produktkategorie '%s' ("
+"Kommissionierung '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: help:account.cutoff.line,stock_move_date:0
@@ -82,4 +87,4 @@ msgstr "Lagerumbuchung"
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,stock_move_date:0
 msgid "Transfer Date"
-msgstr ""
+msgstr "Umlagerungsdatum"
