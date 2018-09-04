@@ -15,8 +15,9 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form"/>
     <field name="arch" type="xml">
         <field name="amount" position="before">
-            <field name="quantity" invisible="'accrued' not in context.get('default_type', '-')"/>
-            <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}" invisible="'accrued' not in context.get('default_type', '-')"/>
+            <field name="quantity"/>
+            <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            <field name="price_origin"/>
         </field>
     </field>
 </record>
@@ -27,9 +28,9 @@
     <field name="model">account.cutoff.line</field>
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree"/>
     <field name="arch" type="xml">
-        <field name="analytic_account_code" position="after">
-            <field name="quantity" invisible="'accrued' not in context.get('default_type', '-')"/>
-            <field name="price_unit" invisible="'accrued' not in context.get('default_type', '-')"/>
+        <field name="analytic_account_id" position="after">
+            <field name="quantity"/>
+            <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
         </field>
     </field>
 </record>
