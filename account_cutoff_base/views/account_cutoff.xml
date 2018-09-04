@@ -136,11 +136,11 @@
             <field name="partner_id"/>
             <field name="name"/>
             <field name="cutoff_account_code"/>
-            <field name="analytic_account_code" groups="analytic.group_analytic_accounting"/>
+            <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
             <field name="tax_ids" widget="many2many_tags" invisible="'accrued' not in context.get('default_type', '-')"/>
             <field name="amount"/>
             <field name="currency_id" invisible="1"/>
-            <field name="cutoff_amount"/>
+            <field name="cutoff_amount" sum="1"/>
             <field name="company_currency_id" invisible="1"/>
         </tree>
     </field>

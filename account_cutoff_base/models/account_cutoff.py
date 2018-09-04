@@ -295,9 +295,6 @@ class AccountCutoffLine(models.Model):
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
-    analytic_account_code = fields.Char(
-        related='analytic_account_id.code',
-        string='Analytic Account', readonly=True)
     currency_id = fields.Many2one(
         'res.currency', string='Amount Currency', readonly=True,
         help="Currency of the 'Amount' field.")
