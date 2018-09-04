@@ -47,4 +47,6 @@ class AccountCutoffLine(models.Model):
         string='Unit Price',
         digits=dp.get_precision('Product Price'),
         readonly=True,
-        help="Price per unit (discount included)")
+        help="Price per unit (discount included) in the default unit of measure "
+        "of the product in the currency of the 'Currency' field.")
+    price_origin = fields.Char(readonly=True)
