@@ -226,7 +226,8 @@ class AccountCutoff(models.Model):
             'accrued_expense': 'incoming',
             }
         cutoff_type = self.type
-        assert cutoff_type in pick_type_map
+        if cutoff_type not in pick_type_map:
+            return res
 
         # Create account mapping dict
         account_mapping = acmo._get_mapping_dict(
