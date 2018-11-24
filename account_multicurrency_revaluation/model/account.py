@@ -105,6 +105,8 @@ class AccountAccount(models.Model):
         self.env.cr.execute(query, params)
 
         lines = self.env.cr.dictfetchall()
+        rec_pay = [self.env.ref("account.data_account_type_receivable").id,
+                   self.env.ref("account.data_account_type_payable").id]
 
         for line in lines:
             # generate a tree
@@ -114,11 +116,12 @@ class AccountAccount(models.Model):
             # ----- balances
             account_id, currency_id, partner_id = \
                 line['id'], line['currency_id'], line['partner_id']
-
+            account_type = self.env['account.account'].browse(
+                account_id).user_type_id
             accounts.setdefault(account_id, {})
-            accounts[account_id].setdefault(currency_id, {})
-            accounts[account_id][currency_id].\
-                setdefault(partner_id, {})
-            accounts[account_id][currency_id][partner_id] = line
+            partner_id = partner_id if account_type.id in rec_pay else False
+            accounts[account_id].setdefault(partner_id, {})
+            accounts[account_id][partner_id].setdefault(currency_id, {})
+            accounts[account_id][partner_id][currency_id] = line
 
         return accounts

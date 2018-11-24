@@ -3,7 +3,7 @@
     <report
         id="action_report_currency_unrealized"
         model="account.account"
-        string="Unrealized currency report"
+        string="Currency Revaluation Report"
         report_type="qweb-pdf"
         name="account_multicurrency_revaluation.curr_unrealized_report"
         file="account_multicurrency_revaluation.curr_unrealized_report"

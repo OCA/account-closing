@@ -1,6 +1,8 @@
 # Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import timedelta
+
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 
@@ -8,6 +10,7 @@ from odoo.exceptions import Warning as UserError
 class WizardCurrencyRevaluation(models.TransientModel):
 
     _name = 'wizard.currency.revaluation'
+    _description = 'Currency Revaluation Wizard'
 
     @api.model
     def _get_default_revaluation_date(self):
@@ -21,7 +24,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         """
         Get default journal if one is defined in company settings
         """
-        return self.env.user.company_id.default_currency_reval_journal_id
+        return self.env.user.company_id.currency_reval_journal_id
 
     @api.model
     def _get_default_label(self):
@@ -57,13 +60,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
             sums, label, form, partner_id, currency_id,
             analytic_debit_acc_id=False, analytic_credit_acc_id=False):
 
-        reversable = form.journal_id.company_id.reversable_revaluations
         base_move = {
-            'name': label,
             'journal_id': form.journal_id.id,
             'date': form.revaluation_date,
-            'to_be_reversed': reversable
         }
+        if form.journal_id.company_id.reversable_revaluations:
+            base_move['auto_reverse'] = True
+            base_move['reverse_date'] = form.revaluation_date + timedelta(
+                days=1)
 
         base_line = {
             'name': label,
@@ -123,6 +127,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         context = self.env.context
 
         currency_obj = self.env['res.currency']
+        company = form.journal_id.company_id or form.env.user.company_id
 
         # Compute unrealized gain loss
         ctx_rate = context.copy()
@@ -137,8 +142,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         unrealized_gain_loss = 0.0
         if foreign_balance:
             ctx_rate['revaluation'] = True
-            adjusted_balance = currency.with_context(ctx_rate).compute(
-                foreign_balance, cp_currency
+            adjusted_balance = currency.with_context(ctx_rate)._convert(
+                foreign_balance, cp_currency, company, ctx_rate['date']
             )
             unrealized_gain_loss = adjusted_balance - balance
             # revaluated_balance =  balance + unrealized_gain_loss
@@ -167,7 +172,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         currency = currency_obj.browse(currency_id)
         data = {'account': account.code or False,
                 'currency': currency.name or False,
-                'rate': rate or False}
+                'rate': rate and '{:.6f}'.format(rate) or False}
         return text % data
 
     @api.multi
@@ -186,7 +191,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         if partner_id is None:
             partner_id = False
-
         company = form.journal_id.company_id or self.env.user.company_id
         created_ids = []
         # over revaluation
@@ -303,21 +307,19 @@ class WizardCurrencyRevaluation(models.TransientModel):
         account_sums = account_ids.compute_revaluations(self.revaluation_date)
 
         for account_id, account_tree in account_sums.items():
-            for currency_id, currency_tree in account_tree.items():
-                for partner_id, sums in currency_tree.items():
-                    if not sums['balance']:
-                        continue
+            for partner_id, partner_tree in account_tree.items():
+                for currency_id, sums in partner_tree.items():
                     # Update sums with compute amount currency balance
                     diff_balances = self._compute_unrealized_currency_gl(
                         currency_id,
                         sums, self)
-                    account_sums[account_id][currency_id][partner_id].\
+                    account_sums[account_id][partner_id][currency_id].\
                         update(diff_balances)
 
         # Create entries only after all computation have been done
         for account_id, account_tree in account_sums.items():
-            for currency_id, currency_tree in account_tree.items():
-                for partner_id, sums in currency_tree.items():
+            for partner_id, partner_tree in account_tree.items():
+                for currency_id, sums in partner_tree.items():
                     adj_balance = sums.get('unrealized_gain_loss', 0.0)
                     if not adj_balance:
                         continue

@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 
 class UnrealizedCurrencyReportPrinter(models.TransientModel):
     _name = "unrealized.report.printer"
+    _description = 'Unrealized Currency Report Printer'
 
     account_ids = fields.Many2many(
         'account.account',

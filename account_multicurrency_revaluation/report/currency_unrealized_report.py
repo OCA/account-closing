@@ -48,7 +48,6 @@ class ShellAccount(object):
                    LEFT join res_currency on
                      (account_move_line.currency_id = res_currency.id)
                  WHERE account_move_line.account_id = %s
-                   AND account_move.to_be_reversed = true
                    AND account_move_line.gl_balance is not null
                  ORDER BY res_partner.name,
                    account_move_line.gl_foreign_balance,
@@ -69,9 +68,10 @@ class ShellAccount(object):
 
 class CurrencyUnrealizedReport(models.AbstractModel):
     _name = 'report.account_multicurrency_revaluation.curr_unrealized_report'
+    _description = 'Currency Unrealized Report'
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         shell_accounts = {}
         docs = self.env['account.account']
         data = data if data is not None else {}
