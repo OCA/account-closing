@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.currency.rate" id="currency_rate_usd_01">
+        <field eval="time.strftime('%Y-01-15')" name="name" />
+        <field name="rate">2</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record model="res.currency.rate" id="currency_rate_usd_02">
+        <field eval="time.strftime('%Y-02-15')" name="name" />
+        <field name="rate">4</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record model="res.currency.rate" id="currency_rate_usd_03">
+        <field eval="time.strftime('%Y-03-15')" name="name" />
+        <field name="rate">2.5</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record model="res.currency.rate" id="currency_rate_gbp_01">
+        <field eval="time.strftime('%Y-01-15')" name="name" />
+        <field name="rate">2</field>
+        <field name="currency_id" ref="base.GBP"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record model="res.currency.rate" id="currency_rate_gbp_02">
+        <field eval="time.strftime('%Y-02-15')" name="name" />
+        <field name="rate">4</field>
+        <field name="currency_id" ref="base.GBP"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record model="res.currency.rate" id="currency_rate_gbp_03">
+        <field eval="time.strftime('%Y-03-15')" name="name" />
+        <field name="rate">2.5</field>
+        <field name="currency_id" ref="base.GBP"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+</odoo>
