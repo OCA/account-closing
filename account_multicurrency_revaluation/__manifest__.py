@@ -3,13 +3,13 @@
 
 {
     "name": "Multicurrency revaluation",
-    "version": "11.0.1.0.2",
+    "version": "12.0.1.0.0",
     "category": "Finance",
     "summary": "Manage revaluation for multicurrency environment",
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": 'AGPL-3',
     "depends": [
-        "account_reversal",
+        "account",
     ],
     "demo": [
         "demo/account_demo.xml",
