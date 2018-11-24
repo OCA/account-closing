@@ -45,14 +45,8 @@ class ResCompany(models.Model):
         comodel_name='account.analytic.account',
         string='Provision P&L Analytic account'
     )
-    default_currency_reval_journal_id = fields.Many2one(
+    currency_reval_journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Currency gain & loss Default Journal',
-        domain=[('type', '=', 'general')]
-    )
-    reversable_revaluations = fields.Boolean(
-        string='Reversable Revaluations',
-        help="Revaluations entries will be created "
-             "as \"To Be Reversed\".",
-        default=True,
+        domain=[('type', '=', 'general')],
     )

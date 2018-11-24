@@ -12,19 +12,18 @@ class ResCurrency(models.Model):
     _inherit = 'res.currency'
 
     @api.model
-    def _get_conversion_rate(self, from_currency, to_currency):
+    def _get_conversion_rate(self, from_currency, to_currency, company, date):
         context = self.env.context
-        if 'revaluation' in context:
-            rate = from_currency.rate
-            if rate == 0.0:
-                date = context.get('date', time.strftime('%Y-%m-%d'))
-                raise UserError(
-                    _('No rate found '
-                      'for the currency: %s '
-                      'at the date: %s') %
-                    (from_currency.symbol, date)
-                )
-            return 1.0 / rate
-
-        else:
-            return super()._get_conversion_rate(from_currency, to_currency)
+        if not context.get('revaluation'):
+            return super()._get_conversion_rate(from_currency, to_currency,
+                                                company, date)
+        rate = from_currency.rate
+        if rate == 0.0:
+            date = context.get('date', time.strftime('%Y-%m-%d'))
+            raise UserError(
+                _('No rate found '
+                  'for the currency: %s '
+                  'at the date: %s') %
+                (from_currency.symbol, date)
+            )
+        return 1.0 / rate
