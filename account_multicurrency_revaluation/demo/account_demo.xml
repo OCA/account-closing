@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_reval" model="res.partner">
+        <field name="name">Revaluation Company</field>
+        <field eval="1" name="customer"/>
+        <field eval="1" name="supplier"/>
+        <field eval="1" name="is_company"/>
+        <field eval="1" name="active"/>
+        <field name="street">90 Streets Avenue</field>
+        <field name="country_id" ref="base.ch"/>
+        <field name="zip">1000</field>
+        <field name="city">Lausanne</field>
+        <field name="email">revaluation@yourcompany.com</field>
+        <field name="phone">+41 12 345 67 89</field>
+        <field name="website">www.revaluationcompany.com</field>
+    </record>
+
+    <record id="res_company_reval" model="res.company">
+        <field name="currency_id" ref="base.EUR"/>
+        <field name="partner_id" ref="res_partner_reval"/>
+        <field name="name">Revaluation Company</field>
+    </record>
+    <record id="acc_reval_loss" model="account.account">
+        <field name="name">Reval Loss</field>
+        <field name="code">XR001</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="acc_reval_gain" model="account.account">
+        <field name="name">Reval Gain</field>
+        <field name="code">XR002</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="acc_prov_bs_loss" model="account.account">
+        <field name="name">Prov B.S Loss</field>
+        <field name="code">XPBS001</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="acc_prov_bs_gain" model="account.account">
+        <field name="name">Prov B.S Gain</field>
+        <field name="code">XPBS002</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="acc_prov_pl_loss" model="account.account">
+        <field name="name">Prov P L Loss</field>
+        <field name="code">XPPL001</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="acc_prov_pl_gain" model="account.account">
+        <field name="name">Prov P L Gain</field>
+        <field name="code">XPPL002</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="demo_acc_receivable" model="account.account">
+        <field name="name">Account Receivable</field>
+        <field name="code">accrec</field>
+        <field name="user_type_id" ref="account.data_account_type_receivable" />
+        <field name="currency_revaluation">True</field>
+        <field name="reconcile">True</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="demo_acc_payable" model="account.account">
+        <field name="name">Account Payable</field>
+        <field name="code">accpay</field>
+        <field name="user_type_id" ref="account.data_account_type_payable" />
+        <field name="currency_revaluation">True</field>
+        <field name="reconcile">True</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="demo_acc_revenue" model="account.account">
+        <field name="name">Account Revenue</field>
+        <field name="code">accrev</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="currency_revaluation">True</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="demo_acc_liquidity_usd" model="account.account">
+        <field name="name">Account Liquidity USD</field>
+        <field name="code">accliq_usd</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity" />
+        <field name="currency_revaluation">True</field>
+        <field name="currency_id" ref="base.USD" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="demo_acc_liquidity_gbp" model="account.account">
+        <field name="name">Account Liquidity GBP</field>
+        <field name="code">accliq_gbp</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity" />
+        <field name="currency_revaluation">True</field>
+        <field name="currency_id" ref="base.GBP" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="reval_journal" model="account.journal">
+        <field name="name">Revaluation Journal</field>
+        <field name="code">RJ</field>
+        <field name="type">general</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="bank_journal_usd" model="account.journal">
+        <field name="name">Bank Journal USD</field>
+        <field name="code">BJ USD</field>
+        <field name="type">bank</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="default_debit_account_id" ref="demo_acc_liquidity_usd"/>
+        <field name="default_credit_account_id" ref="demo_acc_liquidity_usd"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="bank_journal_gbp" model="account.journal">
+        <field name="name">Bank Journal GBP</field>
+        <field name="code">BJ GBP</field>
+        <field name="type">bank</field>
+        <field name="currency_id" ref="base.GBP"/>
+        <field name="default_debit_account_id" ref="demo_acc_liquidity_gbp"/>
+        <field name="default_credit_account_id" ref="demo_acc_liquidity_gbp"/>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="sales_journal" model="account.journal">
+        <field name="name">A Sales Journal</field>
+        <field name="code">SJ</field>
+        <field name="type">sale</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="account_payment_method_manual_in" model="account.payment.method">
+        <field name="name">Manual</field>
+        <field name="code">manual</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>
