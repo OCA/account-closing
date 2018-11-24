@@ -22,10 +22,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row mt16 o_settings_container" id="multicurrency_revaluation_settings">
                     <div class="col-xs-12 col-md-6 o_setting_box">
                         <div class="o_setting_left_pane"/>
                         <div class="o_setting_right_pane">
-                            <label string="Default revaluation journal"/>
+                            <label for="" string="Default revaluation journal"/>
                             <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
                             <div class="text-muted">
                                 Currency gain &amp; loss Default Journal
@@ -41,26 +43,26 @@
                     <div class="col-xs-24 col-md-12 o_setting_box">
                         <div class="content-group">
                             <table>
-                                <tr>
+                                <tr class="row">
                                     <th class="col-xs-6 col-md-3"></th>
-                                    <th class="col-xs-6 col-md-3"><label string="Loss"/></th>
-                                    <th class="col-xs-6 col-md-3"><label string="Gain"/></th>
-                                    <th class="col-xs-6 col-md-3"><label string="Analytic account"/></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Loss"/></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Gain"/></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Analytic account"/></th>
                                 </tr>
-                                <tr>
-                                    <th class="col-xs-6 col-md-3"><label string="Revaluation accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Revaluation accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
                                     <td class="col-xs-6 col-md-3"><field name="revaluation_loss_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"><field name="revaluation_gain_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"><field name="revaluation_analytic_account_id" nolabel="1"/> </td>
                                 </tr>
-                                <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
-                                    <th class="col-xs-6 col-md-3"><label string="Provision B.S accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Provision B.S accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
                                     <td class="col-xs-6 col-md-3"><field name="provision_bs_loss_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"><field name="provision_bs_gain_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"></td>
                                 </tr>
-                                <tr groups="account_multicurrency_revaluation.group_revaluation_additional">
-                                    <th class="col-xs-6 col-md-3"><label string="Provision P&amp;L accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Provision P&amp;L accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
                                     <td class="col-xs-6 col-md-3"><field name="provision_pl_loss_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"><field name="provision_pl_gain_account_id" nolabel="1"/> </td>
                                     <td class="col-xs-6 col-md-3"><field name="provision_pl_analytic_account_id" nolabel="1"/> </td>
