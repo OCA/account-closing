@@ -12,52 +12,62 @@ class AccountConfigSettings(models.TransientModel):
         comodel_name='account.account',
         string='Revaluation loss account',
         domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     revaluation_gain_account_id = fields.Many2one(
         related='company_id.revaluation_gain_account_id',
         comodel_name='account.account',
         string='Revaluation gain account',
         domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     revaluation_analytic_account_id = fields.Many2one(
         related='company_id.revaluation_analytic_account_id',
         comodel_name='account.analytic.account',
-        string='Revaluation Analytic account'
+        string='Revaluation Analytic account',
+        readonly=False,
     )
     provision_bs_loss_account_id = fields.Many2one(
         related='company_id.provision_bs_loss_account_id',
         comodel_name='account.account',
         string='Provision B.S. loss account',
-        domain=[('internal_type', '=', 'other')]
+        domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     provision_bs_gain_account_id = fields.Many2one(
         related='company_id.provision_bs_gain_account_id',
         comodel_name='account.account',
         string='Provision B.S. gain account',
-        domain=[('internal_type', '=', 'other')]
+        domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     provision_pl_loss_account_id = fields.Many2one(
         related='company_id.provision_pl_loss_account_id',
         comodel_name='account.account',
         string='Provision P&L loss account',
-        domain=[('internal_type', '=', 'other')]
+        domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     provision_pl_gain_account_id = fields.Many2one(
         related='company_id.provision_pl_gain_account_id',
         comodel_name='account.account',
         string='Provision P&L gain account',
-        domain=[('internal_type', '=', 'other')]
+        domain=[('internal_type', '=', 'other')],
+        readonly=False,
     )
     provision_pl_analytic_account_id = fields.Many2one(
         related='company_id.provision_pl_analytic_account_id',
         comodel_name='account.analytic.account',
-        string='Provision P&L Analytic account'
+        string='Provision P&L Analytic account',
+        readonly=False,
     )
     default_currency_reval_journal_id = fields.Many2one(
-        related='company_id.default_currency_reval_journal_id',
+        related='company_id.currency_reval_journal_id',
         comodel_name='account.journal',
         string='Currency gain & loss Default Journal',
-        domain=[('type', '=', 'general')]
+        domain=[('type', '=', 'general')],
+        default_model='res.company',
+        readonly=False,
     )
     reversable_revaluations = fields.Boolean(
         related='company_id.reversable_revaluations',
