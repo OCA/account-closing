@@ -6,7 +6,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
-                <label string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
+                <label for="" string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
                     If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
                     For other account types : 1 entry will be generated per account/currency.
                     You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."/>
@@ -20,9 +20,9 @@
                     </group>
                 </group>
                 <group>
-                    <label string="%%(currency)s : Currency to be revaluated"/>
-                    <label string="%%(account)s : Account for which the revaluation is applied"/>
-                    <label string="%%(rate)s : Value of rate applied during revaluation"/>
+                    <label for="" string="%%(currency)s : Currency to be revaluated"/>
+                    <label for="" string="%%(account)s : Account for which the revaluation is applied"/>
+                    <label for="" string="%%(rate)s : Value of rate applied during revaluation"/>
                 </group>
                 <footer>
                     <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight"/>
@@ -42,8 +42,16 @@
     </record>
 
     <menuitem
+        name="Closing"
+        action="action_view_account_currency_revaluation_wizard"
+        id="menu_view_account_currency_revaluation_closing"
+        parent="account.menu_finance_entries"
+        groups="group_revaluation_additional"/>
+
+    <menuitem
         action="action_view_account_currency_revaluation_wizard"
         id="menu_view_account_currency_revaluation_wizard"
-        parent="account.menu_finance_entries"/>
+        parent="account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing"
+        groups="group_revaluation_additional"/>
 
 </odoo>
