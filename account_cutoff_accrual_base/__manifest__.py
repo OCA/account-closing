@@ -16,9 +16,9 @@
         'account_cutoff_base',
     ],
     'data': [
-        'views/company_view.xml',
         'views/account_view.xml',
         'views/account_cutoff_view.xml',
+        'views/res_config_settings.xml',
     ],
     'installable': True,
 }
