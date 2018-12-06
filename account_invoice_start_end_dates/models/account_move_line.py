@@ -1,15 +1,15 @@
 # Copyright 2013-2016 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    start_date = fields.Date('Start Date', index=True)
-    end_date = fields.Date('End Date', index=True)
+    start_date = fields.Date(index=True)
+    end_date = fields.Date(index=True)
 
     @api.multi
     @api.constrains('start_date', 'end_date')
@@ -29,5 +29,3 @@ class AccountMoveLine(models.Model):
                     "Start Date should be before End Date for move line "
                     "with Name '%s'.")
                     % (moveline.name))
-        # should we check that it's related to an expense / revenue ?
-        # -> I don't think so

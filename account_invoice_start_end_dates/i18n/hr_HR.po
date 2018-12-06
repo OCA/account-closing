@@ -22,21 +22,21 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contrat
-#: model:product.template,name:account_invoice_start_end_dates.product_insurance_contrat_product_template
+#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
+#: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
 msgstr "Osiguranje vozila"
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_end_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line_end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
 msgid "End Date"
 msgstr "Datum završetka"
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
-#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product_must_have_dates
-#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template_must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
@@ -58,8 +58,8 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contrat
-#: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contrat_product_template
+#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
+#: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
 msgstr ""
 
@@ -96,9 +96,9 @@ msgid "Missing Start Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_must_have_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product_must_have_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template_must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid "Must Have Start and End Dates"
 msgstr ""
 
@@ -108,8 +108,8 @@ msgid "Product Template"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_start_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line_start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
 msgid "Start Date"
 msgstr ""
 
@@ -125,4 +125,20 @@ msgstr ""
 msgid ""
 "Start Date should be before or be the same as End Date for invoice line with "
 "Description '%s'."
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
+#: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
+#: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
+#: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
+msgid "Unit(s)"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:product.product,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
+#: model:product.product,weight_uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
+#: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
+#: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
+msgid "kg"
 msgstr ""
