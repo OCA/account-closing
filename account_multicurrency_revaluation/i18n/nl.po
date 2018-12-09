@@ -171,6 +171,21 @@ msgid "Currency revaluation"
 msgstr "Valuta herwaardering"
 
 #. module: account_multicurrency_revaluation
+#: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
+msgid ""
+"Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. "
+"Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. "
+"Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Default revaluation journal"
 msgstr "Herwaardering standaard dagboek"
@@ -239,6 +254,11 @@ msgid "Loss"
 msgstr "Verlies"
 
 #. module: account_multicurrency_revaluation
+#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
+msgid "Manual"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Multicurrency revaluation"
 msgstr "Multivaluta herwaardering"
@@ -273,8 +293,8 @@ msgid ""
 "You must specify at least one provision account or a couple of provision "
 "account in the accounting settings."
 msgstr ""
-"Er is geen herwaardering of voorzieningen grootboek gevonden voor uw bedrijf."
-"\n"
+"Er is geen herwaardering of voorzieningen grootboek gevonden voor uw "
+"bedrijf.\n"
 "Vink 'Toestaan valuta herwaardering' aan voor ten minste één grootboek."
 
 #. module: account_multicurrency_revaluation
@@ -422,8 +442,8 @@ msgid ""
 "This label will be inserted in entries description. You can use %(account)s, "
 "%(currency)s and %(rate)s keywords."
 msgstr ""
-"Dit label wordt toevoegd aan de omschrijving van boekingen. U kunt %(account)"
-"s, %(currency)s en %(rate)s als trefwoorden gebruiken."
+"Dit label wordt toevoegd aan de omschrijving van boekingen. U kunt "
+"%(account)s, %(currency)s en %(rate)s als trefwoorden gebruiken."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
