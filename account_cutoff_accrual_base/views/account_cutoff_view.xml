@@ -39,8 +39,8 @@
         <field name="res_model">account.cutoff</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('type', '=', 'accrued_expense')]</field>
-        <field name="context">{'type': 'accrued_expense'}</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_expense')]</field>
+        <field name="context">{'cutoff_type': 'accrued_expense'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start preparing a new expense accrual.
@@ -62,8 +62,8 @@
         <field name="res_model">account.cutoff</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('type', '=', 'accrued_revenue')]</field>
-        <field name="context">{'type': 'accrued_revenue'}</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_revenue')]</field>
+        <field name="context">{'cutoff_type': 'accrued_revenue'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start preparing a new revenue accrual.

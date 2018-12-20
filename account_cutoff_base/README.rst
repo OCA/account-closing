@@ -43,6 +43,7 @@ Contributors
 * Stéphane Bidoul (ACSONE)
 * Adrien Peiffer (ACSONE)
 * Pedro M. Baeza <pedro.baeza@gmail.com>
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
 Maintainer
 ----------
