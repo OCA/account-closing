@@ -121,6 +121,7 @@ Contributors
 * Vincent Renaville
 * Yannick Vaucher
 * Akim Juillerat
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
 
 Maintainer
