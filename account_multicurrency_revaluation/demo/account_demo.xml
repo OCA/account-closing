@@ -125,9 +125,4 @@
         <field name="type">sale</field>
         <field name="company_id" ref="res_company_reval" />
     </record>
-    <record id="account_payment_method_manual_in" model="account.payment.method">
-        <field name="name">Manual</field>
-        <field name="code">manual</field>
-        <field name="payment_type">inbound</field>
-    </record>
 </odoo>
