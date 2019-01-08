@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_config_settings" model="ir.ui.view">
+        <field name="name">account settings currency revaluation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='invoicing_settings']" position="after">
+                <h2>Multicurrency revaluation</h2>
+                <div class="row mt16 o_settings_container" id="multicurrency_revaluation_settings">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="reversable_revaluations"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <div class="content-group">
+                                <label for="reversable_revaluations"/>
+                                <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                                <div class="text-muted">
+                                    Revaluations entries will be created as 'To Be Reversed'.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container" id="multicurrency_revaluation_settings">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="" string="Default revaluation journal"/>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                            <div class="text-muted">
+                                Currency gain &amp; loss Default Journal
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="default_currency_reval_journal_id" class="col-md-3 o_light_label"/>
+                                    <field name="default_currency_reval_journal_id" options="{'no_create_edit': True, 'no_open': True}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-24 col-md-12 o_setting_box">
+                        <div class="content-group">
+                            <table>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Loss"/></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Gain"/></th>
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Analytic account"/></th>
+                                </tr>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Revaluation accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                    <td class="col-xs-6 col-md-3"><field name="revaluation_loss_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"><field name="revaluation_gain_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"><field name="revaluation_analytic_account_id" nolabel="1"/> </td>
+                                </tr>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Provision B.S accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                    <td class="col-xs-6 col-md-3"><field name="provision_bs_loss_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"><field name="provision_bs_gain_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"></td>
+                                </tr>
+                                <tr class="row">
+                                    <th class="col-xs-6 col-md-3"><label for="" string="Provision P&amp;L accounts"/><span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/></th>
+                                    <td class="col-xs-6 col-md-3"><field name="provision_pl_loss_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"><field name="provision_pl_gain_account_id" nolabel="1"/> </td>
+                                    <td class="col-xs-6 col-md-3"><field name="provision_pl_analytic_account_id" nolabel="1"/> </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_currency_revaluation_wizard" model="ir.ui.view">
+        <field name="name">Currency revaluation</field>
+        <field name="model">wizard.currency.revaluation</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Currency Revaluation" version="7.0">
+                <label for="" string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
+                    If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
+                    For other account types : 1 entry will be generated per account/currency.
+                    You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."/>
+                <group>
+                    <group>
+                        <field name="revaluation_date" />
+                        <field name="journal_id"/>
+                    </group>
+                    <group colspan="4">
+                        <field name="label"/>
+                    </group>
+                </group>
+                <group>
+                    <label for="" string="%%(currency)s : Currency to be revaluated"/>
+                    <label for="" string="%%(account)s : Account for which the revaluation is applied"/>
+                    <label for="" string="%%(rate)s : Value of rate applied during revaluation"/>
+                </group>
+                <footer>
+                    <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_account_currency_revaluation_wizard" model="ir.actions.act_window">
+        <field name="name">Currency revaluation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.currency.revaluation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Closing"
+        action="action_view_account_currency_revaluation_wizard"
+        id="menu_view_account_currency_revaluation_closing"
+        parent="account.menu_finance_entries"
+        groups="group_revaluation_additional"/>
+
+    <menuitem
+        action="action_view_account_currency_revaluation_wizard"
+        id="menu_view_account_currency_revaluation_wizard"
+        parent="account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing"
+        groups="group_revaluation_additional"/>
+
+</odoo>
