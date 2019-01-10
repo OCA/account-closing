@@ -1,3 +1,4 @@
 account-financial-reporting
 account-financial-tools
 account-invoicing
+currency
