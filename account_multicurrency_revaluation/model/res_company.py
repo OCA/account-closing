@@ -57,3 +57,9 @@ class ResCompany(models.Model):
              "as \"To Be Reversed\".",
         default=True,
     )
+    rate_type = fields.Selection(
+        string="Rate type", selection=[
+            ('average', 'Average'),
+            ('daily', 'Daily'),
+        ],
+        default='average')

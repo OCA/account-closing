@@ -39,6 +39,7 @@
                     </table>
                     <group>
                         <field name="default_currency_reval_journal_id"/>
+                        <field name="rate_type"/>
                     </group>
                 </group>
             </xpath>

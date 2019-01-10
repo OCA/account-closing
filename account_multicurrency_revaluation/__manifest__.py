@@ -11,6 +11,7 @@
  "depends": [
      "account_reversal",
      "account_financial_report_qweb",
+     "currency_monthly_rate",
  ],
  "demo": [
      "demo/account_demo.xml",

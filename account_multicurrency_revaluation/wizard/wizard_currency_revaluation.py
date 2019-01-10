@@ -128,8 +128,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                                   analytic_credit_acc_id=False,):
 
             reversable = form.journal_id.company_id.reversable_revaluations
-            base_move = {'name': label,
-                         'journal_id': form.journal_id.id,
+            base_move = {'journal_id': form.journal_id.id,
                          'date': form.revaluation_date,
                          'to_be_reversed': reversable}
 
@@ -282,13 +281,17 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # Get balance sums
         account_sums = account_ids.compute_revaluations(self.revaluation_date)
 
+        monthly_rate = (company.rate_type == 'average')
+
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
                 for partner_id, sums in currency_tree.iteritems():
                     if not sums['balance']:
                         continue
                     # Update sums with compute amount currency balance
-                    diff_balances = self._compute_unrealized_currency_gl(
+                    diff_balances = self.with_context(
+                        monthly_rate=monthly_rate
+                    )._compute_unrealized_currency_gl(
                         currency_id,
                         sums, self)
                     account_sums[account_id][currency_id][partner_id].\

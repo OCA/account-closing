@@ -67,3 +67,10 @@ class AccountConfigSettings(models.TransientModel):
              "as \"To Be Reversed\".",
         default=True,
     )
+    rate_type = fields.Selection(
+        related='company_id.rate_type',
+        string='Rate type *',
+        help="Revaluations entries will be created "
+             "as \"To Be Reversed\".",
+        default='average',
+    )
