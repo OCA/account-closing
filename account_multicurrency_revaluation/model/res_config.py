@@ -72,5 +72,4 @@ class AccountConfigSettings(models.TransientModel):
         string='Rate type *',
         help="Revaluations entries will be created "
              "as \"To Be Reversed\".",
-        default='average',
     )

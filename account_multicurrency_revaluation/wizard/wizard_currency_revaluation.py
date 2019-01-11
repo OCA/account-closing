@@ -24,6 +24,13 @@ class WizardCurrencyRevaluation(models.TransientModel):
         """
         return self.env.user.company_id.default_currency_reval_journal_id
 
+    @api.model
+    def _get_default_rate_type(self):
+        """
+        Get default rate type if one is defined in company settings
+        """
+        return self.env.user.company_id.rate_type
+
     revaluation_date = fields.Date(
         string='Revaluation Date',
         required=True,
@@ -45,6 +52,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
         required=True,
         default="%(currency)s %(account)s "
                 "%(rate)s currency revaluation"
+    )
+    rate_type_wizard = fields.Selection(
+        string='Rate type',
+        selection=[
+            ('average', 'Average'),
+            ('daily', 'Daily'),
+        ],
+        default=_get_default_rate_type,
     )
 
     @api.model
@@ -281,7 +296,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # Get balance sums
         account_sums = account_ids.compute_revaluations(self.revaluation_date)
 
-        monthly_rate = (company.rate_type == 'average')
+        monthly_rate = (self.rate_type_wizard == 'average')
 
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():

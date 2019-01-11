@@ -14,6 +14,7 @@
                     <group>
                         <field name="revaluation_date" />
                         <field name="journal_id"/>
+                        <field name="rate_type_wizard" />
                     </group>
                     <group colspan="4">
                         <field name="label"/>
