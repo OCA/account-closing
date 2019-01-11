@@ -100,8 +100,11 @@ class WizardCurrencyRevaluation(models.TransientModel):
             if balance:
                 if currency_id != cp_currency.id:
                     unrealized_gain_loss = 0.0 - balance
+        rate = currency.rate
+        if ctx_rate.get('monthly_rate'):
+            rate = currency.monthly_rate
         return {'unrealized_gain_loss': unrealized_gain_loss,
-                'currency_rate': currency.rate,
+                'currency_rate': rate,
                 'revaluated_balance': adjusted_balance}
 
     @api.model
