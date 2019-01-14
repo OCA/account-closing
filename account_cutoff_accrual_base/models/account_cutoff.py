@@ -13,11 +13,11 @@ class AccountCutOff(models.Model):
     @api.model
     def _default_cutoff_account_id(self):
         account_id = super()._default_cutoff_account_id()
-        type = self.env.context.get('type')
+        cutoff_type = self.env.context.get('type')
         company = self.env.user.company_id
-        if type == 'accrued_expense':
+        if cutoff_type == 'accrued_expense':
             account_id = company.default_accrued_expense_account_id.id or False
-        elif type == 'accrued_revenue':
+        elif cutoff_type == 'accrued_revenue':
             account_id = company.default_accrued_revenue_account_id.id or False
         return account_id
 
@@ -40,7 +40,6 @@ class AccountCutoffLine(models.Model):
     _inherit = 'account.cutoff.line'
 
     quantity = fields.Float(
-        string='Quantity',
         digits=dp.get_precision('Product UoS'),
         readonly=True)
     price_unit = fields.Float(

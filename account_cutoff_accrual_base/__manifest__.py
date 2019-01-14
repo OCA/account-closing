@@ -5,20 +5,20 @@
 
 
 {
-    'name': 'Account Accrual Base',
-    'version': '11.0.1.0.0',
-    'category': 'Accounting & Finance',
-    'license': 'AGPL-3',
-    'summary': 'Base module for accrued expenses and revenues',
-    'author': "Akretion,Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/account-closing',
-    'depends': [
-        'account_cutoff_base',
+    "name": "Account Accrual Base",
+    "summary": "Base module for accrued expenses and revenues",
+    "version": "12.0.1.0.0",
+    "category": "Accounting & Finance",
+    "website": "https://github.com/OCA/account-closing",
+    "author": "Akretion, Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "installable": True,
+    "depends": [
+        "account_cutoff_base",
     ],
-    'data': [
-        'views/company_view.xml',
-        'views/account_view.xml',
-        'views/account_cutoff_view.xml',
+    "data": [
+        "views/company_view.xml",
+        "views/account_view.xml",
+        "views/account_cutoff_view.xml",
     ],
-    'installable': True,
 }
