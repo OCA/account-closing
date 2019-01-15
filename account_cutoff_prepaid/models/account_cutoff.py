@@ -33,7 +33,7 @@ class AccountCutoff(models.Model):
         help="The Forecast mode allows the user to compute "
         "the prepaid revenue/expense between 2 dates in the future.")
     start_date = fields.Date()
-    end_date = fields.Date(string='End Date')
+    end_date = fields.Date()
 
     _sql_constraints = [(
         'date_type_forecast_company_uniq',
