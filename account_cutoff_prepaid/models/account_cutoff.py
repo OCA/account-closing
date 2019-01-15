@@ -182,7 +182,7 @@ class AccountCutoffLine(models.Model):
         related='move_line_id.date', string='Account Move Date', readonly=True)
     invoice_id = fields.Many2one(
         related='move_line_id.invoice_id', string='Invoice', readonly=True)
-    start_date = fields.Date(string='Start Date', readonly=True)
+    start_date = fields.Date(readonly=True)
     end_date = fields.Date(string='End Date', readonly=True)
     total_days = fields.Integer('Total Number of Days', readonly=True)
     prepaid_days = fields.Integer(
