@@ -29,7 +29,6 @@ class AccountCutoff(models.Model):
         default=lambda self: self._get_default_source_journals(),
         states={'draft': [('readonly', False)]})
     forecast = fields.Boolean(
-        string='Forecast',
         readonly=True, states={'draft': [('readonly', False)]},
         help="The Forecast mode allows the user to compute "
         "the prepaid revenue/expense between 2 dates in the future.")
