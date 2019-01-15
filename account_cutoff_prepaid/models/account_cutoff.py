@@ -186,7 +186,7 @@ class AccountCutoffLine(models.Model):
     end_date = fields.Date(string='End Date', readonly=True)
     total_days = fields.Integer('Total Number of Days', readonly=True)
     prepaid_days = fields.Integer(
-        string='Prepaid Days', readonly=True,
+        readonly=True,
         help="In regular mode, this is the number of days after the "
         "cut-off date. In forecast mode, this is the number of days "
         "between the start date and the end date.")
