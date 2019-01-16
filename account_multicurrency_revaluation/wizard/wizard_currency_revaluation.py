@@ -59,7 +59,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             ('average', 'Average'),
             ('daily', 'Daily'),
         ],
-        default=_get_default_rate_type,
+        default=lambda self: self._get_default_rate_type(),
     )
 
     @api.model
