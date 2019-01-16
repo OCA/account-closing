@@ -1,4 +1,4 @@
 account-financial-reporting
 account-financial-tools
 account-invoicing
-currency
+currency https://github.com/OCA/currency/pull/39
