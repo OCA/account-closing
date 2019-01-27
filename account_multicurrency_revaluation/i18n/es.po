@@ -44,6 +44,13 @@ msgid "<b>TOTAL</b>"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
 msgstr "Cuenta"
@@ -132,7 +139,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:348
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Líneas creadas de revaluación"
@@ -158,14 +165,20 @@ msgid "Currency Revaluation"
 msgstr "Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
+#: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
+msgid "Currency Revaluation Report"
+msgstr "Reporte de Revaluación Monetaria"
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
 msgid "Currency Revaluation Wizard"
 msgstr "Asistente de Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
-#: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
-#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
-msgid "Currency Revaluation Report"
+#: model:ir.model,name:account_multicurrency_revaluation.model_report_account_multicurrency_revaluation_curr_unrealized_report
+#, fuzzy
+msgid "Currency Unrealized Report"
 msgstr "Reporte de Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
@@ -192,18 +205,24 @@ msgstr "Revaluación de modena"
 
 #. module: account_multicurrency_revaluation
 #: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
-msgid "Dear Sir/Madam,\n"
+msgid ""
+"Dear Sir/Madam,\n"
 "\n"
-"Our records indicate that some payments on your account are still due. Please find details below.\n"
-"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"Our records indicate that some payments on your account are still due. "
+"Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. "
+"Otherwise, please forward us the total amount stated below.\n"
 "If you have any queries regarding your account, Please contact us.\n"
 "\n"
 "Thank you in advance for your cooperation.\n"
 "Best Regards,"
-msgstr "Estmando Sr./Sra.,\n"
+msgstr ""
+"Estmando Sr./Sra.,\n"
 "\n"
-"Nuestos registros indican que algunos pagos a su nombre aun están sin pagar. Encontrará los detalles mas adelante.\n"
-"Si el monto ya ha sido cancelado, por favor haga caso omiso a esta nota. De lo contrario, por favor envíenos la cantidad total indicada a continuación.\n"
+"Nuestos registros indican que algunos pagos a su nombre aun están sin pagar. "
+"Encontrará los detalles mas adelante.\n"
+"Si el monto ya ha sido cancelado, por favor haga caso omiso a esta nota. De "
+"lo contrario, por favor envíenos la cantidad total indicada a continuación.\n"
 "Si tiene alguna consulta sobre su cuenta, contáctenos.\n"
 "\n"
 "Gracias de antemano por su cooperación.\n"
@@ -288,44 +307,53 @@ msgid "Multicurrency revaluation"
 msgstr "Revaluación Multimoneda"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:297
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:301
 #, python-format
-msgid "No account to be revaluated found. Please check 'Allow Currency Revaluation' for at least one account in account form."
-msgstr "No se encontró ninguna cuanta para ser revaluada. Por favor, configure "
-"el campo 'Permitir Revaluación de Moneda' en al menos una cuenta en el formulario "
-"de cuenta."
+msgid ""
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
+msgstr ""
+"No se encontró ninguna cuanta para ser revaluada. Por favor, configure el "
+"campo 'Permitir Revaluación de Moneda' en al menos una cuenta en el "
+"formulario de cuenta."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:354
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:358
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr "No se ha publicado ningún asiento contable."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/model/res_currency.py:24
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:286
 #, python-format
-msgid "No rate found for the currency: %s at the date: %s"
-msgstr "No se encontrón ninguna tasa para la moneda: %s para la fecha: %s"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:282
-#, python-format
-msgid "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account in the accounting settings."
-msgstr "No se ha definido alguna  cuenta de revalorización o provisión para su compañía.\n"                                                                                                                   
-"Debe especificar al menos una o varias cuentas de provisión en la configuración "
-"de contabilidad."
+msgid ""
+"No revaluation or provision account are defined for your company.\n"
+"You must specify at least one provision account or a couple of provision "
+"account in the accounting settings."
+msgstr ""
+"No se ha definido alguna  cuenta de revalorización o provisión para su "
+"compañía.\n"
+"Debe especificar al menos una o varias cuentas de provisión en la "
+"configuración de contabilidad."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
-msgid "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.                     If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.                     For other account types : 1 entry will be generated per account/currency.                     You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
-msgstr "Odoo generará asientos de diferencia de tipo de cambio para cada cuenta "
-"configurada como 'Permitir Revaluación monetaria'.                     Si el " 
-"tipo de cuenta es pagadero o cuenta por cobrar : 1 entrada se generará por "   
-"cuenta/moneda/socio.                     Para otros tipos de cuenta : 1 entrada "
-"se generará por cada cuenta/moneda.                     Puede ver los detalles "                                                                                                                             
-"de los cálculos gracias al reporte Imprimir Moneda no realizada en los reportes "
-"genéricos."
+msgid ""
+"Odoo will generate exchange rate difference entries for each account set as "
+"'Allow Currency revaluation'.                     If the account type is "
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner.                     For other account types : 1 entry will be "
+"generated per account/currency.                     You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
+msgstr ""
+"Odoo generará asientos de diferencia de tipo de cambio para cada cuenta "
+"configurada como 'Permitir Revaluación monetaria'.                     Si el "
+"tipo de cuenta es pagadero o cuenta por cobrar : 1 entrada se generará por "
+"cuenta/moneda/socio.                     Para otros tipos de cuenta : 1 "
+"entrada se generará por cada cuenta/moneda.                     Puede ver "
+"los detalles de los cálculos gracias al reporte Imprimir Moneda no realizada "
+"en los reportes genéricos."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -337,6 +365,11 @@ msgstr "Socio"
 #, python-format
 msgid "Please, select the accounts!"
 msgstr "Por favor, selecciona las cuentas!"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
+msgid "Print Currency Revaluation Report"
+msgstr "Imprimir Reporte de Revaluación de Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -430,12 +463,14 @@ msgstr "Cuenta de pérdida de revaluación"
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_company__reversable_revaluations
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_config_settings__reversable_revaluations
 msgid "Revaluations entries will be created as \"To Be Reversed\"."
-msgstr "Los asientos de revaluaciones serán creados como \"Para Ser Revertido\"."
+msgstr ""
+"Los asientos de revaluaciones serán creados como \"Para Ser Revertido\"."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Revaluations entries will be created as 'To Be Reversed'."
-msgstr "Los asientos de revaluaciones serán creados como \"Para Ser Revertido\"."
+msgstr ""
+"Los asientos de revaluaciones serán creados como \"Para Ser Revertido\"."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__reversable_revaluations
@@ -445,19 +480,23 @@ msgstr "Revaluaciones Reversibles"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
-msgid "This label will be inserted in entries description. You can use %(account)s, %(currency)s and %(rate)s keywords."
-msgstr "Esta etiqueta será agregada en la descripción de los asientos. Puede usar "
-"las palabras clave %(account)s, %(currency)s y %(rate)s." 
+msgid ""
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
+msgstr ""
+"Esta etiqueta será agregada en la descripción de los asientos. Puede usar "
+"las palabras clave %(account)s, %(currency)s y %(rate)s."
 
 #. module: account_multicurrency_revaluation
-#: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
-msgid "Print Currency Revaluation Report"
-msgstr "Imprimir Reporte de Revaluación de Monetaria"
+#: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
+msgid "Unrealized Currency Report Printer"
+msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__journal_id
 msgid "You can set the default journal in company settings."
-msgstr "Puede configurar el diario predeterminado en la configuración de la compañía."
+msgstr ""
+"Puede configurar el diario predeterminado en la configuración de la compañía."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.currency_urealized_report_launcher_wizard
@@ -468,3 +507,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "_Validate"
 msgstr ""
+
+#~ msgid "No rate found for the currency: %s at the date: %s"
+#~ msgstr "No se encontrón ninguna tasa para la moneda: %s para la fecha: %s"
