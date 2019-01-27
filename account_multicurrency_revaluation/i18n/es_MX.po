@@ -45,6 +45,13 @@ msgid "<b>TOTAL</b>"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
 msgstr ""
@@ -91,6 +98,16 @@ msgid "Cancel"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing
+msgid "Closing"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_report_closing_entries_menu
+msgid "Closing Entries"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
 msgid "Companies"
 msgstr ""
@@ -123,7 +140,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:348
 #, python-format
 msgid "Created revaluation lines"
 msgstr ""
@@ -149,13 +166,14 @@ msgid "Currency Revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
-msgid "Currency Revaluation Wizard"
+#: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
+msgid "Currency Revaluation Report"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
-msgid "Currency Unrealized"
+#: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
+msgid "Currency Revaluation Wizard"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -187,10 +205,13 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
-msgid "Dear Sir/Madam,\n"
+msgid ""
+"Dear Sir/Madam,\n"
 "\n"
-"Our records indicate that some payments on your account are still due. Please find details below.\n"
-"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"Our records indicate that some payments on your account are still due. "
+"Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. "
+"Otherwise, please forward us the total amount stated below.\n"
 "If you have any queries regarding your account, Please contact us.\n"
 "\n"
 "Thank you in advance for your cooperation.\n"
@@ -276,33 +297,38 @@ msgid "Multicurrency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:297
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:301
 #, python-format
-msgid "No account to be revaluated found. Please check 'Allow Currency Revaluation' for at least one account in account form."
+msgid ""
+"No account to be revaluated found. Please check 'Allow Currency Revaluation' "
+"for at least one account in account form."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:354
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:358
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/model/res_currency.py:24
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:286
 #, python-format
-msgid "No rate found for the currency: %s at the date: %s"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:282
-#, python-format
-msgid "No revaluation or provision account are defined for your company.\n"
-"You must specify at least one provision account or a couple of provision account in the accounting settings."
+msgid ""
+"No revaluation or provision account are defined for your company.\n"
+"You must specify at least one provision account or a couple of provision "
+"account in the accounting settings."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
-msgid "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.                     If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.                     For other account types : 1 entry will be generated per account/currency.                     You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
+msgid ""
+"Odoo will generate exchange rate difference entries for each account set as "
+"'Allow Currency revaluation'.                     If the account type is "
+"payable or receivable : 1 entry will be generated per account/currency/"
+"partner.                     For other account types : 1 entry will be "
+"generated per account/currency.                     You can check details of "
+"calculation thanks to the Print Currency unrealized report in the generic "
+"reports."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -318,7 +344,7 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
-msgid "Print Currency Unrealized"
+msgid "Print Currency Revaluation Report"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -428,17 +454,14 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
-msgid "This label will be inserted in entries description. You can use %(account)s, %(currency)s and %(rate)s keywords."
+msgid ""
+"This label will be inserted in entries description. You can use %(account)s, "
+"%(currency)s and %(rate)s keywords."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
 msgid "Unrealized Currency Report Printer"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
-msgid "Unrealized currency report"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
