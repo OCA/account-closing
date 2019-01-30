@@ -161,7 +161,7 @@ class TestCurrencyRevaluation(SavepointCase):
             'revaluation_date': '%s-03-15' % fields.Date.from_string(
                 fields.Date.today()).strftime('%Y'),
             'journal_id': self.reval_journal.id,
-            'label': '[%(account)s] wiz_test',
+            'label': '[%(account)s %(rate)s] wiz_test',
         }
         wiz = wizard.create(data)
         result = wiz.revaluate_currency()
@@ -176,6 +176,8 @@ class TestCurrencyRevaluation(SavepointCase):
         self.assertEqual(len(reval_move_lines), 8)
 
         for reval_line in reval_move_lines:
+            self.assertEqual(
+                reval_line.name.split(' ')[1].split(']')[0], '2.5')
             if reval_line.account_id.name == 'Account Liquidity USD':
                 self.assertFalse(reval_line.partner_id)
                 self.assertEqual(reval_line.credit, 0.0)

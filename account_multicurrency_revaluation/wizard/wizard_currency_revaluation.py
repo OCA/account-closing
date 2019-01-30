@@ -273,6 +273,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         @return: dict to open an Entries view filtered on generated move lines
         """
+        ctx_rate = self._context.copy()
+        ctx_rate['date'] = self.revaluation_date
 
         account_obj = self.env['account.account']
 
@@ -308,9 +310,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     if not sums['balance']:
                         continue
                     # Update sums with compute amount currency balance
-                    diff_balances = self._compute_unrealized_currency_gl(
-                        currency_id,
-                        sums, self)
+                    diff_balances = self.with_context(
+                        ctx_rate)._compute_unrealized_currency_gl(
+                            currency_id,
+                            sums, self)
                     account_sums[account_id][currency_id][partner_id].\
                         update(diff_balances)
 
