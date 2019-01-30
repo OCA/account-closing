@@ -127,23 +127,22 @@ class WizardCurrencyRevaluation(models.TransientModel):
         context = self.env.context
 
         currency_obj = self.env['res.currency']
-        company = form.journal_id.company_id or form.env.user.company_id
 
         # Compute unrealized gain loss
         ctx_rate = context.copy()
         ctx_rate['date'] = form.revaluation_date
+        ctx_rate['revaluation'] = True
         cp_currency = form.journal_id.company_id.currency_id
 
-        currency = currency_obj.browse(currency_id)
+        currency = currency_obj.browse(currency_id).with_context(ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
             'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
         unrealized_gain_loss = 0.0
         if foreign_balance:
-            ctx_rate['revaluation'] = True
-            adjusted_balance = currency.with_context(ctx_rate)._convert(
-                foreign_balance, cp_currency, company, ctx_rate['date']
+            adjusted_balance = currency.compute(
+                foreign_balance, cp_currency
             )
             unrealized_gain_loss = adjusted_balance - balance
             # revaluated_balance =  balance + unrealized_gain_loss
@@ -172,7 +171,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         currency = currency_obj.browse(currency_id)
         data = {'account': account.code or False,
                 'currency': currency.name or False,
-                'rate': rate and '{:.6f}'.format(rate) or False}
+                'rate': rate}
         return text % data
 
     @api.multi
