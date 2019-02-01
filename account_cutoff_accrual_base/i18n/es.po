@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 02:35+0000\n"
-"PO-Revision-Date: 2018-05-25 02:35+0000\n"
-"Last-Translator: enjolras <yo@miguelrevilla.com>, 2017\n"
+"PO-Revision-Date: 2019-02-01 13:03+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
@@ -33,7 +34,7 @@ msgstr "Línea de operación de cierre de cuenta"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_accrual_taxes
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_accrual_taxes
 msgid "Accrual On Taxes"
-msgstr ""
+msgstr "Acumulación de impuestos"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
@@ -81,9 +82,8 @@ msgstr "Cuenta predeterminada para gastos devengados"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_expense_return_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_return_account_id
-#, fuzzy
 msgid "Default Account for Accrued Expenses Returns"
-msgstr "Cuenta predeterminada para gastos devengados"
+msgstr "Cuenta predeterminada para devoluciones de gastos acumulados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_account_id
@@ -94,7 +94,6 @@ msgstr "Cuenta predeterminada para ingresos devengados"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrued_revenue_return_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_return_account_id
-#, fuzzy
 msgid "Default Account for Accrued Revenues Returns"
 msgstr "Cuenta predeterminada para ingresos devengados"
 
