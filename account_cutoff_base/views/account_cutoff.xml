@@ -61,7 +61,7 @@
         <field name="name">account.cutoff.tree</field>
         <field name="model">account.cutoff</field>
         <field name="arch" type="xml">
-            <tree string="Cut-offs" colors="blue:state=='draft'">
+            <tree decoration-info="state == 'draft'">
                 <field name="cutoff_type" invisible="context.get('cutoff_type')" />
                 <field name="cutoff_date" />
                 <field name="total_cutoff_amount"/>
@@ -119,7 +119,7 @@
         <field name="name">account.cutoff.line.tree</field>
         <field name="model">account.cutoff.line</field>
         <field name="arch" type="xml">
-            <tree string="Cut-off Lines">
+            <tree>
                 <field name="parent_id" invisible="not context.get('account_cutoff_line_main_view', False)"/>
                 <field name="partner_id"/>
                 <field name="name"/>
@@ -163,7 +163,7 @@
         <field name="name">account.cutoff.tax.line.tree</field>
         <field name="model">account.cutoff.tax.line</field>
         <field name="arch" type="xml">
-            <tree string="Cut-off Tax Lines">
+            <tree>
                 <field name="parent_id" invisible="not context.get('account_cutoff_tax_line_main_view', False)"/>
                 <field name="tax_id"/>
                 <field name="cutoff_account_id"/>
@@ -197,7 +197,7 @@
         <field name="name">account.cutoff.mapping.tree</field>
         <field name="model">account.cutoff.mapping</field>
         <field name="arch" type="xml">
-            <tree string="Account Cut-off Mapping" editable="bottom">
+            <tree editable="bottom">
                 <field name="company_id" groups="base.group_multi_company" widget="selection" invisible="not context.get('account_cutoff_mapping_main_view', False)" />
                 <field name="account_id"/>
                 <field name="cutoff_account_id"/>
