@@ -122,7 +122,6 @@ class AccountCutoff(models.Model):
     )
     state = fields.Selection(
         selection=[('draft', 'Draft'), ('done', 'Done')],
-        string='State',
         index=True,
         readonly=True,
         track_visibility='onchange',
@@ -296,13 +295,12 @@ class AccountCutoffLine(models.Model):
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
     analytic_account_code = fields.Char(
-        related='analytic_account_id.code',
-        string='Analytic Account Code', readonly=True)
+        related='analytic_account_id.code', readonly=True)
     currency_id = fields.Many2one(
         'res.currency', string='Amount Currency', readonly=True,
         help="Currency of the 'Amount' field.")
     amount = fields.Monetary(
-        string='Amount', currency_field='currency_id', readonly=True,
+        currency_field='currency_id', readonly=True,
         help="Amount that is used as base to compute the Cut-off Amount. "
         "This Amount is in the 'Amount Currency', which may be different "
         "from the 'Company Currency'.")
@@ -333,12 +331,12 @@ class AccountCutoffTaxLine(models.Model):
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
     base = fields.Monetary(
-        string='Base', currency_field='currency_id',
+        currency_field='currency_id',
         readonly=True, help="Base Amount in the currency of the PO.")
     amount = fields.Monetary(
         string='Tax Amount', currency_field='currency_id',
         readonly=True, help='Tax Amount in the currency of the PO.')
-    sequence = fields.Integer(string='Sequence', readonly=True)
+    sequence = fields.Integer(readonly=True)
     cutoff_amount = fields.Monetary(
         string='Cut-off Tax Amount', currency_field='company_currency_id',
         readonly=True, help="Tax Cut-off Amount in the company currency.")
