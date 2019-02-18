@@ -39,38 +39,50 @@
                                         <div class="act_as_cell first_column amount" style="width: 100px;">Gain(+)/Loss(-) YTD</div>
                                     </div>
                                     <t t-foreach="sh_acc.ordered_lines" t-as="line">
-                                        <div class="act_as_row lines">
-                                            <div class="act_as_cell">
-                                                <span t-esc="line.get('name') or '--'"/>
+                                        <t t-if="account.internal_type in ['payable', 'receivable']">
+                                            <div class="act_as_row lines">
+                                                <div class="act_as_cell">
+                                                    <span t-esc="line.get('name') or '--'"/>
+                                                </div>
+                                                <div class="act_as_cell amount" style="width: 100px;">
+                                                    <span t-esc="line.get('gl_foreign_balance') or 0.0"/>
+                                                </div>
+                                                <div class="act_as_cell" style="width: 50px;">
+                                                    <span t-esc="line.get('curr_name') or '--'"/>
+                                                </div>
+                                                <div class="act_as_cell amount" style="width: 80px;">
+                                                    <span t-esc="line.get('gl_currency_rate') or 0.0"/>
+                                                </div>
+                                                <div class="act_as_cell amount" style="width: 150px;">
+                                                    <span t-esc="line.get('gl_revaluated_balance') or 0.0"/>
+                                                </div>
+                                                <div class="act_as_cell amount" style="width: 100px;">
+                                                    <t t-if="line.get('gl_balance')">
+                                                        <span t-esc="line.get('gl_balance')"/>
+                                                    </t>
+                                                    <t t-if="not line.get('gl_balance')">0.0</t>
+                                                </div>
+                                                <div class="act_as_cell amount" style="width: 100px;">
+                                                    <span t-esc="line.get('gl_ytd_balance') or 0.0"/>
+                                                </div>
                                             </div>
-                                            <div class="act_as_cell amount" style="width: 100px;">
-                                                <span t-esc="line.get('gl_foreign_balance') or 0.0"/>
-                                            </div>
-                                            <div class="act_as_cell" style="width: 50px;">
-                                                <span t-esc="line.get('curr_name') or '--'"/>
-                                            </div>
-                                            <div class="act_as_cell amount" style="width: 80px;">
-                                                <span t-esc="line.get('gl_currency_rate') or 0.0"/>
-                                            </div>
-                                            <div class="act_as_cell amount" style="width: 150px;">
-                                                <span t-esc="line.get('gl_revaluated_balance') or 0.0"/>
-                                            </div>
-                                            <div class="act_as_cell amount" style="width: 100px;">
-                                                <t t-if="line.get('gl_balance')">
-                                                    <span t-esc="line.get('gl_balance')"/>
-                                                </t>
-                                                <t t-if="not line.get('gl_balance')">0.0</t>
-                                            </div>
-                                            <div class="act_as_cell amount" style="width: 100px;">
-                                                <span t-esc="line.get('gl_ytd_balance') or 0.0"/>
-                                            </div>
-                                        </div>
+                                        </t>
                                     </t>
                                     <div class="act_as_row lines labels">
                                         <div class="act_as_cell"><b>TOTAL</b></div>
+                                        <div class="act_as_cell amount">
+                                            <t t-if="account.internal_type not in ['payable', 'receivable'] and sh_acc.curr_name_total_check">
+                                                <b>
+                                                    <span t-esc="sh_acc.gl_foreign_balance_total or 0.0"/>
+                                                </b>
+                                            </t>
+                                        </div>
                                         <div class="act_as_cell"></div>
-                                        <div class="act_as_cell"></div>
-                                        <div class="act_as_cell"></div>
+                                        <div class="act_as_cell amount">
+                                            <b>
+                                                <span t-esc="sh_acc.gl_currency_rate_total_check or 'Revaluation Rate not homogeneous'"/>
+                                            </b>
+                                        </div>
                                         <div class="act_as_cell amount">
                                             <b>
                                                 <span t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>

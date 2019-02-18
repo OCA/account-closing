@@ -4,6 +4,8 @@
 
 from odoo import api, models
 
+FLOAT_DIGIT = 2
+
 
 class ShellAccount(object):
 
@@ -22,9 +24,18 @@ class ShellAccount(object):
         self.keys_to_sum = ['gl_foreign_balance', 'gl_currency_rate',
                             'gl_revaluated_balance', 'gl_balance',
                             'gl_ytd_balance']
+        # to check if 'currency' and the 'revaluation rate'
+        # is the same for all lines
+        self.keys_to_check = ['curr_name', 'gl_currency_rate']
 
     def __contains__(self, key):
         return hasattr(self, key)
+
+    def _format_float(self, val, ndigits=FLOAT_DIGIT):
+        val_formated = val
+        if isinstance(val, float):
+            val_formated = "%.2f" % round(val, ndigits=ndigits)
+        return val_formated
 
     def get_lines(self):
         """Get all line account move line that are need on report for current
@@ -59,11 +70,32 @@ class ShellAccount(object):
     def compute_totals(self):
         """Compute the sum of values in self.ordered_lines"""
         totals = dict.fromkeys(self.keys_to_sum, 0.0)
+        checks = dict.fromkeys(self.keys_to_check)
         for line in self.ordered_lines:
             for tot in self.keys_to_sum:
                 totals[tot] += line.get(tot, 0.0)
+            for check in self.keys_to_check:
+                if checks.get(check) is None:
+                    checks[check] = set([line.get(check)])
+                else:
+                    checks[check].add(line.get(check))
         for key, val in totals.iteritems():
-            setattr(self, key + '_total', val)
+            val_formated = self._format_float(val)
+            setattr(self, key + '_total', val_formated)
+        for key, val in checks.iteritems():
+            if len(val) == 1:
+                check_value = val.pop()
+                check_value_formated = self._format_float(check_value)
+                setattr(self, key + '_total_check', check_value_formated)
+            else:
+                setattr(self, key + '_total_check', False)
+
+    def format_ordered_lines(self):
+        """ To render only float with 2 digits
+        """
+        for line in self.ordered_lines:
+            for key, val in line.iteritems():
+                line[key] = self._format_float(val)
 
 
 class CurrencyUnrealizedReport(models.AbstractModel):
@@ -83,6 +115,8 @@ class CurrencyUnrealizedReport(models.AbstractModel):
                 docs |= account
                 shell_accounts[account.id] = acc
                 acc.compute_totals()
+                acc.format_ordered_lines()
+
         docargs = {
             'doc_ids': docs.ids,
             'doc_model': 'account.account',
