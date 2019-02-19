@@ -72,31 +72,21 @@
                                         <div class="act_as_cell"><b>TOTAL</b></div>
                                         <div class="act_as_cell amount">
                                             <t t-if="account.internal_type not in ['payable', 'receivable'] and sh_acc.curr_name_total_check">
-                                                <b>
-                                                    <span t-esc="sh_acc.gl_foreign_balance_total or 0.0"/>
-                                                </b>
+                                                <strong t-esc="sh_acc.gl_foreign_balance_total or 0.0"/>
                                             </t>
                                         </div>
                                         <div class="act_as_cell"></div>
                                         <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_currency_rate_total_check or 'Revaluation Rate not homogeneous'"/>
-                                            </b>
+                                            <strong t-esc="sh_acc.gl_currency_rate_total_check or 'Revaluation Rate not homogeneous'"/>
                                         </div>
                                         <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
-                                            </b>
+                                            <strong t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
                                         </div>
                                         <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_balance_total or 0.0"/>
-                                            </b>
+                                            <strong t-esc="sh_acc.gl_balance_total or 0.0"/>
                                         </div>
                                         <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_ytd_balance_total or 0.0"/>
-                                            </b>
+                                            <strong t-esc="sh_acc.gl_ytd_balance_total or 0.0"/>
                                         </div>
                                     </div>
                                 </div>

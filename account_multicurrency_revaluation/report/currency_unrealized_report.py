@@ -3,8 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import api, models
-
-FLOAT_DIGIT = 2
+from odoo.addons import decimal_precision as dp
 
 
 class ShellAccount(object):
@@ -31,7 +30,8 @@ class ShellAccount(object):
     def __contains__(self, key):
         return hasattr(self, key)
 
-    def _format_float(self, val, ndigits=FLOAT_DIGIT):
+    def _format_float(self, val):
+        ndigits = dp.get_precision('Account')(self.cursor)[1]
         val_formated = val
         if isinstance(val, float):
             val_formated = "%.2f" % round(val, ndigits=ndigits)
@@ -91,7 +91,7 @@ class ShellAccount(object):
                 setattr(self, key + '_total_check', False)
 
     def format_ordered_lines(self):
-        """ To render only float with 2 digits
+        """ To render only float with right digits for account
         """
         for line in self.ordered_lines:
             for key, val in line.iteritems():
