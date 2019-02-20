@@ -71,13 +71,17 @@
                                     <div class="act_as_row lines labels">
                                         <div class="act_as_cell"><b>TOTAL</b></div>
                                         <div class="act_as_cell amount">
-                                            <t t-if="account.internal_type not in ['payable', 'receivable'] and sh_acc.curr_name_total_check">
+                                            <t t-if="account.internal_type not in ['payable', 'receivable']">
                                                 <strong t-esc="sh_acc.gl_foreign_balance_total or 0.0"/>
                                             </t>
                                         </div>
-                                        <div class="act_as_cell"></div>
+                                        <div class="act_as_cell" style="width: 50px;">
+                                            <t t-if="account.internal_type not in ['payable', 'receivable']">
+                                                <strong t-esc="sh_acc.ordered_lines[0].get('curr_name')"/>
+                                            </t>
+                                        </div>
                                         <div class="act_as_cell amount">
-                                            <strong t-esc="sh_acc.gl_currency_rate_total_check or 'Revaluation Rate not homogeneous'"/>
+                                            <strong t-esc="sh_acc.ordered_lines[0].get('gl_currency_rate')"/>
                                         </div>
                                         <div class="act_as_cell amount">
                                             <strong t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
