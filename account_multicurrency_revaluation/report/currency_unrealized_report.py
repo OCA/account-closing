@@ -31,7 +31,9 @@ class ShellAccount(object):
         ndigits = dp.get_precision('Account')(self.cursor)[1]
         val_formated = val
         if isinstance(val, float):
-            val_formated = "%.2f" % tools.float_round(val, ndigits)
+            val_formated = tools.float_repr(
+                tools.float_round(val, ndigits), ndigits
+            )
         return val_formated
 
     def get_lines(self):
