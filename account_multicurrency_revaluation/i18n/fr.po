@@ -10,19 +10,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 08:41+0000\n"
-"PO-Revision-Date: 2018-03-23 08:41+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2019-03-07 12:52+0000\n"
+"Last-Translator: Valaeys Stéphane <svalaeys@fiefmanage.ch>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(account)s : Account for which the revaluation is applied"
-msgstr "%(account)s: Comptes sur lesquels la réévaluation est appliquée"
+msgstr "%(account)s: Compte sur lequel la réévaluation est appliquée"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -57,17 +58,17 @@ msgstr "Comptes"
 #. module: account_multicurrency_revaluation
 #: model:res.groups,name:account_multicurrency_revaluation.group_revaluation_additional
 msgid "Additional provisioning entries posting"
-msgstr "Entrées d'approvisionnement supplémentaires"
+msgstr "Entrées d'approvisionnement supplémentaires (Réévaluation des devises)"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line_gl_balance
 msgid "Aggregated Amount"
-msgstr "Montant aggrégé"
+msgstr "Montant agrégé"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line_gl_foreign_balance
 msgid "Aggregated Amount currency"
-msgstr "Devise du montant aggrégé"
+msgstr "Devise du montant agrégé"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account_currency_revaluation
@@ -77,7 +78,7 @@ msgstr "Autoriser la réévaluation de la devise"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Analytic account"
-msgstr ""
+msgstr "Compte analytique"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -121,12 +122,12 @@ msgstr "Créé le"
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
 #, python-format
 msgid "Created revaluation lines"
-msgstr "Lignes de réévaluation créées"
+msgstr "Lignes créées par la réévaluation"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
-msgstr "Devise de la balance annuelle à ce jour"
+msgstr "Balance annuelle à ce jour en devises"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
@@ -136,39 +137,39 @@ msgstr "Devise"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Currency Gain and Loss"
-msgstr "Devise de pertes et profits"
+msgstr "Pertes et gains de change"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "Currency Revaluation"
-msgstr "Devise de réévaluation"
+msgstr "Réévaluation des devises"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
 msgid "Currency Unrealized"
-msgstr "Devise non-réalisée"
+msgstr "Exposition aux devises non réalisée"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_default_currency_reval_journal_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_default_currency_reval_journal_id
 msgid "Currency gain & loss Default Journal"
-msgstr "Devise du journal par défaut de pertes & profits"
+msgstr "Journal par défaut pour les gains et pertes en devises"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Currency gain &amp; loss Default Journal"
-msgstr ""
+msgstr "Journal par défaut pour les gains &amp; et pertes en devise"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line_gl_currency_rate
 msgid "Currency rate"
-msgstr "Taux de la devise"
+msgstr "Taux de change"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
-msgstr "Réévaluation de la devise"
+msgstr "Réévaluation des devises"
 
 #. module: account_multicurrency_revaluation
 #: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
@@ -188,7 +189,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Default revaluation journal"
-msgstr ""
+msgstr "Journal de réévaluation par défaut"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report_display_name
@@ -205,12 +206,12 @@ msgstr "Description de la pièce"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Gain"
-msgstr ""
+msgstr "Gain"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Gain(+)/Loss(-) YTD"
-msgstr "Profits(+)/Pertes(-) annuelle à ce jour"
+msgstr "Profits(+)/Pertes(-) annuels à ce jour"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report_id
@@ -227,7 +228,7 @@ msgstr "Journal"
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
 msgid "Journal Item"
-msgstr "Écritures comptables"
+msgstr "Écriture comptable"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report___last_update
@@ -251,7 +252,7 @@ msgstr "Dernière mise à jour le"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Loss"
-msgstr ""
+msgstr "Perte"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -272,7 +273,7 @@ msgstr ""
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:356
 #, python-format
 msgid "No accounting entry has been posted."
-msgstr "Aucune pièce comptable n'a été postée."
+msgstr "Aucune pièce n'a été comptabilisée."
 
 #. module: account_multicurrency_revaluation
 #: code:addons/account_multicurrency_revaluation/model/res_currency.py:22
@@ -288,6 +289,9 @@ msgid ""
 "You must specify at least one provision account or a couple of provision "
 "account in the accounting settings."
 msgstr ""
+"Aucun compte de réévaluation ou de provision n'a été défini pour votre "
+"société.\n"
+"Veillez vérifier votre paramétrage."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -300,6 +304,12 @@ msgid ""
 "calculation thanks to the Print Currency unrealized report in the generic "
 "reports."
 msgstr ""
+"Odoo va généré des pertes ou gains de change pour chaque compte configuré "
+"pour 'Autoriser la réévaluation des devises'.                      Si le "
+"c'est un compte de tiers : 1 pièce sera générée par compte/devise/"
+"partenaire.                     Pour les autres types de comptes : 1 pièce "
+"par compte/devise.                     Vous pouvez vérifier les détails de "
+"la réévaluation à travers le rapport dédié."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -315,47 +325,47 @@ msgstr "Merci de sélectionner les comptes !"
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
 msgid "Print Currency Unrealized"
-msgstr "Imprimer la Devise non-réalisée"
+msgstr "Imprimer les positions non-réalisées en devise"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Provision B.S accounts"
-msgstr ""
+msgstr "Compte de provision au bilan"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_provision_bs_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_provision_bs_gain_account_id
 msgid "Provision B.S. gain account"
-msgstr "Compte de revenu de provisions de la balance"
+msgstr "Compte de bilan pour provisions de gain"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_provision_bs_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_provision_bs_loss_account_id
 msgid "Provision B.S. loss account"
-msgstr "Compte de pertes de provisions de la balance"
+msgstr "Compte de bilan pour provisions de perte"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_provision_pl_analytic_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_provision_pl_analytic_account_id
 msgid "Provision P&L Analytic account"
-msgstr "Compte analytique Pertes et Profits de provision"
+msgstr "Compte analytique pour les gains et pertes de change au PP"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Provision P&L accounts"
-msgstr ""
+msgstr "Comptes de provision au PP"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_provision_pl_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_provision_pl_gain_account_id
 msgid "Provision P&L gain account"
-msgstr "Compte de gains Pertes et Profits de provision"
+msgstr "Compte de PP pour les provisions de gain"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_provision_pl_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_provision_pl_loss_account_id
 msgid "Provision P&L loss account"
-msgstr "Compte de pertes Pertes et Profits de provision"
+msgstr "Compte de PP pour les provision de pertes"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -391,19 +401,19 @@ msgstr "Taux de réévaluation"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Revaluation accounts"
-msgstr ""
+msgstr "Comptes de réévaluation"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_revaluation_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_revaluation_gain_account_id
 msgid "Revaluation gain account"
-msgstr "Compte de gains de réévaluation"
+msgstr "Compte de réévaluation pour les gains"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_revaluation_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings_revaluation_loss_account_id
 msgid "Revaluation loss account"
-msgstr "Compte de pertes de réévaluation"
+msgstr "Compte de réévaluation pour les pertes"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_company_reversable_revaluations
@@ -415,7 +425,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Revaluations entries will be created as 'To Be Reversed'."
-msgstr ""
+msgstr "Les écritures de réévaluation seront créées comme \"À être inversées\"."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_reversable_revaluations
@@ -430,12 +440,12 @@ msgid ""
 "%(currency)s and %(rate)s keywords."
 msgstr ""
 "Le libellé sera inséré dans la description des pièces comptables. Vous "
-"pouvez utiliser les mots-clés %(account)s,%(currency)s and %(rate)s."
+"pouvez utiliser les mots-clés %(account)s,%(currency)s et %(rate)s."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
 msgid "Unrealized currency report"
-msgstr "Rapport de devises irréaliste"
+msgstr "Rapport de devises irréalisées"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation_journal_id
