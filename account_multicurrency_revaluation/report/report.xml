@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <report name="account_multicurrency_revaluation.curr_unrealized"
-            string="Unrealized currency report"
+            string="Currency revaluation report"
             id="action_report_currency_unrealized"
             model="account.account"
             file="account_multicurrency_revaluation.curr_unrealized"

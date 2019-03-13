@@ -2,7 +2,8 @@
 # Copyright 2012-2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import api, models, tools
+from odoo.addons import decimal_precision as dp
 
 
 class ShellAccount(object):
@@ -25,6 +26,15 @@ class ShellAccount(object):
 
     def __contains__(self, key):
         return hasattr(self, key)
+
+    def _format_float(self, val):
+        ndigits = dp.get_precision('Account')(self.cursor)[1]
+        val_formated = val
+        if isinstance(val, float):
+            val_formated = tools.float_repr(
+                tools.float_round(val, ndigits), ndigits
+            )
+        return val_formated
 
     def get_lines(self):
         """Get all line account move line that are need on report for current
@@ -63,7 +73,15 @@ class ShellAccount(object):
             for tot in self.keys_to_sum:
                 totals[tot] += line.get(tot, 0.0)
         for key, val in totals.iteritems():
-            setattr(self, key + '_total', val)
+            val_formated = self._format_float(val)
+            setattr(self, key + '_total', val_formated)
+
+    def format_ordered_lines(self):
+        """ To render only float with right digits for account
+        """
+        for line in self.ordered_lines:
+            for key, val in line.iteritems():
+                line[key] = self._format_float(val)
 
 
 class CurrencyUnrealizedReport(models.AbstractModel):
@@ -83,6 +101,8 @@ class CurrencyUnrealizedReport(models.AbstractModel):
                 docs |= account
                 shell_accounts[account.id] = acc
                 acc.compute_totals()
+                acc.format_ordered_lines()
+
         docargs = {
             'doc_ids': docs.ids,
             'doc_model': 'account.account',

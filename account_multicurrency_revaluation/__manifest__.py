@@ -10,6 +10,7 @@
  "license": 'AGPL-3',
  "depends": [
      "account_reversal",
+     "account_financial_report_qweb",
  ],
  "demo": [
      "demo/account_demo.xml",

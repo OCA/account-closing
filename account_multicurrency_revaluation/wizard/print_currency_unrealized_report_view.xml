@@ -29,9 +29,10 @@
         </record>
 
         <menuitem
-                name="Currency Unrealized"
+                name="Currency revaluation"
                 action="currency_urealized_report_action_wizard"
-                parent="account.menu_finance_reports"
+                parent="account_financial_report_qweb.menu_oca_reports"
+                sequence="50"
                 id="currency_unrealized_report_wizard_menu"/>
 
 </odoo>

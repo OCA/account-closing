@@ -38,7 +38,9 @@
                                         <div class="act_as_cell first_column amount" style="width: 100px;">Balance YTD</div>
                                         <div class="act_as_cell first_column amount" style="width: 100px;">Gain(+)/Loss(-) YTD</div>
                                     </div>
-                                    <t t-foreach="sh_acc.ordered_lines" t-as="line">
+                                </div>
+                                <t t-foreach="sh_acc.ordered_lines" t-as="line">
+                                    <t t-if="account.internal_type in ['payable', 'receivable']">
                                         <div class="act_as_row lines">
                                             <div class="act_as_cell">
                                                 <span t-esc="line.get('name') or '--'"/>
@@ -66,26 +68,30 @@
                                             </div>
                                         </div>
                                     </t>
-                                    <div class="act_as_row lines labels">
-                                        <div class="act_as_cell"><b>TOTAL</b></div>
-                                        <div class="act_as_cell"></div>
-                                        <div class="act_as_cell"></div>
-                                        <div class="act_as_cell"></div>
-                                        <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
-                                            </b>
-                                        </div>
-                                        <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_balance_total or 0.0"/>
-                                            </b>
-                                        </div>
-                                        <div class="act_as_cell amount">
-                                            <b>
-                                                <span t-esc="sh_acc.gl_ytd_balance_total or 0.0"/>
-                                            </b>
-                                        </div>
+                                </t>
+                                <div class="act_as_row lines labels">
+                                    <div class="act_as_cell"><b>TOTAL</b></div>
+                                    <div class="act_as_cell amount">
+                                        <t t-if="account.internal_type not in ['payable', 'receivable']">
+                                            <strong t-esc="sh_acc.gl_foreign_balance_total or 0.0"/>
+                                        </t>
+                                    </div>
+                                    <div class="act_as_cell" style="width: 50px;">
+                                        <t t-if="account.internal_type not in ['payable', 'receivable']">
+                                            <strong t-esc="sh_acc.ordered_lines[0].get('curr_name')"/>
+                                        </t>
+                                    </div>
+                                    <div class="act_as_cell amount">
+                                        <strong t-esc="sh_acc.ordered_lines[0].get('gl_currency_rate')"/>
+                                    </div>
+                                    <div class="act_as_cell amount">
+                                        <strong t-esc="sh_acc.gl_revaluated_balance_total or 0.0"/>
+                                    </div>
+                                    <div class="act_as_cell amount">
+                                        <strong t-esc="sh_acc.gl_balance_total or 0.0"/>
+                                    </div>
+                                    <div class="act_as_cell amount">
+                                        <strong t-esc="sh_acc.gl_ytd_balance_total or 0.0"/>
                                     </div>
                                 </div>
                             </div>
