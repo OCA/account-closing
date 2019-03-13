@@ -143,11 +143,6 @@ msgid "Currency Revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
-msgid "Currency Unrealized"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_default_currency_reval_journal_id
 msgid "Currency gain & loss Default Journal"
 msgstr ""
@@ -164,8 +159,14 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
+#: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.actions.report.xml,name:account_multicurrency_revaluation.action_report_currency_unrealized
+msgid "Currency revaluation report"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -449,11 +450,6 @@ msgstr ""
 msgid ""
 "This label will be inserted in entries description. You can use %(account)s, "
 "%(currency)s and %(rate)s keywords."
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: model:ir.actions.report.xml,name:account_multicurrency_revaluation.action_report_currency_unrealized
-msgid "Unrealized currency report"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
