@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_account_config_settings_rate_type" model="ir.ui.view">
+        <field name="name">account settings currency revaluation</field>
+        <field name="model">account.config.settings</field>
+        <field name="inherit_id" ref="account_multicurrency_revaluation.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='default_currency_reval_journal_id']" position="after">
+                <field name="revaluation_rate_type"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
