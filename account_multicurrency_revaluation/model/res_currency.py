@@ -14,6 +14,7 @@ class ResCurrency(models.Model):
 
     @api.model
     def _get_conversion_rate(self, from_currency, to_currency):
+        # TODO get rid of this method
         context = self.env.context
         if 'revaluation' in context:
             rate = from_currency.rate

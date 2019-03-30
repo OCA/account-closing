@@ -179,6 +179,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_ids = []
         # over revaluation
         if amount >= 0.01:
+            # Todo return User errors if no proper accounts
             reval_gain_account = company.revaluation_gain_account_id
             if reval_gain_account:
 
@@ -209,6 +210,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         # under revaluation
         elif amount <= -0.01:
+            # Todo return User errors if no proper accounts
             amount = -amount
             reval_loss_account = company.revaluation_loss_account_id
             if reval_loss_account:
@@ -251,6 +253,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         account_obj = self.env['account.account']
 
+        # todo move to separate methods
         company = self.journal_id.company_id or self.env.user.company_id
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
@@ -281,7 +284,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         # Get balance sums
         account_sums = account_ids.compute_revaluations(self.revaluation_date)
-
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
                 for partner_id, sums in currency_tree.iteritems():

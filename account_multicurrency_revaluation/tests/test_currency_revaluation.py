@@ -8,6 +8,8 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
 
 class TestCurrencyRevaluation(TransactionCase):
+    # Todo update cases and logic to v12
+    # see https://github.com/OCA/account-closing/pull/88
 
     def test_uk_revaluation(self):
         # Set accounts on company
