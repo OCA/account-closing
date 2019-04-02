@@ -68,17 +68,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
         ctx_rate['date'] = form.revaluation_date
         cp_currency = form.journal_id.company_id.currency_id
 
-        currency = currency_obj.browse(currency_id)
+        currency = currency_obj.browse(currency_id).with_context(ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
             'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
         unrealized_gain_loss = 0.0
         if foreign_balance:
-            ctx_rate['revaluation'] = True
-            adjusted_balance = currency.with_context(ctx_rate).compute(
-                foreign_balance, cp_currency
-            )
+            adjusted_balance = currency.compute(foreign_balance, cp_currency)
             unrealized_gain_loss = adjusted_balance - balance
             # revaluated_balance =  balance + unrealized_gain_loss
         else:
@@ -179,7 +176,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_ids = []
         # over revaluation
         if amount >= 0.01:
-            # Todo return User errors if no proper accounts
             reval_gain_account = company.revaluation_gain_account_id
             if reval_gain_account:
 
@@ -210,7 +206,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         # under revaluation
         elif amount <= -0.01:
-            # Todo return User errors if no proper accounts
             amount = -amount
             reval_loss_account = company.revaluation_loss_account_id
             if reval_loss_account:
@@ -253,7 +248,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         account_obj = self.env['account.account']
 
-        # todo move to separate methods
         company = self.journal_id.company_id or self.env.user.company_id
         if (not company.revaluation_loss_account_id and
             not company.revaluation_gain_account_id and
@@ -284,6 +278,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         # Get balance sums
         account_sums = account_ids.compute_revaluations(self.revaluation_date)
+
         for account_id, account_tree in account_sums.iteritems():
             for currency_id, currency_tree in account_tree.iteritems():
                 for partner_id, sums in currency_tree.iteritems():
