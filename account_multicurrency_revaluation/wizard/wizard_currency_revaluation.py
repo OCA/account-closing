@@ -142,7 +142,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         if foreign_balance:
             adjusted_balance = currency.compute(foreign_balance, cp_currency)
             unrealized_gain_loss = adjusted_balance - balance
-            # revaluated_balance =  balance + unrealized_gain_loss
         else:
             if balance:
                 if currency_id != cp_currency.id:
