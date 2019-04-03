@@ -39,6 +39,11 @@ msgid "<b>TOTAL</b>"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
+msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
 msgstr ""
