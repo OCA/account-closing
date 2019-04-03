@@ -46,6 +46,13 @@ msgid "<b>TOTAL</b>"
 msgstr "<b>TOTAL</b>"
 
 #. module: account_multicurrency_revaluation
+#: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
 msgstr "Compte"
@@ -437,7 +444,8 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Revaluations entries will be created as 'To Be Reversed'."
-msgstr "Les écritures de réévaluation seront créées comme \"À être inversées\"."
+msgstr ""
+"Les écritures de réévaluation seront créées comme \"À être inversées\"."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_reversable_revaluations
