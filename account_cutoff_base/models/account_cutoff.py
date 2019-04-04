@@ -24,15 +24,15 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_move_label(self):
-        type = self._context.get('default_type')
+        label_type = self._context.get('default_label_type')
         label = ''
-        if type == 'accrued_expense':
+        if label_type == 'accrued_expense':
             label = _('Accrued Expense')
-        elif type == 'accrued_revenue':
+        elif label_type == 'accrued_revenue':
             label = _('Accrued Revenue')
-        elif type == 'prepaid_revenue':
+        elif label_type == 'prepaid_revenue':
             label = _('Prepaid Revenue')
-        elif type == 'prepaid_expense':
+        elif label_type == 'prepaid_expense':
             label = _('Prepaid Expense')
         return label
 
