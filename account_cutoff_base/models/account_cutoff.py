@@ -5,6 +5,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from dateutil.relativedelta import relativedelta
+from odoo.tools import float_round
 
 
 class AccountCutoff(models.Model):
@@ -139,7 +140,9 @@ class AccountCutoff(models.Model):
         amount_total = 0
         move_label = self.move_label
         merge_keys = self._get_merge_keys()
+        prec_r = self.company_currency_id.rounding
         for merge_values, amount in to_provision.items():
+            amount = float_round(amount, precision_rounding=prec_r)
             vals = {
                 'name': move_label,
                 'debit': amount < 0 and amount * -1 or 0,
@@ -151,7 +154,8 @@ class AccountCutoff(models.Model):
             amount_total += amount
 
         # add counter-part
-        counterpart_amount = amount_total * -1
+        counterpart_amount = float_round(
+            amount_total * -1, precision_rounding=prec_r)
         movelines_to_create.append((0, 0, {
             'account_id': self.cutoff_account_id.id,
             'name': move_label,
