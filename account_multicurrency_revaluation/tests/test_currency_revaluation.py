@@ -142,8 +142,7 @@ class TestCurrencyRevaluation(TransactionCase):
         # Validate invoice
         invoice.action_invoice_open()
 
-        payment_method = ref('account_multicurrency_revaluation.'
-                             'account_payment_method_manual_in')
+        payment_method = ref('account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
