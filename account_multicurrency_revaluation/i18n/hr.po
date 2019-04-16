@@ -119,7 +119,7 @@ msgid "Created on"
 msgstr "Kreirano"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:326
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:323
 #, python-format
 msgid "Created revaluation lines"
 msgstr ""
@@ -128,11 +128,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized
 msgid "Curr. Balance YTD"
 msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
-msgid "Currency"
-msgstr "Valuta"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized
@@ -261,7 +256,7 @@ msgid "Multicurrency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:277
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:273
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -269,19 +264,13 @@ msgid ""
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:336
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:333
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/model/res_currency.py:23
-#, python-format
-msgid "No rate found for the currency: %s at the date: %s"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:262
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:258
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -489,3 +478,6 @@ msgstr "unrealized.report.printer"
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
 msgid "wizard.currency.revaluation"
 msgstr "wizard.currency.revaluation"
+
+#~ msgid "Currency"
+#~ msgstr "Valuta"
