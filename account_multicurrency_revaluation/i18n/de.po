@@ -125,7 +125,7 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:343
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Erzeugte Neubewertungspositionen"
@@ -134,11 +134,6 @@ msgstr "Erzeugte Neubewertungspositionen"
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
 msgstr "Währung des Saldo GJ bis dato"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
-msgid "Currency"
-msgstr "Währung"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -266,7 +261,7 @@ msgid "Multicurrency revaluation"
 msgstr "Mehrwährungsneubewertung"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:297
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:293
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -276,19 +271,13 @@ msgstr ""
 "'Währungsneubewertung zulassen' für mindestens ein Konto in Kontostammblatt."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:356
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:353
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr "Es wurde keine Buchhaltungsbeleg gebucht."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/model/res_currency.py:22
-#, python-format
-msgid "No rate found for the currency: %s at the date: %s"
-msgstr "Kein Kurs zur Währung: %s zum Datum: %s gefunden"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:282
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:278
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -488,3 +477,9 @@ msgstr "unrealized.report.printer"
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
 msgid "wizard.currency.revaluation"
 msgstr "wizard.currency.revaluation"
+
+#~ msgid "Currency"
+#~ msgstr "Währung"
+
+#~ msgid "No rate found for the currency: %s at the date: %s"
+#~ msgstr "Kein Kurs zur Währung: %s zum Datum: %s gefunden"

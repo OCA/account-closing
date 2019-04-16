@@ -126,7 +126,7 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:346
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:343
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Lignes créées par la réévaluation"
@@ -135,11 +135,6 @@ msgstr "Lignes créées par la réévaluation"
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
 msgstr "Balance annuelle à ce jour en devises"
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
-msgid "Currency"
-msgstr "Devise"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -279,7 +274,7 @@ msgid "Multicurrency revaluation"
 msgstr "Réévaluation multi-devises"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:297
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:293
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -289,19 +284,13 @@ msgstr ""
 "réévaluation de devise' pour au moins un compte dans le formulaire du compte."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:356
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:353
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr "Aucune pièce n'a été comptabilisée."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/model/res_currency.py:22
-#, python-format
-msgid "No rate found for the currency: %s at the date: %s"
-msgstr "Pas de taux trouvé pour la devise : %s à la date : %s"
-
-#. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:282
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:278
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -502,3 +491,9 @@ msgstr "unrealized.report.printer"
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
 msgid "wizard.currency.revaluation"
 msgstr "wizard.currency.revaluation"
+
+#~ msgid "Currency"
+#~ msgstr "Devise"
+
+#~ msgid "No rate found for the currency: %s at the date: %s"
+#~ msgstr "Pas de taux trouvé pour la devise : %s à la date : %s"
