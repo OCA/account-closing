@@ -108,8 +108,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_move.post()
         return [x.id for x in created_move.line_ids]
 
-    @api.model
-    def _compute_unrealized_currency_gl(self, currency_id, balances, form):
+    @api.multi
+    def _compute_unrealized_currency_gl(self, currency_id, balances):
         """
         Update data dict with the unrealized currency gain and loss
         plus add 'currency_rate' which is the value used for rate in
@@ -126,22 +126,18 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         # Compute unrealized gain loss
         ctx_rate = context.copy()
-        ctx_rate['date'] = form.revaluation_date
-        cp_currency = form.journal_id.company_id.currency_id
+        ctx_rate['date'] = self.revaluation_date
+        cp_currency = self.journal_id.company_id.currency_id
 
-        currency = currency_obj.browse(currency_id)
+        currency = currency_obj.browse(currency_id).with_context(ctx_rate)
 
         foreign_balance = adjusted_balance = balances.get(
             'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
         unrealized_gain_loss = 0.0
         if foreign_balance:
-            ctx_rate['revaluation'] = True
-            adjusted_balance = currency.with_context(ctx_rate).compute(
-                foreign_balance, cp_currency
-            )
+            adjusted_balance = currency.compute(foreign_balance, cp_currency)
             unrealized_gain_loss = adjusted_balance - balance
-            # revaluated_balance =  balance + unrealized_gain_loss
         else:
             if balance:
                 if currency_id != cp_currency.id:
@@ -310,7 +306,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     # Update sums with compute amount currency balance
                     diff_balances = self._compute_unrealized_currency_gl(
                         currency_id,
-                        sums, self)
+                        sums
+                    )
                     account_sums[account_id][currency_id][partner_id].\
                         update(diff_balances)
 
