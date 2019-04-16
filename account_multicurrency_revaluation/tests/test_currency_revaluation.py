@@ -27,7 +27,7 @@ class TestCurrencyRevaluation(TransactionCase):
         data = {
             'revaluation_date': '2017-03-15',
             'journal_id': self.reval_journal.id,
-            'label': '[%(account)s] wiz_test',
+            'label': '[%(account)s, %(rate)s] wiz_test',
         }
         wiz = wizard.create(data)
         result = wiz.revaluate_currency()
@@ -42,6 +42,11 @@ class TestCurrencyRevaluation(TransactionCase):
         self.assertEquals(len(reval_move_lines), 8)
 
         for reval_line in reval_move_lines:
+
+            label = reval_line.name
+            rate = label[label.find(',') + 1:label.find(']')].strip()
+            self.assertEqual(rate, '2.5')
+
             if reval_line.account_id.name == 'Account Liquidity USD':
                 self.assertFalse(reval_line.partner_id)
                 self.assertEquals(reval_line.credit, 0.0)
