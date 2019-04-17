@@ -5,7 +5,6 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.tools import float_round
 
 
 class AccountCutoff(models.Model):
@@ -44,9 +43,7 @@ class AccountCutoff(models.Model):
             'Should never happen. Total days should always be > 0'
         cutoff_amount = (aml.credit - aml.debit) *\
             prepaid_days / float(total_days)
-        precision_rounding = self.company_currency_id.rounding
-        cutoff_amount = float_round(
-            cutoff_amount, precision_rounding=precision_rounding)
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here
         if aml.account_id.id in mapping:
             cutoff_account_id = mapping[aml.account_id.id]
@@ -94,8 +91,7 @@ class AccountCutoff(models.Model):
                         raise UserError(_(
                             "Missing 'Accrued Revenue Tax Account' "
                             "on tax '%s'") % tax.display_name)
-                tamount = float_round(
-                    tax_line['amount'], precision_rounding=precision_rounding)
+                tamount = self.company_currency_id.round(tax_line['amount'])
                 res['tax_line_ids'].append((0, 0, {
                     'tax_id': tax_line['id'],
                     'base': cutoff_amount,
