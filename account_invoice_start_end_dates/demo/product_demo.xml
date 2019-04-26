@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013-2016 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo noupdate="1">
+
+    <record id="product_insurance_contract_demo" model="product.product">
+        <field name="name">Car Insurance</field>
+        <field name="default_code">CARINSUR</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="must_have_dates" eval="True" />
+        <field name="sale_ok" eval="True" />
+        <field name="list_price" eval="1200.0"/>
+        <field name="standard_price" eval="600.0"/>
+    </record>
+
+    <record id="product_maintenance_contract_demo" model="product.product">
+        <field name="name">Maintenance contract</field>
+        <field name="default_code">MAINTENANCE</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="must_have_dates" eval="True" />
+        <field name="sale_ok" eval="True" />
+        <field name="list_price" eval="2400.0"/>
+        <field name="standard_price" eval="1200.0"/>
+    </record>
+
+</odoo>

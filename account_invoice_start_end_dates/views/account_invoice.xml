@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013-2016 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">prepaid.cutoff.invoice_form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_analytic_id']" position="after">
+                <field name="start_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="end_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="must_have_dates" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="name">prepaid.cutoff.invoice_supplier_form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_analytic_id']" position="after">
+                <field name="start_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="end_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="must_have_dates" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_line_form" model="ir.ui.view">
+        <field name="name">prepaid.cutoff.invoice_line_form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']/.." position="after">
+                <group name="start_end_dates">
+                    <field name="start_date"
+                        attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                    <field name="end_date"
+                        attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                    <field name="must_have_dates" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_line_tree" model="ir.ui.view">
+        <field name="name">prepaid.cutoff.invoice_line_tree</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="account_id" position="after">
+                <field name="start_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="end_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"/>
+                <field name="must_have_dates" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>
