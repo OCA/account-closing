@@ -174,7 +174,7 @@ msgid "Warning"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:124
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:125
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr ""
