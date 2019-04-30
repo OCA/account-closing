@@ -140,6 +140,7 @@ class AccountCutoff(models.Model):
         move_label = self.move_label
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
+            amount = self.company_currency_id.round(amount)
             vals = {
                 'name': move_label,
                 'debit': amount < 0 and amount * -1 or 0,
@@ -151,7 +152,8 @@ class AccountCutoff(models.Model):
             amount_total += amount
 
         # add counter-part
-        counterpart_amount = amount_total * -1
+        counterpart_amount = self.company_currency_id.round(
+            amount_total * -1)
         movelines_to_create.append((0, 0, {
             'account_id': self.cutoff_account_id.id,
             'name': move_label,

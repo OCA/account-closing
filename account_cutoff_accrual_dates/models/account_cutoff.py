@@ -43,6 +43,7 @@ class AccountCutoff(models.Model):
             'Should never happen. Total days should always be > 0'
         cutoff_amount = (aml.credit - aml.debit) *\
             prepaid_days / float(total_days)
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here
         if aml.account_id.id in mapping:
             cutoff_account_id = mapping[aml.account_id.id]
@@ -90,13 +91,14 @@ class AccountCutoff(models.Model):
                         raise UserError(_(
                             "Missing 'Accrued Revenue Tax Account' "
                             "on tax '%s'") % tax.display_name)
+                tamount = self.company_currency_id.round(tax_line['amount'])
                 res['tax_line_ids'].append((0, 0, {
                     'tax_id': tax_line['id'],
                     'base': cutoff_amount,
-                    'amount': tax_line['amount'],
+                    'amount': tamount,
                     'sequence': tax_line['sequence'],
                     'cutoff_account_id': tax_account.id,
-                    'cutoff_amount': tax_line['amount'],
+                    'cutoff_amount': tamount,
                     }))
         return res
 

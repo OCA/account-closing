@@ -88,6 +88,7 @@ class AccountCutoff(models.Model):
             'Should never happen. Total days should always be > 0'
         cutoff_amount = (aml.debit - aml.credit) *\
             prepaid_days / float(total_days)
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here
         if aml.account_id.id in mapping:
             cutoff_account_id = mapping[aml.account_id.id]
