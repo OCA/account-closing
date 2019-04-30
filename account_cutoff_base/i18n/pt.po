@@ -432,7 +432,7 @@ msgid "Taxes"
 msgstr "Impostos"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:217
+#: code:addons/account_cutoff_base/models/account_cutoff.py:219
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -442,7 +442,7 @@ msgstr ""
 "função."
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:221
+#: code:addons/account_cutoff_base/models/account_cutoff.py:223
 #, python-format
 msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
@@ -481,7 +481,7 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:256
+#: code:addons/account_cutoff_base/models/account_cutoff.py:258
 #, python-format
 msgid "You cannot delete cutoff records that are not in draft state."
 msgstr ""
