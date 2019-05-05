@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 23:13+0000\n"
-"PO-Revision-Date: 2019-05-05 00:02+0000\n"
+"PO-Revision-Date: 2019-05-05 15:02+0000\n"
 "Last-Translator: Katerina Katapodi <katerinakatapodi@gmail.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -667,17 +667,20 @@ msgid ""
 "This screen will help you to identify the problem, showing you\n"
 "                        the unbalanced journal entry:"
 msgstr ""
+"Cet ecran va vous aider a identifier le probleme, vous montrant\n"
+"...........................l'entree du journal non-equilibre"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid ""
 "This will remove all the closing moves. Are you sure you want to continue?"
 msgstr ""
+"Ca va eliminer tous les deplacements pour fermer. Voulez vous continuer?"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_date_end
 msgid "To date"
-msgstr ""
+msgstr "La date"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,closing_type_default:0
@@ -687,103 +690,105 @@ msgstr ""
 #: selection:account.fiscalyear.closing.type.abstract,closing_type:0
 #: selection:account.fiscalyear.closing.type.template,closing_type:0
 msgid "Un-reconciled"
-msgstr ""
+msgstr "Non-equilibre"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:298
 #, python-format
 msgid "Unbalanced journal entry found"
-msgstr ""
+msgstr "Entree du journal non equilibree a ete trouvee"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_move_id
 msgid "Unbalanced move"
-msgstr ""
+msgstr "Deplacement non-equilibre"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_ids
 msgid "Unbalanced move lines"
-msgstr ""
+msgstr "Lignes de deplacement non-equilibre"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_code
 msgid "Unique code"
-msgstr ""
+msgstr "Code unique"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_year
 msgid "Year"
-msgstr ""
+msgstr "An"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:398
 #, python-format
 msgid "You can't remove any closing that is not in draft or cancelled state."
 msgstr ""
+"Vous ne pouvez pas eliminer tout deplacement a fermer qui n'est pas archive "
+"ou annule."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 msgid "account.fiscalyear.closing.abstract"
-msgstr ""
+msgstr "compte.anfiscal.abstrait.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config
 msgid "account.fiscalyear.closing.config"
-msgstr ""
+msgstr "compte.anfiscal.config.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_abstract
 msgid "account.fiscalyear.closing.config.abstract"
-msgstr ""
+msgstr "compte.anfiscal.config.abstrait.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_template
 msgid "account.fiscalyear.closing.config.template"
-msgstr ""
+msgstr "compte.anfiscal.modele.config.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping
 msgid "account.fiscalyear.closing.mapping"
-msgstr ""
+msgstr "compte.anfiscal.mappage.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_abstract
 msgid "account.fiscalyear.closing.mapping.abstract"
-msgstr ""
+msgstr "compte.anfiscal.mappage.a fermer.abstrait"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_template
 msgid "account.fiscalyear.closing.mapping.template"
-msgstr ""
+msgstr "compte.anfiscal.modele.mappage.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_template
 msgid "account.fiscalyear.closing.template"
-msgstr ""
+msgstr "compte.anfiscal.modele.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type
 msgid "account.fiscalyear.closing.type"
-msgstr ""
+msgstr "compte.anfiscal.type.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_abstract
 msgid "account.fiscalyear.closing.type.abstract"
-msgstr ""
+msgstr "compte.anfiscal.type.abstrait.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_template
 msgid "account.fiscalyear.closing.type.template"
-msgstr ""
+msgstr "compte.anfiscal.type. modele. a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move
 msgid "account.fiscalyear.closing.unbalanced.move"
-msgstr ""
+msgstr "compte.anfiscal.deplacement.non-equilibre.a fermer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move_line
 msgid "account.fiscalyear.closing.unbalanced.move.line"
-msgstr ""
+msgstr "compte.anfiscal. ligne.deplacement.non-equilibree. a fermer"
