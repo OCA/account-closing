@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-03 03:53+0000\n"
-"PO-Revision-Date: 2019-05-03 16:02+0000\n"
+"PO-Revision-Date: 2019-05-08 01:02+0000\n"
 "Last-Translator: Katerina Katapodi <katerinakatapodi@gmail.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -38,41 +38,45 @@ msgid ""
 "operation will be to remove any existing balance on the source accounts with "
 "an equivalent counterpart in the same account."
 msgstr ""
+"Mode de code du compte pour mapper le compte destinataire. Seulement la "
+"premiere combinaison sera consideree. Si ce champ n'est pas rempli, "
+"l'operation performee sera d'eliminer toute equilibre existant sur les "
+"comptes source par une valeur negative au meme compte."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template_src_accounts
 msgid "Account code pattern for the mapping source accounts"
-msgstr ""
+msgstr "Modele de code du compte pour mapper les comptes source"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_mapping_ids
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_mapping_ids
 msgid "Account mappings"
-msgstr ""
+msgstr "Mappages de comptes"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_abstract_account_type_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_account_type_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template_account_type_id
 msgid "Account type"
-msgstr ""
+msgstr "Type de comptes"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Accounts closing types"
-msgstr ""
+msgstr "Types de cloture de comptes"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Accounts mapping"
-msgstr ""
+msgstr "Mappage de comptes"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template_chart_template_ids
 msgid "Available for"
-msgstr ""
+msgstr "Disponible pour"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,closing_type_default:0
@@ -82,17 +86,17 @@ msgstr ""
 #: selection:account.fiscalyear.closing.type.abstract,closing_type:0
 #: selection:account.fiscalyear.closing.type.template,closing_type:0
 msgid "Balance"
-msgstr ""
+msgstr "Solde"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Calculate"
-msgstr ""
+msgstr "Calculer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_calculation_date
 msgid "Calculation date"
-msgstr ""
+msgstr "Date de calcule"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
@@ -103,19 +107,19 @@ msgstr "Annuler"
 #: selection:account.fiscalyear.closing,state:0
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Cancelled"
-msgstr ""
+msgstr "Annule"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_chart_template_id
 msgid "Chart template"
-msgstr ""
+msgstr "Modele de charte"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_check_draft_moves
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_check_draft_moves
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template_check_draft_moves
 msgid "Check draft moves"
-msgstr ""
+msgstr "Verifier deplacements archives"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_check_draft_moves
@@ -126,41 +130,44 @@ msgid ""
 "closed. Non-confirmed moves won't be taken in account on the closing "
 "operations."
 msgstr ""
+"Verifications qu'il n'y a pas de deplacements archives sur l'an fiscal qui "
+"est ferme. Les deplacements non confirmes ne seront pas tenus compte aux "
+"operations de cloture."
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid "Close"
-msgstr ""
+msgstr "Cloture"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,move_type:0
 #: selection:account.fiscalyear.closing.config.abstract,move_type:0
 #: selection:account.fiscalyear.closing.config.template,move_type:0
 msgid "Closing"
-msgstr ""
+msgstr "Cloture"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_closing_template_id
 msgid "Closing template"
-msgstr ""
+msgstr "Modele de cloture"
 
 #. module: account_fiscal_year_closing
 #: model:ir.actions.act_window,name:account_fiscal_year_closing.action_account_fiscalyear_closing_template
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing_template
 msgid "Closing templates"
-msgstr ""
+msgstr "Modeles de cloture"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move_closing_type
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_move_filter
 msgid "Closing type"
-msgstr ""
+msgstr "Type de cloture"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_closing_type_ids
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_closing_type_ids
 msgid "Closing types"
-msgstr ""
+msgstr "Types de cloture"
 
 #. module: account_fiscal_year_closing
 #: sql_constraint:account.fiscalyear.closing.config:0
@@ -168,7 +175,7 @@ msgstr ""
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:428
 #, python-format
 msgid "Code must be unique per fiscal year closing!"
-msgstr ""
+msgstr "Chaque code doit etre different par an fiscal de cloture!"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_company_id
@@ -183,12 +190,12 @@ msgstr "Société"
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_inverse
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_inverse
 msgid "Configuration code to inverse its move"
-msgstr ""
+msgstr "Code de configuration pour le deplacer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Confirm and post moves"
-msgstr ""
+msgstr "Confirmez et postez des deplacements"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_create_uid
@@ -241,7 +248,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template_closing_type
 msgid "Default closing type"
-msgstr ""
+msgstr "Type de cloture par defaut"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_name
@@ -260,7 +267,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_dest_account_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template_dest_account
 msgid "Destination account"
-msgstr ""
+msgstr "Compte destinataire"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_display_name
@@ -285,45 +292,45 @@ msgstr "Nom à afficher"
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Draft"
-msgstr ""
+msgstr "Archive"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_enabled
 msgid "Enabled"
-msgstr ""
+msgstr "Active"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config.template,move_date:0
 msgid "First date of the opening period"
-msgstr ""
+msgstr "Premiere date de la periode de cloture"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_fyc_id
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing_configuration
 msgid "Fiscal Year Closing"
-msgstr ""
+msgstr "Cloture de l'An Fiscal"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_template_id
 msgid "Fiscal Year Closing Template"
-msgstr ""
+msgstr "Modele de Cloture d'An Economique"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Fiscal closing"
-msgstr ""
+msgstr "Cloture fiscale"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:372
 #, python-format
 msgid "Fiscal closing move lines"
-msgstr ""
+msgstr "Lignes de deplacement de cloture fiscale"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:361
 #, python-format
 msgid "Fiscal closing moves"
-msgstr ""
+msgstr "Deplacements de cloture fiscale"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing
@@ -340,19 +347,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_fyc_config_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_fyc_config_id
 msgid "Fiscal year closing config"
-msgstr ""
+msgstr "Config. de cloture d'an fiscal"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template_template_config_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template_template_config_id
 msgid "Fiscal year closing config template"
-msgstr ""
+msgstr "Modele de config. de cloture d'an fiscal"
 
 #. module: account_fiscal_year_closing
 #: model:ir.actions.act_window,name:account_fiscal_year_closing.action_account_fiscalyear_closing
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing
 msgid "Fiscal year closings"
-msgstr ""
+msgstr "Cloture de l'an fiscal"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_date_start
@@ -368,6 +375,12 @@ msgid ""
 "                        to find the problem, fix it and then press again on "
 "\"Calculate\"."
 msgstr ""
+"En creant des deplacements de cloture, un deplacement non-equilibre a ete "
+"detecte.\n"
+"................Vous devez verifier la configuration de cloture ou vos "
+"entrees journales\n"
+".................pour trouver le probleme, le corriger et puis pressez sur "
+"''Calculate'' de nouveau."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract_id
@@ -390,7 +403,7 @@ msgstr "ID"
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "In process"
-msgstr ""
+msgstr "En proces"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_year
@@ -398,18 +411,20 @@ msgid ""
 "Introduce here the year to close. If the fiscal year is between several "
 "natural years, you have to put here the last one."
 msgstr ""
+"Introduisez ici l'an de cloture. Si l'an fiscal est entre quelques ans "
+"physiques, vous devez mettre ici le dernier."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_inverse
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_inverse
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_inverse
 msgid "Inverse config"
-msgstr ""
+msgstr "Config. inverse"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_is_new_template
 msgid "Is new template"
-msgstr ""
+msgstr "C'est un nouveau modele"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_journal_id
@@ -468,42 +483,42 @@ msgstr "Dernière mise à jour le"
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config.template,move_date:0
 msgid "Last date of the ending period"
-msgstr ""
+msgstr "Derniere date de la periode de fin"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Load template"
-msgstr ""
+msgstr "Envoyez modele"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,move_type:0
 #: selection:account.fiscalyear.closing.config.abstract,move_type:0
 #: selection:account.fiscalyear.closing.config.template,move_type:0
 msgid "Loss & Profit"
-msgstr ""
+msgstr "Perte & Profit"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_move_id
 msgid "Move"
-msgstr ""
+msgstr "Deplacer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_move_date
 msgid "Move date"
-msgstr ""
+msgstr "Date de deplacement"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_move_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_move_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_move_type
 msgid "Move type"
-msgstr ""
+msgstr "Deplacer type"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_move_ids
 msgid "Moves"
-msgstr ""
+msgstr "Deplacements"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_move_config_ids
@@ -511,30 +526,30 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Moves configuration"
-msgstr ""
+msgstr "Deplacements configures"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_name
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:148
 #, python-format
 msgid "No destination account '%s' found."
-msgstr ""
+msgstr "Aucun compte destinataire '%s n'a ete trouve."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_move.py:21
 #, python-format
 msgid "None"
-msgstr ""
+msgstr "Rien"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:276
 #, python-format
 msgid "One or more draft moves found: \n"
-msgstr ""
+msgstr "Plusieurs archives ont ete trouves: \n"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,move_type:0
@@ -546,7 +561,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_date_opening
 msgid "Opening date"
-msgstr ""
+msgstr "Date a ouvrir"
 
 #. module: account_fiscal_year_closing
 #: selection:account.fiscalyear.closing.config,move_type:0
@@ -588,7 +603,7 @@ msgstr ""
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_reconcile
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_reconcile
 msgid "Reconcile inverse move"
-msgstr ""
+msgstr "Equilibrer deplacement inverse"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_ref
@@ -599,14 +614,14 @@ msgstr ""
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:586
 #, python-format
 msgid "Result"
-msgstr ""
+msgstr "Resultat"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_sequence
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_sequence
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Suite"
 
 #. module: account_fiscal_year_closing
 #: model:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
@@ -678,24 +693,24 @@ msgstr ""
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:298
 #, python-format
 msgid "Unbalanced journal entry found"
-msgstr ""
+msgstr "Entree journale non-equilibree a ete trouvee"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_move_id
 msgid "Unbalanced move"
-msgstr ""
+msgstr "Deplacement non-equilibre"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line_ids
 msgid "Unbalanced move lines"
-msgstr ""
+msgstr "Lignes de deplacement non-equilibrees"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract_code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template_code
 msgid "Unique code"
-msgstr ""
+msgstr "Meme code"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_year
@@ -711,7 +726,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 msgid "account.fiscalyear.closing.abstract"
-msgstr ""
+msgstr "compte.anfiscal.cloture.abstrait"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config
@@ -721,7 +736,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_abstract
 msgid "account.fiscalyear.closing.config.abstract"
-msgstr ""
+msgstr "compte.anfiscal.cloture.config.abstrait"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_template
@@ -731,7 +746,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping
 msgid "account.fiscalyear.closing.mapping"
-msgstr ""
+msgstr "compte.anfiscal.cloture.mappage"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_abstract
@@ -741,7 +756,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_template
 msgid "account.fiscalyear.closing.mapping.template"
-msgstr ""
+msgstr "compte.anfiscal.cloture.mappage.modele"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_template
