@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-03 03:53+0000\n"
-"PO-Revision-Date: 2019-05-06 17:02+0000\n"
+"PO-Revision-Date: 2019-05-07 16:03+0000\n"
 "Last-Translator: Katerina Katapodi <katerinakatapodi@gmail.com>\n"
 "Language-Team: French (France) (https://www.transifex.com/oca/teams/23907/"
 "fr_FR/)\n"
@@ -449,7 +449,7 @@ msgstr "Source"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_state
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "State"
-msgstr ""
+msgstr "Etat"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_state
@@ -457,32 +457,34 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
+"Etat de cloture. Quand l'Entree Journale est creee, l'etat est mis a 'Pret' "
+"et les champs sont a lire seulement."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_tax_id
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Tax"
-msgstr ""
+msgstr "Taxe"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line_amount
 msgid "Tax Amount"
-msgstr ""
+msgstr "Montant de Taxe"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_amount
 msgid "Tax Amount in the currency of the PO."
-msgstr ""
+msgstr "Le Montant de Taxes dans la Monnaie du PO."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line_cutoff_amount
 msgid "Tax Cut-off Amount in the company currency."
-msgstr ""
+msgstr "Le Montant de Cloture des Taxes dans la monnaie de la societe."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_tax_ids
 msgid "Taxes"
-msgstr ""
+msgstr "Taxes"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:212
@@ -491,12 +493,16 @@ msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
 msgstr ""
+"L'Entree Journale de la Cloture existe deja. Vous devez l'eliminer avant "
+"d'operer cette fonction."
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:216
 #, python-format
 msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
+"Il n'y a pas de lignes sur cette Cloture, ainsi on ne peut pas creer une "
+"Entree Journale."
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -505,6 +511,9 @@ msgid ""
 "revenue that is not the same as the original expense/revenue account, using "
 "the same concept as the fiscal positions."
 msgstr ""
+"Ces mappages des comptes vous permettent d'avoir un compte de cloture de "
+"depense/revenue qui n'est pas le meme que le compte original de depense/"
+"revenue, utilisant le meme concepte que les positions fiscales."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_move_label
@@ -512,23 +521,26 @@ msgid ""
 "This label will be written in the 'Name' field of the Cut-off Account Move "
 "Lines and in the 'Reference' field of the Cut-off Account Move."
 msgstr ""
+"Ce titre sera ecrit au champ 'Nom' des Lignes de Deplacement du Compte de "
+"Cloture dans le champ 'Reference' du Deplacement du Compte de Cloture."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_total_cutoff_amount
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "Montant Total de Cloture"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_type
+#, fuzzy
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messages non Lus"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Compteur des Messages Non Lus"
