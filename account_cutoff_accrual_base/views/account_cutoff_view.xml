@@ -28,7 +28,7 @@
     <field name="model">account.cutoff.line</field>
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree"/>
     <field name="arch" type="xml">
-        <field name="analytic_account_id" position="after">
+        <field name="analytic_account_code" position="after">
             <field name="quantity"/>
             <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
         </field>
@@ -39,10 +39,9 @@
 <record id="account_expense_accrual_action" model="ir.actions.act_window">
     <field name="name">Accrued Expense</field>
     <field name="res_model">account.cutoff</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('type', '=', 'accrued_expense')]</field>
-    <field name="context">{'default_type': 'accrued_expense'}</field>
+    <field name="domain">[('cutoff_type', '=', 'accrued_expense')]</field>
+    <field name="context">{'cutoff_type': 'accrued_expense'}</field>
     <field name="help" type="html">
         <p class="oe_view_nocontent_create">
         Click to start preparing a new expense accrual.
@@ -62,10 +61,9 @@
 <record id="account_revenue_accrual_action" model="ir.actions.act_window">
     <field name="name">Accrued Revenue</field>
     <field name="res_model">account.cutoff</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('type', '=', 'accrued_revenue')]</field>
-    <field name="context">{'default_type': 'accrued_revenue'}</field>
+    <field name="domain">[('cutoff_type', '=', 'accrued_revenue')]</field>
+    <field name="context">{'cutoff_type': 'accrued_revenue'}</field>
     <field name="help" type="html">
         <p class="oe_view_nocontent_create">
         Click to start preparing a new revenue accrual.

@@ -13,7 +13,7 @@
     <field name="model">account.tax</field>
     <field name="inherit_id" ref="account.view_tax_form" />
     <field name="arch" type="xml">
-        <field name="active" position="before">
+        <field name="tax_group_id" position="after">
             <field name="account_accrued_revenue_id" attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"/>
             <field name="account_accrued_expense_id" attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"/>
         </field>

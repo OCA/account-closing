@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2013-2018 Akretion France
+# Copyright 2013-2019 Akretion France
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -15,8 +14,8 @@ class AccountCutoff(models.Model):
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         ato = self.env['account.tax']
         dpo = self.env['decimal.precision']
-        assert self.type in ('accrued_expense', 'accrued_revenue'),\
-            "The field 'type' has a wrong value"
+        assert self.cutoff_type in ('accrued_expense', 'accrued_revenue'),\
+            "The field 'cutoff_type' has a wrong value"
         qty_prec = dpo.precision_get('Product Unit of Measure')
         cur_rprec = vdict['currency'].rounding
         qty = vdict['precut_delivered_qty'] - vdict['precut_invoiced_qty']
@@ -25,7 +24,7 @@ class AccountCutoff(models.Model):
 
         company_currency = self.company_currency_id
         currency = vdict['currency']
-        sign = self.type == 'accrued_expense' and -1 or 1
+        sign = self.cutoff_type == 'accrued_expense' and -1 or 1
         amount = qty * vdict['price_unit'] * sign
         amount_company_currency = vdict['currency'].with_context(
             date=self.cutoff_date).compute(amount, company_currency)
@@ -38,10 +37,10 @@ class AccountCutoff(models.Model):
             tax = ato.browse(tax_line['id'])
             if float_is_zero(tax_line['amount'], precision_rounding=cur_rprec):
                 continue
-            if self.type == 'accrued_expense':
+            if self.cutoff_type == 'accrued_expense':
                 tax_accrual_account_id = tax.account_accrued_expense_id.id
                 tax_account_field_label = _('Accrued Expense Tax Account')
-            elif self.type == 'accrued_revenue':
+            elif self.cutoff_type == 'accrued_revenue':
                 tax_accrual_account_id = tax.account_accrued_revenue_id.id
                 tax_account_field_label = _('Accrued Revenue Tax Account')
             if not tax_accrual_account_id:
@@ -86,7 +85,7 @@ class AccountCutoff(models.Model):
 
     def _picking_done_min_date(self):
         self.ensure_one()
-        cutoff_date_dt = fields.Date.from_string(self.cutoff_date)
+        cutoff_date_dt = self.cutoff_date
         min_date_dt = cutoff_date_dt - relativedelta(months=3)
         min_date = fields.Date.to_string(min_date_dt)
         return min_date
@@ -112,17 +111,14 @@ class AccountCutoff(models.Model):
             ilines = order_line.invoice_lines
             invoice_type = 'in_invoice'
         elif order_type == 'sale':
-            moves = self.env['stock.move']
-            for proc in order_line.procurement_ids:
-                for move in proc.move_ids:
-                    moves |= move
+            moves = order_line.move_ids
             ilines = self.env['account.invoice.line'].search([
                 ('sale_line_ids', 'in', order_line.id)])
             invoice_type = 'out_invoice'
         for move in moves:
             # TODO: improve comparaison of date and datetime
             # for our friends far away from GMT
-            if move.state == 'done' and move.date[:10] <= self.cutoff_date:
+            if move.state == 'done' and move.date.date() <= self.cutoff_date:
                 move_qty = move.product_uom._compute_quantity(
                     move.product_uom_qty, product_uom)
                 oline_dict[order_line]['precut_delivered_qty'] += move_qty
@@ -130,7 +126,7 @@ class AccountCutoff(models.Model):
         for iline in ilines:
             invoice = iline.invoice_id
             if (
-                    invoice.state in ('open', 'paid') and
+                    invoice.state in ('open', 'in_payment', 'paid') and
                     invoice.type == invoice_type and
                     float_compare(
                         iline.quantity, 0, precision_digits=qty_prec) > 0):
@@ -171,7 +167,7 @@ class AccountCutoff(models.Model):
                 price_unit = order_line.price_subtotal / oline_qty_puom
                 price_origin = '%s line ID %d' % (order.name, order_line.id)
                 currency = order.currency_id
-                analytic_account_id = order.project_id.id
+                analytic_account_id = order.analytic_account_id.id
                 taxes = order_line.tax_id
                 account = product.product_tmpl_id.\
                     _get_product_accounts()['income']
@@ -195,7 +191,7 @@ class AccountCutoff(models.Model):
     def stock_move_update_oline_dict(self, move_line, oline_dict):
         dpo = self.env['decimal.precision']
         qty_prec = dpo.precision_get('Product Unit of Measure')
-        if self.type == 'accrued_expense':
+        if self.cutoff_type == 'accrued_expense':
             if (
                     move_line.purchase_line_id and
                     move_line.purchase_line_id not in oline_dict and
@@ -204,16 +200,15 @@ class AccountCutoff(models.Model):
                         precision_digits=qty_prec)):
                 self.order_line_update_oline_dict(
                     move_line.purchase_line_id, 'purchase', oline_dict)
-        elif self.type == 'accrued_revenue':
+        elif self.cutoff_type == 'accrued_revenue':
             if (
-                    move_line.procurement_id and
-                    move_line.procurement_id.sale_line_id and
-                    move_line.procurement_id.sale_line_id not in oline_dict and
+                    move_line.sale_line_id and
+                    move_line.sale_line_id not in oline_dict and
                     not float_is_zero(
-                        move_line.procurement_id.sale_line_id.product_uom_qty,
+                        move_line.sale_line_id.product_uom_qty,
                         precision_digits=qty_prec)):
                 self.order_line_update_oline_dict(
-                    move_line.procurement_id.sale_line_id, 'sale', oline_dict)
+                    move_line.sale_line_id, 'sale', oline_dict)
 
     def get_lines(self):
         res = super(AccountCutoff, self).get_lines()
@@ -225,7 +220,7 @@ class AccountCutoff(models.Model):
             'accrued_revenue': 'outgoing',
             'accrued_expense': 'incoming',
             }
-        cutoff_type = self.type
+        cutoff_type = self.cutoff_type
         if cutoff_type not in pick_type_map:
             return res
 
@@ -256,7 +251,7 @@ class AccountCutoff(models.Model):
 
         # from pprint import pprint
         # pprint(oline_dict)
-        for vdict in oline_dict.itervalues():
+        for vdict in oline_dict.values():
             vals = self.picking_prepare_cutoff_line(vdict, account_mapping)
             if vals:
                 aclo.create(vals)

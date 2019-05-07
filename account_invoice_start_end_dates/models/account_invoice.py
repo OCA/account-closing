@@ -14,7 +14,6 @@ class AccountInvoiceLine(models.Model):
         related='product_id.must_have_dates', readonly=True
     )
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_start_end_dates(self):
         for invline in self:
@@ -76,7 +75,6 @@ class AccountInvoice(models.Model):
             move_line_dict['end_date'] = iline.end_date
         return res
 
-    @api.multi
     def action_move_create(self):
         """Check that products with must_have_dates=True have
         Start and End Dates"""

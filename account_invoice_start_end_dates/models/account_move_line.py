@@ -11,7 +11,6 @@ class AccountMoveLine(models.Model):
     start_date = fields.Date(index=True)
     end_date = fields.Date(index=True)
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_start_end_dates(self):
         for moveline in self:

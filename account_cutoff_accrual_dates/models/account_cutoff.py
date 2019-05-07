@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2013-2018 Akretion France
+# Copyright 2013-2019 Akretion France
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -13,7 +12,7 @@ class AccountCutoff(models.Model):
     @api.model
     def _get_default_source_journals(self):
         res = super(AccountCutoff, self)._get_default_source_journals()
-        cutoff_type = self._context.get('default_type')
+        cutoff_type = self._context.get('cutoff_type')
         mapping = {
             'accrued_expense': 'purchase',
             'accrued_revenue': 'sale',
@@ -73,19 +72,21 @@ class AccountCutoff(models.Model):
             tax_res = aml.tax_ids.compute_all(
                 cutoff_amount, product=aml.product_id, partner=aml.partner_id)
             for tax_line in tax_res['taxes']:
+                if not tax_line['amount']:
+                    continue
                 tax = ato.browse(tax_line['id'])
                 if tax.price_include:
                     raise UserError(_(
                         "Price included taxes such as '%s' are not "
                         "supported by the module account_cutoff_accrual_dates "
                         "for the moment.") % tax.display_name)
-                if self.type == 'accrued_expense':
+                if self.cutoff_type == 'accrued_expense':
                     tax_account = tax.account_accrued_expense_id
                     if not tax_account:
                         raise UserError(_(
                             "Missing 'Accrued Expense Tax Account' "
                             "on tax '%s'") % tax.display_name)
-                elif self.type == 'accrued_revenue':
+                elif self.cutoff_type == 'accrued_revenue':
                     tax_account = tax.account_accrued_revenue_id
                     if not tax_account:
                         raise UserError(_(
@@ -104,7 +105,7 @@ class AccountCutoff(models.Model):
 
     def get_lines(self):
         res = super(AccountCutoff, self).get_lines()
-        if self.type not in ['accrued_expense', 'accrued_revenue']:
+        if self.cutoff_type not in ['accrued_expense', 'accrued_revenue']:
             return res
         aml_obj = self.env['account.move.line']
         line_obj = self.env['account.cutoff.line']
@@ -124,7 +125,8 @@ class AccountCutoff(models.Model):
         # Search for account move lines in the source journals
         amls = aml_obj.search(domain)
         # Create mapping dict
-        mapping = mapping_obj._get_mapping_dict(self.company_id.id, self.type)
+        mapping = mapping_obj._get_mapping_dict(
+            self.company_id.id, self.cutoff_type)
 
         # Loop on selected account move lines to create the cutoff lines
         for aml in amls:

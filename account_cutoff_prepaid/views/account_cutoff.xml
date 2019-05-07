@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  Copyright 2013-2016 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
@@ -55,11 +56,8 @@
             <button name="create_move" position="attributes">
                 <attribute name="attrs">{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
             </button>
-            <button name="back2draft" position="after">
-                <button class="oe_highlight" name="get_prepaid_lines" string="Re-Generate Lines" type="object" states="draft" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-            </button>
             <field name="cutoff_date" position="after">
-                <field name="source_journal_ids" widget="many2many_tags" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="source_journal_ids" widget="many2many_tags"/>
             </field>
         </field>
     </record>
@@ -85,17 +83,17 @@
         <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form"/>
         <field name="arch" type="xml">
             <field name="parent_id" position="after">
-                <field name="move_line_id" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="move_date" invisible="'prepaid' not in context.get('cutoff_type', '-')" />
-                <field name="invoice_id" invisible="'prepaid' not in context.get('cutoff_type', '-')" />
+                <field name="move_line_id"/>
+                <field name="move_date"/>
+                <field name="invoice_id"/>
             </field>
             <field name="name" position="after">
-                <field name="start_date" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="end_date" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
             </field>
             <field name="cutoff_amount" position="before">
-                <field name="total_days" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="prepaid_days" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="total_days"/>
+                <field name="prepaid_days"/>
             </field>
         </field>
     </record>
@@ -106,13 +104,13 @@
         <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree"/>
         <field name="arch" type="xml">
             <field name="parent_id" position="after">
-                <field name="move_line_id" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="move_line_id"/>
             </field>
             <field name="analytic_account_code" position="after">
-                <field name="start_date" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="end_date" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="total_days" string="Days Total" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
-                <field name="prepaid_days" string="Days after Cut-off" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="total_days"/>
+                <field name="prepaid_days"/>
             </field>
         </field>
     </record>

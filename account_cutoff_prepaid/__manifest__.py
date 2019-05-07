@@ -15,7 +15,7 @@
         'account_invoice_start_end_dates',
     ],
     'data': [
-        'views/company.xml',
+        'views/res_config_settings.xml',
         'views/account_cutoff.xml',
     ],
     'images': [
