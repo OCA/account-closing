@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
 from . import company
-from . import account_config_settings
-from . import account
+from . import res_config_settings
+from . import account_tax
 from . import account_cutoff
