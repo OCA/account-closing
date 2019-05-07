@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+
+<record id="view_company_form" model="ir.ui.view">
+    <field name="name">account.prepaid.cutoff.company.form</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="account_cutoff_base.view_company_form" />
+    <field name="arch" type="xml">
+        <field name="default_cutoff_journal_id" position="after">
+            <field name="default_prepaid_revenue_account_id" />
+            <field name="default_prepaid_expense_account_id" />
+        </field>
+    </field>
+</record>
+
+
+</odoo>
