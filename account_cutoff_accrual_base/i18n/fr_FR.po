@@ -8,58 +8,59 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (France) (http://www.transifex.com/oca/OCA-account-"
-"closing-8-0/language/fr_FR/)\n"
+"PO-Revision-Date: 2019-05-08 16:02+0000\n"
+"Last-Translator: Katerina Katapodi <katerinakatapodi@gmail.com>\n"
+"Language-Team: French (France) (http://www.transifex.com/oca/"
+"OCA-account-closing-8-0/language/fr_FR/)\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Cloture du Compte"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Ligne de Cloture du Compte"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_accrual_taxes
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_accrual_taxes
 msgid "Accrual On Taxes"
-msgstr ""
+msgstr "Augmentation sur Taxes"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
-msgstr ""
+msgstr "Depense Accrue"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
 msgid "Accrued Expense Tax Account"
-msgstr ""
+msgstr "Compte de Taxes sur Depense Accru"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
 msgid "Accrued Revenue"
-msgstr ""
+msgstr "Revenue Accrue"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
 msgid "Accrued Revenue Tax Account"
-msgstr ""
+msgstr "Compte de Taxes de Revenue Accrue"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
-msgstr ""
+msgstr "Cliquez pour commencer a preparer les depenses augmentees"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
