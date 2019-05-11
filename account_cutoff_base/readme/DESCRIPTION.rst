@@ -1,7 +1,3 @@
-===================
-Account Cutoff Base
-===================
-
 This module contains models, fields and menu entries that are used by
 other cut-off modules ; it doesn't provide useful features by itself. You
 need to install other cut-off modules to get the useful features:
