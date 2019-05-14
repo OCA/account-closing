@@ -3,3 +3,4 @@
 * Stéphane Bidoul (ACSONE) <stephane.bidoul@acsone.eu>
 * Cédric Pigeon (ACSONE) <cedric.pigeon@acsone.eu>
 * Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
+* Souheil Bejaoui (ACSONE) <souheil.bejaoui@acsone.eu>

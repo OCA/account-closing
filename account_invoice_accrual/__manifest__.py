@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Account invoice accrual",
-    "version": "10.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Invoice",
-    "website": "http://www.acsone.eu",
+    "website": "https://github.com/OCA/account-closing",
     "depends": [
         "account",
         "account_reversal",
