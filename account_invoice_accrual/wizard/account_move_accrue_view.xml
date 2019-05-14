@@ -5,7 +5,8 @@
             <field name="model">account.move.accrue</field>
             <field name="arch" type="xml">
                 <form string="Create accrual journal entries" version="7.0">
-                    <label string="This will create accrual for all selected draft invoices without accrual journal entries"/>
+                    <label for="date"
+                           string="This will create accrual for all selected draft invoices without accrual journal entries"/>
                     <group>
                         <field name="date"/>
                         <field name="journal_id"/>
