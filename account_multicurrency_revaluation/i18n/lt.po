@@ -140,7 +140,7 @@ msgid "Created on"
 msgstr "Sukurta"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:348
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
 #, python-format
 msgid "Created revaluation lines"
 msgstr ""
@@ -148,11 +148,6 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
-msgid "Currency"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -297,7 +292,7 @@ msgid "Multicurrency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:301
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:296
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -305,13 +300,13 @@ msgid ""
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:358
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:354
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:286
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:281
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
