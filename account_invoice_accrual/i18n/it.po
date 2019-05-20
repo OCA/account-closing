@@ -11,60 +11,61 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-23 14:12+0000\n"
-"PO-Revision-Date: 2016-09-23 14:12+0000\n"
-"Last-Translator: Nicola Malcontenti <nicola.malcontenti@gmail.com>, 2016\n"
+"PO-Revision-Date: 2019-05-20 10:19+0000\n"
+"Last-Translator: Giacomo Grasso <giacomo.grasso.82@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_supplier_form
 msgid "Accrual"
-msgstr ""
+msgstr "Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_date
 msgid "Accrual Date"
-msgstr ""
+msgstr "Data Rateo"
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:109
 #, python-format
 msgid "Accrual Entries"
-msgstr ""
+msgstr "Scritture Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_journal_id
 msgid "Accrual Journal"
-msgstr ""
+msgstr "Sezionale Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_invoice_accrual_move_id
 msgid "Accrual Journal Entry"
-msgstr ""
+msgstr "Scrittura Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_account_id
 msgid "Accrual account"
-msgstr ""
+msgstr "Conto ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_form
 msgid "Accrue"
-msgstr ""
+msgstr "Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
 msgid "Accrue Entries"
-msgstr ""
+msgstr "Scritture Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.actions.act_window,name:account_invoice_accrual.act_account_move_accrue
 msgid "Accrue Invoices"
-msgstr ""
+msgstr "Fatture Ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
@@ -75,16 +76,18 @@ msgstr "Annulla"
 #: model:ir.model.fields,help:account_invoice_accrual.field_account_invoice_to_be_reversed
 msgid "Check this box if your entry has to be reversed at the end of period."
 msgstr ""
+"Selezionare questo se la scrittura deve essere stornata alla fine del "
+"periodo."
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
 msgid "Create accrual journal entries"
-msgstr ""
+msgstr "Crea scritture ratei"
 
 #. module: account_invoice_accrual
 #: model:ir.model,name:account_invoice_accrual.model_account_move_accrue
 msgid "Create accrual of draft invoices"
-msgstr ""
+msgstr "Crea rateo di una fattura in bozza"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_create_uid
@@ -107,11 +110,13 @@ msgid ""
 "Enter the date of the accrual account entries. By default, Odoo proposes the "
 "last day of the previous month."
 msgstr ""
+"Indicare la data delle scritture dei ratei. Di default Odoo utilizza "
+"l'ultimo giorno del mese precedente."
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_move_prefix
 msgid "Entries Ref. Prefix"
-msgstr ""
+msgstr "Prefisso Rif. Scritture"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_id
@@ -131,7 +136,7 @@ msgstr "Riga di Fattura"
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_move_line_prefix
 msgid "Items Name Prefix"
-msgstr ""
+msgstr "Frefisso Nome Scritture"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue___last_update
@@ -151,19 +156,19 @@ msgstr "Last Updated on"
 #. module: account_invoice_accrual
 #: model:ir.model.fields,help:account_invoice_accrual.field_account_invoice_accrual_move_id
 msgid "Link to the Accrual Journal Items."
-msgstr ""
+msgstr "Link alle scritture dei Ratei."
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/models/account_invoice.py:79
 #, python-format
 msgid "Please reverse accrual before cancelling invoice"
-msgstr ""
+msgstr "Stornare la scrittura del rateo prima di cancellare la fattura"
 
 #. module: account_invoice_accrual
 #: code:addons/account_invoice_accrual/models/account_invoice.py:87
 #, python-format
 msgid "Please reverse accrual before deleting invoice"
-msgstr ""
+msgstr "Stornare la scrittura del rateo prima di cancellare la fattura"
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,help:account_invoice_accrual.field_account_move_accrue_move_prefix
@@ -171,6 +176,9 @@ msgid ""
 "Prefix that will be added to the 'Ref' of the journal entry to create the "
 "'Ref' of the accrual journal entry (no space added after the prefix)."
 msgstr ""
+"Prefisso inserito nel campo 'Riferimento' della scrittura contabile per "
+"create il 'Riferimento' della scrittura del rateo (nessuno spazio sarà "
+"aggiunto dopo il prefisso)."
 
 #. module: account_invoice_accrual
 #: model:ir.model.fields,help:account_invoice_accrual.field_account_move_accrue_move_line_prefix
@@ -178,6 +186,8 @@ msgid ""
 "Prefix that will be added to the name of the journal item to create the name "
 "of the accrual journal item (a space is added after the prefix)."
 msgstr ""
+"Prefisso incluso nel nome della scruttura contabile per creare il nome della "
+"scrittura del rateo (uno spazio sarà aggiunto dopo il prefisso)."
 
 #. module: account_invoice_accrual
 #: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_form
