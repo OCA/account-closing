@@ -18,3 +18,19 @@ class ResConfigSettings(models.TransientModel):
 
     accrual_taxes = fields.Boolean(
         related='company_id.accrual_taxes', readonly=False)
+
+    dft_accrued_revenue_return_account_id = fields.Many2one(
+        related='company_id.default_accrued_revenue_return_account_id',
+        readonly=False)
+
+    dft_accrued_expense_return_account_id = fields.Many2one(
+        related='company_id.default_accrued_expense_return_account_id',
+        readonly=False)
+
+    dft_accrual_revenue_journal_id = fields.Many2one(
+        related='company_id.default_accrual_revenue_journal_id',
+        readonly=False)
+
+    dft_accrual_expense_journal_id = fields.Many2one(
+        related='company_id.default_accrual_expense_journal_id',
+        readonly=False)
