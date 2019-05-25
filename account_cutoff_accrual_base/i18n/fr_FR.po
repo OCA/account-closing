@@ -8,62 +8,63 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 23:09+0000\n"
-"PO-Revision-Date: 2016-12-27 08:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (France) (http://www.transifex.com/oca/OCA-account-"
-"closing-8-0/language/fr_FR/)\n"
+"PO-Revision-Date: 2019-05-25 20:19+0000\n"
+"Last-Translator: Katerina Katapodi <katerinakatapodi@gmail.com>\n"
+"Language-Team: French (France) (http://www.transifex.com/oca/"
+"OCA-account-closing-8-0/language/fr_FR/)\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Cloture du Compte"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Ligne de Cloture du Compte"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.ui.view,arch_db:account_cutoff_accrual_base.view_tax_form
 msgid "Accruals"
-msgstr ""
+msgstr "Accrus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_expense_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_expense_accrual_menu
 msgid "Accrued Expense"
-msgstr ""
+msgstr "Depenses Accrues"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
 msgid "Accrued Expense Tax Account"
-msgstr ""
+msgstr "Compte de Taxes des Depenses Accrues"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,name:account_cutoff_accrual_base.account_revenue_accrual_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_base.account_revenue_accrual_menu
 msgid "Accrued Revenue"
-msgstr ""
+msgstr "Revenus Accrus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
 msgid "Accrued Revenue Tax Account"
-msgstr ""
+msgstr "Compte de Taxes des Revenus Accrus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
-msgstr ""
+msgstr "Cliquez ici pour commencer a preparer une nouvelle depense accrue"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
 msgid "Click to start preparing a new revenue accrual."
-msgstr ""
+msgstr "Cliquez ici pour commencer a preparer un nouveau revenu accru."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
@@ -73,37 +74,37 @@ msgstr "Sociétés"
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr ""
+msgstr "Compte par Defaut pour Depenses Accrues"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr ""
+msgstr "Compte Defaut pour Revenus Accrus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_expense_journal_id
 msgid "Default Journal for Accrued Expenses"
-msgstr ""
+msgstr "Journal par Defaut pour Depenses Accrues"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
-msgstr ""
+msgstr "Journal Defaut pour Revenus Accrus"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Price per unit (discount included)"
-msgstr ""
+msgstr "Prix par unite (disconte inclus)"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantite"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Taxe"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
@@ -112,6 +113,9 @@ msgid ""
 "accrued expenses. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Cette vue peut etre utilisee par comptables pour recueillr information sur "
+"depenses accrues. Puis, il permet creer l'entre journale de cloture y "
+"cliquant seulement."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -120,8 +124,11 @@ msgid ""
 "accrued revenue. It then allows to generate the corresponding cut-off "
 "journal entry in one click."
 msgstr ""
+"Cette vue peut etre utilisee par comptables pour pouvoir cueillir "
+"informations sur revenus accrus. Puis il permet y generer l'entree journale "
+"de cloture correspondente y cliquant seulement."
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Priz par Unite"
