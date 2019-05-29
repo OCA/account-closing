@@ -83,15 +83,15 @@ class TestCutoffPrepaid(SavepointCase):
                              start_date='04-01', end_date='06-30')
         # cutoff after one month of invoice period -> 2 months cutoff
         cutoff = self._create_cutoff('04-30')
-        cutoff.get_prepaid_lines()
+        cutoff.get_lines()
         self.assertEqual(amount_2months, cutoff.total_cutoff_amount)
         # cutoff at end of invoice period -> no cutoff
         cutoff = self._create_cutoff('06-30')
-        cutoff.get_prepaid_lines()
+        cutoff.get_lines()
         self.assertEqual(0, cutoff.total_cutoff_amount)
         # cutoff before invoice period -> full value cutoff
         cutoff = self._create_cutoff('01-31')
-        cutoff.get_prepaid_lines()
+        cutoff.get_lines()
         self.assertEqual(amount, cutoff.total_cutoff_amount)
 
     def tests_1(self):
@@ -104,7 +104,7 @@ class TestCutoffPrepaid(SavepointCase):
                              start_date='04-01', end_date='06-30')
         # cutoff before invoice period -> full value cutoff
         cutoff = self._create_cutoff('01-31')
-        cutoff.get_prepaid_lines()
+        cutoff.get_lines()
         cutoff.create_move()
         self.assertEqual(amount * 2, cutoff.total_cutoff_amount)
         self.assertTrue(cutoff.move_id, "move not generated")
