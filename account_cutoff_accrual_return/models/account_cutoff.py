@@ -121,9 +121,9 @@ class AccountCutoff(models.Model):
                 self._prepare_lines_return(line))
 
     @api.model
-    def _cron_cutoff_expense(self):
+    def _cron_cutoff_expense_return(self):
         self._cron_cutoff('accrued_expense_return')
 
     @api.model
-    def _cron_cutoff_revenue(self):
+    def _cron_cutoff_revenue_return(self):
         self._cron_cutoff('accrued_revenue_return')
