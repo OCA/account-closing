@@ -278,7 +278,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         if not self.to_be_reversed:
             return False
-        action = self.env.ref('account_reversal.act_account_move_reverse')
+        action = self.env.ref('account.action_view_account_move_reversal')
         date = self.date or self.date_invoice
         return {
             'type': action.type,
