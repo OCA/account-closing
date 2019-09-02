@@ -45,7 +45,7 @@ class AccountInvoice(models.Model):
                 continue
             accrual_move = invoice.accrual_move_id
             accrual_date = fields.Date.from_string(accrual_move.date)
-            date = self.date or self.date_invoice
+            date = invoice.date or invoice.date_invoice
             invoice_date = fields.Date.from_string(date)
 
             if (accrual_move.state == 'draft' and
