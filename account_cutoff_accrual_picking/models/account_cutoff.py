@@ -3,7 +3,7 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 from odoo.tools import float_is_zero, float_compare
 from odoo.exceptions import UserError
 from dateutil.relativedelta import relativedelta
@@ -11,6 +11,24 @@ from dateutil.relativedelta import relativedelta
 
 class AccountCutoff(models.Model):
     _inherit = 'account.cutoff'
+
+    backward_days = fields.Integer(
+        string='Backward Days',
+        default=lambda self: self._default_backward_days(),
+        help="Odoo will analyze the pickings in done state between the "
+        "cutoff date minus the number of backward days and the cutoff "
+        "date (included).")
+
+    _sql_constraints = [(
+        'backward_days_positive',
+        'CHECK(backward_days > 0)',
+        'The value for the field backward days must be strictly positive.'
+        )]
+
+    @api.model
+    def _default_backward_days(self):
+        company = self.env.user.company_id
+        return company.default_accrual_picking_backward_days
 
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         ato = self.env['account.tax']
@@ -87,7 +105,7 @@ class AccountCutoff(models.Model):
     def _picking_done_min_date(self):
         self.ensure_one()
         cutoff_date_dt = fields.Date.from_string(self.cutoff_date)
-        min_date_dt = cutoff_date_dt - relativedelta(months=3)
+        min_date_dt = cutoff_date_dt - relativedelta(days=self.backward_days)
         min_date = fields.Date.to_string(min_date_dt)
         return min_date
 

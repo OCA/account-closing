@@ -12,6 +12,10 @@
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/account-closing',
     'depends': ['account_cutoff_accrual_base', 'purchase', 'sale_stock'],
+    'data': [
+        'views/account_cutoff.xml',
+        'views/account_config_settings.xml',
+        ],
     'images': [
         'images/accrued_expense_draft.jpg',
         'images/accrued_expense_journal_entry.jpg',
