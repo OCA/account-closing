@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_cutoff_accrual_subscription_read,Read access on account.cutoff.accrual.subscription,model_account_cutoff_accrual_subscription,account.group_account_user,1,0,0,0
+access_account_cutoff_accrual_subscription_full,Full access on account.cutoff.accrual.subscription,model_account_cutoff_accrual_subscription,account.group_account_manager,1,1,1,1
