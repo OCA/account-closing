@@ -64,34 +64,33 @@ class AccountCutoff(models.Model):
                 if start_date < sub_start_date_dt:
                     break
                 # compute amount
-                amount = 0
-                # 1. No start/end dates
-                no_start_end_res = aml_obj.read_group([
+                domain_base = [
                     ('company_id', '=', sub.company_id.id),
                     ('journal_id', 'in', self.source_journal_ids.ids),
                     ('account_id', '=', sub.account_id.id),
                     ('analytic_account_id', '=',
                         sub.analytic_account_id.id or False),
-                    ('date', '<=', fields.Date.to_string(end_date)),
-                    ('date', '>=', fields.Date.to_string(start_date)),
-                    ('start_date', '=', False),
-                    ('end_date', '=', False),
+                    ('partner_id', '=', sub.partner_id.id),
+                    ]
+                domain_base_w_start_end = domain_base + [
+                    ('start_date', '!=', False),
+                    ('end_date', '!=', False),
+                    ]
+                amount = 0
+                # 1. No start/end dates
+                no_start_end_res = aml_obj.read_group(
+                    domain_base + [
+                        ('date', '<=', fields.Date.to_string(end_date)),
+                        ('date', '>=', fields.Date.to_string(start_date)),
+                        ('start_date', '=', False),
+                        ('end_date', '=', False),
                     ], ['balance'], [])
                 amount_no_start_end = no_start_end_res and\
                     no_start_end_res[0]['balance'] or 0
                 amount += amount_no_start_end * sign
                 # 2. Start/end dates, INSIDE interval
-                domain_base = [
-                    ('company_id', '=', sub.company_id.id),
-                    ('journal_id', 'in', self.source_journal_ids.ids),
-                    ('start_date', '!=', False),
-                    ('end_date', '!=', False),
-                    ('account_id', '=', sub.account_id.id),
-                    ('analytic_account_id', '=',
-                        sub.analytic_account_id.id or False),
-                    ]
                 inside_res = aml_obj.read_group(
-                    domain_base + [
+                    domain_base_w_start_end + [
                         ('start_date', '>=', start_date),
                         ('end_date', '<=', end_date),
                     ], ['balance'], [])
@@ -99,7 +98,7 @@ class AccountCutoff(models.Model):
                 amount += amount_inside * sign
                 # 3. Start/end dates, OVER interval
                 mlines = aml_obj.search(
-                    domain_base + [
+                    domain_base_w_start_end + [
                         ('start_date', '<', start_date),
                         ('end_date', '>', end_date),
                     ])
@@ -114,7 +113,7 @@ class AccountCutoff(models.Model):
                     amount += amount_in_interval * sign
                 # 4. Start/end dates, start_date before, end_date inside
                 mlines = aml_obj.search(
-                    domain_base + [
+                    domain_base_w_start_end + [
                         ('start_date', '<', start_date),
                         ('end_date', '>=', start_date),
                         ('end_date', '<=', end_date),
@@ -132,7 +131,7 @@ class AccountCutoff(models.Model):
                     amount += amount_in_interval * sign
                 # 5. Start/end dates, start_date inside, end_date after
                 mlines = aml_obj.search(
-                    domain_base + [
+                    domain_base_w_start_end + [
                         ('start_date', '>=', start_date),
                         ('start_date', '<=', end_date),
                         ('end_date', '>', end_date),
