@@ -5,5 +5,3 @@ Account Closing
 ===============
 
 This project aim to deal with modules related to manage account closing.
-
-
