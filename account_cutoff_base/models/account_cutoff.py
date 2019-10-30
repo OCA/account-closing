@@ -54,6 +54,17 @@ class AccountCutoff(models.Model):
         states={'draft': [('readonly', False)]}, copy=False,
         track_visibility='onchange'
     )
+    analytic_tag_split = fields.Boolean(
+        string='Split by analytic tags', readonly=True,
+        states={'draft': [('readonly', False)]}, copy=False,
+        track_visibility='onchange'
+    )
+    partner_split = fields.Boolean(
+        string='Split by Partner', readonly=True,
+        states={'draft': [('readonly', False)]}, copy=False,
+        track_visibility='onchange'
+    )
+
     cutoff_type = fields.Selection(
         selection='_selection_cutoff_type',
         string='Type',
@@ -134,8 +145,8 @@ class AccountCutoff(models.Model):
     _sql_constraints = [(
         'date_type_company_uniq',
         'unique(cutoff_date, company_id, cutoff_type)',
-        _('A cutoff of the same type already exists with this cut-off date !')
-        )]
+        _('''A cutoff of the same type
+            already exists with this cut-off date !'''))]
 
     @api.multi
     def back2draft(self):
@@ -152,7 +163,36 @@ class AccountCutoff(models.Model):
         same values for these fields will be merged.
         The list must at least contain account_id.
         """
-        return ['account_id', 'analytic_account_id']
+        merge_keys = ['account_id', 'analytic_account_id']
+        if self.analytic_tag_split:
+            merge_keys.append('analytic_tag_ids')
+        if self.partner_split:
+            merge_keys.append('partner_id')
+        return merge_keys
+
+    def _prepare_merge_line(self, key, provision_line):
+        """
+        Prepare value to be include in the tuple,
+        specially design for many2many
+        """
+        if key == 'analytic_tag_ids':
+            val = tuple(sorted(provision_line.get(key)[0][2]))
+        else:
+            val = provision_line.get(key)
+        return val
+
+    def _convert_merge_value(self, key, value):
+        """
+        Return Value specially design for many2many
+        """
+        if key == 'analytic_tag_ids':
+            if value:
+                val = [(6, 0, list(value))]
+            else:
+                val = [(6, 0, [])]
+        else:
+            val = value
+        return val
 
     @api.multi
     def _prepare_move(self, to_provision):
@@ -168,7 +208,7 @@ class AccountCutoff(models.Model):
                 'credit': amount >= 0 and amount or 0,
             }
             for k, v in zip(merge_keys, merge_values):
-                vals[k] = v
+                vals[k] = self._convert_merge_value(k, v)
             movelines_to_create.append((0, 0, vals))
             amount_total += amount
 
@@ -200,11 +240,23 @@ class AccountCutoff(models.Model):
         If you override this, the added fields must also be
         added in an override of _get_merge_keys.
         """
-        return {
+        provision_line = {
             'account_id': cutoff_line.cutoff_account_id.id,
             'analytic_account_id': cutoff_line.analytic_account_id.id,
+
             'amount': cutoff_line.cutoff_amount,
         }
+        if self.analytic_tag_split:
+            provision_line.update(
+                {
+                    'analytic_tag_ids': [
+                        (6, 0, cutoff_line.analytic_tag_ids.ids)
+                    ]
+                }
+            )
+        if self.partner_split:
+            provision_line.update({'partner_id': cutoff_line.partner_id.id})
+        return provision_line
 
     @api.multi
     def _prepare_provision_tax_line(self, cutoff_tax_line):
@@ -215,6 +267,7 @@ class AccountCutoff(models.Model):
         return {
             'account_id': cutoff_tax_line.cutoff_account_id.id,
             'analytic_account_id': cutoff_tax_line.analytic_account_id.id,
+            'analytic_tag_ids': [(6, 0, cutoff_tax_line.analytic_tag_ids.ids)],
             'amount': cutoff_tax_line.cutoff_amount,
         }
 
@@ -228,7 +281,9 @@ class AccountCutoff(models.Model):
         to_provision = {}
         merge_keys = self._get_merge_keys()
         for provision_line in provision_lines:
-            key = tuple([provision_line.get(key) for key in merge_keys])
+            key = tuple([
+                self._prepare_merge_line(
+                    key, provision_line) for key in merge_keys])
             if key in to_provision:
                 to_provision[key] += provision_line['amount']
             else:
@@ -291,6 +346,8 @@ class AccountCutoffLine(models.Model):
     cutoff_account_code = fields.Char(
         related='cutoff_account_id.code',
         string='Cut-off Account Code', readonly=True)
+    analytic_tag_ids = fields.Many2many(
+        'account.analytic.tag', string='Analytic Tags', readonly=True)
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
@@ -330,6 +387,8 @@ class AccountCutoffTaxLine(models.Model):
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
+    analytic_tag_ids = fields.Many2many(
+        'account.analytic.tag', string='Analytic Tags', readonly=True)
     base = fields.Monetary(
         currency_field='currency_id',
         readonly=True, help="Base Amount in the currency of the PO.")
@@ -367,8 +426,9 @@ class AccountCutoffMapping(models.Model):
         ('accrued_revenue', 'Accrued Revenue'),
         ('accrued_expense', 'Accrued Expense'),
         ('prepaid_revenue', 'Prepaid Revenue'),
-        ('prepaid_expense', 'Prepaid Expense'),
-        ], string='Cut-off Type', required=True)
+        ('prepaid_expense', 'Prepaid Expense'), ],
+        string='Cut-off Type',
+        required=True)
 
     @api.model
     def _get_mapping_dict(self, company_id, cutoff_type='all'):
@@ -381,8 +441,7 @@ class AccountCutoffMapping(models.Model):
             cutoff_type_filter = ('all', cutoff_type)
         mappings = self.search([
             ('company_id', '=', company_id),
-            ('cutoff_type', 'in', cutoff_type_filter),
-            ])
+            ('cutoff_type', 'in', cutoff_type_filter), ])
         mapping = {}
         for item in mappings:
             mapping[item.account_id.id] = item.cutoff_account_id.id

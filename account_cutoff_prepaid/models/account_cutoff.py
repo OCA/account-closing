@@ -14,8 +14,7 @@ class AccountCutoff(models.Model):
         cutoff_type = self.env.context.get('cutoff_type')
         mapping = {
             'prepaid_expense': 'purchase',
-            'prepaid_revenue': 'sale',
-            }
+            'prepaid_revenue': 'sale', }
         if cutoff_type in mapping:
             src_journals = self.env['account.journal'].search(
                 [('type', '=', mapping[cutoff_type])])
@@ -104,6 +103,7 @@ class AccountCutoff(models.Model):
             'account_id': aml.account_id.id,
             'cutoff_account_id': cutoff_account_id,
             'analytic_account_id': aml.analytic_account_id.id or False,
+            'analytic_tag_ids': [(6, 0, aml.analytic_tag_ids.ids or [])],
             'total_days': total_days,
             'prepaid_days': prepaid_days,
             'amount': aml.credit - aml.debit,
@@ -129,15 +129,13 @@ class AccountCutoff(models.Model):
             domain = [
                 ('start_date', '<=', self.end_date),
                 ('end_date', '>=', self.start_date),
-                ('journal_id', 'in', self.source_journal_ids.ids)
-                ]
+                ('journal_id', 'in', self.source_journal_ids.ids)]
         else:
             domain = [
                 ('start_date', '!=', False),
                 ('journal_id', 'in', self.source_journal_ids.ids),
                 ('end_date', '>', cutoff_date_str),
-                ('date', '<=', cutoff_date_str)
-                ]
+                ('date', '<=', cutoff_date_str)]
 
         # Search for account move lines in the source journals
         amls = aml_obj.search(domain)
