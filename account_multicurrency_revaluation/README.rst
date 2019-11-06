@@ -82,7 +82,7 @@ Main Features
 
 * A checkbox *Allow currency revaluation* on accounts.
 * A wizard to generate the revaluation journal entries. It adjusts account
-balance having *Allow currency revaluation* checked.
+  balance having *Allow currency revaluation* checked.
 
 
 Credits
