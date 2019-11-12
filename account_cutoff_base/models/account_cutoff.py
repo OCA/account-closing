@@ -15,11 +15,13 @@ class AccountCutoff(models.Model):
     @api.multi
     @api.depends('line_ids', 'line_ids.cutoff_amount')
     def _compute_total_cutoff(self):
-        for cutoff in self:
-            tamount = 0.0
-            for line in cutoff.line_ids:
-                tamount += line.cutoff_amount
-            cutoff.total_cutoff_amount = tamount
+        res = self.env['account.cutoff.line'].read_group(
+            [('parent_id', 'in', self.ids)],
+            ['parent_id', 'cutoff_amount'],
+            ['parent_id'])
+        for re in res:
+            cutoff = self.browse(re['parent_id'][0])
+            cutoff.total_cutoff_amount = re['cutoff_amount']
 
     @property
     def cutoff_type_label_map(self):
@@ -42,7 +44,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_cutoff_account_id(self):
-        """Default account muast always be None"""
+        """Default account must always be None"""
         return None
 
     @api.model
@@ -110,7 +112,6 @@ class AccountCutoff(models.Model):
     )
     company_currency_id = fields.Many2one(
         related='company_id.currency_id',
-        readonly=True,
         string='Company Currency'
     )
     line_ids = fields.One2many(
@@ -162,6 +163,7 @@ class AccountCutoff(models.Model):
         move_label = self.move_label
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
+            amount = self.company_currency_id.round(amount)
             vals = {
                 'name': move_label,
                 'debit': amount < 0 and amount * -1 or 0,
@@ -173,7 +175,8 @@ class AccountCutoff(models.Model):
             amount_total += amount
 
         # add counter-part
-        counterpart_amount = amount_total * -1
+        counterpart_amount = self.company_currency_id.round(
+            amount_total * -1)
         movelines_to_create.append((0, 0, {
             'account_id': self.cutoff_account_id.id,
             'name': move_label,
@@ -269,6 +272,31 @@ class AccountCutoff(models.Model):
         })
         return action
 
+    def get_lines(self):
+        """This method is designed to be inherited in other modules"""
+        self.ensure_one()
+        # Delete existing lines
+        self.line_ids.unlink()
+        return True
+
+    def unlink(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_(
+                    "You cannot delete cutoff records that are not "
+                    "in draft state."))
+        return super(AccountCutoff, self).unlink()
+
+    def button_line_tree(self):
+        action = self.env['ir.actions.act_window'].for_xml_id(
+            'account_cutoff_base', 'account_cutoff_line_action')
+        action.update({
+            'domain': [('parent_id', '=', self.id)],
+            'views': False,
+            'context': self._context,
+            })
+        return action
+
 
 class AccountCutoffLine(models.Model):
     _name = 'account.cutoff.line'
@@ -279,7 +307,7 @@ class AccountCutoffLine(models.Model):
     name = fields.Char('Description')
     company_currency_id = fields.Many2one(
         related='parent_id.company_currency_id',
-        string="Company Currency", readonly=True)
+        string="Company Currency")
     partner_id = fields.Many2one(
         'res.partner', string='Partner', readonly=True)
     account_id = fields.Many2one(
@@ -295,7 +323,7 @@ class AccountCutoffLine(models.Model):
         'account.analytic.account', string='Analytic Account',
         domain=[('account_type', '!=', 'closed')], readonly=True)
     analytic_account_code = fields.Char(
-        related='analytic_account_id.code', readonly=True)
+        related='analytic_account_id.code')
     currency_id = fields.Many2one(
         'res.currency', string='Amount Currency', readonly=True,
         help="Currency of the 'Amount' field.")
@@ -341,10 +369,10 @@ class AccountCutoffTaxLine(models.Model):
         string='Cut-off Tax Amount', currency_field='company_currency_id',
         readonly=True, help="Tax Cut-off Amount in the company currency.")
     currency_id = fields.Many2one(
-        related='parent_id.currency_id', string='Currency', readonly=True)
+        related='parent_id.currency_id', string='Currency')
     company_currency_id = fields.Many2one(
         related='parent_id.company_currency_id',
-        string="Company Currency", readonly=True)
+        string="Company Currency")
 
 
 class AccountCutoffMapping(models.Model):
@@ -354,8 +382,7 @@ class AccountCutoffMapping(models.Model):
 
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
-        default=lambda self: self.env['res.company']._company_default_get(
-            'account.cutoff.mapping'))
+        default=lambda self: self.env['res.company']._company_default_get())
     account_id = fields.Many2one(
         'account.account', string='Regular Account',
         domain=[('deprecated', '=', False)], required=True)

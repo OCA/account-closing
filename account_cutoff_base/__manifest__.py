@@ -5,7 +5,7 @@
 {
     'name': 'Account Cut-off Base',
     'version': '12.0.1.0.1',
-    'category': 'Accounting & Finance',
+    'category': 'Accounting',
     'license': 'AGPL-3',
     'summary': 'Base module for Account Cut-offs',
     'author': 'Akretion,Odoo Community Association (OCA)',
@@ -16,8 +16,8 @@
     'data': [
         'security/account_cutoff_base_security.xml',
         'security/ir.model.access.csv',
-        'views/company.xml',
         'views/account_cutoff.xml',
+        'views/res_config_settings.xml',
     ],
     'installable': True,
 }
