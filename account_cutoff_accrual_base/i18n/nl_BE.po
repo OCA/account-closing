@@ -42,7 +42,9 @@ msgid "Accrued Expense"
 msgstr "Toegenomen Kost"
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:51
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
+#, python-format
 msgid "Accrued Expense Tax Account"
 msgstr "Toegenomen Kosten Belastingsaccount"
 
@@ -53,7 +55,9 @@ msgid "Accrued Revenue"
 msgstr "Transistorische Opbrengst"
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:54
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
+#, python-format
 msgid "Accrued Revenue Tax Account"
 msgstr "Transistorische Opbrensten Belastingsaccount"
 
@@ -109,6 +113,12 @@ msgstr "Standaard Logboek voor Toegenomen Kosten"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
 msgstr "Standaard Logboek voor Transistorische Opbrengsten"
+
+#. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:56
+#, python-format
+msgid "Missing '%s' on tax '%s'."
+msgstr ""
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,help:account_cutoff_accrual_base.field_account_cutoff_line_price_unit
