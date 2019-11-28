@@ -25,19 +25,7 @@ msgid "Account Cut-off"
 msgstr "Scritture di fine periodo"
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:85
-#, python-format
-msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
-msgstr "Configurare il campo  'Conto Imposta Ratei Passivi' dell'imposta '%s'"
-
-#. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:91
-#, python-format
-msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
-msgstr "Configurare il campo  'Conto Imposta Ratei Attivi' dell'imposta '%s'"
-
-#. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:78
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:58
 #, python-format
 msgid ""
 "Price included taxes such as '%s' are not supported by the module "
@@ -47,7 +35,15 @@ msgstr ""
 "dal modulo account_cutoff_accrual_dates."
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:113
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:76
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Indicare almeno un Sezionale."
+
+#~ msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
+#~ msgstr ""
+#~ "Configurare il campo  'Conto Imposta Ratei Passivi' dell'imposta '%s'"
+
+#~ msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
+#~ msgstr ""
+#~ "Configurare il campo  'Conto Imposta Ratei Attivi' dell'imposta '%s'"
