@@ -24,8 +24,13 @@ class AccountCutoffAccrualSubscription(models.Model):
         ('revenue', 'Revenue'),
         ('expense', 'Expense'),
         ], default='expense', required=True, string='Type')
+    partner_type = fields.Selection([
+        ('none', 'No Partner'),
+        ('one', 'Specific Partner'),
+        ('any', 'Any Partner'),
+        ], default='one', string='Partner Type', required=True)
     partner_id = fields.Many2one(
-        'res.partner', string='Supplier', required=True,
+        'res.partner', string='Supplier',
         domain=[('parent_id', '=', False), ('supplier', '=', True)],
         ondelete='restrict')
     active = fields.Boolean(default=True)
@@ -79,3 +84,8 @@ class AccountCutoffAccrualSubscription(models.Model):
     def account_id_change(self):
         if self.account_id:
             self.tax_ids = self.account_id.tax_ids
+
+    @api.onchange('partner_type')
+    def partner_type_change(self):
+        if self.partner_type != 'one':
+            self.partner_id = False
