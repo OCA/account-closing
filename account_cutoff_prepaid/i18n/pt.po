@@ -76,7 +76,7 @@ msgid "Default Account for Prepaid Revenue"
 msgstr "Conta por defeito para o deferimento de rendimentos"
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:62
 #, python-format
 msgid ""
 "Don't forget to Re-Generate Lines after entering or leaving forecast mode."
@@ -141,7 +141,7 @@ msgstr ""
 "rendimentos/gastos entre duas datas no futuro."
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:54
 #, python-format
 msgid "The start date is after the end date!"
 msgstr "A data de início é posterior à data de fim!"
@@ -174,13 +174,13 @@ msgid "Total Number of Days"
 msgstr "Número Total de Dias"
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:59
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:61
 #, python-format
 msgid "Warning"
 msgstr "Aviso"
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:125
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:127
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve estabelecer pelo menos um diário pré-definido."

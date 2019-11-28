@@ -78,7 +78,7 @@ msgid "Default Account for Prepaid Revenue"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:60
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:62
 #, python-format
 msgid ""
 "Don't forget to Re-Generate Lines after entering or leaving forecast mode."
@@ -141,7 +141,7 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:54
 #, python-format
 msgid "The start date is after the end date!"
 msgstr ""
@@ -168,13 +168,13 @@ msgid "Total Number of Days"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:59
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:61
 #, python-format
 msgid "Warning"
 msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:125
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:127
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr ""
