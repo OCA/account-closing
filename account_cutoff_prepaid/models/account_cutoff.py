@@ -15,7 +15,9 @@ class AccountCutoff(models.Model):
         cutoff_type = self._context.get('default_type')
         mapping = {
             'prepaid_expense': 'purchase',
+            'accrued_expense': 'purchase',
             'prepaid_revenue': 'sale',
+            'accrued_revenue': 'sale',
             }
         if cutoff_type in mapping:
             src_journals = self.env['account.journal'].search(
@@ -86,7 +88,7 @@ class AccountCutoff(models.Model):
                 prepaid_days = (end_date_dt - cutoff_date_dt).days
         assert total_days > 0,\
             'Should never happen. Total days should always be > 0'
-        cutoff_amount = (aml.debit - aml.credit) *\
+        cutoff_amount = aml.balance *\
             prepaid_days / float(total_days)
         cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here

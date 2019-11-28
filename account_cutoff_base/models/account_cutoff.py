@@ -316,6 +316,7 @@ class AccountCutoffLine(models.Model):
     tax_line_ids = fields.One2many(
         'account.cutoff.tax.line', 'parent_id', string='Cut-off Tax Lines',
         readonly=True)
+    notes = fields.Text(string='Notes')
 
 
 class AccountCutoffTaxLine(models.Model):
