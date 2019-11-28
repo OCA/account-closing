@@ -261,6 +261,7 @@ msgid "Cut-off Type"
 msgstr "Tipo de operación de cierre"
 
 #. module: account_cutoff_base
+#: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_config
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tree
@@ -350,6 +351,12 @@ msgstr "Última actualización el"
 #: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
 msgstr "Vista lista de las líneas"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_notes
+#: model:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Notes"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line_partner_id
