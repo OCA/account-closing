@@ -36,7 +36,9 @@ msgid "Accrued Expense"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:51
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_expense_id
+#, python-format
 msgid "Accrued Expense Tax Account"
 msgstr ""
 
@@ -47,7 +49,9 @@ msgid "Accrued Revenue"
 msgstr ""
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:54
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax_account_accrued_revenue_id
+#, python-format
 msgid "Accrued Revenue Tax Account"
 msgstr ""
 
@@ -100,6 +104,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_config_settings_default_accrual_revenue_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company_default_accrual_revenue_journal_id
 msgid "Default Journal for Accrued Revenues"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:56
+#, python-format
+msgid "Missing '%s' on tax '%s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_base
