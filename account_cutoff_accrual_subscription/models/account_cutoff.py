@@ -6,7 +6,7 @@
 from odoo import models, fields, _
 from odoo.exceptions import UserError
 from dateutil.relativedelta import relativedelta
-from odoo.tools import float_compare, float_round
+from odoo.tools import float_compare, float_is_zero, float_round
 
 
 class AccountCutoff(models.Model):
@@ -43,6 +43,8 @@ class AccountCutoff(models.Model):
                     % self.cutoff_date)
             if not self.source_journal_ids:
                 raise UserError(_('Missing source journals.'))
+            self.message_post(_(
+                "Computing provisions from %d subscriptions.") % len(subs))
         periodicity2months = {
             'month': 1,
             'quarter': 3,
@@ -52,30 +54,39 @@ class AccountCutoff(models.Model):
         company_currency = self.company_currency_id
         prec = company_currency.rounding
         work = {}
-        # Generate time intervals and computing existing expenses/revenue
+        # Generate time intervals and compute existing expenses/revenue
         for sub in subs:
             sub_start_date_dt = fields.Date.from_string(sub.start_date)
             months = periodicity2months[sub.periodicity]
-            work[sub] = {'intervals': []}
+            work[sub] = {'intervals': [], 'sub': sub}
             end_date = cutoff_date
+            domain_base = [
+                ('company_id', '=', sub.company_id.id),
+                ('journal_id', 'in', self.source_journal_ids.ids),
+                ('account_id', '=', sub.account_id.id),
+                ('analytic_account_id', '=',
+                    sub.analytic_account_id.id or False),
+                ]
+            if sub.partner_type == 'one':
+                if sub.partner_id:
+                    domain_base.append(('partner_id', '=', sub.partner_id.id))
+                else:
+                    raise UserError(_(
+                        "Missing supplier on subscription '%s'.")
+                        % sub.display_name)
+            elif sub.partner_type == 'none':
+                domain_base.append(('partner_id', '=', False))
+            domain_base_w_start_end = domain_base + [
+                ('start_date', '!=', False),
+                ('end_date', '!=', False),
+                ]
+
             for i in range(12 / months):
                 start_date = end_date + relativedelta(
                     day=1, months=-(months-1))
                 if start_date < sub_start_date_dt:
                     break
                 # compute amount
-                domain_base = [
-                    ('company_id', '=', sub.company_id.id),
-                    ('journal_id', 'in', self.source_journal_ids.ids),
-                    ('account_id', '=', sub.account_id.id),
-                    ('analytic_account_id', '=',
-                        sub.analytic_account_id.id or False),
-                    ('partner_id', '=', sub.partner_id.id),
-                    ]
-                domain_base_w_start_end = domain_base + [
-                    ('start_date', '!=', False),
-                    ('end_date', '!=', False),
-                    ]
                 amount = 0
                 # 1. No start/end dates
                 no_start_end_res = aml_obj.read_group(
@@ -160,49 +171,79 @@ class AccountCutoff(models.Model):
             self.company_id.id, self.type)
         sub_type_label = sub_type == 'expense' and _('Expense') or _('Revenue')
         lsign = sub_type == 'expense' and -1 or 1
-        # Compute provisions for each subscription
-        # Write the details of the computation in the notes
         for sub in work.keys():
-            notes = []
-            cutoff_amount = 0
+            vals = self._prepare_subscription_cutoff_line(
+                work[sub], mapping, sub_type_label, lsign)
+            if vals:
+                line_obj.create(vals)
+        return res
+
+    def _prepare_subscription_cutoff_line(
+            self, data, mapping, sub_type_label, lsign):
+        # Compute provision for a subscription
+        # -> analyse each time interval
+        # Write the details of the computation in the notes
+        # (or in the chatter if the amount to provision is 0)
+        sub = data['sub']
+        company_currency = self.company_currency_id
+        prec = company_currency.rounding
+        notes = []
+        cutoff_amount = 0
+        for interval in data['intervals']:
+            if float_compare(
+                    interval['amount'], sub.min_amount,
+                    precision_rounding=prec) < 0:
+                period_cutoff_amount = float_round(
+                    sub.provision_amount - interval['amount'],
+                    precision_rounding=prec)
+                notes.append(_(
+                    "Period from %s to %s: %s %s under the minimum "
+                    "amount %s. Default provisionning amount is %s, "
+                    "therefore provisionning %s.") % (
+                        fields.Date.to_string(interval['start']),
+                        fields.Date.to_string(interval['end']),
+                        sub_type_label,
+                        interval['amount'],
+                        float_round(
+                            sub.min_amount, precision_rounding=prec),
+                        float_round(
+                            sub.provision_amount, precision_rounding=prec),
+                        period_cutoff_amount))
+                cutoff_amount += period_cutoff_amount * lsign
+            else:
+                notes.append(_(
+                    "Period from %s to %s: %s %s over the minimum "
+                    "amount %s => no provisionning.") % (
+                        fields.Date.to_string(interval['start']),
+                        fields.Date.to_string(interval['end']),
+                        sub_type_label,
+                        interval['amount'],
+                        float_round(
+                            sub.min_amount, precision_rounding=prec)))
+        if float_is_zero(cutoff_amount, precision_rounding=prec):
+            msg = _(
+                "<p>No provision for subscription <a href=# "
+                "data-oe-model=account.cutoff.accrual.subscription "
+                "data-oe-id=%d>%s</a>:</p>") % (sub.id, sub.name)
+            if notes:
+                msg += '<ul>'
+                for note in notes:
+                    msg += "<li>%s</li>" % note
+                msg += '</ul>'
+            self.message_post(msg)
+            return False
+        else:
+            if sub.partner_type == 'one':
+                partner_id = sub.partner_id.id
+            else:
+                partner_id = False
             if sub.account_id.id in mapping:
                 cutoff_account_id = mapping[sub.account_id.id]
             else:
                 cutoff_account_id = sub.account_id.id
-            for interval in work[sub]['intervals']:
-                if float_compare(
-                        interval['amount'], sub.min_amount,
-                        precision_rounding=prec) < 0:
-                    period_cutoff_amount = float_round(
-                        sub.provision_amount - interval['amount'],
-                        precision_rounding=prec)
-                    notes.append(_(
-                        "Period from %s to %s: %s %s under the minimum "
-                        "amount %s. Default provisionning amount is %s, "
-                        "therefore provisionning %s.") % (
-                            fields.Date.to_string(interval['start']),
-                            fields.Date.to_string(interval['end']),
-                            sub_type_label,
-                            interval['amount'],
-                            float_round(
-                                sub.min_amount, precision_rounding=prec),
-                            float_round(
-                                sub.provision_amount, precision_rounding=prec),
-                            period_cutoff_amount))
-                    cutoff_amount += period_cutoff_amount * lsign
-                else:
-                    notes.append(_(
-                        "Period from %s to %s: %s %s over the minimum "
-                        "amount %s => no provisionning.") % (
-                            fields.Date.to_string(interval['start']),
-                            fields.Date.to_string(interval['end']),
-                            sub_type_label,
-                            interval['amount'],
-                            float_round(
-                                sub.min_amount, precision_rounding=prec)))
             vals = {
                 'parent_id': self.id,
-                'partner_id': sub.partner_id.id,
+                'partner_id': partner_id,
                 'account_id': sub.account_id.id,
                 'analytic_account_id': sub.analytic_account_id.id or False,
                 'name': sub.name,
@@ -218,5 +259,4 @@ class AccountCutoff(models.Model):
                     cutoff_amount, partner=sub.partner_id)
                 vals['tax_line_ids'] = self._prepare_tax_lines(
                     tax_compute_all_res, company_currency)
-            line_obj.create(vals)
-        return res
+            return vals
