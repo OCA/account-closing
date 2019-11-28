@@ -25,20 +25,7 @@ msgid "Account Cut-off"
 msgstr "Operación de cierre de cuenta"
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:85
-#, python-format
-msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
-msgstr ""
-"''Cuenta de Impuestos de Despechos Acruados' sobre impuesto '%s faltante"
-
-#. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:91
-#, python-format
-msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
-msgstr "'Cuenta de Impuestos de Ingresos Acruados' sobre impuesto' %s faltante"
-
-#. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:78
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:58
 #, python-format
 msgid ""
 "Price included taxes such as '%s' are not supported by the module "
@@ -48,7 +35,15 @@ msgstr ""
 "cuenta_cierre-acruado_fechas en este momento."
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:113
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:76
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Debe establecer al menos un diario de origen."
+
+#~ msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
+#~ msgstr ""
+#~ "''Cuenta de Impuestos de Despechos Acruados' sobre impuesto '%s faltante"
+
+#~ msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
+#~ msgstr ""
+#~ "'Cuenta de Impuestos de Ingresos Acruados' sobre impuesto' %s faltante"
