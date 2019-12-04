@@ -48,24 +48,23 @@ class TestCurrencyRevaluation(SavepointCase):
         partner.property_account_payable_id = receivable_acc.id
         partner.property_account_receivable_id = payable_acc.id
 
-        payment_term = ref("account.account_payment_term")
+        payment_term = ref("account.account_payment_term_end_following_month")
 
         year = fields.Date.today().strftime("%Y")
-        invoice = cls.env["account.invoice"].create(
+        invoice = cls.env["account.move"].create(
             {
-                "name": "Customer Invoice",
-                "date_invoice": "%s-01-16" % year,
+                "type": "out_invoice",
+                "invoice_date": "%s-01-16" % year,
                 "currency_id": usd_currency.id,
                 "company_id": cls.company.id,
                 "journal_id": sales_journal.id,
                 "partner_id": partner.id,
-                "account_id": receivable_acc.id,
                 "invoice_line_ids": [(0, 0, invoice_line_data)],
-                "payment_term_id": payment_term.id,
+                "invoice_payment_term_id": payment_term.id,
             }
         )
-        # Validate invoice
-        invoice.action_invoice_open()
+        # Post entries
+        invoice.post()
 
         payment_method = ref(
             "account_multicurrency_revaluation." "account_payment_method_manual_in"
@@ -106,21 +105,20 @@ class TestCurrencyRevaluation(SavepointCase):
             "currency_id": gbp_currency.id,
         }
 
-        invoice = cls.env["account.invoice"].create(
+        invoice = cls.env["account.move"].create(
             {
-                "name": "Customer Invoice",
-                "date_invoice": "%s-01-16" % year,
+                "type": "out_invoice",
+                "invoice_date": "%s-01-16" % year,
                 "currency_id": gbp_currency.id,
                 "journal_id": sales_journal.id,
                 "company_id": cls.company.id,
                 "partner_id": ref("base.res_partner_3").id,
-                "account_id": receivable_acc.id,
                 "invoice_line_ids": [(0, 0, invoice_line_data)],
-                "payment_term_id": payment_term.id,
+                "invoice_payment_term_id": payment_term.id,
             }
         )
-        # Validate invoice
-        invoice.action_invoice_open()
+        # Post entries
+        invoice.post()
 
         # Register partial payment
         payment = cls.env["account.payment"].create(
@@ -264,11 +262,11 @@ class TestCurrencyRevaluation(SavepointCase):
         invoice1 = self.create_invoice(
             fields.Date.today() - timedelta(days=30), usd_currency, 1.0, 100.00
         )
-        invoice1.action_invoice_open()
+        invoice1.post()
         invoice2 = self.create_invoice(
             fields.Date.today() - timedelta(days=15), usd_currency, 1.0, 100.00
         )
-        invoice2.action_invoice_open()
+        invoice2.post()
 
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", receivable_acc.id)]
@@ -356,7 +354,7 @@ class TestCurrencyRevaluation(SavepointCase):
         invoice = self.create_invoice(
             fields.Date.to_date("%s-11-11" % year), eur_currency, 5.0, 1000.00
         )
-        invoice.action_invoice_open()
+        invoice.post()
         result = self.wizard_execute(fields.Date.to_date("%s-11-16" % year))
         self.assertEqual(result.get("name"), "Created revaluation lines")
         reval_move_lines = self.env["account.move.line"].search(
@@ -434,7 +432,7 @@ class TestCurrencyRevaluation(SavepointCase):
         revenue_acc = self.env.ref(
             "account_multicurrency_revaluation." "demo_acc_revenue"
         )
-        payment_term = self.env.ref("account.account_payment_term")
+        payment_term = self.env.ref("account.account_payment_term_end_following_month")
         sales_journal = self.env.ref("account_multicurrency_revaluation.sales_journal")
         partner = self.env.ref("base.res_partner_3")
         partner.company_id = self.company.id
@@ -448,17 +446,16 @@ class TestCurrencyRevaluation(SavepointCase):
             "price_unit": price,
             "currency_id": currency.id,
         }
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
-                "name": "Customer Invoice",
-                "date_invoice": date,
+                "type": "out_invoice",
+                "invoice_date": date,
                 "currency_id": currency.id,
                 "journal_id": sales_journal.id,
                 "company_id": self.company.id,
                 "partner_id": partner.id,
-                "account_id": receivable_acc.id,
                 "invoice_line_ids": [(0, 0, invoice_line_data)],
-                "payment_term_id": payment_term.id,
+                "invoice_payment_term_id": payment_term.id,
             }
         )
         return invoice
@@ -478,14 +475,12 @@ class TestCurrencyRevaluation(SavepointCase):
         """
 
         company = self.company
-        moves = self.env["account.move"].search([("company_id", "=", company.id)])
-        moves.write({"state": "draft"})
-        invoices = self.env["account.invoice"].search([("company_id", "=", company.id)])
-        invoices.write({"state": "draft", "move_name": False})
+        invoices = self.env["account.move"].search([("company_id", "=", company.id)])
+        invoices.button_draft()
 
         models_to_clear = [
             "account.move.line",
-            "account.invoice",
+            "account.move",
             "account.bank.statement",
         ]
         for model in models_to_clear:

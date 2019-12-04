@@ -1,8 +1,6 @@
 # Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
-
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
@@ -71,8 +69,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         base_move = {"journal_id": form.journal_id.id, "date": form.revaluation_date}
         if form.journal_id.company_id.reversable_revaluations:
-            base_move["auto_reverse"] = True
-            base_move["reverse_date"] = form.revaluation_date + timedelta(days=1)
+            base_move["revaluation_to_reverse"] = True
 
         base_line = {
             "name": label,
@@ -108,7 +105,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_move.post()
         return [x.id for x in created_move.line_ids]
 
-    @api.multi
     def _compute_unrealized_currency_gl(self, currency_id, balances):
         """
         Update data dict with the unrealized currency gain and loss
@@ -120,22 +116,20 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         @return: updated data for foreign balance plus rate value used
         """
-        context = self.env.context
-
         currency_obj = self.env["res.currency"]
 
         # Compute unrealized gain loss
-        ctx_rate = context.copy()
-        ctx_rate["date"] = self.revaluation_date
         cp_currency = self.journal_id.company_id.currency_id
 
-        currency = currency_obj.browse(currency_id).with_context(ctx_rate)
+        currency = currency_obj.browse(currency_id)
 
         foreign_balance = adjusted_balance = balances.get("foreign_balance", 0.0)
         balance = balances.get("balance", 0.0)
         unrealized_gain_loss = 0.0
         if foreign_balance:
-            adjusted_balance = currency.compute(foreign_balance, cp_currency)
+            adjusted_balance = currency._convert(
+                foreign_balance, cp_currency, self.env.company, self.revaluation_date
+            )
             unrealized_gain_loss = adjusted_balance - balance
         else:
             if balance:
@@ -169,7 +163,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         }
         return text % data
 
-    @api.multi
     def _write_adjust_balance(
         self, account_id, currency_id, partner_id, amount, label, form, sums
     ):
@@ -306,7 +299,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
             )
         )
 
-    @api.multi
     def revaluate_currency(self):
         """
         Compute unrealized currency gain and loss and add entries to
@@ -392,7 +384,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
             return {
                 "domain": "[('id', 'in', %s)]" % created_ids,
                 "name": _("Created revaluation lines"),
-                "view_type": "form",
                 "view_mode": "tree,form",
                 "auto_search": True,
                 "res_model": "account.move.line",

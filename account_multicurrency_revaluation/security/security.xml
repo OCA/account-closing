@@ -2,6 +2,6 @@
 <odoo>
     <record model="res.groups" id="group_revaluation_additional">
         <field name="name">Additional provisioning entries posting</field>
-        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+        <field name="category_id" ref="base.module_category_accounting_accounting"/>
     </record>
 </odoo>

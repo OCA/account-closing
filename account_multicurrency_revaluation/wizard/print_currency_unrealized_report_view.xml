@@ -22,7 +22,6 @@
         <field name="name">Print Currency Revaluation Report</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">unrealized.report.printer</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="currency_urealized_report_launcher_wizard"/>
         <field name="target">new</field>
