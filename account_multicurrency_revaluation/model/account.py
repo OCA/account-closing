@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 class AccountAccountLine(models.Model):
     _inherit = "account.move.line"
-    # By convention added columns stats with gl_.
+    # By convention added columns start with gl_.
     gl_foreign_balance = fields.Float(string="Aggregated Amount currency")
     gl_balance = fields.Float(string="Aggregated Amount")
     gl_revaluated_balance = fields.Float(string="Revaluated Amount")
@@ -21,14 +21,14 @@ class AccountAccount(models.Model):
     )
 
     _sql_mapping = {
-        "balance": "COALESCE(SUM(debit),0) - COALESCE(SUM(credit), 0) as " "balance",
+        "balance": "COALESCE(SUM(debit),0) - COALESCE(SUM(credit), 0) as balance",
         "debit": "COALESCE(SUM(debit), 0) as debit",
         "credit": "COALESCE(SUM(credit), 0) as credit",
-        "foreign_balance": "COALESCE(SUM(amount_currency), 0) as foreign_" "balance",
+        "foreign_balance": "COALESCE(SUM(amount_currency), 0) as foreign_balance",
     }
 
     def init(self):
-        # all receivable, payable and Bank and Cash accounts should
+        # all receivable, payable, Bank and Cash accounts should
         # have currency_revaluation True by default
         res = super().init()
         accounts = self.env["account.account"].search(
@@ -47,7 +47,6 @@ class AccountAccount(models.Model):
             self.env.ref("account.data_account_type_liquidity").id,
         ]
 
-    @api.multi
     @api.onchange("user_type_id")
     def _onchange_user_type_id(self):
         revaluation_accounts = self._get_revaluation_account_types()
@@ -55,7 +54,6 @@ class AccountAccount(models.Model):
             if rec.user_type_id.id in revaluation_accounts:
                 rec.currency_revaluation = True
 
-    @api.multi
     def _revaluation_query(self, revaluation_date):
 
         tables, where_clause, where_clause_params = self.env[
@@ -97,7 +95,6 @@ class AccountAccount(models.Model):
         params += where_clause_params
         return query, params
 
-    @api.multi
     def compute_revaluations(self, revaluation_date):
         accounts = {}
         # compute for each account the balance/debit/credit from the move lines
@@ -129,3 +126,11 @@ class AccountAccount(models.Model):
             accounts[account_id][partner_id][currency_id] = line
 
         return accounts
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    revaluation_to_reverse = fields.Boolean(
+        string="revaluation to reverse", default=False
+    )
