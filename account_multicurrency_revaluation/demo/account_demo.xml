@@ -2,8 +2,6 @@
 <odoo>
     <record id="res_partner_reval" model="res.partner">
         <field name="name">Revaluation Company</field>
-        <field eval="1" name="customer"/>
-        <field eval="1" name="supplier"/>
         <field eval="1" name="is_company"/>
         <field eval="1" name="active"/>
         <field name="street">90 Streets Avenue</field>
