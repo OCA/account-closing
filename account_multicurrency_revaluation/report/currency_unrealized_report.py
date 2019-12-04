@@ -16,13 +16,16 @@ class ShellAccount(object):
 
     def __init__(self, account):
         self.cursor = account.env.cr
-        tmp = account.read(
-            ['id', 'name', 'code', 'currency_revaluation'])
-        self.account_id = tmp[0]['id']
+        tmp = account.read(["id", "name", "code", "currency_revaluation"])
+        self.account_id = tmp[0]["id"]
         self.ordered_lines = []
-        self.keys_to_sum = ['gl_foreign_balance', 'gl_currency_rate',
-                            'gl_revaluated_balance', 'gl_balance',
-                            'gl_ytd_balance']
+        self.keys_to_sum = [
+            "gl_foreign_balance",
+            "gl_currency_rate",
+            "gl_revaluated_balance",
+            "gl_balance",
+            "gl_ytd_balance",
+        ]
 
     def __contains__(self, key):
         return hasattr(self, key)
@@ -63,17 +66,17 @@ class ShellAccount(object):
             for tot in self.keys_to_sum:
                 totals[tot] += line.get(tot, 0.0)
         for key, val in totals.items():
-            setattr(self, key + '_total', val)
+            setattr(self, key + "_total", val)
 
 
 class CurrencyUnrealizedReport(models.AbstractModel):
-    _name = 'report.account_multicurrency_revaluation.curr_unrealized_report'
-    _description = 'Currency Unrealized Report'
+    _name = "report.account_multicurrency_revaluation.curr_unrealized_report"
+    _description = "Currency Unrealized Report"
 
     @api.model
     def _get_report_values(self, docids, data=None):
         shell_accounts = {}
-        docs = self.env['account.account']
+        docs = self.env["account.account"]
         data = data if data is not None else {}
         accounts = docs.browse(docids)
         for account in accounts:
@@ -84,10 +87,10 @@ class CurrencyUnrealizedReport(models.AbstractModel):
                 shell_accounts[account.id] = acc
                 acc.compute_totals()
         docargs = {
-            'doc_ids': docs.ids,
-            'doc_model': 'account.account',
-            'docs': docs,
-            'shell_accounts': shell_accounts,
-            'data': data.get('form', False),
+            "doc_ids": docs.ids,
+            "doc_model": "account.account",
+            "docs": docs,
+            "shell_accounts": shell_accounts,
+            "data": data.get("form", False),
         }
         return docargs
