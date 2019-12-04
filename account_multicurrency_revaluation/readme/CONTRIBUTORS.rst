@@ -7,8 +7,11 @@
 * Matt Choplin choplin.mat@gmail.com
 * Matthieu Dietrich
 * moylop260
-* Pedro M. Baeza
 * Stéphane Bidoul
 * Vincent Renaville
 * Yannick Vaucher
 * Akim Juillerat
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Pedro M. Baeza
+  * Ernesto Tejeda
