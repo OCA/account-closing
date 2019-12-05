@@ -1,4 +1,4 @@
-# Copyright 2013-2016 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2013-2019 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -10,8 +10,8 @@ class AccountMoveLine(models.Model):
 
     start_date = fields.Date(index=True)
     end_date = fields.Date(index=True)
+    must_have_dates = fields.Boolean(related='product_id.must_have_dates')
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_start_end_dates(self):
         for moveline in self:
