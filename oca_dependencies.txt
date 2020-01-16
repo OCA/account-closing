@@ -1,0 +1,2 @@
+account-closing https://github.com/akretion/account-closing.git 13-start-end-dates
+account-closing-2 https://github.com/jimhoefnagels/account-closing.git 13.0-mig-account_cutoff_base
