@@ -14,7 +14,7 @@ class TestCutoffPrepaid(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.inv_model = cls.env["account.invoice"]
+        cls.inv_model = cls.env["account.move"]
         cls.cutoff_model = cls.env["account.cutoff"]
         cls.account_model = cls.env["account.account"]
         cls.journal_model = cls.env["account.journal"]
@@ -65,8 +65,8 @@ class TestCutoffPrepaid(SavepointCase):
     def _create_invoice(self, date, amount, start_date, end_date):
         invoice = self.inv_model.create(
             {
-                "date_invoice": self._date(date),
-                "account_id": self.account_payable.id,
+                "invoice_date": self._date(date),
+                "date": self._date(date),
                 "partner_id": self.env.ref("base.res_partner_2").id,
                 "journal_id": self.purchase_journal.id,
                 "type": "in_invoice",
@@ -86,7 +86,7 @@ class TestCutoffPrepaid(SavepointCase):
                 ],
             }
         )
-        invoice.action_invoice_open()
+        invoice.post()
         self.assertEqual(amount, invoice.amount_untaxed)
         return invoice
 
