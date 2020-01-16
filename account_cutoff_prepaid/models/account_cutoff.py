@@ -49,7 +49,6 @@ class AccountCutoff(models.Model):
         )
     ]
 
-    @api.multi
     @api.constrains("start_date", "end_date", "forecast")
     def _check_start_end_dates(self):
         for prepaid in self:
@@ -73,18 +72,17 @@ class AccountCutoff(models.Model):
             }
         }
 
-    @api.multi
     def _prepare_prepaid_lines(self, aml, mapping):
         self.ensure_one()
-        start_date_dt = fields.Date.from_string(aml.start_date)
-        end_date_dt = fields.Date.from_string(aml.end_date)
+        start_date_dt = aml.start_date
+        end_date_dt = aml.end_date
         # Here, we compute the amount of the cutoff
         # That's the important part !
         total_days = (end_date_dt - start_date_dt).days + 1
         if self.forecast:
             out_days = 0
-            forecast_start_date_dt = fields.Date.from_string(self.start_date)
-            forecast_end_date_dt = fields.Date.from_string(self.end_date)
+            forecast_start_date_dt = self.start_date
+            forecast_end_date_dt = self.end_date
             if end_date_dt > forecast_end_date_dt:
                 out_days += (end_date_dt - forecast_end_date_dt).days
             if start_date_dt < forecast_start_date_dt:
@@ -97,7 +95,8 @@ class AccountCutoff(models.Model):
                 prepaid_days = total_days
             else:
                 prepaid_days = (end_date_dt - cutoff_date_dt).days
-        assert total_days > 0, "Should never happen. Total days should always be > 0"
+        if total_days > 0:
+            raise ValidationError(_("Total days should always be > 0"))
         cutoff_amount = (aml.debit - aml.credit) * prepaid_days / float(total_days)
         # we use account mapping here
         if aml.account_id.id in mapping:
@@ -123,7 +122,6 @@ class AccountCutoff(models.Model):
         }
         return res
 
-    @api.multi
     def get_prepaid_lines(self):
         self.ensure_one()
         aml_obj = self.env["account.move.line"]
@@ -172,7 +170,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(AccountCutoff, self).create(vals)
+        res = super().create(vals)
         if not res.source_journal_ids:
             journals = self.env["account.journal"].search([])
             res.source_journal_ids = journals
@@ -182,14 +180,9 @@ class AccountCutoff(models.Model):
 class AccountCutoffLine(models.Model):
     _inherit = "account.cutoff.line"
 
-    move_line_id = fields.Many2one(
-        "account.move.line", string="Account Move Line", readonly=True
-    )
+    move_line_id = fields.Many2one("account.move.line", string="Account Move Line")
     move_date = fields.Date(
         related="move_line_id.date", string="Account Move Date", readonly=True
-    )
-    invoice_id = fields.Many2one(
-        related="move_line_id.invoice_id", string="Invoice", readonly=True
     )
     start_date = fields.Date(readonly=True)
     end_date = fields.Date(readonly=True)
