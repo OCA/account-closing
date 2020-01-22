@@ -12,7 +12,6 @@ class AccountCutoff(models.Model):
     _inherit = ["mail.thread"]
     _description = "Account Cut-off"
 
-    @api.multi
     @api.depends("line_ids", "line_ids.cutoff_amount")
     def _compute_total_cutoff(self):
         for cutoff in self:
@@ -42,7 +41,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_cutoff_account_id(self):
-        """Default account muast always be None"""
+        """Default account must always be None"""
         return None
 
     @api.model
@@ -54,7 +53,7 @@ class AccountCutoff(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
         copy=False,
-        track_visibility="onchange",
+        tracking=True,
     )
     cutoff_type = fields.Selection(
         selection="_selection_cutoff_type",
@@ -63,7 +62,6 @@ class AccountCutoff(models.Model):
         readonly=True,
         default=lambda self: self.env.context.get("cutoff_type"),
         states={"draft": [("readonly", False)]},
-        oldname="type",
     )
     move_id = fields.Many2one(
         "account.move", string="Cut-off Journal Entry", readonly=True, copy=False
@@ -97,7 +95,7 @@ class AccountCutoff(models.Model):
         string="Total Cut-off Amount",
         currency_field="company_currency_id",
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     company_id = fields.Many2one(
         "res.company",
@@ -110,7 +108,7 @@ class AccountCutoff(models.Model):
         ),
     )
     company_currency_id = fields.Many2one(
-        related="company_id.currency_id", readonly=True, string="Company Currency"
+        related="company_id.currency_id", string="Company Currency"
     )
     line_ids = fields.One2many(
         comodel_name="account.cutoff.line",
@@ -123,7 +121,7 @@ class AccountCutoff(models.Model):
         selection=[("draft", "Draft"), ("done", "Done")],
         index=True,
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
         default="draft",
         copy=False,
         help="State of the cutoff. When the Journal Entry is created, "
@@ -138,7 +136,6 @@ class AccountCutoff(models.Model):
         )
     ]
 
-    @api.multi
     def back2draft(self):
         self.ensure_one()
         if self.move_id:
@@ -155,7 +152,6 @@ class AccountCutoff(models.Model):
         """
         return ["account_id", "analytic_account_id"]
 
-    @api.multi
     def _prepare_move(self, to_provision):
         self.ensure_one()
         movelines_to_create = []
@@ -197,7 +193,6 @@ class AccountCutoff(models.Model):
         }
         return res
 
-    @api.multi
     def _prepare_provision_line(self, cutoff_line):
         """ Convert a cutoff line to elements of a move line.
 
@@ -213,7 +208,6 @@ class AccountCutoff(models.Model):
             "amount": cutoff_line.cutoff_amount,
         }
 
-    @api.multi
     def _prepare_provision_tax_line(self, cutoff_tax_line):
         """ Convert a cutoff tax line to elements of a move line.
 
@@ -225,7 +219,6 @@ class AccountCutoff(models.Model):
             "amount": cutoff_tax_line.cutoff_amount,
         }
 
-    @api.multi
     def _merge_provision_lines(self, provision_lines):
         """ Merge provision line.
 
@@ -242,7 +235,6 @@ class AccountCutoff(models.Model):
                 to_provision[key] = provision_line["amount"]
         return to_provision
 
-    @api.multi
     def create_move(self):
         self.ensure_one()
         move_obj = self.env["account.move"]
