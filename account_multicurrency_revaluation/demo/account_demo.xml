@@ -54,14 +54,6 @@
         <field name="user_type_id" ref="account.data_account_type_revenue" />
         <field name="company_id" ref="res_company_reval" />
     </record>
-    <record id="demo_acc_receivable" model="account.account">
-        <field name="name">Account Receivable</field>
-        <field name="code">accrec</field>
-        <field name="user_type_id" ref="account.data_account_type_receivable" />
-        <field name="currency_revaluation">True</field>
-        <field name="reconcile">True</field>
-        <field name="company_id" ref="res_company_reval" />
-    </record>
     <record id="demo_acc_payable" model="account.account">
         <field name="name">Account Payable</field>
         <field name="code">accpay</field>
