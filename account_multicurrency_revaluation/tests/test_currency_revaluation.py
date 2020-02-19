@@ -73,8 +73,8 @@ class TestCurrencyRevaluation(SavepointCase):
         # Validate invoice
         invoice.action_invoice_open()
 
-        payment_method = ref('account_multicurrency_revaluation.'
-                             'account_payment_method_manual_in')
+        payment_method = ref(
+            'account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = cls.env['account.payment'].create({
@@ -359,8 +359,8 @@ class TestCurrencyRevaluation(SavepointCase):
             'currency_id': eur_currency.id,
         })
         euro_bank.default_debit_account_id.currency_revaluation = True
-        payment_method = self.env.ref('account_multicurrency_revaluation.'
-                                      'account_payment_method_manual_in')
+        payment_method = self.env.ref(
+            'account.account_payment_method_manual_in')
 
         # Register partial payment
         payment = self.env['account.payment'].create({
