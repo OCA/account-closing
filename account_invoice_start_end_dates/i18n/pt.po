@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 23:20+0000\n"
-"PO-Revision-Date: 2018-03-23 23:20+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>, 2018\n"
+"PO-Revision-Date: 2020-02-24 13:13+0000\n"
+"Last-Translator: alvarorib <alvaro.ribeiro@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
@@ -138,7 +139,7 @@ msgstr ""
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Unit(s)"
-msgstr ""
+msgstr "Unidades(s)"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
@@ -146,4 +147,4 @@ msgstr ""
 #: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 #: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "kg"
-msgstr ""
+msgstr "kg"
