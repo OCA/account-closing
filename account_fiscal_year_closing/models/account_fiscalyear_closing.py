@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp import _, api, exceptions, fields, models
-from openerp.tools import float_is_zero
-from openerp.exceptions import ValidationError
+from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_is_zero
+from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
 _logger = logging.getLogger(__name__)
@@ -19,13 +18,10 @@ class AccountFiscalyearClosing(models.Model):
 
     def _default_year(self):
         company = self._default_company_id()
-        last_month_day = '%s-%s' % (
-            company.fiscalyear_last_month or '12',
-            company.fiscalyear_last_day or '31',
-        )
         lock_date = company.fiscalyear_lock_date or fields.Date.today()
-        fiscalyear = int(lock_date[:4])
-        if lock_date[5:] < last_month_day:
+        fiscalyear = lock_date.year
+        if lock_date.month < company.fiscalyear_last_month and \
+                lock_date.day < company.fiscalyear_last_day:
             fiscalyear = fiscalyear - 1
         return fiscalyear
 
@@ -203,7 +199,6 @@ class AccountFiscalyearClosing(models.Model):
             'mapping_ids': mappings,
             'closing_type_ids': types,
             'closing_type_default': tmpl_config.closing_type_default,
-            'reconcile': tmpl_config.reconcile,
         }
 
     # @api.onchange('closing_template_id')
@@ -220,7 +215,7 @@ class AccountFiscalyearClosing(models.Model):
         self.check_draft_moves = tmpl.check_draft_moves
         for tmpl_config in tmpl.move_config_ids:
             self.move_config_ids += config_obj.new(
-                self._prepare_config(tmpl_config, self.company_id)
+                self._prepare_config(tmpl_config)
             )
 
     @api.onchange('year')
@@ -237,10 +232,10 @@ class AccountFiscalyearClosing(models.Model):
         self.date_opening = fields.Date.to_string(
             date_end + relativedelta(days=1)
         )
-        if self.date_start[:4] != self.date_end[:4]:
-            self.name = "%s-%s" % (self.date_start[:4], self.date_end[:4])
+        if self.date_start != self.date_end:
+            self.name = "%s-%s" % (self.date_start, self.date_end)
         else:
-            self.name = str(self.date_end[:4])
+            self.name = str(self.date_end)
 
     @api.multi
     def action_load_template(self):
@@ -348,9 +343,8 @@ class AccountFiscalyearClosing(models.Model):
     def button_post(self):
         # Post moves
         for closing in self:
-            closing.move_ids.post()
-            for config in closing.move_config_ids.filtered('reconcile'):
-                config.move_id.move_reverse_reconcile()
+            for move_config in closing.move_config_ids.sorted('sequence'):
+                move_config.move_id.post()
         self.write({'state': 'posted'})
         return True
 
@@ -477,6 +471,7 @@ class AccountFiscalyearClosingConfig(models.Model):
             ], order="code ASC")
             for account in src_accounts:
                 closing_type = self.closing_type_get(account)
+                balance = False
                 if closing_type == 'balance':
                     # Get all lines
                     lines = account_map.account_lines_get(account)
@@ -513,22 +508,16 @@ class AccountFiscalyearClosingConfig(models.Model):
     @api.multi
     def inverse_move_prepare(self):
         self.ensure_one()
-        move_vals = False
+        move_ids = False
         date = self.fyc_id.date_end
         if self.move_type == 'opening':
             date = self.fyc_id.date_opening
         config = self.config_inverse_get()
         if config.move_id:
-            move_vals = config.move_id._move_reverse_prepare(
-                date=date, journal=self.journal_id,
+            move_ids = config.move_id.reverse_moves(
+                date=date, journal_id=self.journal_id,
             )
-            move_vals = config.move_id._move_lines_reverse_prepare(
-                move_vals, date=date, journal=self.journal_id,
-            )
-            move_vals['ref'] = self.name
-            move_vals['closing_type'] = self.move_type
-            move_vals['reversal_id'] = config.move_id.id
-        return move_vals
+        return move_ids
 
     @api.multi
     def moves_create(self):
@@ -540,7 +529,11 @@ class AccountFiscalyearClosingConfig(models.Model):
             move_lines = self._mapping_move_lines_get()
             data = self.move_prepare(move_lines)
         elif self.inverse:
-            data = self.inverse_move_prepare()
+            move_ids = self.inverse_move_prepare()
+            move = moves.browse(move_ids[0])
+            move.write({'ref': self.name, 'closing_type': self.move_type})
+            self.move_id = move.id
+            return move, data
         # Create move
         if not data:
             return False, data
