@@ -29,8 +29,8 @@
                         <field name="name"/>
                         <field name="account_id"/>
                         <field name="partner_id"/>
-                        <field name="debit"/>
-                        <field name="credit"/>
+                        <field name="debit" sum="Total debit"/>
+                        <field name="credit" sum="Total credit"/>
                     </tree>
                 </field>
                 <footer>
