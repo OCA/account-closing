@@ -2,16 +2,15 @@
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 import odoo.addons.decimal_precision as dp
 
 
 class AccountCutOff(models.Model):
     _inherit = 'account.cutoff'
 
-    @api.model
     def _default_cutoff_account_id(self):
-        account_id = super(AccountCutOff, self)._default_cutoff_account_id()
+        account_id = super()._default_cutoff_account_id()
         cutoff_type = self.env.context.get('default_cutoff_type')
         company = self.env.user.company_id
         if cutoff_type == 'accrued_expense':
