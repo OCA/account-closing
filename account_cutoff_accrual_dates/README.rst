@@ -19,8 +19,11 @@ Account Accrual Dates
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/account-closing-12-0/account-closing-12-0-account_cutoff_accrual_dates
     :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/89/12.0
+    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows you to easily compute the accrued revenue and accrued expenses based on the **Start Date** and **End Date** of journal items (copied from the same fields of invoice lines) and to generate the related cutoff journal items.
 
