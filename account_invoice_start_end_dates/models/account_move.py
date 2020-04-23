@@ -22,4 +22,4 @@ class AccountMove(models.Model):
                             )
                             % (line.product_id.display_name)
                         )
-        return super(AccountMove, self).action_post()
+        return super().action_post()
