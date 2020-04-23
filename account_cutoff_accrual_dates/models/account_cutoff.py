@@ -1,8 +1,8 @@
-# Copyright 2013-2019 Akretion France
+# Copyright 2013-2020 Akretion France
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import api, models, _
 from odoo.exceptions import UserError
 
 
@@ -11,7 +11,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _get_default_source_journals(self):
-        res = super(AccountCutoff, self)._get_default_source_journals()
+        res = super()._get_default_source_journals()
         cutoff_type = self._context.get('cutoff_type')
         mapping = {
             'accrued_expense': 'purchase',
@@ -19,7 +19,10 @@ class AccountCutoff(models.Model):
             }
         if cutoff_type in mapping:
             src_journals = self.env['account.journal'].search(
-                [('type', '=', mapping[cutoff_type])])
+                [
+                    ('type', '=', mapping[cutoff_type]),
+                    ('company_id', '=', self.env.user.company_id.id),
+                ])
             if src_journals:
                 res = src_journals.ids
         return res
@@ -27,13 +30,12 @@ class AccountCutoff(models.Model):
     def _prepare_accrual_date_lines(self, aml, mapping):
         self.ensure_one()
         ato = self.env['account.tax']
-        start_date_dt = fields.Date.from_string(aml.start_date)
-        end_date_dt = fields.Date.from_string(aml.end_date)
+        start_date_dt = aml.start_date
+        end_date_dt = aml.end_date
         # Here, we compute the amount of the cutoff
         # That's the important part !
         total_days = (end_date_dt - start_date_dt).days + 1
-        cutoff_date_str = self.cutoff_date
-        cutoff_date_dt = fields.Date.from_string(cutoff_date_str)
+        cutoff_date_dt = self.cutoff_date
         if end_date_dt <= cutoff_date_dt:
             prepaid_days = total_days
         else:
@@ -41,7 +43,7 @@ class AccountCutoff(models.Model):
         assert total_days > 0,\
             'Should never happen. Total days should always be > 0'
         cutoff_amount = (aml.credit - aml.debit) *\
-            prepaid_days / float(total_days)
+            prepaid_days / total_days
         cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here
         if aml.account_id.id in mapping:
@@ -104,7 +106,7 @@ class AccountCutoff(models.Model):
         return res
 
     def get_lines(self):
-        res = super(AccountCutoff, self).get_lines()
+        res = super().get_lines()
         if self.cutoff_type not in ['accrued_expense', 'accrued_revenue']:
             return res
         aml_obj = self.env['account.move.line']
@@ -113,13 +115,13 @@ class AccountCutoff(models.Model):
         if not self.source_journal_ids:
             raise UserError(_(
                 "You should set at least one Source Journal."))
-        cutoff_date_str = self.cutoff_date
+        cutoff_date_dt = self.cutoff_date
 
         domain = [
             ('start_date', '!=', False),
             ('journal_id', 'in', self.source_journal_ids.ids),
-            ('start_date', '<=', cutoff_date_str),
-            ('date', '>', cutoff_date_str)
+            ('start_date', '<=', cutoff_date_dt),
+            ('date', '>', cutoff_date_dt),
             ]
 
         # Search for account move lines in the source journals

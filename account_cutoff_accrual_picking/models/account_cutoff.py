@@ -1,4 +1,4 @@
-# Copyright 2013-2019 Akretion France
+# Copyright 2013-2020 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -26,8 +26,8 @@ class AccountCutoff(models.Model):
         currency = vdict['currency']
         sign = self.cutoff_type == 'accrued_expense' and -1 or 1
         amount = qty * vdict['price_unit'] * sign
-        amount_company_currency = vdict['currency'].with_context(
-            date=self.cutoff_date).compute(amount, company_currency)
+        amount_company_currency = vdict['currency']._convert(
+            amount, company_currency, self.company_id, self.cutoff_date)
 
         tax_line_ids = []
         tax_res = vdict['taxes'].compute_all(
@@ -48,8 +48,8 @@ class AccountCutoff(models.Model):
                     "Missing '%s' on tax '%s'.") % (
                         tax_account_field_label, tax.display_name))
             tax_amount = tax_line['amount'] * sign
-            tax_accrual_amount = currency.with_context(
-                date=self.cutoff_date).compute(tax_amount, company_currency)
+            tax_accrual_amount = currency._convert(
+                tax_amount, company_currency, self.company_id, self.cutoff_date)
             tax_line_ids.append((0, 0, {
                 'tax_id': tax_line['id'],
                 'base': tax_line['base'],
@@ -98,6 +98,8 @@ class AccountCutoff(models.Model):
         order = order_line.order_id
         product = order_line.product_id
         product_uom = product.uom_id
+        moves = order_line.move_ids
+        ilines = order_line.invoice_lines
         oline_dict[order_line] = {
             'precut_delivered_qty': 0.0,  # in product_uom
             'precut_invoiced_qty': 0.0,  # in product_uom
@@ -107,13 +109,8 @@ class AccountCutoff(models.Model):
             'partner': order.partner_id.commercial_partner_id,
             }
         if order_type == 'purchase':
-            moves = order_line.move_ids
-            ilines = order_line.invoice_lines
             invoice_type = 'in_invoice'
         elif order_type == 'sale':
-            moves = order_line.move_ids
-            ilines = self.env['account.invoice.line'].search([
-                ('sale_line_ids', 'in', order_line.id)])
             invoice_type = 'out_invoice'
         for move in moves:
             # TODO: improve comparaison of date and datetime
@@ -124,25 +121,24 @@ class AccountCutoff(models.Model):
                 oline_dict[order_line]['precut_delivered_qty'] += move_qty
         price_origin = False
         for iline in ilines:
-            invoice = iline.invoice_id
+            invoice = iline.move_id
             if (
-                    invoice.state in ('open', 'in_payment', 'paid') and
                     invoice.type == invoice_type and
                     float_compare(
                         iline.quantity, 0, precision_digits=qty_prec) > 0):
-                iline_qty_puom = iline.uom_id._compute_quantity(
+                iline_qty_puom = iline.product_uom_id._compute_quantity(
                     iline.quantity, product_uom)
-                if invoice.date_invoice <= self.cutoff_date:
+                if invoice.date <= self.cutoff_date:
                     oline_dict[order_line][
                         'precut_invoiced_qty'] += iline_qty_puom
                 # Most recent invoice line used for price_unit, account,...
                 price_unit = iline.price_subtotal / iline_qty_puom
                 price_origin = _('Invoice %s line ID %d') % (
-                    invoice.number, iline.id)
+                    invoice.name, iline.id)
                 currency = invoice.currency_id
                 account_id = iline.account_id.id
-                analytic_account_id = iline.account_analytic_id.id
-                taxes = iline.invoice_line_tax_ids
+                analytic_account_id = iline.analytic_account_id.id
+                taxes = iline.tax_ids
         if not price_origin:
             if order_type == 'purchase':
                 oline_qty_puom = order_line.product_uom._compute_quantity(
@@ -211,7 +207,7 @@ class AccountCutoff(models.Model):
                     move_line.sale_line_id, 'sale', oline_dict)
 
     def get_lines(self):
-        res = super(AccountCutoff, self).get_lines()
+        res = super().get_lines()
         spo = self.env['stock.picking']
         aclo = self.env['account.cutoff.line']
         acmo = self.env['account.cutoff.mapping']
@@ -235,6 +231,7 @@ class AccountCutoff(models.Model):
             ('state', '=', 'done'),
             ('date_done', '<=', self.cutoff_date),
             ('date_done', '>=', self._picking_done_min_date()),
+            ('company_id', '=', self.company_id.id),
             ])
 
         oline_dict = {}  # order line dict
