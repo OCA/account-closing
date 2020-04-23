@@ -38,6 +38,22 @@ class AccountCutoff(models.Model):
         label = self.cutoff_type_label_map.get(cutoff_type, "")
         return label
 
+    @api.model
+    def _default_cutoff_date(self):
+        company_id = self.env.user.company_id.id
+        previous_fy = self.env["account.fiscal.year"].search(
+            [
+                ("company_id", "=", self.env.user.company_id.id),
+                ("date_to", "<=", fields.Date.context_today(self)),
+            ],
+            order="date_from desc",
+            limit=1,
+        )
+        if previous_fy:
+            return previous_fy.date_to
+        else:
+            return False
+
     def _selection_cutoff_type(self):
         # generate cutoff types from mapping
         return list(self.cutoff_type_label_map.items())
@@ -57,14 +73,15 @@ class AccountCutoff(models.Model):
         states={"draft": [("readonly", False)]},
         copy=False,
         tracking=True,
+        default=lambda self: self._default_cutoff_date(),
     )
     cutoff_type = fields.Selection(
         selection="_selection_cutoff_type",
         string="Type",
         required=True,
         readonly=True,
-        default=lambda self: self.env.context.get("cutoff_type"),
         states={"draft": [("readonly", False)]},
+        default=lambda self: self.env.context.get("cutoff_type"),
     )
     move_id = fields.Many2one(
         "account.move", string="Cut-off Journal Entry", readonly=True, copy=False
