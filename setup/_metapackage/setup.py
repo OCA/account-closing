@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-account_cutoff_base',
+        'odoo13-addon-account_cutoff_prepaid',
         'odoo13-addon-account_invoice_start_end_dates',
     ],
     classifiers=[
