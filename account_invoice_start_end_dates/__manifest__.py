@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "summary": "Adds start/end dates on invoice/move lines",
     "author": "Akretion,Odoo Community Association (OCA)",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account",],
     "data": ["views/account_move.xml", "views/product.xml",],
