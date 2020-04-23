@@ -14,11 +14,13 @@ class AccountCutoff(models.Model):
 
     @api.depends("line_ids", "line_ids.cutoff_amount")
     def _compute_total_cutoff(self):
+        rg_res = self.env['account.cutoff.line'].read_group(
+            [('parent_id', 'in', self.ids)],
+            ['parent_id', 'cutoff_amount'],
+            ['parent_id'])
+        mapped_data = dict([(x['parent_id'][0], x['cutoff_amount']) for x in rg_res])
         for cutoff in self:
-            tamount = 0.0
-            for line in cutoff.line_ids:
-                tamount += line.cutoff_amount
-            cutoff.total_cutoff_amount = tamount
+            cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
 
     @property
     def cutoff_type_label_map(self):
@@ -103,9 +105,7 @@ class AccountCutoff(models.Model):
         required=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.cutoff"
-        ),
+        default=lambda self: self.env.company,
     )
     company_currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company Currency"
@@ -159,6 +159,7 @@ class AccountCutoff(models.Model):
         move_label = self.move_label
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
+            amount = self.company_currency_id.round(amount)
             vals = {
                 "name": move_label,
                 "debit": amount < 0 and amount * -1 or 0,
@@ -170,7 +171,8 @@ class AccountCutoff(models.Model):
             amount_total += amount
 
         # add counter-part
-        counterpart_amount = amount_total * -1
+        counterpart_amount = self.company_currency_id.round(
+            amount_total * -1)
         movelines_to_create.append(
             (
                 0,
@@ -261,6 +263,7 @@ class AccountCutoff(models.Model):
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
         self.write({"move_id": move.id, "state": "done"})
+        self.message_post(body=_('Journal entry generated'))
 
         action = self.env["ir.actions.act_window"].for_xml_id(
             "account", "action_move_journal_line"
@@ -273,6 +276,32 @@ class AccountCutoff(models.Model):
                 "views": False,
             }
         )
+        return action
+
+    def get_lines(self):
+        """This method is designed to be inherited in other modules"""
+        self.ensure_one()
+        # Delete existing lines
+        self.line_ids.unlink()
+        self.message_post(body=_('Cut-off lines re-generated'))
+        return True
+
+    def unlink(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_(
+                    "You cannot delete cutoff records that are not "
+                    "in draft state."))
+        return super().unlink()
+
+    def button_line_tree(self):
+        action = self.env['ir.actions.act_window'].for_xml_id(
+            'account_cutoff_base', 'account_cutoff_line_action')
+        action.update({
+            'domain': [('parent_id', '=', self.id)],
+            'views': False,
+            'context': self._context,
+            })
         return action
 
 
