@@ -14,10 +14,12 @@ class AccountCutoff(models.Model):
         cutoff_type = self.env.context.get("cutoff_type")
         mapping = {"prepaid_expense": "purchase", "prepaid_revenue": "sale"}
         if cutoff_type in mapping:
-            src_journals = self.env["account.journal"].search([
-                ("type", "=", mapping[cutoff_type]),
-                ("company_id", "=", self.env.user.company_id.id),
-            ])
+            src_journals = self.env["account.journal"].search(
+                [
+                    ("type", "=", mapping[cutoff_type]),
+                    ("company_id", "=", self.env.user.company_id.id),
+                ]
+            )
             if src_journals:
                 res = src_journals.ids
         return res
@@ -63,19 +65,22 @@ class AccountCutoff(models.Model):
 
     def forecast_enable(self):
         self.ensure_one()
-        assert self.state == 'draft'
+        assert self.state == "draft"
         if self.move_id:
-            raise UserError(_(
-                "This cutoff is linked to a journal entry. "
-                "You must delete it before entering forecast mode."))
+            raise UserError(
+                _(
+                    "This cutoff is linked to a journal entry. "
+                    "You must delete it before entering forecast mode."
+                )
+            )
         self.line_ids.unlink()
-        self.write({'forecast': True})
+        self.write({"forecast": True})
 
     def forecast_disable(self):
         self.ensure_one()
-        assert self.state == 'draft'
+        assert self.state == "draft"
         self.line_ids.unlink()
-        self.write({'forecast': False})
+        self.write({"forecast": False})
 
     def _prepare_prepaid_lines(self, aml, mapping):
         self.ensure_one()
@@ -129,7 +134,7 @@ class AccountCutoff(models.Model):
 
     def get_lines(self):
         res = super().get_lines()
-        if self.cutoff_type not in ['prepaid_expense', 'prepaid_revenue']:
+        if self.cutoff_type not in ["prepaid_expense", "prepaid_revenue"]:
             return res
         aml_obj = self.env["account.move.line"]
         line_obj = self.env["account.cutoff.line"]
