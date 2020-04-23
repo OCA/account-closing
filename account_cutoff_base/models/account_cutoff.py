@@ -40,7 +40,6 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_cutoff_date(self):
-        company_id = self.env.user.company_id.id
         previous_fy = self.env["account.fiscal.year"].search(
             [
                 ("company_id", "=", self.env.user.company_id.id),
