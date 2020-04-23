@@ -8,16 +8,18 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     default_accrued_revenue_account_id = fields.Many2one(
-        comodel_name='account.account',
-        string='Default Account for Accrued Revenues',
-        domain=[('deprecated', '=', False)])
+        comodel_name="account.account",
+        string="Default Account for Accrued Revenues",
+        domain=[("deprecated", "=", False)],
+    )
 
     default_accrued_expense_account_id = fields.Many2one(
-        comodel_name='account.account',
-        string='Default Account for Accrued Expenses',
-        domain=[('deprecated', '=', False)])
+        comodel_name="account.account",
+        string="Default Account for Accrued Expenses",
+        domain=[("deprecated", "=", False)],
+    )
 
-    accrual_taxes = fields.Boolean(string='Accrual On Taxes', default=True)
+    accrual_taxes = fields.Boolean(string="Accrual On Taxes", default=True)
