@@ -14,7 +14,7 @@
     "data": [
         "security/account_cutoff_base_security.xml",
         "security/ir.model.access.csv",
-        "views/company.xml",
+        "views/res_config_settings.xml",
         "views/account_cutoff.xml",
     ],
     "installable": True,
