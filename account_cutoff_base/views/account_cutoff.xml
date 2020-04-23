@@ -4,7 +4,6 @@
   @author: Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-
 <odoo>
     <menuitem
         id="cutoff_menu"
@@ -25,7 +24,7 @@
                         type="object"
                         states="done"
                     />
-                    <button 
+                    <button
                         class="btn-primary"
                         name="get_lines"
                         string="Re-Generate Lines"
@@ -43,11 +42,13 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="button_line_tree"
+                        <button
+                            name="button_line_tree"
                             class="oe_stat_button"
                             icon="fa-building-o"
                             type="object"
-                            help="List view of lines">
+                            help="List view of lines"
+                        >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Lines Fullscreen</span>
                             </div>
@@ -70,8 +71,16 @@
                             <field name="company_currency_id" invisible="1" />
                         </group>
                         <group name="accounting-params">
-                            <field name="cutoff_journal_id" required="1" domain="[('company_id', '=', company_id)]"/>
-                            <field name="cutoff_account_id" required="1" domain="[('company_id', '=', company_id)]"/>
+                            <field
+                                name="cutoff_journal_id"
+                                required="1"
+                                domain="[('company_id', '=', company_id)]"
+                            />
+                            <field
+                                name="cutoff_account_id"
+                                required="1"
+                                domain="[('company_id', '=', company_id)]"
+                            />
                             <field name="move_label" required="1" />
                             <field name="move_id" />
                         </group>
@@ -91,7 +100,6 @@
             </form>
         </field>
     </record>
-
     <record id="account_cutoff_tree" model="ir.ui.view">
         <field name="name">account.cutoff.tree</field>
         <field name="model">account.cutoff</field>
@@ -105,7 +113,6 @@
             </tree>
         </field>
     </record>
-
     <record id="account_cutoff_filter" model="ir.ui.view">
         <field name="name">account.cutoff.filter</field>
         <field name="model">account.cutoff</field>
@@ -127,7 +134,6 @@
             </search>
         </field>
     </record>
-
     <!-- account.cutoff.line -->
     <record id="account_cutoff_line_form" model="ir.ui.view">
         <field name="name">account.cutoff.line.form</field>
@@ -169,7 +175,6 @@
             </form>
         </field>
     </record>
-
     <record id="account_cutoff_line_tree" model="ir.ui.view">
         <field name="name">account.cutoff.line.tree</field>
         <field name="model">account.cutoff.line</field>
@@ -181,9 +186,10 @@
                 />
                 <field name="partner_id" />
                 <field name="name" />
-                <field name="cutoff_account_code" string="Cutoff Account"/>
+                <field name="cutoff_account_code" string="Cutoff Account" />
                 <field
-                    name="analytic_account_code" string="Analytic Account"
+                    name="analytic_account_code"
+                    string="Analytic Account"
                     groups="analytic.group_analytic_accounting"
                 />
                 <field
@@ -193,34 +199,39 @@
                 />
                 <field name="amount" />
                 <field name="currency_id" invisible="1" />
-                <field name="cutoff_amount" sum="1"/>
+                <field name="cutoff_amount" sum="1" />
                 <field name="company_currency_id" invisible="1" />
             </tree>
         </field>
     </record>
-
     <record id="account_cutoff_line_search" model="ir.ui.view">
         <field name="name">account.cutoff.line.search</field>
         <field name="model">account.cutoff.line</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="analytic_account_id"/>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="analytic_account_id" />
                 <group name="groupby">
-                    <filter name="partner_groupby" string="Partner" context="{'group_by': 'partner_id'}"/>
-                    <filter name="analytic_groupby" string="Analytic Account" context="{'group_by': 'analytic_account_id'}"/>
+                    <filter
+                        name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="analytic_groupby"
+                        string="Analytic Account"
+                        context="{'group_by': 'analytic_account_id'}"
+                    />
                 </group>
             </search>
         </field>
     </record>
- 
     <record id="account_cutoff_line_action" model="ir.actions.act_window">
         <field name="name">Cutoff Lines</field>
         <field name="res_model">account.cutoff.line</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <!-- account.cutoff.tax.line -->
     <record id="account_cutoff_tax_line_form" model="ir.ui.view">
         <field name="name">account.cutoff.tax.line.form</field>
@@ -250,7 +261,6 @@
             </form>
         </field>
     </record>
-
     <record id="account_cutoff_tax_line_tree" model="ir.ui.view">
         <field name="name">account.cutoff.tax.line.tree</field>
         <field name="model">account.cutoff.tax.line</field>
@@ -275,7 +285,6 @@
             </tree>
         </field>
     </record>
-
     <!-- account.cutoff.mapping -->
     <record id="account_cutoff_mapping_form" model="ir.ui.view">
         <field name="name">account.cutoff.mapping.form</field>
@@ -294,7 +303,6 @@
             </form>
         </field>
     </record>
-
     <record id="account_cutoff_mapping_tree" model="ir.ui.view">
         <field name="name">account.cutoff.mapping.tree</field>
         <field name="model">account.cutoff.mapping</field>
@@ -312,7 +320,6 @@
             </tree>
         </field>
     </record>
-
     <record id="account_cutoff_mapping_action" model="ir.actions.act_window">
         <field name="name">Cut-off Account Mapping</field>
         <field name="res_model">account.cutoff.mapping</field>
@@ -327,7 +334,6 @@
             </p>
         </field>
     </record>
-
     <menuitem
         id="account_cutoff_mapping_menu"
         parent="account.account_account_menu"

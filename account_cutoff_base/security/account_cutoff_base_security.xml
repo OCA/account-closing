@@ -3,11 +3,15 @@
     <record id="account_cutoff_multi_company_rule" model="ir.rule">
         <field name="name">Account Cutoff Multi-Company</field>
         <field name="model_id" ref="model_account_cutoff" />
-        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
     </record>
     <record id="account_cutoff_mapping_multi_company_rule" model="ir.rule">
         <field name="name">Account Cutoff Mapping Multi-Company</field>
         <field name="model_id" ref="model_account_cutoff_mapping" />
-        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
     </record>
 </odoo>
