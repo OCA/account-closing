@@ -61,7 +61,10 @@
                     </div>
                     <group name="top">
                         <group name="general-params">
-                            <field name="cutoff_date" />
+                            <field
+                                name="cutoff_date"
+                                options="{'datepicker': {'warn_future': true}}"
+                            />
                             <field name="total_cutoff_amount" />
                             <field
                                 name="company_id"
