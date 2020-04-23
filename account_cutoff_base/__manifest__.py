@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "summary": "Base module for Account Cut-offs",
     "author": "Akretion,Odoo Community Association (OCA)",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account"],
     "data": [
