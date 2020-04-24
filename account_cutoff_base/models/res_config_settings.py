@@ -13,3 +13,6 @@ class ResConfigSettings(models.TransientModel):
     dft_cutoff_journal_id = fields.Many2one(
         related="company_id.default_cutoff_journal_id", readonly=False
     )
+    dft_cutoff_move_partner = fields.Boolean(
+        related="company_id.default_cutoff_move_partner", readonly=False
+    )
