@@ -19,6 +19,11 @@
                             <div class="content-group">
                                 <div class="row mt16" name="dft_cutoff_journal_id">
                                     <label
+                                        for="dft_cutoff_move_partner"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                                    <field name="dft_cutoff_move_partner" />
+                                    <label
                                         for="dft_cutoff_journal_id"
                                         class="col-lg-3 o_light_label"
                                     />

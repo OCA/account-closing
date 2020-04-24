@@ -85,6 +85,7 @@
                                 domain="[('company_id', '=', company_id)]"
                             />
                             <field name="move_label" required="1" />
+                            <field name="move_partner" />
                             <field name="move_id" />
                         </group>
                     </group>
@@ -191,8 +192,7 @@
                 <field name="name" />
                 <field name="cutoff_account_code" string="Cutoff Account" />
                 <field
-                    name="analytic_account_code"
-                    string="Analytic Account"
+                    name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
                 />
                 <field
