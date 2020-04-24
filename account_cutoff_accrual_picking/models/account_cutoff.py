@@ -4,13 +4,32 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_is_zero
 
 
 class AccountCutoff(models.Model):
     _inherit = "account.cutoff"
+
+    picking_interval_days = fields.Integer(
+        string="Picking Analysis Interval",
+        default=lambda self: self._default_picking_interval_days(),
+        help="To generate the accruals based on pickings, Odoo will analyse all the pickings between the cutoff date and N days before. N is the Picking Analysis Interval.",
+    )
+
+    _sql_constraints = [
+        (
+            "picking_interval_days_positive",
+            "CHECK(picking_interval_days > 0)",
+            "The value of the field 'Picking Analysis Interval' must "
+            "be strictly positive.",
+        )
+    ]
+
+    @api.model
+    def _default_picking_interval_days(self):
+        return self.env.user.company_id.default_cutoff_accrual_picking_interval_days
 
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         ato = self.env["account.tax"]
@@ -98,13 +117,6 @@ class AccountCutoff(models.Model):
             "price_origin": vdict.get("price_origin"),
         }
         return vals
-
-    def _picking_done_min_date(self):
-        self.ensure_one()
-        cutoff_date_dt = self.cutoff_date
-        min_date_dt = cutoff_date_dt - relativedelta(months=3)
-        min_date = fields.Date.to_string(min_date_dt)
-        return min_date
 
     def order_line_update_oline_dict(self, order_line, order_type, oline_dict):
         assert order_line not in oline_dict
@@ -249,6 +261,8 @@ class AccountCutoff(models.Model):
         # Create account mapping dict
         account_mapping = acmo._get_mapping_dict(self.company_id.id, cutoff_type)
 
+        min_date_dt = self.cutoff_date - relativedelta(days=self.picking_interval_days)
+
         # TODO date_done is a Datetime field, so maybe we need more clever code
         # for our friends which are far away from GMT
         pickings = spo.search(
@@ -256,7 +270,7 @@ class AccountCutoff(models.Model):
                 ("picking_type_code", "=", pick_type_map[cutoff_type]),
                 ("state", "=", "done"),
                 ("date_done", "<=", self.cutoff_date),
-                ("date_done", ">=", self._picking_done_min_date()),
+                ("date_done", ">=", min_date_dt),
                 ("company_id", "=", self.company_id.id),
             ]
         )
