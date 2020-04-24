@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2018 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">accrual.picking.account.config.form</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="account_cutoff_accrual_base.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="accrual_taxes" position="after">
+                <label
+                    for="dft_cutoff_accrual_picking_interval_days"
+                    class="col-lg-3 o_light_label"
+                />
+                <field
+                    name="dft_cutoff_accrual_picking_interval_days"
+                /> days
+            </field>
+        </field>
+    </record>
+</odoo>
