@@ -28,7 +28,7 @@
         <field name="model">account.cutoff.line</field>
         <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
         <field name="arch" type="xml">
-            <field name="analytic_account_code" position="after">
+            <field name="analytic_account_id" position="after">
                 <field name="quantity" />
                 <field
                     name="price_unit"
