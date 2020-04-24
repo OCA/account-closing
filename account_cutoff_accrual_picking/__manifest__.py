@@ -12,6 +12,7 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account_cutoff_accrual_base", "purchase_stock", "sale_stock"],
+    "data": ["views/res_config_settings.xml", "views/account_cutoff.xml"],
     "images": [
         "images/accrued_expense_draft.jpg",
         "images/accrued_expense_journal_entry.jpg",
