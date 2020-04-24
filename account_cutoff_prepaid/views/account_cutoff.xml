@@ -153,7 +153,7 @@
             <field name="parent_id" position="after">
                 <field name="move_id" />
             </field>
-            <field name="analytic_account_code" position="after">
+            <field name="analytic_account_id" position="after">
                 <field name="start_date" />
                 <field name="end_date" />
                 <field name="total_days" />
