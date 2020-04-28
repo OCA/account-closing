@@ -9,13 +9,15 @@
     "license": "AGPL-3",
     "summary": "Prepaid Expense, Prepaid Revenue",
     "author": "Akretion,Odoo Community Association (OCA)",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account_cutoff_base", "account_invoice_start_end_dates"],
-    "data": ["views/company.xml", "views/account_cutoff.xml"],
+    "data": ["views/account_cutoff.xml", "views/res_config_settings.xml"],
     "images": [
         "images/prepaid_revenue_draft.jpg",
         "images/prepaid_revenue_journal_entry.jpg",
         "images/prepaid_revenue_done.jpg",
     ],
     "installable": True,
+    "application": True,
 }

@@ -15,7 +15,10 @@ class AccountCutoff(models.Model):
         mapping = {"prepaid_expense": "purchase", "prepaid_revenue": "sale"}
         if cutoff_type in mapping:
             src_journals = self.env["account.journal"].search(
-                [("type", "=", mapping[cutoff_type])]
+                [
+                    ("type", "=", mapping[cutoff_type]),
+                    ("company_id", "=", self.env.user.company_id.id),
+                ]
             )
             if src_journals:
                 res = src_journals.ids
@@ -32,7 +35,7 @@ class AccountCutoff(models.Model):
     )
     forecast = fields.Boolean(
         readonly=True,
-        states={"draft": [("readonly", False)]},
+        tracking=True,
         help="The Forecast mode allows the user to compute "
         "the prepaid revenue/expense between 2 dates in the future.",
     )
@@ -60,17 +63,24 @@ class AccountCutoff(models.Model):
             ):
                 raise ValidationError(_("The start date is after the end date!"))
 
-    @api.onchange("forecast")
-    def onchange_forecast(self):
-        return {
-            "warning": {
-                "title": _("Warning"),
-                "message": _(
-                    "Don't forget to Re-Generate Lines after entering or "
-                    "leaving forecast mode."
-                ),
-            }
-        }
+    def forecast_enable(self):
+        self.ensure_one()
+        assert self.state == "draft"
+        if self.move_id:
+            raise UserError(
+                _(
+                    "This cutoff is linked to a journal entry. "
+                    "You must delete it before entering forecast mode."
+                )
+            )
+        self.line_ids.unlink()
+        self.write({"forecast": True})
+
+    def forecast_disable(self):
+        self.ensure_one()
+        assert self.state == "draft"
+        self.line_ids.unlink()
+        self.write({"forecast": False})
 
     def _prepare_prepaid_lines(self, aml, mapping):
         self.ensure_one()
@@ -89,15 +99,15 @@ class AccountCutoff(models.Model):
                 out_days += (forecast_start_date_dt - start_date_dt).days
             prepaid_days = total_days - out_days
         else:
-            cutoff_date_str = self.cutoff_date
-            cutoff_date_dt = fields.Date.from_string(cutoff_date_str)
+            cutoff_date_dt = self.cutoff_date
             if start_date_dt > cutoff_date_dt:
                 prepaid_days = total_days
             else:
                 prepaid_days = (end_date_dt - cutoff_date_dt).days
-        if total_days > 0:
+        if total_days <= 0:
             raise ValidationError(_("Total days should always be > 0"))
-        cutoff_amount = (aml.debit - aml.credit) * prepaid_days / float(total_days)
+        cutoff_amount = (aml.debit - aml.credit) * prepaid_days / total_days
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
         # we use account mapping here
         if aml.account_id.id in mapping:
             cutoff_account_id = mapping[aml.account_id.id]
@@ -122,14 +132,16 @@ class AccountCutoff(models.Model):
         }
         return res
 
-    def get_prepaid_lines(self):
-        self.ensure_one()
+    def get_lines(self):
+        res = super().get_lines()
+        if self.cutoff_type not in ["prepaid_expense", "prepaid_revenue"]:
+            return res
         aml_obj = self.env["account.move.line"]
         line_obj = self.env["account.cutoff.line"]
         mapping_obj = self.env["account.cutoff.mapping"]
         if not self.source_journal_ids:
             raise UserError(_("You should set at least one Source Journal."))
-        cutoff_date_str = self.cutoff_date
+        cutoff_date_dt = self.cutoff_date
         # Delete existing lines
         self.line_ids.unlink()
 
@@ -143,8 +155,8 @@ class AccountCutoff(models.Model):
             domain = [
                 ("start_date", "!=", False),
                 ("journal_id", "in", self.source_journal_ids.ids),
-                ("end_date", ">", cutoff_date_str),
-                ("date", "<=", cutoff_date_str),
+                ("end_date", ">", cutoff_date_dt),
+                ("date", "<=", cutoff_date_dt),
             ]
 
         # Search for account move lines in the source journals
@@ -168,25 +180,16 @@ class AccountCutoff(models.Model):
             account_id = company.default_prepaid_expense_account_id.id or False
         return account_id
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        if not res.source_journal_ids:
-            journals = self.env["account.journal"].search([])
-            res.source_journal_ids = journals
-        return res
-
 
 class AccountCutoffLine(models.Model):
     _inherit = "account.cutoff.line"
 
-    move_line_id = fields.Many2one("account.move.line", string="Account Move Line")
-    move_date = fields.Date(
-        related="move_line_id.date", string="Account Move Date", readonly=True
-    )
+    move_line_id = fields.Many2one("account.move.line", string="Journal Item")
+    move_id = fields.Many2one(related="move_line_id.move_id", string="Journal Entry")
+    move_date = fields.Date(related="move_line_id.move_id.date", string="Entry Date")
     start_date = fields.Date(readonly=True)
     end_date = fields.Date(readonly=True)
-    total_days = fields.Integer("Total Number of Days", readonly=True)
+    total_days = fields.Integer("Total Days", readonly=True)
     prepaid_days = fields.Integer(
         readonly=True,
         help="In regular mode, this is the number of days after the "
