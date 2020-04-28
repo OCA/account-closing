@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_accrual_dates
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-25 02:35+0000\n"
+"PO-Revision-Date: 2018-05-25 02:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: account_cutoff_accrual_dates
+#: model:ir.model,name:account_cutoff_accrual_dates.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Računovodska razmejitev"
+
+#. module: account_cutoff_accrual_dates
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:84
+#, python-format
+msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
+msgstr ""
+
+#. module: account_cutoff_accrual_dates
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:90
+#, python-format
+msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
+msgstr ""
+
+#. module: account_cutoff_accrual_dates
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:77
+#, python-format
+msgid ""
+"Price included taxes such as '%s' are not supported by the module "
+"account_cutoff_accrual_dates for the moment."
+msgstr ""
+
+#. module: account_cutoff_accrual_dates
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:111
+#, python-format
+msgid "You should set at least one Source Journal."
+msgstr ""

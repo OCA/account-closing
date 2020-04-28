@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2018 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">accrual.base.account.config.form</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="account_cutoff_base.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="dft_cutoff_journal_id" position="after">
+                <label
+                    for="dft_accrued_revenue_account_id"
+                    class="col-lg-3 o_light_label"
+                />
+                <field
+                    name="dft_accrued_revenue_account_id"
+                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create_edit': True, 'no_open': True}"
+                />
+                <label
+                    for="dft_accrued_expense_account_id"
+                    class="col-lg-3 o_light_label"
+                />
+                <field
+                    name="dft_accrued_expense_account_id"
+                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create_edit': True, 'no_open': True}"
+                />
+                <label for="accrual_taxes" class="col-lg-3 o_light_label" />
+                <field
+                    name="accrual_taxes"
+                    options="{'no_create_edit': True, 'no_open': True}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

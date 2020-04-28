@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2020 Akretion (http://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <!-- Form view for lines -->
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">accrual.account_cutoff_line</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
+        <field name="arch" type="xml">
+            <field name="amount" position="before">
+                <field name="quantity" />
+                <field
+                    name="price_unit"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+                <field name="price_origin" />
+            </field>
+        </field>
+    </record>
+    <!-- Tree view for lines -->
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">accrual.account_cutoff_line_tree</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+        <field name="arch" type="xml">
+            <field name="analytic_account_id" position="after">
+                <field name="quantity" />
+                <field
+                    name="price_unit"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_expense_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Expense</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_expense')]</field>
+        <field name="context">{'cutoff_type': 'accrued_expense'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+        Click to start preparing a new expense accrual.
+        </p>
+            <p>
+        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.
+        </p>
+        </field>
+    </record>
+    <menuitem
+        id="account_expense_accrual_menu"
+        parent="account_cutoff_base.cutoff_menu"
+        action="account_expense_accrual_action"
+        sequence="35"
+    />
+    <record id="account_revenue_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Revenue</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_revenue')]</field>
+        <field name="context">{'cutoff_type': 'accrued_revenue'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+        Click to start preparing a new revenue accrual.
+        </p>
+            <p>
+        This view can be used by accountants in order to collect information about accrued revenue. It then allows to generate the corresponding cut-off journal entry in one click.
+        </p>
+        </field>
+    </record>
+    <menuitem
+        id="account_revenue_accrual_menu"
+        parent="account_cutoff_base.cutoff_menu"
+        action="account_revenue_accrual_action"
+        sequence="30"
+    />
+</odoo>
