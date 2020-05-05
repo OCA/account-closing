@@ -281,7 +281,7 @@ class TestCurrencyRevaluation(SavepointCase):
 
         wizard = self.env["unrealized.report.printer"]
         wiz = wizard.create({})
-        result = wiz.print_report(data={})
+        result = wiz.print_report()
         account_ids = result.get("context").get("active_ids")
         report = (
             self.env["account.move.line"]
