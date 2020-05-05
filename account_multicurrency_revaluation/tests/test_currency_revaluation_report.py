@@ -8,8 +8,7 @@ class TestCurrencyRevaluationReport(TransactionCase):
     def test_wizard_empty_accounts(self):
         wizard = self.env["unrealized.report.printer"]
         wiz = wizard.create({})
-        data = {"lang": "en_US", "tz": "Europe/Brussels", "uid": 1}
-        result = wiz.print_report(data)
+        result = wiz.print_report()
 
         self.assertEqual(result.get("type"), "ir.actions.report")
         self.assertEqual(
