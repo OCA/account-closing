@@ -15,11 +15,9 @@ class AccountCutoff(models.Model):
     picking_interval_days = fields.Integer(
         string="Picking Analysis Interval",
         default=lambda self: self._default_picking_interval_days(),
-        help=(
-            "To generate the accruals based on pickings, Odoo will analyse "
-            "all the pickings between the cutoff date and N days before. "
-            "N is the Picking Analysis Interval."
-        ),
+        help="To generate the accruals based on pickings, Odoo will "
+        "analyse all the pickings between the cutoff date and N "
+        "days before. N is the Picking Analysis Interval.",
     )
 
     _sql_constraints = [
