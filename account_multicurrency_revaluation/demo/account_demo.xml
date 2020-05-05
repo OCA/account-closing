@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="res_partner_reval" model="res.partner">
         <field name="name">Revaluation Company</field>
-        <field eval="1" name="is_company"/>
-        <field eval="1" name="active"/>
+        <field eval="1" name="is_company" />
+        <field eval="1" name="active" />
         <field name="street">90 Streets Avenue</field>
-        <field name="country_id" ref="base.ch"/>
+        <field name="country_id" ref="base.ch" />
         <field name="zip">1000</field>
         <field name="city">Lausanne</field>
         <field name="email">revaluation@yourcompany.com</field>
         <field name="phone">+41 12 345 67 89</field>
         <field name="website">www.revaluationcompany.com</field>
     </record>
-
     <record id="res_company_reval" model="res.company">
-        <field name="currency_id" ref="base.EUR"/>
-        <field name="partner_id" ref="res_partner_reval"/>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="partner_id" ref="res_partner_reval" />
         <field name="name">Revaluation Company</field>
     </record>
     <record id="acc_reval_loss" model="account.account">
@@ -95,18 +94,18 @@
         <field name="name">Bank Journal USD</field>
         <field name="code">BJ USD</field>
         <field name="type">bank</field>
-        <field name="currency_id" ref="base.USD"/>
-        <field name="default_debit_account_id" ref="demo_acc_liquidity_usd"/>
-        <field name="default_credit_account_id" ref="demo_acc_liquidity_usd"/>
+        <field name="currency_id" ref="base.USD" />
+        <field name="default_debit_account_id" ref="demo_acc_liquidity_usd" />
+        <field name="default_credit_account_id" ref="demo_acc_liquidity_usd" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="bank_journal_gbp" model="account.journal">
         <field name="name">Bank Journal GBP</field>
         <field name="code">BJ GBP</field>
         <field name="type">bank</field>
-        <field name="currency_id" ref="base.GBP"/>
-        <field name="default_debit_account_id" ref="demo_acc_liquidity_gbp"/>
-        <field name="default_credit_account_id" ref="demo_acc_liquidity_gbp"/>
+        <field name="currency_id" ref="base.GBP" />
+        <field name="default_debit_account_id" ref="demo_acc_liquidity_gbp" />
+        <field name="default_credit_account_id" ref="demo_acc_liquidity_gbp" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="sales_journal" model="account.journal">
