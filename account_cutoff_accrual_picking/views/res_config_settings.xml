@@ -17,9 +17,7 @@
                     for="dft_cutoff_accrual_picking_interval_days"
                     class="col-lg-3 o_light_label"
                 />
-                <field
-                    name="dft_cutoff_accrual_picking_interval_days"
-                /> days
+                <field name="dft_cutoff_accrual_picking_interval_days" /> days
             </field>
         </field>
     </record>
