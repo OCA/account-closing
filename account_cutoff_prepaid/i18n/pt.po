@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_cutoff_prepaid
-#: sql_constraint:account.cutoff:0
+#: model:ir.model.constraint,message:account_cutoff_prepaid.constraint_account_cutoff_date_type_forecast_company_uniq
 msgid "A cut-off of the same type already exists with the same date(s) !"
 msgstr "Já existe uma operação de diferimento do mesmo tipo nesta data!"
 
@@ -32,16 +32,6 @@ msgstr "Conta de Diferimentos"
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
 msgid "Account Cut-off Line"
 msgstr "Linha da Conta de Diferimentos"
-
-#. module: account_cutoff_prepaid
-#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_date
-msgid "Account Move Date"
-msgstr "Data do Movimento"
-
-#. module: account_cutoff_prepaid
-#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_line_id
-msgid "Account Move Line"
-msgstr "Linha do Movimento"
 
 #. module: account_cutoff_prepaid
 #: model_terms:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -59,38 +49,38 @@ msgid "Companies"
 msgstr "Empresas"
 
 #. module: account_cutoff_prepaid
-#: model_terms:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days Total"
-msgstr "Total de Dias"
-
-#. module: account_cutoff_prepaid
-#: model_terms:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_line_tree
-msgid "Days after Cut-off"
-msgstr "Dias subsequentes à Data de Diferimento"
+#: model:ir.model,name:account_cutoff_prepaid.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company__default_prepaid_expense_account_id
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_config_settings__dft_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
 msgstr "Conta por defeito para o deferimento de gastos"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_company__default_prepaid_revenue_account_id
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_res_config_settings__dft_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
 msgstr "Conta por defeito para o deferimento de rendimentos"
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:59
-#, python-format
-msgid ""
-"Don't forget to Re-Generate Lines after entering or leaving forecast mode."
+#: model_terms:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
+msgid "Enable Forecast Mode"
 msgstr ""
-"Não se esqueça de Regenerar Linhas após entrar ou abandonar o modo "
-"previsional"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff__end_date
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__end_date
 msgid "End Date"
+msgstr "Data Final"
+
+#. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_date
+#, fuzzy
+#| msgid "End Date"
+msgid "Entry Date"
 msgstr "Data Final"
 
 #. module: account_cutoff_prepaid
@@ -111,9 +101,19 @@ msgstr ""
 "fecha de fin."
 
 #. module: account_cutoff_prepaid
-#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__invoice_id
-msgid "Invoice"
-msgstr "Fatura"
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_id
+msgid "Journal Entry"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_line_id
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: model_terms:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
+msgid "Leave Forecast Mode"
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__prepaid_days
@@ -131,11 +131,6 @@ msgstr "Gasto diferido"
 #: model:ir.ui.menu,name:account_cutoff_prepaid.account_cutoff_prepaid_revenue_menu
 msgid "Prepaid Revenue"
 msgstr "Rendimento diferido"
-
-#. module: account_cutoff_prepaid
-#: model_terms:ir.ui.view,arch_db:account_cutoff_prepaid.account_cutoff_form
-msgid "Re-Generate Lines"
-msgstr "Regenerar Linhas"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff__source_journal_ids
@@ -158,10 +153,23 @@ msgstr ""
 "rendimentos/gastos entre duas datas no futuro."
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:52
+#: model:ir.model.fields,help:account_cutoff_prepaid.field_account_cutoff_line__move_id
+msgid "The move of this entry line."
+msgstr ""
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:0
 #, python-format
 msgid "The start date is after the end date!"
 msgstr "A data de início é posterior à data de fim!"
+
+#. module: account_cutoff_prepaid
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"This cutoff is linked to a journal entry. You must delete it before entering "
+"forecast mode."
+msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model_terms:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -187,17 +195,46 @@ msgstr ""
 
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__total_days
-msgid "Total Number of Days"
+#, fuzzy
+#| msgid "Total Number of Days"
+msgid "Total Days"
 msgstr "Número Total de Dias"
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:58
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:0
 #, python-format
-msgid "Warning"
-msgstr "Aviso"
+msgid "Total days should always be > 0"
+msgstr ""
 
 #. module: account_cutoff_prepaid
-#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:123
+#: code:addons/account_cutoff_prepaid/models/account_cutoff.py:0
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve estabelecer pelo menos um diário pré-definido."
+
+#~ msgid "Account Move Date"
+#~ msgstr "Data do Movimento"
+
+#~ msgid "Account Move Line"
+#~ msgstr "Linha do Movimento"
+
+#~ msgid "Days Total"
+#~ msgstr "Total de Dias"
+
+#~ msgid "Days after Cut-off"
+#~ msgstr "Dias subsequentes à Data de Diferimento"
+
+#~ msgid ""
+#~ "Don't forget to Re-Generate Lines after entering or leaving forecast mode."
+#~ msgstr ""
+#~ "Não se esqueça de Regenerar Linhas após entrar ou abandonar o modo "
+#~ "previsional"
+
+#~ msgid "Invoice"
+#~ msgstr "Fatura"
+
+#~ msgid "Re-Generate Lines"
+#~ msgstr "Regenerar Linhas"
+
+#~ msgid "Warning"
+#~ msgstr "Aviso"
