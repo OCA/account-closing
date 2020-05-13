@@ -12,8 +12,8 @@
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
-    "depends": ["account",],
-    "data": ["views/account_move.xml", "views/product.xml",],
+    "depends": ["account"],
+    "data": ["views/account_move.xml", "views/product.xml"],
     "demo": ["demo/product_demo.xml"],
     "installable": True,
 }

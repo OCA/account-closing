@@ -25,13 +25,12 @@ msgid "Car Insurance"
 msgstr "Seguro automóvel"
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__end_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
 msgid "End Date"
 msgstr "Data Final"
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
@@ -42,14 +41,10 @@ msgstr ""
 "e final nas linhas da fatura que contenham este produto."
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice
-msgid "Invoice"
-msgstr "Fatura"
-
-#. module: account_invoice_start_end_dates
-#: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Linha de Fatura"
+#: model:ir.model,name:account_invoice_start_end_dates.model_account_move
+#, fuzzy
+msgid "Journal Entries"
+msgstr "Item de Diário"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
@@ -63,19 +58,13 @@ msgid "Maintenance contract"
 msgstr "Contrato de manutenção"
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:23
-#, python-format
-msgid "Missing End Date for invoice line with Description '%s'."
-msgstr "Falta de data de fim para a linha da fatura com a Descrição '%s'."
-
-#. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:20
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr "Falta de data de fim para a linha de diário com o Nome '%s'."
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:87
+#: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
 "Missing Start Date and End Date for invoice line with Product '%s' which has "
@@ -85,19 +74,13 @@ msgstr ""
 "que tem a propriedade 'Deve ter data de início e fim' ativada."
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:28
-#, python-format
-msgid "Missing Start Date for invoice line with Description '%s'."
-msgstr "Falta de data de início para a linha de fatura com a Descrição '%s'."
-
-#. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:24
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
 msgstr "Falta de data de início para a linha de diário com o Nome '%s'."
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid "Must Have Start and End Dates"
@@ -109,13 +92,12 @@ msgid "Product Template"
 msgstr "Modelo de Produto"
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__start_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
 msgid "Start Date"
 msgstr "Data de Início"
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:28
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Start Date should be before End Date for move line with Name '%s'."
 msgstr ""
@@ -123,27 +105,29 @@ msgstr ""
 "o Nome '%s'."
 
 #. module: account_invoice_start_end_dates
-#: code:addons/account_invoice_start_end_dates/models/account_invoice.py:34
-#, python-format
-msgid ""
-"Start Date should be before or be the same as End Date for invoice line with "
-"Description '%s'."
-msgstr ""
-"Data de início deve ser anterior a da data de fim para a linha de fatura com "
-"a Descrição '%s'."
-
-#. module: account_invoice_start_end_dates
 #: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
 #: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "Unit(s)"
+msgid "Units"
 msgstr ""
 
-#. module: account_invoice_start_end_dates
-#: model:product.product,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
-#: model:product.product,weight_uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
-#: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
-#: model:product.template,weight_uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "kg"
-msgstr ""
+#~ msgid "Invoice"
+#~ msgstr "Fatura"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Linha de Fatura"
+
+#~ msgid "Missing End Date for invoice line with Description '%s'."
+#~ msgstr "Falta de data de fim para a linha da fatura com a Descrição '%s'."
+
+#~ msgid "Missing Start Date for invoice line with Description '%s'."
+#~ msgstr ""
+#~ "Falta de data de início para a linha de fatura com a Descrição '%s'."
+
+#~ msgid ""
+#~ "Start Date should be before or be the same as End Date for invoice line "
+#~ "with Description '%s'."
+#~ msgstr ""
+#~ "Data de início deve ser anterior a da data de fim para a linha de fatura "
+#~ "com a Descrição '%s'."
