@@ -83,36 +83,10 @@ msgid "Default Account for Accrued Expenses"
 msgstr "Conto predefinito ratei passivi"
 
 #. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_expense_return_account_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_expense_return_account_id
-#, fuzzy
-msgid "Default Account for Accrued Expenses Returns"
-msgstr "Conto predefinito ratei passivi"
-
-#. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
 msgstr "Conto predefinito ratei attivi"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_revenue_return_account_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_revenue_return_account_id
-#, fuzzy
-msgid "Default Account for Accrued Revenues Returns"
-msgstr "Conto predefinito ratei attivi"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrual_expense_journal_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrual_expense_journal_id
-msgid "Default Journal for Accrued Expenses"
-msgstr "Sezionale Predefinito per le Spese Maturate"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrual_revenue_journal_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrual_revenue_journal_id
-msgid "Default Journal for Accrued Revenues"
-msgstr "Sezionale Predefinito per le Entrate Maturate"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line__price_origin
@@ -156,6 +130,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line__price_unit
 msgid "Unit Price"
 msgstr "Prezzo unitario"
+
+#, fuzzy
+#~ msgid "Default Account for Accrued Expenses Returns"
+#~ msgstr "Conto predefinito ratei passivi"
+
+#, fuzzy
+#~ msgid "Default Account for Accrued Revenues Returns"
+#~ msgstr "Conto predefinito ratei attivi"
+
+#~ msgid "Default Journal for Accrued Expenses"
+#~ msgstr "Sezionale Predefinito per le Spese Maturate"
+
+#~ msgid "Default Journal for Accrued Revenues"
+#~ msgstr "Sezionale Predefinito per le Entrate Maturate"
 
 #~ msgid "Price per unit (discount included)"
 #~ msgstr "Prezzo unitario (sconto incluso)"
