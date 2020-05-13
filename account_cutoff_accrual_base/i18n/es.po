@@ -87,34 +87,10 @@ msgid "Default Account for Accrued Expenses"
 msgstr "Cuenta predeterminada para gastos devengados"
 
 #. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_expense_return_account_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_expense_return_account_id
-msgid "Default Account for Accrued Expenses Returns"
-msgstr "Cuenta predeterminada para devoluciones de gastos acumulados"
-
-#. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
 msgstr "Cuenta predeterminada para ingresos devengados"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_revenue_return_account_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_revenue_return_account_id
-msgid "Default Account for Accrued Revenues Returns"
-msgstr "Cuenta predeterminada para ingresos devengados"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrual_expense_journal_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrual_expense_journal_id
-msgid "Default Journal for Accrued Expenses"
-msgstr "Diario predeterminado para gastos devengados"
-
-#. module: account_cutoff_accrual_base
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrual_revenue_journal_id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrual_revenue_journal_id
-msgid "Default Journal for Accrued Revenues"
-msgstr "Diario predeterminado para ingresos devengados"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line__price_origin
@@ -164,6 +140,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_cutoff_line__price_unit
 msgid "Unit Price"
 msgstr "Precio unitario"
+
+#~ msgid "Default Account for Accrued Expenses Returns"
+#~ msgstr "Cuenta predeterminada para devoluciones de gastos acumulados"
+
+#~ msgid "Default Account for Accrued Revenues Returns"
+#~ msgstr "Cuenta predeterminada para ingresos devengados"
+
+#~ msgid "Default Journal for Accrued Expenses"
+#~ msgstr "Diario predeterminado para gastos devengados"
+
+#~ msgid "Default Journal for Accrued Revenues"
+#~ msgstr "Diario predeterminado para ingresos devengados"
 
 #~ msgid "Price per unit (discount included)"
 #~ msgstr "Precio unitario (descuento incluido)"
