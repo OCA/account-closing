@@ -25,19 +25,19 @@ msgid "Account Cut-off"
 msgstr "Abgrenzungen"
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:84
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:86
 #, python-format
 msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
 msgstr "Fehlendes 'Konto Steuern der Abgrenzung für Ausgaben' für Steuer '%s'"
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:90
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:92
 #, python-format
 msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
 msgstr "Fehlendes 'Konto Steuern der Abgrenzung für Umsätze' für Steuer '%s'"
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:77
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:79
 #, python-format
 msgid ""
 "Price included taxes such as '%s' are not supported by the module "
@@ -47,7 +47,7 @@ msgstr ""
 "account_cutoff_accrual_dates nicht unterstützt."
 
 #. module: account_cutoff_accrual_dates
-#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:111
+#: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:114
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Sie müssen mindestens ein Quell-Journal pflegen."
