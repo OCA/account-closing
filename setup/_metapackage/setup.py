@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-account_cutoff_base',
         'odoo13-addon-account_cutoff_prepaid',
         'odoo13-addon-account_invoice_start_end_dates',
+        'odoo13-addon-account_multicurrency_revaluation',
     ],
     classifiers=[
         'Programming Language :: Python',
