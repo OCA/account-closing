@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- in odoo 11 we should inherit web.report_assets_common instead of report.assets_common -->
+    <template
+        id="assets_common"
+        name="account_multicurrency_revaluation report assets"
+        inherit_id="web.report_assets_common"
+    >
+        <xpath expr="." position="inside">
+            <link
+                href="/account_multicurrency_revaluation/static/src/css/reports.css"
+                rel="stylesheet"
+            />
+        </xpath>
+    </template>
+</odoo>
