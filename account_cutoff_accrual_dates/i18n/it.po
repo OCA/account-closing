@@ -9,31 +9,32 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 02:35+0000\n"
-"PO-Revision-Date: 2018-05-25 02:35+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2020-06-18 15:19+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: account_cutoff_accrual_dates
 #: model:ir.model,name:account_cutoff_accrual_dates.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Scritture di fine periodo"
+msgstr "Ripartizioni di fine esercizio"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:84
 #, python-format
 msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
-msgstr ""
+msgstr "'Conto imposta ratei passivi' mancante sull'imposta '%s'"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:90
 #, python-format
 msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
-msgstr ""
+msgstr "'Conto imposta ratei attivi' mancante sull'imposta '%s'"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:77
@@ -47,4 +48,4 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:111
 #, python-format
 msgid "You should set at least one Source Journal."
-msgstr ""
+msgstr "Dovresti impostare almeno un registro di origine."
