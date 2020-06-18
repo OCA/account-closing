@@ -9,18 +9,17 @@ class TestAccountCutoff(TransactionCase):
 
     def test_default_cutoff_account_id(self):
         company = self.env.user.company_id
-        default_accrued_expense_account_id = \
-            company.default_accrued_expense_account_id.id or False
-        default_accrued_revenue_account_id = \
-            company.default_accrued_revenue_account_id.id or False
+        random_account = self.env['account.account'].search([])[0]
+        company.default_accrued_expense_account_id = random_account.id
+        company.default_accrued_revenue_account_id = random_account.id
 
         account_id = self.env['account.cutoff'].with_context(
-            default_cutoff_type='accrued_expense')._default_cutoff_account_id()
-        self.assertEqual(account_id, default_accrued_expense_account_id,
+            cutoff_type='accrued_expense')._default_cutoff_account_id()
+        self.assertEqual(account_id, random_account.id,
                          'The account must be equals to %s' %
-                         default_accrued_expense_account_id)
+                         random_account.id)
         account_id = self.env['account.cutoff'].with_context(
-            default_cutoff_type='accrued_revenue')._default_cutoff_account_id()
-        self.assertEqual(account_id, default_accrued_revenue_account_id,
+            cutoff_type='accrued_revenue')._default_cutoff_account_id()
+        self.assertEqual(account_id, random_account.id,
                          'The account must be equals to %s' %
-                         default_accrued_revenue_account_id)
+                         random_account.id)
