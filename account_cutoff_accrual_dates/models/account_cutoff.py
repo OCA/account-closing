@@ -67,7 +67,7 @@ class AccountCutoff(models.Model):
             'tax_line_ids': [],
             }
 
-        if aml.tax_ids:
+        if aml.tax_ids and self.company_id.accrual_taxes:
             # It won't work with price-included taxes
             tax_res = aml.tax_ids.compute_all(
                 cutoff_amount, product=aml.product_id, partner=aml.partner_id)
