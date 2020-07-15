@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2020-07-15 07:19+0000\n"
+"PO-Revision-Date: 2020-07-15 21:19+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
 "23907/es_AR/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Líneas en Pantalla Completa</span>"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
@@ -76,7 +76,7 @@ msgstr "Ingresos Devengados"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción Requerida"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__all
@@ -113,7 +113,7 @@ msgstr "Cuenta Analítica"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Cuenta de Adjuntos"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -156,7 +156,7 @@ msgstr "Moneda de la Compañía"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configurar Ajustes"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -276,7 +276,7 @@ msgstr "Tipo de Corte"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Cut-off lines re-generated"
-msgstr ""
+msgstr "Líneas de Corte generadas nuevamente"
 
 #. module: account_cutoff_base
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
@@ -288,12 +288,12 @@ msgstr "Cortes"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
 msgid "Cutoff Account"
-msgstr ""
+msgstr "Cuenta de Corte"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 msgid "Cutoff Lines"
-msgstr ""
+msgstr "Líneas de Corte"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_journal_id
@@ -329,17 +329,17 @@ msgstr "Borrador"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores (Canales)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -358,29 +358,29 @@ msgstr "ID"
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcada, los nuevos mensajes requieren su atención."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si está marcada, algunos mensajes tienen un error de envío."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es Seguidor"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Journal entry generated"
-msgstr ""
+msgstr "Entrada de diario generada"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_label
 msgid "Label of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Etiqueta de la Entrada del Diario de Corte"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
@@ -409,47 +409,47 @@ msgstr "Última actualización el"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
+msgstr "Vista de lista de las líneas"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunto Principal"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de Envío de Mensaje"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Acciones"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de envío"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de mensajes sin leer"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__partner_id
@@ -460,13 +460,13 @@ msgstr "Socio"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
 msgid "Partner on Move Line"
-msgstr ""
+msgstr "Socio en Movimiento de Línea"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
 msgid "Partner on Move Line by Default"
-msgstr ""
+msgstr "Socio en Movimiento de Línea Predeterminado"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
@@ -485,7 +485,7 @@ msgstr "Ingreso Prepago"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Re-Generate Lines"
-msgstr ""
+msgstr "Volver a Generar Líneas"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__account_id
@@ -495,7 +495,7 @@ msgstr "Cuenta Regular"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error de entrega de SMS"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -605,25 +605,25 @@ msgstr "Tipo"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes sin Leer"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de Mensajes sin Leer"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes del Sitio Web"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicación por Sitio Web"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "You cannot delete cutoff records that are not in draft state."
-msgstr ""
+msgstr "No puede borrar registros de corte que no estén en estado borrador."
