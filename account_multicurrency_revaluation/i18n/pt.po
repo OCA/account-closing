@@ -295,11 +295,6 @@ msgid "Loss"
 msgstr "Perda"
 
 #. module: account_multicurrency_revaluation
-#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
-msgid "Manual"
-msgstr "Manual"
-
-#. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Multicurrency revaluation"
 msgstr "Reavaliação Multidivisa"
@@ -329,8 +324,8 @@ msgid ""
 "You must specify at least one provision account or a couple of provision "
 "account in the accounting settings."
 msgstr ""
-"Não foi definida nenhuma conta de reavaliação ou provisão para a sua empresa."
-"\n"
+"Não foi definida nenhuma conta de reavaliação ou provisão para a sua "
+"empresa.\n"
 "Deve especificar pelo menos uma conta de provisão ou um par delas nas "
 "configurações de contabilidade."
 
@@ -502,6 +497,9 @@ msgstr "_Impressão"
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "_Validate"
 msgstr "_Validar"
+
+#~ msgid "Manual"
+#~ msgstr "Manual"
 
 #~ msgid "Currency"
 #~ msgstr "Moeda"

@@ -284,11 +284,6 @@ msgid "Loss"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
-msgid "Manual"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Multicurrency revaluation"
 msgstr ""
