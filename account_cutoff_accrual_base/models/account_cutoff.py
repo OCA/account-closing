@@ -12,7 +12,7 @@ class AccountCutOff(models.Model):
     @api.model
     def _default_cutoff_account_id(self):
         account_id = super(AccountCutOff, self)._default_cutoff_account_id()
-        cutoff_type = self.env.context.get('default_cutoff_type')
+        cutoff_type = self.env.context.get('cutoff_type')
         company = self.env.user.company_id
         if cutoff_type == 'accrued_expense':
             account_id = company.default_accrued_expense_account_id.id or False
