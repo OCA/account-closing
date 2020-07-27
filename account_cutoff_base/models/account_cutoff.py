@@ -293,8 +293,7 @@ class AccountCutoffLine(models.Model):
         related='cutoff_account_id.code',
         string='Cut-off Account', readonly=True)
     analytic_account_id = fields.Many2one(
-        'account.analytic.account', string='Analytic Account',
-        domain=[('account_type', '!=', 'closed')], readonly=True)
+        'account.analytic.account', string='Analytic Account', readonly=True)
     analytic_account_code = fields.Char(
         related='analytic_account_id.code',
         string='Analytic Account', readonly=True)
@@ -332,8 +331,7 @@ class AccountCutoffTaxLine(models.Model):
         'account.account', string='Cut-off Account',
         domain=[('deprecated', '=', False)], required=True, readonly=True)
     analytic_account_id = fields.Many2one(
-        'account.analytic.account', string='Analytic Account',
-        domain=[('account_type', '!=', 'closed')], readonly=True)
+        'account.analytic.account', string='Analytic Account', readonly=True)
     base = fields.Monetary(
         string='Base', currency_field='currency_id',
         readonly=True, help="Base Amount in the currency of the PO.")
