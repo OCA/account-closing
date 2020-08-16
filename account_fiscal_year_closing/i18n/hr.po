@@ -41,7 +41,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 #, fuzzy
-#| msgid "Accounts closing types"
 msgid "Account fiscalyear closing abstract"
 msgstr "Tipovi zatvaranja"
 
@@ -58,7 +57,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_abstract
 #, fuzzy
-#| msgid "Accounts closing types"
 msgid "Account fiscalyear closing type abstract"
 msgstr "Tipovi zatvaranja"
 
@@ -170,7 +168,6 @@ msgstr "Zatvaranje"
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__closing_type
 #, fuzzy
-#| msgid "Closing type"
 msgid "Closing Type"
 msgstr "Vrsta zatvaranja"
 
@@ -456,7 +453,6 @@ msgstr "Dnevnik"
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Dnevnik"
 

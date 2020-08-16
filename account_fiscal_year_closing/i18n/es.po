@@ -45,42 +45,36 @@ msgstr "Patrón de código de cuenta para el mapeo de las cuentas origen"
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 #, fuzzy
-#| msgid "account.fiscalyear.closing.abstract"
 msgid "Account fiscalyear closing abstract"
 msgstr "account.fiscalyear.closing.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_abstract
 #, fuzzy
-#| msgid "account.fiscalyear.closing.config.abstract"
 msgid "Account fiscalyear closing config abstract"
 msgstr "account.fiscalyear.closing.config.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_abstract
 #, fuzzy
-#| msgid "account.fiscalyear.closing.mapping.abstract"
 msgid "Account fiscalyear closing mapping abstract"
 msgstr "account.fiscalyear.closing.mapping.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_abstract
 #, fuzzy
-#| msgid "account.fiscalyear.closing.type.abstract"
 msgid "Account fiscalyear closing type abstract"
 msgstr "account.fiscalyear.closing.type.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move
 #, fuzzy
-#| msgid "account.fiscalyear.closing.unbalanced.move"
 msgid "Account fiscalyear closing unbalanced move"
 msgstr "account.fiscalyear.closing.unbalanced.move"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move_line
 #, fuzzy
-#| msgid "account.fiscalyear.closing.unbalanced.move.line"
 msgid "Account fiscalyear closing unbalanced move line"
 msgstr "account.fiscalyear.closing.unbalanced.move.line"
 
@@ -185,7 +179,6 @@ msgstr "Cerrando"
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__closing_type
 #, fuzzy
-#| msgid "Closing type"
 msgid "Closing Type"
 msgstr "Tipo de cierre"
 
@@ -466,7 +459,6 @@ msgstr "Configuración inversa"
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__is_new_template
 #, fuzzy
-#| msgid "Is new template"
 msgid "Is New Template"
 msgstr "Es una plantilla nueva"
 
@@ -481,7 +473,6 @@ msgstr "Diario"
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Diario"
 
