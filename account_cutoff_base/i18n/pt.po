@@ -273,7 +273,6 @@ msgstr "Tipo de Diferimento"
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, fuzzy, python-format
-#| msgid "Cut-off Lines"
 msgid "Cut-off lines re-generated"
 msgstr "Linhas de Diferimento"
 
@@ -287,14 +286,12 @@ msgstr "Diferimentos"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
 #, fuzzy
-#| msgid "Cut-off Account"
 msgid "Cutoff Account"
 msgstr "Conta de Diferimento"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 #, fuzzy
-#| msgid "Cut-off Lines"
 msgid "Cutoff Lines"
 msgstr "Linhas de Diferimento"
 

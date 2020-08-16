@@ -284,7 +284,6 @@ msgstr ""
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
 #, fuzzy
-#| msgid "Account"
 msgid "Cutoff Account"
 msgstr "Rekening"
 
