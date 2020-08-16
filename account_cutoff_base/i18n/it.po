@@ -284,14 +284,12 @@ msgstr "Risconti"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
 #, fuzzy
-#| msgid "Cut-off Account"
 msgid "Cutoff Account"
 msgstr "Conto Cut-off"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 #, fuzzy
-#| msgid "Account Cut-off Line"
 msgid "Cutoff Lines"
 msgstr "Righe scritture fine periodo"
 
