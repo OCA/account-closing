@@ -42,7 +42,6 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
 #, fuzzy
-#| msgid "Journal Item"
 msgid "Journal Entries"
 msgstr "Stavka dnevnika"
 
