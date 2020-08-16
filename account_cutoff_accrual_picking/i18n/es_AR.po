@@ -9,25 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2017-06-07 02:50+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
-"teams/23907/es_AR/)\n"
+"PO-Revision-Date: 2020-08-16 20:59+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
+"23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Corte de Cuenta"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Línea de Corte de Cuenta"
 
 #. module: account_cutoff_accrual_picking
 #: field:stock.picking,max_date_invoice:0
@@ -38,7 +39,7 @@ msgstr "Fecha de factura"
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:113
 #, python-format
 msgid "Missing '%s' on tax '%s' (Picking '%s', product '%s')."
-msgstr ""
+msgstr "Faltan '%s' en el impuesto '%s' (Picking '%s', producto '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:53
@@ -47,6 +48,8 @@ msgid ""
 "Missing expense account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Falta una cuenta de gastos en el producto '%s' o en su categoría de producto "
+"relacionada '%s' (Picking '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:76
@@ -55,6 +58,8 @@ msgid ""
 "Missing income account on product '%s' or on its related product category "
 "'%s' (Picking '%s')."
 msgstr ""
+"Falta la cuenta de ingresos en el producto '%s' o en su categoría de "
+"producto relacionada '%s' (Picking '%s')."
 
 #. module: account_cutoff_accrual_picking
 #: help:account.cutoff.line,stock_move_date:0
@@ -62,11 +67,13 @@ msgid ""
 "Move date: scheduled date until move is done, then date of actual move "
 "processing"
 msgstr ""
+"Fecha de Movimiento: fecha programada hasta que se realiza el movimiento, "
+"luego fecha del procesamiento del movimiento actual"
 
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,picking_id:0
 msgid "Picking"
-msgstr ""
+msgstr "Picking"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_stock_picking
@@ -81,4 +88,4 @@ msgstr "Movimiento de stock"
 #. module: account_cutoff_accrual_picking
 #: field:account.cutoff.line,stock_move_date:0
 msgid "Transfer Date"
-msgstr ""
+msgstr "Fecha de Transferencia"
