@@ -280,7 +280,6 @@ msgstr "Arrêtés"
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 #, fuzzy
-#| msgid "Cut-off Lines"
 msgid "Cutoff Lines"
 msgstr "Lignes d'arrêtés"
 

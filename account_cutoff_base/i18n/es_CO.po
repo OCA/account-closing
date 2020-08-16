@@ -279,7 +279,6 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 #, fuzzy
-#| msgid "Account Cut-off Line"
 msgid "Cutoff Lines"
 msgstr "Linea de Cuenta de Cierre"
 
