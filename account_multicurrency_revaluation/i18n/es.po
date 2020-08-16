@@ -142,7 +142,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Líneas creadas de revaluación"
@@ -201,31 +201,6 @@ msgid "Currency revaluation"
 msgstr "Revaluación de modena"
 
 #. module: account_multicurrency_revaluation
-#: model:res.company,overdue_msg:account_multicurrency_revaluation.res_company_reval
-msgid ""
-"Dear Sir/Madam,\n"
-"\n"
-"Our records indicate that some payments on your account are still due. "
-"Please find details below.\n"
-"If the amount has already been paid, please disregard this notice. "
-"Otherwise, please forward us the total amount stated below.\n"
-"If you have any queries regarding your account, Please contact us.\n"
-"\n"
-"Thank you in advance for your cooperation.\n"
-"Best Regards,"
-msgstr ""
-"Estmando Sr./Sra.,\n"
-"\n"
-"Nuestos registros indican que algunos pagos a su nombre aun están sin pagar. "
-"Encontrará los detalles mas adelante.\n"
-"Si el monto ya ha sido cancelado, por favor haga caso omiso a esta nota. De "
-"lo contrario, por favor envíenos la cantidad total indicada a continuación.\n"
-"Si tiene alguna consulta sobre su cuenta, contáctenos.\n"
-"\n"
-"Gracias de antemano por su cooperación.\n"
-"Atentamente,"
-
-#. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Default revaluation journal"
 msgstr "Diario de revaluación predeterminado"
@@ -263,6 +238,11 @@ msgstr "ID (Identificador)"
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__journal_id
 msgid "Journal"
 msgstr "Diario"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model,name:account_multicurrency_revaluation.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
@@ -304,7 +284,7 @@ msgid "Multicurrency revaluation"
 msgstr "Revaluación Multimoneda"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:296
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -315,13 +295,13 @@ msgstr ""
 "formulario de cuenta."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:354
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid "No accounting entry has been posted."
 msgstr "No se ha publicado ningún asiento contable."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:281
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -358,7 +338,7 @@ msgid "Partner"
 msgstr "Socio"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:42
+#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "Please, select the accounts!"
 msgstr "Por favor, selecciona las cuentas!"
@@ -457,6 +437,11 @@ msgid "Revaluation loss account"
 msgstr "Cuenta de pérdida de revaluación"
 
 #. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_filter
+msgid "Revaluation to reverse"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_company__reversable_revaluations
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_config_settings__reversable_revaluations
 msgid "Revaluations entries will be created as \"To Be Reversed\"."
@@ -504,6 +489,35 @@ msgstr "Imprimir"
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "_Validate"
 msgstr "Validar"
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move__revaluation_to_reverse
+msgid "revaluation to reverse"
+msgstr ""
+
+#~ msgid ""
+#~ "Dear Sir/Madam,\n"
+#~ "\n"
+#~ "Our records indicate that some payments on your account are still due. "
+#~ "Please find details below.\n"
+#~ "If the amount has already been paid, please disregard this notice. "
+#~ "Otherwise, please forward us the total amount stated below.\n"
+#~ "If you have any queries regarding your account, Please contact us.\n"
+#~ "\n"
+#~ "Thank you in advance for your cooperation.\n"
+#~ "Best Regards,"
+#~ msgstr ""
+#~ "Estmando Sr./Sra.,\n"
+#~ "\n"
+#~ "Nuestos registros indican que algunos pagos a su nombre aun están sin "
+#~ "pagar. Encontrará los detalles mas adelante.\n"
+#~ "Si el monto ya ha sido cancelado, por favor haga caso omiso a esta nota. "
+#~ "De lo contrario, por favor envíenos la cantidad total indicada a "
+#~ "continuación.\n"
+#~ "Si tiene alguna consulta sobre su cuenta, contáctenos.\n"
+#~ "\n"
+#~ "Gracias de antemano por su cooperación.\n"
+#~ "Atentamente,"
 
 #~ msgid "Currency"
 #~ msgstr "Moneda"
