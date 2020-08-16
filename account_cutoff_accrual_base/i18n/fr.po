@@ -75,7 +75,6 @@ msgstr "Sociétés"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_config_settings
 #, fuzzy
-#| msgid "account.config.settings"
 msgid "Config Settings"
 msgstr "compte. config. parametres"
 
