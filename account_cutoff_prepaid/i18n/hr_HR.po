@@ -81,7 +81,6 @@ msgstr "Datum završetka"
 #. module: account_cutoff_prepaid
 #: model:ir.model.fields,field_description:account_cutoff_prepaid.field_account_cutoff_line__move_date
 #, fuzzy
-#| msgid "End Date"
 msgid "Entry Date"
 msgstr "Datum završetka"
 
