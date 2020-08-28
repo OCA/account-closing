@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 01:40+0000\n"
-"PO-Revision-Date: 2017-12-06 01:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-08-28 06:59+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -74,12 +75,12 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__gl_foreign_balance
 msgid "Aggregated Amount currency"
-msgstr ""
+msgstr "原币金额汇总"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__currency_revaluation
 msgid "Allow Currency revaluation"
-msgstr ""
+msgstr "允许调汇"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -100,12 +101,12 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing
 msgid "Closing"
-msgstr ""
+msgstr "期末处理"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_report_closing_entries_menu
 msgid "Closing Entries"
-msgstr ""
+msgstr "结账凭证"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
@@ -196,7 +197,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
-msgstr ""
+msgstr "期末调汇"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
