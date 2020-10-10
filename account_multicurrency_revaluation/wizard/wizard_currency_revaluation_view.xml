@@ -25,7 +25,7 @@
                     <label string="%%(rate)s : Value of rate applied during revaluation"/>
                 </group>
                 <footer>
-                    <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight"/>
+                    <button name="revaluate_currency" type="object" string="_Validate" class="oe_highlight" context="{'date': revaluation_date}"/>
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
