@@ -1,4 +1,5 @@
-# Copyright 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2016-2020 Akretion France (http://www.akretion.com/)
+# @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import time
@@ -34,13 +35,13 @@ class TestInvoiceStartEndDates(SavepointCase):
         """ convert MM-DD to current year date YYYY-MM-DD """
         return time.strftime("%Y-" + date)
 
-    def test_invoice_with_grouping(self):
+    def test_invoice(self):
         invoice = self.inv_model.create(
             {
                 "date": self._date("01-01"),
                 "partner_id": self.env.ref("base.res_partner_2").id,
                 "journal_id": self.sale_journal.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
