@@ -19,7 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[account_invoice_start_end_dates](account_invoice_start_end_dates/) | 14.0.1.0.0 | Adds start/end dates on invoice/move lines
+[account_invoice_start_end_dates](account_invoice_start_end_dates/) | 14.0.1.0.1 | Adds start/end dates on invoice/move lines
 
 [//]: # (end addons)
 
