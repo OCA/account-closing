@@ -10,3 +10,5 @@ class AccountConfigSettings(models.TransientModel):
 
     default_cutoff_journal_id = fields.Many2one(
         related='company_id.default_cutoff_journal_id')
+    default_cutoff_move_partner = fields.Boolean(
+        related='company_id.default_cutoff_move_partner')

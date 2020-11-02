@@ -15,6 +15,7 @@
         <group name="accounting" position="after">
             <group name="cutoff" string="Cut-offs">
                 <field name="default_cutoff_journal_id" />
+                <field name="default_cutoff_move_partner" />
             </group>
         </group>
     </field>
