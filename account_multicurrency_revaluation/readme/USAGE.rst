@@ -6,8 +6,3 @@ To use this module, you need to:
   *Allow currency revaluation* checked.
 * Open the report through the following menu:
   Accounting > Reporting > Legal Reports > Accounting Reports > Print Currency Unrealized
-
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/89/11.0
