@@ -21,7 +21,8 @@
                 </group>
                 <group>
                     <label for="" string="%%(currency)s : Currency to be revaluated"/>
-                    <label for="" string="%%(account)s : Account for which the revaluation is applied"/>
+                    <label for="" string="%%(account)s : Account code for which the revaluation is applied"/>
+                    <label for="" string="%%(account_name)s : Account name for which the revaluation is applied"/>
                     <label for="" string="%%(rate)s : Value of rate applied during revaluation"/>
                 </group>
                 <footer>
