@@ -37,7 +37,7 @@
                     <div class="col-xs-12 col-md-6 o_setting_box">
                         <div class="o_setting_left_pane" />
                         <div class="o_setting_right_pane">
-                            <label for="" string="Default revaluation journal" />
+                            <b>Default revaluation journal</b>
                             <span
                                 class="fa fa-lg fa-building-o"
                                 title="Values set here are company-specific."
@@ -66,18 +66,18 @@
                                 <tr class="row">
                                     <th class="col-xs-6 col-md-3" />
                                     <th class="col-xs-6 col-md-3">
-                                        <label for="" string="Loss" />
+                                        <b>Loss</b>
                                     </th>
                                     <th class="col-xs-6 col-md-3">
-                                        <label for="" string="Gain" />
+                                        <b>Gain</b>
                                     </th>
                                     <th class="col-xs-6 col-md-3">
-                                        <label for="" string="Analytic account" />
+                                        <b>Analytic account</b>
                                     </th>
                                 </tr>
                                 <tr class="row">
                                     <th class="col-xs-6 col-md-3">
-                                        <label for="" string="Revaluation accounts" />
+                                        <b>Revaluation accounts</b>
                                         <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."
@@ -105,7 +105,7 @@
                                 </tr>
                                 <tr class="row">
                                     <th class="col-xs-6 col-md-3">
-                                        <label for="" string="Provision B.S accounts" />
+                                        <b>Provision B.S accounts</b>
                                         <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."
@@ -128,10 +128,7 @@
                                 </tr>
                                 <tr class="row">
                                     <th class="col-xs-6 col-md-3">
-                                        <label
-                                            for=""
-                                            string="Provision P&amp;L accounts"
-                                        />
+                                        <b>Provision P&amp;L accounts</b>
                                         <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."

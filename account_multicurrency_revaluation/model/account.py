@@ -59,7 +59,17 @@ class AccountAccount(models.Model):
         tables, where_clause, where_clause_params = self.env[
             "account.move.line"
         ]._query_get()
-
+        mapping = [
+            ('"account_move_line".', "aml."),
+            ('"account_move_line"', "account_move_line aml"),
+            ('"account_move_line__move_id"', "am"),
+            ("LEFT JOIN", "\n    LEFT JOIN"),
+            (")) AND", "))\n" + " " * 12 + "AND"),
+        ]
+        for s_from, s_to in mapping:
+            tables = tables.replace(s_from, s_to)
+            where_clause = where_clause.replace(s_from, s_to)
+        where_clause = ("\n" + " " * 8 + "AND " + where_clause) if where_clause else ""
         query = (
             """
 WITH amount AS (
@@ -73,7 +83,9 @@ WITH amount AS (
         aml.debit,
         aml.credit,
         aml.amount_currency
-    FROM account_move_line aml
+    FROM """
+            + tables
+            + """
     INNER JOIN account_account acc ON aml.account_id = acc.id
     INNER JOIN account_account_type aat ON acc.user_type_id = aat.id
     LEFT JOIN account_partial_reconcile aprc
@@ -96,6 +108,9 @@ WITH amount AS (
         aml.account_id IN %s
         AND aml.date <= %s
         AND aml.currency_id IS NOT NULL
+        """
+            + where_clause
+            + """
     GROUP BY
         aat.type,
         aml.id
@@ -106,16 +121,15 @@ WITH amount AS (
 SELECT
     account_id as id,
     partner_id,
-    currency_id,
-"""
+    currency_id,"""
             + ", ".join(self._sql_mapping.values())
             + """
 FROM amount
-"""
-            + (("WHERE " + where_clause) if where_clause else "")
-            + """
-GROUP BY account_id, currency_id, partner_id
-        """
+GROUP BY
+    account_id,
+    currency_id,
+    partner_id
+ORDER BY account_id, partner_id, currency_id"""
         )
 
         params = [
@@ -125,7 +139,6 @@ GROUP BY account_id, currency_id, partner_id
             revaluation_date,
             *where_clause_params,
         ]
-
         return query, params
 
     def compute_revaluations(self, revaluation_date):
