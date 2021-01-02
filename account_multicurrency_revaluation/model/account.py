@@ -17,7 +17,9 @@ class AccountAccountLine(models.Model):
 class AccountAccount(models.Model):
     _inherit = "account.account"
 
-    currency_revaluation = fields.Boolean(string="Allow currency revaluation",)
+    currency_revaluation = fields.Boolean(
+        string="Allow currency revaluation",
+    )
 
     _sql_mapping = {
         "balance": "COALESCE(SUM(debit),0) - COALESCE(SUM(credit), 0) as balance",
