@@ -6,9 +6,9 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.view_account_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']/parent::group" position="inside">
+            <field name="deprecated" position="after">
                 <field name="currency_revaluation" />
-            </xpath>
+            </field>
         </field>
     </record>
 </odoo>
