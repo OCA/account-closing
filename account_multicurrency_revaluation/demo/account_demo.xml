@@ -68,6 +68,13 @@
         <field name="currency_revaluation">True</field>
         <field name="company_id" ref="res_company_reval" />
     </record>
+    <record id="demo_acc_suspense" model="account.account">
+        <field name="name">Account Suspense</field>
+        <field name="code">accsus</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="currency_revaluation">True</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
     <record id="demo_acc_liquidity_usd" model="account.account">
         <field name="name">Account Liquidity USD</field>
         <field name="code">accliq_usd</field>
@@ -84,6 +91,11 @@
         <field name="currency_id" ref="base.GBP" />
         <field name="company_id" ref="res_company_reval" />
     </record>
+    <record id="acc_analytic" model="account.analytic.account">
+        <field name="name">Analytic Account</field>
+        <field name="code">XA001</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
     <record id="reval_journal" model="account.journal">
         <field name="name">Revaluation Journal</field>
         <field name="code">RJ</field>
@@ -95,8 +107,8 @@
         <field name="code">BJ USD</field>
         <field name="type">bank</field>
         <field name="currency_id" ref="base.USD" />
-        <field name="default_debit_account_id" ref="demo_acc_liquidity_usd" />
-        <field name="default_credit_account_id" ref="demo_acc_liquidity_usd" />
+        <field name="payment_debit_account_id" ref="demo_acc_liquidity_usd" />
+        <field name="payment_credit_account_id" ref="demo_acc_liquidity_usd" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="bank_journal_gbp" model="account.journal">
@@ -104,8 +116,8 @@
         <field name="code">BJ GBP</field>
         <field name="type">bank</field>
         <field name="currency_id" ref="base.GBP" />
-        <field name="default_debit_account_id" ref="demo_acc_liquidity_gbp" />
-        <field name="default_credit_account_id" ref="demo_acc_liquidity_gbp" />
+        <field name="payment_debit_account_id" ref="demo_acc_liquidity_gbp" />
+        <field name="payment_credit_account_id" ref="demo_acc_liquidity_gbp" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="sales_journal" model="account.journal">
