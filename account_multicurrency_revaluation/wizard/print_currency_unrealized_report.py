@@ -33,7 +33,7 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
             # config should be false as otherwise it will call configuration
             # wizard that works weirdly
             return self.env.ref(
-                "account_multicurrency_revaluation." "action_report_currency_unrealized"
+                "account_multicurrency_revaluation.action_report_currency_unrealized"
             ).report_action(docids, config=False)
         else:
             raise ValidationError(_("Please, select the accounts!"))

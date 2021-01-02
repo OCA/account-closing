@@ -6,13 +6,13 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
-                <label
-                    for=""
-                    string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
-                    If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
-                    For other account types : 1 entry will be generated per account/currency.
-                    You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
-                />
+                <div class="alert alert-primary" role="alert">
+                Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
+                If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
+                For other account types : 1 entry will be generated per account/currency.
+                You can check details of calculation thanks to the Print Currency unrealized report in the generic reports.
+                </div>
+
                 <group>
                     <group>
                         <field name="revaluation_date" />
@@ -23,19 +23,12 @@
                     </group>
                 </group>
                 <group>
-                    <label for="" string="%%(currency)s : Currency to be revaluated" />
-                    <label
-                        for=""
-                        string="%%(account)s : Account code for which the revaluation is applied"
-                    />
-                    <label
-                        for=""
-                        string="%%(account_name)s : Account name for which the revaluation is applied"
-                    />
-                    <label
-                        for=""
-                        string="%%(rate)s : Value of rate applied during revaluation"
-                    />
+                    <div>%%(currency)s : Currency to be revaluated</div>
+                    <div
+                    >%%(account)s : Account code for which the revaluation is applied"</div>
+                    <div
+                    >%%(account_name)s : Account name for which the revaluation is applied"</div>
+                    <div>%%(rate)s : Value of rate applied during revaluation</div>
                 </group>
                 <footer>
                     <button

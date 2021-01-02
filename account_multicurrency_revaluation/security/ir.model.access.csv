@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_currency_revaluation_user,access_wizard_currency_revaluation_user,account_multicurrency_revaluation.model_wizard_currency_revaluation,base.group_user,1,1,1,1
+access_unrealized_report_printer_user,access_unrealized_report_printer_user,account_multicurrency_revaluation.model_unrealized_report_printer,base.group_user,1,1,1,1
