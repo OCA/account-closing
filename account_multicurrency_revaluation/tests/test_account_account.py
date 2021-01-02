@@ -22,7 +22,6 @@ class TestAccountAccount(common.SavepointCase):
     def test_currency_revaluation_field(self):
         with common.Form(self.AccountAccount, view="account.view_account_form") as form:
             form.name = "Test Account"
-            form.company_id = self.company
             form.code = "TEST"
             form.user_type_id = self.account_type_current_liabilities
             account = form.save()

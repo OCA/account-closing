@@ -97,7 +97,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             credit_line.update({"analytic_account_id": analytic_credit_acc_id})
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
-        created_move.post()
+        created_move.action_post()
         return [x.id for x in created_move.line_ids]
 
     def _compute_unrealized_currency_gl(self, currency, balances):
@@ -249,7 +249,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         company = self.journal_id.company_id or self.env.user.company_id
         if not self._validate_company_revaluation_configuration(company):
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "No revaluation or provision account are defined"
                     " for your company.\n"
@@ -265,11 +265,12 @@ class WizardCurrencyRevaluation(models.TransientModel):
             [
                 ("user_type_id.include_initial_balance", "=", "True"),
                 ("currency_revaluation", "=", True),
+                ("company_id", "=", company.id),
             ]
         )
 
         if not account_ids:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "No account to be revaluated found. "
                     "Please check 'Allow Currency Revaluation' "
@@ -278,7 +279,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
             )
 
         revaluations = account_ids.compute_revaluations(self.revaluation_date)
-
         for account_id, by_account in revaluations.items():
             account = Account.browse(account_id)
             if account.internal_type == "liquidity" and (
@@ -354,4 +354,4 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 "type": "ir.actions.act_window",
             }
         else:
-            raise exceptions.Warning(_("No accounting entry has been posted."))
+            raise exceptions.UserError(_("No accounting entry has been posted."))
