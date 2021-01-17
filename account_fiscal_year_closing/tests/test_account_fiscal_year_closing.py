@@ -1,13 +1,17 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from odoo import fields
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
+
+from dateutil.relativedelta import relativedelta
 
 
 class TestAccountFiscalYearClosing(AccountTestUsers):
 
     def setUp(self):
-        super(TestAccountFiscalYearClosing, self).setUp()
+        super().setUp()
         self.move_line_obj = self.env['account.move.line']
         self.account_type_rec = self.env.ref('account.data_account_type_receivable')
         self.account_type_pay = self.env.ref('account.data_account_type_payable')
@@ -17,6 +21,12 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
         self.account_type_liq = self.env.ref('account.data_account_type_liquidity')
         self.account_type_lia = self.env.ref(
             'account.data_account_type_current_liabilities')
+
+        today = fields.Date.today()
+        self.the_day = today - relativedelta(month=2, day=1)
+        self.start_of_this_year = today - relativedelta(month=1, day=1)
+        self.end_of_this_year = today + relativedelta(month=12, day=31)
+        self.start_of_next_year = today + relativedelta(years=1, month=1, day=1)
 
         self.a_rec = self.account_model.sudo(self.account_manager.id).create({
             'code': 'cust_acc',
@@ -135,7 +145,7 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
     def test_accoung_closing(self):
         # create a supplier invoice
         supplier_invoice = self.create_simple_invoice(
-            '2020-11-30', self.env.ref('base.res_partner_4'), 'in_invoice')
+            self.the_day, self.env.ref('base.res_partner_4'), 'in_invoice')
         self.assertTrue((supplier_invoice.state == 'draft'),
                         'Supplier invoice state is not Draft')
         self.assertTrue((supplier_invoice.type == 'in_invoice'),
@@ -146,7 +156,7 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
 
         # create a customer invoice
         customer_invoice = self.create_simple_invoice(
-            '2020-11-30', self.env.ref('base.res_partner_4'), 'out_invoice')
+            self.the_day, self.env.ref('base.res_partner_4'), 'out_invoice')
         self.assertTrue((customer_invoice.state == 'draft'),
                         'Customer invoice state is not Draft')
         customer_invoice.action_invoice_open()
@@ -197,9 +207,9 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
 
         fy_closing = self.env['account.fiscalyear.closing'].create({
             'name': 'Closing fy',
-            'date_start': '2020-01-01',
-            'date_end': '2020-12-31',
-            'date_opening': '2021-01-01',
+            'date_start': self.start_of_this_year,
+            'date_end': self.end_of_this_year,
+            'date_opening': self.start_of_next_year,
             'check_draft_moves': True,
             'move_config_ids': [
                 (0, 0, {
@@ -208,7 +218,7 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
                     'code': 'REV',
                     'move_type': 'loss_profit',
                     'closing_type_default': 'balance',
-                    'date': '2020-12-31',
+                    'date': self.end_of_this_year,
                     'sequence': 1,
                     'mapping_ids': [
                         (0, 0, {
@@ -223,7 +233,7 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
                     'code': 'PL',
                     'move_type': 'loss_profit',
                     'closing_type_default': 'balance',
-                    'date': '2020-12-31',
+                    'date': self.end_of_this_year,
                     'sequence': 2,
                     'mapping_ids': [
                         (0, 0, {
@@ -239,7 +249,7 @@ class TestAccountFiscalYearClosing(AccountTestUsers):
                     'code': 'FCL',
                     'move_type': 'closing',
                     'closing_type_default': 'unreconciled',
-                    'date': '2020-12-31',
+                    'date': self.end_of_this_year,
                     'sequence': 3,
                     'mapping_ids': [
                         (0, 0, {
