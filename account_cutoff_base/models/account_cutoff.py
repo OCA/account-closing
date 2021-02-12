@@ -1,15 +1,22 @@
-# Copyright 2013-2016 Akretion
+# Copyright 2013-2021 Akretion (http://www.akretion.com/)
+# @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from collections import defaultdict
+
+from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import date_utils, float_is_zero
 
 
 class AccountCutoff(models.Model):
     _name = "account.cutoff"
     _rec_name = "cutoff_date"
     _order = "cutoff_date desc"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _check_company_auto = True
     _description = "Account Cut-off"
 
     @api.depends("line_ids", "line_ids.cutoff_amount")
@@ -34,22 +41,21 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_move_label(self):
-        cutoff_type = self.env.context.get("cutoff_type")
+        cutoff_type = self.env.context.get("default_cutoff_type")
         label = self.cutoff_type_label_map.get(cutoff_type, "")
         return label
 
     @api.model
     def _default_cutoff_date(self):
-        previous_fy = self.env["account.fiscal.year"].search(
-            [
-                ("company_id", "=", self.env.user.company_id.id),
-                ("date_to", "<=", fields.Date.context_today(self)),
-            ],
-            order="date_from desc",
-            limit=1,
+        today = fields.Date.context_today(self)
+        company = self.env.company
+        date_from, date_to = date_utils.get_fiscal_year(
+            today,
+            day=company.fiscalyear_last_day,
+            month=int(company.fiscalyear_last_month),
         )
-        if previous_fy:
-            return previous_fy.date_to
+        if date_from:
+            return date_from - relativedelta(days=1)
         else:
             return False
 
@@ -59,16 +65,19 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_cutoff_account_id(self):
-        """Default account must always be None"""
-        return None
-
-    @api.model
-    def _default_cutoff_journal_id(self):
-        return self.env.user.company_id.default_cutoff_journal_id
-
-    @api.model
-    def _default_move_partner(self):
-        return self.env.user.company_id.default_cutoff_move_partner
+        cutoff_type = self.env.context.get("default_cutoff_type")
+        company = self.env.company
+        if cutoff_type == "accrued_expense":
+            account_id = company.default_accrued_expense_account_id.id or False
+        elif cutoff_type == "accrued_revenue":
+            account_id = company.default_accrued_revenue_account_id.id or False
+        elif cutoff_type == "prepaid_revenue":
+            account_id = company.default_prepaid_revenue_account_id.id or False
+        elif cutoff_type == "prepaid_expense":
+            account_id = company.default_prepaid_expense_account_id.id or False
+        else:
+            account_id = False
+        return account_id
 
     cutoff_date = fields.Date(
         string="Cut-off Date",
@@ -84,10 +93,13 @@ class AccountCutoff(models.Model):
         required=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
-        default=lambda self: self.env.context.get("cutoff_type"),
     )
     move_id = fields.Many2one(
-        "account.move", string="Cut-off Journal Entry", readonly=True, copy=False
+        "account.move",
+        string="Cut-off Journal Entry",
+        readonly=True,
+        copy=False,
+        check_company=True,
     )
     move_label = fields.Char(
         string="Label of the Cut-off Journal Entry",
@@ -99,22 +111,28 @@ class AccountCutoff(models.Model):
         "the Cut-off Account Move.",
     )
     move_partner = fields.Boolean(
-        string="Partner on Move Line", default=lambda self: self._default_move_partner()
+        string="Partner on Move Line",
+        default=lambda self: self.env.company.default_cutoff_move_partner,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
-        domain=[("deprecated", "=", False)],
+        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
         readonly=True,
         states={"draft": [("readonly", False)]},
         default=lambda self: self._default_cutoff_account_id(),
+        check_company=True,
+        tracking=True,
     )
     cutoff_journal_id = fields.Many2one(
         comodel_name="account.journal",
         string="Cut-off Account Journal",
-        default=lambda self: self._default_cutoff_journal_id(),
+        default=lambda self: self.env.company.default_cutoff_journal_id,
         readonly=True,
         states={"draft": [("readonly", False)]},
+        domain="[('company_id', '=', company_id)]",
+        check_company=True,
+        tracking=True,
     )
     total_cutoff_amount = fields.Monetary(
         compute="_compute_total_cutoff",
@@ -164,10 +182,10 @@ class AccountCutoff(models.Model):
         self.ensure_one()
         if self.move_id:
             self.move_id.unlink()
-        self.state = "draft"
+        self.write({"state": "draft"})
 
     def _get_merge_keys(self):
-        """ Return merge criteria for provision lines
+        """Return merge criteria for provision lines
 
         The returned list must contain valid field names
         for account.move.line. Provision lines with the
@@ -185,7 +203,6 @@ class AccountCutoff(models.Model):
         for merge_values, amount in to_provision.items():
             amount = self.company_currency_id.round(amount)
             vals = {
-                "name": move_label,
                 "debit": amount < 0 and amount * -1 or 0,
                 "credit": amount >= 0 and amount or 0,
             }
@@ -202,7 +219,6 @@ class AccountCutoff(models.Model):
                 0,
                 {
                     "account_id": self.cutoff_account_id.id,
-                    "name": move_label,
                     "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
                     "credit": counterpart_amount >= 0 and counterpart_amount or 0,
                     "analytic_account_id": False,
@@ -211,6 +227,7 @@ class AccountCutoff(models.Model):
         )
 
         res = {
+            "company_id": self.company_id.id,
             "journal_id": self.cutoff_journal_id.id,
             "date": self.cutoff_date,
             "ref": move_label,
@@ -219,7 +236,7 @@ class AccountCutoff(models.Model):
         return res
 
     def _prepare_provision_line(self, cutoff_line):
-        """ Convert a cutoff line to elements of a move line.
+        """Convert a cutoff line to elements of a move line.
 
         The returned dictionary must at least contain 'account_id'
         and 'amount' (< 0 means debit).
@@ -236,7 +253,7 @@ class AccountCutoff(models.Model):
         }
 
     def _prepare_provision_tax_line(self, cutoff_tax_line):
-        """ Convert a cutoff tax line to elements of a move line.
+        """Convert a cutoff tax line to elements of a move line.
 
         See _prepare_provision_line for more info.
         """
@@ -248,19 +265,16 @@ class AccountCutoff(models.Model):
         }
 
     def _merge_provision_lines(self, provision_lines):
-        """ Merge provision line.
+        """Merge provision line.
 
         Returns a dictionary {key, amount} where key is
         a tuple containing the values of the properties in _get_merge_keys()
         """
-        to_provision = {}
+        to_provision = defaultdict(float)
         merge_keys = self._get_merge_keys()
         for provision_line in provision_lines:
             key = tuple([provision_line.get(key) for key in merge_keys])
-            if key in to_provision:
-                to_provision[key] += provision_line["amount"]
-            else:
-                to_provision[key] = provision_line["amount"]
+            to_provision[key] += provision_line["amount"]
         return to_provision
 
     def create_move(self):
@@ -291,9 +305,7 @@ class AccountCutoff(models.Model):
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
-        action = self.env["ir.actions.act_window"].for_xml_id(
-            "account", "action_move_journal_line"
-        )
+        action = self.env.ref("account.action_move_journal_line").sudo().read()[0]
         action.update(
             {
                 "view_mode": "form,tree",
@@ -324,17 +336,74 @@ class AccountCutoff(models.Model):
         return super().unlink()
 
     def button_line_tree(self):
-        action = self.env["ir.actions.act_window"].for_xml_id(
-            "account_cutoff_base", "account_cutoff_line_action"
+        action = (
+            self.env.ref("account_cutoff_base.account_cutoff_line_action")
+            .sudo()
+            .read()[0]
         )
         action.update(
             {
                 "domain": [("parent_id", "=", self.id)],
                 "views": False,
-                "context": self._context,
             }
         )
         return action
+
+    def _get_mapping_dict(self):
+        """return a dict with:
+        key = ID of account,
+        value = ID of cutoff_account"""
+        self.ensure_one()
+        mappings = self.env["account.cutoff.mapping"].search(
+            [
+                ("company_id", "=", self.company_id.id),
+                ("cutoff_type", "in", ("all", self.cutoff_type)),
+            ]
+        )
+        mapping = {}
+        for item in mappings:
+            mapping[item.account_id.id] = item.cutoff_account_id.id
+        return mapping
+
+    def _prepare_tax_lines(self, tax_compute_all_res, currency):
+        res = []
+        ato = self.env["account.tax"]
+        company_currency = self.company_id.currency_id
+        cur_rprec = company_currency.rounding
+        for tax_line in tax_compute_all_res["taxes"]:
+            tax = ato.browse(tax_line["id"])
+            if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
+                continue
+            if self.cutoff_type == "accrued_expense":
+                tax_accrual_account_id = tax.account_accrued_expense_id.id
+                tax_account_field_label = _("Accrued Expense Tax Account")
+            elif self.cutoff_type == "accrued_revenue":
+                tax_accrual_account_id = tax.account_accrued_revenue_id.id
+                tax_account_field_label = _("Accrued Revenue Tax Account")
+            if not tax_accrual_account_id:
+                raise UserError(
+                    _("Missing '%s' on tax '%s'.")
+                    % (tax_account_field_label, tax.display_name)
+                )
+            tax_amount = currency.round(tax_line["amount"])
+            tax_accrual_amount = currency._convert(
+                tax_amount, company_currency, self.company_id, self.cutoff_date
+            )
+            res.append(
+                (
+                    0,
+                    0,
+                    {
+                        "tax_id": tax_line["id"],
+                        "base": tax_line["base"],  # in currency
+                        "amount": tax_amount,  # in currency
+                        "sequence": tax_line["sequence"],
+                        "cutoff_account_id": tax_accrual_account_id,
+                        "cutoff_amount": tax_accrual_amount,  # in company currency
+                    },
+                )
+            )
+        return res
 
 
 class AccountCutoffLine(models.Model):
@@ -349,17 +418,35 @@ class AccountCutoffLine(models.Model):
         readonly=True,
     )
     partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
+    quantity = fields.Float(
+        string="Quantity", digits="Product Unit of Measure", readonly=True
+    )
+    price_unit = fields.Float(
+        string="Unit Price w/o Tax",
+        digits="Product Price",
+        readonly=True,
+        help="Price per unit (discount included) without taxes in the default "
+        "unit of measure of the product in the currency of the 'Currency' field.",
+    )
+    price_origin = fields.Char(readonly=True)
+    origin_move_line_id = fields.Many2one(
+        "account.move.line", string="Origin Journal Item", readonly=True
+    )  # Old name: move_line_id
+    origin_move_id = fields.Many2one(
+        related="origin_move_line_id.move_id", string="Origin Journal Entry"
+    )  # old name: move_id
+    origin_move_date = fields.Date(
+        related="origin_move_line_id.move_id.date", string="Origin Journal Entry Date"
+    )  # old name: move_date
     account_id = fields.Many2one(
         "account.account",
         "Account",
-        domain=[("deprecated", "=", False)],
         required=True,
         readonly=True,
     )
     cutoff_account_id = fields.Many2one(
         "account.account",
         string="Cut-off Account",
-        domain=[("deprecated", "=", False)],
         required=True,
         readonly=True,
     )
@@ -369,7 +456,6 @@ class AccountCutoffLine(models.Model):
     analytic_account_id = fields.Many2one(
         "account.analytic.account",
         string="Analytic Account",
-        domain=[("account_type", "!=", "closed")],
         readonly=True,
     )
     currency_id = fields.Many2one(
@@ -391,19 +477,13 @@ class AccountCutoffLine(models.Model):
         readonly=True,
         help="Cut-off Amount without taxes in the Company Currency.",
     )
-    tax_ids = fields.Many2many(
-        "account.tax",
-        column1="cutoff_line_id",
-        column2="tax_id",
-        string="Taxes",
-        readonly=True,
-    )
     tax_line_ids = fields.One2many(
         "account.cutoff.tax.line",
         "parent_id",
         string="Cut-off Tax Lines",
         readonly=True,
     )
+    notes = fields.Text()
 
 
 class AccountCutoffTaxLine(models.Model):
@@ -420,14 +500,12 @@ class AccountCutoffTaxLine(models.Model):
     cutoff_account_id = fields.Many2one(
         "account.account",
         string="Cut-off Account",
-        domain=[("deprecated", "=", False)],
         required=True,
         readonly=True,
     )
     analytic_account_id = fields.Many2one(
         "account.analytic.account",
         string="Analytic Account",
-        domain=[("account_type", "!=", "closed")],
         readonly=True,
     )
     base = fields.Monetary(
@@ -456,58 +534,3 @@ class AccountCutoffTaxLine(models.Model):
         string="Company Currency",
         readonly=True,
     )
-
-
-class AccountCutoffMapping(models.Model):
-    _name = "account.cutoff.mapping"
-    _description = "Account Cut-off Mapping"
-    _rec_name = "account_id"
-
-    company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.cutoff.mapping"
-        ),
-    )
-    account_id = fields.Many2one(
-        "account.account",
-        string="Regular Account",
-        domain=[("deprecated", "=", False)],
-        required=True,
-    )
-    cutoff_account_id = fields.Many2one(
-        "account.account",
-        string="Cut-off Account",
-        domain=[("deprecated", "=", False)],
-        required=True,
-    )
-    cutoff_type = fields.Selection(
-        [
-            ("all", "All Cut-off Types"),
-            ("accrued_revenue", "Accrued Revenue"),
-            ("accrued_expense", "Accrued Expense"),
-            ("prepaid_revenue", "Prepaid Revenue"),
-            ("prepaid_expense", "Prepaid Expense"),
-        ],
-        string="Cut-off Type",
-        required=True,
-    )
-
-    @api.model
-    def _get_mapping_dict(self, company_id, cutoff_type="all"):
-        """return a dict with:
-        key = ID of account,
-        value = ID of cutoff_account"""
-        if cutoff_type == "all":
-            cutoff_type_filter = ("all",)
-        else:
-            cutoff_type_filter = ("all", cutoff_type)
-        mappings = self.search(
-            [("company_id", "=", company_id), ("cutoff_type", "in", cutoff_type_filter)]
-        )
-        mapping = {}
-        for item in mappings:
-            mapping[item.account_id.id] = item.cutoff_account_id.id
-        return mapping
