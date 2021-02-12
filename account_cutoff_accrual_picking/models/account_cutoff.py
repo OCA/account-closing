@@ -1,4 +1,4 @@
-# Copyright 2013-2020 Akretion France (http://www.akretion.com/)
+# Copyright 2013-2021 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -31,17 +31,15 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_picking_interval_days(self):
-        return self.env.user.company_id.default_cutoff_accrual_picking_interval_days
+        return self.env.company.default_cutoff_accrual_picking_interval_days
 
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
-        ato = self.env["account.tax"]
         dpo = self.env["decimal.precision"]
         assert self.cutoff_type in (
             "accrued_expense",
             "accrued_revenue",
         ), "The field 'cutoff_type' has a wrong value"
         qty_prec = dpo.precision_get("Product Unit of Measure")
-        cur_rprec = vdict["currency"].rounding
         qty = vdict["precut_delivered_qty"] - vdict["precut_invoiced_qty"]
         if float_is_zero(qty, precision_digits=qty_prec):
             return False
@@ -53,48 +51,6 @@ class AccountCutoff(models.Model):
         amount_company_currency = vdict["currency"]._convert(
             amount, company_currency, self.company_id, self.cutoff_date
         )
-
-        tax_line_ids = []
-        tax_res = vdict["taxes"].compute_all(
-            vdict["price_unit"],
-            currency=currency,
-            quantity=qty,
-            product=vdict["product"],
-            partner=vdict["partner"],
-        )
-        for tax_line in tax_res["taxes"]:
-            tax = ato.browse(tax_line["id"])
-            if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
-                continue
-            if self.cutoff_type == "accrued_expense":
-                tax_accrual_account_id = tax.account_accrued_expense_id.id
-                tax_account_field_label = _("Accrued Expense Tax Account")
-            elif self.cutoff_type == "accrued_revenue":
-                tax_accrual_account_id = tax.account_accrued_revenue_id.id
-                tax_account_field_label = _("Accrued Revenue Tax Account")
-            if not tax_accrual_account_id:
-                raise UserError(
-                    _("Missing '%s' on tax '%s'.")
-                    % (tax_account_field_label, tax.display_name)
-                )
-            tax_amount = tax_line["amount"] * sign
-            tax_accrual_amount = currency._convert(
-                tax_amount, company_currency, self.company_id, self.cutoff_date
-            )
-            tax_line_ids.append(
-                (
-                    0,
-                    0,
-                    {
-                        "tax_id": tax_line["id"],
-                        "base": tax_line["base"],
-                        "amount": tax_amount,
-                        "sequence": tax_line["sequence"],
-                        "cutoff_account_id": tax_accrual_account_id,
-                        "cutoff_amount": tax_accrual_amount,
-                    },
-                )
-            )
 
         # Use account mapping
         account_id = vdict["account_id"]
@@ -112,12 +68,25 @@ class AccountCutoff(models.Model):
             "currency_id": vdict["currency"].id,
             "quantity": qty,
             "price_unit": vdict["price_unit"],
-            "tax_ids": [(6, 0, vdict["taxes"].ids)],
             "amount": amount,
             "cutoff_amount": amount_company_currency,
-            "tax_line_ids": tax_line_ids,
             "price_origin": vdict.get("price_origin"),
         }
+
+        if vdict["taxes"] and self.company_id.accrual_taxes:
+            # vdict["price_unit"] is a price without tax,
+            # so I set handle_price_include=False
+            tax_compute_all_res = vdict["taxes"].compute_all(
+                vdict["price_unit"],
+                currency=currency,
+                quantity=qty,
+                product=vdict["product"],
+                partner=vdict["partner"],
+                handle_price_include=False,
+            )
+            vals["tax_line_ids"] = self._prepare_tax_lines(
+                tax_compute_all_res, self.company_currency_id
+            )
         return vals
 
     def order_line_update_oline_dict(self, order_line, order_type, oline_dict):
@@ -133,8 +102,7 @@ class AccountCutoff(models.Model):
         oline_dict[order_line] = {
             "precut_delivered_qty": 0.0,  # in product_uom
             "precut_invoiced_qty": 0.0,  # in product_uom
-            "name": _("%s line ID %d: %s")
-            % (order.name, order_line.id, order_line.name),
+            "name": _("%s: %s") % (order.name, order_line.name),
             "product": product,
             "partner": order.partner_id.commercial_partner_id,
         }
@@ -154,7 +122,7 @@ class AccountCutoff(models.Model):
         for iline in ilines:
             invoice = iline.move_id
             if (
-                invoice.type == invoice_type
+                invoice.move_type == invoice_type
                 and float_compare(iline.quantity, 0, precision_digits=qty_prec) > 0
             ):
                 iline_qty_puom = iline.product_uom_id._compute_quantity(
@@ -164,7 +132,7 @@ class AccountCutoff(models.Model):
                     oline_dict[order_line]["precut_invoiced_qty"] += iline_qty_puom
                 # Most recent invoice line used for price_unit, account,...
                 price_unit = iline.price_subtotal / iline_qty_puom
-                price_origin = _("Invoice %s line ID %d") % (invoice.name, iline.id)
+                price_origin = invoice.name
                 currency = invoice.currency_id
                 account_id = iline.account_id.id
                 analytic_account_id = iline.analytic_account_id.id
@@ -175,11 +143,11 @@ class AccountCutoff(models.Model):
                     order_line.product_qty, product_uom
                 )
                 price_unit = order_line.price_subtotal / oline_qty_puom
-                price_origin = _("%s line ID %d") % (order.name, order_line.id)
+                price_origin = order.name
                 currency = order.currency_id
                 analytic_account_id = order_line.account_analytic_id.id
                 taxes = order_line.taxes_id
-                account = product.product_tmpl_id._get_product_accounts()["expense"]
+                account = product._get_product_accounts()["expense"]
                 if not account:
                     raise UserError(
                         _(
@@ -194,11 +162,11 @@ class AccountCutoff(models.Model):
                     order_line.product_uom_qty, product_uom
                 )
                 price_unit = order_line.price_subtotal / oline_qty_puom
-                price_origin = "%s line ID %d" % (order.name, order_line.id)
+                price_origin = order.name
                 currency = order.currency_id
                 analytic_account_id = order.analytic_account_id.id
                 taxes = order_line.tax_id
-                account = product.product_tmpl_id._get_product_accounts()["income"]
+                account = product._get_product_accounts()["income"]
                 if not account:
                     raise UserError(
                         _(
@@ -250,7 +218,6 @@ class AccountCutoff(models.Model):
         res = super().get_lines()
         spo = self.env["stock.picking"]
         aclo = self.env["account.cutoff.line"]
-        acmo = self.env["account.cutoff.mapping"]
 
         pick_type_map = {
             "accrued_revenue": "outgoing",
@@ -261,7 +228,7 @@ class AccountCutoff(models.Model):
             return res
 
         # Create account mapping dict
-        account_mapping = acmo._get_mapping_dict(self.company_id.id, cutoff_type)
+        account_mapping = self._get_mapping_dict()
 
         min_date_dt = self.cutoff_date - relativedelta(days=self.picking_interval_days)
 
