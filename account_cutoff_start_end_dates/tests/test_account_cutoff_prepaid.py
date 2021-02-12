@@ -24,7 +24,8 @@ class TestCutoffPrepaid(SavepointCase):
                     "user_type_id",
                     "=",
                     cls.env.ref("account.data_account_type_expenses").id,
-                )
+                ),
+                ("company_id", "=", cls.env.ref("base.main_company").id),
             ],
             limit=1,
         )
@@ -34,7 +35,8 @@ class TestCutoffPrepaid(SavepointCase):
                     "user_type_id",
                     "=",
                     cls.env.ref("account.data_account_type_payable").id,
-                )
+                ),
+                ("company_id", "=", cls.env.ref("base.main_company").id),
             ],
             limit=1,
         )
@@ -44,13 +46,24 @@ class TestCutoffPrepaid(SavepointCase):
                     "user_type_id",
                     "=",
                     cls.env.ref("account.data_account_type_current_liabilities").id,
-                )
+                ),
+                ("company_id", "=", cls.env.ref("base.main_company").id),
             ],
             limit=1,
         )
-        cls.cutoff_journal = cls.journal_model.search([], limit=1)
+        cls.cutoff_journal = cls.journal_model.search(
+            [
+                ("company_id", "=", cls.env.ref("base.main_company").id),
+                ("type", "=", "general"),
+            ],
+            limit=1,
+        )
         cls.purchase_journal = cls.journal_model.search(
-            [("type", "=", "purchase")], limit=1
+            [
+                ("type", "=", "purchase"),
+                ("company_id", "=", cls.env.ref("base.main_company").id),
+            ],
+            limit=1,
         )
 
     def _date(self, date):
@@ -65,11 +78,12 @@ class TestCutoffPrepaid(SavepointCase):
     def _create_invoice(self, date, amount, start_date, end_date):
         invoice = self.inv_model.create(
             {
+                "company_id": self.env.ref("base.main_company").id,
                 "invoice_date": self._date(date),
                 "date": self._date(date),
                 "partner_id": self.env.ref("base.res_partner_2").id,
                 "journal_id": self.purchase_journal.id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -86,13 +100,14 @@ class TestCutoffPrepaid(SavepointCase):
                 ],
             }
         )
-        invoice.post()
+        invoice.action_post()
         self.assertEqual(amount, invoice.amount_untaxed)
         return invoice
 
     def _create_cutoff(self, date):
         cutoff = self.cutoff_model.create(
             {
+                "company_id": self.env.ref("base.main_company").id,
                 "cutoff_date": self._date(date),
                 "cutoff_type": "prepaid_revenue",
                 "cutoff_journal_id": self.cutoff_journal.id,

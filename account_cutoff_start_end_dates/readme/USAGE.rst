@@ -7,7 +7,7 @@ have an end date after the cut-off date and, for each line, it will
 compute the prepaid revenue. If you agree with the result, click on the
 button *Create Journal Entry*: Odoo will generate an account move at the
 cut-off date to cut these prepaid revenue. Hint: you can then use the reversal
-feature to generate the reverse journal items on the next day.
+feature to generate the reverse journal entry on the next day.
 
 If you need to answer a question such as *How much revenue did I already
 invoice for my next fiscal year ?*, you will be interested by the
