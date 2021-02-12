@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2021 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!-- ACCOUNT CUTOFF -->
+    <record id="account_cutoff_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.prepaid.tree</field>
+        <field name="model">account.cutoff</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_tree" />
+        <field name="arch" type="xml">
+            <field name="cutoff_date" position="after">
+                <field
+                    name="forecast"
+                    invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
+                />
+                <field
+                    name="start_date"
+                    invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
+                />
+                <field
+                    name="end_date"
+                    invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_form" model="ir.ui.view">
+        <field name="name">account.cutoff.prepaid.form</field>
+        <field name="model">account.cutoff</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form" />
+        <field name="arch" type="xml">
+            <button name="create_move" position="after">
+                <button
+                    name="forecast_enable"
+                    type="object"
+                    string="Enable Forecast Mode"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('forecast', '=', True), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
+                />
+                <button
+                    name="forecast_disable"
+                    type="object"
+                    string="Leave Forecast Mode"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('forecast', '=', False), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
+                />
+            </button>
+            <field name="cutoff_date" position="before">
+                <field
+                    name="forecast"
+                    attrs="{'invisible': [('forecast', '=', False)]}"
+                />
+                <field
+                    name="start_date"
+                    attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"
+                />
+                <field
+                    name="end_date"
+                    attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"
+                />
+            </field>
+            <field name="cutoff_date" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('forecast', '=', True)], 'required': [('forecast', '=', False)]}</attribute>
+                <attribute name="required">0</attribute>
+            </field>
+            <group name="accounting-params" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('forecast', '=', True)]}</attribute>
+            </group>
+            <field name="cutoff_journal_id" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute
+                    name="attrs"
+                >{'required': [('forecast', '=', False)]}</attribute>
+            </field>
+            <field name="cutoff_account_id" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute
+                    name="attrs"
+                >{'required': [('forecast', '=', False)]}</attribute>
+            </field>
+            <field name="move_label" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute
+                    name="attrs"
+                >{'required': [('forecast', '=', False)]}</attribute>
+            </field>
+            <button name="create_move" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
+            </button>
+            <field name="cutoff_date" position="after">
+                <field
+                    name="source_journal_ids"
+                    widget="many2many_tags"
+                    domain="[('company_id', '=', company_id)]"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_filter" model="ir.ui.view">
+        <field name="name">prepaid.account.cutoff.prepaid.search</field>
+        <field name="model">account.cutoff</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_filter" />
+        <field name="arch" type="xml">
+            <filter name="done" position="after">
+                <separator />
+                <filter
+                    name="forecast"
+                    string="Forecast"
+                    domain="[('forecast', '=', True)]"
+                />
+            </filter>
+            <filter name="state_groupby" position="after">
+                <filter
+                    name="forecast_groupby"
+                    string="Forecast"
+                    context="{'group_by': 'forecast'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <!-- ACCOUNT CUTOFF LINES -->
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.line.prepaid.form</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="start_date" />
+                <field name="end_date" />
+            </field>
+            <field name="cutoff_amount" position="before">
+                <field name="total_days" />
+                <field name="cutoff_days" />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.line.prepaid.tree</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+        <field name="arch" type="xml">
+            <field name="analytic_account_id" position="after">
+                <field name="start_date" optional="show" />
+                <field name="end_date" optional="show" />
+                <field name="total_days" optional="show" />
+                <field name="cutoff_days" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
