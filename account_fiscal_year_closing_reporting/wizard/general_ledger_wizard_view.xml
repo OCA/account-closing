@@ -6,12 +6,8 @@
         <field name="model">general.ledger.report.wizard</field>
         <field name="inherit_id" ref="account_financial_report.general_ledger_wizard"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='filters']/group[@name='other_filters']/div[last()]" position="after">
-                <label string=" " for="exclude_opening"/>
-                <div>
-                    <field name="exclude_opening" nolabel="1" class="oe_inline"/>
-                    <label for="exclude_opening" class="oe_inline"/>
-                </div>
+            <xpath expr="//group[@name='filters']/group[@name='other_filters']/field[last()]" position="after">
+                <field name="exclude_opening"/>
             </xpath>
         </field>
     </record>
