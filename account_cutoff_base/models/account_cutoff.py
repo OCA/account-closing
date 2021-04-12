@@ -64,11 +64,11 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_cutoff_journal_id(self):
-        return self.env.user.company_id.default_cutoff_journal_id
+        return self.env.company.default_cutoff_journal_id
 
     @api.model
     def _default_move_partner(self):
-        return self.env.user.company_id.default_cutoff_move_partner
+        return self.env.company.default_cutoff_move_partner
 
     cutoff_date = fields.Date(
         string="Cut-off Date",
