@@ -6,57 +6,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-04-12 16:46+0000\n"
+"Last-Translator: alvarorib <alvaro.ribeiro@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model,name:account_multicurrency_revaluation_rate_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model,name:account_multicurrency_revaluation_rate_type.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configurações Config"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model,name:account_multicurrency_revaluation_rate_type.model_wizard_currency_revaluation
 msgid "Currency Revaluation Wizard"
-msgstr ""
+msgstr "Assistente de Revalorização de Moeda"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: selection:res.company,revaluation_rate_type:0
 #: selection:wizard.currency.revaluation,revaluation_rate_type:0
 msgid "Daily"
-msgstr ""
+msgstr "Diário"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model.fields,help:account_multicurrency_revaluation_rate_type.field_res_config_settings__revaluation_rate_type
 msgid "Define default currency rate type to be used for multicurrency revaluation."
 msgstr ""
+"Definir o tipo de taxa de câmbio pré definida a ser usada para revalorização "
+"multi-moeda."
 
 #. module: account_multicurrency_revaluation_rate_type
 #: selection:wizard.currency.revaluation,revaluation_rate_type:0
 msgid "Monthly Average"
-msgstr ""
+msgstr "Média Mensal"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: selection:res.company,revaluation_rate_type:0
 msgid "Monthly average"
-msgstr ""
+msgstr "Média mensal"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_rate_type.field_wizard_currency_revaluation__revaluation_rate_type
 msgid "Rate type"
-msgstr ""
+msgstr "Tipo de taxa"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_rate_type.field_res_company__revaluation_rate_type
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_rate_type.field_res_config_settings__revaluation_rate_type
 msgid "Revaluation rate type"
-msgstr ""
+msgstr "Tipo de taxa de revalorização"
