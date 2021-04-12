@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 23:20+0000\n"
-"PO-Revision-Date: 2020-02-24 13:13+0000\n"
+"PO-Revision-Date: 2021-04-12 16:46+0000\n"
 "Last-Translator: alvarorib <alvaro.ribeiro@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Linhas em Ecran Cheio</span>"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -154,7 +154,7 @@ msgstr "Moeda da empresa"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configurações Config"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -279,7 +279,6 @@ msgstr "Diferimentos"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
-#, fuzzy
 msgid "Cutoff Lines"
 msgstr "Linhas de Diferimento"
 
@@ -394,7 +393,7 @@ msgstr "Última atualização em"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
+msgstr "Vista de lista das linhas"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
@@ -458,7 +457,7 @@ msgstr "Rendimento não diferido"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Re-Generate Lines"
-msgstr ""
+msgstr "Regenerar as linhas"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_account_code
@@ -600,6 +599,7 @@ msgstr "História de comunicações do Website"
 #, python-format
 msgid "You cannot delete cutoff records that are not in draft state."
 msgstr ""
+"Não pode apagar registos de diferimento que não estejam no estado rascunho."
 
 #~ msgid "Analytic Account Code"
 #~ msgstr "Código de conta analítica"
