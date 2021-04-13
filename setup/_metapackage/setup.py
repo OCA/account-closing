@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-account-closing Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-account_cutoff_base',
         'odoo14-addon-account_invoice_start_end_dates',
     ],
     classifiers=[
