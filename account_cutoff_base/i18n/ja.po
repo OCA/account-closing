@@ -1,0 +1,612 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_cutoff_base
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-25 11:09+0000\n"
+"PO-Revision-Date: 2018-01-25 11:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Japanese (https://www.transifex.com/oca/teams/23907/ja/)\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#: model:ir.model.constraint,message:account_cutoff_base.constraint_account_cutoff_date_type_company_uniq
+#, python-format
+msgid "A cutoff of the same type already exists with this cut-off date !"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__account_id
+msgid "Account"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__parent_id
+msgid "Account Cut-off Line"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_mapping_form
+msgid "Account Cut-off Mapping"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
+msgid "Account Cut-off Tax Line"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__accrued_expense
+#, python-format
+msgid "Accrued Expense"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__accrued_revenue
+#, python-format
+msgid "Accrued Revenue"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__all
+msgid "All Cut-off Types"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
+msgid "Amount Currency"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
+msgid ""
+"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
+"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_search
+msgid "Analytic Account"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Back to Draft"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
+msgid "Base"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__base
+msgid "Base Amount in the currency of the PO."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
+msgid "Click to start a new cutoff account mapping."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__company_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__company_id
+msgid "Company"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__company_currency_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__company_currency_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__company_currency_id
+msgid "Company Currency"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model,name:account_cutoff_base.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Create Journal Entry"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__create_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__create_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__currency_id
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__currency_id
+msgid "Currency of the 'Amount' field."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__parent_id
+msgid "Cut-off"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__cutoff_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__cutoff_account_id
+msgid "Cut-off Account"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_account_code
+msgid "Cut-off Account Code"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_journal_id
+msgid "Cut-off Account Journal"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
+#: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
+msgid "Cut-off Account Mapping"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount without taxes in the Company Currency."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+msgid "Cut-off Computation"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_date
+msgid "Cut-off Date"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
+msgid "Cut-off Journal Entry"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Cut-off Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
+msgid "Cut-off Tax Amount"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+msgid "Cut-off Tax Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Cut-off Taxes Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__cutoff_type
+msgid "Cut-off Type"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "Cut-off lines re-generated"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.res_config_settings_view_form
+msgid "Cut-offs"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
+msgid "Cutoff Account"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
+msgid "Cutoff Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_journal_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_journal_id
+msgid "Default Cut-off Journal"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__name
+msgid "Description"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__display_name
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__done
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Done"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__draft
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Draft"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Group By"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "Journal entry generated"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_label
+msgid "Label of the Cut-off Journal Entry"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line____last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping____last_update
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line____last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__write_uid
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__write_date
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "List view of lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__partner_id
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_search
+msgid "Partner"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
+msgid "Partner on Move Line"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
+msgid "Partner on Move Line by Default"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__prepaid_expense
+#, python-format
+msgid "Prepaid Expense"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__prepaid_revenue
+#, python-format
+msgid "Prepaid Revenue"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
+msgid "Re-Generate Lines"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__account_id
+msgid "Regular Account"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "Search Cut-offs"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Source"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__state
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
+msgid "State"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__state
+msgid ""
+"State of the cutoff. When the Journal Entry is created, the state is set to "
+"'Done' and the fields become read-only."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__tax_id
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
+msgid "Tax"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__amount
+msgid "Tax Amount"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__amount
+msgid "Tax Amount in the currency of the PO."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
+msgid "Tax Cut-off Amount in the company currency."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__tax_ids
+msgid "Taxes"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"The Cut-off Journal Entry already exists. You should delete it before "
+"running this function."
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
+msgid ""
+"These account mappings allow you to have an cutoff account for expense/"
+"revenue that is not the same as the original expense/revenue account, using "
+"the same concept as the fiscal positions."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__move_label
+msgid ""
+"This label will be written in the 'Name' field of the Cut-off Account Move "
+"Lines and in the 'Reference' field of the Cut-off Account Move."
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__total_cutoff_amount
+msgid "Total Cut-off Amount"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_type
+msgid "Type"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: account_cutoff_base
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "You cannot delete cutoff records that are not in draft state."
+msgstr ""

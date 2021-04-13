@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2020 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <menuitem
+        id="cutoff_menu"
+        parent="account.menu_finance_entries"
+        name="Cut-offs"
+        groups="account.group_account_user,account.group_account_manager"
+    />
+    <!-- account.cutoff -->
+    <record id="account_cutoff_form" model="ir.ui.view">
+        <field name="name">account.cutoff.form</field>
+        <field name="model">account.cutoff</field>
+        <field name="arch" type="xml">
+            <form string="Cut-offs">
+                <header>
+                    <button
+                        name="back2draft"
+                        string="Back to Draft"
+                        type="object"
+                        states="done"
+                    />
+                    <button
+                        class="btn-primary"
+                        name="get_lines"
+                        string="Re-Generate Lines"
+                        type="object"
+                        states="draft"
+                    />
+                    <button
+                        class="btn-primary"
+                        name="create_move"
+                        string="Create Journal Entry"
+                        type="object"
+                        attrs="{'invisible': ['|', ('line_ids', '=', False), ('state', '=', 'done')]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="button_line_tree"
+                            class="oe_stat_button"
+                            icon="fa-building-o"
+                            type="object"
+                            help="List view of lines"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Lines Fullscreen</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="cutoff_type" readonly="1" />
+                        </h1>
+                    </div>
+                    <group name="top">
+                        <group name="general-params">
+                            <field
+                                name="cutoff_date"
+                                options="{'datepicker': {'warn_future': true}}"
+                            />
+                            <field name="total_cutoff_amount" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                widget="selection"
+                            />
+                            <field name="company_currency_id" invisible="1" />
+                        </group>
+                        <group name="accounting-params">
+                            <field name="cutoff_journal_id" required="1" />
+                            <field name="cutoff_account_id" required="1" />
+                            <field name="move_label" required="1" />
+                            <field name="move_partner" />
+                            <field name="move_id" />
+                        </group>
+                    </group>
+                    <group name="lines">
+                        <field
+                            name="line_ids"
+                            nolabel="1"
+                            context="{'cutoff_type': cutoff_type}"
+                        />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="account_cutoff_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.tree</field>
+        <field name="model">account.cutoff</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'">
+                <field
+                    name="cutoff_type"
+                    invisible="context.get('default_cutoff_type')"
+                />
+                <field name="cutoff_date" />
+                <field name="total_cutoff_amount" />
+                <field name="company_currency_id" invisible="1" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="account_cutoff_filter" model="ir.ui.view">
+        <field name="name">account.cutoff.filter</field>
+        <field name="model">account.cutoff</field>
+        <field name="arch" type="xml">
+            <search string="Search Cut-offs">
+                <field name="cutoff_date" />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="state_groupby"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- account.cutoff.line -->
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.line.form</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <form string="Cut-off Lines">
+                <group name="main">
+                    <group name="source" string="Source">
+                    <field
+                            name="parent_id"
+                            invisible="not context.get('account_cutoff_line_main_view', False)"
+                        />
+                    <field name="partner_id" />
+                    <field name="name" />
+                    <field name="quantity" />
+                    <field name="price_unit" />
+                    <field name="price_origin" />
+                    <field name="origin_move_line_id" />
+                    <field name="origin_move_id" />
+                    <field name="origin_move_date" />
+                    <field name="account_id" />
+                    <field
+                            name="analytic_account_id"
+                            groups="analytic.group_analytic_accounting"
+                        />
+                    <field name="amount" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+                <group name="cutoff" string="Cut-off Computation">
+                    <field name="cutoff_amount" />
+                    <field name="cutoff_account_id" />
+                    <field name="company_currency_id" invisible="1" />
+                </group>
+                </group>
+                <group
+                    name="tax"
+                    string="Cut-off Taxes Lines"
+                    invisible="'accrued' not in context.get('cutoff_type', '-')"
+                >
+                    <field name="tax_line_ids" nolabel="1" />
+                </group>
+                <group name="notes" string="Notes">
+                    <field name="notes" nolabel="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.line.tree</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    invisible="not context.get('account_cutoff_line_main_view', False)"
+                />
+                <field name="partner_id" />
+                <field name="name" />
+                <field name="cutoff_account_code" string="Cutoff Account" />
+                <field
+                    name="analytic_account_id"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <field name="quantity" optional="hide" />
+                <field name="price_unit" optional="hide" />
+                <field name="price_origin" optional="hide" />
+                <field name="amount" />
+                <field name="currency_id" invisible="1" />
+                <field name="cutoff_amount" sum="1" />
+                <field name="company_currency_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="account_cutoff_line_search" model="ir.ui.view">
+        <field name="name">account.cutoff.line.search</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="analytic_account_id" />
+                <group name="groupby">
+                    <filter
+                        name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="analytic_groupby"
+                        string="Analytic Account"
+                        context="{'group_by': 'analytic_account_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="account_cutoff_line_action" model="ir.actions.act_window">
+        <field name="name">Cutoff Lines</field>
+        <field name="res_model">account.cutoff.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- account.cutoff.tax.line -->
+    <record id="account_cutoff_tax_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.tax.line.form</field>
+        <field name="model">account.cutoff.tax.line</field>
+        <field name="arch" type="xml">
+            <form string="Cut-off Tax Lines">
+                <group name="tax" string="Tax">
+                    <field
+                        name="parent_id"
+                        invisible="not context.get('account_cutoff_tax_line_main_view', False)"
+                    />
+                    <field name="tax_id" />
+                    <field name="sequence" />
+                    <field name="cutoff_account_id" />
+                    <field
+                        name="analytic_account_id"
+                        groups="analytic.group_analytic_accounting"
+                    />
+                    <field name="base" />
+                    <field name="amount" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+                <group name="cutoff" string="Cut-off Computation">
+                    <field name="cutoff_amount" />
+                    <field name="company_currency_id" invisible="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="account_cutoff_tax_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.tax.line.tree</field>
+        <field name="model">account.cutoff.tax.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    invisible="not context.get('account_cutoff_tax_line_main_view', False)"
+                />
+                <field name="tax_id" />
+                <field name="cutoff_account_id" />
+                <field
+                    name="analytic_account_id"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <field name="base" />
+                <field name="amount" />
+                <field name="currency_id" invisible="1" />
+                <field name="cutoff_amount" />
+                <field name="company_currency_id" invisible="1" />
+                <field name="sequence" invisible="1" />
+            </tree>
+        </field>
+</record>
+
+    <record id="account_revenue_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Revenue</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_revenue')]</field>
+        <field name="context">{'default_cutoff_type': 'accrued_revenue'}</field>
+    </record>
+    <menuitem
+        id="account_revenue_accrual_menu"
+        parent="cutoff_menu"
+        action="account_revenue_accrual_action"
+        sequence="10"
+    />
+
+    <record id="account_expense_accrual_action" model="ir.actions.act_window">
+        <field name="name">Accrued Expense</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'accrued_expense')]</field>
+        <field name="context">{'default_cutoff_type': 'accrued_expense'}</field>
+    </record>
+    <menuitem
+        id="account_expense_accrual_menu"
+        parent="cutoff_menu"
+        action="account_expense_accrual_action"
+        sequence="20"
+    />
+
+    <record id="account_cutoff_prepaid_revenue_action" model="ir.actions.act_window">
+        <field name="name">Prepaid Revenue</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'prepaid_revenue')]</field>
+        <field name="context">{'default_cutoff_type': 'prepaid_revenue'}</field>
+    </record>
+    <menuitem
+        id="account_cutoff_prepaid_revenue_menu"
+        parent="cutoff_menu"
+        action="account_cutoff_prepaid_revenue_action"
+        sequence="30"
+    />
+
+
+
+    <record id="account_cutoff_prepaid_expense_action" model="ir.actions.act_window">
+        <field name="name">Prepaid Expense</field>
+        <field name="res_model">account.cutoff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('cutoff_type', '=', 'prepaid_expense')]</field>
+        <field name="context">{'default_cutoff_type': 'prepaid_expense'}</field>
+    </record>
+    <menuitem
+        id="account_cutoff_prepaid_expense_menu"
+        parent="cutoff_menu"
+        action="account_cutoff_prepaid_expense_action"
+        sequence="40"
+    />
+</odoo>
