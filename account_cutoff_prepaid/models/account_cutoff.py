@@ -17,7 +17,7 @@ class AccountCutoff(models.Model):
             src_journals = self.env["account.journal"].search(
                 [
                     ("type", "=", mapping[cutoff_type]),
-                    ("company_id", "=", self.env.user.company_id.id),
+                    ("company_id", "=", self.env.company.id),
                 ]
             )
             if src_journals:
@@ -173,7 +173,7 @@ class AccountCutoff(models.Model):
     def _default_cutoff_account_id(self):
         account_id = super()._default_cutoff_account_id()
         cutoff_type = self.env.context.get("cutoff_type")
-        company = self.env.user.company_id
+        company = self.env.company
         if cutoff_type == "prepaid_revenue":
             account_id = company.default_prepaid_revenue_account_id.id or False
         elif cutoff_type == "prepaid_expense":
