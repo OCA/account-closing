@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[account_cutoff_accrual_picking](account_cutoff_accrual_picking/) | 14.0.1.0.0 | Accrued expense & accrued revenue from pickings
 [account_cutoff_base](account_cutoff_base/) | 14.0.1.0.0 | Base module for Account Cut-offs
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 14.0.1.0.1 | Adds start/end dates on invoice/move lines
 
