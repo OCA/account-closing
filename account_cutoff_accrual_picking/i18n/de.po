@@ -1,0 +1,138 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* account_cutoff_accrual_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-24 15:27+0000\n"
+"PO-Revision-Date: 2015-02-05 23:47+0100\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "%s line ID %d"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "%s line ID %d: %s"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Abgrenzungskonto"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Accrued Expense Tax Account"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Accrued Revenue Tax Account"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model,name:account_cutoff_accrual_picking.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Invoice %s line ID %d"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Missing '%s' on tax '%s'."
+msgstr "Fehlende '%s' bei Steuer '%s'."
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, fuzzy, python-format
+msgid ""
+"Missing expense account on product '%s' or on its related product category "
+"'%s'."
+msgstr ""
+"Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
+"Produktkategorie"
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, fuzzy, python-format
+msgid ""
+"Missing income account on product '%s' or on its related product category "
+"'%s'."
+msgstr ""
+"Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
+msgid "Picking Analysis Interval"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
+#: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
+msgid ""
+"The value of the field 'Picking Analysis Interval' must be strictly positive."
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,help:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
+#: model:ir.model.fields,help:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
+#: model:ir.model.fields,help:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
+msgid ""
+"To generate the accruals based on pickings, Odoo will analyse all the "
+"pickings between the cutoff date and N days before. N is the Picking "
+"Analysis Interval."
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.account_cutoff_form
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
+msgid "days"
+msgstr ""
+
+#~ msgid "Account Cut-off Line"
+#~ msgstr "Abgrenzungsposten"
+
+#~ msgid "Product"
+#~ msgstr "Produkt"
+
+#~ msgid "Stock Move"
+#~ msgstr "Lagerumbuchung"
+
+#~ msgid "Re-Generate Lines from Picking"
+#~ msgstr "Positionen aus Kommissionierung erneuern"
+
+#~ msgid "Picking"
+#~ msgstr "Entnahme"
+
+#~ msgid "Date Done of the Picking"
+#~ msgstr "Datum erledigter Kommissionierung"
+
+#~ msgid "Error:"
+#~ msgstr "Fehler:"
