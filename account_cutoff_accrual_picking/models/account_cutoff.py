@@ -31,7 +31,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_picking_interval_days(self):
-        return self.env.user.company_id.default_cutoff_accrual_picking_interval_days
+        return self.env.company.default_cutoff_accrual_picking_interval_days
 
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         ato = self.env["account.tax"]

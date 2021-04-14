@@ -21,7 +21,7 @@ class AccountCutoff(models.Model):
             src_journals = self.env["account.journal"].search(
                 [
                     ("type", "=", mapping[cutoff_type]),
-                    ("company_id", "=", self.env.user.company_id.id),
+                    ("company_id", "=", self.env.company.id),
                 ]
             )
             if src_journals:
