@@ -73,10 +73,12 @@ class AccountAccount(models.Model):
             "AND aml.id = aprd.debit_move_id) LEFT JOIN "
             "account_move_line amldf ON (aml.balance > 0 "
             "AND aprd.credit_move_id = amldf.id "
-            "AND amldf.date < %s ) "
+            "AND amldf.date < %s ) LEFT JOIN "
+            "account_move am ON am.id = aml.move_id "
             "WHERE aml.account_id IN %s "
             "AND aml.date <= %s "
             "AND aml.currency_id IS NOT NULL "
+            "AND am.state NOT IN ('draft', 'cancel') "
             "GROUP BY aml.id "
             "HAVING aml.full_reconcile_id IS NULL "
             "OR (MAX(amldf.id) IS NULL AND MAX(amlcf.id) IS NULL)"
@@ -122,8 +124,23 @@ class AccountAccount(models.Model):
             accounts.setdefault(account_id, {})
             partner_id = partner_id if account_type.id in rec_pay else False
             accounts[account_id].setdefault(partner_id, {})
-            accounts[account_id][partner_id].setdefault(currency_id, {})
-            accounts[account_id][partner_id][currency_id] = line
+            accounts[account_id][partner_id].setdefault(
+                currency_id,
+                {"balance": 0, "debit": 0, "credit": 0, "foreign_balance": 0},
+            )
+            if not partner_id:
+                accounts[account_id][partner_id][currency_id]["balance"] += line[
+                    "balance"
+                ]
+                accounts[account_id][partner_id][currency_id]["debit"] += line["debit"]
+                accounts[account_id][partner_id][currency_id]["credit"] += line[
+                    "credit"
+                ]
+                accounts[account_id][partner_id][currency_id][
+                    "foreign_balance"
+                ] += line["foreign_balance"]
+            else:
+                accounts[account_id][partner_id][currency_id] = line
 
         return accounts
 
