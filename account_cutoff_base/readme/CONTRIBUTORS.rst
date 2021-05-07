@@ -5,3 +5,4 @@
 * Pedro M. Baeza <pedro.baeza@gmail.com>
 * Jeroen Evens <jeroen.evenss@dynapps.be>
 * Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+* Alex Comba <alex.comba@agilebg.com>
