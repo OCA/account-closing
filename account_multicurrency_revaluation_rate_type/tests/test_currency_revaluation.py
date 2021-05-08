@@ -26,6 +26,9 @@ class TestCurrencyRevaluationType(SavepointCase):
         cls.year = str(date.today().year)
 
         monthly_rate = cls.env['res.currency.rate.monthly']
+        cls.env['res.currency.rate.monthly'].search([
+            ('name', '=', str(date.today().replace(day=1)))
+        ]).unlink()
         monthly_rates_to_create = [
             {'month': '03', 'rate': 1.20},
             {'month': '12', 'rate': 5.40},
