@@ -3,7 +3,7 @@
 
 {
     "name": "Multicurrency revaluation with monthly currency rates",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "category": "Finance",
     "summary": "Use monthly currency rate for multicurrency revaluation",
     "author": "Camptocamp,Odoo Community Association (OCA)",
