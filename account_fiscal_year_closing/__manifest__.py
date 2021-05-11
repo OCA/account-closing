@@ -9,8 +9,7 @@
     "version": "12.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/account-closing",
-    "author": "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": [
