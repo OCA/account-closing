@@ -11,11 +11,13 @@ class AccountFiscalyearClosingTemplate(models.Model):
 
     name = fields.Char(translate=True)
     move_config_ids = fields.One2many(
-        comodel_name='account.fiscalyear.closing.config.template',
-        inverse_name='template_id', string="Moves configuration",
+        comodel_name="account.fiscalyear.closing.config.template",
+        inverse_name="template_id",
+        string="Moves configuration",
     )
     chart_template_ids = fields.Many2many(
-        comodel_name="account.chart.template", string="Available for",
+        comodel_name="account.chart.template",
+        string="Available for",
         required=True,
     )
 
@@ -27,32 +29,40 @@ class AccountFiscalyearClosingConfigTemplate(models.Model):
 
     name = fields.Char(translate=True)
     template_id = fields.Many2one(
-        comodel_name='account.fiscalyear.closing.template', index=True,
-        readonly=True, string="Fiscal Year Closing Template", required=True,
-        ondelete='cascade',
+        comodel_name="account.fiscalyear.closing.template",
+        index=True,
+        readonly=True,
+        string="Fiscal Year Closing Template",
+        required=True,
+        ondelete="cascade",
     )
     journal_id = fields.Many2one(company_dependent=True)
     mapping_ids = fields.One2many(
-        comodel_name='account.fiscalyear.closing.mapping.template',
-        inverse_name='template_config_id', string="Account mappings",
+        comodel_name="account.fiscalyear.closing.mapping.template",
+        inverse_name="template_config_id",
+        string="Account mappings",
     )
     closing_type_ids = fields.One2many(
-        comodel_name='account.fiscalyear.closing.type.template',
-        inverse_name='template_config_id', string="Closing types",
+        comodel_name="account.fiscalyear.closing.type.template",
+        inverse_name="template_config_id",
+        string="Closing types",
     )
     move_date = fields.Selection(
         selection=[
-            ('last_ending', 'Last date of the ending period'),
-            ('first_opening', 'First date of the opening period'),
+            ("last_ending", "Last date of the ending period"),
+            ("first_opening", "First date of the opening period"),
         ],
         string="Move date",
-        default='last_ending',
+        default="last_ending",
         required=True,
     )
 
     _sql_constraints = [
-        ('code_uniq', 'unique(code, template_id)',
-         'Code must be unique per fiscal year closing!'),
+        (
+            "code_uniq",
+            "unique(code, template_id)",
+            "Code must be unique per fiscal year closing!",
+        ),
     ]
 
 
@@ -62,21 +72,25 @@ class AccountFiscalyearClosingMappingTemplate(models.Model):
 
     name = fields.Char(translate=True)
     template_config_id = fields.Many2one(
-        comodel_name='account.fiscalyear.closing.config.template', index=True,
-        string="Fiscal year closing config template", readonly=True,
-        required=True, ondelete='cascade',
+        comodel_name="account.fiscalyear.closing.config.template",
+        index=True,
+        string="Fiscal year closing config template",
+        readonly=True,
+        required=True,
+        ondelete="cascade",
     )
     src_accounts = fields.Char(
-        string="Source accounts", required=True,
-        help="Account code pattern for the mapping source accounts"
+        string="Source accounts",
+        required=True,
+        help="Account code pattern for the mapping source accounts",
     )
     dest_account = fields.Char(
         string="Destination account",
         help="Account code pattern for the mapping destination account. Only "
-             "the first match will be considered. If this field is not "
-             "filled, the performed operation will be to remove any existing "
-             "balance on the source accounts with an equivalent counterpart "
-             "in the same account."
+        "the first match will be considered. If this field is not "
+        "filled, the performed operation will be to remove any existing "
+        "balance on the source accounts with an equivalent counterpart "
+        "in the same account.",
     )
 
 
@@ -85,7 +99,10 @@ class AccountFiscalyearClosingTypeTemplate(models.Model):
     _name = "account.fiscalyear.closing.type.template"
 
     template_config_id = fields.Many2one(
-        comodel_name='account.fiscalyear.closing.config.template', index=True,
-        string="Fiscal year closing config template", readonly=True,
-        required=True, ondelete='cascade',
+        comodel_name="account.fiscalyear.closing.config.template",
+        index=True,
+        string="Fiscal year closing config template",
+        readonly=True,
+        required=True,
+        ondelete="cascade",
     )
