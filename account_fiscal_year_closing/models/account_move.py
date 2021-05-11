@@ -22,7 +22,7 @@ class AccountMove(models.Model):
 
     fyc_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing",
-        delete="cascade",
+        ondelete="cascade",
         string="Fiscal year closing",
         readonly=True,
     )
