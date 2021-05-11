@@ -79,7 +79,7 @@ class AccountCutoff(models.Model):
             tax_compute_all_res = vdict["taxes"].compute_all(
                 vdict["price_unit"],
                 currency=currency,
-                quantity=qty,
+                quantity=qty * sign,
                 product=vdict["product"],
                 partner=vdict["partner"],
                 handle_price_include=False,
