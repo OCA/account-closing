@@ -23,16 +23,14 @@ class AccountFiscalyearClosing(models.Model):
         lock_date = company.fiscalyear_lock_date or fields.Date.today()
         fiscalyear = lock_date.year
         if (
-            lock_date.month < company.fiscalyear_last_month
+            lock_date.month < int(company.fiscalyear_last_month)
             and lock_date.day < company.fiscalyear_last_day
         ):
             fiscalyear = fiscalyear - 1
         return fiscalyear
 
     def _default_company_id(self):
-        return self.env["res.company"]._company_default_get(
-            "account.fiscalyear.closing"
-        )
+        return self.env.company
 
     name = fields.Char(
         readonly=True,
@@ -99,7 +97,6 @@ class AccountFiscalyearClosing(models.Model):
         domain="[('chart_template_ids', '=', chart_template_id)]",
         readonly=True,
         states={"draft": [("readonly", False)]},
-        oldname="template_id",
     )
     stored_template_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing.template",
@@ -134,7 +131,6 @@ class AccountFiscalyearClosing(models.Model):
         ),
     ]
 
-    @api.multi
     @api.depends("closing_template_id", "stored_template_id")
     def _compute_is_new_template(self):
         for record in self:
@@ -143,7 +139,6 @@ class AccountFiscalyearClosing(models.Model):
                 record.closing_template_id.id != record.stored_template_id.id
             )
 
-    @api.multi
     def _prepare_mapping(self, tmpl_mapping):
         self.ensure_one()
         dest_account = False
@@ -190,7 +185,6 @@ class AccountFiscalyearClosing(models.Model):
             )
         return journal
 
-    @api.multi
     def _prepare_config(self, tmpl_config):
         self.ensure_one()
         mappings = self.env["account.fiscalyear.closing.mapping"]
@@ -249,7 +243,6 @@ class AccountFiscalyearClosing(models.Model):
         else:
             self.name = str(self.date_end)
 
-    @api.multi
     def action_load_template(self):
         self.ensure_one()
         config_obj = self.env["account.fiscalyear.closing.config"]
@@ -267,7 +260,6 @@ class AccountFiscalyearClosing(models.Model):
             }
         )
 
-    @api.multi
     def draft_moves_check(self):
         for closing in self:
             draft_moves = self.env["account.move"].search(
@@ -311,7 +303,6 @@ class AccountFiscalyearClosing(models.Model):
             "target": "new",
         }
 
-    @api.multi
     def calculate(self):
         for closing in self:
             # Perform checks, raise exception if check fails
@@ -324,7 +315,6 @@ class AccountFiscalyearClosing(models.Model):
                     return self._show_unbalanced_move_wizard(data)
         return True
 
-    @api.multi
     def _moves_remove(self):
         for closing in self:
             closing.mapped("move_ids.line_ids").filtered(
@@ -334,7 +324,6 @@ class AccountFiscalyearClosing(models.Model):
             closing.move_ids.unlink()
         return True
 
-    @api.multi
     def button_calculate(self):
         res = self.calculate()
         if res is True:
@@ -350,21 +339,18 @@ class AccountFiscalyearClosing(models.Model):
             self._moves_remove()
         return res
 
-    @api.multi
     def button_recalculate(self):
         self._moves_remove()
         return self.button_calculate()
 
-    @api.multi
     def button_post(self):
         # Post moves
         for closing in self:
             for move_config in closing.move_config_ids.sorted("sequence"):
-                move_config.move_id.post()
+                move_config.move_id.action_post()
         self.write({"state": "posted"})
         return True
 
-    @api.multi
     def button_open_moves(self):
         # Return an action for showing moves
         return {
@@ -376,7 +362,6 @@ class AccountFiscalyearClosing(models.Model):
             "domain": [("fyc_id", "in", self.ids)],
         }
 
-    @api.multi
     def button_open_move_lines(self):
         return {
             "name": _("Fiscal closing move lines"),
@@ -387,13 +372,11 @@ class AccountFiscalyearClosing(models.Model):
             "domain": [("move_id.fyc_id", "in", self.ids)],
         }
 
-    @api.multi
     def button_cancel(self):
         self._moves_remove()
         self.write({"state": "cancelled"})
         return True
 
-    @api.multi
     def button_recover(self):
         self.write(
             {
@@ -403,7 +386,6 @@ class AccountFiscalyearClosing(models.Model):
         )
         return True
 
-    @api.multi
     def unlink(self):
         if any(x.state not in ("draft", "cancelled") for x in self):
             raise exceptions.UserError(
@@ -419,6 +401,7 @@ class AccountFiscalyearClosingConfig(models.Model):
     _inherit = "account.fiscalyear.closing.config.abstract"
     _name = "account.fiscalyear.closing.config"
     _order = "sequence asc, id asc"
+    _description = "Fiscal year closing configuration"
 
     fyc_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing",
@@ -451,7 +434,6 @@ class AccountFiscalyearClosingConfig(models.Model):
         ),
     ]
 
-    @api.multi
     def config_inverse_get(self):
         configs = self.env["account.fiscalyear.closing.config"]
         for config in self:
@@ -465,7 +447,6 @@ class AccountFiscalyearClosingConfig(models.Model):
                 )
         return configs
 
-    @api.multi
     def closing_type_get(self, account):
         self.ensure_one()
         closing_type = self.closing_type_default
@@ -476,7 +457,6 @@ class AccountFiscalyearClosingConfig(models.Model):
             closing_type = closing_types[0].closing_type
         return closing_type
 
-    @api.multi
     def move_prepare(self, move_lines):
         self.ensure_one()
         description = self.name
@@ -539,7 +519,6 @@ class AccountFiscalyearClosingConfig(models.Model):
                 move_lines.append(move_line)
         return move_lines
 
-    @api.multi
     def inverse_move_prepare(self):
         self.ensure_one()
         move_ids = False
@@ -548,13 +527,16 @@ class AccountFiscalyearClosingConfig(models.Model):
             date = self.fyc_id.date_opening
         config = self.config_inverse_get()
         if config.move_id:
-            move_ids = config.move_id.reverse_moves(
-                date=date,
-                journal_id=self.journal_id,
+            move_ids = config.move_id._reverse_moves(
+                [
+                    dict(
+                        date=date,
+                        journal_id=self.journal_id.id,
+                    )
+                ]
             )
-        return move_ids
+        return move_ids.ids
 
-    @api.multi
     def moves_create(self):
         self.ensure_one()
         moves = self.env["account.move"]
@@ -585,6 +567,7 @@ class AccountFiscalyearClosingConfig(models.Model):
 class AccountFiscalyearClosingMapping(models.Model):
     _inherit = "account.fiscalyear.closing.mapping.abstract"
     _name = "account.fiscalyear.closing.mapping"
+    _description = "Fiscal year closing mapping"
 
     fyc_config_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing.config",
@@ -603,7 +586,6 @@ class AccountFiscalyearClosingMapping(models.Model):
         string="Destination account",
     )
 
-    @api.multi
     def dest_move_line_prepare(self, dest, balance, partner_id=False):
         self.ensure_one()
         move_line = {}
@@ -622,7 +604,6 @@ class AccountFiscalyearClosingMapping(models.Model):
             }
         return move_line
 
-    @api.multi
     def move_line_prepare(self, account, account_lines, partner_id=False):
         self.ensure_one()
         move_line = {}
@@ -649,7 +630,6 @@ class AccountFiscalyearClosingMapping(models.Model):
                 balance = 0
         return balance, move_line
 
-    @api.multi
     def account_lines_get(self, account):
         self.ensure_one()
         start = self.fyc_config_id.fyc_id.date_start
@@ -664,7 +644,6 @@ class AccountFiscalyearClosingMapping(models.Model):
             ]
         )
 
-    @api.multi
     def move_line_partner_prepare(self, account, partner):
         self.ensure_one()
         move_line = {}
@@ -690,7 +669,6 @@ class AccountFiscalyearClosingMapping(models.Model):
             balance = 0
         return balance, move_line
 
-    @api.multi
     def account_partners_get(self, account):
         self.ensure_one()
         start = self.fyc_config_id.fyc_id.date_start
@@ -711,6 +689,7 @@ class AccountFiscalyearClosingMapping(models.Model):
 class AccountFiscalyearClosingType(models.Model):
     _inherit = "account.fiscalyear.closing.type.abstract"
     _name = "account.fiscalyear.closing.type"
+    _description = "Fiscal year closing type"
 
     fyc_config_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing.config",

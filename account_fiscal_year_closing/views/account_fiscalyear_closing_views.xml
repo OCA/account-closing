@@ -189,6 +189,7 @@
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
             <search string="Fiscal year closing">
+                <field name="name" />
                 <filter string="Draft" name="draft" domain="[('state','=','draft')]" />
                 <filter
                     string="In process"
@@ -220,7 +221,6 @@
         <field name="name">Fiscal year closings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.fiscalyear.closing</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_account_fiscalyear_closing_tree" />
     </record>

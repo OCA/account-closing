@@ -8,6 +8,7 @@ from odoo import fields, models
 class AccountFiscalyearClosingTemplate(models.Model):
     _inherit = "account.fiscalyear.closing.abstract"
     _name = "account.fiscalyear.closing.template"
+    _description = "Fiscal year closing template"
 
     name = fields.Char(translate=True)
     move_config_ids = fields.One2many(
@@ -26,6 +27,7 @@ class AccountFiscalyearClosingConfigTemplate(models.Model):
     _inherit = "account.fiscalyear.closing.config.abstract"
     _name = "account.fiscalyear.closing.config.template"
     _order = "sequence asc, id asc"
+    _description = "Fiscal year closing configuration template"
 
     name = fields.Char(translate=True)
     template_id = fields.Many2one(
@@ -69,6 +71,7 @@ class AccountFiscalyearClosingConfigTemplate(models.Model):
 class AccountFiscalyearClosingMappingTemplate(models.Model):
     _inherit = "account.fiscalyear.closing.mapping.abstract"
     _name = "account.fiscalyear.closing.mapping.template"
+    _description = "Fiscal year closing mapping template"
 
     name = fields.Char(translate=True)
     template_config_id = fields.Many2one(
@@ -97,6 +100,7 @@ class AccountFiscalyearClosingMappingTemplate(models.Model):
 class AccountFiscalyearClosingTypeTemplate(models.Model):
     _inherit = "account.fiscalyear.closing.type.abstract"
     _name = "account.fiscalyear.closing.type.template"
+    _description = "Fiscal year closing type template"
 
     template_config_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing.config.template",
