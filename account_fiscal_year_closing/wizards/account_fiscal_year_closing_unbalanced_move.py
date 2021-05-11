@@ -4,8 +4,8 @@ from odoo import fields, models
 
 
 class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
-    _name = 'account.fiscalyear.closing.unbalanced.move'
-    _description = 'Account fiscalyear closing unbalanced move'
+    _name = "account.fiscalyear.closing.unbalanced.move"
+    _description = "Account fiscalyear closing unbalanced move"
 
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -21,29 +21,29 @@ class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
         readonly=True,
     )
     line_ids = fields.One2many(
-        comodel_name='account.fiscalyear.closing.unbalanced.move.line',
-        inverse_name='move_id',
+        comodel_name="account.fiscalyear.closing.unbalanced.move.line",
+        inverse_name="move_id",
         string="Unbalanced move lines",
         readonly=True,
     )
 
 
 class AccountFiscalYearClosingUnbalancedMoveLine(models.TransientModel):
-    _name = 'account.fiscalyear.closing.unbalanced.move.line'
-    _description = 'Account fiscalyear closing unbalanced move line'
+    _name = "account.fiscalyear.closing.unbalanced.move.line"
+    _description = "Account fiscalyear closing unbalanced move line"
 
     move_id = fields.Many2one(
-        comodel_name='account.fiscalyear.closing.unbalanced.move',
+        comodel_name="account.fiscalyear.closing.unbalanced.move",
         string="Unbalanced move",
     )
     account_id = fields.Many2one(
-        comodel_name='account.account',
+        comodel_name="account.account",
         string="Account",
     )
     credit = fields.Float()
     debit = fields.Float()
     partner_id = fields.Many2one(
-        comodel_name='res.partner',
+        comodel_name="res.partner",
         string="Partner",
     )
     name = fields.Char()

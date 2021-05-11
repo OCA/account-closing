@@ -1,6 +1,9 @@
 <odoo>
 
-    <record id="view_account_fiscalyear_closing_unbalanced_move_form" model="ir.ui.view">
+    <record
+        id="view_account_fiscalyear_closing_unbalanced_move_form"
+        model="ir.ui.view"
+    >
         <field name="model">account.fiscalyear.closing.unbalanced.move</field>
         <field name="arch" type="xml">
             <form>
@@ -17,24 +20,24 @@
                 </div>
                 <group>
                     <group>
-                        <field name="journal_id"/>
+                        <field name="journal_id" />
                     </group>
                     <group>
-                        <field name="date"/>
-                        <field name="ref"/>
+                        <field name="date" />
+                        <field name="ref" />
                     </group>
                 </group>
                 <field name="line_ids">
                     <tree>
-                        <field name="name"/>
-                        <field name="account_id"/>
-                        <field name="partner_id"/>
-                        <field name="debit" sum="Total debit"/>
-                        <field name="credit" sum="Total credit"/>
+                        <field name="name" />
+                        <field name="account_id" />
+                        <field name="partner_id" />
+                        <field name="debit" sum="Total debit" />
+                        <field name="credit" sum="Total credit" />
                     </tree>
                 </field>
                 <footer>
-                    <button special="cancel" string="Close"/>
+                    <button special="cancel" string="Close" />
                 </footer>
             </form>
         </field>

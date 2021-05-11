@@ -11,13 +11,16 @@ class AccountFiscalyearClosingAbstract(models.AbstractModel):
 
     name = fields.Char(string="Description", required=True)
     company_id = fields.Many2one(
-        comodel_name='res.company', string="Company", ondelete='cascade',
+        comodel_name="res.company",
+        string="Company",
+        ondelete="cascade",
     )
     check_draft_moves = fields.Boolean(
-        string="Check draft moves", default=True,
+        string="Check draft moves",
+        default=True,
         help="Checks that there are no draft moves on the fiscal year "
-             "that is being closed. Non-confirmed moves won't be taken in "
-             "account on the closing operations.",
+        "that is being closed. Non-confirmed moves won't be taken in "
+        "account on the closing operations.",
     )
 
 
@@ -35,20 +38,26 @@ class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
     )
     move_type = fields.Selection(
         selection=[
-            ('closing', 'Closing'),
-            ('opening', 'Opening'),
-            ('loss_profit', 'Loss & Profit'),
-            ('other', 'Other'),
-        ], string="Move type", default='closing',
+            ("closing", "Closing"),
+            ("opening", "Opening"),
+            ("loss_profit", "Loss & Profit"),
+            ("other", "Other"),
+        ],
+        string="Move type",
+        default="closing",
     )
     journal_id = fields.Many2one(
-        comodel_name="account.journal", string="Journal",
+        comodel_name="account.journal",
+        string="Journal",
     )
     closing_type_default = fields.Selection(
         selection=[
-            ('balance', 'Balance'),
-            ('unreconciled', 'Un-reconciled'),
-        ], string="Default closing type", required=True, default='balance',
+            ("balance", "Balance"),
+            ("unreconciled", "Un-reconciled"),
+        ],
+        string="Default closing type",
+        required=True,
+        default="balance",
     )
 
 
@@ -65,12 +74,15 @@ class AccountFiscalyearClosingTypeAbstract(models.AbstractModel):
 
     closing_type = fields.Selection(
         selection=[
-            ('balance', 'Balance'),
-            ('unreconciled', 'Un-reconciled'),
-        ], string="Default closing type", required=True,
-        default='unreconciled',
+            ("balance", "Balance"),
+            ("unreconciled", "Un-reconciled"),
+        ],
+        string="Default closing type",
+        required=True,
+        default="unreconciled",
     )
     account_type_id = fields.Many2one(
-        comodel_name='account.account.type', string="Account type",
+        comodel_name="account.account.type",
+        string="Account type",
         required=True,
     )
