@@ -59,7 +59,7 @@
                 <button class="oe_highlight" name="get_prepaid_lines" string="Re-Generate Lines" type="object" states="draft" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
             </button>
             <field name="cutoff_date" position="after">
-                <field name="source_journal_ids" widget="many2many_tags" invisible="'prepaid' not in context.get('cutoff_type', '-')"/>
+                <field name="source_journal_ids" widget="many2many_tags"/>
             </field>
         </field>
     </record>
