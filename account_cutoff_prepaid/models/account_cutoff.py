@@ -113,9 +113,10 @@ class AccountCutoff(models.Model):
         }
         return res
 
-    @api.multi
-    def get_prepaid_lines(self):
-        self.ensure_one()
+    def get_lines(self):
+        res = super(AccountCutoff, self).get_lines()
+        if self.cutoff_type not in ['prepaid_expense', 'prepaid_revenue']:
+            return res
         aml_obj = self.env['account.move.line']
         line_obj = self.env['account.cutoff.line']
         mapping_obj = self.env['account.cutoff.mapping']
@@ -123,8 +124,6 @@ class AccountCutoff(models.Model):
             raise UserError(
                 _("You should set at least one Source Journal."))
         cutoff_date_str = self.cutoff_date
-        # Delete existing lines
-        self.line_ids.unlink()
 
         if self.forecast:
             domain = [
@@ -151,7 +150,7 @@ class AccountCutoff(models.Model):
         # Loop on selected account move lines to create the cutoff lines
         for aml in amls:
             line_obj.create(self._prepare_prepaid_lines(aml, mapping))
-        return True
+        return res
 
     @api.model
     def _default_cutoff_account_id(self):

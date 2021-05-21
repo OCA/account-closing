@@ -271,6 +271,13 @@ class AccountCutoff(models.Model):
         return action
 
 
+    def get_lines(self):
+        """This method is designed to be inherited in other modules"""
+        self.ensure_one()
+        # Delete existing lines
+        self.line_ids.unlink()
+        return True
+
 class AccountCutoffLine(models.Model):
     _name = 'account.cutoff.line'
     _description = 'Account Cut-off Line'
