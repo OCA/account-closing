@@ -488,11 +488,13 @@ class AccountFiscalyearClosingConfig(models.Model):
                 elif closing_type == 'unreconciled':
                     # Get credit and debit grouping by partner
                     partners = account_map.account_partners_get(account)
+                    balance = 0
                     for partner in partners:
-                        balance, move_line = account_map.\
+                        partner_balance, move_line = account_map.\
                             move_line_partner_prepare(account, partner)
                         if move_line:
                             move_lines.append(move_line)
+                            balance += partner_balance
                 else:
                     # Account type has unsupported closing method
                     continue
