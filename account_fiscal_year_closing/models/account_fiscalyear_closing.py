@@ -227,8 +227,8 @@ class AccountFiscalyearClosing(models.Model):
     def _onchange_year(self):
         self.date_end = '%s-%s-%s' % (
             self.year,
-            str(self.company_id.fiscalyear_last_month).zfill(2) or '12',
-            str(self.company_id.fiscalyear_last_day).zfill(2) or '31',
+            str(self.company_id.fiscalyear_last_month or 12).zfill(2),
+            str(self.company_id.fiscalyear_last_day or 31).zfill(2),
         )
         date_end = fields.Date.from_string(self.date_end)
         self.date_start = fields.Date.to_string(

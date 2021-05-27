@@ -3,6 +3,7 @@
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 
+from odoo import fields
 from odoo.addons.account.tests.account_test_classes import AccountingTestCase
 
 
@@ -53,6 +54,33 @@ class TestFiscalYearClosing (AccountingTestCase):
         })
         invoice.action_invoice_open()
         return invoice
+
+    def test_no_company_fiscal_year_dates(self):
+        """
+        Check that fiscal year dates are correctly computed
+        when there is no company selected.
+        """
+        today = datetime.date(2021, 1, 1)
+        config = self.env['account.fiscalyear.closing.template'].create({
+            'name': "Test fiscal year closing",
+            'move_config_ids': [(0, 0, {
+                'name': "Test move configuration 1",
+                'code': 'TMC1',
+            })],
+        })
+        closing = self.env['account.fiscalyear.closing'].new({
+            'year': today.year,
+            'closing_template_id': config.id,
+        })
+
+        self.assertFalse(closing.company_id)
+
+        closing._onchange_year()
+        closing_last_day = fields.Date.from_string(closing.date_end)
+        self.assertEqual(
+            closing_last_day,
+            datetime.date(today.year, 12, 31),
+        )
 
     def test_partner_unreconcile_balance(self):
         """
