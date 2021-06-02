@@ -1,4 +1,5 @@
 # Copyright 2019 Camptocamp SA
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
@@ -25,7 +26,7 @@ class WizardCurrencyRevaluationType(models.TransientModel):
     )
 
     @api.model
-    def _compute_unrealized_currency_gl(self, currency_id, balances):
+    def _compute_unrealized_currency_gl(self, currency, balances):
         if self.revaluation_rate_type == 'monthly':
-            self = self.with_context(monthly_rate=True)
-        return super()._compute_unrealized_currency_gl(currency_id, balances)
+            currency = currency.with_context(monthly_rate=True)
+        return super()._compute_unrealized_currency_gl(currency, balances)

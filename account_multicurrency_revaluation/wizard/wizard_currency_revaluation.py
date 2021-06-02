@@ -1,36 +1,28 @@
 # Copyright 2012-2018 Camptocamp SA
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
 
 from odoo import models, fields, api, _
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import Warning
+from odoo.tools import float_repr
 
 
 class WizardCurrencyRevaluation(models.TransientModel):
-
     _name = 'wizard.currency.revaluation'
     _description = 'Currency Revaluation Wizard'
 
     @api.model
     def _get_default_revaluation_date(self):
-        """
-        Get today's date
-        """
-        return fields.date.today()
+        return fields.Date.today()
 
     @api.model
     def _get_default_journal_id(self):
-        """
-        Get default journal if one is defined in company settings
-        """
         return self.env.user.company_id.currency_reval_journal_id
 
     @api.model
     def _get_default_label(self):
-        """
-        Get label
-        """
         return "%(currency)s %(account)s %(rate)s currency revaluation"
 
     revaluation_date = fields.Date(
@@ -41,7 +33,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Journal',
-        domain="[('type','=','general')]",
+        domain=[('type', '=', 'general')],
         help="You can set the default journal in company settings.",
         required=True,
         default=lambda self: self._get_default_journal_id()
@@ -50,7 +42,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         string='Entry description',
         size=100,
         help="This label will be inserted in entries description. "
-             "You can use %(account)s, %(currency)s and %(rate)s keywords.",
+             "You can use %(account)s, %(account_name)s, %(currency)s and "
+             "%(rate)s keywords.",
         required=True,
         default=lambda self: self._get_default_label(),
     )
@@ -79,8 +72,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         base_line['gl_foreign_balance'] = sums.get('foreign_balance', 0.0)
         base_line['gl_balance'] = sums.get('balance', 0.0)
-        base_line['gl_revaluated_balance'] = sums.get(
-            'revaluated_balance', 0.0)
+        base_line['gl_revaluated_balance'] = \
+            sums.get('revaluated_balance', 0.0)
         base_line['gl_currency_rate'] = sums.get('currency_rate', 0.0)
 
         debit_line = base_line.copy()
@@ -113,156 +106,144 @@ class WizardCurrencyRevaluation(models.TransientModel):
         return [x.id for x in created_move.line_ids]
 
     @api.multi
-    def _compute_unrealized_currency_gl(self, currency_id, balances):
+    def _compute_unrealized_currency_gl(self, currency, balances):
         """
         Update data dict with the unrealized currency gain and loss
         plus add 'currency_rate' which is the value used for rate in
         computation
 
-        @param int currency_id: currency to revaluate
+        @param int currency: currency to revaluate
         @param dict balances: contains foreign balance and balance
 
         @return: updated data for foreign balance plus rate value used
         """
-        context = self.env.context
-
-        currency_obj = self.env['res.currency']
-
-        # Compute unrealized gain loss
-        ctx_rate = context.copy()
-        ctx_rate['date'] = self.revaluation_date
-        cp_currency = self.journal_id.company_id.currency_id
-
-        currency = currency_obj.browse(currency_id).with_context(ctx_rate)
-
-        foreign_balance = adjusted_balance = balances.get(
-            'foreign_balance', 0.0)
         balance = balances.get('balance', 0.0)
-        unrealized_gain_loss = 0.0
-        if foreign_balance:
-            adjusted_balance = currency.compute(foreign_balance, cp_currency)
-            unrealized_gain_loss = adjusted_balance - balance
-        else:
-            if balance:
-                if currency_id != cp_currency.id:
-                    unrealized_gain_loss = 0.0 - balance
-        return {'unrealized_gain_loss': unrealized_gain_loss,
-                'currency_rate': currency.rate,
-                'revaluated_balance': adjusted_balance}
+        if currency == self.journal_id.company_id.currency_id:
+            return {
+                'currency_rate': 1.0,
+                'unrealized_gain_loss': 0.0,
+                'revaluated_balance': balance,
+            }
+
+        foreign_balance = balances.get('foreign_balance', 0.0)
+
+        adjusted_balance = currency._convert(
+            foreign_balance,
+            self.journal_id.company_id.currency_id,
+            self.journal_id.company_id,
+            self.revaluation_date
+        )
+        unrealized_gain_loss = adjusted_balance - balance
+
+        return {
+            'currency_rate': currency.rate,
+            'unrealized_gain_loss': unrealized_gain_loss,
+            'revaluated_balance': adjusted_balance,
+        }
 
     @api.model
-    def _format_label(self, text, account_id, currency_id, rate):
-        """
-        Return a text with replaced keywords by values
-
-        @param str text: label template, can use
-            %(account)s, %(currency)s, %(rate)s
-        @param int account_id: id of the account to display in label
-        @param int currency_id: id of the currency to display
-        @param float rate: rate to display
-        """
-        account_obj = self.env['account.account']
-        currency_obj = self.env['res.currency']
-        account = account_obj.browse(account_id)
-        currency = currency_obj.browse(currency_id)
-        data = {'account': account.code or False,
-                'currency': currency.name or False,
-                'rate': rate}
-        return text % data
+    def _format_balance_adjustment_label(self, fmt, account, currency, rate):
+        return fmt % {
+            'account': account.code or _('N/A'),
+            'account_name': account.name or _('N/A'),
+            'currency': currency.name or _('N/A'),
+            'rate': float_repr(rate, 6),
+        }
 
     @api.multi
-    def _write_adjust_balance(self, account_id, currency_id,
+    def _write_adjust_balance(self, account, currency,
                               partner_id, amount, label, form, sums):
-        """
-        Generate entries to adjust balance in the revaluation accounts
-
-        @param account_id: ID of account to be reevaluated
-        @param amount: Amount to be written to adjust the balance
-        @param label: Label to be written on each entry
-        @param form: Wizard browse record containing data
-
-        @return: ids of created move_lines
-        """
-
         if partner_id is None:
             partner_id = False
         company = form.journal_id.company_id or self.env.user.company_id
         created_ids = []
-        # over revaluation
-        if amount >= 0.01:
-            reval_gain_account = company.revaluation_gain_account_id
-            if reval_gain_account:
 
-                analytic_acc_id = (company.revaluation_analytic_account_id.id
-                                   if company.revaluation_analytic_account_id
-                                   else False)
-
+        amount_vs_zero = currency.compare_amounts(amount, 0.0)
+        if amount_vs_zero == 1:
+            if company.revaluation_gain_account_id:
                 line_ids = self._create_move_and_lines(
-                    amount, account_id, reval_gain_account.id, sums, label,
-                    form, partner_id, currency_id,
-                    analytic_credit_acc_id=analytic_acc_id)
-
+                    amount,
+                    account.id,
+                    company.revaluation_gain_account_id.id,
+                    sums,
+                    label,
+                    form,
+                    partner_id,
+                    currency.id,
+                    analytic_credit_acc_id=(
+                        company.revaluation_analytic_account_id.id
+                    ),
+                )
                 created_ids.extend(line_ids)
 
             if company.provision_bs_gain_account_id and \
-               company.provision_pl_gain_account_id:
-
-                analytic_acc_id = (
-                    company.provision_pl_analytic_account_id and
-                    company.provision_pl_analytic_account_id.id or
-                    False)
-
+                    company.provision_pl_gain_account_id:
                 line_ids = self._create_move_and_lines(
-                    amount, company.provision_bs_gain_account_id.id,
-                    company.provision_pl_gain_account_id.id, sums, label,
-                    form, partner_id, currency_id,
-                    analytic_credit_acc_id=analytic_acc_id)
-
+                    amount,
+                    company.provision_bs_gain_account_id.id,
+                    company.provision_pl_gain_account_id.id,
+                    sums,
+                    label,
+                    form,
+                    partner_id,
+                    currency.id,
+                    analytic_credit_acc_id=(
+                        company.provision_pl_analytic_account_id.id
+                    ),
+                )
                 created_ids.extend(line_ids)
-
-        # under revaluation
-        elif amount <= -0.01:
-            amount = -amount
-            reval_loss_account = company.revaluation_loss_account_id
-            if reval_loss_account:
-
-                analytic_acc_id = (company.revaluation_analytic_account_id.id
-                                   if company.revaluation_analytic_account_id
-                                   else False)
-
+        elif amount_vs_zero == -1:
+            if company.revaluation_loss_account_id:
                 line_ids = self._create_move_and_lines(
-                    amount, reval_loss_account.id, account_id, sums, label,
-                    form, partner_id, currency_id,
-                    analytic_debit_acc_id=analytic_acc_id)
-
+                    -amount,
+                    company.revaluation_loss_account_id.id,
+                    account.id,
+                    sums,
+                    label,
+                    form,
+                    partner_id,
+                    currency.id,
+                    analytic_debit_acc_id=(
+                        company.revaluation_analytic_account_id.id
+                    ),
+                )
                 created_ids.extend(line_ids)
 
             if company.provision_bs_loss_account_id and \
-               company.provision_pl_loss_account_id:
-
-                analytic_acc_id = (
-                    company.provision_pl_analytic_account_id and
-                    company.provision_pl_analytic_account_id.id or
-                    False)
-
+                    company.provision_pl_loss_account_id:
                 line_ids = self._create_move_and_lines(
-                    amount, company.provision_pl_loss_account_id.id,
-                    company.provision_bs_loss_account_id.id, sums, label,
-                    form, partner_id, currency_id,
-                    analytic_debit_acc_id=analytic_acc_id)
-
+                    -amount,
+                    company.provision_pl_loss_account_id.id,
+                    company.provision_bs_loss_account_id.id,
+                    sums,
+                    label,
+                    form,
+                    partner_id,
+                    currency.id,
+                    analytic_debit_acc_id=(
+                        company.provision_pl_analytic_account_id.id
+                    ),
+                )
                 created_ids.extend(line_ids)
 
         return created_ids
 
-    @staticmethod
-    def _check_company(company):
-        return (not company.revaluation_loss_account_id and
-                not company.revaluation_gain_account_id and
-                not (company.provision_bs_loss_account_id and
-                     company.provision_pl_loss_account_id) and
-                not (company.provision_bs_gain_account_id and
-                     company.provision_pl_gain_account_id))
+    @api.multi
+    def _validate_company_revaluation_configuration(self, company):
+        return (
+            (
+                company.revaluation_loss_account_id
+                and company.revaluation_gain_account_id
+            ) or
+            (
+                company.provision_bs_loss_account_id
+                and company.provision_pl_loss_account_id
+            ) or
+            (
+                company.provision_bs_gain_account_id
+                and company.provision_pl_gain_account_id
+            )
+        )
 
     @api.multi
     def revaluate_currency(self):
@@ -273,83 +254,102 @@ class WizardCurrencyRevaluation(models.TransientModel):
         @return: dict to open an Entries view filtered on generated move lines
         """
 
-        account_obj = self.env['account.account']
+        Account = self.env['account.account']
+        Currency = self.env['res.currency']
 
         company = self.journal_id.company_id or self.env.user.company_id
-        if self._check_company(company):
-            raise UserError(
+        if not self._validate_company_revaluation_configuration(company):
+            raise Warning(
                 _("No revaluation or provision account are defined"
                   " for your company.\n"
                   "You must specify at least one provision account or"
                   " a couple of provision account in the accounting settings.")
             )
-        created_ids = []
+
         # Search for accounts Balance Sheet to be revaluated
         # on those criteria
         # - deferral method of account type is not None
-        account_ids = account_obj.search([
+        account_ids = Account.search([
             ('user_type_id.include_initial_balance', '=', 'True'),
             ('currency_revaluation', '=', True)])
 
         if not account_ids:
-            raise UserError(
+            raise Warning(
                 _("No account to be revaluated found. "
                   "Please check 'Allow Currency Revaluation' "
                   "for at least one account in account form.")
             )
 
-        # Get balance sums
-        account_sums = account_ids.compute_revaluations(self.revaluation_date)
+        revaluations = account_ids.compute_revaluations(self.revaluation_date)
 
-        for account_id, account_tree in account_sums.items():
-            for partner_id, partner_tree in account_tree.items():
-                for currency_id, sums in partner_tree.items():
-                    # Update sums with compute amount currency balance
+        for account_id, by_account in revaluations.items():
+            account = Account.browse(account_id)
+            if account.internal_type == 'liquidity' and \
+                    (not account.currency_id or
+                        account.currency_id == account.company_id.currency_id):
+                # NOTE: There's no point of revaluating anying on bank account
+                # if bank account currency matches company currency.
+                continue
+
+            for partner_id, by_partner in by_account.items():
+                for currency_id, lines in by_partner.items():
+                    currency = Currency.browse(currency_id)
+
                     diff_balances = self._compute_unrealized_currency_gl(
-                        currency_id,
-                        sums
+                        currency,
+                        lines
                     )
-                    account_sums[account_id][partner_id][currency_id].\
+                    revaluations[account_id][partner_id][currency_id].\
                         update(diff_balances)
 
         # Create entries only after all computation have been done
-        for account_id, account_tree in account_sums.items():
-            for partner_id, partner_tree in account_tree.items():
-                for currency_id, sums in partner_tree.items():
-                    adj_balance = sums.get('unrealized_gain_loss', 0.0)
-                    if not adj_balance:
+        created_ids = []
+        for account_id, by_account in revaluations.items():
+            account = Account.browse(account_id)
+
+            for partner_id, by_partner in by_account.items():
+                for currency_id, lines in by_partner.items():
+                    currency = Currency.browse(currency_id)
+
+                    adj_balance = lines.get('unrealized_gain_loss', 0.0)
+                    if currency.is_zero(adj_balance):
                         continue
-                    account_type = account_obj.browse(account_id).internal_type
-                    if account_type not in ['receivable', 'payable']:
-                        partner_id = None
-                    rate = sums.get('currency_rate', 0.0)
-                    label = self._format_label(
-                        self.label, account_id, currency_id, rate
+                    rate = lines.get('currency_rate', 0.0)
+                    label = self._format_balance_adjustment_label(
+                        self.label, account, currency, rate
                     )
 
-                    # Write an entry to adjust balance
                     new_ids = self._write_adjust_balance(
-                        account_id,
-                        currency_id,
+                        account,
+                        currency,
                         partner_id,
                         adj_balance,
                         label,
                         self,
-                        sums
+                        lines
                     )
                     created_ids.extend(new_ids)
 
+        # In case revaluation date is before today, it's safe to run reversing
+        # w/o waiting tomorrow, since otherwise it would cause confusion when
+        # revaluating historical entries for multiple years within one day.
+        if self.journal_id.company_id.reversable_revaluations \
+                and self.revaluation_date < fields.Date.context_today(self):
+            self.env['account.move']._run_reverses_entries()
+
         if created_ids:
-            return {'domain': "[('id', 'in', %s)]" % created_ids,
-                    'name': _("Created revaluation lines"),
-                    'view_type': 'form',
-                    'view_mode': 'tree,form',
-                    'auto_search': True,
-                    'res_model': 'account.move.line',
-                    'view_id': False,
-                    'search_view_id': False,
-                    'type': 'ir.actions.act_window'}
+            return {
+                'domain': [('id', 'in', created_ids)],
+                'name': _("Created revaluation lines"),
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'auto_search': True,
+                'res_model': 'account.move.line',
+                'view_id': False,
+                'search_view_id': False,
+                'type': 'ir.actions.act_window',
+            }
         else:
-            raise UserError(
+            raise Warning(
                 _("No accounting entry has been posted.")
             )

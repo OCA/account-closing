@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Camptocamp SA
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date
-from odoo.tools.safe_eval import safe_eval
 from odoo.tests.common import SavepointCase
 
 
@@ -158,8 +157,7 @@ class TestCurrencyRevaluationType(SavepointCase):
         self.assertAlmostEqual(sum(debit.mapped('balance')), -266.67)
 
     def _get_move_ids(self, result):
-        return self.env['account.move.line']. \
-            browse(safe_eval(result['domain'])[0][2])
+        return self.env['account.move.line'].browse(result['domain'][0][2])
 
     def wizard_execute(self, date, currency_type):
 
