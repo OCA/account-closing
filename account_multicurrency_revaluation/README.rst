@@ -34,17 +34,6 @@ revaluation journal entries.
 .. contents::
    :local:
 
-Installation
-============
-
-To install this module, you need to:
-
-* clone the branch 11.0 of the repository https://github.com/OCA/account-closing
-* add the path to this repository in your configuration (addons-path)
-* update the module list
-* search for "Multicurrency revaluation" in your addons
-* install the module
-
 Configuration
 =============
 
@@ -106,13 +95,6 @@ To use this module, you need to:
 * Open the report through the following menu:
   Accounting > Reporting > Legal Reports > Accounting Reports > Print Currency Unrealized
 
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/89/11.0
-
-
-
 Bug Tracker
 ===========
 
@@ -148,6 +130,9 @@ Contributors
 * Vincent Renaville
 * Yannick Vaucher
 * Akim Juillerat
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
