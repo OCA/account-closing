@@ -21,7 +21,12 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
-msgid "%(account)s : Account for which the revaluation is applied"
+msgid "%(account)s : Account code for which the revaluation is applied"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(account_name)s : Account name for which the revaluation is applied"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -78,7 +83,7 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__currency_revaluation
-msgid "Allow Currency revaluation"
+msgid "Allow currency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -140,7 +145,7 @@ msgid "Created on"
 msgstr "Izveidots"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:343
 #, python-format
 msgid "Created revaluation lines"
 msgstr ""
@@ -287,7 +292,15 @@ msgid "Multicurrency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:296
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:147
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:148
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:149
+#, python-format
+msgid "N/A"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:278
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -301,7 +314,7 @@ msgid "No accounting entry has been posted."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:281
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:263
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -327,7 +340,7 @@ msgid "Partner"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:42
+#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:43
 #, python-format
 msgid "Please, select the accounts!"
 msgstr ""
@@ -446,7 +459,7 @@ msgstr ""
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
 msgid ""
 "This label will be inserted in entries description. You can use %(account)s, "
-"%(currency)s and %(rate)s keywords."
+"%(account_name)s, %(currency)s and %(rate)s keywords."
 msgstr ""
 
 #. module: account_multicurrency_revaluation

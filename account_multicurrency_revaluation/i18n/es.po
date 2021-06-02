@@ -21,8 +21,13 @@ msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
-msgid "%(account)s : Account for which the revaluation is applied"
-msgstr "%(account)s : Cuenta a la que se aplica la revaluación"
+msgid "%(account)s : Account code for which the revaluation is applied"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
+msgid "%(account_name)s : Account name for which the revaluation is applied"
+msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -80,8 +85,8 @@ msgstr "Moneda de Monto Agregado"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__currency_revaluation
-msgid "Allow Currency revaluation"
-msgstr "Permitir la revaluación de Moneda"
+msgid "Allow currency revaluation"
+msgstr ""
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -142,7 +147,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:344
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:343
 #, python-format
 msgid "Created revaluation lines"
 msgstr "Líneas creadas de revaluación"
@@ -299,7 +304,15 @@ msgid "Multicurrency revaluation"
 msgstr "Revaluación Multimoneda"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:296
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:147
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:148
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:149
+#, python-format
+msgid "N/A"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:278
 #, python-format
 msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
@@ -316,7 +329,7 @@ msgid "No accounting entry has been posted."
 msgstr "No se ha publicado ningún asiento contable."
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:281
+#: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:263
 #, python-format
 msgid ""
 "No revaluation or provision account are defined for your company.\n"
@@ -353,7 +366,7 @@ msgid "Partner"
 msgstr "Socio"
 
 #. module: account_multicurrency_revaluation
-#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:42
+#: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:43
 #, python-format
 msgid "Please, select the accounts!"
 msgstr "Por favor, selecciona las cuentas!"
@@ -474,10 +487,8 @@ msgstr "Revaluaciones Reversibles"
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
 msgid ""
 "This label will be inserted in entries description. You can use %(account)s, "
-"%(currency)s and %(rate)s keywords."
+"%(account_name)s, %(currency)s and %(rate)s keywords."
 msgstr ""
-"Esta etiqueta será agregada en la descripción de los asientos. Puede usar "
-"las palabras clave %(account)s, %(currency)s y %(rate)s."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
@@ -499,6 +510,19 @@ msgstr "Imprimir"
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "_Validate"
 msgstr "Validar"
+
+#~ msgid "%(account)s : Account for which the revaluation is applied"
+#~ msgstr "%(account)s : Cuenta a la que se aplica la revaluación"
+
+#~ msgid "Allow Currency revaluation"
+#~ msgstr "Permitir la revaluación de Moneda"
+
+#~ msgid ""
+#~ "This label will be inserted in entries description. You can use "
+#~ "%(account)s, %(currency)s and %(rate)s keywords."
+#~ msgstr ""
+#~ "Esta etiqueta será agregada en la descripción de los asientos. Puede usar "
+#~ "las palabras clave %(account)s, %(currency)s y %(rate)s."
 
 #~ msgid "Manual"
 #~ msgstr "Manual"
