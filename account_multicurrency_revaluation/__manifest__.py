@@ -3,7 +3,7 @@
 
 {
     "name": "Multicurrency revaluation",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.1.1",
     "category": "Finance",
     "summary": "Manage revaluation for multicurrency environment",
     "author": "Camptocamp,Odoo Community Association (OCA)",
