@@ -47,3 +47,6 @@ class AccountFiscalYearClosingUnbalancedMoveLine(models.TransientModel):
         string="Partner",
     )
     name = fields.Char()
+    date = fields.Date(
+        string="Date",
+    )
