@@ -30,7 +30,7 @@
                         type="object"
                         string="Calculate"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|', ('stored_template_id', '=', False), ('state', 'not in', ['draft'])]}"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"
                     />
                     <button
                         name="button_recalculate"
@@ -91,17 +91,9 @@
                     <group>
                         <group>
                             <field name="chart_template_id" invisible="1" />
-                            <field name="stored_template_id" invisible="1" />
-                            <field name="is_new_template" invisible="1" />
                             <label for="closing_template_id" />
                             <div>
                                 <field name="closing_template_id" class="oe_inline" />
-                                <button
-                                    name="action_load_template"
-                                    type="object"
-                                    attrs="{'invisible': [('is_new_template', '=', False)]}"
-                                    string="Load template"
-                                />
                             </div>
                             <field
                                 name="company_id"

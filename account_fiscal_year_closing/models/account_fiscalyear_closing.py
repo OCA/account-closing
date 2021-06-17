@@ -98,14 +98,6 @@ class AccountFiscalyearClosing(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    stored_template_id = fields.Many2one(
-        comodel_name="account.fiscalyear.closing.template",
-        string="Stored closing template",
-        readonly=True,
-    )
-    is_new_template = fields.Boolean(
-        compute="_compute_is_new_template",
-    )
     move_config_ids = fields.One2many(
         comodel_name="account.fiscalyear.closing.config",
         inverse_name="fyc_id",
@@ -130,14 +122,6 @@ class AccountFiscalyearClosing(models.Model):
             ),
         ),
     ]
-
-    @api.depends("closing_template_id", "stored_template_id")
-    def _compute_is_new_template(self):
-        for record in self:
-            # It should be with .id suffix for avoiding problems with NewId
-            record.is_new_template = (
-                record.closing_template_id.id != record.stored_template_id.id
-            )
 
     def _prepare_mapping(self, tmpl_mapping):
         self.ensure_one()
@@ -213,9 +197,7 @@ class AccountFiscalyearClosing(models.Model):
             "closing_type_default": tmpl_config.closing_type_default,
         }
 
-    # @api.onchange('closing_template_id')
-    # Not working due to https://github.com/odoo/odoo/issues/20163
-    # Using instead `action_load_template`
+    @api.onchange("closing_template_id")
     def onchange_template_id(self):
         self.move_config_ids = False
         if not self.closing_template_id:
@@ -242,23 +224,6 @@ class AccountFiscalyearClosing(models.Model):
             self.name = "{}-{}".format(self.date_start, self.date_end)
         else:
             self.name = str(self.date_end)
-
-    def action_load_template(self):
-        self.ensure_one()
-        config_obj = self.env["account.fiscalyear.closing.config"]
-        move_configs = config_obj
-        tmpl = self.closing_template_id.with_context(force_company=self.company_id.id)
-        if tmpl:
-            for tmpl_config in tmpl.move_config_ids:
-                move_configs += config_obj.new(self._prepare_config(tmpl_config))
-        self.write(
-            {
-                "check_draft_moves": tmpl.check_draft_moves,
-                "stored_template_id": tmpl.id,
-                "move_config_ids": [(5,)]
-                + [(0, 0, x._convert_to_write(x._cache)) for x in move_configs],
-            }
-        )
 
     def draft_moves_check(self):
         for closing in self:
