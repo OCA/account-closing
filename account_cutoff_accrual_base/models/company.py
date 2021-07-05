@@ -26,3 +26,6 @@ class ResCompany(models.Model):
     default_accrual_expense_journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Default Journal for Accrued Expenses')
+
+    accrual_taxes = fields.Boolean(
+        string='Accrual On Taxes')
