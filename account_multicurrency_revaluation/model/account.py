@@ -84,7 +84,7 @@ WITH amount AS (
         ON (
             aml.balance < 0
             AND aprc.debit_move_id = amlcf.id
-            AND amlcf.date < %s
+            AND amlcf.date <= %s
         )
     LEFT JOIN account_partial_reconcile aprd
         ON (aml.balance > 0 AND aml.id = aprd.debit_move_id)
@@ -92,7 +92,7 @@ WITH amount AS (
         ON (
             aml.balance > 0
             AND aprd.credit_move_id = amldf.id
-            AND amldf.date < %s
+            AND amldf.date <= %s
         )
     WHERE
         aml.account_id IN %s

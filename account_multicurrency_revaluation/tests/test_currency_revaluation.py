@@ -125,6 +125,67 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(sum(report.mapped('credit')), 40)
         self.assertEqual(sum(report.mapped('amount_currency')), 200)
 
+    def test_revaluation_last_day(self):
+        """Create Invoices and Run the revaluation currency wizard
+        with different rates which result should be:
+                                 Debit    Credit    Amount Currency
+        Customer Invoice US      80.00    0.00      100.00
+
+        Wizard execution:
+
+            Currency Reval 1.00  100.00   0.00      0.00
+        """
+        self.delete_journal_data()
+        usd_currency = self.env.ref('base.USD')
+        rates = {
+            (self.today - timedelta(days=7)): 1.25,
+            (self.today - timedelta(days=1)): 1.00,
+        }
+        self.create_rates(rates, usd_currency)
+        acc_reval_loss = self.env.ref('account_multicurrency_revaluation.'
+                                      'acc_reval_loss')
+        acc_reval_gain = self.env.ref('account_multicurrency_revaluation.'
+                                      'acc_reval_gain')
+        values = {
+            'revaluation_loss_account_id': acc_reval_loss.id,
+            'revaluation_gain_account_id': acc_reval_gain.id,
+            'currency_reval_journal_id': self.reval_journal.id,
+            'reversable_revaluations': False,
+        }
+        self.company.write(values)
+        receivable_acc = self.env.ref(
+            'account_multicurrency_revaluation.demo_acc_receivable')
+        receivable_acc.write({'reconcile': True})
+
+        invoice = self.create_invoice(
+            self.today - timedelta(days=1), usd_currency, 1.0, 100.00
+        )
+        invoice.action_invoice_open()
+
+        reval_move_lines = self.env['account.move.line'].search([
+            ('account_id', '=', receivable_acc.id)])
+        self.assertEqual(sum(reval_move_lines.mapped('debit')), 100)
+        self.assertEqual(sum(reval_move_lines.mapped('amount_currency')), 100)
+
+        result = self.wizard_execute(self.today - timedelta(days=1))
+        self.assertEqual(result.get('name'), "Created revaluation lines")
+        reval_move_lines = self.env['account.move.line'].search([
+            ('account_id', '=', receivable_acc.id)])
+        self.assertEqual(sum(reval_move_lines.mapped('debit')), 80)
+        self.assertEqual(sum(reval_move_lines.mapped('credit')), 100)
+        self.assertEqual(sum(reval_move_lines.mapped('amount_currency')), 100)
+
+        wizard = self.env['unrealized.report.printer']
+        wiz = wizard.create({})
+        result = wiz.print_report(data={})
+        account_ids = result.get('context').get('active_ids')
+        report = self.env['account.move.line'].search(
+            [('account_id', 'in', account_ids)]).filtered(
+                lambda l: l.account_id.code == 'accrec')
+        self.assertEqual(sum(report.mapped('debit')), 100)
+        self.assertEqual(sum(report.mapped('credit')), 100)
+        self.assertEqual(sum(report.mapped('amount_currency')), 100)
+
     def test_revaluation_payment(self):
         """Create an Invoice and execute the revaluation currency wizard with
         a rate of 0.75:
