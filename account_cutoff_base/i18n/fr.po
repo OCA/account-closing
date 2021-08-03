@@ -10,19 +10,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2018-01-27 03:39+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2021-08-03 11:49+0000\n"
+"Last-Translator: Pascal GOUHIER <pascal.gouhier@copagex.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Lignes en Plein Écran</span>"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
@@ -75,7 +76,7 @@ msgstr "Revenu cumulé"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Action Nécessaire"
 
 #. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
@@ -111,7 +112,7 @@ msgstr "Compte analytique"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre de pièces jointes"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -154,7 +155,7 @@ msgstr "Devise de la société"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Paramétrage"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -317,17 +318,17 @@ msgstr "Brouillon"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Abonnés (Canaux)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Abonnés (Contacts)"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -345,12 +346,12 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si cochée de nouveaux messages requièrent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si cochée, de nouveau messages attirent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
