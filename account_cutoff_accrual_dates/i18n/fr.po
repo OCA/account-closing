@@ -9,31 +9,32 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 02:35+0000\n"
-"PO-Revision-Date: 2018-05-25 02:35+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2021-08-03 13:30+0000\n"
+"Last-Translator: Pascal GOUHIER <pascal.gouhier@copagex.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_cutoff_accrual_dates
 #: model:ir.model,name:account_cutoff_accrual_dates.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Provisions comptables"
+msgstr "Arrêté de comptes"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:86
 #, python-format
 msgid "Missing 'Accrued Expense Tax Account' on tax '%s'"
-msgstr ""
+msgstr "'Compte de taxe pour CCA ' manquant sur la taxe '%s'"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:92
 #, python-format
 msgid "Missing 'Accrued Revenue Tax Account' on tax '%s'"
-msgstr ""
+msgstr "'Compte de taxe pour PCA' manquant sur la taxe '%s'"
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:79
@@ -42,6 +43,8 @@ msgid ""
 "Price included taxes such as '%s' are not supported by the module "
 "account_cutoff_accrual_dates for the moment."
 msgstr ""
+"Les taxes inclues dans le prix comme '%s' ne sont pas supportées pour le "
+"moment."
 
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:114
