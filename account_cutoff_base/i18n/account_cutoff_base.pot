@@ -515,6 +515,11 @@ msgid "Missing '%s' on tax '%s'."
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
