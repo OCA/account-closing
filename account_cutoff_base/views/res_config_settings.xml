@@ -23,6 +23,10 @@
                                     <label for="dft_cutoff_journal_id" class="col-lg-3 o_light_label"/>
                                     <field name="dft_cutoff_journal_id" options="{'no_create_edit': True, 'no_open': True}"/>
                                 </div>
+                                <div class="row mt16">
+                                    <label for="dft_cutoff_move_partner" class="col-lg-3 o_light_label"/>
+                                    <field name="dft_cutoff_move_partner"/>
+                                </div>
                             </div>
                         </div>
                     </div>

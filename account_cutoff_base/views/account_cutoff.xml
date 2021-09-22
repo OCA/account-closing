@@ -51,6 +51,7 @@
                             <field name="cutoff_journal_id" required="1"/>
                             <field name="cutoff_account_id" required="1"/>
                             <field name="move_label" required="1"/>
+                            <field name="move_partner"/>
                             <field name="move_id"/>
                         </group>
                     </group>

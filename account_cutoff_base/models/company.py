@@ -9,3 +9,5 @@ class ResCompany(models.Model):
 
     default_cutoff_journal_id = fields.Many2one(
         'account.journal', string='Default Cut-off Journal')
+    default_cutoff_move_partner = fields.Boolean(
+        string="Partner on Move Line by Default")

@@ -50,6 +50,10 @@ class AccountCutoff(models.Model):
     def _default_cutoff_journal_id(self):
         return self.env.user.company_id.default_cutoff_journal_id
 
+    @api.model
+    def _default_move_partner(self):
+        return self.env.user.company_id.default_cutoff_move_partner
+
     cutoff_date = fields.Date(
         string='Cut-off Date', readonly=True,
         states={'draft': [('readonly', False)]}, copy=False,
@@ -79,6 +83,9 @@ class AccountCutoff(models.Model):
         "Cut-off Account Move Lines and in the 'Reference' field of "
         "the Cut-off Account Move."
     )
+    move_partner = fields.Boolean(
+        string="Partner on Move Line",
+        default=lambda self: self._default_move_partner())
     cutoff_account_id = fields.Many2one(
         comodel_name='account.account',
         string='Cut-off Account',
@@ -151,7 +158,7 @@ class AccountCutoff(models.Model):
         same values for these fields will be merged.
         The list must at least contain account_id.
         """
-        return ['account_id', 'analytic_account_id']
+        return ['partner_id', 'account_id', 'analytic_account_id']
 
     def _prepare_move(self, to_provision):
         self.ensure_one()
@@ -199,7 +206,9 @@ class AccountCutoff(models.Model):
         If you override this, the added fields must also be
         added in an override of _get_merge_keys.
         """
+        partner_id = cutoff_line.partner_id.id or False
         return {
+            'partner_id': self.move_partner and partner_id or False,
             'account_id': cutoff_line.cutoff_account_id.id,
             'analytic_account_id': cutoff_line.analytic_account_id.id,
             'amount': cutoff_line.cutoff_amount,
@@ -211,6 +220,7 @@ class AccountCutoff(models.Model):
         See _prepare_provision_line for more info.
         """
         return {
+            'partner_id': False,
             'account_id': cutoff_tax_line.cutoff_account_id.id,
             'analytic_account_id': cutoff_tax_line.analytic_account_id.id,
             'amount': cutoff_tax_line.cutoff_amount,
