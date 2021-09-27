@@ -18,7 +18,7 @@
             <field name="default_accrued_revenue_account_id" />
             <field name="default_accrued_revenue_return_account_id" />
             <field name="default_accrued_expense_account_id" />
-            <field name="default_accrued_expense_return_account_id" />
+            <field name="default_accrued_expense_prepayment_account_id" />
             <field name="accrual_taxes" />
         </field>
     </field>

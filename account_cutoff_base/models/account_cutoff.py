@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
 # © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# © 2018 Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from dateutil.relativedelta import relativedelta
+
+
+class PosNeg:
+    def __init__(self, amount):
+        self.amount_pos = self.amount_neg = 0
+        self.__iadd__(amount)
+
+    def __iadd__(self, amount):
+        if amount < 0:
+            self.amount_neg += amount
+        else:
+            self.amount_pos += amount
+        return self
 
 
 class AccountCutoff(models.Model):
@@ -41,6 +55,10 @@ class AccountCutoff(models.Model):
         return None
 
     @api.model
+    def _default_cutoff_account_prepayment_id(self):
+        return None
+
+    @api.model
     def _get_default_journal(self):
         return self.env.user.company_id.default_cutoff_journal_id
 
@@ -62,15 +80,25 @@ class AccountCutoff(models.Model):
         states={'draft': [('readonly', False)]}, copy=False,
         track_visibility='onchange',
         default=lambda self: self._default_cutoff_date())
-    type = fields.Selection([
-        ('accrued_revenue', 'Accrued Revenue'),
-        ('accrued_expense', 'Accrued Expense'),
-        ('prepaid_revenue', 'Prepaid Revenue'),
-        ('prepaid_expense', 'Prepaid Expense'),
-        ], string='Type', required=True, readonly=True,
+    type = fields.Selection(
+        [
+            ('accrued_revenue', 'Accrued Revenue'),
+            ('accrued_expense', 'Accrued Expense'),
+            ('prepaid_revenue', 'Prepaid Revenue'),
+            ('prepaid_expense', 'Prepaid Expense'),
+        ],
+        string='Type', required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     move_id = fields.Many2one(
         'account.move', string='Cut-off Journal Entry', readonly=True,
+        copy=False)
+    auto_reverse = fields.Boolean(
+        'Auto Reverse',
+        help="Automatically reverse created move on following day. Use this "
+             "if you accrue a value end of period that you want to reverse "
+             "begin of next period")
+    move_reversal_id = fields.Many2one(
+        'account.move', string='Cut-off Journal Entry Reversal', readonly=True,
         copy=False)
     move_label = fields.Char(
         string='Label of the Cut-off Journal Entry', readonly=True,
@@ -84,6 +112,12 @@ class AccountCutoff(models.Model):
         domain=[('deprecated', '=', False)],
         readonly=True, states={'draft': [('readonly', False)]},
         default=lambda self: self._default_cutoff_account_id())
+    cutoff_account_prepayment_id = fields.Many2one(
+        'account.account', string='Cut-off Account for Prepayment',
+        readonly=True, states={'draft': [('readonly', False)]},
+        default=lambda self: self._default_cutoff_account_prepayment_id(),
+        help="Account for accrual of prepaid expenses. "
+             "For instance, goods invoiced and not yet received.")
     cutoff_journal_id = fields.Many2one(
         'account.journal', string='Cut-off Account Journal',
         default=lambda self: self._get_default_journal(),
@@ -103,10 +137,12 @@ class AccountCutoff(models.Model):
     line_ids = fields.One2many(
         'account.cutoff.line', 'parent_id', string='Cut-off Lines',
         readonly=True, states={'draft': [('readonly', False)]})
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('done', 'Done'),
-        ], string='State', index=True, readonly=True,
+    state = fields.Selection(
+        [
+            ('draft', 'Draft'),
+            ('done', 'Done'),
+        ],
+        string='State', index=True, readonly=True,
         track_visibility='onchange', default='draft', copy=False,
         help="State of the cutoff. When the Journal Entry is created, "
         "the state is set to 'Done' and the fields become read-only.")
@@ -115,10 +151,14 @@ class AccountCutoff(models.Model):
         'date_type_company_uniq',
         'unique(cutoff_date, company_id, type)',
         'A cutoff of the same type already exists with this cut-off date !'
-        )]
+    )]
 
     def back2draft(self):
         self.ensure_one()
+        if self.move_reversal_id:
+            self.move_reversal_id.line_ids.remove_move_reconcile()
+            self.move_reversal_id.unlink()
+            self.move_id.line_ids.remove_move_reconcile()
         if self.move_id:
             self.move_id.unlink()
         self.state = 'draft'
@@ -136,11 +176,16 @@ class AccountCutoff(models.Model):
     def _prepare_move(self, to_provision):
         self.ensure_one()
         movelines_to_create = []
-        amount_total = 0
+        amount_total_pos = 0
+        amount_total_neg = 0
         move_label = self.move_label
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
-            amount = self.company_currency_id.round(amount)
+            amount_total_neg += self.company_currency_id.round(amount.amount_neg)
+            amount_total_pos += self.company_currency_id.round(amount.amount_pos)
+            amount = amount.amount_pos + amount.amount_neg
+            if amount == 0:
+                continue
             vals = {
                 'name': move_label,
                 'debit': amount < 0 and amount * -1 or 0,
@@ -149,25 +194,35 @@ class AccountCutoff(models.Model):
             for k, v in zip(merge_keys, merge_values):
                 vals[k] = v
             movelines_to_create.append((0, 0, vals))
-            amount_total += amount
 
         # add counter-part
-        counterpart_amount = self.company_currency_id.round(
-            amount_total * -1)
-        movelines_to_create.append((0, 0, {
-            'account_id': self.cutoff_account_id.id,
-            'name': move_label,
-            'debit': counterpart_amount < 0 and counterpart_amount * -1 or 0,
-            'credit': counterpart_amount >= 0 and counterpart_amount or 0,
-            'analytic_account_id': False,
-        }))
+        if self.cutoff_account_prepayment_id and amount_total_pos:
+            movelines_to_create.append((0, 0, {
+                'account_id': self.cutoff_account_prepayment_id.id,
+                'name': move_label,
+                'debit': amount_total_pos,
+                'credit': 0,
+                'analytic_account_id': False,
+            }))
+            counterpart_amount = amount_total_neg * -1
+        else:
+            counterpart_amount = (amount_total_pos + amount_total_neg) * -1
+        if counterpart_amount:
+            movelines_to_create.append((0, 0, {
+                'account_id': self.cutoff_account_id.id,
+                'name': move_label,
+                'debit': (counterpart_amount < 0 and
+                          counterpart_amount * -1 or 0),
+                'credit': counterpart_amount >= 0 and counterpart_amount or 0,
+                'analytic_account_id': False,
+            }))
 
         res = {
             'journal_id': self.cutoff_journal_id.id,
             'date': self.cutoff_date,
             'ref': move_label,
             'line_ids': movelines_to_create,
-            }
+        }
         return res
 
     def _prepare_provision_line(self, cutoff_line):
@@ -209,7 +264,7 @@ class AccountCutoff(models.Model):
             if key in to_provision:
                 to_provision[key] += provision_line['amount']
             else:
-                to_provision[key] = provision_line['amount']
+                to_provision[key] = PosNeg(provision_line['amount'])
         return to_provision
 
     def create_move(self):
@@ -233,7 +288,19 @@ class AccountCutoff(models.Model):
         to_provision = self._merge_provision_lines(provision_lines)
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
-        self.write({'move_id': move.id, 'state': 'done'})
+
+        data = {
+            'move_id': move.id,
+            'state': 'done'}
+
+        if self.auto_reverse:
+            next_day = (fields.Date.from_string(self.cutoff_date) +
+                        relativedelta(days=1))
+            rev_move = move._reverse_move(next_day, move.journal_id)
+            rev_move.ref = _('reversal of: ') + move.ref
+            data['move_reversal_id'] = rev_move.id
+
+        self.write(data)
 
         action = self.env['ir.actions.act_window'].for_xml_id(
             'account', 'action_move_journal_line')
@@ -242,7 +309,7 @@ class AccountCutoff(models.Model):
             'res_id': move.id,
             'view_id': False,
             'views': False,
-            })
+        })
         return action
 
     def get_lines(self):
@@ -267,7 +334,7 @@ class AccountCutoff(models.Model):
             'domain': [('parent_id', '=', self.id)],
             'views': False,
             'context': self._context,
-            })
+        })
         return action
 
 
@@ -372,7 +439,7 @@ class AccountCutoffMapping(models.Model):
         ('accrued_expense', 'Accrued Expense'),
         ('prepaid_revenue', 'Prepaid Revenue'),
         ('prepaid_expense', 'Prepaid Expense'),
-        ], string='Cut-off Type', required=True)
+    ], string='Cut-off Type', required=True)
 
     @api.model
     def _get_mapping_dict(self, company_id, cutoff_type='all'):
@@ -386,7 +453,7 @@ class AccountCutoffMapping(models.Model):
         mappings = self.search([
             ('company_id', '=', company_id),
             ('cutoff_type', 'in', cutoff_type_filter),
-            ])
+        ])
         mapping = {}
         for item in mappings:
             mapping[item.account_id.id] = item.cutoff_account_id.id

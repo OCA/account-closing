@@ -31,6 +31,11 @@ class ResCompany(models.Model):
         string='Default Account for Accrued Expenses Returns',
         domain=[('deprecated', '=', False)])
 
+    default_accrued_expense_prepayment_account_id = fields.Many2one(
+        comodel_name='account.account',
+        string='Default Account for Accrued Prepaid Expenses',
+        domain=[('deprecated', '=', False)])
+
     default_accrual_revenue_journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Default Journal for Accrued Revenues')
