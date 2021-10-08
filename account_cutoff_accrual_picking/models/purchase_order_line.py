@@ -7,19 +7,18 @@ from odoo import api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
-    qty_to_invoice = fields.Float(
-        compute='_compute_qty_to_invoice',
-        store=True
-    )
+    qty_to_invoice = fields.Float(compute="_compute_qty_to_invoice", store=True)
 
-    @api.depends('qty_received', 'qty_invoiced')
+    @api.depends("qty_received", "qty_invoiced")
     def _compute_qty_to_invoice(self):
         for rec in self:
             rec.qty_to_invoice = rec.qty_received - rec.qty_invoiced
 
     account_cutoff_line_ids = fields.One2many(
-        'account.cutoff.line', 'purchase_line_id',
-        string='Account Cutoff Lines',
-        readonly=True)
+        "account.cutoff.line",
+        "purchase_line_id",
+        string="Account Cutoff Lines",
+        readonly=True,
+    )

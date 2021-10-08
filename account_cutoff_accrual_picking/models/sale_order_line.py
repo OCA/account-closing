@@ -6,9 +6,11 @@ from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     account_cutoff_line_ids = fields.One2many(
-        'account.cutoff.line', 'sale_line_id',
-        string='Account Cutoff Lines',
-        readonly=True)
+        "account.cutoff.line",
+        "sale_line_id",
+        string="Account Cutoff Lines",
+        readonly=True,
+    )

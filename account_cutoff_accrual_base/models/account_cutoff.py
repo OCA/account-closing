@@ -16,11 +16,11 @@ class AccountCutOff(models.Model):
     @api.model
     def _default_cutoff_account_id(self):
         account_id = super(AccountCutOff, self)._default_cutoff_account_id()
-        type = self.env.context.get('default_type')
+        cutoff_type = self.env.context.get('default_type')
         company = self.env.user.company_id
-        if type == 'accrued_expense':
+        if cutoff_type == 'accrued_expense':
             account_id = company.default_accrued_expense_account_id.id or False
-        elif type == 'accrued_revenue':
+        elif cutoff_type == 'accrued_revenue':
             account_id = company.default_accrued_revenue_account_id.id or False
         return account_id
 
@@ -28,9 +28,9 @@ class AccountCutOff(models.Model):
     def _default_cutoff_account_prepayment_id(self):
         account_id = super(AccountCutOff, self).\
             _default_cutoff_account_prepayment_id()
-        type = self.env.context.get('default_type')
+        cutoff_type = self.env.context.get('default_type')
         company = self.env.user.company_id
-        if type == 'accrued_expense':
+        if cutoff_type == 'accrued_expense':
             account_id = company\
                 .default_accrued_expense_prepayment_account_id.id or False
         return account_id
