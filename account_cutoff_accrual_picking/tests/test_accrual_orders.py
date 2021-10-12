@@ -37,14 +37,14 @@ class TestAccountCutoffAccrualPicking(TransactionCase):
         )
 
         self.partner = self.env.ref("base.res_partner_1")
+        self.products = (
+            self.env.ref("product.product_delivery_01") |
+            self.env.ref("product.product_delivery_02")
+        )
 
         # Removing all existing SO
         self.env.cr.execute("DELETE FROM sale_order;")
         # Create SO
-        self.products = [
-            self.env.ref("product.product_delivery_01"),
-            self.env.ref("product.product_delivery_02"),
-        ]
         self.so = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -83,10 +83,6 @@ class TestAccountCutoffAccrualPicking(TransactionCase):
         # Removing all existing PO
         self.env.cr.execute("DELETE FROM purchase_order;")
         # Create PO
-        self.products = [
-            self.env.ref("product.product_delivery_01"),
-            self.env.ref("product.product_delivery_02"),
-        ]
         self.po = self.env["purchase.order"].create(
             {
                 "partner_id": self.partner.id,

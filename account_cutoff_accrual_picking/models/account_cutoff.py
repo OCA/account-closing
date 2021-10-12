@@ -60,6 +60,12 @@ class AccountCutoff(models.Model):
             )
         return account
 
+    def _get_expense_analytic(self, line):
+        return line.account_analytic_id
+
+    def _get_revenue_analytic(self, line):
+        return line.order_id.project_id
+
     def _prepare_line(self, line):
         """
         Calculate accrued expense using purchase.order.line
@@ -79,7 +85,7 @@ class AccountCutoff(models.Model):
         if self.type == "accrued_expense":
             received_qty = line.qty_received
             # Processing purchase order line
-            analytic_account_id = line.account_analytic_id.id
+            analytic_account = self._get_expense_analytic(line)
             price_unit = line.price_unit
             taxes = line.taxes_id
             taxes = fpos.map_tax(taxes)
@@ -99,7 +105,7 @@ class AccountCutoff(models.Model):
         elif self.type == "accrued_revenue":
             received_qty = line.qty_delivered
             # Processing sale order line
-            analytic_account_id = line.order_id.project_id.id or False
+            analytic_account = self._get_revenue_analytic(line)
             price_unit = line.price_reduce
             taxes = line.tax_id
             taxes = fpos.map_tax(taxes)
@@ -162,7 +168,7 @@ class AccountCutoff(models.Model):
             "name": line.name,
             "account_id": account_id,
             "cutoff_account_id": accrual_account_id,
-            "analytic_account_id": analytic_account_id,
+            "analytic_account_id": analytic_account.id,
             "currency_id": line.currency_id.id,
             "price_unit": price_unit,
             "tax_ids": [(6, 0, [tax.id for tax in taxes])],
