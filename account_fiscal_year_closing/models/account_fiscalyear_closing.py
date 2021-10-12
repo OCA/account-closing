@@ -90,7 +90,7 @@ class AccountFiscalyearClosing(models.Model):
     closing_template_id = fields.Many2one(
         comodel_name="account.fiscalyear.closing.template",
         string="Closing template",
-        domain="[('chart_template_ids', '=', chart_template_id)]",
+        domain="[('company_id', '=', company_id)]",
         readonly=True,
         states={'draft': [('readonly', False)]},
         oldname='template_id',
