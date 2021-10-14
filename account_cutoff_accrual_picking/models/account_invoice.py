@@ -60,20 +60,23 @@ class AccountInvoiceLine(models.Model):
           """,
             (tuple(self.ids),),
         )
-        data = self.env.cr.dictfetchall()
-        for row in data:
-            if row["state"] == "done":
+
+        def check_state(state):
+            if state == "done":
                 raise UserError(
                     _(
                         "You cannot validate an invoice for an accounting date "
-                        "where the cutoff accounting entry has already been "
-                        "created"
+                        "that modifies a closed cutoff (i.e. for which an "
+                        "accounting entry has already been created)"
                     )
                 )
+
+        for row in self.env.cr.dictfetchall():
             invoice_line = self.browse(row["id"])
             acl_id = row["cutoff_line_id"]
             acli_id = row["cutoff_line_invoice_id"]
             if acli_id:
+                check_state(row["state"])
                 # The quantity on the invoice has changed since cutoff
                 # generation
                 acli = self.env["account.cutoff.line.invoice"].browse(acli_id)
@@ -83,6 +86,7 @@ class AccountInvoiceLine(models.Model):
                     sign = 1
                 acli.quantity = invoice_line.quantity * sign
             elif acl_id:
+                check_state(row["state"])
                 # The invoice has been created after the cutoff generation
                 acl = self.env["account.cutoff.line"].browse(acl_id)
                 if invoice_line.invoice_id.type in ("in_refund", "out_refund"):
@@ -110,10 +114,12 @@ class AccountInvoiceLine(models.Model):
                     for sol in invoice_line.sale_line_ids:
                         data = ac._prepare_line(sol)
                         if data:
+                            check_state(row["state"])
                             self.env["account.cutoff.line"].create(data)
                 elif ac.type == "accrued_expense":
                     data = ac._prepare_line(invoice_line.purchase_line_id)
                     if data:
+                        check_state(row["state"])
                         self.env["account.cutoff.line"].create(data)
 
 

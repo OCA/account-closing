@@ -153,8 +153,8 @@ msgstr "Vous ne pouvez pas supprimer une facture pour une date comptable où une
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_invoice.py:38
 #, python-format
-msgid "You cannot validate an invoice for an accounting date where the cutoff accounting entry has already been created"
-msgstr "Vous ne pouvez pas valider une facture pour une date comptable où une entrée comptable de cutoff a déjà créée"
+msgid "You cannot validate an invoice for an accounting date that modifies a closed cutoff (i.e. for which an accounting entry has already been created)"
+msgstr "Vous ne pouvez pas valider une facture avec une date comptable qui modifie un cutoff fermé (càd pour lequel l'écriture comptable a déjà été créée)"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff_line_invoice
