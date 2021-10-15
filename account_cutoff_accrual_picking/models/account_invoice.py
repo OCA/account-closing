@@ -128,7 +128,7 @@ class AccountInvoice(models.Model):
 
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
-        self.invoice_line_ids._update_cutoff()
+        self.mapped("invoice_line_ids")._update_cutoff()
         return res
 
     def unlink(self):
