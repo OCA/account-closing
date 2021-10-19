@@ -76,13 +76,13 @@ class AccountCutoff(models.Model):
             "accrued_revenue",
         ), "The field 'type' has a wrong value"
 
-        partner = line.order_id.partner_id
-        fpos = partner.property_account_position_id
+        fpos = line.order_id.fiscal_position_id
         account_id = self._get_account(line, self.type, fpos).id
         accrual_account_id = self._get_account_mapping().get(account_id, account_id)
         cutoff_nextday = self._nextday_start_dt(self.cutoff_date)
 
         if self.type == "accrued_expense":
+            partner = line.order_id.partner_id
             received_qty = line.qty_received
             # Processing purchase order line
             analytic_account = self._get_expense_analytic(line)
@@ -103,6 +103,7 @@ class AccountCutoff(models.Model):
                     received_qty -= move.product_uom_qty
 
         elif self.type == "accrued_revenue":
+            partner = line.order_id.partner_invoice_id
             received_qty = line.qty_delivered
             # Processing sale order line
             analytic_account = self._get_revenue_analytic(line)
