@@ -5,8 +5,7 @@
 
 from datetime import timedelta
 
-from odoo import fields
-from odoo.exceptions import Warning
+from odoo import exceptions, fields
 from odoo.tests import common
 
 
@@ -229,7 +228,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertAlmostEqual(sum(reval_move_lines.mapped("amount_currency")), 1000.00)
 
         receivable_lines = len(reval_move_lines)
-        with self.assertRaises(Warning):
+        with self.assertRaises(exceptions.Warning):
             self.wizard_execute(self.today - timedelta(days=70))
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
@@ -349,9 +348,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         )
 
         bank_account_lines = self.env["account.move.line"].search(
-            [
-                ("account_id", "=", bank_account.id),
-            ]
+            [("account_id", "=", bank_account.id)]
         )
         self.assertEqual(len(bank_account_lines), 3)
         self.assertEqual(sum(bank_account_lines.mapped("debit")), 173.33)
@@ -362,11 +359,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(result.get("name"), "Created revaluation lines")
 
         revaluation_line = (
-            self.env["account.move.line"].search(
-                [
-                    ("account_id", "=", bank_account.id),
-                ]
-            )
+            self.env["account.move.line"].search([("account_id", "=", bank_account.id)])
             - bank_account_lines
         )
         self.assertEqual(len(revaluation_line), 1)
@@ -514,23 +507,19 @@ class TestCurrencyRevaluation(common.SavepointCase):
         )
 
         bank_account_lines = self.env["account.move.line"].search(
-            [
-                ("account_id", "=", bank_account.id),
-            ]
+            [("account_id", "=", bank_account.id)]
         )
         self.assertEqual(len(bank_account_lines), 4)
         self.assertEqual(sum(bank_account_lines.mapped("debit")), 212.5)
         self.assertEqual(sum(bank_account_lines.mapped("credit")), 25.0)
 
-        with self.assertRaises(Warning):
+        with self.assertRaises(exceptions.Warning):
             self.wizard_execute(self.today - timedelta(days=60))
 
         self.assertEqual(
             bank_account_lines,
             self.env["account.move.line"].search(
-                [
-                    ("account_id", "=", bank_account.id),
-                ]
+                [("account_id", "=", bank_account.id)]
             ),
         )
 
@@ -647,9 +636,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         )
 
         bank_account_lines = self.env["account.move.line"].search(
-            [
-                ("account_id", "=", bank_account.id),
-            ]
+            [("account_id", "=", bank_account.id)]
         )
         self.assertEqual(len(bank_account_lines), 3)
         self.assertEqual(sum(bank_account_lines.mapped("debit")), 173.33)
@@ -660,11 +647,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(result.get("name"), "Created revaluation lines")
 
         revaluation_lines = (
-            self.env["account.move.line"].search(
-                [
-                    ("account_id", "=", bank_account.id),
-                ]
-            )
+            self.env["account.move.line"].search([("account_id", "=", bank_account.id)])
             - bank_account_lines
         )
         self.assertEqual(len(revaluation_lines), 2)
