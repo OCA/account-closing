@@ -49,7 +49,6 @@
             </form>
         </field>
     </record>
-
     <record
         id="action_view_account_currency_revaluation_wizard"
         model="ir.actions.act_window"
@@ -60,7 +59,6 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
     <menuitem
         name="Closing"
         action="action_view_account_currency_revaluation_wizard"
@@ -68,12 +66,10 @@
         parent="account.menu_finance_entries"
         groups="group_revaluation_additional"
     />
-
     <menuitem
         action="action_view_account_currency_revaluation_wizard"
         id="menu_view_account_currency_revaluation_wizard"
         parent="account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing"
         groups="group_revaluation_additional"
     />
-
 </odoo>

@@ -65,81 +65,97 @@
                             <table>
                                 <tr class="row">
                                     <th class="col-xs-6 col-md-3" />
-                                    <th class="col-xs-6 col-md-3"><label
-                                            for=""
-                                            string="Loss"
-                                        /></th>
-                                    <th class="col-xs-6 col-md-3"><label
-                                            for=""
-                                            string="Gain"
-                                        /></th>
-                                    <th class="col-xs-6 col-md-3"><label
-                                            for=""
-                                            string="Analytic account"
-                                        /></th>
+                                    <th class="col-xs-6 col-md-3">
+                                        <label for="" string="Loss" />
+                                    </th>
+                                    <th class="col-xs-6 col-md-3">
+                                        <label for="" string="Gain" />
+                                    </th>
+                                    <th class="col-xs-6 col-md-3">
+                                        <label for="" string="Analytic account" />
+                                    </th>
                                 </tr>
                                 <tr class="row">
-                                    <th class="col-xs-6 col-md-3"><label
-                                            for=""
-                                            string="Revaluation accounts"
-                                        /><span
+                                    <th class="col-xs-6 col-md-3">
+                                        <label for="" string="Revaluation accounts" />
+                                        <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."
                                             groups="base.group_multi_company"
-                                        /></th>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </th>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="revaluation_loss_account_id"
                                             nolabel="1"
-                                        /> </td>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </td>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="revaluation_gain_account_id"
                                             nolabel="1"
-                                        /> </td>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </td>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="revaluation_analytic_account_id"
                                             nolabel="1"
-                                        /> </td>
+                                        />
+                                    </td>
                                 </tr>
                                 <tr class="row">
-                                    <th class="col-xs-6 col-md-3"><label
-                                            for=""
-                                            string="Provision B.S accounts"
-                                        /><span
+                                    <th class="col-xs-6 col-md-3">
+                                        <label for="" string="Provision B.S accounts" />
+                                        <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."
                                             groups="base.group_multi_company"
-                                        /></th>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </th>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="provision_bs_loss_account_id"
                                             nolabel="1"
-                                        /> </td>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </td>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="provision_bs_gain_account_id"
                                             nolabel="1"
-                                        /> </td>
+                                        />
+                                    </td>
                                     <td class="col-xs-6 col-md-3" />
                                 </tr>
                                 <tr class="row">
-                                    <th class="col-xs-6 col-md-3"><label
+                                    <th class="col-xs-6 col-md-3">
+                                        <label
                                             for=""
                                             string="Provision P&amp;L accounts"
-                                        /><span
+                                        />
+                                        <span
                                             class="fa fa-lg fa-building-o"
                                             title="Values set here are company-specific."
                                             groups="base.group_multi_company"
-                                        /></th>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </th>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="provision_pl_loss_account_id"
                                             nolabel="1"
-                                        /> </td>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </td>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="provision_pl_gain_account_id"
                                             nolabel="1"
-                                        /> </td>
-                                    <td class="col-xs-6 col-md-3"><field
+                                        />
+                                    </td>
+                                    <td class="col-xs-6 col-md-3">
+                                        <field
                                             name="provision_pl_analytic_account_id"
                                             nolabel="1"
-                                        /> </td>
+                                        />
+                                    </td>
                                 </tr>
                             </table>
                         </div>

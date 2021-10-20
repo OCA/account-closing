@@ -2,8 +2,7 @@
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import Warning
+from odoo import _, api, exceptions, fields, models
 from odoo.tools import float_repr
 
 
@@ -84,34 +83,18 @@ class WizardCurrencyRevaluation(models.TransientModel):
         credit_line = base_line.copy()
 
         debit_line.update(
-            {
-                "debit": amount,
-                "credit": 0.0,
-                "account_id": debit_account_id,
-            }
+            {"debit": amount, "credit": 0.0, "account_id": debit_account_id}
         )
 
         if analytic_debit_acc_id:
-            credit_line.update(
-                {
-                    "analytic_account_id": analytic_debit_acc_id,
-                }
-            )
+            credit_line.update({"analytic_account_id": analytic_debit_acc_id})
 
         credit_line.update(
-            {
-                "debit": 0.0,
-                "credit": amount,
-                "account_id": credit_account_id,
-            }
+            {"debit": 0.0, "credit": amount, "account_id": credit_account_id}
         )
 
         if analytic_credit_acc_id:
-            credit_line.update(
-                {
-                    "analytic_account_id": analytic_credit_acc_id,
-                }
-            )
+            credit_line.update({"analytic_account_id": analytic_credit_acc_id})
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
         created_move.post()
@@ -267,7 +250,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         company = self.journal_id.company_id or self.env.user.company_id
         if not self._validate_company_revaluation_configuration(company):
-            raise Warning(
+            raise exceptions.Warning(
                 _(
                     "No revaluation or provision account are defined"
                     " for your company.\n"
@@ -287,7 +270,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         )
 
         if not account_ids:
-            raise Warning(
+            raise exceptions.Warning(
                 _(
                     "No account to be revaluated found. "
                     "Please check 'Allow Currency Revaluation' "
@@ -363,4 +346,4 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 "type": "ir.actions.act_window",
             }
         else:
-            raise Warning(_("No accounting entry has been posted."))
+            raise exceptions.Warning(_("No accounting entry has been posted."))
