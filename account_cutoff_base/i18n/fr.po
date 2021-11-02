@@ -63,14 +63,14 @@ msgstr "Compte d'arrêté des ligne de taxe"
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__accrued_expense
 #, python-format
 msgid "Accrued Expense"
-msgstr "Dépense cumulée"
+msgstr "Factures non parvenues"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__accrued_revenue
 #, python-format
 msgid "Accrued Revenue"
-msgstr "Revenu cumulé"
+msgstr "Factures à établir"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
@@ -474,14 +474,14 @@ msgstr ""
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__prepaid_expense
 #, python-format
 msgid "Prepaid Expense"
-msgstr "Report de Charges"
+msgstr "Charges constatées d'avance"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__prepaid_revenue
 #, python-format
 msgid "Prepaid Revenue"
-msgstr "Report de Produits"
+msgstr "Produits constatés d'avance"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
