@@ -149,7 +149,7 @@
                             invisible="not context.get('account_cutoff_line_main_view', False)"
                         />
                     <field name="partner_id" />
-                    <field name="name" />
+                    <field name="name" widget="text" />
                     <field name="quantity" />
                     <field name="price_unit" />
                     <field name="price_origin" />
@@ -193,11 +193,12 @@
                     invisible="not context.get('account_cutoff_line_main_view', False)"
                 />
                 <field name="partner_id" />
-                <field name="name" />
+                <field name="name" widget="text" optional="show" />
                 <field name="cutoff_account_code" string="Cutoff Account" />
                 <field
                     name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
+                    optional="show"
                 />
                 <field name="quantity" optional="hide" />
                 <field name="price_unit" optional="hide" />
