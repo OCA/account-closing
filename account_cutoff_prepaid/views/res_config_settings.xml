@@ -13,19 +13,13 @@
         />
         <field name="arch" type="xml">
             <field name="dft_cutoff_journal_id" position="after">
-                <label
-                    for="dft_prepaid_revenue_account_id"
-                    class="col-lg-3 o_light_label"
-                />
+                <label for="dft_prepaid_revenue_account_id" class="col-md-5" />
                 <field
                     name="dft_prepaid_revenue_account_id"
                     options="{'no_create_edit': True, 'no_open': True}"
                     domain="[('company_id', '=', company_id)]"
                 />
-                <label
-                    for="dft_prepaid_expense_account_id"
-                    class="col-lg-3 o_light_label"
-                />
+                <label for="dft_prepaid_expense_account_id" class="col-md-5" />
                 <field
                     name="dft_prepaid_expense_account_id"
                     options="{'no_create_edit': True, 'no_open': True}"

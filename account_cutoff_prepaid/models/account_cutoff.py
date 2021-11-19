@@ -162,7 +162,7 @@ class AccountCutoff(models.Model):
         # Search for account move lines in the source journals
         amls = aml_obj.search(domain)
         # Create mapping dict
-        mapping = mapping_obj._get_mapping_dict(self.company_id.id, self.cutoff_type)
+        mapping = self._get_mapping_dict()
 
         # Loop on selected account move lines to create the cutoff lines
         for aml in amls:

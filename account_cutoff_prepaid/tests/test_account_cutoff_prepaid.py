@@ -65,11 +65,12 @@ class TestCutoffPrepaid(SavepointCase):
     def _create_invoice(self, date, amount, start_date, end_date):
         invoice = self.inv_model.create(
             {
+                "company_id": self.env.ref("base.main_company").id,
                 "invoice_date": self._date(date),
                 "date": self._date(date),
                 "partner_id": self.env.ref("base.res_partner_2").id,
                 "journal_id": self.purchase_journal.id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -86,7 +87,7 @@ class TestCutoffPrepaid(SavepointCase):
                 ],
             }
         )
-        invoice.post()
+        invoice.action_post()
         self.assertEqual(amount, invoice.amount_untaxed)
         return invoice
 
