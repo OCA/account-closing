@@ -618,7 +618,7 @@ msgid "Reference"
 msgstr "Riferimento"
 
 #. module: account_fiscal_year_closing
-#: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:579
+#: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:580
 #, python-format
 msgid "Result"
 msgstr "Risultato"
