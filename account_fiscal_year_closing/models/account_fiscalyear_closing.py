@@ -530,10 +530,11 @@ class AccountFiscalyearClosingConfig(models.Model):
             data = self.move_prepare(move_lines)
         elif self.inverse:
             move_ids = self.inverse_move_prepare()
-            move = moves.browse(move_ids[0])
-            move.write({'ref': self.name, 'closing_type': self.move_type})
-            self.move_id = move.id
-            return move, data
+            if move_ids:
+                move = moves.browse(move_ids[0])
+                move.write({'ref': self.name, 'closing_type': self.move_type})
+                self.move_id = move.id
+                return move, data
         # Create move
         if not data:
             return False, data
