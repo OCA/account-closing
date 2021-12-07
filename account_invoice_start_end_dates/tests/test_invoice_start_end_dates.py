@@ -5,15 +5,15 @@
 import time
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 @tagged("-at_install", "post_install")
-class TestInvoiceStartEndDates(SavepointCase):
+class TestInvoiceStartEndDates(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.inv_model = cls.env["account.move"]
+        cls.move_model = cls.env["account.move"]
         cls.account_model = cls.env["account.account"]
         cls.journal_model = cls.env["account.journal"]
         cls.account_revenue = cls.account_model.search(
@@ -32,11 +32,11 @@ class TestInvoiceStartEndDates(SavepointCase):
         )
 
     def _date(self, date):
-        """ convert MM-DD to current year date YYYY-MM-DD """
+        """convert MM-DD to current year date YYYY-MM-DD"""
         return time.strftime("%Y-" + date)
 
     def test_invoice(self):
-        invoice = self.inv_model.create(
+        invoice = self.move_model.create(
             {
                 "date": self._date("01-01"),
                 "partner_id": self.env.ref("base.res_partner_2").id,
