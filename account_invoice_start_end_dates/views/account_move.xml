@@ -36,10 +36,12 @@
                 <field
                     name="start_date"
                     attrs="{'required': [('must_have_dates', '=', True)]}"
+                    optional="show"
                 />
                 <field
                     name="end_date"
                     attrs="{'required': [('must_have_dates', '=', True)]}"
+                    optional="show"
                 />
             </xpath>
             <xpath
@@ -60,8 +62,8 @@
                 expr="//field[@name='line_ids']/tree/field[@name='credit']"
                 position="after"
             >
-                <field name="start_date" />
-                <field name="end_date" />
+                <field name="start_date" optional="hide" />
+                <field name="end_date" optional="hide" />
             </xpath>
         </field>
     </record>
