@@ -1,8 +1,10 @@
-# Copyright 2013-2019 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2013-2021 Akretion France (http://www.akretion.com/)
+# @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import format_date
 
 
 class AccountMoveLine(models.Model):
@@ -32,8 +34,11 @@ class AccountMoveLine(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Start Date should be before End Date for move line "
-                        "with Name '%s'."
+                        "Start Date ({start_date}) should be before End Date "
+                        "({end_date}) for move line with Name '{name}'."
+                    ).format(
+                        start_date=format_date(self.env, moveline.start_date),
+                        end_date=format_date(self.env, moveline.end_date),
+                        name=moveline.name,
                     )
-                    % (moveline.name)
                 )
