@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 23:20+0000\n"
-"PO-Revision-Date: 2021-12-03 12:37+0000\n"
+"PO-Revision-Date: 2021-12-20 13:39+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -120,7 +120,7 @@ msgstr "Stato Attività"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icona tipo attività"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__all
@@ -157,7 +157,7 @@ msgstr "Conto Analitico"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Conteggio allegati"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -200,7 +200,7 @@ msgstr "Valuta Azienda"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -385,7 +385,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__done
@@ -422,7 +422,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__id
@@ -433,17 +433,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona per indicare un'attività eccezionale."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
