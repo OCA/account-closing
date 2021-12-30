@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-03 12:37+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2021-12-30 23:40+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -25,38 +25,38 @@ msgstr "%s: %s"
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Separazione conto"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__display_name
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__display_name
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff____last_update
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company____last_update
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -65,6 +65,8 @@ msgid ""
 "Missing expense account on product '%s' or on its related product category "
 "'%s'."
 msgstr ""
+"Conto di costo mancante per il prodotto \"%s\" o per la categoria prodotto "
+"correlata \"%s\"."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -73,13 +75,15 @@ msgid ""
 "Missing income account on product '%s' or on its related product category "
 "'%s'."
 msgstr ""
+"Conto di ricavo mancante per il prodotto \"%s\" o per la categoria prodotto "
+"correlata \"%s\"."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
 msgid "Picking Analysis Interval"
-msgstr ""
+msgstr "Intervallo per analisi prelievi"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
@@ -88,6 +92,8 @@ msgid ""
 "The value of the field 'Picking Analysis Interval' must be strictly "
 "positive."
 msgstr ""
+"Il valore del campo \"Intervallo per analisi prelievi\" deve essere "
+"strettamente positivo."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
@@ -103,4 +109,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.account_cutoff_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
 msgid "days"
-msgstr ""
+msgstr "giorni"
