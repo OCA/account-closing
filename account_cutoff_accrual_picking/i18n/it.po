@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-30 23:40+0000\n"
+"PO-Revision-Date: 2021-12-31 15:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
 msgid "Picking Analysis Interval"
-msgstr "Intervallo per analisi prelievi"
+msgstr "Intervallo analisi prelievi"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
@@ -92,8 +92,8 @@ msgid ""
 "The value of the field 'Picking Analysis Interval' must be strictly "
 "positive."
 msgstr ""
-"Il valore del campo \"Intervallo per analisi prelievi\" deve essere "
-"strettamente positivo."
+"Il valore del campo \"Intervallo analisi prelievi\" deve essere strettamente "
+"positivo."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
@@ -104,6 +104,9 @@ msgid ""
 "pickings between the cutoff date and N days before. N is the Picking "
 "Analysis Interval."
 msgstr ""
+"Per generare le competenze in base ai prelievi, Odoo analizza tutti quelli "
+"tra la data di separazione e gli N giorni precedenti. N corrisponde "
+"all'intervallo di analisi dei prelievi."
 
 #. module: account_cutoff_accrual_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.account_cutoff_form
