@@ -273,7 +273,7 @@ class AccountCutoff(models.Model):
         to_provision = defaultdict(float)
         merge_keys = self._get_merge_keys()
         for provision_line in provision_lines:
-            key = tuple([provision_line.get(key) for key in merge_keys])
+            key = tuple(provision_line.get(key) for key in merge_keys)
             to_provision[key] += provision_line["amount"]
         return to_provision
 
