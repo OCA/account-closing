@@ -382,8 +382,11 @@ class AccountCutoff(models.Model):
                 tax_account_field_label = _("Accrued Revenue Tax Account")
             if not tax_accrual_account_id:
                 raise UserError(
-                    _("Missing '%s' on tax '%s'.")
-                    % (tax_account_field_label, tax.display_name)
+                    _(
+                        "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'.",
+                        tax_account_field_label=tax_account_field_label,
+                        tax_display_name=tax.display_name,
+                    )
                 )
             tax_amount = currency.round(tax_line["amount"])
             tax_accrual_amount = currency._convert(
@@ -418,9 +421,7 @@ class AccountCutoffLine(models.Model):
         readonly=True,
     )
     partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
-    quantity = fields.Float(
-        string="Quantity", digits="Product Unit of Measure", readonly=True
-    )
+    quantity = fields.Float(digits="Product Unit of Measure", readonly=True)
     price_unit = fields.Float(
         string="Unit Price w/o Tax",
         digits="Product Price",
