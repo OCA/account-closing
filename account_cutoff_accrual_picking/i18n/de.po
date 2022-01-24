@@ -71,8 +71,9 @@ msgstr "Fehlende '%s' bei Steuer '%s'."
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, fuzzy, python-format
 msgid ""
-"Missing expense account on product '%s' or on its related product category "
-"'%s'."
+"Missing expense account on product "
+"'%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
 msgstr ""
 "Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
 "Produktkategorie"
@@ -81,8 +82,9 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, fuzzy, python-format
 msgid ""
-"Missing income account on product '%s' or on its related product category "
-"'%s'."
+"Missing income account on product "
+"'%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
 msgstr ""
 "Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
 

@@ -102,7 +102,11 @@ class AccountCutoff(models.Model):
         oline_dict[order_line] = {
             "precut_delivered_qty": 0.0,  # in product_uom
             "precut_invoiced_qty": 0.0,  # in product_uom
-            "name": _("%s: %s") % (order.name, order_line.name),
+            "name": _(
+                "%(order_name)s: %(order_line_name)s",
+                order_name=order.name,
+                order_line_name=order_line.name,
+            ),
             "product": product,
             "partner": order.partner_id.commercial_partner_id,
         }
@@ -151,10 +155,12 @@ class AccountCutoff(models.Model):
                 if not account:
                     raise UserError(
                         _(
-                            "Missing expense account on product '%s' or on its "
-                            "related product category '%s'."
+                            "Missing expense account on product "
+                            "'%(product_display_name)s' or on its "
+                            "related product category '%(product_categ_display_name)s'.",
+                            product_display_name=product.display_name,
+                            product_categ_display_name=product.categ_id.display_name,
                         )
-                        % (product.display_name, product.categ_id.display_name)
                     )
                 account_id = order.fiscal_position_id.map_account(account).id
             elif order_type == "sale":
@@ -170,10 +176,12 @@ class AccountCutoff(models.Model):
                 if not account:
                     raise UserError(
                         _(
-                            "Missing income account on product '%s' or on its "
-                            "related product category '%s'."
+                            "Missing income account on product "
+                            "'%(product_display_name)s' or on its "
+                            "related product category '%(product_categ_display_name)s'.",
+                            product_display_name=product.display_name,
+                            product_categ_display_name=product.categ_id.display_name,
                         )
-                        % (product.display_name, product.categ_id.display_name)
                     )
                 account_id = order.fiscal_position_id.map_account(account).id
 
