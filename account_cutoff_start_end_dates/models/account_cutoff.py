@@ -1,4 +1,4 @@
-# Copyright 2016-2021 Akretion France
+# Copyright 2016-2022 Akretion France
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -221,4 +221,4 @@ class AccountCutoffLine(models.Model):
         help="In regular mode, this is the number of days after the "
         "cut-off date. In forecast mode, this is the number of days "
         "between the start date and the end date.",
-    )  # Old name: prepaid_days
+    )
