@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Akretion France (http://www.akretion.com/)
+# Copyright 2019-2022 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -204,30 +204,30 @@ class AccountCutoff(models.Model):
                 )
                 notes.append(
                     _(
-                        "Period from %s to %s: %s %s under the minimum "
-                        "amount %s. Default provisionning amount is %s "
-                        "=> provisionning %s."
-                    )
-                    % (
-                        fields.Date.to_string(interval["start"]),
-                        fields.Date.to_string(interval["end"]),
-                        sub_type_label,
-                        formatLang(
+                        "Period from {start_date} to {end_date}: "
+                        "{sub_type_label} {amount} under the minimum "
+                        "amount {min_amount}. Default provisionning amount is "
+                        "{provision_amount} => provisionning {period_cutoff_amount}."
+                    ).format(
+                        start_date=fields.Date.to_string(interval["start"]),
+                        end_date=fields.Date.to_string(interval["end"]),
+                        sub_type_label=sub_type_label,
+                        amount=formatLang(
                             self.env,
                             interval["amount"],
                             currency_obj=self.company_currency_id,
                         ),
-                        formatLang(
+                        min_amount=formatLang(
                             self.env,
                             sub.min_amount,
                             currency_obj=self.company_currency_id,
                         ),
-                        formatLang(
+                        provision_amount=formatLang(
                             self.env,
                             sub.provision_amount,
                             currency_obj=self.company_currency_id,
                         ),
-                        formatLang(
+                        period_cutoff_amount=formatLang(
                             self.env,
                             period_cutoff_amount,
                             currency_obj=self.company_currency_id,
@@ -238,19 +238,19 @@ class AccountCutoff(models.Model):
             else:
                 notes.append(
                     _(
-                        "Period from %s to %s: %s %s over the minimum "
-                        "amount %s => no provisionning."
-                    )
-                    % (
-                        fields.Date.to_string(interval["start"]),
-                        fields.Date.to_string(interval["end"]),
-                        sub_type_label,
-                        formatLang(
+                        "Period from {start_date} to {end_date}: "
+                        "{sub_type_label} {amount} over the minimum "
+                        "amount {min_amount} => no provisionning."
+                    ).format(
+                        start_date=fields.Date.to_string(interval["start"]),
+                        end_date=fields.Date.to_string(interval["end"]),
+                        sub_type_label=sub_type_label,
+                        amount=formatLang(
                             self.env,
                             interval["amount"],
                             currency_obj=self.company_currency_id,
                         ),
-                        formatLang(
+                        min_amount=formatLang(
                             self.env,
                             sub.min_amount,
                             currency_obj=self.company_currency_id,
@@ -261,8 +261,8 @@ class AccountCutoff(models.Model):
             msg = _(
                 "<p>No provision for subscription <a href=# "
                 "data-oe-model=account.cutoff.accrual.subscription "
-                "data-oe-id=%d>%s</a>:</p>"
-            ) % (sub.id, sub.name)
+                "data-oe-id={subscription_id}>{subscription_name}</a>:</p>"
+            ).format(subscription_id=sub.id, subscription_name=sub.display_name)
             if notes:
                 msg += "<ul>"
                 for note in notes:

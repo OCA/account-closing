@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Akretion France (http://www.akretion.com/)
+# Copyright 2019-2022 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -39,7 +39,6 @@ class AccountCutoffAccrualSubscription(models.Model):
             ("any", "Any Partner"),
         ],
         default="one",
-        string="Partner Type",
         required=True,
     )
     partner_id = fields.Many2one(
@@ -56,7 +55,6 @@ class AccountCutoffAccrualSubscription(models.Model):
             ("semester", "Semesterly"),
             ("year", "Yearly"),
         ],
-        string="Periodicity",
         required=True,
     )
     start_date = fields.Date(required=True)
@@ -77,7 +75,10 @@ class AccountCutoffAccrualSubscription(models.Model):
         check_company=True,
     )
     analytic_account_id = fields.Many2one(
-        "account.analytic.account", string="Analytic Account"
+        "account.analytic.account",
+        string="Analytic Account",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        check_company=True,
     )
     tax_ids = fields.Many2many(
         "account.tax",
