@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2018-2021 Akretion France (http://www.akretion.com/)
+  Copyright 2018-2022 Akretion France (http://www.akretion.com/)
   @author: Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -57,16 +57,27 @@
         <tree>
             <field name="name" />
             <field name="subscription_type" />
-            <field name="partner_type" />
-            <field name="partner_id" />
+            <field name="partner_type" optional="show" />
+            <field
+                    name="partner_id"
+                    attrs="{'invisible': [('partner_type', '!=', 'one')]}"
+                    optional="show"
+                />
             <field name="periodicity" />
-            <field name="account_id" />
+            <field name="start_date" optional="hide" />
+            <field name="account_id" optional="show" />
             <field
                     name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
+                    optional="show"
                 />
-            <field name="min_amount" />
-            <field name="company_id" groups="base.group_multi_company" />
+            <field name="min_amount" optional="show" />
+            <field name="provision_amount" optional="hide" />
+            <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
             <field name="company_currency_id" invisible="1" />
         </tree>
     </field>
