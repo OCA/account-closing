@@ -16,7 +16,7 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s: %s"
+msgid "%(order_name)s: %(order_line_name)s"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
@@ -35,40 +35,19 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__display_name
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__display_name
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__id
-msgid "ID"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company____last_update
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings____last_update
-msgid "Last Modified on"
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Missing expense account on product '%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"Missing expense account on product '%s' or on its related product category "
-"'%s'."
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Missing income account on product '%s' or on its related product category "
-"'%s'."
+"Missing income account on product '%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
