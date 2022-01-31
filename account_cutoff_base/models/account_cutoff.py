@@ -305,7 +305,8 @@ class AccountCutoff(models.Model):
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
-        action = self.env.ref("account.action_move_journal_line").sudo().read()[0]
+        xmlid = "account.action_move_journal_line"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action.update(
             {
                 "view_mode": "form,tree",
@@ -336,11 +337,8 @@ class AccountCutoff(models.Model):
         return super().unlink()
 
     def button_line_tree(self):
-        action = (
-            self.env.ref("account_cutoff_base.account_cutoff_line_action")
-            .sudo()
-            .read()[0]
-        )
+        xmlid = "account_cutoff_base.account_cutoff_line_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action.update(
             {
                 "domain": [("parent_id", "=", self.id)],
