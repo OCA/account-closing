@@ -5,7 +5,7 @@
 
 {
     "name": "Account Invoice Start End Dates",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.2.0",
     "category": "Accounting & Finance",
     "license": "AGPL-3",
     "summary": "Adds start/end dates on invoice/move lines",
@@ -13,7 +13,11 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account"],
-    "data": ["views/account_move.xml", "views/product_template.xml"],
+    "data": [
+        "views/account_move.xml",
+        "views/account_move_line.xml",
+        "views/product_template.xml",
+    ],
     "demo": ["demo/product_demo.xml"],
     "installable": True,
 }
