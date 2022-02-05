@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2022 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="name">start_end_dates.view_move_line_form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="date_maturity" position="after">
+                <field name="must_have_dates" invisible="1" />
+                <field
+                    name="start_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                />
+                <field
+                    name="end_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_move_line_tree" model="ir.ui.view">
+        <field name="name">account.move.line.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="must_have_dates" invisible="1" />
+                <field name="start_date" optional="hide" />
+                <field name="end_date" optional="hide" />
+            </field>
+        </field>
+    </record>
+</odoo>
