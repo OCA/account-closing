@@ -25,7 +25,6 @@ msgid "End Date"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
@@ -70,7 +69,6 @@ msgid "Missing Start Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid "Must Have Start and End Dates"
