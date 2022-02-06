@@ -10,7 +10,6 @@ class AccountMoveLine(models.Model):
 
     start_date = fields.Date(index=True)
     end_date = fields.Date(index=True)
-    must_have_dates = fields.Boolean(related="product_id.must_have_dates")
 
     @api.constrains("start_date", "end_date")
     def _check_start_end_dates(self):
