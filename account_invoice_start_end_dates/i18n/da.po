@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_invoice_start_end_dates
+# 	* account_invoice_start_end_dates
 #
 msgid ""
 msgstr ""
@@ -32,7 +32,9 @@ msgstr "Slut dato"
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
-msgid "If this option is active, the user will have to enter a Start Date and an End Date on the invoice lines that have this product."
+msgid ""
+"If this option is active, the user will have to enter a Start Date and an "
+"End Date on the invoice lines that have this product."
 msgstr ""
 "Hvis denne indstilling er aktiv, skal brugeren indtaste en startdato og en "
 "slutdato på de fakturalinjer, der har dette produkt."
@@ -73,7 +75,9 @@ msgstr "Manglende slutdato for posteringslinje med beskrivelsen '%s'."
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:85
 #, python-format
-msgid "Missing Start Date and End Date for invoice line with Product '%s' which has the property 'Must Have Start and End Dates'."
+msgid ""
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
 "Manglende startdato og slutdato for fakturalinje med produkt '%s', der har "
 "egenskaben 'Skal have start- og slutdatoer'."
@@ -118,7 +122,9 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:33
 #, python-format
-msgid "Start Date should be before or be the same as End Date for invoice line with Description '%s'."
+msgid ""
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""
 "Startdato skal være før eller være den samme som slutdato for fakturalinje "
 "med beskrivelsen '%s'."

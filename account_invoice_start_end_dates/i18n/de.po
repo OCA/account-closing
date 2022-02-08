@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_invoice_start_end_dates
+# 	* account_invoice_start_end_dates
 #
 msgid ""
 msgstr ""
@@ -32,7 +32,9 @@ msgstr "Enddatum"
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
-msgid "If this option is active, the user will have to enter a Start Date and an End Date on the invoice lines that have this product."
+msgid ""
+"If this option is active, the user will have to enter a Start Date and an "
+"End Date on the invoice lines that have this product."
 msgstr ""
 "Wenn der Haken gesetzt ist, muss der Benutzer für dieses Produkt in "
 "Rechnungszeilen ein Start- und Enddatum angeben."
@@ -62,7 +64,8 @@ msgstr "Wartungsvertrag"
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:22
 #, python-format
 msgid "Missing End Date for invoice line with Description '%s'."
-msgstr "Es fehlt das Enddatum für die Rechnungszeile mit der Beschreibung '%s'."
+msgstr ""
+"Es fehlt das Enddatum für die Rechnungszeile mit der Beschreibung '%s'."
 
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:19
@@ -73,10 +76,12 @@ msgstr "Es fehlt das Enddatum für die Buchungszeile mit der Bezeichnung '%s'."
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:85
 #, python-format
-msgid "Missing Start Date and End Date for invoice line with Product '%s' which has the property 'Must Have Start and End Dates'."
+msgid ""
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start and End Dates'."
 msgstr ""
-"Es fehlen das Start- und Enddatum an der Rechnungszeile für das Produkt '%"
-"s', bei dem aber die Eigenschaft 'Muss Start- und Enddatum haben' gesetzt "
+"Es fehlen das Start- und Enddatum an der Rechnungszeile für das Produkt "
+"'%s', bei dem aber die Eigenschaft 'Muss Start- und Enddatum haben' gesetzt "
 "ist."
 
 #. module: account_invoice_start_end_dates
@@ -90,7 +95,8 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:23
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
-msgstr "Es fehlt das Startdatum für die Buchungszeile mit der Bezeichnung '%s'."
+msgstr ""
+"Es fehlt das Startdatum für die Buchungszeile mit der Bezeichnung '%s'."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line__must_have_dates
@@ -121,7 +127,9 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_invoice.py:33
 #, python-format
-msgid "Start Date should be before or be the same as End Date for invoice line with Description '%s'."
+msgid ""
+"Start Date should be before or be the same as End Date for invoice line with "
+"Description '%s'."
 msgstr ""
 "Das Startdatum in der Rechnungszeile mit der Beschreibung '%s' liegt nicht "
 "vor dem Enddatum."
