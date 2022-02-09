@@ -26,9 +26,23 @@ msgid "Car Insurance"
 msgstr "Assicurazione auto"
 
 #. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move__display_name
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
 msgid "End Date"
 msgstr "Data fine"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move__id
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__id
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__id
+msgid "ID"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
@@ -36,20 +50,25 @@ msgstr "Data fine"
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
-"End Date on the invoice lines that have this product."
+"End Date on the invoice/move lines that have this product."
 msgstr ""
-"Se l'opzione è attiva, l'utente deve inserire una data di inizio e di fine "
-"nelle righe fattura che contengono questo prodotto."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
-msgid "Journal Entries"
-msgstr "Registrazioni contabili"
+msgid "Journal Entry"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move____last_update
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
@@ -68,10 +87,8 @@ msgstr "Data fine mancante per la riga movimento con nome '%s'."
 #, python-format
 msgid ""
 "Missing Start Date and End Date for invoice line with Product '%s' which has "
-"the property 'Must Have Start and End Dates'."
+"the property 'Must Have Start/End Dates'."
 msgstr ""
-"Data inizio e data fine mancanti per la riga fattura con prodotto '%s', che "
-"ha la proprietà 'Deve avere date di inizio e fine'."
 
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
@@ -83,8 +100,8 @@ msgstr "Data inizio mancante per la riga movimento con nome '%s'."
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
-msgid "Must Have Start and End Dates"
-msgstr "Deve avere date di inizio e fine"
+msgid "Must Have Start/End Dates"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_product_template
@@ -111,6 +128,26 @@ msgstr ""
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Units"
 msgstr "Unità"
+
+#~ msgid ""
+#~ "If this option is active, the user will have to enter a Start Date and an "
+#~ "End Date on the invoice lines that have this product."
+#~ msgstr ""
+#~ "Se l'opzione è attiva, l'utente deve inserire una data di inizio e di "
+#~ "fine nelle righe fattura che contengono questo prodotto."
+
+#~ msgid "Journal Entries"
+#~ msgstr "Registrazioni contabili"
+
+#~ msgid ""
+#~ "Missing Start Date and End Date for invoice line with Product '%s' which "
+#~ "has the property 'Must Have Start and End Dates'."
+#~ msgstr ""
+#~ "Data inizio e data fine mancanti per la riga fattura con prodotto '%s', "
+#~ "che ha la proprietà 'Deve avere date di inizio e fine'."
+
+#~ msgid "Must Have Start and End Dates"
+#~ msgstr "Deve avere date di inizio e fine"
 
 #~ msgid "Invoice"
 #~ msgstr "Fattura"
