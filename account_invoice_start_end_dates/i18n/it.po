@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2022-02-07 11:59+0000\n"
-"Last-Translator: gslabit <giovanni@gslab.it>\n"
+"PO-Revision-Date: 2022-02-14 21:16+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Assicurazione auto"
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
@@ -42,7 +42,7 @@ msgstr "Data fine"
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__id
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
@@ -52,11 +52,13 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice/move lines that have this product."
 msgstr ""
+"Se questa opzione è attiva, l'utente dovrà inserire una data inizio e una "
+"data fine sulla fattura/righe movimenti che contengono questo prodotto."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
@@ -68,7 +70,7 @@ msgstr "Movimento contabile"
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
@@ -89,6 +91,8 @@ msgid ""
 "Missing Start Date and End Date for invoice line with Product '%s' which has "
 "the property 'Must Have Start/End Dates'."
 msgstr ""
+"Data inizio e data fine mancanti per la riga fattura con prodotto '%s', che "
+"ha la proprietà 'Deve avere date di inizio e fine'."
 
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
@@ -101,7 +105,7 @@ msgstr "Data inizio mancante per la riga movimento con nome '%s'."
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid "Must Have Start/End Dates"
-msgstr ""
+msgstr "Deve avere date di inizio e fine"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_product_template
