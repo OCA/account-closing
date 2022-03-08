@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-account_cutoff_accrual_picking',
+        'odoo14-addon-account_cutoff_accrual_subscription',
         'odoo14-addon-account_cutoff_base',
         'odoo14-addon-account_cutoff_start_end_dates',
         'odoo14-addon-account_invoice_start_end_dates',
