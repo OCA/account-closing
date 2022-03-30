@@ -32,7 +32,7 @@ class TestInvoiceStartEndDates(SavepointCase):
         )
 
     def _date(self, date):
-        """ convert MM-DD to current year date YYYY-MM-DD """
+        """convert MM-DD to current year date YYYY-MM-DD"""
         return time.strftime("%Y-" + date)
 
     def test_invoice(self):

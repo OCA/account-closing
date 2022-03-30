@@ -67,7 +67,7 @@ class TestCutoffPrepaid(SavepointCase):
         )
 
     def _date(self, date):
-        """ convert MM-DD to current year date YYYY-MM-DD """
+        """convert MM-DD to current year date YYYY-MM-DD"""
         return time.strftime("%Y-" + date)
 
     def _days(self, start_date, end_date):
@@ -118,7 +118,7 @@ class TestCutoffPrepaid(SavepointCase):
         return cutoff
 
     def test_with_cutoff_before_after_and_in_the_middle(self):
-        """ basic test with cutoff before, after and in the middle """
+        """basic test with cutoff before, after and in the middle"""
         amount = self._days("04-01", "06-30")
         amount_2months = self._days("05-01", "06-30")
         # invoice to be spread of 3 months
@@ -137,7 +137,7 @@ class TestCutoffPrepaid(SavepointCase):
         self.assertEqual(amount, cutoff.total_cutoff_amount)
 
     def tests_1(self):
-        """ generate move, and test move lines grouping """
+        """generate move, and test move lines grouping"""
         # two invoices
         amount = self._days("04-01", "06-30")
         self._create_invoice("01-15", amount, start_date="04-01", end_date="06-30")
