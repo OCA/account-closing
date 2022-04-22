@@ -98,7 +98,9 @@ class AccountCutoff(models.Model):
         product = order_line.product_id
         product_uom = product.uom_id
         moves = order_line.move_ids
-        ilines = order_line.invoice_lines
+        ilines = order_line.invoice_lines.filtered(
+            lambda r: r.move_id.state == "posted"
+        )
         oline_dict[order_line] = {
             "precut_delivered_qty": 0.0,  # in product_uom
             "precut_invoiced_qty": 0.0,  # in product_uom
