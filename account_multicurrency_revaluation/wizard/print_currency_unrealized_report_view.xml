@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="currency_urealized_report_launcher_wizard" model="ir.ui.view">
+        <field name="name">Currency Revaluation Report</field>
+        <field name="model">unrealized.report.printer</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form name="Print Currency Revaluation Report">
+                <group>
+                    <field name="account_ids" />
+                </group>
+                <footer>
+                    <button
+                        name="print_report"
+                        type="object"
+                        string="_Print"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="currency_urealized_report_action_wizard" model="ir.actions.act_window">
+        <field name="name">Print Currency Revaluation Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">unrealized.report.printer</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="currency_urealized_report_launcher_wizard" />
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        name="Closing Entries"
+        action="currency_urealized_report_action_wizard"
+        parent="account.menu_finance_reports"
+        id="currency_unrealized_report_report_closing_entries_menu"
+        groups="group_revaluation_additional"
+    />
+    <menuitem
+        name="Currency Revaluation Report"
+        action="currency_urealized_report_action_wizard"
+        parent="account_multicurrency_revaluation.currency_unrealized_report_report_closing_entries_menu"
+        id="currency_unrealized_report_wizard_menu"
+        groups="group_revaluation_additional"
+    />
+</odoo>
