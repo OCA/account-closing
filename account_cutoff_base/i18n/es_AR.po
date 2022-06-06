@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
 "PO-Revision-Date: 2020-07-15 21:19+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "<span class=\"o_stat_text\">Líneas en Pantalla Completa</span>"
 
 #. module: account_cutoff_base
 #: sql_constraint:account.cutoff:0
-#: code:addons/account_cutoff_base/models/account_cutoff.py:137
+#: code:addons/account_cutoff_base/models/account_cutoff.py:144
 #, python-format
 msgid "A cutoff of the same type already exists with this cut-off date !"
 msgstr "¡Ya existe un corte del mismo tipo con esta fecha de corte!"
@@ -442,6 +442,17 @@ msgid "Partner"
 msgstr "Socio"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
+msgid "Partner on Move Line"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
+msgid "Partner on Move Line by Default"
+msgstr ""
+
+#. module: account_cutoff_base
 #: selection:account.cutoff.mapping,cutoff_type:0
 #: code:addons/account_cutoff_base/models/account_cutoff.py:31
 #, python-format
@@ -527,7 +538,7 @@ msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:239
+#: code:addons/account_cutoff_base/models/account_cutoff.py:249
 #, python-format
 msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
@@ -537,7 +548,7 @@ msgstr ""
 "esta función."
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:243
+#: code:addons/account_cutoff_base/models/account_cutoff.py:253
 #, python-format
 msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
@@ -596,7 +607,7 @@ msgid "Website communication history"
 msgstr "Historial de comunicación por Sitio Web"
 
 #. module: account_cutoff_base
-#: code:addons/account_cutoff_base/models/account_cutoff.py:278
+#: code:addons/account_cutoff_base/models/account_cutoff.py:288
 #, python-format
 msgid "You cannot delete cutoff records that are not in draft state."
 msgstr "No puede borrar registros de corte que no estén en estado borrador."
