@@ -7,10 +7,10 @@
 import time
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestCutoffPrepaid(SavepointCase):
+class TestCutoffPrepaid(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
