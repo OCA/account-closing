@@ -29,9 +29,8 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
         """
         if self.account_ids:
             docids = self.account_ids.ids
-            # in Odoo 11 we no longer call render, but report_action
-            # config should be false as otherwise it will call configuration
-            # wizard that works weirdly
+            # report_action config should be false, otherwise it will call
+            # configuration wizard that works weirdly
             return self.env.ref(
                 "account_multicurrency_revaluation.action_report_currency_unrealized"
             ).report_action(docids, config=False)

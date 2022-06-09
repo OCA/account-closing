@@ -9,7 +9,7 @@ from odoo import exceptions, fields
 from odoo.tests import common
 
 
-class TestCurrencyRevaluation(common.SavepointCase):
+class TestCurrencyRevaluation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -18,6 +18,12 @@ class TestCurrencyRevaluation(common.SavepointCase):
         cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
         cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
         cls.env.user.company_id = cls.company
+        cls.company.account_journal_payment_debit_account_id = cls.env.ref(
+            "account_multicurrency_revaluation.demo_acc_liquidity_eur"
+        ).id
+        cls.company.account_journal_payment_credit_account_id = cls.env.ref(
+            "account_multicurrency_revaluation.demo_acc_liquidity_eur"
+        ).id
         cls.reval_journal = cls.env.ref(
             "account_multicurrency_revaluation.reval_journal"
         )
@@ -271,9 +277,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
             }
         )
         eur_bank.default_account_id.currency_revaluation = True
-        payment_method = self.env.ref(
-            "account_multicurrency_revaluation.account_payment_method_manual_in"
-        )
+        payment_method = self.env.ref("account.account_payment_method_manual_in")
 
         # Register partial payment
         payment = self.env["account.payment"].create(
