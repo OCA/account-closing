@@ -5,10 +5,6 @@ The user that can access to the edition of the 'Provision B.S loss account' and
 'Provision P&L accounts' need to be in the security group
 'Additional provisioning entries posting'.
 
-You also need to tick the box "Allow multi currencies" in the menu Settings/
-Configuration/ Invoicing to be able to select the currency on the account you
-want to revaluate.
-
 Please, find below advised account settings for 3 countries:
 
 For UK (Revaluation)

@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestAccountAccount(common.SavepointCase):
+class TestAccountAccount(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -15,7 +15,6 @@ class TestAccountAccount(common.SavepointCase):
         )
         cls.account_type_liquidity = cls.env.ref("account.data_account_type_liquidity")
         cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
-
         cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
         cls.env.user.company_id = cls.company
 
