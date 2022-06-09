@@ -10,7 +10,6 @@
                 Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
                 If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
                 For other account types : 1 entry will be generated per account/currency.
-                You can check details of calculation thanks to the Print Currency unrealized report in the generic reports.
                 </div>
 
                 <group>
