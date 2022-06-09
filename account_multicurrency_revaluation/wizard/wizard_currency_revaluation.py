@@ -23,7 +23,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         return "%(currency)s %(account)s %(rate)s currency revaluation"
 
     revaluation_date = fields.Date(
-        string="Revaluation Date",
         required=True,
         default=lambda self: self._get_default_revaluation_date(),
     )
