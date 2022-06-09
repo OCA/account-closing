@@ -23,7 +23,7 @@ Multicurrency revaluation
     :target: https://runbot.odoo-community.org/runbot/89/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module was written to extend the functionality of the accounting module to
 support the multicurrency and to allow you to generate automatically
@@ -43,10 +43,6 @@ you can set the way you want to generate revaluation journal entries.
 The user that can access to the edition of the 'Provision B.S loss account' and
 'Provision P&L accounts' need to be in the security group
 'Additional provisioning entries posting'.
-
-You also need to tick the box "Allow multi currencies" in the menu Settings/
-Configuration/ Invoicing to be able to select the currency on the account you
-want to revaluate.
 
 Please, find below advised account settings for 3 countries:
 
@@ -92,8 +88,6 @@ To use this module, you need to:
 * Open the wizard 'Invoicing > Adviser > Currency Revaluation' to generate the
   revaluation journal entries. It adjusts account balance having
   *Allow currency revaluation* checked.
-* Open the report through the following menu:
-  Accounting > Reporting > Legal Reports > Accounting Reports > Print Currency Unrealized
 
 Bug Tracker
 ===========

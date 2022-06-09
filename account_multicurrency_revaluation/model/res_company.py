@@ -49,7 +49,6 @@ class ResCompany(models.Model):
         domain=[("type", "=", "general")],
     )
     reversable_revaluations = fields.Boolean(
-        string="Reversable Revaluations",
         help="Revaluations entries will be created " 'as "To Be Reversed".',
         default=True,
     )

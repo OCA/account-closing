@@ -17,6 +17,14 @@
         <field name="partner_id" ref="res_partner_reval" />
         <field name="name">Revaluation Company</field>
     </record>
+    <record id="demo_acc_liquidity_eur" model="account.account">
+        <field name="name">Account Liquidity EURO</field>
+        <field name="code">accliq_eur</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity" />
+        <field name="currency_revaluation">True</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
     <record id="acc_reval_loss" model="account.account">
         <field name="name">Reval Loss</field>
         <field name="code">XR001</field>
@@ -107,8 +115,6 @@
         <field name="code">BJ USD</field>
         <field name="type">bank</field>
         <field name="currency_id" ref="base.USD" />
-        <field name="payment_debit_account_id" ref="demo_acc_liquidity_usd" />
-        <field name="payment_credit_account_id" ref="demo_acc_liquidity_usd" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="bank_journal_gbp" model="account.journal">
@@ -116,8 +122,6 @@
         <field name="code">BJ GBP</field>
         <field name="type">bank</field>
         <field name="currency_id" ref="base.GBP" />
-        <field name="payment_debit_account_id" ref="demo_acc_liquidity_gbp" />
-        <field name="payment_credit_account_id" ref="demo_acc_liquidity_gbp" />
         <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="sales_journal" model="account.journal">
@@ -125,10 +129,5 @@
         <field name="code">SJ</field>
         <field name="type">sale</field>
         <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="account_payment_method_manual_in" model="account.payment.method">
-        <field name="name">Manual</field>
-        <field name="code">manual</field>
-        <field name="payment_type">inbound</field>
     </record>
 </odoo>
