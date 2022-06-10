@@ -28,7 +28,7 @@ class AccountCutoff(models.Model):
         )
         mapped_data = {x["parent_id"][0]: x["cutoff_amount"] for x in rg_res}
         for cutoff in self:
-            cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
+            cutoff.total_cutoff_amount += mapped_data.get(cutoff.id, 0)
 
     @property
     def cutoff_type_label_map(self):
