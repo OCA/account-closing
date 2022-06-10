@@ -189,7 +189,7 @@ class AccountCutoffLine(models.Model):
     move_date = fields.Date(related="move_line_id.move_id.date", string="Entry Date")
     start_date = fields.Date(readonly=True)
     end_date = fields.Date(readonly=True)
-    total_days = fields.Integer("Total Days", readonly=True)
+    total_days = fields.Integer(readonly=True)
     prepaid_days = fields.Integer(
         readonly=True,
         help="In regular mode, this is the number of days after the "

@@ -69,7 +69,7 @@ class TestCutoffPrepaid(TransactionCase):
                 "date": self._date(date),
                 "partner_id": self.env.ref("base.res_partner_2").id,
                 "journal_id": self.purchase_journal.id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "invoice_line_ids": [
                     (
                         0,
