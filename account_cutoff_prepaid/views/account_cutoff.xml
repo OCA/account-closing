@@ -166,7 +166,7 @@
         <field name="res_model">account.cutoff</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('cutoff_type', '=', 'prepaid_expense')]</field>
-        <field name="context">{'cutoff_type': 'prepaid_expense'}</field>
+        <field name="context">{'default_cutoff_type': 'prepaid_expense'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start preparing a new prepaid expense.
@@ -187,7 +187,7 @@
         <field name="res_model">account.cutoff</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('cutoff_type', '=', 'prepaid_revenue')]</field>
-        <field name="context">{'cutoff_type': 'prepaid_revenue'}</field>
+        <field name="context">{'default_cutoff_type': 'prepaid_revenue'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start preparing a new prepaid revenue.

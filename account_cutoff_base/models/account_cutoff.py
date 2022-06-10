@@ -353,7 +353,8 @@ class AccountCutoff(models.Model):
         """return a dict with:
         key = ID of account,
         value = ID of cutoff_account"""
-        self.ensure_one()
+        for record in self:
+            record.ensure_one()
         mappings = self.env["account.cutoff.mapping"].search(
             [
                 ("company_id", "=", self.company_id.id),

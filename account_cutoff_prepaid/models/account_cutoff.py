@@ -138,7 +138,7 @@ class AccountCutoff(models.Model):
             return res
         aml_obj = self.env["account.move.line"]
         line_obj = self.env["account.cutoff.line"]
-        mapping_obj = self.env["account.cutoff.mapping"]
+        mapping_obj = self.env["account.cutoff"]
         if not self.source_journal_ids:
             raise UserError(_("You should set at least one Source Journal."))
         cutoff_date_dt = self.cutoff_date
@@ -162,7 +162,7 @@ class AccountCutoff(models.Model):
         # Search for account move lines in the source journals
         amls = aml_obj.search(domain)
         # Create mapping dict
-        mapping = mapping_obj._get_mapping_dict(self.company_id.id, self.cutoff_type)
+        mapping = mapping_obj._get_mapping_dict()
 
         # Loop on selected account move lines to create the cutoff lines
         for aml in amls:
