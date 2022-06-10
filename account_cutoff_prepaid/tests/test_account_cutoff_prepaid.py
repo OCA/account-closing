@@ -86,7 +86,7 @@ class TestCutoffPrepaid(TransactionCase):
                 ],
             }
         )
-        invoice.post()
+        invoice.action_post()
         self.assertEqual(amount, invoice.amount_untaxed)
         return invoice
 
