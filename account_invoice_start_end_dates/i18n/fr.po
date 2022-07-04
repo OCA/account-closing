@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2018-01-27 03:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2022-07-04 15:05+0000\n"
+"Last-Translator: Grégory Moka Tourisme <gregory@mokatourisme.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
@@ -43,7 +44,6 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
-#, fuzzy
 msgid "Journal Entries"
 msgstr "Écritures comptables"
 
@@ -111,7 +111,7 @@ msgstr ""
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 #: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unité(s)"
 
 #~ msgid "Invoice"
 #~ msgstr "Facture"
