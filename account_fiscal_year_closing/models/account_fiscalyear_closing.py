@@ -551,6 +551,19 @@ class AccountFiscalyearClosingMapping(models.Model):
         string="Destination account",
     )
 
+    @api.model
+    def create(self, vals):
+        if "dest_account_id" in vals:
+            vals["dest_account_id"] = vals["dest_account_id"][0]
+        res = super(AccountFiscalyearClosingMapping, self).create(vals)
+        return res
+
+    def write(self, vals):
+        if "dest_account_id" in vals:
+            vals["dest_account_id"] = vals["dest_account_id"][0]
+        res = super(AccountFiscalyearClosingMapping, self).write(vals)
+        return res
+
     def dest_move_line_prepare(self, dest, balance, partner_id=False):
         self.ensure_one()
         move_line = {}
