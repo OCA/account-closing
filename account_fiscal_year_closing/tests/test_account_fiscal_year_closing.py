@@ -5,10 +5,12 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
+from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install")
 class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
@@ -296,7 +298,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                                     0,
                                     {
                                         "src_accounts": w,
-                                        "dest_account_id": self.a_pf_closing.id,
+                                        "dest_account_id": [self.a_pf_closing.id],
                                     },
                                 )
                                 for w in inc_accounts + exp_accounts
@@ -321,7 +323,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                                     {
                                         "name": "profit & loss",
                                         "src_accounts": "pf_acc",
-                                        "dest_account_id": self.a_bal_closing.id,
+                                        "dest_account_id": [self.a_bal_closing.id],
                                     },
                                 ),
                             ],
