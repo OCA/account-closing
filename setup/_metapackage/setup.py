@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-account_cutoff_base>=15.0dev,<15.1dev',
         'odoo-addon-account_cutoff_start_end_dates>=15.0dev,<15.1dev',
         'odoo-addon-account_invoice_start_end_dates>=15.0dev,<15.1dev',
+        'odoo-addon-account_multicurrency_revaluation>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
