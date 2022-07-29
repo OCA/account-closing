@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -236,12 +236,6 @@ msgid "Currency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__display_name
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move__display_name
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report__display_name
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__display_name
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__display_name
 msgid "Display Name"
@@ -258,12 +252,6 @@ msgid "Gain(+)/Loss(-) YTD"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__id
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move__id
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report__id
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__id
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__id
 msgid "ID"
@@ -285,12 +273,6 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account____last_update
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move____last_update
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_report_account_multicurrency_revaluation_curr_unrealized_report____last_update
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company____last_update
-#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer____last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation____last_update
 msgid "Last Modified on"
@@ -306,11 +288,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__write_date
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: account_multicurrency_revaluation
-#: model:account.payment.method,name:account_multicurrency_revaluation.account_payment_method_manual_in
-msgid "Manual"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
@@ -353,8 +330,7 @@ msgstr ""
 msgid ""
 "Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.\n"
 "                If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.\n"
-"                For other account types : 1 entry will be generated per account/currency.\n"
-"                You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
+"                For other account types : 1 entry will be generated per account/currency."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
