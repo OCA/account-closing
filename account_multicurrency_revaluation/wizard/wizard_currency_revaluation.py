@@ -16,7 +16,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
     @api.model
     def _get_default_journal_id(self):
-        return self.env.user.company_id.currency_reval_journal_id
+        return self.env.company.currency_reval_journal_id
 
     @api.model
     def _get_default_label(self):
@@ -149,7 +149,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     ):
         if partner_id is None:
             partner_id = False
-        company = form.journal_id.company_id or self.env.user.company_id
+        company = form.journal_id.company_id or self.env.company
         created_ids = []
 
         amount_vs_zero = currency.compare_amounts(amount, 0.0)
@@ -247,7 +247,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         Account = self.env["account.account"]
         Currency = self.env["res.currency"]
 
-        company = self.journal_id.company_id or self.env.user.company_id
+        company = self.journal_id.company_id or self.env.company
         if not self._validate_company_revaluation_configuration(company):
             raise exceptions.UserError(
                 _(

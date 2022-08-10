@@ -16,7 +16,7 @@ class TestAccountAccount(common.TransactionCase):
         cls.account_type_liquidity = cls.env.ref("account.data_account_type_liquidity")
         cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
         cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
-        cls.env.user.company_id = cls.company
+        cls.env.company = cls.company
 
     def test_currency_revaluation_field(self):
         with common.Form(self.AccountAccount, view="account.view_account_form") as form:

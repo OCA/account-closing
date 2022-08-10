@@ -53,6 +53,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
         cls.partner.company_id = cls.company.id
         cls.partner.property_account_payable_id = payable_acc.id
         cls.partner.property_account_receivable_id = cls.receivable_acc.id
+        cls.env.company = cls.company
 
     def test_defaults(self):
         # TODO: This causes that the environment to be reset and screw up tests,
