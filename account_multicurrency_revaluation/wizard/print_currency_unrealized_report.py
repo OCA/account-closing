@@ -20,7 +20,10 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
 
     def _default_account_ids(self):
         account_model = self.env["account.account"]
-        account_ids = account_model.search([("currency_revaluation", "=", True)]).ids
+        company = self.env.company
+        account_ids = account_model.search(
+            [("currency_revaluation", "=", True), ("company_id", "=", company.id)]
+        ).ids
         return [(6, 0, account_ids)]
 
     def print_report(self):

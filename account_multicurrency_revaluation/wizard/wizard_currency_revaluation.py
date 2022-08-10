@@ -266,6 +266,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             [
                 ("user_type_id.include_initial_balance", "=", "True"),
                 ("currency_revaluation", "=", True),
+                ("company_id", "=", company.id),
             ]
         )
 
