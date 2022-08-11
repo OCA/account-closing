@@ -149,5 +149,5 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     revaluation_to_reverse = fields.Boolean(
-        string="revaluation to reverse", default=False
+        string="Revaluation to reverse", default=False
     )
