@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2022-08-24 12:07+0000\n"
-"Last-Translator: Alessandro Camilli <alessandrocamilli@openforce.it>\n"
+"PO-Revision-Date: 2022-08-24 15:07+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -32,11 +32,15 @@ msgid ""
 "operation will be to remove any existing balance on the source accounts with "
 "an equivalent counterpart in the same account."
 msgstr ""
+"Modello del codice per il conto di destinazione mappato, viene presa in "
+"considerazione solo la prima corrispondenza. Se il campo non è compilato, "
+"l'operazione eseguita sarà la rimozione di qualsiasi saldo esistente nei "
+"conti sorgente con la controparte equivalente nel conto stesso."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__src_accounts
 msgid "Account code pattern for the mapping source accounts"
-msgstr "Schema del codice del conto per la mappatura dei conti sorgente"
+msgstr "Modello del codice conto per la mappatura dei conti sorgente"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
