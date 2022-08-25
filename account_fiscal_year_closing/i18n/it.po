@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2022-08-24 15:07+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2022-08-25 10:07+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -45,32 +45,32 @@ msgstr "Modello del codice conto per la mappatura dei conti sorgente"
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 msgid "Account fiscalyear closing abstract"
-msgstr ""
+msgstr "account.fiscalyear.closing.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_abstract
 msgid "Account fiscalyear closing config abstract"
-msgstr ""
+msgstr "account.fiscalyear.closing.config.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_abstract
 msgid "Account fiscalyear closing mapping abstract"
-msgstr ""
+msgstr "account.fiscalyear.closing.mapping.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_abstract
 msgid "Account fiscalyear closing type abstract"
-msgstr ""
+msgstr "account.fiscalyear.closing.type.abstract"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move
 msgid "Account fiscalyear closing unbalanced move"
-msgstr ""
+msgstr "account.fiscalyear.closing.unbalanced.move"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move_line
 msgid "Account fiscalyear closing unbalanced move line"
-msgstr ""
+msgstr "account.fiscalyear.closing.unbalanced.move.line"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__mapping_ids
@@ -664,7 +664,7 @@ msgstr "Stato"
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__stored_template_id
 msgid "Stored closing template"
-msgstr ""
+msgstr "Modello chiusura conservato"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template_id
