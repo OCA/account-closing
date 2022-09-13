@@ -98,7 +98,6 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.reversable_revaluations",
         string="Reversable Revaluations",
         help="Revaluations entries will be created " 'as "To Be Reversed".',
-        default=True,
     )
     auto_post_entries = fields.Boolean(
         related="company_id.auto_post_entries",
