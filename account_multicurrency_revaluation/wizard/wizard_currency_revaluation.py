@@ -1,5 +1,6 @@
 # Copyright 2012-2018 Camptocamp SA
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
@@ -98,7 +99,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         )
 
         if analytic_debit_acc_id:
-            credit_line.update({"analytic_account_id": analytic_debit_acc_id})
+            debit_line.update({"analytic_account_id": analytic_debit_acc_id})
 
         credit_line.update(
             {"debit": 0.0, "credit": amount, "account_id": credit_account_id}
@@ -275,7 +276,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         # - deferral method of account type is not None
         account_ids = Account.search(
             [
-                ("user_type_id.include_initial_balance", "=", "True"),
+                ("user_type_id.include_initial_balance", "=", True),
                 ("currency_revaluation", "=", True),
                 ("company_id", "=", company.id),
             ]
@@ -300,7 +301,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 not account.currency_id
                 or account.currency_id == account.company_id.currency_id
             ):
-                # NOTE: There's no point of revaluating anying on bank account
+                # NOTE: There's no point of revaluating anything on bank account
                 # if bank account currency matches company currency.
                 continue
 
@@ -360,7 +361,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         if created_ids:
             return {
                 "domain": [("id", "in", created_ids)],
-                "name": _("Created revaluation lines"),
+                "name": _("Created Revaluation Lines"),
                 "view_mode": "tree,form",
                 "auto_search": True,
                 "res_model": "account.move.line",
