@@ -52,3 +52,10 @@ class ResCompany(models.Model):
         help="Revaluations entries will be created " 'as "To Be Reversed".',
         default=True,
     )
+    auto_post_entries = fields.Boolean(
+        string="Auto Post Created Entries",
+        help="If marked, the entries created in the process will be"
+        "posted automatically.",
+        default=True,
+        readonly=False,
+    )
