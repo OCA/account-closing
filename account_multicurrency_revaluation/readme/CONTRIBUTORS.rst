@@ -18,3 +18,6 @@
 
   * Pedro M. Baeza
   * Ernesto Tejeda
+* `ForgeFlow <https://www.forgeflow.com>`
+  * Jordi Masvidal
+  * Guillem Casassas
