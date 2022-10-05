@@ -33,6 +33,9 @@
                                 <div class="act_as_row labels">
                                     <div class="act_as_cell first_column">Partner</div>
                                     <div
+                                        class="act_as_cell first_column"
+                                    >Revaluation Date</div>
+                                    <div
                                         class="act_as_cell first_column amount"
                                         style="width: 100px;"
                                     >Curr. Balance YTD</div>
@@ -63,6 +66,9 @@
                                     <div class="act_as_cell">
                                         <span t-esc="line.get('name') or '--'" />
                                     </div>
+                                    <div class="act_as_cell">
+                                        <span t-esc="line.get('date')" />
+                                    </div>
                                     <div
                                         class="act_as_cell amount"
                                         style="width: 100px;"
@@ -81,6 +87,7 @@
                                     >
                                         <span
                                             t-esc="line.get('gl_currency_rate') or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 3}"
                                         />
                                     </div>
                                     <div
@@ -119,6 +126,7 @@
                                 <div class="act_as_cell">
                                     <b>TOTAL</b>
                                 </div>
+                                <div class="act_as_cell" />
                                 <div class="act_as_cell" />
                                 <div class="act_as_cell" />
                                 <div class="act_as_cell" />
