@@ -102,7 +102,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
             credit_line.update({"analytic_account_id": analytic_credit_acc_id})
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
-        created_move.post()
+        if self.journal_id.company_id.auto_post_entries:
+            created_move.post()
         return [x.id for x in created_move.line_ids]
 
     def _compute_unrealized_currency_gl(self, currency_id, balances):
