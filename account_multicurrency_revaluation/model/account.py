@@ -1,8 +1,10 @@
 # Copyright 2012-2018 Camptocamp SA
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class AccountAccountLine(models.Model):
@@ -18,7 +20,7 @@ class AccountAccount(models.Model):
     _inherit = "account.account"
 
     currency_revaluation = fields.Boolean(
-        string="Allow currency revaluation",
+        string="Allow Currency Revaluation",
     )
 
     _sql_mapping = {
@@ -36,10 +38,33 @@ class AccountAccount(models.Model):
             [
                 ("user_type_id.id", "in", self._get_revaluation_account_types()),
                 ("currency_revaluation", "=", False),
+                ("user_type_id.include_initial_balance", "=", True),
             ]
         )
         accounts.write({"currency_revaluation": True})
         return res
+
+    def write(self, vals):
+        if (
+            "currency_revaluation" in vals
+            and vals.get("currency_revaluation", False)
+            and any(
+                [not x for x in self.mapped("user_type_id.include_initial_balance")]
+            )
+        ):
+            raise UserError(
+                _(
+                    "There is an account that you are editing not having the Bring "
+                    "Balance Forward set, the currency revaluation cannot be applied "
+                    "on these accounts: \n\t - %s"
+                )
+                % "\n\t - ".join(
+                    self.filtered(
+                        lambda x: not x.user_type_id.include_initial_balance
+                    ).mapped("name")
+                )
+            )
+        return super(AccountAccount, self).write(vals)
 
     def _get_revaluation_account_types(self):
         return [
