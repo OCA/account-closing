@@ -14,6 +14,7 @@
 
                 <group>
                     <group>
+                        <field name="start_date" />
                         <field name="revaluation_date" />
                         <field name="journal_id" />
                     </group>
@@ -45,7 +46,7 @@
         id="action_view_account_currency_revaluation_wizard"
         model="ir.actions.act_window"
     >
-        <field name="name">Currency revaluation</field>
+        <field name="name">Currency Revaluation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.currency.revaluation</field>
         <field name="view_mode">form</field>

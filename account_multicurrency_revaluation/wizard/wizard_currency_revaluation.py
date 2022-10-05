@@ -15,6 +15,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
         return fields.Date.today()
 
     @api.model
+    def _get_default_start_revaluation_date(self):
+        """
+        The default date will be the first date of the month as the most typical case
+        will be calculating for the lines within a month.
+        """
+        return fields.Date.today().replace(day=1)
+
+    @api.model
     def _get_default_journal_id(self):
         return self.env.company.currency_reval_journal_id
 
@@ -25,6 +33,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
     revaluation_date = fields.Date(
         required=True,
         default=lambda self: self._get_default_revaluation_date(),
+    )
+    start_date = fields.Date(
+        string="Start Revaluation Period",
+        default=lambda self: self._get_default_start_revaluation_date(),
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -278,7 +290,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 )
             )
 
-        revaluations = account_ids.compute_revaluations(self.revaluation_date)
+        revaluations = account_ids.compute_revaluations(
+            self.start_date, self.revaluation_date
+        )
+
         for account_id, by_account in revaluations.items():
             account = Account.browse(account_id)
             if account.internal_type == "liquidity" and (
