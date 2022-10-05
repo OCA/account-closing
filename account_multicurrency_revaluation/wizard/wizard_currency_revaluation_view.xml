@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
                 <label
-                    for=""
+                    for="info"
                     string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
                     If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
                     For other account types : 1 entry will be generated per account/currency.
@@ -15,6 +15,7 @@
                 />
                 <group>
                     <group>
+                        <field name="start_date" />
                         <field name="revaluation_date" />
                         <field name="journal_id" />
                     </group>
@@ -53,7 +54,7 @@
         id="action_view_account_currency_revaluation_wizard"
         model="ir.actions.act_window"
     >
-        <field name="name">Currency revaluation</field>
+        <field name="name">Currency Revaluation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.currency.revaluation</field>
         <field name="view_mode">form</field>
