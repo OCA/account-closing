@@ -1,4 +1,5 @@
 # Copyright 2012-2018 Camptocamp SA
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -11,14 +12,22 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.revaluation_loss_account_id",
         comodel_name="account.account",
         string="Revaluation loss account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     revaluation_gain_account_id = fields.Many2one(
         related="company_id.revaluation_gain_account_id",
         comodel_name="account.account",
         string="Revaluation gain account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     revaluation_analytic_account_id = fields.Many2one(
@@ -31,28 +40,44 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.provision_bs_loss_account_id",
         comodel_name="account.account",
         string="Provision B.S. loss account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     provision_bs_gain_account_id = fields.Many2one(
         related="company_id.provision_bs_gain_account_id",
         comodel_name="account.account",
         string="Provision B.S. gain account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     provision_pl_loss_account_id = fields.Many2one(
         related="company_id.provision_pl_loss_account_id",
         comodel_name="account.account",
         string="Provision P&L loss account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     provision_pl_gain_account_id = fields.Many2one(
         related="company_id.provision_pl_gain_account_id",
         comodel_name="account.account",
         string="Provision P&L gain account",
-        domain=[("internal_type", "=", "other")],
+        domain=lambda self: [
+            ("company_id", "in", self.env.company.id),
+            ("internal_type", "=", "other"),
+            ("deprecated", "=", False),
+        ],
         readonly=False,
     )
     provision_pl_analytic_account_id = fields.Many2one(
