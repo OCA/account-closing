@@ -1,4 +1,5 @@
 # Copyright 2012-2018 Camptocamp SA
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import api, models
@@ -30,32 +31,52 @@ class ShellAccount(object):
     def __contains__(self, key):
         return hasattr(self, key)
 
-    def get_lines(self):
+    def get_lines(self, start_date, end_date, only_include_posted_entries):
         """Get all line account move line that are need on report for current
         account.
         """
-        sql = """SELECT res_partner.name,
-                   account_move_line.date,
-                   account_move_line.gl_foreign_balance,
-                   account_move_line.gl_currency_rate,
-                   account_move_line.gl_revaluated_balance,
-                   account_move_line.gl_balance,
-                   account_move_line.gl_revaluated_balance -
-                   account_move_line.gl_balance as gl_ytd_balance,
-                   res_currency.name as curr_name
-                 FROM account_move_line
-                   LEFT join res_partner on
-                     (account_move_line.partner_id = res_partner.id)
-                   LEFT join account_move on
-                     (account_move_line.move_id = account_move.id)
-                   LEFT join res_currency on
-                     (account_move_line.currency_id = res_currency.id)
-                 WHERE account_move_line.account_id = %s
-                   AND account_move_line.gl_balance is not null
-                 ORDER BY res_partner.name,
-                   account_move_line.gl_foreign_balance,
-                   account_move_line.date"""
-        self.cursor.execute(sql, [self.account_id])
+        sql = (
+            """
+              SELECT rp.name,
+              aml.date,
+              aml.gl_foreign_balance,
+              aml.gl_currency_rate,
+              aml.gl_revaluated_balance,
+              aml.gl_balance,
+              aml.gl_revaluated_balance -
+              aml.gl_balance as gl_ytd_balance,
+              rc.name as curr_name
+              FROM account_move_line aml
+              LEFT JOIN res_partner rp ON
+                (aml.partner_id = rp.id)
+              LEFT JOIN account_move am ON
+                (aml.move_id = am.id)
+              LEFT JOIN res_currency rc ON
+                (aml.currency_id = rc.id)
+              WHERE aml.account_id = %s
+                AND aml.gl_balance IS NOT NULL
+                AND aml.gl_balance != 0
+                AND am.state IN %s
+                """
+            + (("AND aml.date >= %s") if start_date else "")
+            + """
+                """
+            + (("AND aml.date <= %s") if end_date else "")
+            + """
+              ORDER BY rp.name,
+                aml.gl_foreign_balance,
+                aml.date ASC
+              """
+        )
+        params = [self.account_id]
+        states = ["posted"]
+        states += not only_include_posted_entries and ["draft"] or []
+        params.append(tuple(states))
+        if start_date:
+            params.append(start_date)
+        if end_date:
+            params.append(end_date)
+        self.cursor.execute(sql, params=params)
         self.ordered_lines = self.cursor.dictfetchall()
         return self.ordered_lines
 
@@ -76,12 +97,15 @@ class CurrencyUnrealizedReport(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         shell_accounts = {}
+        start_date = data.get("start_date", False)
+        end_date = data.get("end_date", False)
+        only_include_posted_entries = data.get("only_include_posted_entries", False)
+        account_ids = data.get("account_ids", False)
         docs = self.env["account.account"]
-        data = data if data is not None else {}
-        accounts = docs.browse(docids)
+        accounts = docs.browse(account_ids)
         for account in accounts:
             acc = ShellAccount(account)
-            acc.get_lines()
+            acc.get_lines(start_date, end_date, only_include_posted_entries)
             if acc.ordered_lines:
                 docs |= account
                 shell_accounts[account.id] = acc

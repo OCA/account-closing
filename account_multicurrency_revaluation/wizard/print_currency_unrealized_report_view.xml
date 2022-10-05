@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
             <form name="Print Currency Revaluation Report">
                 <group>
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="only_include_posted_entries" />
+                </group>
+                <group>
                     <field name="account_ids" />
                 </group>
                 <footer>
