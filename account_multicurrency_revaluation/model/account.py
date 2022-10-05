@@ -55,7 +55,7 @@ class AccountAccount(models.Model):
             if rec.user_type_id.id in revaluation_accounts:
                 rec.currency_revaluation = True
 
-    def _revaluation_query(self, revaluation_date):
+    def _revaluation_query(self, start_date, revaluation_date):
         tables, where_clause, where_clause_params = self.env[
             "account.move.line"
         ]._query_get()
@@ -95,6 +95,9 @@ WITH amount AS (
             aml.balance < 0
             AND aprc.debit_move_id = amlcf.id
             AND amlcf.date < %s
+            """
+            + (("AND amlcf.date >= %s") if start_date else "")
+            + """
         )
     LEFT JOIN account_partial_reconcile aprd
         ON (aml.balance > 0 AND aml.id = aprd.debit_move_id)
@@ -103,10 +106,16 @@ WITH amount AS (
             aml.balance > 0
             AND aprd.credit_move_id = amldf.id
             AND amldf.date < %s
+            """
+            + (("AND amldf.date >= %s") if start_date else "")
+            + """
         )
     WHERE
         aml.account_id IN %s
         AND aml.date <= %s
+        """
+            + (("AND aml.date >= %s") if start_date else "")
+            + """
         AND aml.currency_id IS NOT NULL
         """
             + where_clause
@@ -139,10 +148,16 @@ ORDER BY account_id, partner_id, currency_id"""
             revaluation_date,
             *where_clause_params,
         ]
+        if start_date:
+            # Insert values after all the revaluations date parameters
+            params.insert(1, start_date)
+            params.insert(3, start_date)
+            params.insert(6, start_date)
+
         return query, params
 
-    def compute_revaluations(self, revaluation_date):
-        query, params = self._revaluation_query(revaluation_date)
+    def compute_revaluations(self, start_date, revaluation_date):
+        query, params = self._revaluation_query(start_date, revaluation_date)
         self.env.cr.execute(query, params)
         lines = self.env.cr.dictfetchall()
 
