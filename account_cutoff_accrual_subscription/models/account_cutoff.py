@@ -59,15 +59,19 @@ class AccountCutoff(models.Model):
         }
         company_currency = self.company_currency_id
         prec = company_currency.rounding
+        common_domain = [("journal_id", "in", self.source_journal_ids.ids)]
+        if self.source_move_state == "posted":
+            common_domain.append(("parent_state", "=", "posted"))
+        else:
+            common_domain.append(("parent_state", "in", ("draft", "posted")))
         work = {}
         # Generate time intervals and compute existing expenses/revenue
         for sub in subs:
             months = periodicity2months[sub.periodicity]
             work[sub] = {"intervals": [], "sub": sub}
             end_date = self.cutoff_date
-            domain_base = [
+            domain_base = common_domain + [
                 ("company_id", "=", sub.company_id.id),
-                ("journal_id", "in", self.source_journal_ids.ids),
                 ("account_id", "=", sub.account_id.id),
                 ("analytic_account_id", "=", sub.analytic_account_id.id or False),
             ]
