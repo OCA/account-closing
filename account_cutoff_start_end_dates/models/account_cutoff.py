@@ -184,6 +184,10 @@ class AccountCutoff(models.Model):
             ("company_id", "=", self.company_id.id),
             ("balance", "!=", 0),
         ]
+        if self.source_move_state == "posted":
+            domain.append(("parent_state", "=", "posted"))
+        else:
+            domain.append(("parent_state", "in", ("draft", "posted")))
 
         if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
             if self.forecast:

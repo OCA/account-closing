@@ -94,6 +94,12 @@ class AccountCutoff(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
+    source_move_state = fields.Selection(
+        [("posted", "Posted Entries"), ("draft_posted", "Draft and Posted Entries")],
+        string="Source Entries",
+        required=True,
+        default="posted",
+    )
     move_id = fields.Many2one(
         "account.move",
         string="Cut-off Journal Entry",
@@ -302,6 +308,8 @@ class AccountCutoff(models.Model):
         to_provision = self._merge_provision_lines(provision_lines)
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
+        if self.company_id.post_cutoff_move:
+            move._post(soft=False)
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
