@@ -16,19 +16,14 @@ class TestInvoiceStartEndDates(TransactionCase):
         cls.move_model = cls.env["account.move"]
         cls.account_model = cls.env["account.account"]
         cls.journal_model = cls.env["account.journal"]
-        cls.account_revenue = cls.account_model.search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
-                )
-            ],
-            limit=1,
+        cls.account_revenue = cls.env["account.chart.template"]._get_demo_account(
+            "income",
+            "income",
+            cls.env.company,
         )
         cls.sale_journal = cls.journal_model.search([("type", "=", "sale")], limit=1)
         cls.maint_product = cls.env.ref(
-            "account_invoice_start_end_dates." "product_maintenance_contract_demo"
+            "account_invoice_start_end_dates.product_maintenance_contract_demo"
         )
 
     def _date(self, date):
