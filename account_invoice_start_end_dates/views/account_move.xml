@@ -45,7 +45,7 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='invoice_line_ids']/form//field[@name='analytic_tag_ids']"
+                expr="//field[@name='invoice_line_ids']/form//field[@name='quantity']"
                 position="before"
             >
                 <field name="must_have_dates" invisible="1" />
