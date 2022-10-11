@@ -7,6 +7,7 @@
     "category": "Finance",
     "summary": "Manage revaluation for multicurrency environment",
     "author": "Camptocamp, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/account-closing",
     "license": "AGPL-3",
     "depends": ["account"],
     "demo": ["demo/account_demo.xml", "demo/currency_demo.xml"],
