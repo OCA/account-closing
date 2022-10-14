@@ -397,6 +397,11 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__draft_posted
+msgid "Draft and Posted Entries"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
 msgstr "Chi sta seguendo"
@@ -607,6 +612,17 @@ msgid "Partner on Move Line by Default"
 msgstr "Partner nella riga movimento in modo predefinito"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__post_cutoff_move
+msgid "Post Cut-off Entry"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__posted
+msgid "Posted Entries"
+msgstr ""
+
+#. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_prepaid_expense_action
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__prepaid_expense
@@ -677,6 +693,11 @@ msgstr "Sequenza"
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
 msgstr "Origine"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__source_move_state
+msgid "Source Entries"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__state
