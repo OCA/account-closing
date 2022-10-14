@@ -142,7 +142,7 @@ msgid "Missing source journals."
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
-#: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
+#: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
 #, python-format
 msgid "Missing supplier on subscription '%s'."
 msgstr ""
