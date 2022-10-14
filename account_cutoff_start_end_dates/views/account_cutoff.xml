@@ -94,7 +94,7 @@
                     name="attrs"
                 >{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
             </button>
-            <field name="cutoff_date" position="after">
+            <field name="source_move_state" position="after">
                 <field
                     name="source_journal_ids"
                     widget="many2many_tags"
