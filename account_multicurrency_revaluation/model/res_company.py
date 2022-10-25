@@ -12,7 +12,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Revaluation loss account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
@@ -21,19 +21,21 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Revaluation gain account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
     )
     revaluation_analytic_account_id = fields.Many2one(
-        comodel_name="account.analytic.account", string="Revaluation Analytic account"
+        comodel_name="account.analytic.account",
+        string="Revaluation Analytic account",
+        domain=lambda self: [("company_id", "=", self.env.company.id)],
     )
     provision_bs_loss_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Provision B.S. loss account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
@@ -42,7 +44,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision B.S. gain account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
@@ -51,7 +53,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision P&L loss account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
@@ -60,7 +62,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision P&L gain account",
         domain=lambda self: [
-            ("company_id", "in", self.env.company.id),
+            ("company_id", "=", self.env.company.id),
             ("internal_type", "=", "other"),
             ("deprecated", "=", False),
         ],
@@ -74,7 +76,9 @@ class ResCompany(models.Model):
         domain=[("type", "=", "general")],
     )
     reversable_revaluations = fields.Boolean(
-        help="Revaluations entries will be created " 'as "To Be Reversed".',
+        string="Flag Revaluation Entries",
+        help="If marked, the entries created in the process will be flagged "
+        "to be able to filter them out later.",
         default=True,
     )
     auto_post_entries = fields.Boolean(
