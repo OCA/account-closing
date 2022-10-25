@@ -38,6 +38,16 @@
                         string="%%(rate)s : Value of rate applied during revaluation"
                     />
                 </group>
+                <label
+                    for="info-2"
+                    string="These are all the accounts that will be revaluated upon clicking the Validate button. Initialized as the Accounts having the flag Allow Currency Revaluation set, but then manually changed if needed."
+                />
+                <group>
+                    <field
+                        name="revaluation_account_ids"
+                        options="{'no_create':True, 'no_edit':True, 'no_open':True}"
+                    />
+                </group>
                 <footer>
                     <button
                         name="revaluate_currency"
