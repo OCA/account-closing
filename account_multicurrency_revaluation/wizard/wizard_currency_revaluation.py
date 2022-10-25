@@ -31,6 +31,18 @@ class WizardCurrencyRevaluation(models.TransientModel):
     def _get_default_label(self):
         return "%(currency)s %(account)s %(rate)s currency revaluation"
 
+    @api.model
+    @api.depends("journal_id")
+    def _get_default_revaluation_account_ids(self):
+        company = self.journal_id.company_id or self.env.company
+        return self.env["account.account"].search(
+            [
+                ("user_type_id.include_initial_balance", "=", True),
+                ("currency_revaluation", "=", True),
+                ("company_id", "=", company.id),
+            ]
+        )
+
     revaluation_date = fields.Date(
         required=True,
         default=lambda self: self._get_default_revaluation_date(),
@@ -55,6 +67,13 @@ class WizardCurrencyRevaluation(models.TransientModel):
         "%(rate)s keywords.",
         required=True,
         default=lambda self: self._get_default_label(),
+    )
+    revaluation_account_ids = fields.Many2many(
+        comodel_name="account.account",
+        string="Revaluation Accounts",
+        help="Accounts that will be revaluated",
+        required=True,
+        default=lambda self: self._get_default_revaluation_account_ids(),
     )
 
     def _create_move_and_lines(
@@ -271,16 +290,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 )
             )
 
-        # Search for accounts Balance Sheet to be revaluated
-        # on those criteria
-        # - deferral method of account type is not None
-        account_ids = Account.search(
-            [
-                ("user_type_id.include_initial_balance", "=", True),
-                ("currency_revaluation", "=", True),
-                ("company_id", "=", company.id),
-            ]
-        )
+        account_ids = self.revaluation_account_ids
 
         if not account_ids:
             raise exceptions.UserError(
