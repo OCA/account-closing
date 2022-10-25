@@ -97,6 +97,7 @@ WITH amount AS (
         aml.credit,
         aml.amount_currency
     FROM account_move_line aml
+    LEFT JOIN account_move am ON aml.move_id = am.id
     INNER JOIN account_account acc ON aml.account_id = acc.id
     INNER JOIN account_account_type aat ON acc.user_type_id = aat.id
     LEFT JOIN account_partial_reconcile aprc
@@ -106,9 +107,6 @@ WITH amount AS (
             aml.balance < 0
             AND aprc.debit_move_id = amlcf.id
             AND amlcf.date < %s
-            """
-            + (("AND amlcf.date >= %s") if start_date else "")
-            + """
         )
     LEFT JOIN account_partial_reconcile aprd
         ON (aml.balance > 0 AND aml.id = aprd.debit_move_id)
@@ -117,9 +115,6 @@ WITH amount AS (
             aml.balance > 0
             AND aprd.credit_move_id = amldf.id
             AND amldf.date < %s
-            """
-            + (("AND amldf.date >= %s") if start_date else "")
-            + """
         )
     WHERE
         aml.account_id IN %s
@@ -128,6 +123,7 @@ WITH amount AS (
             + (("AND aml.date >= %s") if start_date else "")
             + """
         AND aml.currency_id IS NOT NULL
+        AND am.state = 'posted'
     GROUP BY
         aat.type,
         aml.id
@@ -158,10 +154,8 @@ GROUP BY account_id, currency_id, partner_id
             *where_clause_params,
         ]
         if start_date:
-            # Insert values after all the revaluations date parameters
-            params.insert(1, start_date)
-            params.insert(3, start_date)
-            params.insert(6, start_date)
+            # Insert the value after the revaluation date parameter
+            params.insert(4, start_date)
 
         return query, params
 
