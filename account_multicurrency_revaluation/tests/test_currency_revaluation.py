@@ -93,10 +93,6 @@ class TestCurrencyRevaluation(common.SavepointCase):
             (self.today - timedelta(days=1)): 1.25,
         }
         self.create_rates(rates, usd_currency)
-        values = {
-            "reversable_revaluations": False,
-        }
-        self.company.write(values)
 
         invoice1 = self.create_invoice(
             self.today - timedelta(days=30), usd_currency, 1.0, 100.00
@@ -113,7 +109,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(sum(reval_move_lines.mapped("amount_currency")), 200.00)
 
         result = self.wizard_execute(self.today - timedelta(days=7))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
@@ -121,7 +117,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(sum(reval_move_lines.mapped("amount_currency")), 200.00)
 
         result = self.wizard_execute(self.today - timedelta(days=1))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
@@ -173,7 +169,6 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.create_rates(rates, eur_currency)
         self.create_rates({fields.Date.to_date("2001-01-01"): 1}, usd_currency)
         values = {
-            "reversable_revaluations": False,
             "currency_id": usd_currency.id,
         }
         self.company.write(values)
@@ -183,7 +178,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         )
         invoice.post()
         result = self.wizard_execute(self.today - timedelta(days=70))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
@@ -224,7 +219,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         payment.post()
 
         result = self.wizard_execute(self.today - timedelta(days=70))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
@@ -251,7 +246,6 @@ class TestCurrencyRevaluation(common.SavepointCase):
         }
         self.create_rates(rates, eur_currency)
         values = {
-            "reversable_revaluations": False,
             "currency_id": usd_currency.id,
         }
         self.company.write(values)
@@ -361,7 +355,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(sum(bank_account_lines.mapped("amount_currency")), 125.0)
 
         result = self.wizard_execute(self.today - timedelta(days=60))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
 
         new_bank_account_lines = self.env["account.move.line"].search(
             [("account_id", "=", bank_account.id)]
@@ -388,7 +382,6 @@ class TestCurrencyRevaluation(common.SavepointCase):
         }
         self.create_rates(rates, eur_currency)
         values = {
-            "reversable_revaluations": False,
             "currency_id": usd_currency.id,
         }
         self.company.write(values)
@@ -539,7 +532,6 @@ class TestCurrencyRevaluation(common.SavepointCase):
         }
         self.create_rates(rates, eur_currency)
         values = {
-            "reversable_revaluations": True,
             "currency_id": usd_currency.id,
         }
         self.company.write(values)
@@ -649,7 +641,7 @@ class TestCurrencyRevaluation(common.SavepointCase):
         self.assertEqual(sum(bank_account_lines.mapped("amount_currency")), 125.0)
 
         result = self.wizard_execute(self.today - timedelta(days=60))
-        self.assertEqual(result.get("name"), "Created revaluation lines")
+        self.assertEqual(result.get("name"), "Created Revaluation Lines")
 
         new_bank_account_lines = self.env["account.move.line"].search(
             [("account_id", "=", bank_account.id)]
@@ -706,8 +698,10 @@ class TestCurrencyRevaluation(common.SavepointCase):
         wiz = self.env["wizard.currency.revaluation"].create(
             {
                 "revaluation_date": date,
+                "start_date": False,
                 "journal_id": self.reval_journal.id,
                 "label": "[%(account)s] [%(currency)s] wiz_test",
+                "revaluation_account_ids": [self.receivable_acc.id],
             }
         )
         return wiz.revaluate_currency()
