@@ -20,7 +20,7 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
     )
     start_date = fields.Date(
         help="The report will print from this Date, all the revaluated entries"
-        "created from this date. The default value will be the first day of the month.",
+        " created from this date. The default value will be the first day of the month",
         default=lambda self: self._default_start_date(),
     )
     end_date = fields.Date(
