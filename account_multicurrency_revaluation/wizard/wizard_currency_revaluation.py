@@ -62,7 +62,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     label = fields.Char(
         string="Entry description",
         size=100,
-        help="This label will be inserted in entries description. "
+        help="This label will be inserted in entries description."
         "You can use %(account)s, %(account_name)s, %(currency)s and "
         "%(rate)s keywords.",
         required=True,
@@ -71,7 +71,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     revaluation_account_ids = fields.Many2many(
         comodel_name="account.account",
         string="Revaluation Accounts",
-        help="Accounts that will be revaluated",
+        help="Accounts that will be revaluated.",
         required=True,
         default=lambda self: self._get_default_revaluation_account_ids(),
     )
@@ -302,7 +302,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             )
 
         revaluations = account_ids.compute_revaluations(
-            self.start_date, self.revaluation_date
+            self.revaluation_date, self.start_date
         )
 
         for account_id, by_account in revaluations.items():

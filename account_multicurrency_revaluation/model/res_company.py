@@ -77,14 +77,14 @@ class ResCompany(models.Model):
     )
     reversable_revaluations = fields.Boolean(
         string="Flag Revaluation Entries",
-        help="If marked, the entries created in the process will be flagged "
-        "to be able to filter them out later.",
+        help="If marked, the entries created in the process will be flagged"
+        " to be able to filter them out later.",
         default=True,
     )
     auto_post_entries = fields.Boolean(
         string="Auto Post Created Entries",
         help="If marked, the entries created in the process will be"
-        "posted automatically.",
+        " posted automatically.",
         default=True,
         readonly=False,
     )
