@@ -78,7 +78,7 @@ class AccountAccount(models.Model):
             if rec.user_type_id.id in revaluation_accounts:
                 rec.currency_revaluation = True
 
-    def _revaluation_query(self, start_date, revaluation_date):
+    def _revaluation_query(self, revaluation_date, start_date=None):
         tables, where_clause, where_clause_params = self.env[
             "account.move.line"
         ]._query_get()
@@ -159,8 +159,8 @@ GROUP BY account_id, currency_id, partner_id
 
         return query, params
 
-    def compute_revaluations(self, start_date, revaluation_date):
-        query, params = self._revaluation_query(start_date, revaluation_date)
+    def compute_revaluations(self, revaluation_date, start_date=None):
+        query, params = self._revaluation_query(revaluation_date, start_date)
         self.env.cr.execute(query, params)
         lines = self.env.cr.dictfetchall()
 
