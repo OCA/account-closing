@@ -2,6 +2,9 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import datetime
+
+import pytz
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
@@ -132,7 +135,9 @@ class AccountCutoff(models.Model):
             )
         return vals
 
-    def order_line_update_oline_dict(self, order_line, order_type, oline_dict):
+    def order_line_update_oline_dict(
+        self, order_line, order_type, oline_dict, cutoff_datetime
+    ):
         assert order_line not in oline_dict
         dpo = self.env["decimal.precision"]
         qty_prec = dpo.precision_get("Product Unit of Measure")
@@ -181,9 +186,7 @@ class AccountCutoff(models.Model):
                 product_uom.name,
             )
         for move in moves:
-            # TODO: improve comparaison of date and datetime
-            # for our friends far away from GMT
-            if move.state == "done" and move.date.date() <= self.cutoff_date:
+            if move.state == "done" and move.date <= cutoff_datetime:
                 sign = 0
                 if (
                     move.location_id.usage != "internal"
@@ -303,7 +306,7 @@ class AccountCutoff(models.Model):
             }
         )
 
-    def stock_move_update_oline_dict(self, move_line, oline_dict):
+    def stock_move_update_oline_dict(self, move_line, oline_dict, cutoff_datetime):
         dpo = self.env["decimal.precision"]
         qty_prec = dpo.precision_get("Product Unit of Measure")
         if self.cutoff_type == "accrued_expense":
@@ -315,7 +318,7 @@ class AccountCutoff(models.Model):
                 )
             ):
                 self.order_line_update_oline_dict(
-                    move_line.purchase_line_id, "purchase", oline_dict
+                    move_line.purchase_line_id, "purchase", oline_dict, cutoff_datetime
                 )
         elif self.cutoff_type == "accrued_revenue":
             if (
@@ -326,7 +329,7 @@ class AccountCutoff(models.Model):
                 )
             ):
                 self.order_line_update_oline_dict(
-                    move_line.sale_line_id, "sale", oline_dict
+                    move_line.sale_line_id, "sale", oline_dict, cutoff_datetime
                 )
 
     def get_lines(self):
@@ -344,16 +347,14 @@ class AccountCutoff(models.Model):
 
         # Create account mapping dict
         account_mapping = self._get_mapping_dict()
+        cutoff_datetime = self._get_cutoff_datetime()
+        min_date_dt = cutoff_datetime - relativedelta(days=self.picking_interval_days)
 
-        min_date_dt = self.cutoff_date - relativedelta(days=self.picking_interval_days)
-
-        # TODO date_done is a Datetime field, so maybe we need more clever code
-        # for our friends which are far away from GMT
         pickings = spo.search(
             [
                 ("picking_type_code", "=", pick_type_map[cutoff_type]),
                 ("state", "=", "done"),
-                ("date_done", "<=", self.cutoff_date),
+                ("date_done", "<=", cutoff_datetime),
                 ("date_done", ">=", min_date_dt),
                 ("company_id", "=", self.company_id.id),
             ]
@@ -369,7 +370,7 @@ class AccountCutoff(models.Model):
         # -> we use precut_delivered_qty - precut_invoiced_qty
         for p in pickings:
             for move in p.move_lines.filtered(lambda m: m.state == "done"):
-                self.stock_move_update_oline_dict(move, oline_dict)
+                self.stock_move_update_oline_dict(move, oline_dict, cutoff_datetime)
 
         # from pprint import pprint
         # pprint(oline_dict)
@@ -378,3 +379,12 @@ class AccountCutoff(models.Model):
             if vals:
                 aclo.create(vals)
         return res
+
+    def _get_cutoff_datetime(self):
+        self.ensure_one()
+        cutoff_date = datetime.combine(self.cutoff_date, datetime.max.time())
+        tz = self.env.user.tz and pytz.timezone(self.env.user.tz) or pytz.utc
+        cutoff_datetime_aware = tz.localize(cutoff_date)
+        cutoff_datetime_utc = cutoff_datetime_aware.astimezone(pytz.utc)
+        cutoff_datetime_utc_naive = cutoff_datetime_utc.replace(tzinfo=None)
+        return cutoff_datetime_utc_naive
