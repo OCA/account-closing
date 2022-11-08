@@ -6,7 +6,8 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_compare, float_is_zero
+from odoo.tools import float_is_zero
+from odoo.tools.misc import format_date, format_datetime, formatLang
 
 
 class AccountCutoff(models.Model):
@@ -58,6 +59,47 @@ class AccountCutoff(models.Model):
             accrual_account_id = account_mapping[account_id]
         else:
             accrual_account_id = account_id
+        uom_name = vdict["product"].uom_id.name
+        notes = vdict["notes"]
+        precut_delivered_qty_fl = formatLang(
+            self.env, vdict.get("precut_delivered_qty", 0), dp="Product Unit of Measure"
+        )
+        notes += (
+            "\n"
+            + _("Pre-cutoff delivered quantity:")
+            + " %s %s"
+            % (
+                precut_delivered_qty_fl,
+                uom_name,
+            )
+        )
+        if vdict.get("precut_delivered_logs"):
+            notes += (
+                "\n"
+                + _("Pre-cutoff delivered quantity details:")
+                + "\n%s" % "\n".join(vdict["precut_delivered_logs"])
+            )
+        precut_invoiced_qty_fl = formatLang(
+            self.env, vdict.get("precut_invoiced_qty", 0), dp="Product Unit of Measure"
+        )
+        notes += (
+            "\n"
+            + _("Pre-cutoff invoiced quantity:")
+            + " %s %s" % (precut_invoiced_qty_fl, uom_name)
+        )
+        if vdict.get("precut_invoiced_logs"):
+            notes += (
+                "\n"
+                + _("Pre-cutoff invoiced quantity details:")
+                + "\n%s" % "\n".join(vdict["precut_invoiced_logs"])
+            )
+        qty_fl = formatLang(self.env, qty, dp="Product Unit of Measure")
+        notes += (
+            "\n"
+            + _("Pre-cutoff delivered quantity minus invoiced quantity:")
+            + " %s %s" % (qty_fl, uom_name)
+        )
+
         vals = {
             "parent_id": self.id,
             "partner_id": vdict["partner"].id,
@@ -71,6 +113,7 @@ class AccountCutoff(models.Model):
             "amount": amount,
             "cutoff_amount": amount_company_currency,
             "price_origin": vdict.get("price_origin"),
+            "notes": notes,
         }
 
         if vdict["taxes"] and self.company_id.accrual_taxes:
@@ -101,35 +144,107 @@ class AccountCutoff(models.Model):
         ilines = order_line.invoice_lines
         oline_dict[order_line] = {
             "precut_delivered_qty": 0.0,  # in product_uom
+            "precut_delivered_logs": [],
             "precut_invoiced_qty": 0.0,  # in product_uom
+            "precut_invoiced_logs": [],
             "name": _("%s: %s") % (order.name, order_line.name),
             "product": product,
             "partner": order.partner_id.commercial_partner_id,
+            "notes": "",
         }
         if order_type == "purchase":
-            invoice_type = "in_invoice"
+            ordered_qty = order_line.product_uom._compute_quantity(
+                order_line.product_qty, product_uom
+            )
+            oline_dict[order_line]["notes"] = _(
+                "Purchase order %s confirmed on %s\n"
+                "Purchase Order Line: %s (ordered qty: %s %s)"
+            ) % (
+                order.name,
+                format_datetime(self.env, order.date_approve),
+                order_line.name,
+                formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                product_uom.name,
+            )
         elif order_type == "sale":
-            invoice_type = "out_invoice"
+            ordered_qty = order_line.product_uom._compute_quantity(
+                order_line.product_uom_qty, product_uom
+            )
+            oline_dict[order_line]["notes"] = _(
+                "Sale order %s confirmed on %s\n"
+                "Sale Order Line: %s (ordered qty: %s %s)"
+            ) % (
+                order.name,
+                format_datetime(self.env, order.date_order),
+                order_line.name,
+                formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                product_uom.name,
+            )
         for move in moves:
             # TODO: improve comparaison of date and datetime
             # for our friends far away from GMT
             if move.state == "done" and move.date.date() <= self.cutoff_date:
-                move_qty = move.product_uom._compute_quantity(
-                    move.product_uom_qty, product_uom
-                )
-                oline_dict[order_line]["precut_delivered_qty"] += move_qty
+                sign = 0
+                if (
+                    move.location_id.usage != "internal"
+                    and move.location_dest_id.usage == "internal"
+                ):
+                    # purchase: regular move ; sale: reverse move
+                    sign = order_type == "purchase" and 1 or -1
+                elif (
+                    move.location_id.usage == "internal"
+                    and move.location_dest_id.usage != "internal"
+                ):
+                    # purchase: reverse move ; sale: regular move
+                    sign = order_type == "sale" and 1 or -1
+                if sign:
+                    move_qty = move.product_uom._compute_quantity(
+                        move.product_uom_qty * sign, product_uom
+                    )
+                    oline_dict[order_line]["precut_delivered_qty"] += move_qty
+                    move_qty_formatted = formatLang(
+                        self.env, move_qty, dp="Product Unit of Measure"
+                    )
+                    oline_dict[order_line]["precut_delivered_logs"].append(
+                        " • %s %s (picking %s transfered on %s from %s to %s)"
+                        % (
+                            move_qty_formatted,
+                            move.product_id.uom_id.name,
+                            move.picking_id.name or "none",
+                            format_datetime(self.env, move.date),
+                            move.location_id.display_name,
+                            move.location_dest_id.display_name,
+                        )
+                    )
+
         price_origin = False
+        move_type2label = dict(
+            self.env["account.move"].fields_get("move_type", "selection")["move_type"][
+                "selection"
+            ]
+        )
         for iline in ilines:
             invoice = iline.move_id
-            if (
-                invoice.move_type == invoice_type
-                and float_compare(iline.quantity, 0, precision_digits=qty_prec) > 0
-            ):
+            if not float_is_zero(iline.quantity, precision_digits=qty_prec):
+                sign = invoice.move_type in ("out_refund", "in_refund") and -1 or 1
                 iline_qty_puom = iline.product_uom_id._compute_quantity(
-                    iline.quantity, product_uom
+                    iline.quantity * sign, product_uom
                 )
                 if invoice.date <= self.cutoff_date:
                     oline_dict[order_line]["precut_invoiced_qty"] += iline_qty_puom
+                    iline_qty_puom_formatted = formatLang(
+                        self.env, iline_qty_puom, dp="Product Unit of Measure"
+                    )
+                    oline_dict[order_line]["precut_invoiced_logs"].append(
+                        " • %s %s (%s %s dated %s)"
+                        % (
+                            iline_qty_puom_formatted,
+                            iline.product_id.uom_id.name,
+                            move_type2label[invoice.move_type],
+                            invoice.name,
+                            format_date(self.env, invoice.date),
+                        )
+                    )
                 # Most recent invoice line used for price_unit, account,...
                 price_unit = iline.price_subtotal / iline_qty_puom
                 price_origin = invoice.name
