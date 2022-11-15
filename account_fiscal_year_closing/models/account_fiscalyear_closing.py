@@ -617,6 +617,7 @@ class AccountFiscalyearClosingMapping(models.Model):
             [
                 ("company_id", "=", company_id),
                 ("account_id", "=", account.id),
+                ("move_id.state", "!=", "cancel"),
                 ("date", ">=", start),
                 ("date", "<=", end),
             ]
