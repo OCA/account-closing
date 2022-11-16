@@ -6,9 +6,9 @@
 
 <!-- /!\ do not modify above this line -->
 
-# account-closing
+# Addons related to manage account closing
 
-TODO: add repo description.
+This project aim to deal with modules related to manage account closing.
 
 <!-- /!\ do not modify below this line -->
 
