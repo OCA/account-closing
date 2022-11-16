@@ -199,3 +199,5 @@ class AccountMove(models.Model):
     revaluation_to_reverse = fields.Boolean(
         string="Revaluation to reverse", default=False
     )
+
+    revaluation_reversed = fields.Boolean(string="Revaluation reversed", default=False)
