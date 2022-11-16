@@ -19,6 +19,7 @@
         "views/account_move_views.xml",
         "wizard/print_currency_unrealized_report_view.xml",
         "wizard/wizard_currency_revaluation_view.xml",
+        "wizard/wizard_reverse_currency_revaluation_view.xml",
         "report/report.xml",
         "report/unrealized_currency_gain_loss.xml",
     ],
