@@ -74,6 +74,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         help="Accounts that will be revaluated.",
         required=True,
         default=lambda self: self._get_default_revaluation_account_ids(),
+        domain=lambda self: [("company_id", "=", self.env.company.id)],
     )
 
     def _create_move_and_lines(
@@ -93,9 +94,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
         base_move = {
             "journal_id": form.journal_id.id,
             "date": form.revaluation_date,
+            "revaluation_to_reverse": True,
         }
-        if form.journal_id.company_id.reversable_revaluations:
-            base_move["revaluation_to_reverse"] = True
 
         base_line = {
             "name": label,
@@ -348,24 +348,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
                         account, currency, partner_id, adj_balance, label, self, lines
                     )
                     created_ids.extend(new_ids)
-
-        # In case revaluation date is before today, it's safe to run reversing
-        # w/o waiting tomorrow, since otherwise it would cause confusion when
-        # revaluating historical entries for multiple years within one day.
-        if (
-            self.journal_id.company_id.reversable_revaluations
-            and self.revaluation_date < fields.Date.context_today(self)
-        ):
-            reversing_moves = self.env["account.move"].search(
-                [
-                    ("journal_id", "in", self.mapped("journal_id.id")),
-                    ("state", "=", "posted"),
-                    ("revaluation_to_reverse", "=", True),
-                    ("reversed_entry_id", "=", False),
-                ],
-                limit=1,
-            )
-            reversing_moves._reverse_moves()
 
         if created_ids:
             return {
