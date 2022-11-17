@@ -75,12 +75,6 @@ class ResCompany(models.Model):
         string="Currency gain & loss Default Journal",
         domain=[("type", "=", "general")],
     )
-    reversable_revaluations = fields.Boolean(
-        string="Flag Revaluation Entries",
-        help="If marked, the entries created in the process will be flagged"
-        " to be able to filter them out later.",
-        default=True,
-    )
     auto_post_entries = fields.Boolean(
         string="Auto Post Created Entries",
         help="If marked, the entries created in the process will be"
