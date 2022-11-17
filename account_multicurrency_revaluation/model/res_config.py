@@ -54,9 +54,6 @@ class AccountConfigSettings(models.TransientModel):
         default_model="res.company",
         readonly=False,
     )
-    reversable_revaluations = fields.Boolean(
-        related="company_id.reversable_revaluations", readonly=False,
-    )
     auto_post_entries = fields.Boolean(
         related="company_id.auto_post_entries", readonly=False,
     )
