@@ -22,7 +22,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     )
 
     reverse_posting_date = fields.Date(
-        string="Posting Date",
+        string="Reverse Entries Accounting Date",
         help="Date that will be assigned to the reverse entries created.",
     )
 
