@@ -90,6 +90,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         currency_id,
         analytic_debit_acc_id=False,
         analytic_credit_acc_id=False,
+        debit=False,
     ):
 
         base_move = {
@@ -109,9 +110,19 @@ class WizardCurrencyRevaluation(models.TransientModel):
         base_line["gl_balance"] = sums.get("balance", 0.0)
         base_line["gl_revaluated_balance"] = sums.get("revaluated_balance", 0.0)
         base_line["gl_currency_rate"] = sums.get("currency_rate", 0.0)
+        revaluation_origin_line_id = sums.get("origin_aml_id", False)
 
         debit_line = base_line.copy()
         credit_line = base_line.copy()
+
+        if debit:
+            debit_line.update(
+                {"revaluation_origin_line_id": revaluation_origin_line_id}
+            )
+        else:
+            credit_line.update(
+                {"revaluation_origin_line_id": revaluation_origin_line_id}
+            )
 
         debit_line.update(
             {"debit": amount, "credit": 0.0, "account_id": debit_account_id}
@@ -126,6 +137,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         if analytic_credit_acc_id:
             credit_line.update({"analytic_account_id": analytic_credit_acc_id})
+
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
         if self.journal_id.company_id.auto_post_entries:
@@ -197,6 +209,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     partner_id,
                     currency.id,
                     analytic_credit_acc_id=(company.revaluation_analytic_account_id.id),
+                    debit=True,
                 )
                 created_ids.extend(line_ids)
 
@@ -216,6 +229,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     analytic_credit_acc_id=(
                         company.provision_pl_analytic_account_id.id
                     ),
+                    debit=True,
                 )
                 created_ids.extend(line_ids)
         elif amount_vs_zero == -1:

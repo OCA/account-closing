@@ -95,7 +95,8 @@ WITH amount AS (
         aml.currency_id,
         aml.debit,
         aml.credit,
-        aml.amount_currency
+        aml.amount_currency,
+        aml.id as origin_aml_id
     FROM account_move_line aml
     LEFT JOIN account_move am ON aml.move_id = am.id
     INNER JOIN account_account acc ON aml.account_id = acc.id
@@ -124,15 +125,16 @@ WITH amount AS (
             + """
         AND aml.currency_id IS NOT NULL
         AND am.state = 'posted'
+        AND aml.balance <> 0
     GROUP BY
         aat.type,
-        aml.id
+        origin_aml_id
     HAVING
-        aml.full_reconcile_id IS NULL
-        OR (MAX(amldf.id) IS NULL AND MAX(amlcf.id) IS NULL)
+        aml.amount_residual_currency <> 0
 )
 SELECT
     account_id as id,
+    origin_aml_id,
     partner_id,
     currency_id,
 """
@@ -142,7 +144,7 @@ FROM amount
 """
             + (("WHERE " + where_clause) if where_clause else "")
             + """
-GROUP BY account_id, currency_id, partner_id
+GROUP BY account_id, origin_aml_id, currency_id, partner_id
         """
         )
 
@@ -188,3 +190,9 @@ class AccountMove(models.Model):
     revaluation_reversed = fields.Boolean(
         string="Revaluation reversed", default=False, readonly=True
     )
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    revaluation_origin_line_id = fields.Many2one(comodel_name="account.move.line")
