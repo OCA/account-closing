@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/account_view.xml",
         "views/account_move_views.xml",
+        "views/account_move_line_views.xml",
         "wizard/print_currency_unrealized_report_view.xml",
         "wizard/wizard_currency_revaluation_view.xml",
         "wizard/wizard_reverse_currency_revaluation_view.xml",
