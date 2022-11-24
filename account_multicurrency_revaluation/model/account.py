@@ -192,8 +192,26 @@ ORDER BY account_id, partner_id, currency_id"""
             data.setdefault(account_id, {})
             data[account_id].setdefault(partner_id, {})
             data[account_id][partner_id].setdefault(currency_id, {})
-            data[account_id][partner_id][currency_id] = line
+            existing_line = data[account_id][partner_id][currency_id]
+            if existing_line:
+                data[account_id][partner_id][
+                    currency_id
+                ] = self._merge_currency_revaluation_lines(existing_line, line)
+            else:
+                # Convert origin account move lines to list as there can be multiple
+                line["origin_aml_id"] = [line["origin_aml_id"]]
+                data[account_id][partner_id][currency_id] = line
         return data
+
+    @api.model
+    def _merge_currency_revaluation_lines(self, first_line, second_line):
+        resulting_line = first_line
+        resulting_line["origin_aml_id"].append(second_line["origin_aml_id"])
+        resulting_line["balance"] += second_line["balance"]
+        resulting_line["debit"] += second_line["debit"]
+        resulting_line["credit"] += second_line["credit"]
+        resulting_line["foreign_balance"] += second_line["foreign_balance"]
+        return resulting_line
 
 
 class AccountMove(models.Model):
