@@ -11,15 +11,33 @@
             eval="[(6,0,[ref('account_multicurrency_revaluation.group_revaluation_additional')])]"
         />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='analytic_account_id']/.." position="after">
-                <group
-                    string="Currency Revaluation"
-                    name="currency_revaluation"
-                    attrs="{'invisible': [('revaluation_origin_line_id', '=', False)]}"
-                >
-                    <field name="revaluation_origin_line_id" />
-                </group>
-            </xpath>
+            <field name="company_id" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <field name="revaluation_origin_line_ids" invisible="True" />
+                    <field name="revaluation_created_line_id" invisible="True" />
+                    <button
+                        name="action_view_revaluation_origin_lines"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-list"
+                        attrs="{'invisible': [('revaluation_origin_line_count', '=', 0)]}"
+                    >
+                        <field
+                            name="revaluation_origin_line_count"
+                            widget="statinfo"
+                            string="Revaluation Origin Lines"
+                        />
+                    </button>
+                    <button
+                        name="action_view_revaluation_created_line"
+                        string="Revaluation Created Line"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-external-link"
+                        attrs="{'invisible': [('revaluation_created_line_id', '=', False)]}"
+                    />
+                </div>
+            </field>
         </field>
     </record>
     <record id="view_account_move_line_filter" model="ir.ui.view">
@@ -38,7 +56,7 @@
                 <filter
                     name="origin_revaluation"
                     string="Currency Revaluation Items"
-                    domain="[('revaluation_origin_line_id', '!=', False)]"
+                    domain="[('revaluation_origin_line_ids', '!=', False)]"
                 />
             </filter>
         </field>
