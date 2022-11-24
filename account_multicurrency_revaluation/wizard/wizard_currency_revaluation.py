@@ -109,18 +109,18 @@ class WizardCurrencyRevaluation(models.TransientModel):
         base_line["gl_balance"] = sums.get("balance", 0.0)
         base_line["gl_revaluated_balance"] = sums.get("revaluated_balance", 0.0)
         base_line["gl_currency_rate"] = sums.get("currency_rate", 0.0)
-        revaluation_origin_line_id = sums.get("origin_aml_id", False)
+        revaluation_origin_line_ids = sums.get("origin_aml_id", False)
 
         debit_line = base_line.copy()
         credit_line = base_line.copy()
 
         if debit:
             debit_line.update(
-                {"revaluation_origin_line_id": revaluation_origin_line_id}
+                {"revaluation_origin_line_ids": [(6, 0, revaluation_origin_line_ids)]}
             )
         else:
             credit_line.update(
-                {"revaluation_origin_line_id": revaluation_origin_line_id}
+                {"revaluation_origin_line_ids": [(6, 0, revaluation_origin_line_ids)]}
             )
 
         debit_line.update(
