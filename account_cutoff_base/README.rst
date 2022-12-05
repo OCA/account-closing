@@ -14,14 +14,14 @@ Account Cut-off Base
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
-    :target: https://github.com/OCA/account-closing/tree/15.0/account_cutoff_base
+    :target: https://github.com/OCA/account-closing/tree/16.0/account_cutoff_base
     :alt: OCA/account-closing
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-closing-15-0/account-closing-15-0-account_cutoff_base
+    :target: https://translation.odoo-community.org/projects/account-closing-16-0/account-closing-16-0-account_cutoff_base
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/89/15.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/account-closing&target_branch=16.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -61,7 +61,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-closing/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_base%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_base%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -83,6 +83,13 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@gmail.com>
 * Jeroen Evens <jeroen.evenss@dynapps.be>
 * Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+* `Trobz <https://trobz.com>`_:
+    * Dzung Tran <dungtd@trobz.com>
+
+Other credits
+~~~~~~~~~~~~~
+
+The migration of this module from 15.0 to 16.0 was financially supported by Camptocamp
 
 Maintainers
 ~~~~~~~~~~~
@@ -105,6 +112,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
-This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/15.0/account_cutoff_base>`_ project on GitHub.
+This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/16.0/account_cutoff_base>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

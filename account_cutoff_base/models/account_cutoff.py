@@ -2,6 +2,7 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
 from collections import defaultdict
 
 from dateutil.relativedelta import relativedelta
@@ -192,7 +193,7 @@ class AccountCutoff(models.Model):
         same values for these fields will be merged.
         The list must at least contain account_id.
         """
-        return ["partner_id", "account_id", "analytic_account_id"]
+        return ["partner_id", "account_id", "analytic_distribution"]
 
     def _prepare_move(self, to_provision):
         self.ensure_one()
@@ -207,7 +208,12 @@ class AccountCutoff(models.Model):
                 "credit": amount >= 0 and amount or 0,
             }
             for k, v in zip(merge_keys, merge_values):
-                vals[k] = v
+                value = v
+                if k == "analytic_distribution" and isinstance(v, str):
+                    value = json.loads(value)
+
+                vals[k] = value
+
             movelines_to_create.append((0, 0, vals))
             amount_total += amount
 
@@ -221,7 +227,6 @@ class AccountCutoff(models.Model):
                     "account_id": self.cutoff_account_id.id,
                     "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
                     "credit": counterpart_amount >= 0 and counterpart_amount or 0,
-                    "analytic_account_id": False,
                 },
             )
         )
@@ -248,7 +253,7 @@ class AccountCutoff(models.Model):
         return {
             "partner_id": self.move_partner and partner_id or False,
             "account_id": cutoff_line.cutoff_account_id.id,
-            "analytic_account_id": cutoff_line.analytic_account_id.id,
+            "analytic_distribution": cutoff_line.analytic_distribution,
             "amount": cutoff_line.cutoff_amount,
         }
 
@@ -260,7 +265,7 @@ class AccountCutoff(models.Model):
         return {
             "partner_id": False,
             "account_id": cutoff_tax_line.cutoff_account_id.id,
-            "analytic_account_id": cutoff_tax_line.analytic_account_id.id,
+            "analytic_distribution": cutoff_tax_line.analytic_distribution,
             "amount": cutoff_tax_line.cutoff_amount,
         }
 
@@ -273,7 +278,12 @@ class AccountCutoff(models.Model):
         to_provision = defaultdict(float)
         merge_keys = self._get_merge_keys()
         for provision_line in provision_lines:
-            key = tuple(provision_line.get(key) for key in merge_keys)
+            key = tuple(
+                isinstance(provision_line.get(key), dict)
+                and json.dumps(provision_line.get(key))
+                or provision_line.get(key)
+                for key in merge_keys
+            )
             to_provision[key] += provision_line["amount"]
         return to_provision
 
@@ -374,12 +384,16 @@ class AccountCutoff(models.Model):
             tax = ato.browse(tax_line["id"])
             if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
                 continue
+
+            tax_accrual_account_id = False
+            tax_account_field_label = ""
             if self.cutoff_type == "accrued_expense":
                 tax_accrual_account_id = tax.account_accrued_expense_id.id
                 tax_account_field_label = _("Accrued Expense Tax Account")
             elif self.cutoff_type == "accrued_revenue":
                 tax_accrual_account_id = tax.account_accrued_revenue_id.id
                 tax_account_field_label = _("Accrued Revenue Tax Account")
+
             if not tax_accrual_account_id:
                 raise UserError(
                     _(
@@ -407,131 +421,3 @@ class AccountCutoff(models.Model):
                 )
             )
         return res
-
-
-class AccountCutoffLine(models.Model):
-    _name = "account.cutoff.line"
-    _description = "Account Cut-off Line"
-
-    parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
-    name = fields.Char("Description")
-    company_currency_id = fields.Many2one(
-        related="parent_id.company_currency_id",
-        string="Company Currency",
-        readonly=True,
-    )
-    partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
-    quantity = fields.Float(digits="Product Unit of Measure", readonly=True)
-    price_unit = fields.Float(
-        string="Unit Price w/o Tax",
-        digits="Product Price",
-        readonly=True,
-        help="Price per unit (discount included) without taxes in the default "
-        "unit of measure of the product in the currency of the 'Currency' field.",
-    )
-    price_origin = fields.Char(readonly=True)
-    origin_move_line_id = fields.Many2one(
-        "account.move.line", string="Origin Journal Item", readonly=True
-    )  # Old name: move_line_id
-    origin_move_id = fields.Many2one(
-        related="origin_move_line_id.move_id", string="Origin Journal Entry"
-    )  # old name: move_id
-    origin_move_date = fields.Date(
-        related="origin_move_line_id.move_id.date", string="Origin Journal Entry Date"
-    )  # old name: move_date
-    account_id = fields.Many2one(
-        "account.account",
-        "Account",
-        required=True,
-        readonly=True,
-    )
-    cutoff_account_id = fields.Many2one(
-        "account.account",
-        string="Cut-off Account",
-        required=True,
-        readonly=True,
-    )
-    cutoff_account_code = fields.Char(
-        related="cutoff_account_id.code", string="Cut-off Account Code", readonly=True
-    )
-    analytic_account_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        readonly=True,
-    )
-    currency_id = fields.Many2one(
-        "res.currency",
-        string="Amount Currency",
-        readonly=True,
-        help="Currency of the 'Amount' field.",
-    )
-    amount = fields.Monetary(
-        currency_field="currency_id",
-        readonly=True,
-        help="Amount that is used as base to compute the Cut-off Amount. "
-        "This Amount is in the 'Amount Currency', which may be different "
-        "from the 'Company Currency'.",
-    )
-    cutoff_amount = fields.Monetary(
-        string="Cut-off Amount",
-        currency_field="company_currency_id",
-        readonly=True,
-        help="Cut-off Amount without taxes in the Company Currency.",
-    )
-    tax_line_ids = fields.One2many(
-        "account.cutoff.tax.line",
-        "parent_id",
-        string="Cut-off Tax Lines",
-        readonly=True,
-    )
-    notes = fields.Text()
-
-
-class AccountCutoffTaxLine(models.Model):
-    _name = "account.cutoff.tax.line"
-    _description = "Account Cut-off Tax Line"
-
-    parent_id = fields.Many2one(
-        "account.cutoff.line",
-        string="Account Cut-off Line",
-        ondelete="cascade",
-        required=True,
-    )
-    tax_id = fields.Many2one("account.tax", string="Tax", required=True)
-    cutoff_account_id = fields.Many2one(
-        "account.account",
-        string="Cut-off Account",
-        required=True,
-        readonly=True,
-    )
-    analytic_account_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        readonly=True,
-    )
-    base = fields.Monetary(
-        currency_field="currency_id",
-        readonly=True,
-        help="Base Amount in the currency of the PO.",
-    )
-    amount = fields.Monetary(
-        string="Tax Amount",
-        currency_field="currency_id",
-        readonly=True,
-        help="Tax Amount in the currency of the PO.",
-    )
-    sequence = fields.Integer(readonly=True)
-    cutoff_amount = fields.Monetary(
-        string="Cut-off Tax Amount",
-        currency_field="company_currency_id",
-        readonly=True,
-        help="Tax Cut-off Amount in the company currency.",
-    )
-    currency_id = fields.Many2one(
-        related="parent_id.currency_id", string="Currency", readonly=True
-    )
-    company_currency_id = fields.Many2one(
-        related="parent_id.company_currency_id",
-        string="Company Currency",
-        readonly=True,
-    )
