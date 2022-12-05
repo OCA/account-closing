@@ -12,7 +12,6 @@
             <form string="Account Cut-off Mapping">
                 <field
                     name="company_id"
-                    groups="base.group_multi_company"
                     widget="selection"
                     invisible="not context.get('account_cutoff_mapping_main_view', False)"
                 />
@@ -29,7 +28,6 @@
             <tree editable="bottom">
                 <field
                     name="company_id"
-                    groups="base.group_multi_company"
                     widget="selection"
                     invisible="not context.get('account_cutoff_mapping_main_view', False)"
                 />
