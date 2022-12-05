@@ -5,3 +5,5 @@
 * Pedro M. Baeza <pedro.baeza@gmail.com>
 * Jeroen Evens <jeroen.evenss@dynapps.be>
 * Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+* `Trobz <https://trobz.com>`_:
+    * Dzung Tran <dungtd@trobz.com>
