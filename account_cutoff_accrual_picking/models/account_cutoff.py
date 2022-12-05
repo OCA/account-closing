@@ -64,7 +64,7 @@ class AccountCutoff(models.Model):
             "name": vdict["name"],
             "account_id": account_id,
             "cutoff_account_id": accrual_account_id,
-            "analytic_account_id": vdict["analytic_account_id"],
+            "analytic_distribution": vdict["analytic_distribution"],
             "currency_id": vdict["currency"].id,
             "quantity": qty,
             "price_unit": vdict["price_unit"],
@@ -139,7 +139,7 @@ class AccountCutoff(models.Model):
                 price_origin = invoice.name
                 currency = invoice.currency_id
                 account_id = iline.account_id.id
-                analytic_account_id = iline.analytic_account_id.id
+                analytic_distribution = iline.analytic_distribution
                 taxes = iline.tax_ids
         if not price_origin:
             if order_type == "purchase":
@@ -149,7 +149,7 @@ class AccountCutoff(models.Model):
                 price_unit = order_line.price_subtotal / oline_qty_puom
                 price_origin = order.name
                 currency = order.currency_id
-                analytic_account_id = order_line.account_analytic_id.id
+                analytic_distribution = order_line.analytic_distribution
                 taxes = order_line.taxes_id
                 account = product._get_product_accounts()["expense"]
                 if not account:
@@ -170,7 +170,7 @@ class AccountCutoff(models.Model):
                 price_unit = order_line.price_subtotal / oline_qty_puom
                 price_origin = order.name
                 currency = order.currency_id
-                analytic_account_id = order.analytic_account_id.id
+                analytic_distribution = order_line.analytic_distribution
                 taxes = order_line.tax_id
                 account = product._get_product_accounts()["income"]
                 if not account:
@@ -190,7 +190,7 @@ class AccountCutoff(models.Model):
                 "price_unit": price_unit,
                 "price_origin": price_origin,
                 "currency": currency,
-                "analytic_account_id": analytic_account_id,
+                "analytic_distribution": analytic_distribution,
                 "account_id": account_id,
                 "taxes": taxes,
             }
@@ -261,7 +261,7 @@ class AccountCutoff(models.Model):
         #   }
         # -> we use precut_delivered_qty - precut_invoiced_qty
         for p in pickings:
-            for move in p.move_lines.filtered(lambda m: m.state == "done"):
+            for move in p.move_ids.filtered(lambda m: m.state == "done"):
                 self.stock_move_update_oline_dict(move, oline_dict)
 
         # from pprint import pprint
