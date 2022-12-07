@@ -14,7 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
 msgstr ""
@@ -44,18 +43,19 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
@@ -64,6 +64,7 @@ msgid ""
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
@@ -87,17 +88,10 @@ msgid "Start Date"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
 "Start Date ({start_date}) should be before End Date ({end_date}) for move "
 "line with Name '{name}'."
-msgstr ""
-
-#. module: account_invoice_start_end_dates
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "Units"
 msgstr ""
