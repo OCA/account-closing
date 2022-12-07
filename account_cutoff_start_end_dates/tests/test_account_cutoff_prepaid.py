@@ -18,52 +18,46 @@ class TestCutoffPrepaid(TransactionCase):
         cls.cutoff_model = cls.env["account.cutoff"]
         cls.account_model = cls.env["account.account"]
         cls.journal_model = cls.env["account.journal"]
-        cls.account_expense = cls.account_model.search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
-                ),
-                ("company_id", "=", cls.env.ref("base.main_company").id),
-            ],
-            limit=1,
+        cls.main_company = cls.env.ref("base.main_company")
+        cls.account_expense = cls.account_model.create(
+            {
+                "account_type": "expense",
+                "company_id": cls.main_company.id,
+                "name": "Test expense",
+                "code": "TE.1",
+            }
         )
-        cls.account_payable = cls.account_model.search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_payable").id,
-                ),
-                ("company_id", "=", cls.env.ref("base.main_company").id),
-            ],
-            limit=1,
+        cls.account_payable = cls.account_model.create(
+            {
+                "account_type": "liability_payable",
+                "company_id": cls.main_company.id,
+                "name": "Test payable",
+                "code": "TP.1",
+            }
         )
-        cls.account_cutoff = cls.account_model.search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_current_liabilities").id,
-                ),
-                ("company_id", "=", cls.env.ref("base.main_company").id),
-            ],
-            limit=1,
+        cls.account_cutoff = cls.account_model.create(
+            {
+                "account_type": "liability_current",
+                "company_id": cls.main_company.id,
+                "name": "Test cutoff",
+                "code": "TC.1",
+            }
         )
-        cls.cutoff_journal = cls.journal_model.search(
-            [
-                ("company_id", "=", cls.env.ref("base.main_company").id),
-                ("type", "=", "general"),
-            ],
-            limit=1,
+        cls.cutoff_journal = cls.journal_model.create(
+            {
+                "name": "Cutoff journal",
+                "type": "general",
+                "code": "GEN",
+                "company_id": cls.main_company.id,
+            }
         )
-        cls.purchase_journal = cls.journal_model.search(
-            [
-                ("type", "=", "purchase"),
-                ("company_id", "=", cls.env.ref("base.main_company").id),
-            ],
-            limit=1,
+        cls.purchase_journal = cls.journal_model.create(
+            {
+                "name": "Purchase journal",
+                "type": "purchase",
+                "code": "PUR",
+                "company_id": cls.main_company.id,
+            }
         )
 
     def _date(self, date):
