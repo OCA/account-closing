@@ -20,7 +20,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
 msgstr "Seguro automóvel"
@@ -50,18 +49,19 @@ msgid "Journal Item"
 msgstr "Item de Diário"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
 msgstr "Contrato de manutenção"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr "Falta de data de fim para a linha de diário com o Nome '%s'."
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
@@ -70,6 +70,7 @@ msgid ""
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
@@ -93,6 +94,7 @@ msgid "Start Date"
 msgstr "Data de Início"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
@@ -100,13 +102,8 @@ msgid ""
 "line with Name '{name}'."
 msgstr ""
 
-#. module: account_invoice_start_end_dates
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "Units"
-msgstr "Unidades"
+#~ msgid "Units"
+#~ msgstr "Unidades"
 
 #~ msgid ""
 #~ "If this option is active, the user will have to enter a Start Date and an "

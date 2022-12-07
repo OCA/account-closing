@@ -17,7 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
 msgstr "Assurance voiture"
@@ -49,18 +48,19 @@ msgid "Journal Item"
 msgstr "Écritures comptables"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
 msgstr "Contrat de maintenance"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr "Date de fin manquante pour les écritures avec le nom '%s'."
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
@@ -71,6 +71,7 @@ msgstr ""
 "produit '%s' qui a la propriété 'Must Have Start/End Dates'."
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
@@ -94,6 +95,7 @@ msgid "Start Date"
 msgstr "Date de début"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
@@ -101,13 +103,8 @@ msgid ""
 "line with Name '{name}'."
 msgstr ""
 
-#. module: account_invoice_start_end_dates
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "Units"
-msgstr "Unités"
+#~ msgid "Units"
+#~ msgstr "Unités"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Dernière modification"
