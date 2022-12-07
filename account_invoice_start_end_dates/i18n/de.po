@@ -17,7 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_insurance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
 msgstr "KFZ-Versicherung"
@@ -49,29 +48,31 @@ msgid "Journal Item"
 msgstr "Buchungszeile"
 
 #. module: account_invoice_start_end_dates
-#: model:product.product,name:account_invoice_start_end_dates.product_maintenance_contract_demo
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
 msgstr "Wartungsvertrag"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
 msgstr "Das Enddatum in der Buchungszeile mit Namen '%s' fehlt."
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start/End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start/End Dates'."
 msgstr ""
 "Das Start- und Enddatum in der Rechnungszeile mit dem Produkt '%s' fehlt. Es "
 "ist erforderlich, weil am Produkt die Einstellung \"Muss Start- und Enddatum "
 "haben\" aktiviert ist."
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
@@ -95,6 +96,7 @@ msgid "Start Date"
 msgstr "Startdatum"
 
 #. module: account_invoice_start_end_dates
+#. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
@@ -104,10 +106,5 @@ msgstr ""
 "Das Startdatum ({start_date}) muss vor dem Enddatum ({end_date}) liegen, "
 "siehe Buchungszeile mit Namen '{name}'."
 
-#. module: account_invoice_start_end_dates
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo
-#: model:product.product,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
-#: model:product.template,uom_name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
-msgid "Units"
-msgstr "Einheiten"
+#~ msgid "Units"
+#~ msgstr "Einheiten"
