@@ -6,12 +6,16 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
-                <div class="alert alert-primary" role="alert">
+                <div
+                    class="alert alert-primary"
+                    role="alert"
+                    name="info"
+                    style="font-weight: bold;"
+                >
                 Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
                 If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
                 For other account types : 1 entry will be generated per account/currency.
                 </div>
-
                 <group>
                     <group>
                         <field name="start_date" />
