@@ -55,5 +55,6 @@ class AccountConfigSettings(models.TransientModel):
         readonly=False,
     )
     auto_post_entries = fields.Boolean(
-        related="company_id.auto_post_entries", readonly=False,
+        related="company_id.auto_post_entries",
+        readonly=False,
     )
