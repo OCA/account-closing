@@ -31,7 +31,8 @@ class UnrealizedCurrencyReportPrinter(models.TransientModel):
         default=lambda self: self._default_end_date(),
     )
     only_include_posted_entries = fields.Boolean(
-        string="Only Include Posted Entries", default=False,
+        string="Only Include Posted Entries",
+        default=False,
     )
 
     def _default_account_ids(self):
