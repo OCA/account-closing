@@ -19,31 +19,13 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s line ID %d"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "%s line ID %d: %s"
+msgid "%s: %s"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
 msgstr "Abgrenzungskonto"
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Expense Tax Account"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Revenue Tax Account"
-msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
@@ -56,16 +38,25 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Invoice %s line ID %d"
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__display_name
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__display_name
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Missing '%s' on tax '%s'."
-msgstr "Fehlende '%s' bei Steuer '%s'."
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff____last_update
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company____last_update
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -94,6 +85,52 @@ msgid "Picking Analysis Interval"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Purchase order %s confirmed on %s\n"
+"Purchase Order Line: %s (ordered qty: %s %s)"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Sale order %s confirmed on %s\n"
+"Sale Order Line: %s (ordered qty: %s %s)"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid ""
@@ -115,6 +152,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
 msgid "days"
 msgstr ""
+
+#, python-format
+#~ msgid "Missing '%s' on tax '%s'."
+#~ msgstr "Fehlende '%s' bei Steuer '%s'."
 
 #~ msgid "Account Cut-off Line"
 #~ msgstr "Abgrenzungsposten"
