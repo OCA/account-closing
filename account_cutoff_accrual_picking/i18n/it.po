@@ -86,11 +86,56 @@ msgid "Picking Analysis Interval"
 msgstr "Intervallo analisi prelievi"
 
 #. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Purchase order %s confirmed on %s\n"
+"Purchase Order Line: %s (ordered qty: %s %s)"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Sale order %s confirmed on %s\n"
+"Sale Order Line: %s (ordered qty: %s %s)"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid ""
-"The value of the field 'Picking Analysis Interval' must be strictly "
-"positive."
+"The value of the field 'Picking Analysis Interval' must be strictly positive."
 msgstr ""
 "Il valore del campo \"Intervallo analisi prelievi\" deve essere strettamente "
 "positivo."
