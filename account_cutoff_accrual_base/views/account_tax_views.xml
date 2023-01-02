@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2020 Akretion (http://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <record id="view_tax_form" model="ir.ui.view">
+        <field name="name">account.cutoff.accrual.view_tax_form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <field name="tax_group_id" position="after">
+                <field
+                    name="account_accrued_revenue_id"
+                    attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"
+                    domain="[('company_id', '=', company_id)]"
+                />
+                <field
+                    name="account_accrued_expense_id"
+                    attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"
+                    domain="[('company_id', '=', company_id)]"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
