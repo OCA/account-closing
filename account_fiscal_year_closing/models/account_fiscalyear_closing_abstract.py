@@ -30,7 +30,7 @@ class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
     _order = "sequence asc, id asc"
 
     name = fields.Char(string="Description", required=True)
-    sequence = fields.Integer(string="Sequence", index=True, default=1)
+    sequence = fields.Integer(index=True, default=1)
     code = fields.Char(string="Unique code", required=True)
     inverse = fields.Char(
         string="Inverse config",

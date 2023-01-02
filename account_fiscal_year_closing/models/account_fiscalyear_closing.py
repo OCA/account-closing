@@ -65,7 +65,6 @@ class AccountFiscalyearClosing(models.Model):
             ("posted", "Posted"),
             ("cancelled", "Cancelled"),
         ],
-        string="State",
         readonly=True,
         default="draft",
     )
@@ -387,7 +386,7 @@ class AccountFiscalyearClosingConfig(models.Model):
         string="Closing types",
     )
     date = fields.Date(string="Move date")
-    enabled = fields.Boolean(string="Enabled", default=True)
+    enabled = fields.Boolean(default=True)
     journal_id = fields.Many2one(required=True)
     move_id = fields.Many2one(comodel_name="account.move", string="Move")
 

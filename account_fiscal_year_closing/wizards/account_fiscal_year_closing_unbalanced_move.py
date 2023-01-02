@@ -13,11 +13,9 @@ class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
         readonly=True,
     )
     ref = fields.Char(
-        string="Reference",
         readonly=True,
     )
     date = fields.Date(
-        string="Date",
         readonly=True,
     )
     line_ids = fields.One2many(
@@ -47,6 +45,4 @@ class AccountFiscalYearClosingUnbalancedMoveLine(models.TransientModel):
         string="Partner",
     )
     name = fields.Char()
-    date = fields.Date(
-        string="Date",
-    )
+    date = fields.Date()
