@@ -270,8 +270,8 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
         cli_accounts = cli_move_lines.mapped("account_id.code")
         bac_accounts = bac_move_lines.mapped("account_id.code")
 
-        inc_amount = sum([y.credit - y.debit for y in inc_move_lines])
-        exp_amount = sum([y.debit - y.credit for y in exp_move_lines])
+        inc_amount = sum(y.credit - y.debit for y in inc_move_lines)
+        exp_amount = sum(y.debit - y.credit for y in exp_move_lines)
 
         fy_closing = self.env["account.fiscalyear.closing"].create(
             {

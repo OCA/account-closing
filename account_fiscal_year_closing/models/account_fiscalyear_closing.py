@@ -519,8 +519,8 @@ class AccountFiscalyearClosingConfig(models.Model):
         # Create move
         if not data:
             return False, data
-        total_debit = sum([x[2]["debit"] for x in data["line_ids"]])
-        total_credit = sum([x[2]["credit"] for x in data["line_ids"]])
+        total_debit = sum(x[2]["debit"] for x in data["line_ids"])
+        total_credit = sum(x[2]["credit"] for x in data["line_ids"])
         if abs(round(total_credit - total_debit, 2)) >= 0.01:
             # the move is not balanced
             return False, data
