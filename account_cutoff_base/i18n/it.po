@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2022-12-30 11:50+0000\n"
+"PO-Revision-Date: 2023-01-02 11:55+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -185,7 +185,7 @@ msgstr "Creato da"
 #: field:account.cutoff.mapping,create_date:0
 #: field:account.cutoff.tax.line,create_date:0
 msgid "Created on"
-msgstr "In data"
+msgstr "Creato il"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,currency_id:0
