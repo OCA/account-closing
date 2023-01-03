@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2023-01-02 11:55+0000\n"
+"PO-Revision-Date: 2023-01-03 13:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -159,7 +159,7 @@ msgstr "Società"
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
 msgid "Company"
-msgstr "Società"
+msgstr "Azienda"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_currency_id:0
@@ -370,7 +370,7 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: help:account.cutoff,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Evidenzia nuovi messaggi"
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: account_cutoff_base
 #: field:account.cutoff,message_is_follower:0
