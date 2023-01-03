@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-30 22:21+0000\n"
-"PO-Revision-Date: 2017-06-30 22:21+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"PO-Revision-Date: 2023-01-04 03:01+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
@@ -37,11 +38,13 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice/move lines that have this product."
 msgstr ""
+"Ako je ova opcija aktivna, korisnik mora upisati Početni i Završni datum na "
+"stavkama računa koje sadrže ovaj proizvod."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Stavka dnevnika"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
@@ -58,7 +61,7 @@ msgstr "Ugovor o održavanju"
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for move line with Name '%s'."
-msgstr ""
+msgstr "Nedostaje Završni datum za stavku naziva '%s'."
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
@@ -68,25 +71,27 @@ msgid ""
 "Missing Start Date and End Date for invoice line with Product '%s' which has "
 "the property 'Must Have Start/End Dates'."
 msgstr ""
+"Nedostaje Početni i Završni datum na stavkama sa proizvodom '%s' koji ima "
+"svojstvo 'Mora imati Početni/Završni datum'."
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for move line with Name '%s'."
-msgstr ""
+msgstr "Nedostaje Početni datum na stavci naziva '%s'."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid "Must Have Start/End Dates"
-msgstr ""
+msgstr "Mora imati Početni/Završni datum"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
@@ -101,6 +106,8 @@ msgid ""
 "Start Date ({start_date}) should be before End Date ({end_date}) for move "
 "line with Name '{name}'."
 msgstr ""
+"Početni datum ({start_date}) treba biti prije Završnog datuma ({end_date}) "
+"za film naziva '{name}'."
 
 #, fuzzy
 #~ msgid "Journal Entries"
