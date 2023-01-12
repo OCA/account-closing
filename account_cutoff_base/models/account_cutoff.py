@@ -156,7 +156,9 @@ class AccountCutoff(models.Model):
         default=lambda self: self.env.company,
     )
     company_currency_id = fields.Many2one(
-        related="company_id.currency_id", string="Company Currency"
+        related="company_id.currency_id",
+        string="Company Currency",
+        store=True,
     )
     line_ids = fields.One2many(
         comodel_name="account.cutoff.line",
@@ -421,7 +423,7 @@ class AccountCutoffLine(models.Model):
     company_currency_id = fields.Many2one(
         related="parent_id.company_currency_id",
         string="Company Currency",
-        readonly=True,
+        store=True,
     )
     partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
     quantity = fields.Float(
@@ -457,7 +459,9 @@ class AccountCutoffLine(models.Model):
         readonly=True,
     )
     cutoff_account_code = fields.Char(
-        related="cutoff_account_id.code", string="Cut-off Account Code", readonly=True
+        related="cutoff_account_id.code",
+        string="Cut-off Account Code",
+        store=True,
     )
     analytic_account_id = fields.Many2one(
         "account.analytic.account",
@@ -533,10 +537,10 @@ class AccountCutoffTaxLine(models.Model):
         help="Tax Cut-off Amount in the company currency.",
     )
     currency_id = fields.Many2one(
-        related="parent_id.currency_id", string="Currency", readonly=True
+        related="parent_id.currency_id", string="Currency", store=True
     )
     company_currency_id = fields.Many2one(
         related="parent_id.company_currency_id",
         string="Company Currency",
-        readonly=True,
+        store=True,
     )
