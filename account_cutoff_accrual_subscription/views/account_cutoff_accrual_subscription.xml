@@ -27,6 +27,7 @@
                 <group name="main">
                     <field name="subscription_type" />
                     <field name="active" invisible="1" />
+                    <field name="type_tax_use" invisible="1" />
                     <field name="partner_type" />
                     <field
                             name="partner_id"

@@ -88,12 +88,23 @@ class AccountCutoffAccrualSubscription(models.Model):
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         check_company=True,
     )
+    type_tax_use = fields.Char(compute="_compute_type_tax_use")
     tax_ids = fields.Many2many(
         "account.tax",
         string="Taxes",
-        domain="[('price_include', '=', False), ('company_id', '=', company_id)]",
+        domain="[('price_include', '=', False), ('company_id', '=', company_id), "
+        "('type_tax_use', '=', type_tax_use)]",
         check_company=True,
     )
+
+    @api.depends("subscription_type")
+    def _compute_type_tax_use(self):
+        mapping = {
+            "revenue": "sale",
+            "expense": "purchase",
+        }
+        for sub in self:
+            sub.type_tax_use = mapping.get(sub.subscription_type)
 
     @api.constrains("start_date")
     def check_start_date(self):
