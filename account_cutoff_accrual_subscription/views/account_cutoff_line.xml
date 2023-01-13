@@ -9,10 +9,13 @@
 
 <record id="account_cutoff_line_form" model="ir.ui.view">
     <field name="model">account.cutoff.line</field>
-    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form"/>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field name="subscription_id" attrs="{'invisible': [('subscription_id', '=', False)]}"/>
+            <field
+                    name="subscription_id"
+                    attrs="{'invisible': [('subscription_id', '=', False)]}"
+                />
         </field>
     </field>
 </record>
