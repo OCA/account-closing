@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
         "views/account_cutoff_accrual_subscription.xml",
+        "views/account_cutoff_line.xml",
     ],
     "installable": True,
 }

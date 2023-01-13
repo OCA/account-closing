@@ -4,8 +4,9 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import date_utils
 from odoo.tools.misc import format_amount, format_date
 
 
@@ -16,8 +17,18 @@ class AccountCutoff(models.Model):
         res = super().get_lines()
         if self.cutoff_type not in ["accrued_expense", "accrued_revenue"]:
             return res
+
         line_obj = self.env["account.cutoff.line"]
         sub_obj = self.env["account.cutoff.accrual.subscription"]
+
+        fy_start_date, fy_end_date = date_utils.get_fiscal_year(
+            self.cutoff_date,
+            day=self.company_id.fiscalyear_last_day,
+            month=int(self.company_id.fiscalyear_last_month),
+        )
+        if not fy_start_date:
+            raise UserError(_("Odoo cannot compute the fiscal year start date."))
+
         type2subtype = {
             "accrued_expense": "expense",
             "accrued_revenue": "revenue",
@@ -57,7 +68,9 @@ class AccountCutoff(models.Model):
         work = {}
         # Generate time intervals and compute existing expenses/revenue
         for sub in subs:
-            sub._process_subscription(work, self.cutoff_date, common_domain, sign)
+            sub._process_subscription(
+                work, fy_start_date, self.cutoff_date, common_domain, sign
+            )
         # Create mapping dict
         mapping = self._get_mapping_dict()
         sub_type_label = sub_type == "expense" and _("Expense") or _("Revenue")
@@ -77,42 +90,56 @@ class AccountCutoff(models.Model):
         # (or in the chatter if the amount to provision is 0)
         sub = data["sub"]
         ccur = self.company_currency_id
-        notes = []
+        notes = [
+            _(
+                "CONFIG: %s periodicity, start date %s, "
+                "min. expense amount %s, default provision amount %s"
+            )
+            % (
+                sub._fields["periodicity"].convert_to_export(sub.periodicity, sub),
+                format_date(self.env, sub.start_date),
+                format_amount(self.env, sub.min_amount, ccur),
+                format_amount(self.env, sub.provision_amount, ccur),
+            ),
+            _("PERIODS:"),
+        ]
         cutoff_amount = 0
         for interval in data["intervals"]:
-            if ccur.compare_amounts(interval["amount"], sub.min_amount) < 0:
-                period_cutoff_amount = self.company_currency_id.round(
-                    sub.provision_amount - interval["amount"]
+            prorata_label = (
+                interval["prorata"]
+                and " "
+                + _("PRORATED min. amount %s, default provisionning amount %s")
+                % (
+                    format_amount(self.env, interval["min_amount"], ccur),
+                    format_amount(self.env, interval["provision_amount"], ccur),
+                )
+                or ""
+            )
+            if ccur.compare_amounts(interval["amount"], interval["min_amount"]) < 0:
+                period_cutoff_amount = ccur.round(
+                    interval["provision_amount"] - interval["amount"]
                 )
                 notes.append(
-                    _(
-                        "Period from %s to %s: %s %s under the minimum "
-                        "amount %s. Default provisionning amount is %s "
-                        "=> provisionning %s."
-                    )
+                    _("%s → %s%s: %s %s under min. amount ⇒provisionning %s")
                     % (
                         format_date(self.env, interval["start"]),
                         format_date(self.env, interval["end"]),
+                        prorata_label,
                         sub_type_label,
                         format_amount(self.env, interval["amount"], ccur),
-                        format_amount(self.env, sub.min_amount, ccur),
-                        format_amount(self.env, sub.provision_amount, ccur),
                         format_amount(self.env, period_cutoff_amount, ccur),
                     )
                 )
                 cutoff_amount += period_cutoff_amount * lsign
             else:
                 notes.append(
-                    _(
-                        "Period from %s to %s: %s %s over the minimum "
-                        "amount %s => no provisionning."
-                    )
+                    _("%s → %s%s: %s %s over min. amount ⇒ no provisionning")
                     % (
                         format_date(self.env, interval["start"]),
                         format_date(self.env, interval["end"]),
+                        prorata_label,
                         sub_type_label,
                         format_amount(self.env, interval["amount"], ccur),
-                        format_amount(self.env, sub.min_amount, ccur),
                     )
                 )
         if ccur.is_zero(cutoff_amount):
@@ -138,6 +165,7 @@ class AccountCutoff(models.Model):
             else:
                 cutoff_account_id = sub.account_id.id
             vals = {
+                "subscription_id": sub.id,
                 "parent_id": self.id,
                 "partner_id": partner_id,
                 "account_id": sub.account_id.id,
@@ -157,3 +185,10 @@ class AccountCutoff(models.Model):
                     tax_compute_all_res, ccur
                 )
             return vals
+
+    class AccountCutoffLine(models.Model):
+        _inherit = "account.cutoff.line"
+
+        subscription_id = fields.Many2one(
+            "account.cutoff.accrual.subscription", ondelete="restrict"
+        )

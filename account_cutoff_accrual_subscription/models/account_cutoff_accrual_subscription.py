@@ -2,10 +2,14 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+
+logger = logging.getLogger(__name__)
 
 
 class AccountCutoffAccrualSubscription(models.Model):
@@ -118,7 +122,10 @@ class AccountCutoffAccrualSubscription(models.Model):
 
     @api.onchange("min_amount")
     def min_amount_change(self):
-        if self.min_amount > 0 and not self.provision_amount:
+        if (
+            self.company_currency_id.compare_amounts(self.min_amount, 0) > 0
+            and not self.provision_amount
+        ):
             self.provision_amount = self.min_amount
 
     @api.onchange("account_id")
@@ -131,8 +138,11 @@ class AccountCutoffAccrualSubscription(models.Model):
         if self.partner_type != "one":
             self.partner_id = False
 
-    def _process_subscription(self, work, end_date, common_domain, sign):
+    def _process_subscription(
+        self, work, fy_start_date, cutoff_date, common_domain, sign
+    ):
         self.ensure_one()
+        logger.debug("Processing subscription %s", self.display_name)
         aml_obj = self.env["account.move.line"]
         periodicity2months = {
             "month": 1,
@@ -163,10 +173,48 @@ class AccountCutoffAccrualSubscription(models.Model):
             ("end_date", "!=", False),
         ]
 
-        for _i in range(int(12 / months)):
-            start_date = end_date + relativedelta(day=1, months=-(months - 1))
-            if start_date < self.start_date:
-                break
+        start_date = fy_start_date  # initialize start_date
+        while start_date < cutoff_date:
+            end_date = start_date + relativedelta(day=31, months=(months - 1))
+            logger.debug("Compute interval from %s to %s", start_date, end_date)
+            if self.start_date > end_date:
+                logger.debug(
+                    "Skip interval because subscription start_date %s > end_date",
+                    self.start_date,
+                )
+                start_date = end_date + relativedelta(days=1)
+                continue
+            # the next start_date is set at the very end of this method
+            min_amount = self.min_amount
+            provision_amount = self.provision_amount
+            prorata = False
+            if end_date > cutoff_date or self.start_date > start_date:
+                prorata = True
+                initial_interval_days = (end_date - start_date).days + 1
+                if end_date > cutoff_date:
+                    end_date = cutoff_date
+                if self.start_date > start_date:
+                    start_date = self.start_date
+                final_interval_days = (end_date - start_date).days + 1
+                ratio = final_interval_days / initial_interval_days
+                min_amount = ccur.round(min_amount * ratio)
+                provision_amount = ccur.round(provision_amount * ratio)
+                logger.debug(
+                    "Interval has been prorated: %s to %s "
+                    "initial_interval_days=%d final_interval_days=%s",
+                    start_date,
+                    end_date,
+                    initial_interval_days,
+                    final_interval_days,
+                )
+                logger.debug(
+                    "min_amount prorated from %s to %s", self.min_amount, min_amount
+                )
+                logger.debug(
+                    "provision_amount prorated from %s to %s",
+                    self.provision_amount,
+                    provision_amount,
+                )
             # compute amount
             amount = 0
             # 1. No start/end dates
@@ -244,7 +292,10 @@ class AccountCutoffAccrualSubscription(models.Model):
                     "start": start_date,
                     "end": end_date,
                     "amount": ccur.round(amount),
+                    "prorata": prorata,
+                    "min_amount": min_amount,
+                    "provision_amount": provision_amount,
                 }
             )
             # prepare next interval
-            end_date = start_date + relativedelta(days=-1)
+            start_date = end_date + relativedelta(days=1)
