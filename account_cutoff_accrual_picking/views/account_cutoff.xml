@@ -11,14 +11,8 @@
         <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form" />
         <field name="arch" type="xml">
             <field name="cutoff_date" position="after">
-                <label
-                    for="picking_interval_days"
-                    attrs="{'invisible': [('cutoff_type', 'not in', ('accrued_expense', 'accrued_revenue'))]}"
-                />
-                <div
-                    name="picking_interval_days"
-                    attrs="{'invisible': [('cutoff_type', 'not in', ('accrued_expense', 'accrued_revenue'))]}"
-                >
+                <label for="picking_interval_days" />
+                <div name="picking_interval_days">
                     <field name="picking_interval_days" class="oe_inline" /> days
                 </div>
             </field>
