@@ -11,8 +11,13 @@ class ResConfigSettings(models.TransientModel):
     # I can't name it default_cutoff_journal_id
     # because default_ is a special prefix
     dft_cutoff_journal_id = fields.Many2one(
-        related="company_id.default_cutoff_journal_id", readonly=False
+        related="company_id.default_cutoff_journal_id",
+        readonly=False,
+        domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
     )
     dft_cutoff_move_partner = fields.Boolean(
         related="company_id.default_cutoff_move_partner", readonly=False
+    )
+    post_cutoff_move = fields.Boolean(
+        related="company_id.post_cutoff_move", readonly=False
     )

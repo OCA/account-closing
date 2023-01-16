@@ -13,3 +13,4 @@ class ResCompany(models.Model):
     default_cutoff_move_partner = fields.Boolean(
         string="Partner on Move Line by Default"
     )
+    post_cutoff_move = fields.Boolean(string="Post Cut-off Entry")

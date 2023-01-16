@@ -3,11 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Account Cut-off Accrual Picking",
+    "name": "Account Cut-off Picking",
     "version": "13.0.1.0.1",
     "category": "Accounting",
     "license": "AGPL-3",
-    "summary": "Accrued expense & accrued revenue from pickings",
+    "summary": "Accrued and prepaid expense/revenue from pickings",
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
