@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2022-12-30 11:50+0000\n"
+"PO-Revision-Date: 2023-01-18 12:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -230,7 +230,7 @@ msgstr "Risconto passivo"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_product_template
 msgid "Product Template"
-msgstr "Template del prodotto"
+msgstr "Modello prodotto"
 
 #. module: account_cutoff_prepaid
 #: view:account.cutoff:account_cutoff_prepaid.account_cutoff_form
