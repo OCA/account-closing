@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2023-01-02 11:55+0000\n"
+"PO-Revision-Date: 2023-01-30 19:47+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -103,7 +103,7 @@ msgstr "Imposte - ratei attivi"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_res_company
 msgid "Companies"
-msgstr "Società"
+msgstr "Aziende"
 
 #. module: account_cutoff_accrual_base
 #: field:res.company,default_accrued_expense_account_id:0
