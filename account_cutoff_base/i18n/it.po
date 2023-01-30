@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2023-01-03 13:48+0000\n"
+"PO-Revision-Date: 2023-01-30 19:47+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -154,7 +154,7 @@ msgstr "Valore di base nella valuta dell'Ordine di Acquisto"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr "Società"
+msgstr "Aziende"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,company_id:0 field:account.cutoff.mapping,company_id:0
