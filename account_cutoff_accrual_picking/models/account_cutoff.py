@@ -142,28 +142,14 @@ class AccountCutoff(models.Model):
         self, order_line, order_type, oline_dict, cutoff_datetime
     ):
         assert order_line not in oline_dict
-        dpo = self.env["decimal.precision"]
-        qty_prec = dpo.precision_get("Product Unit of Measure")
-        # These fields have the same name on PO and SO
-        order = order_line.order_id
-        product = order_line.product_id
-        product_uom = product.uom_id
-        moves = order_line.move_ids
-        if self.source_move_state == "posted":
-            ilines = order_line.invoice_lines.filtered(
-                lambda x: x.parent_state == "posted"
-            )
-        else:
-            ilines = order_line.invoice_lines.filtered(
-                lambda x: x.parent_state in ("draft", "posted")
-            )
+        order = order_line.order_id  # same on PO and SO
         oline_dict[order_line] = {
             "precut_delivered_qty": 0.0,  # in product_uom
             "precut_delivered_logs": [],
             "precut_invoiced_qty": 0.0,  # in product_uom
             "precut_invoiced_logs": [],
             "name": _("%s: %s") % (order.name, order_line.name),
-            "product": product,
+            "product": order_line.product_id,
             "partner": order.partner_id.commercial_partner_id,
             "notes": "",
             "price_unit": 0.0,
@@ -173,7 +159,26 @@ class AccountCutoff(models.Model):
             "account_id": False,
             "taxes": False,
         }
+        self.order_line_update_oline_dict_from_stock_moves(
+            order_line, order_type, oline_dict, cutoff_datetime
+        )
+        self.order_line_update_oline_dict_from_invoice_lines(
+            order_line, order_type, oline_dict, cutoff_datetime
+        )
+        if not oline_dict[order_line]["price_origin"]:
+            self.order_line_update_oline_dict_price_fallback(
+                order_line, order_type, oline_dict
+            )
+
+    def order_line_update_oline_dict_from_stock_moves(
+        self, order_line, order_type, oline_dict, cutoff_datetime
+    ):
         wdict = oline_dict[order_line]
+        # These fields/methods have the same name on PO and SO
+        order = order_line.order_id
+        product = order_line.product_id
+        product_uom = product.uom_id
+        outgoing_moves, incoming_moves = order_line._get_outgoing_incoming_moves()
         if order_type == "purchase":
             ordered_qty = order_line.product_uom._compute_quantity(
                 order_line.product_qty, product_uom
@@ -202,46 +207,63 @@ class AccountCutoff(models.Model):
                 formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
                 product_uom.name,
             )
-        for move in moves:
-            if move.state == "done" and move.date <= cutoff_datetime:
-                sign = 0
-                if (
-                    move.location_id.usage != "internal"
-                    and move.location_dest_id.usage == "internal"
-                ):
-                    # purchase: regular move ; sale: reverse move
-                    sign = order_type == "purchase" and 1 or -1
-                elif (
-                    move.location_id.usage == "internal"
-                    and move.location_dest_id.usage != "internal"
-                ):
-                    # purchase: reverse move ; sale: regular move
-                    sign = order_type == "sale" and 1 or -1
-                if sign:
-                    move_qty = move.product_uom._compute_quantity(
-                        move.quantity_done * sign, product_uom
-                    )
-                    wdict["precut_delivered_qty"] += move_qty
-                    move_qty_formatted = formatLang(
-                        self.env, move_qty, dp="Product Unit of Measure"
-                    )
-                    wdict["precut_delivered_logs"].append(
-                        " • %s %s (picking %s transfered on %s from %s to %s)"
-                        % (
-                            move_qty_formatted,
-                            move.product_id.uom_id.name,
-                            move.picking_id.name or "none",
-                            format_datetime(self.env, move.date),
-                            move.location_id.display_name,
-                            move.location_dest_id.display_name,
-                        )
-                    )
+        move_logs = []
+        for out_move in outgoing_moves.filtered(
+            lambda m: m.state == "done" and m.date <= cutoff_datetime
+        ):
+            sign = order_type == "purchase" and -1 or 1
+            move_qty = out_move.product_uom._compute_quantity(
+                out_move.quantity_done * sign, product_uom
+            )
+            move_logs.append((out_move, move_qty))
+        for in_move in incoming_moves.filtered(
+            lambda m: m.state == "done" and m.date <= cutoff_datetime
+        ):
+            sign = order_type == "sale" and -1 or 1
+            move_qty = in_move.product_uom._compute_quantity(
+                in_move.quantity_done * sign, product_uom
+            )
+            move_logs.append((in_move, move_qty))
+        move_logs_sorted = sorted(move_logs, key=lambda to_sort: to_sort[0].date)
+        for (move, move_qty_signed) in move_logs_sorted:
+            wdict["precut_delivered_qty"] += move_qty_signed
+            move_qty_signed_formatted = formatLang(
+                self.env, move_qty_signed, dp="Product Unit of Measure"
+            )
+            wdict["precut_delivered_logs"].append(
+                _(" • %s %s (picking %s transfered on %s from %s to %s)")
+                % (
+                    move_qty_signed_formatted,
+                    move.product_id.uom_id.name,
+                    move.picking_id.name or "none",
+                    format_datetime(self.env, move.date),
+                    move.location_id.display_name,
+                    move.location_dest_id.display_name,
+                )
+            )
 
+    def order_line_update_oline_dict_from_invoice_lines(
+        self, order_line, order_type, oline_dict, cutoff_datetime
+    ):
+        wdict = oline_dict[order_line]
+        dpo = self.env["decimal.precision"]
+        qty_prec = dpo.precision_get("Product Unit of Measure")
         move_type2label = dict(
             self.env["account.move"].fields_get("move_type", "selection")["move_type"][
                 "selection"
             ]
         )
+        # These fields have the same name on PO and SO
+        product = order_line.product_id
+        product_uom = product.uom_id
+        if self.source_move_state == "posted":
+            ilines = order_line.invoice_lines.filtered(
+                lambda x: x.parent_state == "posted"
+            )
+        else:
+            ilines = order_line.invoice_lines.filtered(
+                lambda x: x.parent_state in ("draft", "posted")
+            )
         for iline in ilines:
             invoice = iline.move_id
             if not float_is_zero(iline.quantity, precision_digits=qty_prec):
@@ -271,10 +293,6 @@ class AccountCutoff(models.Model):
                 wdict["account_id"] = iline.account_id.id
                 wdict["analytic_account_id"] = iline.analytic_account_id.id
                 wdict["taxes"] = iline.tax_ids
-        if not wdict["price_origin"]:
-            self.order_line_update_oline_dict_price_fallback(
-                order_line, order_type, oline_dict
-            )
 
     def order_line_update_oline_dict_price_fallback(
         self, order_line, order_type, oline_dict
