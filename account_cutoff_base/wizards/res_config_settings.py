@@ -19,6 +19,9 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.default_cutoff_move_partner", readonly=False
     )
     accrual_taxes = fields.Boolean(related="company_id.accrual_taxes", readonly=False)
+    post_cutoff_move = fields.Boolean(
+        related="company_id.post_cutoff_move", readonly=False
+    )
     dft_accrued_revenue_account_id = fields.Many2one(
         related="company_id.default_accrued_revenue_account_id",
         readonly=False,

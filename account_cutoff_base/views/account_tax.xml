@@ -14,12 +14,12 @@
                 <field
                     name="account_accrued_revenue_id"
                     attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"
-                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create': True}"
                 />
                 <field
                     name="account_accrued_expense_id"
                     attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"
-                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create': True}"
                 />
             </field>
         </field>

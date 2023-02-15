@@ -17,6 +17,8 @@
         "security/ir.model.access.csv",
         "views/res_config_settings.xml",
         "views/account_cutoff.xml",
+        "views/account_cutoff_line.xml",
+        "views/account_cutoff_tax_line.xml",
         "views/account_cutoff_mapping.xml",
         "views/account_tax.xml",
     ],

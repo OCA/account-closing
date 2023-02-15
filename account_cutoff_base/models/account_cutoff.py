@@ -10,6 +10,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import date_utils, float_is_zero
+from odoo.tools.misc import format_date
 
 
 class AccountCutoff(models.Model):
@@ -41,10 +42,10 @@ class AccountCutoff(models.Model):
         }
 
     @api.model
-    def _default_move_label(self):
+    def _default_move_ref(self):
         cutoff_type = self.env.context.get("default_cutoff_type")
-        label = self.cutoff_type_label_map.get(cutoff_type, "")
-        return label
+        ref = self.cutoff_type_label_map.get(cutoff_type, "")
+        return ref
 
     @api.model
     def _default_cutoff_date(self):
@@ -82,8 +83,7 @@ class AccountCutoff(models.Model):
 
     cutoff_date = fields.Date(
         string="Cut-off Date",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
         copy=False,
         tracking=True,
         default=lambda self: self._default_cutoff_date(),
@@ -92,8 +92,15 @@ class AccountCutoff(models.Model):
         selection="_selection_cutoff_type",
         string="Type",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
+    )
+    source_move_state = fields.Selection(
+        [("posted", "Posted Entries"), ("draft_posted", "Draft and Posted Entries")],
+        string="Source Entries",
+        required=True,
+        default="posted",
+        states={"done": [("readonly", True)]},
+        tracking=True,
     )
     move_id = fields.Many2one(
         "account.move",
@@ -102,25 +109,22 @@ class AccountCutoff(models.Model):
         copy=False,
         check_company=True,
     )
-    move_label = fields.Char(
-        string="Label of the Cut-off Journal Entry",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-        default=lambda self: self._default_move_label(),
-        help="This label will be written in the 'Name' field of the "
-        "Cut-off Account Move Lines and in the 'Reference' field of "
-        "the Cut-off Account Move.",
+    move_ref = fields.Char(
+        string="Reference of the Cut-off Journal Entry",
+        states={"done": [("readonly", True)]},
+        default=lambda self: self._default_move_ref(),
     )
     move_partner = fields.Boolean(
         string="Partner on Move Line",
         default=lambda self: self.env.company.default_cutoff_move_partner,
+        states={"done": [("readonly", True)]},
+        tracking=True,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
         domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
         default=lambda self: self._default_cutoff_account_id(),
         check_company=True,
         tracking=True,
@@ -129,8 +133,7 @@ class AccountCutoff(models.Model):
         comodel_name="account.journal",
         string="Cut-off Account Journal",
         default=lambda self: self.env.company.default_cutoff_journal_id,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
         domain="[('company_id', '=', company_id)]",
         check_company=True,
         tracking=True,
@@ -139,15 +142,13 @@ class AccountCutoff(models.Model):
         compute="_compute_total_cutoff",
         string="Total Cut-off Amount",
         currency_field="company_currency_id",
-        readonly=True,
         tracking=True,
     )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
         default=lambda self: self.env.company,
     )
     company_currency_id = fields.Many2one(
@@ -157,8 +158,7 @@ class AccountCutoff(models.Model):
         comodel_name="account.cutoff.line",
         inverse_name="parent_id",
         string="Cut-off Lines",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
     )
     state = fields.Selection(
         selection=[("draft", "Draft"), ("done", "Done")],
@@ -178,6 +178,16 @@ class AccountCutoff(models.Model):
             _("A cutoff of the same type already exists with this cut-off date !"),
         )
     ]
+
+    def name_get(self):
+        res = []
+        type2label = self.cutoff_type_label_map
+        for rec in self:
+            name = type2label.get(rec.cutoff_type, "")
+            if rec.cutoff_date:
+                name = "%s %s" % (name, format_date(self.env, rec.cutoff_date))
+            res.append((rec.id, name))
+        return res
 
     def back2draft(self):
         self.ensure_one()
@@ -199,7 +209,7 @@ class AccountCutoff(models.Model):
         self.ensure_one()
         movelines_to_create = []
         amount_total = 0
-        move_label = self.move_label
+        ref = self.move_ref
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
             amount = self.company_currency_id.round(amount)
@@ -235,7 +245,7 @@ class AccountCutoff(models.Model):
             "company_id": self.company_id.id,
             "journal_id": self.cutoff_journal_id.id,
             "date": self.cutoff_date,
-            "ref": move_label,
+            "ref": ref,
             "line_ids": movelines_to_create,
         }
         return res
@@ -312,6 +322,8 @@ class AccountCutoff(models.Model):
         to_provision = self._merge_provision_lines(provision_lines)
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
+        if self.company_id.post_cutoff_move:
+            move._post(soft=False)
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
@@ -329,27 +341,27 @@ class AccountCutoff(models.Model):
     def get_lines(self):
         """This method is designed to be inherited in other modules"""
         self.ensure_one()
+        assert self.state != "done"
+        # I test self.state == 'draft' below because other modules
+        # (e.g. account_cutoff_start_end_dates) add additional states
+        # and don't require self.cutoff_date
+        if self.state == "draft" and not self.cutoff_date:
+            raise UserError(_("Cutoff date is not set."))
         # Delete existing lines
         self.line_ids.unlink()
         self.message_post(body=_("Cut-off lines re-generated"))
-        return True
 
     def unlink(self):
         for rec in self:
-            if rec.state != "draft":
+            if rec.state == "done":
                 raise UserError(
-                    _(
-                        "You cannot delete cutoff records that are not "
-                        "in draft state."
-                    )
+                    _("You cannot delete cutoff records that are in done state.")
                 )
         return super().unlink()
 
     def button_line_tree(self):
-        action = (
-            self.env.ref("account_cutoff_base.account_cutoff_line_action")
-            .sudo()
-            .read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "account_cutoff_base.account_cutoff_line_action"
         )
         action.update(
             {
