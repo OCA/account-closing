@@ -13,7 +13,10 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account_cutoff_base", "account_invoice_start_end_dates"],
-    "data": ["views/account_cutoff.xml"],
+    "data": [
+        "views/account_cutoff.xml",
+        "views/account_cutoff_line.xml",
+    ],
     "images": [
         "images/prepaid_revenue_draft.jpg",
         "images/prepaid_revenue_journal_entry.jpg",

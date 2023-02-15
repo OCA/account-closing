@@ -36,9 +36,9 @@ class AccountCutoff(models.Model):
         column2="journal_id",
         string="Source Journals",
         default=lambda self: self._get_default_source_journals(),
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states={"done": [("readonly", True)]},
         check_company=True,
+        domain="[('company_id', '=', company_id)]",
     )
     forecast = fields.Boolean(
         readonly=True,
@@ -181,7 +181,7 @@ class AccountCutoff(models.Model):
         mapping = self._get_mapping_dict()
         domain = [
             ("journal_id", "in", self.source_journal_ids.ids),
-            ("display_type", "not in", ("line_note", "line_section")),
+            ("display_type", "=", "product"),
             ("company_id", "=", self.company_id.id),
             ("balance", "!=", 0),
         ]
