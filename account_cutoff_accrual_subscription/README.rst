@@ -35,7 +35,7 @@ This module allows you to easily compute accrued expenses (and accrued revenues)
 Configuration
 =============
 
-Go to the menu *Accounting > Configuration > Cut-offs > Subscriptions* and create subscriptions: they are used as the expected expenses (or revenue). For exemple, you may create a subscription for your office rental, your Internet access, your insurance contracts, etc.
+Go to the menu *Accounting > Configuration > Accounting > Subscriptions* and create subscriptions: they are used as the expected expenses (or revenue). For exemple, you may create a subscription for your office rental, your Internet access, your insurance contracts, etc.
 
 Bug Tracker
 ===========
