@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 class AccountCutoffAccrualSubscription(models.Model):
     _name = "account.cutoff.accrual.subscription"
+    _inherit = "analytic.mixin"
     _description = "Subscriptions to compute accrual cutoffs"
     _order = "subscription_type, name"
     _check_company_auto = True
@@ -40,17 +41,16 @@ class AccountCutoffAccrualSubscription(models.Model):
     )
     partner_type = fields.Selection(
         [
-            ("none", "No Partner"),
-            ("one", "Specific Partner"),
             ("any", "Any Partner"),
+            ("one", "Specific Partner"),
+            ("none", "No Partner"),
         ],
         default="one",
-        string="Partner Type",
         required=True,
     )
     partner_id = fields.Many2one(
         "res.partner",
-        string="Supplier",
+        string="Partner",
         domain=[("parent_id", "=", False)],
         ondelete="restrict",
     )
@@ -62,7 +62,6 @@ class AccountCutoffAccrualSubscription(models.Model):
             ("semester", "Semesterly"),
             ("year", "Yearly"),
         ],
-        string="Periodicity",
         required=True,
     )
     start_date = fields.Date(required=True)
@@ -80,12 +79,6 @@ class AccountCutoffAccrualSubscription(models.Model):
         string="Account",
         required=True,
         domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
-        check_company=True,
-    )
-    analytic_account_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         check_company=True,
     )
     type_tax_use = fields.Char(compute="_compute_type_tax_use")
@@ -168,14 +161,13 @@ class AccountCutoffAccrualSubscription(models.Model):
         domain_base = common_domain + [
             ("company_id", "=", company.id),
             ("account_id", "=", self.account_id.id),
-            ("analytic_account_id", "=", self.analytic_account_id.id or False),
         ]
         if self.partner_type == "one":
             if self.partner_id:
                 domain_base.append(("partner_id", "=", self.partner_id.id))
             else:
                 raise UserError(
-                    _("Missing supplier on subscription '%s'.") % self.display_name
+                    _("Missing partner on subscription '%s'.") % self.display_name
                 )
         elif self.partner_type == "none":
             domain_base.append(("partner_id", "=", False))
