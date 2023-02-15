@@ -28,7 +28,7 @@
                     <field name="subscription_type" />
                     <field name="active" invisible="1" />
                     <field name="type_tax_use" invisible="1" />
-                    <field name="partner_type" />
+                    <field name="partner_type" widget="radio" />
                     <field
                             name="partner_id"
                             attrs="{'invisible': [('partner_type', '!=', 'one')], 'required': [('partner_type', '=', 'one')]}"
@@ -37,13 +37,15 @@
                     <field name="start_date" />
                     <field name="account_id" />
                     <field
-                            name="analytic_account_id"
+                            name="analytic_distribution"
                             groups="analytic.group_analytic_accounting"
+                            widget="analytic_distribution"
                         />
                     <field name="tax_ids" widget="many2many_tags" />
                     <field name="min_amount" />
                     <field name="provision_amount" />
                     <field name="company_id" groups="base.group_multi_company" />
+                    <field name="company_id" invisible="1" />
                     <field name="company_currency_id" invisible="1" />
                 </group>
             </sheet>
@@ -68,7 +70,7 @@
             <field name="start_date" optional="hide" />
             <field name="account_id" optional="show" />
             <field
-                    name="analytic_account_id"
+                    name="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
                     optional="show"
                 />
@@ -79,6 +81,7 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
+            <field name="company_id" invisible="1" />
             <field name="company_currency_id" invisible="1" />
         </tree>
     </field>
@@ -117,18 +120,13 @@
                     />
                 <filter
                         name="partner_groupby"
-                        string="Supplier"
+                        string="Partner"
                         context="{'group_by': 'partner_id'}"
                     />
                 <filter
                         name="account_groupby"
-                        string="Expense Account"
+                        string="Account"
                         context="{'group_by': 'account_id'}"
-                    />
-                <filter
-                        name="analytic_account_groupby"
-                        string="Analytic Account"
-                        context="{'group_by': 'analytic_account_id'}"
                     />
             </group>
         </search>
