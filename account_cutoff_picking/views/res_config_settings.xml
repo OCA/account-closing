@@ -14,13 +14,10 @@
         />
         <field name="arch" type="xml">
             <div id="dft_prepaid_expense_account_id" position="after">
-                <div class="row" id="dft_cutoff_accrual_picking_interval_days">
-                    <label
-                        for="dft_cutoff_accrual_picking_interval_days"
-                        class="col-md-5"
-                    />
+                <div class="row" id="dft_cutoff_picking_interval_days">
+                    <label for="dft_cutoff_picking_interval_days" class="col-md-5" />
                     <field
-                        name="dft_cutoff_accrual_picking_interval_days"
+                        name="dft_cutoff_picking_interval_days"
                         class="col-md-1"
                     /> days
                 </div>

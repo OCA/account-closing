@@ -59,25 +59,6 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, fuzzy, python-format
-msgid ""
-"Missing expense account on product '%s' or on its related product category "
-"'%s'."
-msgstr ""
-"Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
-"Produktkategorie"
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, fuzzy, python-format
-msgid ""
-"Missing income account on product '%s' or on its related product category "
-"'%s'."
-msgstr ""
-"Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
-
-#. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
