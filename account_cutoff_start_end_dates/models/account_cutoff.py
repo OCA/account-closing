@@ -40,20 +40,15 @@ class AccountCutoff(models.Model):
         check_company=True,
         domain="[('company_id', '=', company_id)]",
     )
-    forecast = fields.Boolean(
-        readonly=True,
-        tracking=True,
-        help="The Forecast mode allows the user to compute "
-        "the prepaid revenue/expense between 2 dates in the future.",
-    )
-    start_date = fields.Date()
-    end_date = fields.Date()
+    state = fields.Selection(selection_add=[("forecast", "Forecast")])
+    start_date = fields.Date(help="This field is only for the forecast mode")
+    end_date = fields.Date(help="This field is only for the forecast mode")
 
-    @api.constrains("start_date", "end_date", "forecast")
+    @api.constrains("start_date", "end_date", "state")
     def _check_start_end_dates(self):
         for rec in self:
             if (
-                rec.forecast
+                rec.state == "forecast"
                 and rec.start_date
                 and rec.end_date
                 and rec.start_date > rec.end_date
@@ -71,13 +66,14 @@ class AccountCutoff(models.Model):
                 )
             )
         self.line_ids.unlink()
-        self.write({"forecast": True})
+        # set cutoff_date to False to avoid issue with unicity sql constraint
+        self.write({"state": "forecast", "cutoff_date": False})
 
     def forecast_disable(self):
         self.ensure_one()
-        assert self.state == "draft"
+        assert self.state == "forecast"
         self.line_ids.unlink()
-        self.write({"forecast": False})
+        self.write({"state": "draft"})
 
     def _prepare_date_cutoff_line(self, aml, mapping):
         self.ensure_one()
@@ -147,7 +143,7 @@ class AccountCutoff(models.Model):
         end_date_dt = aml.end_date
         # Here, we compute the amount of the cutoff
         # That's the important part !
-        if self.forecast:
+        if self.state == "forecast":
             out_days = 0
             forecast_start_date_dt = self.start_date
             forecast_end_date_dt = self.end_date
@@ -185,9 +181,17 @@ class AccountCutoff(models.Model):
             ("company_id", "=", self.company_id.id),
             ("balance", "!=", 0),
         ]
+        if self.source_move_state == "posted":
+            domain.append(("parent_state", "=", "posted"))
+        else:
+            domain.append(("parent_state", "in", ("draft", "posted")))
 
         if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
-            if self.forecast:
+            if self.state == "forecast":
+                if not self.start_date or not self.end_date:
+                    raise UserError(
+                        _("Start date and end date are required for forecast mode.")
+                    )
                 domain += [
                     ("start_date", "!=", False),
                     ("start_date", "<=", self.end_date),
@@ -208,4 +212,5 @@ class AccountCutoff(models.Model):
         amls = aml_obj.search(domain)
         for aml in amls:
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
+
         return res
