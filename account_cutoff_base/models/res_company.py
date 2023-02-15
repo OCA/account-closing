@@ -19,6 +19,7 @@ class ResCompany(models.Model):
         string="Partner on Move Line by Default"
     )
     accrual_taxes = fields.Boolean(string="Accrual On Taxes", default=True)
+    post_cutoff_move = fields.Boolean(string="Post Cut-off Journal Entry")
     default_accrued_revenue_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Default Account for Accrued Revenues",
