@@ -19,7 +19,9 @@ class AccountCutoff(models.Model):
     picking_interval_days = fields.Integer(
         string="Analysis Interval",
         default=lambda self: self._default_picking_interval_days(),
-        help="To generate the accrual/prepaid revenue/expenses based on picking "
+        states={"done": [("readonly", True)]},
+        tracking=True,
+        help="To generate the cutoffs based on picking "
         "dates vs invoice dates, Odoo will analyse all the pickings/invoices from "
         "N days before the cutoff date up to the cutoff date. "
         "N is the Analysis Interval. If you increase the analysis interval, "
@@ -36,7 +38,7 @@ class AccountCutoff(models.Model):
 
     @api.model
     def _default_picking_interval_days(self):
-        return self.env.company.default_cutoff_accrual_picking_interval_days
+        return self.env.company.default_cutoff_picking_interval_days
 
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         dpo = self.env["decimal.precision"]
@@ -108,7 +110,7 @@ class AccountCutoff(models.Model):
             "name": vdict["name"],
             "account_id": account_id,
             "cutoff_account_id": cutoff_account_id,
-            "analytic_account_id": vdict["analytic_account_id"],
+            "analytic_distribution": vdict["analytic_distribution"],
             "currency_id": vdict["currency"].id,
             "quantity": qty,
             "price_unit": vdict["price_unit"],
@@ -148,14 +150,14 @@ class AccountCutoff(models.Model):
             "precut_delivered_logs": [],
             "precut_invoiced_qty": 0.0,  # in product_uom
             "precut_invoiced_logs": [],
-            "name": _("%s: %s") % (order.name, order_line.name),
+            "name": ": ".join([order.name, order_line.name]),
             "product": order_line.product_id,
             "partner": order.partner_id.commercial_partner_id,
             "notes": "",
             "price_unit": 0.0,
             "price_origin": False,
             "currency": False,
-            "analytic_account_id": False,
+            "analytic_distribution": False,
             "account_id": False,
             "taxes": False,
         }
@@ -184,29 +186,29 @@ class AccountCutoff(models.Model):
                 order_line.product_qty, product_uom
             )
             wdict["notes"] = _(
-                "Purchase order %s confirmed on %s\n"
-                "Purchase Order Line: %s (ordered qty: %s %s)"
-            ) % (
-                order.name,
-                format_datetime(self.env, order.date_approve),
-                order_line.name,
-                formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
-                product_uom.name,
-            )
+                "Purchase order %(order)s confirmed on %(confirm_date)s\n"
+                "Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
+            ) % {
+                "order": order.name,
+                "confirm_date": format_datetime(self.env, order.date_approve),
+                "order_line": order_line.name,
+                "qty": formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                "uom": product_uom.name,
+            }
         elif order_type == "sale":
             ordered_qty = order_line.product_uom._compute_quantity(
                 order_line.product_uom_qty, product_uom
             )
             wdict["notes"] = _(
-                "Sale order %s confirmed on %s\n"
-                "Sale Order Line: %s (ordered qty: %s %s)"
-            ) % (
-                order.name,
-                format_datetime(self.env, order.date_order),
-                order_line.name,
-                formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
-                product_uom.name,
-            )
+                "Sale order %(order)s confirmed on %(confirm_date)s\n"
+                "Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
+            ) % {
+                "order": order.name,
+                "confirm_date": format_datetime(self.env, order.date_order),
+                "order_line": order_line.name,
+                "qty": formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                "uom": product_uom.name,
+            }
         move_logs = []
         for out_move in outgoing_moves.filtered(
             lambda m: m.state == "done" and m.date <= cutoff_datetime
@@ -231,15 +233,18 @@ class AccountCutoff(models.Model):
                 self.env, move_qty_signed, dp="Product Unit of Measure"
             )
             wdict["precut_delivered_logs"].append(
-                _(" • %s %s (picking %s transfered on %s from %s to %s)")
-                % (
-                    move_qty_signed_formatted,
-                    move.product_id.uom_id.name,
-                    move.picking_id.name or "none",
-                    format_datetime(self.env, move.date),
-                    move.location_id.display_name,
-                    move.location_dest_id.display_name,
+                _(
+                    " • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s "
+                    "from %(src_location)s to %(dest_location)s)"
                 )
+                % {
+                    "qty": move_qty_signed_formatted,
+                    "uom": move.product_id.uom_id.name,
+                    "picking": move.picking_id.name or "none",
+                    "date": format_datetime(self.env, move.date),
+                    "src_location": move.location_id.display_name,
+                    "dest_location": move.location_dest_id.display_name,
+                }
             )
 
     def order_line_update_oline_dict_from_invoice_lines(
@@ -277,21 +282,21 @@ class AccountCutoff(models.Model):
                         self.env, iline_qty_puom, dp="Product Unit of Measure"
                     )
                     wdict["precut_invoiced_logs"].append(
-                        " • %s %s (%s %s dated %s)"
-                        % (
-                            iline_qty_puom_formatted,
-                            iline.product_id.uom_id.name,
-                            move_type2label[invoice.move_type],
-                            invoice.name,
-                            format_date(self.env, invoice.date),
-                        )
+                        " • %(qty)s %(uom)s (%(move_type)s %(move_name)s dated %(date)s)"
+                        % {
+                            "qty": iline_qty_puom_formatted,
+                            "uom": iline.product_id.uom_id.name,
+                            "move_type": move_type2label[invoice.move_type],
+                            "move_name": invoice.name,
+                            "date": format_date(self.env, invoice.date),
+                        }
                     )
                 # Most recent invoice line used for price_unit, account,...
                 wdict["price_unit"] = iline.price_subtotal / iline_qty_puom
                 wdict["price_origin"] = invoice.name
                 wdict["currency"] = invoice.currency_id
                 wdict["account_id"] = iline.account_id.id
-                wdict["analytic_account_id"] = iline.analytic_account_id.id
+                wdict["analytic_distribution"] = iline.analytic_distribution
                 wdict["taxes"] = iline.tax_ids
 
     def order_line_update_oline_dict_price_fallback(
@@ -307,16 +312,19 @@ class AccountCutoff(models.Model):
             wdict["price_unit"] = order_line.price_subtotal / oline_qty_puom
             wdict["price_origin"] = order.name
             wdict["currency"] = order.currency_id
-            wdict["analytic_account_id"] = order_line.account_analytic_id.id
+            wdict["analytic_distribution"] = order_line.analytic_distribution
             wdict["taxes"] = order_line.taxes_id
             account = product._get_product_accounts()["expense"]
             if not account:
                 raise UserError(
                     _(
-                        "Missing expense account on product '%s' or on its "
-                        "related product category '%s'."
+                        "Missing expense account on product '%(product)s' or on its "
+                        "related product category '%(categ)s'."
                     )
-                    % (product.display_name, product.categ_id.display_name)
+                    % {
+                        "product": product.display_name,
+                        "categ": product.categ_id.display_name,
+                    }
                 )
             wdict["account_id"] = order.fiscal_position_id.map_account(account).id
         elif order_type == "sale":
@@ -326,16 +334,19 @@ class AccountCutoff(models.Model):
             wdict["price_unit"] = order_line.price_subtotal / oline_qty_puom
             wdict["price_origin"] = order.name
             wdict["currency"] = order.currency_id
-            wdict["analytic_account_id"] = order.analytic_account_id.id
+            wdict["analytic_distribution"] = order_line.analytic_distribution
             wdict["taxes"] = order_line.tax_id
             account = product._get_product_accounts()["income"]
             if not account:
                 raise UserError(
                     _(
-                        "Missing income account on product '%s' or on its "
-                        "related product category '%s'."
+                        "Missing income account on product '%(product)s' or on its "
+                        "related product category '%(categ)s'."
                     )
-                    % (product.display_name, product.categ_id.display_name)
+                    % {
+                        "product": product.display_name,
+                        "categ": product.categ_id.display_name,
+                    }
                 )
             wdict["account_id"] = order.fiscal_position_id.map_account(account).id
 
@@ -435,7 +446,7 @@ class AccountCutoff(models.Model):
             )
 
             for p in pickings:
-                for move in p.move_lines.filtered(lambda m: m.state == "done"):
+                for move in p.move_ids.filtered(lambda m: m.state == "done"):
                     self.stock_move_update_oline_dict(move, oline_dict, cutoff_datetime)
         elif cutoff_type in ("prepaid_revenue", "prepaid_expense"):
             move_type_map = {
@@ -456,7 +467,7 @@ class AccountCutoff(models.Model):
             invoices = self.env["account.move"].search(inv_domain)
             for invoice in invoices:
                 for iline in invoice.invoice_line_ids.filtered(
-                    lambda x: not x.display_type
+                    lambda x: x.display_type == "product"
                     and x.product_id.type in ("product", "consu")
                 ):
                     self.invoice_line_update_oline_dict(

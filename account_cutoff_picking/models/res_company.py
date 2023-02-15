@@ -8,7 +8,7 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    default_cutoff_accrual_picking_interval_days = fields.Integer(
+    default_cutoff_picking_interval_days = fields.Integer(
         string="Analysis Interval",
         help="To generate the accrual/prepaid revenue/expenses based on picking "
         "dates vs invoice dates, Odoo will analyse all the pickings/invoices from "
@@ -21,7 +21,7 @@ class ResCompany(models.Model):
     _sql_constraints = [
         (
             "cutoff_picking_interval_days_positive",
-            "CHECK(default_cutoff_accrual_picking_interval_days > 0)",
-            "The value of the field 'Analysis Interval' must " "be strictly positive.",
+            "CHECK(default_cutoff_picking_interval_days > 0)",
+            "The value of the field 'Analysis Interval' must be strictly positive.",
         )
     ]
