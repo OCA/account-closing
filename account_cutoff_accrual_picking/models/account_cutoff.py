@@ -18,6 +18,8 @@ class AccountCutoff(models.Model):
 
     picking_interval_days = fields.Integer(
         string="Analysis Interval",
+        states={"done": [("readonly", True)]},
+        tracking=True,
         default=lambda self: self._default_picking_interval_days(),
         help="To generate the accrual/prepaid revenue/expenses based on picking "
         "dates vs invoice dates, Odoo will analyse all the pickings/invoices from "
