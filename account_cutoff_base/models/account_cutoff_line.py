@@ -12,7 +12,9 @@ class AccountCutoffLine(models.Model):
     _description = "Account Cut-off Line"
 
     parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
-    company_id = fields.Many2one("res.company", related="parent_id.company_id")
+    company_id = fields.Many2one(
+        "res.company", related="parent_id.company_id", store=True
+    )
     name = fields.Char("Description")
     company_currency_id = fields.Many2one(
         related="parent_id.company_currency_id",
@@ -20,14 +22,14 @@ class AccountCutoffLine(models.Model):
     )
     partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
     quantity = fields.Float(digits="Product Unit of Measure", readonly=True)
-    price_unit = fields.Monetary(
+    price_unit = fields.Float(
         string="Unit Price w/o Tax",
+        digits="Product Price",
         readonly=True,
-        currency_field="currency_id",
         help="Price per unit (discount included) without taxes in the default "
         "unit of measure of the product in the currency of the 'Currency' field.",
     )
-    price_origin = fields.Monetary(readonly=True, currency_field="currency_id")
+    price_origin = fields.Char(readonly=True)
     origin_move_line_id = fields.Many2one(
         "account.move.line", string="Origin Journal Item", readonly=True
     )
@@ -52,7 +54,7 @@ class AccountCutoffLine(models.Model):
         check_company=True,
     )
     cutoff_account_code = fields.Char(
-        related="cutoff_account_id.code", string="Cut-off Account Code", readonly=True
+        related="cutoff_account_id.code", string="Cut-off Account Code"
     )
     currency_id = fields.Many2one(
         "res.currency",
