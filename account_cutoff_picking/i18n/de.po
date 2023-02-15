@@ -1,0 +1,182 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* account_cutoff_accrual_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-23 14:37+0000\n"
+"PO-Revision-Date: 2015-02-05 23:47+0100\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+" • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
+"%(src_location)s to %(dest_location)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Abgrenzungskonto"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff__picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
+msgid "Analysis Interval"
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Missing expense account on product '%(product)s' or on its related product "
+"category '%(categ)s'."
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Missing income account on product '%(product)s' or on its related product "
+"category '%(categ)s'."
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity details:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity details:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Purchase order %(order)s confirmed on %(confirm_date)s\n"
+"Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Sale order %(order)s confirmed on %(confirm_date)s\n"
+"Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model.constraint,message:account_cutoff_picking.constraint_account_cutoff_picking_interval_days_positive
+#: model:ir.model.constraint,message:account_cutoff_picking.constraint_res_company_cutoff_picking_interval_days_positive
+msgid "The value of the field 'Analysis Interval' must be strictly positive."
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,help:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
+#: model:ir.model.fields,help:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
+msgid ""
+"To generate the accrual/prepaid revenue/expenses based on picking dates vs "
+"invoice dates, Odoo will analyse all the pickings/invoices from N days "
+"before the cutoff date up to the cutoff date. N is the Analysis Interval. If "
+"you increase the analysis interval, Odoo will take more time to generate the "
+"cutoff lines."
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,help:account_cutoff_picking.field_account_cutoff__picking_interval_days
+msgid ""
+"To generate the cutoffs based on picking dates vs invoice dates, Odoo will "
+"analyse all the pickings/invoices from N days before the cutoff date up to "
+"the cutoff date. N is the Analysis Interval. If you increase the analysis "
+"interval, Odoo will take more time to generate the cutoff lines."
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.account_cutoff_form
+#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
+msgid "days"
+msgstr ""
+
+#~ msgid "Missing '%s' on tax '%s'."
+#~ msgstr "Fehlende '%s' bei Steuer '%s'."
+
+#~ msgid "Account Cut-off Line"
+#~ msgstr "Abgrenzungsposten"
+
+#~ msgid "Product"
+#~ msgstr "Produkt"
+
+#~ msgid "Stock Move"
+#~ msgstr "Lagerumbuchung"
+
+#~ msgid "Re-Generate Lines from Picking"
+#~ msgstr "Positionen aus Kommissionierung erneuern"
+
+#~ msgid "Picking"
+#~ msgstr "Entnahme"
+
+#~ msgid "Date Done of the Picking"
+#~ msgstr "Datum erledigter Kommissionierung"
+
+#~ msgid "Error:"
+#~ msgstr "Fehler:"
