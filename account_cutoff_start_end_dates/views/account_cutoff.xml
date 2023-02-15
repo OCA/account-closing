@@ -12,27 +12,25 @@
         <field name="arch" type="xml">
             <field name="cutoff_date" position="after">
                 <field
-                    name="forecast"
-                    invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
-                    optional="show"
-                />
-                <field
                     name="start_date"
                     invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
-                    optional="show"
-                    attrs="{'invisible': [('forecast', '=', False)]}"
+                    optional="hide"
+                    attrs="{'invisible': [('state', '!=', 'forecast')]}"
                 />
                 <field
                     name="end_date"
                     invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
-                    optional="show"
-                    attrs="{'invisible': [('forecast', '=', False)]}"
+                    optional="hide"
+                    attrs="{'invisible': [('state', '!=', 'forecast')]}"
                 />
             </field>
             <field name="cutoff_date" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('forecast', '=', True)]}</attribute>
+                >{'invisible': [('state', '=', 'forecast')]}</attribute>
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="decoration-warning">state == 'forecast'</attribute>
             </field>
         </field>
     </record>
@@ -46,66 +44,37 @@
                     name="forecast_enable"
                     type="object"
                     string="Enable Forecast Mode"
-                    attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('forecast', '=', True), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
                 />
                 <button
                     name="forecast_disable"
                     type="object"
                     string="Leave Forecast Mode"
-                    attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('forecast', '=', False), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
+                    states="forecast"
                 />
             </button>
             <field name="cutoff_date" position="before">
-                <field
-                    name="forecast"
-                    attrs="{'invisible': [('forecast', '=', False)]}"
-                />
-                <field
-                    name="start_date"
-                    attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"
-                />
-                <field
-                    name="end_date"
-                    attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"
-                />
+                <!-- I don't set the fields start_date and end_date
+                    as required, to make it easier for users
+                    to leave forecast mode if they entered it by mistake -->
+                <field name="start_date" states="forecast" />
+                <field name="end_date" states="forecast" />
             </field>
             <field name="cutoff_date" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('forecast', '=', True)], 'required': [('forecast', '=', False)]}</attribute>
-                <attribute name="required">0</attribute>
+                <attribute name="states">draft,done</attribute>
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,done</attribute>
             </field>
             <group name="accounting-params" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('forecast', '=', True)]}</attribute>
+                <attribute name="states">draft,done</attribute>
             </group>
-            <field name="cutoff_journal_id" position="attributes">
-                <attribute name="required">0</attribute>
-                <attribute
-                    name="attrs"
-                >{'required': [('forecast', '=', False)]}</attribute>
-            </field>
-            <field name="cutoff_account_id" position="attributes">
-                <attribute name="required">0</attribute>
-                <attribute
-                    name="attrs"
-                >{'required': [('forecast', '=', False)]}</attribute>
-            </field>
-            <field name="move_label" position="attributes">
-                <attribute name="required">0</attribute>
-                <attribute
-                    name="attrs"
-                >{'required': [('forecast', '=', False)]}</attribute>
-            </field>
-            <button name="create_move" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
-            </button>
-            <field name="cutoff_date" position="after">
+            <field name="source_move_state" position="after">
                 <field name="source_journal_ids" widget="many2many_tags" />
             </field>
+            <button name="get_lines" position="attributes">
+                <attribute name="states">draft,forecast</attribute>
+            </button>
         </field>
     </record>
     <record id="account_cutoff_filter" model="ir.ui.view">
@@ -113,19 +82,11 @@
         <field name="model">account.cutoff</field>
         <field name="inherit_id" ref="account_cutoff_base.account_cutoff_filter" />
         <field name="arch" type="xml">
-            <filter name="done" position="after">
-                <separator />
+            <filter name="draft" position="after">
                 <filter
                     name="forecast"
                     string="Forecast"
-                    domain="[('forecast', '=', True)]"
-                />
-            </filter>
-            <filter name="state_groupby" position="after">
-                <filter
-                    name="forecast_groupby"
-                    string="Forecast"
-                    context="{'group_by': 'forecast'}"
+                    domain="[('state', '=', 'forecast')]"
                 />
             </filter>
         </field>
