@@ -171,11 +171,11 @@ class AccountCutoff(models.Model):
         self, order_line, order_type, oline_dict, cutoff_datetime
     ):
         wdict = oline_dict[order_line]
-        # These fields have the same name on PO and SO
+        # These fields/methods have the same name on PO and SO
         order = order_line.order_id
         product = order_line.product_id
         product_uom = product.uom_id
-        moves = order_line.move_ids
+        outgoing_moves, incoming_moves = order_line._get_outgoing_incoming_moves()
         if order_type == "purchase":
             ordered_qty = order_line.product_uom._compute_quantity(
                 order_line.product_qty, product_uom
@@ -204,46 +204,40 @@ class AccountCutoff(models.Model):
                 formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
                 product_uom.name,
             )
-        for move in moves:
-            if move.state == "done" and move.date <= cutoff_datetime:
-                sign = 0
-                # inspired by _get_outgoing_incoming_moves() from sale_stock
-                # and purchase_stock
-                if order_type == "purchase":
-                    if move.location_dest_id.usage != "supplier" and (
-                        not move.origin_returned_move_id
-                        or (move.origin_returned_move_id and move.to_refund)
-                    ):
-                        sign = 1
-                    elif move.location_dest_id.usage == "supplier" and move.to_refund:
-                        sign = -1
-                elif order_type == "sale":
-                    if move.location_dest_id.usage == "customer" and (
-                        not move.origin_returned_move_id
-                        or (move.origin_returned_move_id and move.to_refund)
-                    ):
-                        sign = 1
-                    elif move.location_dest_id.usage != "customer" and move.to_refund:
-                        sign = -1
-                if sign:
-                    move_qty = move.product_uom._compute_quantity(
-                        move.quantity_done * sign, product_uom
-                    )
-                    wdict["precut_delivered_qty"] += move_qty
-                    move_qty_formatted = formatLang(
-                        self.env, move_qty, dp="Product Unit of Measure"
-                    )
-                    wdict["precut_delivered_logs"].append(
-                        " • %s %s (picking %s transfered on %s from %s to %s)"
-                        % (
-                            move_qty_formatted,
-                            move.product_id.uom_id.name,
-                            move.picking_id.name or "none",
-                            format_datetime(self.env, move.date),
-                            move.location_id.display_name,
-                            move.location_dest_id.display_name,
-                        )
-                    )
+        move_logs = []
+        for out_move in outgoing_moves.filtered(
+            lambda m: m.state == "done" and m.date <= cutoff_datetime
+        ):
+            sign = order_type == "purchase" and -1 or 1
+            move_qty = out_move.product_uom._compute_quantity(
+                out_move.quantity_done * sign, product_uom
+            )
+            move_logs.append((out_move, move_qty))
+        for in_move in incoming_moves.filtered(
+            lambda m: m.state == "done" and m.date <= cutoff_datetime
+        ):
+            sign = order_type == "sale" and -1 or 1
+            move_qty = in_move.product_uom._compute_quantity(
+                in_move.quantity_done * sign, product_uom
+            )
+            move_logs.append((in_move, move_qty))
+        move_logs_sorted = sorted(move_logs, key=lambda to_sort: to_sort[0].date)
+        for (move, move_qty_signed) in move_logs_sorted:
+            wdict["precut_delivered_qty"] += move_qty_signed
+            move_qty_signed_formatted = formatLang(
+                self.env, move_qty_signed, dp="Product Unit of Measure"
+            )
+            wdict["precut_delivered_logs"].append(
+                _(" • %s %s (picking %s transfered on %s from %s to %s)")
+                % (
+                    move_qty_signed_formatted,
+                    move.product_id.uom_id.name,
+                    move.picking_id.name or "none",
+                    format_datetime(self.env, move.date),
+                    move.location_id.display_name,
+                    move.location_dest_id.display_name,
+                )
+            )
 
     def order_line_update_oline_dict_from_invoice_lines(
         self, order_line, order_type, oline_dict, cutoff_datetime
