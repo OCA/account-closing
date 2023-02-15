@@ -9,15 +9,16 @@
         <field name="name">account.cutoff.mapping.form</field>
         <field name="model">account.cutoff.mapping</field>
         <field name="arch" type="xml">
-            <form string="Account Cut-off Mapping">
-                <field
-                    name="company_id"
-                    widget="selection"
-                    invisible="not context.get('account_cutoff_mapping_main_view', False)"
-                />
+            <form>
+                <field name="cutoff_type" />
                 <field name="account_id" />
                 <field name="cutoff_account_id" />
-                <field name="cutoff_type" />
+                <field
+                    name="company_id"
+                    options="{'no_create': True}"
+                    groups="base.group_multi_company"
+                />
+                <field name="company_id" invisible="1" />
             </form>
         </field>
     </record>
@@ -26,14 +27,16 @@
         <field name="model">account.cutoff.mapping</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field
-                    name="company_id"
-                    widget="selection"
-                    invisible="not context.get('account_cutoff_mapping_main_view', False)"
-                />
+                <field name="cutoff_type" />
                 <field name="account_id" />
                 <field name="cutoff_account_id" />
-                <field name="cutoff_type" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    options="{'no_create': True}"
+                    optional="show"
+                />
+                <field name="company_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -41,7 +44,6 @@
         <field name="name">Cut-off Account Mapping</field>
         <field name="res_model">account.cutoff.mapping</field>
         <field name="view_mode">tree,form</field>
-        <field name="context">{'account_cutoff_mapping_main_view': True}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start a new cutoff account mapping.
