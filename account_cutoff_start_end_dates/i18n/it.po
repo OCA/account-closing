@@ -36,12 +36,6 @@ msgid "Cutoff Days"
 msgstr "Giorni di separazione"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__display_name
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Enable Forecast Mode"
 msgstr "Abilita modalità previsione"
@@ -53,16 +47,10 @@ msgid "End Date"
 msgstr "Data fine"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__forecast
+#: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__state__forecast
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_filter
 msgid "Forecast"
 msgstr "Previsione"
-
-#. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__id
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__id
-msgid "ID"
-msgstr "ID"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
@@ -74,12 +62,6 @@ msgstr ""
 "Nella modalità normale è il numero di giorni dopo la data di separazione. In "
 "modalità previsione è il numero di giorni tra la data di inizio e quella di "
 "fine."
-
-#. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -98,21 +80,33 @@ msgid "Start Date"
 msgstr "Data inizio"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__forecast
-msgid ""
-"The Forecast mode allows the user to compute the prepaid revenue/expense "
-"between 2 dates in the future."
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+#, python-format
+msgid "Start date and end date are required for forecast mode."
 msgstr ""
-"La modalità previsione consente all'utente di calcolare i risconti attivi/"
-"passivi tra 2 date future."
 
 #. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__state
+msgid "State"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__state
+msgid ""
+"State of the cutoff. When the Journal Entry is created, the state is set to "
+"'Done' and the fields become read-only."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "The start date is after the end date!"
 msgstr "La data di inizio è successiva a quella di fine."
 
 #. module: account_cutoff_start_end_dates
+#. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid ""
@@ -123,15 +117,38 @@ msgstr ""
 "in modalità previsione deve essere eliminata."
 
 #. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__end_date
+#: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__start_date
+msgid "This field is only for the forecast mode"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__total_days
 msgid "Total Days"
 msgstr "Giorni totali"
 
 #. module: account_cutoff_start_end_dates
+#. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve essere impostato almeno un registro di origine."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid ""
+#~ "The Forecast mode allows the user to compute the prepaid revenue/expense "
+#~ "between 2 dates in the future."
+#~ msgstr ""
+#~ "La modalità previsione consente all'utente di calcolare i risconti attivi/"
+#~ "passivi tra 2 date future."
 
 #~ msgid "Click to start preparing a new prepaid expense."
 #~ msgstr "Click per iniziare un nuovo calcolo costi prepagati"
