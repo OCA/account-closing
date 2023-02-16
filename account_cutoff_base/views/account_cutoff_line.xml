@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2023 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.line.form</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="main">
+                    <group name="source" string="Source">
+                    <field
+                            name="parent_id"
+                            invisible="not context.get('account_cutoff_line_main_view', False)"
+                        />
+                    <field name="partner_id" />
+                    <field name="company_id" invisible="1" />
+                    <field name="name" widget="text" />
+                    <field name="quantity" />
+                    <field name="price_unit" />
+                    <field name="price_origin" />
+                    <field name="origin_move_line_id" />
+                    <field name="origin_move_id" />
+                    <field name="origin_move_date" />
+                    <field name="account_id" />
+                    <field
+                            name="analytic_distribution"
+                            widget="analytic_distribution"
+                            groups="analytic.group_analytic_accounting"
+                        />
+                    <field name="amount" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+                <group name="cutoff" string="Cut-off Computation">
+                    <field name="cutoff_amount" />
+                    <field name="cutoff_account_id" />
+                    <field name="company_currency_id" invisible="1" />
+                </group>
+                </group>
+                <group
+                    name="tax"
+                    string="Cut-off Taxes Lines"
+                    invisible="'accrued' not in context.get('cutoff_type', '-')"
+                >
+                <field name="tax_line_ids" nolabel="1" colspan="2" />
+                </group>
+                <group name="notes" string="Notes">
+                    <field name="notes" nolabel="1" colspan="2" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.line.tree</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    invisible="not context.get('account_cutoff_line_main_view', False)"
+                />
+                <field name="partner_id" />
+                <field name="name" widget="text" optional="show" />
+                <field name="cutoff_account_code" string="Cutoff Account" />
+                <field
+                    name="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                    widget="analytic_distribution"
+                    optional="show"
+                />
+                <field name="quantity" optional="hide" />
+                <field name="price_unit" optional="hide" />
+                <field name="price_origin" optional="hide" />
+                <field name="amount" />
+                <field name="currency_id" invisible="1" />
+                <field name="cutoff_amount" sum="1" />
+                <field name="company_currency_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="account_cutoff_line_search" model="ir.ui.view">
+        <field name="name">account.cutoff.line.search</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="partner_id" />
+                <group name="groupby">
+                    <filter
+                        name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="account_cutoff_line_action" model="ir.actions.act_window">
+        <field name="name">Cutoff Lines</field>
+        <field name="res_model">account.cutoff.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
