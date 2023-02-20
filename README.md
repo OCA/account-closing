@@ -1,6 +1,7 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=14.0)
-[![Build Status](https://travis-ci.com/OCA/account-closing.svg?branch=14.0)](https://travis-ci.com/OCA/account-closing)
+[![Pre-commit Status](https://github.com/OCA/account-closing/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/account-closing/actions/workflows/pre-commit.yml?query=branch%3A14.0)
+[![Build Status](https://github.com/OCA/account-closing/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/account-closing/actions/workflows/test.yml?query=branch%3A14.0)
 [![codecov](https://codecov.io/gh/OCA/account-closing/branch/14.0/graph/badge.svg)](https://codecov.io/gh/OCA/account-closing)
 [![Translation Status](https://translation.odoo-community.org/widgets/account-closing-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/account-closing-14-0/?utm_source=widget)
 
@@ -8,7 +9,7 @@
 
 # account-closing
 
-TODO: add repo description.
+Odoo Accountant closing tools
 
 <!-- /!\ do not modify below this line -->
 
