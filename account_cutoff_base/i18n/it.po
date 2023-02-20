@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 23:20+0000\n"
-"PO-Revision-Date: 2023-02-16 12:23+0000\n"
+"PO-Revision-Date: 2023-02-20 13:22+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -697,7 +697,7 @@ msgstr "Origine"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__source_move_state
 msgid "Source Entries"
-msgstr ""
+msgstr "Registrazioni di origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__state
