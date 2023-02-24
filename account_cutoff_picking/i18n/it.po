@@ -57,8 +57,8 @@ msgid ""
 "Missing expense account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
 msgstr ""
-"Conto di costo mancante per il prodotto \"%(product)s\" o per la categoria prodotto "
-"correlata \"%(categ)s\"."
+"Conto di costo mancante per il prodotto \"%(product)s\" o per la categoria "
+"prodotto correlata \"%(categ)s\"."
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -68,8 +68,8 @@ msgid ""
 "Missing income account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
 msgstr ""
-"Conto di ricavo mancante per il prodotto \"%(product)s\" o per la categoria prodotto "
-"correlata \"%(categ)s\"."
+"Conto di ricavo mancante per il prodotto \"%(product)s\" o per la categoria "
+"prodotto correlata \"%(categ)s\"."
 
 #. module: account_cutoff_picking
 #. odoo-python
