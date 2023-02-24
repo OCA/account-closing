@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-account_cutoff_base>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_picking>=16.0dev,<16.1dev',
         'odoo-addon-account_cutoff_start_end_dates>=16.0dev,<16.1dev',
         'odoo-addon-account_invoice_start_end_dates>=16.0dev,<16.1dev',
     ],
