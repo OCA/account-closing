@@ -231,6 +231,26 @@ class AccountFiscalyearClosing(models.Model):
                 raise ValidationError(msg)
         return True
 
+    def cancel_moves_check(self):
+        for closing in self:
+            cancel_moves = self.env["account.move"].search(
+                [
+                    ("company_id", "=", closing.company_id.id),
+                    ("state", "=", "cancel"),
+                    ("date", ">=", closing.date_start),
+                    ("date", "<=", closing.date_end),
+                ]
+            )
+            if cancel_moves:
+                msg = closing.env._("One or more cancelled moves found: \n")
+                for move in cancel_moves:
+                    msg += (
+                        f"ID: {move.id}, Date: {move.date}, Number: {move.name}, "
+                        f"Ref: {move.ref}\n"
+                    )
+                raise ValidationError(msg)
+        return True
+
     def _show_unbalanced_move_wizard(self, data):
         """When a move is not balanced, a wizard is presented for checking the
         possible problem. This method fills the records and return the
@@ -245,7 +265,6 @@ class AccountFiscalyearClosing(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": self.env._("Unbalanced journal entry found"),
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "account.fiscalyear.closing.unbalanced.move",
             "res_id": wizard.id,
@@ -255,6 +274,7 @@ class AccountFiscalyearClosing(models.Model):
     def calculate(self):
         for closing in self:
             # Perform checks, raise exception if check fails
+            closing.cancel_moves_check()
             if closing.check_draft_moves:
                 closing.draft_moves_check()
             for config in closing.move_config_ids.filtered("enabled"):
