@@ -297,6 +297,23 @@ class AccountFiscalyearClosing(models.Model):
         for closing in self:
             for move_config in closing.move_config_ids.sorted("sequence"):
                 move_config.move_id.action_post()
+            # get reversed moves to reconcile in case of unreconciled option
+            configs = closing.move_config_ids.filtered(
+                lambda x: x.closing_type_default == "unreconciled"
+            )
+            move = self.env["account.move"]
+            reverse_move = self.env["account.move"]
+            for config in configs:
+                if config.code in configs.mapped("inverse"):
+                    if config.move_id:
+                        move = config.move_id
+                    reverse = configs.filtered(
+                        lambda x, code=config.code: x.inverse == code
+                    )
+                    if reverse.move_id:
+                        reverse_move = reverse.move_id
+                    if move and reverse_move:
+                        move._reconcile_reversed_moves(reverse_move, True)
         self.write({"state": "posted"})
         return True
 
