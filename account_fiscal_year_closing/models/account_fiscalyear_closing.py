@@ -204,7 +204,7 @@ class AccountFiscalyearClosing(models.Model):
         if not self.closing_template_id:
             return
         config_obj = self.env["account.fiscalyear.closing.config"]
-        tmpl = self.closing_template_id.with_context(force_company=self.company_id.id)
+        tmpl = self.closing_template_id.with_company(self.company_id.id)
         self.check_draft_moves = tmpl.check_draft_moves
         for tmpl_config in tmpl.move_config_ids:
             self.move_config_ids += config_obj.new(self._prepare_config(tmpl_config))
@@ -315,9 +315,8 @@ class AccountFiscalyearClosing(models.Model):
             for move_config in closing.move_config_ids.sorted("sequence"):
                 move_config.move_id.action_post()
             # get reversed moves to reconcile in case of unreconciled option
-            configs = self.env["account.fiscalyear.closing.config"].search([
-                ('closing_type_default', '=', 'unreconciled')
-            ])
+            configs = closing.move_config_ids.filtered(
+                lambda x: x.closing_type_default == "unreconciled")
             move = self.env["account.move"]
             reverse_move = self.env["account.move"]
             for config in configs:
