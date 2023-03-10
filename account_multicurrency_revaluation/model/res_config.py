@@ -74,3 +74,10 @@ class AccountConfigSettings(models.TransientModel):
         string="Reversable Revaluations",
         help="Revaluations entries will be created " 'as "To Be Reversed".',
     )
+    auto_post_entries = fields.Boolean(
+        related="company_id.auto_post_entries",
+        string="Auto Post Created Entries",
+        help="If marked, the entries created in the process will be"
+        "posted automatically.",
+        readonly=False,
+    )
