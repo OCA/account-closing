@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [account_cutoff_base](account_cutoff_base/) | 15.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Base module for Account Cut-offs
 [account_cutoff_start_end_dates](account_cutoff_start_end_dates/) | 15.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Cutoffs based on start/end dates
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 15.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
-[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 15.0.1.0.1 |  | Manage revaluation for multicurrency environment
+[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 15.0.1.1.0 |  | Manage revaluation for multicurrency environment
 
 [//]: # (end addons)
 
