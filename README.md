@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [account_cutoff_start_end_dates](account_cutoff_start_end_dates/) | 14.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Cutoffs based on start/end dates
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 14.0.1.0.0 |  | Generic fiscal year closing wizard
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 14.0.1.2.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
-[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 14.0.1.0.0 |  | Manage revaluation for multicurrency environment
+[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 14.0.1.1.0 |  | Manage revaluation for multicurrency environment
 
 [//]: # (end addons)
 
