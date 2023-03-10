@@ -124,6 +124,12 @@ msgid "Allow currency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__auto_post_entries
+#: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__auto_post_entries
+msgid "Auto Post Created Entries"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Balance YTD"
 msgstr ""
@@ -255,6 +261,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__id
 msgid "ID"
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
+msgid ""
+"If marked, the entries created in the process will be posted automatically."
+msgstr ""
+
+#. module: account_multicurrency_revaluation
+#: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_company__auto_post_entries
+#: model:ir.model.fields,help:account_multicurrency_revaluation.field_res_config_settings__auto_post_entries
+msgid ""
+"If marked, the entries created in the process will beposted automatically."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
