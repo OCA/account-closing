@@ -9,7 +9,7 @@
     'license': 'AGPL-3',
     'summary': 'Accrued expenses and revenues based on start/end dates',
     'author': "Akretion,Odoo Community Association (OCA)",
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/account-closing',
     'depends': ['account_cutoff_prepaid', 'account_cutoff_accrual_base'],
     'data': [],
     'installable': True,

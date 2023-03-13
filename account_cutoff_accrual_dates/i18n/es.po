@@ -44,7 +44,7 @@ msgid ""
 "Price included taxes such as '%s' are not supported by the module "
 "account_cutoff_accrual_dates for the moment."
 msgstr ""
-"Impuestos inclusos en el precio como '%' no tienen un modulo de "
+"Impuestos inclusos en el precio como '%s' no tienen un modulo de "
 "cuenta_cierre-acruado_fechas en este momento."
 
 #. module: account_cutoff_accrual_dates
