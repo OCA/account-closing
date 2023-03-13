@@ -1,4 +1,5 @@
 # Copyright 2013-2016 Akretion, Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -74,6 +75,75 @@ class AccountInvoice(models.Model):
             move_line_dict['start_date'] = iline.start_date
             move_line_dict['end_date'] = iline.end_date
         return res
+
+    @api.model
+    def _group_tax_move_lines_values_by_dates(self, tax_move_lines_values):
+        """Group `tax_move_lines_values` by the start/end dates
+        of the corresponding invoice lines.
+
+        Tax lines are only grouped if their Tax has no Account
+        because only in this case the generated move lines are costs.
+        """
+        tax_move_lines_values_by_dates = {}
+        tax_line_model = self.env['account.invoice.tax']
+        tax_model = self.env['account.tax']
+        for tax_move_line_values in tax_move_lines_values:
+            tax_id = tax_move_line_values['tax_line_id']
+            tax = tax_model.browse(tax_id)
+            if not tax.account_id:
+                invoice_tax_line_id = tax_move_line_values['invoice_tax_line_id']
+                invoice_tax_line = tax_line_model.browse(invoice_tax_line_id)
+                all_invoice_lines = invoice_tax_line.invoice_id.invoice_line_ids
+                tax_invoice_lines = all_invoice_lines.filtered(
+                    lambda il:
+                    tax in il.invoice_line_tax_ids
+                    or tax in il.invoice_line_tax_ids.mapped('children_tax_ids')
+                )
+                for line in tax_invoice_lines:
+                    start_date, end_date = line.start_date, line.end_date
+                    tax_move_lines_values_by_dates \
+                        .setdefault((start_date, end_date), []) \
+                        .append(tax_move_line_values)
+        return tax_move_lines_values_by_dates
+
+    @api.model
+    def tax_line_move_line_get(self):
+        tax_move_lines_values = super().tax_line_move_line_get()
+        tax_move_lines_values_by_dates = \
+            self._group_tax_move_lines_values_by_dates(tax_move_lines_values)
+
+        # Assign the start/end dates to each move line, creating more if needed
+        for tax_move_line_values in tax_move_lines_values:
+            start_end_dates = [
+                start_end_date
+                for start_end_date, values in tax_move_lines_values_by_dates.items()
+                if tax_move_line_values in values
+            ]
+            if not start_end_dates:
+                continue
+
+            # The first dates couple updates the existing values
+            start_date, end_date = start_end_dates[0]
+            tax_move_line_values.update({
+                'start_date': start_date,
+                'end_date': end_date,
+            })
+            more_start_end_dates = start_end_dates[1:]
+            if more_start_end_dates:
+                # The remaining dates couples create copies
+                # of the current move line with the given dates.
+                # Price has to be equally distributed among
+                # all the new and existing lines.
+                tax_move_line_values['price'] /= len(start_end_dates)
+                for start_date, end_date in more_start_end_dates:
+                    new_move_line_values = tax_move_line_values.copy()
+                    new_move_line_values.update({
+                        'start_date': start_date,
+                        'end_date': end_date,
+                    })
+                    tax_move_lines_values.append(new_move_line_values)
+
+        return tax_move_lines_values
 
     def action_move_create(self):
         """Check that products with must_have_dates=True have
