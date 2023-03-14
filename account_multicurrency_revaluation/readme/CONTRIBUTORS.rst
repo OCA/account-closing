@@ -11,7 +11,13 @@
 * Vincent Renaville
 * Yannick Vaucher
 * Akim Juillerat
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Pedro M. Baeza
   * Ernesto Tejeda
+* `ForgeFlow <https://www.forgeflow.com>`
+  * Jordi Masvidal
+  * Guillem Casassas

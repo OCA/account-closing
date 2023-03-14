@@ -6,15 +6,16 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
-                <label
-                    for=""
-                    string="Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
-                    If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
-                    For other account types : 1 entry will be generated per account/currency.
-                    You can check details of calculation thanks to the Print Currency unrealized report in the generic reports."
-                />
+                <span
+                    name="info"
+                    style="font-weight: bold;"
+                >Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
+                If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
+                For other account types : 1 entry will be generated per account/currency.
+                You can check details of calculation thanks to the Print Currency unrealized report in the generic reports.</span>
                 <group>
                     <group>
+                        <field name="start_date" />
                         <field name="revaluation_date" />
                         <field name="journal_id" />
                     </group>
@@ -26,11 +27,25 @@
                     <label for="" string="%%(currency)s : Currency to be revaluated" />
                     <label
                         for=""
-                        string="%%(account)s : Account for which the revaluation is applied"
+                        string="%%(account)s : Account code for which the revaluation is applied"
+                    />
+                    <label
+                        for=""
+                        string="%%(account_name)s : Account name for which the revaluation is applied"
                     />
                     <label
                         for=""
                         string="%%(rate)s : Value of rate applied during revaluation"
+                    />
+                </group>
+                <label
+                    for="info-2"
+                    string="These are all the accounts that will be revaluated upon clicking the Validate button. Initialized as the Accounts having the flag Allow Currency Revaluation set, but then manually changed if needed."
+                />
+                <group>
+                    <field
+                        name="revaluation_account_ids"
+                        options="{'no_create':True, 'no_edit':True, 'no_open':True}"
                     />
                 </group>
                 <footer>
@@ -49,7 +64,7 @@
         id="action_view_account_currency_revaluation_wizard"
         model="ir.actions.act_window"
     >
-        <field name="name">Currency revaluation</field>
+        <field name="name">Currency Revaluation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.currency.revaluation</field>
         <field name="view_mode">form</field>

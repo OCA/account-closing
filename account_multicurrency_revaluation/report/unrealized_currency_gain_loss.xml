@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="curr_unrealized_report">
+        <t t-set="company" t-value="env.company" />
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
@@ -13,10 +14,10 @@
                         <div class="act_as_row">
                             <div class="act_as_cell">Currency Gain and Loss</div>
                             <div class="act_as_cell">
-                                <span t-field="user.company_id.name" />
+                                <span t-field="company.name" />
                             </div>
                             <div class="act_as_cell">
-                                <span t-field="user.company_id.currency_id.name" />
+                                <span t-field="company.currency_id.name" />
                             </div>
                         </div>
                     </div>
@@ -31,6 +32,9 @@
                             <div class="act_as_thead">
                                 <div class="act_as_row labels">
                                     <div class="act_as_cell first_column">Partner</div>
+                                    <div
+                                        class="act_as_cell first_column"
+                                    >Revaluation Date</div>
                                     <div
                                         class="act_as_cell first_column amount"
                                         style="width: 100px;"
@@ -56,87 +60,99 @@
                                         style="width: 100px;"
                                     >Gain(+)/Loss(-) YTD</div>
                                 </div>
-                                <t t-foreach="sh_acc.ordered_lines" t-as="line">
-                                    <div class="act_as_row lines">
-                                        <div class="act_as_cell">
-                                            <span t-esc="line.get('name') or '--'" />
-                                        </div>
-                                        <div
-                                            class="act_as_cell amount"
-                                            style="width: 100px;"
-                                        >
-                                            <span
-                                                t-esc="line.get('gl_foreign_balance') or 0.0"
-                                            />
-                                        </div>
-                                        <div class="act_as_cell" style="width: 50px;">
-                                            <span
-                                                t-esc="line.get('curr_name') or '--'"
-                                            />
-                                        </div>
-                                        <div
-                                            class="act_as_cell amount"
-                                            style="width: 80px;"
-                                        >
-                                            <span
-                                                t-esc="line.get('gl_currency_rate') or 0.0"
-                                            />
-                                        </div>
-                                        <div
-                                            class="act_as_cell amount"
-                                            style="width: 150px;"
-                                        >
-                                            <span
-                                                t-esc="line.get('gl_revaluated_balance') or 0.0"
-                                            />
-                                        </div>
-                                        <div
-                                            class="act_as_cell amount"
-                                            style="width: 100px;"
-                                        >
-                                            <t t-if="line.get('gl_balance')">
-                                                <span t-esc="line.get('gl_balance')" />
-                                            </t>
-                                            <t t-if="not line.get('gl_balance')">0.0</t>
-                                        </div>
-                                        <div
-                                            class="act_as_cell amount"
-                                            style="width: 100px;"
-                                        >
-                                            <span
-                                                t-esc="line.get('gl_ytd_balance') or 0.0"
-                                            />
-                                        </div>
-                                    </div>
-                                </t>
-                                <div class="act_as_row lines labels">
+                            </div>
+                            <t t-foreach="sh_acc.ordered_lines" t-as="line">
+                                <div class="act_as_row lines">
                                     <div class="act_as_cell">
-                                        <b>TOTAL</b>
+                                        <span t-esc="line.get('name') or '--'" />
                                     </div>
-                                    <div class="act_as_cell" />
-                                    <div class="act_as_cell" />
-                                    <div class="act_as_cell" />
-                                    <div class="act_as_cell amount">
-                                        <b>
+                                    <div class="act_as_cell">
+                                        <span t-esc="line.get('date')" />
+                                    </div>
+                                    <div
+                                        class="act_as_cell amount"
+                                        style="width: 100px;"
+                                    >
+                                        <span
+                                            t-esc="line.get('gl_foreign_balance') or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                    </div>
+                                    <div class="act_as_cell" style="width: 50px;">
+                                        <span t-esc="line.get('curr_name') or '--'" />
+                                    </div>
+                                    <div
+                                        class="act_as_cell amount"
+                                        style="width: 80px;"
+                                    >
+                                        <span
+                                            t-esc="line.get('gl_currency_rate') or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 3}"
+                                        />
+                                    </div>
+                                    <div
+                                        class="act_as_cell amount"
+                                        style="width: 150px;"
+                                    >
+                                        <span
+                                            t-esc="line.get('gl_revaluated_balance') or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                    </div>
+                                    <div
+                                        class="act_as_cell amount"
+                                        style="width: 100px;"
+                                    >
+                                        <t t-if="line.get('gl_balance')">
                                             <span
-                                                t-esc="sh_acc.gl_revaluated_balance_total or 0.0"
+                                                t-esc="line.get('gl_balance')"
+                                                t-options="{'widget': 'float', 'precision': 2}"
                                             />
-                                        </b>
+                                        </t>
+                                        <t t-if="not line.get('gl_balance')">0.0</t>
                                     </div>
-                                    <div class="act_as_cell amount">
-                                        <b>
-                                            <span
-                                                t-esc="sh_acc.gl_balance_total or 0.0"
-                                            />
-                                        </b>
+                                    <div
+                                        class="act_as_cell amount"
+                                        style="width: 100px;"
+                                    >
+                                        <span
+                                            t-esc="line.get('gl_ytd_balance') or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
                                     </div>
-                                    <div class="act_as_cell amount">
-                                        <b>
-                                            <span
-                                                t-esc="sh_acc.gl_ytd_balance_total or 0.0"
-                                            />
-                                        </b>
-                                    </div>
+                                </div>
+                            </t>
+                            <div class="act_as_row lines labels">
+                                <div class="act_as_cell">
+                                    <b>TOTAL</b>
+                                </div>
+                                <div class="act_as_cell" />
+                                <div class="act_as_cell" />
+                                <div class="act_as_cell" />
+                                <div class="act_as_cell" />
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <span
+                                            t-esc="sh_acc.gl_revaluated_balance_total or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                    </b>
+                                </div>
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <span
+                                            t-esc="sh_acc.gl_balance_total or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                    </b>
+                                </div>
+                                <div class="act_as_cell amount">
+                                    <b>
+                                        <span
+                                            t-esc="sh_acc.gl_ytd_balance_total or 0.0"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                    </b>
                                 </div>
                             </div>
                         </div>
