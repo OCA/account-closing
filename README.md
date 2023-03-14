@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [account_cutoff_base](account_cutoff_base/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Base module for Account Cut-offs
 [account_cutoff_prepaid](account_cutoff_prepaid/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Prepaid Expense, Prepaid Revenue
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 13.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
-[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 13.0.1.1.0 |  | Manage revaluation for multicurrency environment
+[account_multicurrency_revaluation](account_multicurrency_revaluation/) | 13.0.1.2.0 |  | Manage revaluation for multicurrency environment
 
 [//]: # (end addons)
 
