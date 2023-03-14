@@ -101,6 +101,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         base_line = {
             "name": label,
             "partner_id": partner_id,
+            "currency_id": currency_id,
             "amount_currency": 0.0,
             "date": form.revaluation_date,
         }
