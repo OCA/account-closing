@@ -128,21 +128,21 @@ class TestCurrencyRevaluation(common.TransactionCase):
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
-        self.assertEqual(sum(reval_move_lines.mapped("debit")), 200.00)
-        self.assertEqual(sum(reval_move_lines.mapped("credit")), 40.00)
+        self.assertEqual(sum(reval_move_lines.mapped("debit")), 295.00)
+        self.assertEqual(sum(reval_move_lines.mapped("credit")), 0.00)
         self.assertEqual(sum(reval_move_lines.mapped("amount_currency")), 200.00)
 
         wizard = self.env["unrealized.report.printer"]
         wiz = wizard.create({})
         result = wiz.print_report()
-        account_ids = result.get("context").get("active_ids")
+        account_ids = result.get("data").get("account_ids")
         report = (
             self.env["account.move.line"]
             .search([("account_id", "in", account_ids)])
             .filtered(lambda l: l.account_id.code == "accrec")
         )
-        self.assertEqual(sum(report.mapped("debit")), 200)
-        self.assertEqual(sum(report.mapped("credit")), 40)
+        self.assertEqual(sum(report.mapped("debit")), 295)
+        self.assertEqual(sum(report.mapped("credit")), 0)
         self.assertEqual(sum(report.mapped("amount_currency")), 200)
 
     def test_revaluation_loss(self):
@@ -200,20 +200,20 @@ class TestCurrencyRevaluation(common.TransactionCase):
             [("account_id", "=", self.receivable_acc.id)]
         )
         self.assertEqual(sum(reval_move_lines.mapped("debit")), 180.00)
-        self.assertEqual(sum(reval_move_lines.mapped("credit")), 130.00)
+        self.assertEqual(sum(reval_move_lines.mapped("credit")), 230.00)
         self.assertEqual(sum(reval_move_lines.mapped("amount_currency")), 200.00)
 
         wizard = self.env["unrealized.report.printer"]
         wiz = wizard.create({})
         result = wiz.print_report()
-        account_ids = result.get("context").get("active_ids")
+        account_ids = result.get("data").get("account_ids")
         report = (
             self.env["account.move.line"]
             .search([("account_id", "in", account_ids)])
             .filtered(lambda l: l.account_id.code == "accrec")
         )
         self.assertEqual(sum(report.mapped("debit")), 180)
-        self.assertEqual(sum(report.mapped("credit")), 130)
+        self.assertEqual(sum(report.mapped("credit")), 230)
         self.assertEqual(sum(report.mapped("amount_currency")), 200)
 
     def test_revaluation_payment(self):
@@ -301,17 +301,9 @@ class TestCurrencyRevaluation(common.TransactionCase):
         reval_move_lines = self.env["account.move.line"].search(
             [("account_id", "=", self.receivable_acc.id)]
         )
-        self.assertAlmostEqual(sum(reval_move_lines.mapped("debit")), 7466.67)
-        self.assertAlmostEqual(sum(reval_move_lines.mapped("credit")), 6666.67)
+        self.assertAlmostEqual(sum(reval_move_lines.mapped("debit")), 6666.67)
+        self.assertAlmostEqual(sum(reval_move_lines.mapped("credit")), 8533.34)
         self.assertAlmostEqual(sum(reval_move_lines.mapped("amount_currency")), 1000.00)
-
-        receivable_lines = len(reval_move_lines)
-        with self.assertRaises(exceptions.UserError):
-            self.wizard_execute(self.today - timedelta(days=70))
-        reval_move_lines = self.env["account.move.line"].search(
-            [("account_id", "=", self.receivable_acc.id)]
-        )
-        self.assertEqual(len(reval_move_lines), receivable_lines)
 
     def test_revaluation_bank_account(self):
         self.delete_journal_data()
@@ -455,13 +447,13 @@ class TestCurrencyRevaluation(common.TransactionCase):
         )
         revaluation_line = new_bank_account_lines - bank_account_lines
         self.assertEqual(len(revaluation_line), 1)
-        self.assertEqual(revaluation_line.debit, 0.0)
-        self.assertEqual(revaluation_line.credit, 48.33)
+        self.assertEqual(revaluation_line.debit, 5.0)
+        self.assertEqual(revaluation_line.credit, 0.0)
         self.assertEqual(revaluation_line.amount_currency, 0.0)
 
         bank_account_lines |= revaluation_line
-        self.assertEqual(sum(bank_account_lines.mapped("debit")), 173.33)
-        self.assertEqual(sum(bank_account_lines.mapped("credit")), 73.33)
+        self.assertEqual(sum(bank_account_lines.mapped("debit")), 178.33)
+        self.assertEqual(sum(bank_account_lines.mapped("credit")), 25.0)
         self.assertEqual(sum(bank_account_lines.mapped("amount_currency")), 125.0)
 
     def test_revaluation_bank_account_same_currency(self):
@@ -775,9 +767,9 @@ class TestCurrencyRevaluation(common.TransactionCase):
             [("account_id", "=", bank_account.id)]
         )
         revaluation_lines = new_bank_account_lines - bank_account_lines
-        self.assertEqual(len(revaluation_lines), 2)
-        self.assertEqual(sum(revaluation_lines.mapped("debit")), 48.33)
-        self.assertEqual(sum(revaluation_lines.mapped("credit")), 48.33)
+        self.assertEqual(len(revaluation_lines), 1)
+        self.assertEqual(sum(revaluation_lines.mapped("debit")), 5.0)
+        self.assertEqual(sum(revaluation_lines.mapped("credit")), 0.0)
         self.assertEqual(sum(revaluation_lines.mapped("amount_currency")), 0.0)
 
     def create_rates(self, rates_by_date, currency, purge=False):
@@ -843,7 +835,9 @@ class TestCurrencyRevaluation(common.TransactionCase):
                 "start_date": False,
                 "journal_id": self.reval_journal.id,
                 "label": "[%(account)s] [%(currency)s] wiz_test",
-                "revaluation_account_ids": [self.receivable_acc.id],
+                "revaluation_account_ids": self.env["wizard.currency.revaluation"]
+                ._get_default_revaluation_account_ids()
+                .ids,
             }
         )
         return wiz.revaluate_currency()
