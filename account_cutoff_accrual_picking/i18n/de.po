@@ -65,7 +65,7 @@ msgid ""
 "'%s'."
 msgstr ""
 "Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
-"Produktkategorie"
+"Produktkategorie '%s'."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:175
@@ -74,7 +74,7 @@ msgid ""
 "Missing income account on product '%s' or on its related product category "
 "'%s'."
 msgstr ""
-"Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
+"Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie '%s'."
 
 #~ msgid "Account Cut-off Line"
 #~ msgstr "Abgrenzungsposten"
