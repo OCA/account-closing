@@ -3,7 +3,7 @@
 
 {
     "name": "Account Invoice Start End Dates - Tax Changes",
-    "version": "16.0.1.0.0",
+    "version": "10.0.1.0.0",
     "summary": "Adds start/end dates on invoice/move lines - Tax changes integration",
     "category": "Accounting & Finance",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",
