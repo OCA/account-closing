@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-20 13:22+0000\n"
+"PO-Revision-Date: 2023-05-09 13:36+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -39,7 +39,7 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
 msgid "Account"
-msgstr ""
+msgstr "Conto"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff
@@ -191,7 +191,7 @@ msgstr "Nome"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__none
 msgid "No Partner"
-msgstr ""
+msgstr "Nessun partner"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
