@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2017-12-15 23:09+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
+"PO-Revision-Date: 2023-05-09 13:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.product,name:account_invoice_start_end_dates.product_insurance_contrat
@@ -108,7 +109,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_line_start_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line_start_date
 msgid "Start Date"
-msgstr "Data Inizio"
+msgstr "Data inizio"
 
 #. module: account_invoice_start_end_dates
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:29
