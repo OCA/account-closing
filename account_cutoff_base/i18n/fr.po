@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2023-05-08 17:34+0000\n"
+"PO-Revision-Date: 2023-05-10 13:02+0000\n"
 "Last-Translator: Sandrine (ACSONE) <sandrine.ravet@acsone.eu>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "<span class=\"o_stat_text\">Lines Fullscreen</span>"
-msgstr "<span class=\"o_stat_text\">Lines Fullscreen</span>"
+msgstr "<span class=\"o_stat_text\">Lignes Fullscreen</span>"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -81,7 +81,7 @@ msgstr "Factures non parvenues"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__account_accrued_expense_id
 #, python-format
 msgid "Accrued Expense Tax Account"
-msgstr ""
+msgstr "Compte de taxe de la dépense à prosionner"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -99,7 +99,7 @@ msgstr "Factures à établir"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__account_accrued_revenue_id
 #, python-format
 msgid "Accrued Revenue Tax Account"
-msgstr ""
+msgstr "Compte de taxe du revenu à provisionner"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
@@ -114,7 +114,7 @@ msgstr "Activités"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Décoration de l'activité d'exception"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_state
@@ -155,23 +155,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
 msgid "Analytic"
-msgstr ""
+msgstr "Analytique"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_precision
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_precision
 msgid "Analytic Precision"
-msgstr ""
+msgstr "Précision analytique"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Are you sure you want to go back to draft state?"
-msgstr ""
+msgstr "Etes-vous sûr de vouloir retourner au statut brouillon ?"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre de pièces jointes"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -216,7 +216,7 @@ msgstr "Devise de la société"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -333,9 +333,9 @@ msgstr "Type d'arrêté"
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Cut-off lines re-generated"
-msgstr "Lignes d'arrêtés"
+msgstr "Lignes d'arrêtés regénérées"
 
 #. module: account_cutoff_base
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
@@ -345,18 +345,16 @@ msgstr "Arrêtés"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
-#, fuzzy
 msgid "Cutoff Account"
 msgstr "Compte d'arrêté"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Cutoff Date"
-msgstr ""
+msgstr "Date d'arrêté"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
-#, fuzzy
 msgid "Cutoff Lines"
 msgstr "Lignes d'arrêtés"
 
@@ -365,31 +363,31 @@ msgstr "Lignes d'arrêtés"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Cutoff date is not set."
-msgstr ""
+msgstr "La date d'arrêté n'est pas définie."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr ""
+msgstr "Compte par défaut pour les charges à imputer"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr ""
+msgstr "Compte par défaut pour les revenus à provisionner"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_prepaid_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
-msgstr ""
+msgstr "Compte par défaut pour les charges payées d'avance"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_prepaid_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
-msgstr ""
+msgstr "Compte par défaut pour les revenus constatés d'avance"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_journal_id
@@ -425,22 +423,22 @@ msgstr "Brouillon"
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__draft_posted
 msgid "Draft and Posted Entries"
-msgstr ""
+msgstr "Pièces comptables en brouillon et comptabilisées"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Abonnés (Contacts)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icône Font awesome e.g. fa-tasks"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -450,7 +448,7 @@ msgstr "Grouper par"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "A un message"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__id
@@ -463,35 +461,35 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icône pour indiquer une activité d'exception."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si coché, de nouveaux messages demandent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si coché, de nouveaux messages ont une erreur d'envoi."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Est abonné"
 
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Journal entry generated"
-msgstr ""
+msgstr "Pièce comptable générée"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
@@ -520,22 +518,22 @@ msgstr "Dernière mise à jour le"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
+msgstr "Vue liste des lignes"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Pièce jointe principale"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Message d'erreur d'envoi"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -543,67 +541,68 @@ msgstr ""
 #, python-format
 msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
 msgstr ""
+"'%(tax_account_field_label)s' manquant sur la taxe '%(tax_display_name)s'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Echéance de mon activité"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Echéance de la prochaine activité"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Résumé de la prochaine activité"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Type de la prochaine activité"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__notes
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nombre d'actions"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Nombre d'erreurs"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Nombre de messages qui demande une action"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Nombre de messages avec une erreur d'envoi"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_id
 msgid "Origin Journal Entry"
-msgstr ""
+msgstr "Pièce comptable d'origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_date
 msgid "Origin Journal Entry Date"
-msgstr ""
+msgstr "Date de la pièce comptable d'origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_line_id
 msgid "Origin Journal Item"
-msgstr ""
+msgstr "Ecriture comptable d'origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__partner_id
@@ -614,24 +613,24 @@ msgstr "Partenaire"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
 msgid "Partner on Move Line"
-msgstr ""
+msgstr "Partenaire de l'écriture comptable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
 msgid "Partner on Move Line by Default"
-msgstr ""
+msgstr "Partenaire sur l'écriture comptable par défaut"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__post_cutoff_move
 msgid "Post Cut-off Journal Entry"
-msgstr ""
+msgstr "Comptabiliser la pièce comptable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__posted
 msgid "Posted Entries"
-msgstr ""
+msgstr "Pièces comptables comptabilisées"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -656,7 +655,7 @@ msgstr "Produits constatés d'avance"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__price_origin
 msgid "Price Origin"
-msgstr ""
+msgstr "Prix d'origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__price_unit
@@ -664,21 +663,23 @@ msgid ""
 "Price per unit (discount included) without taxes in the default unit of "
 "measure of the product in the currency of the 'Currency' field."
 msgstr ""
+"Prix unitaire (remise comprise) hors taxes dans l'unité de mesure par défaut "
+"du produit dans la devise du champ 'Devise'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Re-Generate Lines"
-msgstr ""
+msgstr "Regénérer les lignes"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_ref
 msgid "Reference of the Cut-off Journal Entry"
-msgstr ""
+msgstr "Référence de la pièce comptable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__account_id
@@ -688,12 +689,12 @@ msgstr "Compte régulier"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Utilisateur responsable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Erreur d'envoi du SMS"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
@@ -708,7 +709,7 @@ msgstr "Source"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__source_move_state
 msgid "Source Entries"
-msgstr ""
+msgstr "Pièces d'origine"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__state
@@ -733,6 +734,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Statut basé sur les activités\n"
+"En retard : La date d'échéance est déjà dépassée\n"
+"Aujourd'hui : La date de l'activité est aujourd'hui\n"
+"Planifiée : Activités futures."
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_tax
@@ -800,29 +805,29 @@ msgstr "Type"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Type de l'activité d'exception sur l'élément."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__price_unit
 msgid "Unit Price w/o Tax"
-msgstr ""
+msgstr "Prix unitaire hors taxe"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Messages du site internet"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historique de communication du site internet"
 
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
-msgstr ""
+msgstr "Vous ne pouvez pas supprimer des éléments qui sont au statut Fait."
 
 #~ msgid "Analytic Account"
 #~ msgstr "Compte analytique"
