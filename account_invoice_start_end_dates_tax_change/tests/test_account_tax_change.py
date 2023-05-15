@@ -25,8 +25,11 @@ class TestAccountTaxChange(AccountTaxChangeStartEndDatesCommon):
         self.assertEqual(len(invoice.invoice_line_ids), 1)
         self.apply_tax_change(self.tax_change_a2b, invoice)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
+        tax_change_date = fields.Date.from_string(self.tax_change_a2b.date)
+        line_end_date = wiz.date_subtract(tax_change_date, days=1)
+        line_end_date_str = fields.Date.to_string(line_end_date)
         line_from_start = invoice.invoice_line_ids.filtered(
-            lambda l: l.end_date == self.tax_change_a2b.date
+            lambda l: l.end_date == line_end_date_str
         )
         self.assertEqual(line_from_start.invoice_line_tax_ids, old_taxes)
         line_from_change = invoice.invoice_line_ids.filtered(
@@ -86,8 +89,11 @@ class TestAccountTaxChange(AccountTaxChangeStartEndDatesCommon):
         self.assertEqual(len(invoice.invoice_line_ids), 1)
         self.apply_tax_change(self.tax_change_a2b, invoice)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
+        tax_change_date = fields.Date.from_string(self.tax_change_a2b.date)
+        line_end_date = wiz.date_subtract(tax_change_date, days=1)
+        line_end_date_str = fields.Date.to_string(line_end_date)
         line_from_start = invoice.invoice_line_ids.filtered(
-            lambda l: l.end_date == self.tax_change_a2b.date
+            lambda l: l.end_date == line_end_date_str
         )
         self.assertEqual(line_from_start.invoice_line_tax_ids, old_taxes)
         line_from_change = invoice.invoice_line_ids.filtered(
@@ -117,8 +123,11 @@ class TestAccountTaxChange(AccountTaxChangeStartEndDatesCommon):
         self.assertEqual(len(invoice.invoice_line_ids), 1)
         self.apply_tax_change(self.tax_change_a2b, invoice)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
+        tax_change_date = fields.Date.from_string(self.tax_change_a2b.date)
+        line_end_date = wiz.date_subtract(tax_change_date, days=1)
+        line_end_date_str = fields.Date.to_string(line_end_date)
         line_from_start = invoice.invoice_line_ids.filtered(
-            lambda l: l.end_date == self.tax_change_a2b.date
+            lambda l: l.end_date == line_end_date_str
         )
         self.assertEqual(line_from_start.invoice_line_tax_ids, old_taxes)
         line_from_change = invoice.invoice_line_ids.filtered(
@@ -148,8 +157,11 @@ class TestAccountTaxChange(AccountTaxChangeStartEndDatesCommon):
         self.assertEqual(len(invoice.invoice_line_ids), 1)
         self.apply_tax_change(self.tax_change_a2b, invoice)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
+        tax_change_date = fields.Date.from_string(self.tax_change_a2b.date)
+        line_end_date = wiz.date_subtract(tax_change_date, days=1)
+        line_end_date_str = fields.Date.to_string(line_end_date)
         line_from_start = invoice.invoice_line_ids.filtered(
-            lambda l: l.end_date == self.tax_change_a2b.date
+            lambda l: l.end_date == line_end_date_str
         )
         self.assertEqual(line_from_start.invoice_line_tax_ids, old_taxes)
         line_from_change = invoice.invoice_line_ids.filtered(

@@ -45,6 +45,7 @@ class AccountMoveApplyTaxChange(models.TransientModel):
                 # such as it doesn't overlap with the start date of the new line.
                 tax_change_date = fields.Date.from_string(self.tax_change_id.date)
                 new_end_date = date_subtract(tax_change_date, days=1)
+                new_end_date_str = fields.Date.to_string(new_end_date)
                 # Dates subtractions are not inclusives so we add +1 day each time
                 end_date = fields.Date.from_string(line.end_date)
                 start_date = fields.Date.from_string(line.start_date)
@@ -52,8 +53,13 @@ class AccountMoveApplyTaxChange(models.TransientModel):
                 days_until_change = (new_end_date - start_date).days + 1
                 price_unit1 = line.price_unit * days_until_change / total_days
                 price_unit2 = line.price_unit - price_unit1
-                new_line_vals = self._prepare_new_line_values(line, price_unit2)
-                line_vals = self._prepare_existing_line_values(line, price_unit1)
+                new_line_vals = self._prepare_new_line_values(
+                    line, values={"price_unit": price_unit2}
+                )
+                line_vals = self._prepare_existing_line_values(
+                    line,
+                    values={"end_date": new_end_date_str, "price_unit": price_unit1}
+                )
                 new_line = line.create(new_line_vals)
                 new_line = self._hook_new_line_before_change_taxes(new_line)
                 # Update the taxes only on the new line
@@ -72,16 +78,17 @@ class AccountMoveApplyTaxChange(models.TransientModel):
             return
         return super(AccountMoveApplyTaxChange, self)._change_taxes(line)
 
-    def _prepare_new_line_values(self, existing_line, price_unit):
-        return existing_line.copy_data(
+    def _prepare_new_line_values(self, existing_line, values):
+        values.update(
             {
                 "start_date": self.tax_change_id.date,
                 "end_date": existing_line.end_date,
-                "price_unit": price_unit,
             }
-        )[0]
+        )
+        return existing_line.copy_data(values)[0]
 
-    def _prepare_existing_line_values(self, line, price_unit):
+    def _prepare_existing_line_values(self, line, values):
+        return values
         return {
             "end_date": self.tax_change_id.date,
             "price_unit": price_unit,
