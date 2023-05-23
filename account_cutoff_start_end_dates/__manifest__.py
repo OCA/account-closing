@@ -21,6 +21,6 @@
         "images/prepaid_revenue_done.jpg",
     ],
     "installable": True,
-    "application": True,
+    "application": False,
     "pre_init_hook": "module_migration",
 }
