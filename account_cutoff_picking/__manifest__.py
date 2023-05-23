@@ -19,5 +19,5 @@
         "images/accrued_expense_done.jpg",
     ],
     "installable": True,
-    "application": True,
+    "application": False,
 }
