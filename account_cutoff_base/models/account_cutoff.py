@@ -99,6 +99,9 @@ class AccountCutoff(models.Model):
         string="Source Entries",
         required=True,
         default="posted",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        tracking=True,
     )
     move_id = fields.Many2one(
         "account.move",
@@ -119,6 +122,9 @@ class AccountCutoff(models.Model):
     move_partner = fields.Boolean(
         string="Partner on Move Line",
         default=lambda self: self.env.company.default_cutoff_move_partner,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        tracking=True,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
