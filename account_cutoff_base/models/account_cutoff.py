@@ -86,6 +86,15 @@ class AccountCutoff(models.Model):
         states={"draft": [("readonly", False)]},
         default=lambda self: self.env.context.get("cutoff_type"),
     )
+    source_move_state = fields.Selection(
+        [("posted", "Posted Entries"), ("draft_posted", "Draft and Posted Entries")],
+        string="Source Entries",
+        required=True,
+        default="posted",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        tracking=True,
+    )
     move_id = fields.Many2one(
         "account.move", string="Cut-off Journal Entry", readonly=True, copy=False
     )
@@ -99,7 +108,11 @@ class AccountCutoff(models.Model):
         "the Cut-off Account Move.",
     )
     move_partner = fields.Boolean(
-        string="Partner on Move Line", default=lambda self: self._default_move_partner()
+        string="Partner on Move Line",
+        default=lambda self: self._default_move_partner(),
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        tracking=True,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
@@ -288,6 +301,8 @@ class AccountCutoff(models.Model):
         to_provision = self._merge_provision_lines(provision_lines)
         vals = self._prepare_move(to_provision)
         move = move_obj.create(vals)
+        if self.company_id.post_cutoff_move:
+            move.post()
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
@@ -404,6 +419,7 @@ class AccountCutoffLine(models.Model):
         string="Cut-off Tax Lines",
         readonly=True,
     )
+    notes = fields.Text()
 
 
 class AccountCutoffTaxLine(models.Model):

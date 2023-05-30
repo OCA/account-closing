@@ -144,17 +144,24 @@ class AccountCutoff(models.Model):
         cutoff_date_dt = self.cutoff_date
         # Delete existing lines
         self.line_ids.unlink()
-
+        domain = [
+            ("journal_id", "in", self.source_journal_ids.ids),
+            ("display_type", "=", False),
+            ("company_id", "=", self.company_id.id),
+            ("balance", "!=", 0),
+        ]
+        if self.source_move_state == "posted":
+            domain.append(("parent_state", "=", "posted"))
+        else:
+            domain.append(("parent_state", "in", ("draft", "posted")))
         if self.forecast:
-            domain = [
+            domain += [
                 ("start_date", "<=", self.end_date),
                 ("end_date", ">=", self.start_date),
-                ("journal_id", "in", self.source_journal_ids.ids),
             ]
         else:
-            domain = [
+            domain += [
                 ("start_date", "!=", False),
-                ("journal_id", "in", self.source_journal_ids.ids),
                 ("end_date", ">", cutoff_date_dt),
                 ("date", "<=", cutoff_date_dt),
             ]

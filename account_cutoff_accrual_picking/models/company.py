@@ -1,4 +1,5 @@
-# Copyright 2020 Akretion France
+# Copyright 2020-2021 Akretion France (http://www.akretion.com/)
+# @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields, models
@@ -8,10 +9,12 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     default_cutoff_accrual_picking_interval_days = fields.Integer(
-        string="Picking Analysis Interval",
-        help="To generate the accruals based on pickings, Odoo will "
-        "analyse all the pickings between the cutoff date and N "
-        "days before. N is the Picking Analysis Interval.",
+        string="Analysis Interval",
+        help="To generate the accrual/prepaid revenue/expenses based on picking "
+        "dates vs invoice dates, Odoo will analyse all the pickings/invoices from "
+        "N days before the cutoff date up to the cutoff date. "
+        "N is the Analysis Interval. If you increase the analysis interval, "
+        "Odoo will take more time to generate the cutoff lines.",
         default=90,
     )
 
@@ -19,7 +22,6 @@ class ResCompany(models.Model):
         (
             "cutoff_picking_interval_days_positive",
             "CHECK(default_cutoff_accrual_picking_interval_days > 0)",
-            "The value of the field 'Picking Analysis Interval' must "
-            "be strictly positive.",
+            "The value of the field 'Analysis Interval' must " "be strictly positive.",
         )
     ]

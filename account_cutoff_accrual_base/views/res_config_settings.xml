@@ -12,31 +12,37 @@
             ref="account_cutoff_base.res_config_settings_view_form"
         />
         <field name="arch" type="xml">
-            <field name="dft_cutoff_journal_id" position="after">
+            <div id="dft_cutoff_journal_id" position="after">
+                <div class="row" id="dft_accrued_revenue_account_id">
                 <label
-                    for="dft_accrued_revenue_account_id"
-                    class="col-lg-3 o_light_label"
-                />
+                        for="dft_accrued_revenue_account_id"
+                        class="col-lg-4 o_light_label"
+                    />
                 <field
-                    name="dft_accrued_revenue_account_id"
-                    domain="[('company_id', '=', company_id)]"
-                    options="{'no_create_edit': True, 'no_open': True}"
-                />
+                        name="dft_accrued_revenue_account_id"
+                        domain="[('company_id', '=', company_id)]"
+                        options="{'no_create_edit': True, 'no_open': True}"
+                    />
+                </div>
+                <div class="row" id="dft_accrued_expense_account_id">
                 <label
-                    for="dft_accrued_expense_account_id"
-                    class="col-lg-3 o_light_label"
-                />
+                        for="dft_accrued_expense_account_id"
+                        class="col-lg-4 o_light_label"
+                    />
                 <field
-                    name="dft_accrued_expense_account_id"
-                    domain="[('company_id', '=', company_id)]"
-                    options="{'no_create_edit': True, 'no_open': True}"
-                />
-                <label for="accrual_taxes" class="col-lg-3 o_light_label" />
+                        name="dft_accrued_expense_account_id"
+                        domain="[('company_id', '=', company_id)]"
+                        options="{'no_create_edit': True, 'no_open': True}"
+                    />
+                </div>
+                <div class="row" id="accrual_taxes">
+                <label for="accrual_taxes" class="col-lg-4 o_light_label" />
                 <field
-                    name="accrual_taxes"
-                    options="{'no_create_edit': True, 'no_open': True}"
-                />
-            </field>
+                        name="accrual_taxes"
+                        options="{'no_create_edit': True, 'no_open': True}"
+                    />
+                </div>
+            </div>
         </field>
     </record>
 </odoo>

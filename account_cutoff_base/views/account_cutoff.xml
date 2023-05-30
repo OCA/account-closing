@@ -65,6 +65,7 @@
                                 name="cutoff_date"
                                 options="{'datepicker': {'warn_future': true}}"
                             />
+                            <field name="source_move_state" widget="radio" />
                             <field name="total_cutoff_amount" />
                             <field
                                 name="company_id"
@@ -175,6 +176,9 @@
                     invisible="'accrued' not in context.get('cutoff_type', '-')"
                 >
                     <field name="tax_line_ids" nolabel="1" />
+                </group>
+                <group name="notes" string="Notes">
+                    <field name="notes" nolabel="1" />
                 </group>
             </form>
         </field>

@@ -45,7 +45,7 @@
                     attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('forecast', '=', False), ('cutoff_type', 'not in', ('prepaid_revenue', 'prepaid_expense'))]}"
                 />
             </button>
-            <field name="cutoff_date" position="before">
+            <field name="source_move_state" position="before">
                 <field
                     name="forecast"
                     attrs="{'invisible': [('forecast', '=', False)]}"
@@ -57,6 +57,11 @@
                 <field
                     name="end_date"
                     attrs="{'invisible': [('forecast', '=', False)], 'required': [('forecast', '=', True)]}"
+                />
+                <field
+                    name="source_journal_ids"
+                    widget="many2many_tags"
+                    domain="[('company_id', '=', company_id)]"
                 />
             </field>
             <field name="cutoff_date" position="attributes">
@@ -93,13 +98,6 @@
                     name="attrs"
                 >{'invisible': ['|', '|', ('line_ids', '=', False), ('state', '=', 'done'), ('forecast', '=', True)]}</attribute>
             </button>
-            <field name="cutoff_date" position="after">
-                <field
-                    name="source_journal_ids"
-                    widget="many2many_tags"
-                    domain="[('company_id', '=', company_id)]"
-                />
-            </field>
         </field>
     </record>
     <record id="account_cutoff_filter" model="ir.ui.view">
