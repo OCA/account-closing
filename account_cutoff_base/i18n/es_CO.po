@@ -326,6 +326,11 @@ msgid "Draft"
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__draft_posted
+msgid "Draft and Posted Entries"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
 msgstr ""
@@ -426,6 +431,12 @@ msgid "Messages"
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__notes
+#: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
+msgid "Notes"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
@@ -465,6 +476,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
 msgid "Partner on Move Line by Default"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__post_cutoff_move
+msgid "Post Cut-off Entry"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__posted
+msgid "Posted Entries"
 msgstr ""
 
 #. module: account_cutoff_base
@@ -509,6 +531,11 @@ msgstr ""
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__source_move_state
+msgid "Source Entries"
 msgstr ""
 
 #. module: account_cutoff_base
