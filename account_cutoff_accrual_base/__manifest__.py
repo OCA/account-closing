@@ -4,7 +4,7 @@
 
 {
     "name": "Account Accrual Base",
-    "version": "13.0.1.0.1",
+    "version": "13.0.2.0.0",
     "category": "Accounting",
     "license": "AGPL-3",
     "summary": "Base module for accrued expenses and revenues",
