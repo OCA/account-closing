@@ -16,13 +16,13 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s line ID %d"
+msgid " • %s %s (picking %s transfered on %s from %s to %s)"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s line ID %d: %s"
+msgid "%s: %s"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
@@ -31,15 +31,10 @@ msgid "Account Cut-off"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Expense Tax Account"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Revenue Tax Account"
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
+#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
+msgid "Analysis Interval"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
@@ -50,18 +45,6 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Invoice %s line ID %d"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Missing '%s' on tax '%s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
@@ -81,18 +64,61 @@ msgid ""
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
-msgid "Picking Analysis Interval"
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity details:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid "Pre-cutoff invoiced quantity:"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Purchase order %s confirmed on %s\n"
+"Purchase Order Line: %s (ordered qty: %s %s)"
+msgstr ""
+
+#. module: account_cutoff_accrual_picking
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Sale order %s confirmed on %s\n"
+"Sale Order Line: %s (ordered qty: %s %s)"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
-msgid ""
-"The value of the field 'Picking Analysis Interval' must be strictly "
-"positive."
+msgid "The value of the field 'Analysis Interval' must be strictly positive."
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
@@ -100,9 +126,11 @@ msgstr ""
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
 msgid ""
-"To generate the accruals based on pickings, Odoo will analyse all the "
-"pickings between the cutoff date and N days before. N is the Picking "
-"Analysis Interval."
+"To generate the accrual/prepaid revenue/expenses based on picking dates vs "
+"invoice dates, Odoo will analyse all the pickings/invoices from N days "
+"before the cutoff date up to the cutoff date. N is the Analysis Interval. If"
+" you increase the analysis interval, Odoo will take more time to generate "
+"the cutoff lines."
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
