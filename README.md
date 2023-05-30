@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_cutoff_accrual_base](account_cutoff_accrual_base/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Base module for accrued expenses and revenues
 [account_cutoff_accrual_dates](account_cutoff_accrual_dates/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Accrued expenses and revenues based on start/end dates
-[account_cutoff_accrual_picking](account_cutoff_accrual_picking/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Accrued expense & accrued revenue from pickings
+[account_cutoff_accrual_picking](account_cutoff_accrual_picking/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Accrued and prepaid expense/revenue from pickings
 [account_cutoff_base](account_cutoff_base/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Base module for Account Cut-offs
 [account_cutoff_prepaid](account_cutoff_prepaid/) | 13.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Prepaid Expense, Prepaid Revenue
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 13.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
