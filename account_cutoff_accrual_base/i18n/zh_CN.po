@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2016-12-23 23:09+0000\n"
 "PO-Revision-Date: 2020-07-10 14:19+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/"
-"OCA-account-closing-8-0/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-account-"
+"closing-8-0/language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,9 @@ msgid "Accrued Expense"
 msgstr "费用计提"
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:0
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax__account_accrued_expense_id
+#, python-format
 msgid "Accrued Expense Tax Account"
 msgstr "应计费用税账户"
 
@@ -53,7 +55,9 @@ msgid "Accrued Revenue"
 msgstr "应计收入"
 
 #. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:0
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_account_tax__account_accrued_revenue_id
+#, python-format
 msgid "Accrued Revenue Tax Account"
 msgstr "应计收入税账户"
 
@@ -87,6 +91,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_config_settings__dft_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
+msgstr ""
+
+#. module: account_cutoff_accrual_base
+#: code:addons/account_cutoff_accrual_base/models/account_cutoff.py:0
+#, python-format
+msgid "Missing '%s' on tax '%s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_base
