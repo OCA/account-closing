@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:39+0000\n"
-"PO-Revision-Date: 2023-01-30 19:47+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-06-07 11:12+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_multicurrency_revaluation
 #: view:wizard.currency.revaluation:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -117,7 +117,7 @@ msgstr "Rivalutazione monetaria"
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,label:0
