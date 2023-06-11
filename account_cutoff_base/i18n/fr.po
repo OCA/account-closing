@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2018-01-27 03:39+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2023-06-11 08:09+0000\n"
+"Last-Translator: Claude R Perrin <claude@alpis.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -166,7 +167,7 @@ msgstr "Remettre en brouillon"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
 msgid "Base"
-msgstr "Base"
+msgstr "Base imposable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__base
@@ -199,7 +200,7 @@ msgstr "Devise de la société"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configuration"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -317,7 +318,7 @@ msgstr "Type d'arrêté"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Cut-off lines re-generated"
 msgstr "Lignes d'arrêtés"
 
@@ -330,13 +331,11 @@ msgstr "Arrêtés"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
-#, fuzzy
 msgid "Cutoff Account"
 msgstr "Compte d'arrêté"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
-#, fuzzy
 msgid "Cutoff Lines"
 msgstr "Lignes d'arrêtés"
 
@@ -406,22 +405,22 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Abonnés (Canaux)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Abonnés (Contacts)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icône \"Font awesome\", par exemple \"fa-tasks\""
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -442,35 +441,35 @@ msgstr "ID"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icône pour indiquer une activité en exception."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si coché, des nouveaux messages requièrent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si coché, certains messages ont une erreur d’envoi."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Est un abonné"
 
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Journal entry generated"
-msgstr ""
+msgstr "Écriture de journal générée"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_label
@@ -507,7 +506,7 @@ msgstr "Dernière mise à jour le"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
+msgstr "Vue en liste des lignes"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
@@ -528,7 +527,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Missing '%s' on tax '%s'."
-msgstr ""
+msgstr "Manque « %s » sur la taxe « %s »."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
@@ -589,7 +588,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_date
 msgid "Origin Journal Entry Date"
-msgstr ""
+msgstr "Date de l'écriture de journal source"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_line_id
@@ -657,7 +656,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
