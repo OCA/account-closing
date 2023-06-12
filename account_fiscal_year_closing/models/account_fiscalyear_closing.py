@@ -282,9 +282,7 @@ class AccountFiscalyearClosing(models.Model):
 
     def _moves_remove(self):
         for closing in self:
-            closing.mapped("move_ids.line_ids").filtered(
-                "reconciled"
-            ).remove_move_reconcile()
+            closing.mapped("move_ids.line_ids").remove_move_reconcile()
             closing.move_ids.button_cancel()
             closing.move_ids.unlink()
         return True
