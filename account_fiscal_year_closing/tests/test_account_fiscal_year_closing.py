@@ -17,15 +17,13 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
         super().setUpClass()
         cls.account_model = cls.env["account.account"]
         cls.move_line_obj = cls.env["account.move.line"]
-        cls.account_type_rec = cls.env.ref("account.data_account_type_receivable")
-        cls.account_type_pay = cls.env.ref("account.data_account_type_payable")
-        cls.account_type_rev = cls.env.ref("account.data_account_type_revenue")
-        cls.account_type_exp = cls.env.ref("account.data_account_type_expenses")
-        cls.account_type_ass = cls.env.ref("account.data_account_type_current_assets")
-        cls.account_type_liq = cls.env.ref("account.data_account_type_liquidity")
-        cls.account_type_lia = cls.env.ref(
-            "account.data_account_type_current_liabilities"
-        )
+        cls.account_type_rec = "asset_receivable"
+        cls.account_type_pay = "liability_payable"
+        cls.account_type_rev = "income"
+        cls.account_type_exp = "expense"
+        cls.account_type_ass = "asset_current"
+        cls.account_type_liq = "asset_cash"
+        cls.account_type_lia = "liability_current"
 
         cls.account_user = cls.env.user
         account_manager = cls.env["res.users"].create(
@@ -51,49 +49,49 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
 
         cls.a_sale = cls.account_model.create(
             {
-                "code": "reve_acc",
+                "code": "reve.acc",
                 "name": "revenue account",
-                "user_type_id": cls.account_type_rev.id,
+                "account_type": cls.account_type_rev,
                 "reconcile": False,
             }
         )
         cls.a_purchase = cls.account_model.create(
             {
-                "code": "expe_acc",
+                "code": "expe.acc",
                 "name": "expense account",
-                "user_type_id": cls.account_type_exp.id,
+                "account_type": cls.account_type_exp,
                 "reconcile": False,
             }
         )
         cls.a_debit_vat = cls.account_model.create(
             {
-                "code": "debvat_acc",
+                "code": "debvat.cc",
                 "name": "debit vat account",
-                "user_type_id": cls.account_type_ass.id,
+                "account_type": cls.account_type_ass,
                 "reconcile": False,
             }
         )
         cls.a_credit_vat = cls.account_model.create(
             {
-                "code": "credvat_acc",
+                "code": "credvat.acc",
                 "name": "credit vat account",
-                "user_type_id": cls.account_type_lia.id,
+                "account_type": cls.account_type_lia,
                 "reconcile": False,
             }
         )
         cls.a_pf_closing = cls.account_model.create(
             {
-                "code": "pf_acc",
+                "code": "pf.acc",
                 "name": "profit&loss account",
-                "user_type_id": cls.account_type_ass.id,
+                "account_type": cls.account_type_ass,
                 "reconcile": False,
             }
         )
         cls.a_bal_closing = cls.account_model.create(
             {
-                "code": "bal_acc",
+                "code": "bal.acc",
                 "name": "financial closing account",
-                "user_type_id": cls.account_type_lia.id,
+                "account_type": cls.account_type_lia,
                 "reconcile": False,
             }
         )
@@ -115,8 +113,8 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                         0,
                         {
                             "value": "balance",
-                            "days": 15,
-                            "option": "after_invoice_month",
+                            "days_after": 15,
+                            "end_month": True,
                         },
                     ),
                 ],
@@ -218,21 +216,21 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
         )
 
         move_lines = self.move_line_obj.search([])
-        user_type_names = move_lines.mapped("account_id.user_type_id.name")
+        account_types = move_lines.mapped("account_id.account_type")
         self.assertTrue(
             (
                 [
                     x
-                    for x in user_type_names
+                    for x in account_types
                     if x
                     not in [
-                        "Receivable",
-                        "Current Assets",
-                        "Income",
-                        "Payable",
-                        "Current Liabilities",
-                        "Expenses",
-                        "Bank and Cash",
+                        "asset_receivable",  # Receivable
+                        "asset_current",  # Current Assets
+                        "income",  # Income
+                        "liability_payable",  # Payable
+                        "liability_current",  # Current Liabilities
+                        "expense",  # Expenses
+                        "asset_cash",  # Bank and Cash
                     ]
                 ]
                 == []
@@ -240,26 +238,33 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
             "There are account user types not defined!",
         )
 
+        # Receivable
         rec_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Receivable")]
+            [("account_id.account_type", "=", "asset_receivable")]
         )
+        # Payable
         pay_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Payable")]
+            [("account_id.account_type", "=", "liability_payable")]
         )
+        # Income
         inc_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Income")]
+            [("account_id.account_type", "=", "income")]
         )
+        # Expenses
         exp_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Expenses")]
+            [("account_id.account_type", "=", "expense")]
         )
+        # Current Assets
         cas_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Current Assets")]
+            [("account_id.account_type", "=", "asset_current")]
         )
+        # Current Liabilities
         cli_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Current Liabilities")]
+            [("account_id.account_type", "=", "liability_current")]
         )
+        # Bank and Cash
         bac_move_lines = self.move_line_obj.search(
-            [("account_id.user_type_id.name", "=", "Bank and Cash")]
+            [("account_id.account_type", "=", "asset_cash")]
         )
 
         rec_accounts = rec_move_lines.mapped("account_id.code")
