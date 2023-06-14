@@ -65,7 +65,6 @@ class AccountFiscalyearClosing(models.Model):
             ("posted", "Posted"),
             ("cancelled", "Cancelled"),
         ],
-        string="State",
         readonly=True,
         default="draft",
     )
@@ -150,7 +149,7 @@ class AccountFiscalyearClosing(models.Model):
     @api.model
     def _prepare_type(self, tmpl_type):
         return {
-            "account_type_id": tmpl_type.account_type_id,
+            "account_type": tmpl_type.account_type,
             "closing_type": tmpl_type.closing_type,
         }
 
@@ -203,7 +202,7 @@ class AccountFiscalyearClosing(models.Model):
         if not self.closing_template_id:
             return
         config_obj = self.env["account.fiscalyear.closing.config"]
-        tmpl = self.closing_template_id.with_context(force_company=self.company_id.id)
+        tmpl = self.closing_template_id.with_company(self.company_id)
         self.check_draft_moves = tmpl.check_draft_moves
         for tmpl_config in tmpl.move_config_ids:
             self.move_config_ids += config_obj.new(self._prepare_config(tmpl_config))
@@ -387,7 +386,7 @@ class AccountFiscalyearClosingConfig(models.Model):
         string="Closing types",
     )
     date = fields.Date(string="Move date")
-    enabled = fields.Boolean(string="Enabled", default=True)
+    enabled = fields.Boolean(default=True)
     journal_id = fields.Many2one(required=True)
     move_id = fields.Many2one(comodel_name="account.move", string="Move")
 
@@ -416,7 +415,7 @@ class AccountFiscalyearClosingConfig(models.Model):
         self.ensure_one()
         closing_type = self.closing_type_default
         closing_types = self.closing_type_ids.filtered(
-            lambda r: r.account_type_id == account.user_type_id
+            lambda r: r.account_type == account.account_type
         )
         if closing_types:
             closing_type = closing_types[0].closing_type
@@ -551,15 +550,16 @@ class AccountFiscalyearClosingMapping(models.Model):
         string="Destination account",
     )
 
-    @api.model
-    def create(self, vals):
-        if "dest_account_id" in vals:
-            vals["dest_account_id"] = vals["dest_account_id"][0]
-        res = super(AccountFiscalyearClosingMapping, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("dest_account_id", False):
+                vals["dest_account_id"] = vals["dest_account_id"][0]
+        res = super(AccountFiscalyearClosingMapping, self).create(vals_list)
         return res
 
     def write(self, vals):
-        if "dest_account_id" in vals:
+        if vals.get("dest_account_id", False):
             vals["dest_account_id"] = vals["dest_account_id"][0]
         res = super(AccountFiscalyearClosingMapping, self).write(vals)
         return res

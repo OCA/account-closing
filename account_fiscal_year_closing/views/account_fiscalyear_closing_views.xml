@@ -7,7 +7,7 @@
         <field name="name">account.fiscalyear.closing.tree</field>
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
-            <tree string="Fiscal year closing">
+            <tree>
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_start" />
@@ -113,64 +113,61 @@
                             <field name="calculation_date" />
                         </group>
                     </group>
-                    <group name="moves_config" string="Moves configuration">
-                        <field name="move_config_ids" nolabel="1">
-                            <tree>
-                                <field name="sequence" widget="handle" />
-                                <field name="enabled" />
-                                <field name="name" />
-                                <field name="code" />
-                                <field name="inverse" />
-                                <field name="move_type" />
-                                <field name="date" />
-                                <field name="journal_id" />
-                            </tree>
-                            <form>
-                                <sheet>
+                    <label for="move_config_ids" string="Moves configuration" />
+                    <field name="move_config_ids" nolabel="1">
+                        <tree>
+                            <field name="sequence" widget="handle" />
+                            <field name="enabled" />
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="inverse" />
+                            <field name="move_type" />
+                            <field name="date" />
+                            <field name="journal_id" />
+                        </tree>
+                        <form>
+                            <sheet>
+                                <group>
                                     <group>
-                                        <group>
-                                            <field name="name" />
-                                            <field name="enabled" />
-                                            <field name="date" />
-                                            <field name="journal_id" />
-                                            <field name="sequence" />
-                                        </group>
-                                        <group>
-                                            <field name="code" />
-                                            <field name="inverse" />
-                                            <field name="move_type" />
-                                        </group>
-                                    </group>
-                                    <group
-                                        name="accounts_mapping"
-                                        string="Accounts mapping"
-                                    >
-                                        <field name="mapping_ids" nolabel="1">
-                                            <tree editable="bottom">
-                                                <field name="name" />
-                                                <field name="src_accounts" />
-                                                <field name="dest_account_id" />
-                                            </tree>
-                                        </field>
-                                    </group>
-                                    <group
-                                        name="accounts_closing_types"
-                                        string="Accounts closing types"
-                                    >
-                                        <field name="closing_type_default" />
+                                        <field name="name" />
+                                        <field name="enabled" />
+                                        <field name="date" />
+                                        <field name="journal_id" />
+                                        <field name="sequence" />
                                     </group>
                                     <group>
-                                        <field name="closing_type_ids" nolabel="1">
-                                            <tree editable="bottom">
-                                                <field name="account_type_id" />
-                                                <field name="closing_type" />
-                                            </tree>
-                                        </field>
+                                        <field name="code" />
+                                        <field name="inverse" />
+                                        <field name="move_type" />
                                     </group>
-                                </sheet>
-                            </form>
-                        </field>
-                    </group>
+                                </group>
+                                <label for="mapping_ids" string="Accounts mapping" />
+                                <field name="mapping_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                        <field name="src_accounts" />
+                                        <field name="dest_account_id" />
+                                    </tree>
+                                </field>
+                                <group
+                                    name="accounts_closing_types"
+                                    string="Accounts closing types"
+                                >
+                                    <field name="closing_type_default" />
+                                </group>
+                                <label
+                                    for="closing_type_ids"
+                                    string="Accounts mapping"
+                                />
+                                <field name="closing_type_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="account_type" />
+                                        <field name="closing_type" />
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </form>
+                    </field>
                 </sheet>
             </form>
         </field>

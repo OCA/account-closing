@@ -30,7 +30,7 @@ class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
     _order = "sequence asc, id asc"
 
     name = fields.Char(string="Description", required=True)
-    sequence = fields.Integer(string="Sequence", index=True, default=1)
+    sequence = fields.Integer(index=True, default=1)
     code = fields.Char(string="Unique code", required=True)
     inverse = fields.Char(
         string="Inverse config",
@@ -81,8 +81,27 @@ class AccountFiscalyearClosingTypeAbstract(models.AbstractModel):
         required=True,
         default="unreconciled",
     )
-    account_type_id = fields.Many2one(
-        comodel_name="account.account.type",
-        string="Account type",
+    account_type = fields.Selection(
+        selection=[
+            ("asset_receivable", "Receivable"),
+            ("asset_cash", "Bank and Cash"),
+            ("asset_current", "Current Assets"),
+            ("asset_non_current", "Non-current Assets"),
+            ("asset_prepayments", "Prepayments"),
+            ("asset_fixed", "Fixed Assets"),
+            ("liability_payable", "Payable"),
+            ("liability_credit_card", "Credit Card"),
+            ("liability_current", "Current Liabilities"),
+            ("liability_non_current", "Non-current Liabilities"),
+            ("equity", "Equity"),
+            ("equity_unaffected", "Current Year Earnings"),
+            ("income", "Income"),
+            ("income_other", "Other Income"),
+            ("expense", "Expenses"),
+            ("expense_depreciation", "Depreciation"),
+            ("expense_direct_cost", "Cost of Revenue"),
+            ("off_balance", "Off-Balance Sheet"),
+        ],
+        string="Type",
         required=True,
     )
