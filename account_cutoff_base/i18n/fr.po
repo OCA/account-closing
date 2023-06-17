@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2023-06-11 08:09+0000\n"
+"PO-Revision-Date: 2023-06-17 18:08+0000\n"
 "Last-Translator: Claude R Perrin <claude@alpis.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -261,7 +261,7 @@ msgstr "Journal du compte d'arrêté"
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
 msgid "Cut-off Account Mapping"
-msgstr "Cartographie du compte d'arrêté"
+msgstr "Mappage des comptes d'arrêté"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_amount
