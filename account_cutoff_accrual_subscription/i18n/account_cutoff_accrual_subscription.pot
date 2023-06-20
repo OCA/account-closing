@@ -111,7 +111,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
-msgid "Computing provisions from %d subscriptions."
+msgid "Computing cut-offs from %d subscriptions."
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
