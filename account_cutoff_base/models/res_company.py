@@ -16,7 +16,7 @@ class ResCompany(models.Model):
         check_company=True,
     )
     default_cutoff_move_partner = fields.Boolean(
-        string="Partner on Move Line by Default"
+        string="Partner on Journal Items by Default"
     )
     accrual_taxes = fields.Boolean(string="Accrual On Taxes", default=True)
     post_cutoff_move = fields.Boolean(string="Post Cut-off Journal Entry")
