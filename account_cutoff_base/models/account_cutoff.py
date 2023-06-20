@@ -115,7 +115,7 @@ class AccountCutoff(models.Model):
         default=lambda self: self._default_move_ref(),
     )
     move_partner = fields.Boolean(
-        string="Partner on Move Line",
+        string="Partner on Journal Items",
         default=lambda self: self.env.company.default_cutoff_move_partner,
         states={"done": [("readonly", True)]},
         tracking=True,
