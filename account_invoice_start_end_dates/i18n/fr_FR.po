@@ -32,10 +32,8 @@ msgstr "Date de fin"
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
-"End Date on the invoice/move lines that have this product."
+"End Date on the invoice lines that have this product."
 msgstr ""
-"Si cette option est activée, l'utilisateur aura à entrer une date de "
-"démarrage et une date de fin sur les lignes de facture qui ont ce produit."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move
@@ -56,8 +54,8 @@ msgstr "Contrat de maintenance"
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
-msgid "Missing End Date for move line with Name '%s'."
-msgstr "Date de fin manquante pour les écritures avec le nom '%s'."
+msgid "Missing End Date for line '%s'."
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
@@ -74,8 +72,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
-msgid "Missing Start Date for move line with Name '%s'."
-msgstr "Date de début manquante pour les écritures avec le nom '%s'."
+msgid "Missing Start Date for line '%s'."
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
@@ -99,11 +97,32 @@ msgstr "Date de début"
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
-"Start Date ({start_date}) should be before End Date ({end_date}) for move "
-"line with Name '{name}'."
+"Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
+"line '%(name)s'."
 msgstr ""
-"La date de début ({start_date}) devrait être antérieure à la date de fin "
-"({end_date}) pour l'écriture comptable ayant le nom '{name}'."
+
+#~ msgid ""
+#~ "If this option is active, the user will have to enter a Start Date and an "
+#~ "End Date on the invoice/move lines that have this product."
+#~ msgstr ""
+#~ "Si cette option est activée, l'utilisateur aura à entrer une date de "
+#~ "démarrage et une date de fin sur les lignes de facture qui ont ce produit."
+
+#, python-format
+#~ msgid "Missing End Date for move line with Name '%s'."
+#~ msgstr "Date de fin manquante pour les écritures avec le nom '%s'."
+
+#, python-format
+#~ msgid "Missing Start Date for move line with Name '%s'."
+#~ msgstr "Date de début manquante pour les écritures avec le nom '%s'."
+
+#, python-format
+#~ msgid ""
+#~ "Start Date ({start_date}) should be before End Date ({end_date}) for move "
+#~ "line with Name '{name}'."
+#~ msgstr ""
+#~ "La date de début ({start_date}) devrait être antérieure à la date de fin "
+#~ "({end_date}) pour l'écriture comptable ayant le nom '{name}'."
 
 #~ msgid "Units"
 #~ msgstr "Unités"
