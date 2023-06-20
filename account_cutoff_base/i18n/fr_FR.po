@@ -137,19 +137,9 @@ msgid "Amount"
 msgstr "Montant"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
-msgid "Amount Currency"
-msgstr "Montant en devise"
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
-msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
-"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgid "Amount that is used as base to compute the Cut-off Amount."
 msgstr ""
-"Montant utilisé comme base pour calculer le montant d'arrêté. Ce montant est "
-"dans la devise de la dépense, qui peut être différente de la devise de la "
-"société."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
@@ -188,11 +178,6 @@ msgstr "Remettre en brouillon"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
 msgid "Base"
 msgstr "Base"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__base
-msgid "Base Amount in the currency of the PO."
-msgstr "Montant de base dans la devise du PO."
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -246,15 +231,10 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__currency_id
 msgid "Currency"
 msgstr "Devise"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__currency_id
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__currency_id
-msgid "Currency of the 'Amount' field."
-msgstr "Champ devise du montant."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__parent_id
@@ -617,13 +597,13 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
-msgid "Partner on Move Line"
+msgid "Partner on Journal Items"
 msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
-msgid "Partner on Move Line by Default"
+msgid "Partner on Journal Items by Default"
 msgstr ""
 
 #. module: account_cutoff_base
@@ -749,11 +729,6 @@ msgid "Tax Amount"
 msgstr ""
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__amount
-msgid "Tax Amount in the currency of the PO."
-msgstr ""
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
 msgid "Tax Cut-off Amount in the company currency."
 msgstr ""
@@ -818,3 +793,21 @@ msgstr ""
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+
+#~ msgid "Amount Currency"
+#~ msgstr "Montant en devise"
+
+#~ msgid ""
+#~ "Amount that is used as base to compute the Cut-off Amount. This Amount is "
+#~ "in the 'Amount Currency', which may be different from the 'Company "
+#~ "Currency'."
+#~ msgstr ""
+#~ "Montant utilisé comme base pour calculer le montant d'arrêté. Ce montant "
+#~ "est dans la devise de la dépense, qui peut être différente de la devise "
+#~ "de la société."
+
+#~ msgid "Base Amount in the currency of the PO."
+#~ msgstr "Montant de base dans la devise du PO."
+
+#~ msgid "Currency of the 'Amount' field."
+#~ msgstr "Champ devise du montant."

@@ -137,18 +137,9 @@ msgid "Amount"
 msgstr "Importo"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
-msgid "Amount Currency"
-msgstr "Valuta importo"
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
-msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
-"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgid "Amount that is used as base to compute the Cut-off Amount."
 msgstr ""
-"Importo utilizzato come imponibile per calcolare l'importo separato. È in "
-"\"Valuta importo\", che può essere diversa dalla \"Valuta aziendale\"."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
@@ -187,11 +178,6 @@ msgstr "Ritorna a bozza"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
 msgid "Base"
 msgstr "Base imponibile"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__base
-msgid "Base Amount in the currency of the PO."
-msgstr "Importo imponibile nella valuta dell'OdA."
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -245,15 +231,10 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__currency_id
 msgid "Currency"
 msgstr "Valuta"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__currency_id
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__currency_id
-msgid "Currency of the 'Amount' field."
-msgstr "Valuta del campo \"Importo\"."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__parent_id
@@ -616,14 +597,14 @@ msgstr "Partner"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
-msgid "Partner on Move Line"
-msgstr "Partner nella riga movimento"
+msgid "Partner on Journal Items"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
-msgid "Partner on Move Line by Default"
-msgstr "Partner nella riga movimento in modo predefinito"
+msgid "Partner on Journal Items by Default"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
@@ -756,11 +737,6 @@ msgid "Tax Amount"
 msgstr "Importo imposta"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__amount
-msgid "Tax Amount in the currency of the PO."
-msgstr "Importo imposta nella valuta dell'OdA."
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
 msgid "Tax Cut-off Amount in the company currency."
 msgstr "Importo separato imposta nella valuta aziendale."
@@ -832,6 +808,32 @@ msgstr "Cronologia comunicazioni sito web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+
+#~ msgid "Amount Currency"
+#~ msgstr "Valuta importo"
+
+#~ msgid ""
+#~ "Amount that is used as base to compute the Cut-off Amount. This Amount is "
+#~ "in the 'Amount Currency', which may be different from the 'Company "
+#~ "Currency'."
+#~ msgstr ""
+#~ "Importo utilizzato come imponibile per calcolare l'importo separato. È in "
+#~ "\"Valuta importo\", che può essere diversa dalla \"Valuta aziendale\"."
+
+#~ msgid "Base Amount in the currency of the PO."
+#~ msgstr "Importo imponibile nella valuta dell'OdA."
+
+#~ msgid "Currency of the 'Amount' field."
+#~ msgstr "Valuta del campo \"Importo\"."
+
+#~ msgid "Partner on Move Line"
+#~ msgstr "Partner nella riga movimento"
+
+#~ msgid "Partner on Move Line by Default"
+#~ msgstr "Partner nella riga movimento in modo predefinito"
+
+#~ msgid "Tax Amount in the currency of the PO."
+#~ msgstr "Importo imposta nella valuta dell'OdA."
 
 #~ msgid "Analytic Account"
 #~ msgstr "Conto analitico"
