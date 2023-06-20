@@ -137,19 +137,9 @@ msgid "Amount"
 msgstr "Monto"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
-msgid "Amount Currency"
-msgstr "Monto de Dinero"
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
-msgid ""
-"Amount that is used as base to compute the Cut-off Amount. This Amount is in "
-"the 'Amount Currency', which may be different from the 'Company Currency'."
+msgid "Amount that is used as base to compute the Cut-off Amount."
 msgstr ""
-"Monto que se utiliza como base para calcular el Monto de Corte. Este monto "
-"está en el 'Monto de Dinero', que puede ser diferente de la 'Moneda de la "
-"Empresa'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
@@ -188,11 +178,6 @@ msgstr "Volver a Borrador"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
 msgid "Base"
 msgstr "Base"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__base
-msgid "Base Amount in the currency of the PO."
-msgstr "Monto Base en la moneda del Pedido de Compras."
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -246,15 +231,10 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__currency_id
 msgid "Currency"
 msgstr "Moneda"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__currency_id
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__currency_id
-msgid "Currency of the 'Amount' field."
-msgstr "Moneda del campo ‘Monto’."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__parent_id
@@ -617,14 +597,14 @@ msgstr "Socio"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
-msgid "Partner on Move Line"
-msgstr "Socio en Movimiento de Línea"
+msgid "Partner on Journal Items"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
-msgid "Partner on Move Line by Default"
-msgstr "Socio en Movimiento de Línea Predeterminado"
+msgid "Partner on Journal Items by Default"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
@@ -757,11 +737,6 @@ msgid "Tax Amount"
 msgstr "Monto del Impuesto"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__amount
-msgid "Tax Amount in the currency of the PO."
-msgstr "Monto del Impuesto en la moneda del Pedido de Compras."
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
 msgid "Tax Cut-off Amount in the company currency."
 msgstr "Impuesto del Monto de Corte en la moneda de la compañía."
@@ -833,6 +808,33 @@ msgstr "Historial de comunicación por Sitio Web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+
+#~ msgid "Amount Currency"
+#~ msgstr "Monto de Dinero"
+
+#~ msgid ""
+#~ "Amount that is used as base to compute the Cut-off Amount. This Amount is "
+#~ "in the 'Amount Currency', which may be different from the 'Company "
+#~ "Currency'."
+#~ msgstr ""
+#~ "Monto que se utiliza como base para calcular el Monto de Corte. Este "
+#~ "monto está en el 'Monto de Dinero', que puede ser diferente de la 'Moneda "
+#~ "de la Empresa'."
+
+#~ msgid "Base Amount in the currency of the PO."
+#~ msgstr "Monto Base en la moneda del Pedido de Compras."
+
+#~ msgid "Currency of the 'Amount' field."
+#~ msgstr "Moneda del campo ‘Monto’."
+
+#~ msgid "Partner on Move Line"
+#~ msgstr "Socio en Movimiento de Línea"
+
+#~ msgid "Partner on Move Line by Default"
+#~ msgstr "Socio en Movimiento de Línea Predeterminado"
+
+#~ msgid "Tax Amount in the currency of the PO."
+#~ msgstr "Monto del Impuesto en la moneda del Pedido de Compras."
 
 #~ msgid "Analytic Account"
 #~ msgstr "Cuenta Analítica"
