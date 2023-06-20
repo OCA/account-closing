@@ -19,13 +19,11 @@ class AccountMoveLine(models.Model):
         for moveline in self:
             if moveline.start_date and not moveline.end_date:
                 raise ValidationError(
-                    _("Missing End Date for move line with Name '%s'.")
-                    % (moveline.name)
+                    _("Missing End Date for line '%s'.") % (moveline.display_name)
                 )
             if moveline.end_date and not moveline.start_date:
                 raise ValidationError(
-                    _("Missing Start Date for move line with Name '%s'.")
-                    % (moveline.name)
+                    _("Missing Start Date for line '%s'.") % (moveline.display_name)
                 )
             if (
                 moveline.end_date
@@ -34,11 +32,12 @@ class AccountMoveLine(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Start Date ({start_date}) should be before End Date "
-                        "({end_date}) for move line with Name '{name}'."
-                    ).format(
-                        start_date=format_date(self.env, moveline.start_date),
-                        end_date=format_date(self.env, moveline.end_date),
-                        name=moveline.name,
+                        "Start Date (%(start_date)s) should be before End Date "
+                        "(%(end_date)s) for line '%(name)s'."
                     )
+                    % {
+                        "start_date": format_date(self.env, moveline.start_date),
+                        "end_date": format_date(self.env, moveline.end_date),
+                        "name": moveline.display_name,
+                    }
                 )

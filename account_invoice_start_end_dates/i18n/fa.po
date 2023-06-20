@@ -32,7 +32,7 @@ msgstr "تاریخ پایان"
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
-"End Date on the invoice/move lines that have this product."
+"End Date on the invoice lines that have this product."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -54,7 +54,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
-msgid "Missing End Date for move line with Name '%s'."
+msgid "Missing End Date for line '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -62,15 +62,15 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start/End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start/End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
-msgid "Missing Start Date for move line with Name '%s'."
+msgid "Missing Start Date for line '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -95,6 +95,6 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid ""
-"Start Date ({start_date}) should be before End Date ({end_date}) for move "
-"line with Name '{name}'."
+"Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
+"line '%(name)s'."
 msgstr ""
