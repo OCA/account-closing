@@ -11,6 +11,6 @@ class ProductTemplate(models.Model):
     must_have_dates = fields.Boolean(
         string="Must Have Start/End Dates",
         help="If this option is active, the user will have to enter "
-        "a Start Date and an End Date on the invoice/move lines that have "
+        "a Start Date and an End Date on the invoice lines that have "
         "this product.",
     )
