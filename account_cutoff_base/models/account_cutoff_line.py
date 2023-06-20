@@ -58,16 +58,13 @@ class AccountCutoffLine(models.Model):
     )
     currency_id = fields.Many2one(
         "res.currency",
-        string="Amount Currency",
+        string="Currency",
         readonly=True,
-        help="Currency of the 'Amount' field.",
     )
     amount = fields.Monetary(
         currency_field="currency_id",
         readonly=True,
-        help="Amount that is used as base to compute the Cut-off Amount. "
-        "This Amount is in the 'Amount Currency', which may be different "
-        "from the 'Company Currency'.",
+        help="Amount that is used as base to compute the Cut-off Amount.",
     )
     cutoff_amount = fields.Monetary(
         string="Cut-off Amount",
