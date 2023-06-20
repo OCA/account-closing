@@ -58,7 +58,7 @@ class AccountCutoff(models.Model):
             if not self.source_journal_ids:
                 raise UserError(_("Missing source journals."))
             self.message_post(
-                body=_("Computing provisions from %d subscriptions.") % len(subs)
+                body=_("Computing cut-offs from %d subscriptions.") % len(subs)
             )
         common_domain = [("journal_id", "in", self.source_journal_ids.ids)]
         if self.source_move_state == "posted":
