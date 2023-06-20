@@ -43,13 +43,11 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-"
-"id=%(id)d>%(name)s</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 msgstr ""
-"<p>Pas de provision pour l'abonnement <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a> "
-":</p>"
+"<p>Pas de provision pour l'abonnement <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a> :</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -103,8 +101,8 @@ msgstr "Archivé"
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense"
-" amount %(min_amount)s, default provision amount %(provision_amount)s"
+"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense "
+"amount %(min_amount)s, default provision amount %(provision_amount)s"
 msgstr ""
 "CONFIGURATION : périodicité %(periodicity)s, date de début %(start_date)s, "
 "montant minimum de charge %(min_amount)s, montant à provisionner par défaut "
@@ -124,8 +122,8 @@ msgstr "Devise de la société"
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
-msgid "Computing provisions from %d subscriptions."
-msgstr "Calcul des provisions à partir de %d abonnements."
+msgid "Computing cut-offs from %d subscriptions."
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_uid
@@ -355,3 +353,7 @@ msgstr "Type d'utilisation de la taxe"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
 msgstr "Annuel"
+
+#, python-format
+#~ msgid "Computing provisions from %d subscriptions."
+#~ msgstr "Calcul des provisions à partir de %d abonnements."
