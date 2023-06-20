@@ -33,13 +33,11 @@ class AccountCutoffTaxLine(models.Model):
     base = fields.Monetary(
         currency_field="currency_id",
         readonly=True,
-        help="Base Amount in the currency of the PO.",
     )
     amount = fields.Monetary(
         string="Tax Amount",
         currency_field="currency_id",
         readonly=True,
-        help="Tax Amount in the currency of the PO.",
     )
     sequence = fields.Integer(readonly=True)
     cutoff_amount = fields.Monetary(
