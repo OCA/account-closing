@@ -81,6 +81,9 @@ class AccountAccount(models.Model):
 
     currency_revaluation = fields.Boolean(
         string="Allow Currency Revaluation",
+        compute="_compute_currency_revaluation",
+        store=True,
+        readonly=False,
     )
 
     _sql_mapping = {
@@ -96,9 +99,9 @@ class AccountAccount(models.Model):
         res = super().init()
         accounts = self.env["account.account"].search(
             [
-                ("user_type_id.id", "in", self._get_revaluation_account_types()),
+                ("account_type", "in", self._get_revaluation_account_types()),
                 ("currency_revaluation", "=", False),
-                ("user_type_id.include_initial_balance", "=", True),
+                ("include_initial_balance", "=", True),
             ]
         )
         accounts.write({"currency_revaluation": True})
@@ -108,9 +111,7 @@ class AccountAccount(models.Model):
         if (
             "currency_revaluation" in vals
             and vals.get("currency_revaluation", False)
-            and any(
-                [not x for x in self.mapped("user_type_id.include_initial_balance")]
-            )
+            and any([not x for x in self.mapped("include_initial_balance")])
         ):
             raise UserError(
                 _(
@@ -119,31 +120,40 @@ class AccountAccount(models.Model):
                     "on these accounts: \n\t - %s"
                 )
                 % "\n\t - ".join(
-                    self.filtered(
-                        lambda x: not x.user_type_id.include_initial_balance
-                    ).mapped("name")
+                    self.filtered(lambda x: not x.include_initial_balance).mapped(
+                        "name"
+                    )
                 )
             )
         return super(AccountAccount, self).write(vals)
 
     def _get_revaluation_account_types(self):
         return [
-            self.env.ref("account.data_account_type_receivable").id,
-            self.env.ref("account.data_account_type_payable").id,
-            self.env.ref("account.data_account_type_liquidity").id,
+            "asset_receivable",
+            "liability_payable",
+            "asset_cash",
+            "liability_credit_card",
         ]
 
-    @api.onchange("user_type_id")
-    def _onchange_user_type_id(self):
-        revaluation_accounts = self._get_revaluation_account_types()
+    @api.depends("account_type")
+    def _compute_currency_revaluation(self):
         for rec in self:
-            if rec.user_type_id.id in revaluation_accounts:
+            revaluation_accounts = rec._get_revaluation_account_types()
+            if rec.account_type in revaluation_accounts:
                 rec.currency_revaluation = True
+            else:
+                rec.currency_revaluation = False
 
     def _revaluation_query(self, revaluation_date, start_date=None):
-        tables, where_clause, where_clause_params = self.env[
-            "account.move.line"
-        ]._query_get()
+        query = self.env["account.move.line"]._where_calc(
+            [
+                ("company_id", "in", self.env.companies.ids),
+                ("display_type", "not in", ("line_section", "line_note")),
+                ("parent_state", "!=", "cancel"),
+            ]
+        )
+        self._apply_ir_rules(query)
+        tables, where_clause, where_clause_params = query.get_sql()
         mapping = [
             ('"account_move_line".', "aml."),
             ('"account_move_line"', "account_move_line aml"),
@@ -159,7 +169,7 @@ class AccountAccount(models.Model):
 WITH amount AS (
     SELECT
         aml.account_id,
-        CASE WHEN aat.type IN ('payable', 'receivable')
+        CASE WHEN acc.account_type IN ('liability_payable', 'asset_receivable')
             THEN aml.partner_id
             ELSE NULL
         END AS partner_id,
@@ -173,7 +183,6 @@ WITH amount AS (
             + """
     LEFT JOIN account_move am ON aml.move_id = am.id
     INNER JOIN account_account acc ON aml.account_id = acc.id
-    INNER JOIN account_account_type aat ON acc.user_type_id = aat.id
     LEFT JOIN account_partial_reconcile aprc
         ON (aml.balance < 0 AND aml.id = aprc.credit_move_id)
     LEFT JOIN account_move_line amlcf
@@ -203,7 +212,7 @@ WITH amount AS (
             + where_clause
             + """
     GROUP BY
-        aat.type,
+        acc.account_type,
         origin_aml_id
     HAVING
         aml.amount_residual_currency <> 0
