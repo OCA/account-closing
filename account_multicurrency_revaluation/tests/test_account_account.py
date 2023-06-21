@@ -10,10 +10,8 @@ class TestAccountAccount(common.TransactionCase):
         super().setUpClass()
 
         cls.AccountAccount = cls.env["account.account"]
-        cls.account_type_current_liabilities = cls.env.ref(
-            "account.data_account_type_current_liabilities"
-        )
-        cls.account_type_liquidity = cls.env.ref("account.data_account_type_liquidity")
+        cls.account_type_current_liabilities = "liability_current"
+        cls.account_type_liquidity = "asset_cash"
         cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
         cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
         cls.env.company = cls.company
@@ -22,13 +20,13 @@ class TestAccountAccount(common.TransactionCase):
         with common.Form(self.AccountAccount, view="account.view_account_form") as form:
             form.name = "Test Account"
             form.code = "TEST"
-            form.user_type_id = self.account_type_current_liabilities
+            form.account_type = self.account_type_current_liabilities
             account = form.save()
 
         self.assertFalse(account.currency_revaluation)
 
         with common.Form(account, view="account.view_account_form") as form:
-            form.user_type_id = self.account_type_liquidity
+            form.account_type = self.account_type_liquidity
             account = form.save()
 
         self.assertTrue(account.currency_revaluation)
