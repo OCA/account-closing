@@ -37,7 +37,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         company = self.journal_id.company_id or self.env.company
         return self.env["account.account"].search(
             [
-                ("user_type_id.include_initial_balance", "=", True),
+                ("include_initial_balance", "=", True),
                 ("currency_revaluation", "=", True),
                 ("company_id", "=", company.id),
             ]
@@ -129,14 +129,26 @@ class WizardCurrencyRevaluation(models.TransientModel):
         )
 
         if analytic_debit_acc_id:
-            debit_line.update({"analytic_account_id": analytic_debit_acc_id})
+            debit_line.update(
+                {
+                    "analytic_distribution": {
+                        analytic_debit_acc_id: amount,
+                    }
+                }
+            )
 
         credit_line.update(
             {"debit": 0.0, "credit": amount, "account_id": credit_account_id}
         )
 
         if analytic_credit_acc_id:
-            credit_line.update({"analytic_account_id": analytic_credit_acc_id})
+            credit_line.update(
+                {
+                    "analytic_distribution": {
+                        analytic_credit_acc_id: amount,
+                    }
+                }
+            )
 
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
@@ -321,7 +333,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         for account_id, by_account in revaluations.items():
             account = Account.browse(account_id)
-            if account.internal_type == "liquidity" and (
+            if account.account_type in ["asset_cash", "liability_credit_card"] and (
                 not account.currency_id
                 or account.currency_id == account.company_id.currency_id
             ):
