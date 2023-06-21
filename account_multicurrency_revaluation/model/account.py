@@ -19,6 +19,8 @@ class AccountAccount(models.Model):
 
     currency_revaluation = fields.Boolean(
         string="Allow currency revaluation",
+        compute="_compute_currency_revaluation",
+        store=True,
     )
 
     _sql_mapping = {
@@ -34,7 +36,7 @@ class AccountAccount(models.Model):
         res = super().init()
         accounts = self.env["account.account"].search(
             [
-                ("user_type_id.id", "in", self._get_revaluation_account_types()),
+                ("account_type", "in", self._get_revaluation_account_types()),
                 ("currency_revaluation", "=", False),
             ]
         )
@@ -43,22 +45,31 @@ class AccountAccount(models.Model):
 
     def _get_revaluation_account_types(self):
         return [
-            self.env.ref("account.data_account_type_receivable").id,
-            self.env.ref("account.data_account_type_payable").id,
-            self.env.ref("account.data_account_type_liquidity").id,
+            "asset_receivable",
+            "liability_payable",
+            "asset_cash",
+            "liability_credit_card",
         ]
 
-    @api.onchange("user_type_id")
-    def _onchange_user_type_id(self):
-        revaluation_accounts = self._get_revaluation_account_types()
+    @api.depends("account_type")
+    def _compute_currency_revaluation(self):
         for rec in self:
-            if rec.user_type_id.id in revaluation_accounts:
+            revaluation_accounts = rec._get_revaluation_account_types()
+            if rec.account_type in revaluation_accounts:
                 rec.currency_revaluation = True
+            else:
+                rec.currency_revaluation = False
 
     def _revaluation_query(self, revaluation_date):
-        tables, where_clause, where_clause_params = self.env[
-            "account.move.line"
-        ]._query_get()
+        query = self.env["account.move.line"]._where_calc(
+            [
+                ("company_id", "in", self.env.companies.ids),
+                ("display_type", "not in", ("line_section", "line_note")),
+                ("parent_state", "!=", "cancel"),
+            ]
+        )
+        self._apply_ir_rules(query)
+        tables, where_clause, where_clause_params = query.get_sql()
         mapping = [
             ('"account_move_line".', "aml."),
             ('"account_move_line"', "account_move_line aml"),
@@ -75,7 +86,7 @@ class AccountAccount(models.Model):
 WITH amount AS (
     SELECT
         aml.account_id,
-        CASE WHEN aat.type IN ('payable', 'receivable')
+        CASE WHEN acc.account_type IN ('liability_payable', 'asset_receivable')
             THEN aml.partner_id
             ELSE NULL
         END AS partner_id,
@@ -87,7 +98,6 @@ WITH amount AS (
             + tables
             + """
     INNER JOIN account_account acc ON aml.account_id = acc.id
-    INNER JOIN account_account_type aat ON acc.user_type_id = aat.id
     LEFT JOIN account_partial_reconcile aprc
         ON (aml.balance < 0 AND aml.id = aprc.credit_move_id)
     LEFT JOIN account_move_line amlcf
@@ -112,7 +122,7 @@ WITH amount AS (
             + where_clause
             + """
     GROUP BY
-        aat.type,
+        acc.account_type,
         aml.id
     HAVING
         aml.full_reconcile_id IS NULL
