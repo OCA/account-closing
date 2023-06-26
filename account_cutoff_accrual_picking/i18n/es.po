@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-06-26 18:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -23,17 +25,17 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "corte de cuenta"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "compañías"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "ajustes de configuración"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -42,6 +44,8 @@ msgid ""
 "Missing expense account on product '%(product_display_name)s' or on its "
 "related product category '%(product_categ_display_name)s'."
 msgstr ""
+"Cuenta de gastos faltante en el producto '%(product_display_name)s' o en su "
+"categoría de producto relacionada'%(product_categ_display_name)s'."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -50,13 +54,15 @@ msgid ""
 "Missing income account on product '%(product_display_name)s' or on its "
 "related product category '%(product_categ_display_name)s'."
 msgstr ""
+"Cuenta de ingresos faltante en el producto '%(product_display_name)s' o en "
+"su categoría de producto relacionada'%(product_categ_display_name)s'."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
 msgid "Picking Analysis Interval"
-msgstr ""
+msgstr "Recopilando intervalo de análisis"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
@@ -65,6 +71,8 @@ msgid ""
 "The value of the field 'Picking Analysis Interval' must be strictly "
 "positive."
 msgstr ""
+"el valor del campo 'recopilando intervalo de análisis' debe ser "
+"estrictamente positivo."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
@@ -75,9 +83,12 @@ msgid ""
 "pickings between the cutoff date and N days before. N is the Picking "
 "Analysis Interval."
 msgstr ""
+"Para generar el acopio basado en las recopilaciones, Odoo analizará todas "
+"las recopilaciones entre la fecha límite y N días antes. N es la "
+"recopilación del intervalo de análisis."
 
 #. module: account_cutoff_accrual_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.account_cutoff_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
 msgid "days"
-msgstr ""
+msgstr "Días"
