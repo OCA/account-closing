@@ -11,7 +11,9 @@
         <field name="inherit_id" ref="account.product_template_form_view" />
         <field name="arch" type="xml">
             <group name="accounting" position="inside">
-                <field name="must_have_dates" />
+                <group name="date_management" string="Dates Management">
+                    <field name="must_have_dates" string="Must have dates"/>
+                </group>
             </group>
         </field>
     </record>
