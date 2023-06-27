@@ -12,7 +12,7 @@
         <field name="arch" type="xml">
             <group name="accounting" position="inside">
                 <group name="date_management" string="Dates Management">
-                    <field name="must_have_dates" string="Must have dates"/>
+                    <field name="must_have_dates" string="Must have dates" />
                 </group>
             </group>
         </field>
