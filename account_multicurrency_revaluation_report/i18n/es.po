@@ -9,39 +9,40 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-03 03:53+0000\n"
-"PO-Revision-Date: 2017-11-03 03:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2023-06-29 09:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "'Gain(+)/Loss(-) YTD"
-msgstr ""
+msgstr "Ganancias (+)/Pérdidas (-) en lo que va de año"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "0.0"
-msgstr ""
+msgstr "0.0"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "<b>TOTAL</b>"
-msgstr ""
+msgstr "<b>TOTAL</b>"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_report.field_unrealized_report_printer_account_ids
 msgid "Accounts (leave blank to select all)"
-msgstr ""
+msgstr "Cuentas (dejar en blanco para seleccionar todas)"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Balance YTD"
-msgstr ""
+msgstr "Balance anual hasta la fecha"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.currency_urealized_report_launcher_wizard
@@ -56,7 +57,7 @@ msgstr "Compañía"
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Company currency"
-msgstr ""
+msgstr "Divisa de la Compañía"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_report.field_unrealized_report_printer_create_uid
@@ -71,12 +72,12 @@ msgstr "Creado en"
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Curr. Balance YTD"
-msgstr ""
+msgstr "saldo balance durante el año hasta la fecha"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Currency Gain and Loss"
-msgstr ""
+msgstr "Ganancia y Pérdidas de Divisas"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_report.field_report_account_multicurrency_revaluation_report_curr_unrealized_display_name
@@ -88,7 +89,7 @@ msgstr "Nombre mostrado"
 #: code:addons/account_multicurrency_revaluation_report/report/currency_unrealized_report.py:97
 #, python-format
 msgid "Exchange Rate Gain and Loss Report"
-msgstr ""
+msgstr "Informe de pérdidas y ganancias por tipo de cambio"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation_report.field_report_account_multicurrency_revaluation_report_curr_unrealized_id
@@ -121,44 +122,44 @@ msgstr "Empresa"
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation_report.currency_urealized_report_action_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation_report.currency_urealized_report_wizard_menu
 msgid "Print Currency Unrealized"
-msgstr ""
+msgstr "impresión de divisa no realizada"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Report"
-msgstr ""
+msgstr "Informe"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Revaluated Amount YTD"
-msgstr ""
+msgstr "importe revaluado durante el año hasta la fecha"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.curr_unrealized
 msgid "Revaluation Rate"
-msgstr ""
+msgstr "Tasa de revalorización"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.actions.report.xml,name:account_multicurrency_revaluation_report.action_report_currency_unrealized
 msgid "Unrealized currency report"
-msgstr ""
+msgstr "informe de divisa no realizado"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.currency_urealized_report_launcher_wizard
 msgid "_Print"
-msgstr ""
+msgstr "_Imprimir"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation_report.currency_urealized_report_launcher_wizard
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model,name:account_multicurrency_revaluation_report.model_report_account_multicurrency_revaluation_report_curr_unrealized
 msgid "report.account_multicurrency_revaluation_report.curr_unrealized"
-msgstr ""
+msgstr "informe.cuenta_multidivisa_revaluación_informe.divisa_no realizado"
 
 #. module: account_multicurrency_revaluation_report
 #: model:ir.model,name:account_multicurrency_revaluation_report.model_unrealized_report_printer
 msgid "unrealized.report.printer"
-msgstr ""
+msgstr "no reañizado.informe.impresora"
