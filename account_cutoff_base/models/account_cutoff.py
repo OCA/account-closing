@@ -216,6 +216,7 @@ class AccountCutoff(models.Model):
             vals = {
                 "debit": amount < 0 and amount * -1 or 0,
                 "credit": amount >= 0 and amount or 0,
+                "tax_ids": False,  # neutralize defaut tax of account
             }
             for k, v in zip(merge_keys, merge_values):
                 value = v
@@ -397,21 +398,30 @@ class AccountCutoff(models.Model):
             if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
                 continue
 
-            tax_accrual_account_id = False
+            tax_accrual_account = False
             tax_account_field_label = ""
             if self.cutoff_type == "accrued_expense":
-                tax_accrual_account_id = tax.account_accrued_expense_id.id
+                tax_accrual_account = (
+                    tax.account_accrued_expense_id
+                    or self.company_id.default_accrued_expense_tax_account_id
+                )
                 tax_account_field_label = _("Accrued Expense Tax Account")
             elif self.cutoff_type == "accrued_revenue":
-                tax_accrual_account_id = tax.account_accrued_revenue_id.id
+                tax_accrual_account = (
+                    tax.account_accrued_revenue_id
+                    or self.company_id.default_accrued_revenue_tax_account_id
+                )
                 tax_account_field_label = _("Accrued Revenue Tax Account")
 
-            if not tax_accrual_account_id:
+            if not tax_accrual_account:
                 raise UserError(
                     _(
-                        "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'.",
+                        "Missing '%(tax_account_field_label)s'. You must configure it "
+                        "on the tax '%(tax_display_name)s' or on the accounting "
+                        "configuration page of the company '%(company)s'.",
                         tax_account_field_label=tax_account_field_label,
                         tax_display_name=tax.display_name,
+                        company=self.company_id.display_name,
                     )
                 )
             tax_amount = currency.round(tax_line["amount"])
@@ -427,7 +437,7 @@ class AccountCutoff(models.Model):
                         "base": tax_line["base"],  # in currency
                         "amount": tax_amount,  # in currency
                         "sequence": tax_line["sequence"],
-                        "cutoff_account_id": tax_accrual_account_id,
+                        "cutoff_account_id": tax_accrual_account.id,
                         "cutoff_amount": tax_accrual_amount,  # in company currency
                     },
                 )
