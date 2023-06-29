@@ -30,6 +30,16 @@ class ResCompany(models.Model):
         string="Default Account for Accrued Expenses",
         check_company=True,
     )
+    default_accrued_revenue_tax_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Default Tax Account for Accrued Revenue",
+        check_company=True,
+    )
+    default_accrued_expense_tax_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Default Tax Account for Accrued Expense",
+        check_company=True,
+    )
     default_prepaid_revenue_account_id = fields.Many2one(
         "account.account",
         string="Default Account for Prepaid Revenue",
