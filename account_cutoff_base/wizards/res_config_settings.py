@@ -32,6 +32,16 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
     )
+    dft_accrued_revenue_tax_account_id = fields.Many2one(
+        related="company_id.default_accrued_revenue_tax_account_id",
+        readonly=False,
+        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+    )
+    dft_accrued_expense_tax_account_id = fields.Many2one(
+        related="company_id.default_accrued_expense_tax_account_id",
+        readonly=False,
+        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+    )
     dft_prepaid_revenue_account_id = fields.Many2one(
         related="company_id.default_prepaid_revenue_account_id",
         readonly=False,
