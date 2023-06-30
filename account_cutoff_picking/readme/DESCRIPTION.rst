@@ -2,7 +2,7 @@ This module generates expense/revenue accruals and prepaid expense/revenue based
 
 To understand the behavior of this module, let's take the example of an expense accrual. When you click on the button *Re-Generate Lines* of an *Expense Accrual*:
 
-1. Odoo will look for all incoming picking in Done state with a *Transfer Date* <= *Cut-off Date*. For performance reasons, by default, the incoming picking dated before *Cut-off Date* minus 90 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.
+1. Odoo will look for all incoming picking in Done state with a *Transfer Date* <= *Cut-off Date*. For performance reasons, by default, the incoming picking dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.
 2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential expense accrual.
 3. For each of these purchase order lines, Odoo will:
 
@@ -13,7 +13,7 @@ To understand the behavior of this module, let's take the example of an expense 
 
 Now, let's take the example of a prepaid expense. When you click on the button *Re-Generate Lines* of a *Prepaid Expense*:
 
-1. Odoo will look for all vendor bills dated before (or equal to) *Cut-off Date*. For performance reasons, by default, the vendor bills dated before *Cut-off Date* minus 90 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.
+1. Odoo will look for all vendor bills dated before (or equal to) *Cut-off Date*. For performance reasons, by default, the vendor bills dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.
 2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential prepaid expense.
 3. For each of these purchase order lines, Odoo will:
 
