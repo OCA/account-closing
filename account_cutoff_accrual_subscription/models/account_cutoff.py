@@ -15,7 +15,11 @@ class AccountCutoff(models.Model):
 
     def get_lines(self):
         res = super().get_lines()
-        if self.cutoff_type not in ["accrued_expense", "accrued_revenue"]:
+        type2subtype = {
+            "accrued_expense": "expense",
+            "accrued_revenue": "revenue",
+        }
+        if self.cutoff_type not in type2subtype:
             return res
 
         line_obj = self.env["account.cutoff.line"]
@@ -29,10 +33,6 @@ class AccountCutoff(models.Model):
         if not fy_start_date:
             raise UserError(_("Odoo cannot compute the fiscal year start date."))
 
-        type2subtype = {
-            "accrued_expense": "expense",
-            "accrued_revenue": "revenue",
-        }
         sub_type = type2subtype[self.cutoff_type]
         sign = sub_type == "revenue" and -1 or 1
         subs = sub_obj.search(
