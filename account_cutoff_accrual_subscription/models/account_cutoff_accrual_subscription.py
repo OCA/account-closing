@@ -66,10 +66,10 @@ class AccountCutoffAccrualSubscription(models.Model):
     )
     start_date = fields.Date(required=True)
     min_amount = fields.Monetary(
-        string="Minimum Expense Amount",
+        string="Minimum Amount",
         required=True,
         currency_field="company_currency_id",
-        help="Minimum expense amount without taxes over the period",
+        help="Minimum amount without taxes over the period",
     )
     provision_amount = fields.Monetary(
         string="Default Provision Amount", currency_field="company_currency_id"
