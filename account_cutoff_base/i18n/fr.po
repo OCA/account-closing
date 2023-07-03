@@ -384,6 +384,18 @@ msgid "Default Cut-off Journal"
 msgstr "Journal de provision par défaut"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_tax_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_tax_account_id
+msgid "Default Tax Account for Accrued Expense"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_tax_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_tax_account_id
+msgid "Default Tax Account for Accrued Revenue"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__name
 msgid "Description"
 msgstr "Description"
@@ -527,9 +539,11 @@ msgstr "Messages"
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
-msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
+msgid ""
+"Missing '%(tax_account_field_label)s'. You must configure it on the tax "
+"'%(tax_display_name)s' or on the accounting configuration page of the "
+"company '%(company)s'."
 msgstr ""
-"Manque '%(tax_account_field_label)s' sur la taxe '%(tax_display_name)s'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
@@ -813,6 +827,11 @@ msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
 "Il n'est pas possible de supprimer les provisions qui sont à l'état "
 "'Terminé'."
+
+#, python-format
+#~ msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
+#~ msgstr ""
+#~ "Manque '%(tax_account_field_label)s' sur la taxe '%(tax_display_name)s'."
 
 #~ msgid "Amount Currency"
 #~ msgstr "Devise du montant"
