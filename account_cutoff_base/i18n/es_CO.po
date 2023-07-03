@@ -384,6 +384,18 @@ msgid "Default Cut-off Journal"
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_tax_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_tax_account_id
+msgid "Default Tax Account for Accrued Expense"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_tax_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_tax_account_id
+msgid "Default Tax Account for Accrued Revenue"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__name
 msgid "Description"
 msgstr ""
@@ -527,7 +539,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
-msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
+msgid ""
+"Missing '%(tax_account_field_label)s'. You must configure it on the tax "
+"'%(tax_display_name)s' or on the accounting configuration page of the "
+"company '%(company)s'."
 msgstr ""
 
 #. module: account_cutoff_base
