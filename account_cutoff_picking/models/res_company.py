@@ -15,7 +15,7 @@ class ResCompany(models.Model):
         "N days before the cutoff date up to the cutoff date. "
         "N is the Analysis Interval. If you increase the analysis interval, "
         "Odoo will take more time to generate the cutoff lines.",
-        default=90,
+        default=30,
     )
 
     _sql_constraints = [
