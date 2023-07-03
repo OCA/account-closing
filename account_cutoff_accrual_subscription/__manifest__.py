@@ -4,7 +4,7 @@
 
 {
     "name": "Account Accrual Subscriptions",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.2.0",
     "category": "Accounting",
     "license": "AGPL-3",
     "summary": "Accrued expenses based on subscriptions",
