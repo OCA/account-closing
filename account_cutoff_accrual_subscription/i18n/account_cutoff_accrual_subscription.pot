@@ -165,12 +165,12 @@ msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum Expense Amount"
+msgid "Minimum Amount"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum expense amount without taxes over the period"
+msgid "Minimum amount without taxes over the period"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
