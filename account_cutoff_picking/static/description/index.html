@@ -371,7 +371,7 @@ ul.auto-toc {
 <p>This module generates expense/revenue accruals and prepaid expense/revenue based on the status of orders, pickings and invoices. The module is named <em>account_cutoff_accrual_picking</em> because it initially only supported accruals ; support for prepaid expense/revenue was added later (it should be renamed in later versions).</p>
 <p>To understand the behavior of this module, let’s take the example of an expense accrual. When you click on the button <em>Re-Generate Lines</em> of an <em>Expense Accrual</em>:</p>
 <ol class="arabic simple">
-<li>Odoo will look for all incoming picking in Done state with a <em>Transfer Date</em> &lt;= <em>Cut-off Date</em>. For performance reasons, by default, the incoming picking dated before <em>Cut-off Date</em> minus 90 days will not be taken into account (this limit is configurable via the field <em>Picking Analysis</em>). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.</li>
+<li>Odoo will look for all incoming picking in Done state with a <em>Transfer Date</em> &lt;= <em>Cut-off Date</em>. For performance reasons, by default, the incoming picking dated before <em>Cut-off Date</em> minus 30 days will not be taken into account (this limit is configurable via the field <em>Picking Analysis</em>). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.</li>
 <li>Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential expense accrual.</li>
 <li>For each of these purchase order lines, Odoo will:<ul>
 <li>scan the related stock moves in <em>done</em> state and check their transfer date,</li>
@@ -382,7 +382,7 @@ ul.auto-toc {
 </ol>
 <p>Now, let’s take the example of a prepaid expense. When you click on the button <em>Re-Generate Lines</em> of a <em>Prepaid Expense</em>:</p>
 <ol class="arabic simple">
-<li>Odoo will look for all vendor bills dated before (or equal to) <em>Cut-off Date</em>. For performance reasons, by default, the vendor bills dated before <em>Cut-off Date</em> minus 90 days will not be taken into account (this limit is configurable via the field <em>Picking Analysis</em>). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.</li>
+<li>Odoo will look for all vendor bills dated before (or equal to) <em>Cut-off Date</em>. For performance reasons, by default, the vendor bills dated before <em>Cut-off Date</em> minus 30 days will not be taken into account (this limit is configurable via the field <em>Picking Analysis</em>). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.</li>
 <li>Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential prepaid expense.</li>
 <li>For each of these purchase order lines, Odoo will:<ul>
 <li>scan the related stock moves in <em>done</em> state and check their transfer date,</li>
