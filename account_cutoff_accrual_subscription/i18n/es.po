@@ -35,20 +35,19 @@ msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s under min. amount "
 "⇒provisionning %(cutoff_amount)s"
 msgstr ""
-"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s bajo importe mín. ⇒"
-"provisión %(cutoff_amount)s"
+"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s bajo importe mín. "
+"⇒provisión %(cutoff_amount)s"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-"
-"id=%(id)d>%(name)s</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 msgstr ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -102,8 +101,8 @@ msgstr "Archivado"
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense"
-" amount %(min_amount)s, default provision amount %(provision_amount)s"
+"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense "
+"amount %(min_amount)s, default provision amount %(provision_amount)s"
 msgstr ""
 "CONFIGURACIÓN:%(periodicity)s periodicidad, fecha de inicio%(start_date)s, "
 "importe mínimo de gastos%(min_amount)s,importe de la provisión por defecto "
@@ -177,13 +176,13 @@ msgstr "actualizado por última vez el"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum Expense Amount"
-msgstr "Importe mínimo de gastos"
+msgid "Minimum Amount"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum expense amount without taxes over the period"
-msgstr "Importe mínimo de gastos sin impuestos durante el periodo"
+msgid "Minimum amount without taxes over the period"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -243,8 +242,8 @@ msgid ""
 "PRORATED min. amount %(min_amount)s, default provisionning amount "
 "%(provision_amount)s"
 msgstr ""
-"Importe mínimo PRORRATEADO%(min_amount)s, importe de la provisión por "
-"defecto%(provision_amount)s"
+"Importe mínimo PRORRATEADO%(min_amount)s, importe de la provisión por defecto"
+"%(provision_amount)s"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_id
@@ -353,3 +352,9 @@ msgstr "tipo impuesto utilizado"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
 msgstr "anualmente"
+
+#~ msgid "Minimum Expense Amount"
+#~ msgstr "Importe mínimo de gastos"
+
+#~ msgid "Minimum expense amount without taxes over the period"
+#~ msgstr "Importe mínimo de gastos sin impuestos durante el periodo"
