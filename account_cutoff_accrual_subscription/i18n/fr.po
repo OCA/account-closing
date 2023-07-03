@@ -176,13 +176,13 @@ msgstr "Dernière mise à jour le"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum Expense Amount"
-msgstr "Montant minimum de charge"
+msgid "Minimum Amount"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
-msgid "Minimum expense amount without taxes over the period"
-msgstr "Montant minimum de charge HT sur la période"
+msgid "Minimum amount without taxes over the period"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -353,6 +353,12 @@ msgstr "Type d'utilisation de la taxe"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
 msgstr "Annuel"
+
+#~ msgid "Minimum Expense Amount"
+#~ msgstr "Montant minimum de charge"
+
+#~ msgid "Minimum expense amount without taxes over the period"
+#~ msgstr "Montant minimum de charge HT sur la période"
 
 #, python-format
 #~ msgid "Computing provisions from %d subscriptions."
