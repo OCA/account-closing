@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">start_end_dates.view_move_form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='journal_id']" position="before">
+                <label
+                    for="start_date"
+                    string="Select invoice lines dates"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                />
+                <div
+                    class="d-flex"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                >
+                    <span
+                        class="o_form_label mx-3"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                    > from </span>
+                    <field
+                        name="start_date"
+                        placeholder="Start date"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                        nolabel="1"
+                        style="width: inherit;"
+                    />
+                    <span
+                        class="o_form_label mx-3"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                    > to </span>
+                    <field
+                        name="end_date"
+                        placeholder="End date"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                        nolabel="1"
+                        style="width: inherit;"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
