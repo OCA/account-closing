@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-28 19:09+0000\n"
+"PO-Revision-Date: 2023-07-11 20:10+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -46,8 +46,8 @@ msgid ""
 "<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
 "accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 msgstr ""
-"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
-"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
+"<p>No hay provisión para la suscripción <a href=# data-oe-"
+"model=account.cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -177,12 +177,12 @@ msgstr "actualizado por última vez el"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum Amount"
-msgstr ""
+msgstr "importe mínimo"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum amount without taxes over the period"
-msgstr ""
+msgstr "Importe mínimo sin impuestos durante el periodo"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
