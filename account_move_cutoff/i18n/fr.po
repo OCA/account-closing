@@ -1,0 +1,319 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_move_cutoff
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Cutoff journal</span>"
+msgstr ""
+"<span class=\"o_form_label\">Journaux des Produits/Charges constatés "
+"d'avance</span>"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.view_move_form
+msgid "<span class=\"o_stat_text\">Deffered Revenue/Expense</span>"
+msgstr "<span class=\"o_stat_text\">Produits/Charges constaté d'avance</span>"
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_account_account
+msgid "Account"
+msgstr "Compte"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_account__deferred_accrual_account_id
+msgid ""
+"Account used to deferred Revenues/Expenses in next periods. If not set "
+"revenue won't be deferred"
+msgstr ""
+"Compte utilisé pour constater des produits ou des charges d'avances. Si "
+"aucun compte définit il n'y aura pas de charge constaté d'avance sur ce "
+"compte."
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move_line.py:0
+#, python-format
+msgid "Adjust deferred incomes of %s (%s): %s"
+msgstr "Régularisation des revenus/charges constaté d'avance de : %s (%s): %s"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move_line.py:0
+#, python-format
+msgid "Adjusting Entry: %s (%s): %s"
+msgstr "Régularisation de charge/produit constaté d'avance de : %s (%s): %s"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance adjustment of %s (%s)"
+msgstr "Régularisation de charge/produit constaté d'avance de : %s (%s)"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance expense adjustment of %s (%s)"
+msgstr "Régularisation de charge constaté d'avance de %s (%s)"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance expense recognition of %s (%s)"
+msgstr "Charge constaté d'avance de %s (%s)"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance recognition of %s (%s)"
+msgstr "Produit/Charge constaté d'avance de %s (%s)"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance revenue adjustment of %s (%s)"
+msgstr "Régularisation de produit constaté d'avance de %s (%s)"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move.py:0
+#, python-format
+msgid "Advance revenue recognition of %s (%s)"
+msgstr "Produit constaté d'avance de %s (%s)"
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuration"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_company__expense_cutoff_journal_id
+msgid "Cut-off Expense Journal"
+msgstr "Journal des charges constatées d'avances"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_company__revenue_cutoff_journal_id
+msgid "Cut-off Revenue Journal"
+msgstr "Journal des produits constatés d'avances"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_bank_statement_line__cutoff_entry_ids
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move__cutoff_entry_ids
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_payment__cutoff_entry_ids
+msgid "Cut-off entries"
+msgstr "Pièces comptable PCA/CCA"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__cutoff_ids
+msgid "Cut-off items"
+msgstr "Ecriture de PCA/CCA"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__cutoff_method
+msgid "Cut-off method"
+msgstr "Méthode de PCA/CCA"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_bank_statement_line__cutoff_move_count
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move__cutoff_move_count
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_payment__cutoff_move_count
+msgid "Cutoff Move Count"
+msgstr "PCA/CCA count"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_bank_statement_line__cutoff_from_id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move__cutoff_from_id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__cutoff_source_move_id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_payment__cutoff_from_id
+msgid "Cut-off source entry"
+msgstr "PCA/CCA: Pièce comptable initiale"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__cutoff_source_id
+msgid "Cut-off source item"
+msgstr "PCA/CCA: Ecriture initiale"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.view_move_line_form
+msgid "Deferred Revenue/Expense"
+msgstr "PCA/CCA"
+
+#. module: account_move_cutoff
+#: code:addons/account_move_cutoff/models/account_move_line.py:0
+#, python-format
+msgid "Deferred incomes of %s (%s): %s"
+msgstr "PCA/CCA de %s (%s): %s"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_method
+msgid ""
+"Determine how to split amounts over periods:\n"
+" * Equal: same amount is splitted over periods of the service   (using start "
+"and end date on the invoice line).\n"
+" * Prorata temporis by month %: amount is splitted over   the rate of "
+"service days in the month.\n"
+msgstr ""
+"Méthode de calcul utilisé pour répartir les montant par période (mensuel) "
+"fiscale :\n"
+" * Equal: même valeur sur l'ensemble des mois de service\n"
+" * Prorata-temporis par % de mois: mle montant est réparti en fonction du "
+"taux de service de jour dans le mois"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_account__display_name
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move__display_name
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:account_move_cutoff.field_cutoff_period_mixin__display_name
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_company__display_name
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Libellé"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__equal
+msgid "Equal"
+msgstr "Égale"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__expense_cutoff_journal_id
+msgid "Expense cut-off journal"
+msgstr "Journal des charges constaté d'avance CCA"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Expenses"
+msgstr "Charges"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_bank_statement_line__cutoff_entry_ids
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move__cutoff_entry_ids
+#: model:ir.model.fields,help:account_move_cutoff.field_account_payment__cutoff_entry_ids
+msgid ""
+"Field use to make easy to user to follow entries generated from this "
+"specific entry to deferred revenues or expenses."
+msgstr ""
+"Champ utilisé pour faciliter la compréhension et retrouver l'orignie des "
+"pièces comptables générées dans le cadres des  PCA/CCA."
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_ids
+msgid ""
+"Field use to make easy to user to follow items generated from this specific "
+"entry to deferred revenues or expenses."
+msgstr ""
+"Champ utilisé pour faciliter la compréhension et retrouver l'orignie des "
+"pièces comptables générées dans le cadres des  PCA/CCA."
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__is_deferrable_line
+msgid "Field used to detect lines to cut-off"
+msgstr ""
+"Permet de déterminer si il est nécessaire de faire des PCA/CCA sur "
+"l'écriture."
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_account__id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move__id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_cutoff_period_mixin__id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_company__id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__is_deferrable_line
+msgid "Is deferrable line"
+msgstr "Ligne générant des PCA/CCA"
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_account_move_line
+msgid "Journal Item"
+msgstr "Ecriture comptable"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_account____last_update
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move____last_update
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:account_move_cutoff.field_cutoff_period_mixin____last_update
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_company____last_update
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__monthly_prorata_temporis
+msgid "Prorata temporis (by month %)"
+msgstr "Prorata temporis (par % mois)"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__revenue_cutoff_journal_id
+msgid "Revenue cut-off journal"
+msgstr "Journal de produit constaté d'avance"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_account__deferred_accrual_account_id
+#: model:ir.model.fields,field_description:account_move_cutoff.field_account_move_line__deferred_accrual_account_id
+msgid "Revenue/Expense accrual account"
+msgstr "Compte de PCA/CCA"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Revenues"
+msgstr "Produits"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_bank_statement_line__cutoff_from_id
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move__cutoff_from_id
+#: model:ir.model.fields,help:account_move_cutoff.field_account_payment__cutoff_from_id
+msgid "Source entry that generate the current deferred revenue/expense entry"
+msgstr ""
+"Pièce comptable source à l'origine de la génération de la pièce compte de "
+"PCA/CCA actuel."
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_source_id
+msgid ""
+"Source journal item that generate the current deferred revenue/expense item"
+msgstr ""
+"Ecriture d'origine à la base de la génération de l'écriture comptable actuel."
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_source_move_id
+msgid "The move of this entry line."
+msgstr "La pièce comptable d'origin à cette écirture comptable"
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__deferred_accrual_account_id
+msgid ""
+"Use related field to abstract the way to get deferred accrual account. This "
+"will give the possibility to overwrite the way to configure it. For instance "
+"to use the same account without any configuration while creating new account."
+msgstr ""
+"Utilise un champ lié pour rendre abstrait la méthode de récupération du compte de "
+"cut-off et ainsi faciliter la surcharge par un autre module. Par exemple on pourrait "
+"forcer l'usage d'un compte en particulier et ainsi éviter la configuration des comptes "
+"de produit et de charge individuellement."
+
+#. module: account_move_cutoff
+#: model:ir.model,name:account_move_cutoff.model_cutoff_period_mixin
+msgid "Utilities method related to cuttoff mixins"
+msgstr "Mixin avec des méthode facilitant la gestion des périodes"
