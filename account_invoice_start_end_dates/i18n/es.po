@@ -65,8 +65,8 @@ msgstr "falta la fecha final para la línea'%s'."
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start/End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start/End Dates'."
 msgstr ""
 "Falta fecha de inicio y fecha de finalización para la linea de factura con "
 "producto '%s' que tiene la propiedad 'Debe tener fechas de inicio/"
