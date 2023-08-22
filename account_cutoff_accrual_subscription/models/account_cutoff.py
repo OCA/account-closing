@@ -206,8 +206,8 @@ class AccountCutoff(models.Model):
                     _(
                         "Period from {start_date} to {end_date}: "
                         "{sub_type_label} {amount} under the minimum "
-                        "amount {min_amount}. Default provisionning amount is "
-                        "{provision_amount} => provisionning {period_cutoff_amount}."
+                        "amount {min_amount}. Default provisioning amount is "
+                        "{provision_amount} => provisioning {period_cutoff_amount}."
                     ).format(
                         start_date=fields.Date.to_string(interval["start"]),
                         end_date=fields.Date.to_string(interval["end"]),
@@ -240,7 +240,7 @@ class AccountCutoff(models.Model):
                     _(
                         "Period from {start_date} to {end_date}: "
                         "{sub_type_label} {amount} over the minimum "
-                        "amount {min_amount} => no provisionning."
+                        "amount {min_amount} => no provisioning."
                     ).format(
                         start_date=fields.Date.to_string(interval["start"]),
                         end_date=fields.Date.to_string(interval["end"]),
