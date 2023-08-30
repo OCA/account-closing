@@ -1,25 +1,20 @@
-This module generates expense/revenue accruals and prepaid expense/revenue based on the status of orders, pickings and invoices. The module is named *account_cutoff_accrual_picking* because it initially only supported accruals ; support for prepaid expense/revenue was added later (it should be renamed in later versions).
+This module extends the functionality of account_cutoff_cutoff_base
+to allow the calculation of expense and revenue cutoffs on sale order and
+purchase order.
+His name is a little misleading because following model changes in
+v10 of Odoo it now bases its calculation not on stock picking anymore but
+on sale and purchase order.
 
-To understand the behavior of this module, let's take the example of an expense accrual. When you click on the button *Re-Generate Lines* of an *Expense Accrual*:
+The calculation is done on purchase/order lines with a difference between
+the quantity received/send and the quantity invoiced.
 
-1. Odoo will look for all incoming picking in Done state with a *Transfer Date* <= *Cut-off Date*. For performance reasons, by default, the incoming picking dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential expense accrual.
-3. For each of these purchase order lines, Odoo will:
-
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
-
-4. If, for a particular purchase order line, the quantity of products received before the cutoff-date (or on the same day) minus the quantity of products invoiced before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
-
-Now, let's take the example of a prepaid expense. When you click on the button *Re-Generate Lines* of a *Prepaid Expense*:
-
-1. Odoo will look for all vendor bills dated before (or equal to) *Cut-off Date*. For performance reasons, by default, the vendor bills dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential prepaid expense.
-3. For each of these purchase order lines, Odoo will:
-
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
-
-4. If, for a particular purchase order line, the quantity of products invoiced before the cutoff-date (or on the same day) minus the quantity of products received before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
-
-This module should work well with multiple units of measure (including products purchased and invoiced in different units of measure) and in multi-currency.
+A cron job generates at each end of period cutoff entries for expenses (based
+on PO) and revenues (based on SO). This is because we cannot identify in the
+past, entries for which a cutoff must be generated. That cutoff entry store the
+quantity received and invoiced at that date. Note that the invoiced quantity is
+increased as soon as a draft invoice is created. We consider that the invoice
+will be validated and the invoice accounting date will not change. If you
+modify the quantity in an invoce or create a new invoice after the cutoff has
+been generated, that cutoff will be updated when the invoice is validated. It is
+also updated when the invoice is deleted. Nevertheless, this will be forbidden
+if the accounting entry related to the cutoff is created.

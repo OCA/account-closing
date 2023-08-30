@@ -1,0 +1,1 @@
+Although a cut-off date can be given for generating the cutoffs, it does not work correctly with the module as it is, and the calculation is done on the current date only. To workaround this issue, cron jobs generate the cutoff entries at end of period

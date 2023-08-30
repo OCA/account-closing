@@ -1,182 +1,163 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* account_cutoff_picking
+#   * account_cutoff_picking
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-20 15:08+0000\n"
-"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
-"Language-Team: none\n"
-"Language: fr\n"
+"POT-Creation-Date: 2018-06-14 08:58+0000\n"
+"PO-Revision-Date: 2018-06-14 08:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-" • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
-"%(src_location)s to %(dest_location)s)"
-msgstr ""
-" • %(qty)s %(uom)s (bon de transfert %(picking)s validé le %(date)s de "
-"%(src_location)s à %(dest_location)s)"
+"Plural-Forms: \n"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Provision comptable"
+msgstr "Etalements"
 
 #. module: account_cutoff_picking
-#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff__picking_interval_days
-#: model:ir.model.fields,field_description:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
-#: model:ir.model.fields,field_description:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
-msgid "Analysis Interval"
-msgstr "Intervalle d'analyse"
+#: model:ir.model,name:account_cutoff_picking.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr "Ligne de report"
 
 #. module: account_cutoff_picking
-#: model:ir.model,name:account_cutoff_picking.model_res_company
-msgid "Companies"
-msgstr "Sociétés"
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_purchase_order_line_account_cutoff_line_ids
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_sale_order_line_account_cutoff_line_ids
+msgid "Account Cutoff Lines"
+msgstr "Account Cutoff Lines"
 
 #. module: account_cutoff_picking
-#: model:ir.model,name:account_cutoff_picking.model_res_config_settings
-msgid "Config Settings"
-msgstr "Configuration"
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_create_uid
+msgid "Created by"
+msgstr "Créé par"
 
 #. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_cutoff_line_id
+msgid "Cutoff Line"
+msgstr "Cutoff Line"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: account_cutoff_picking
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:64
 #, python-format
-msgid ""
-"Missing expense account on product '%(product)s' or on its related product "
-"category '%(categ)s'."
-msgstr ""
-"Compte de charge manquant sur l'article '%(product)s' ou sur sa catégorie "
-"d'article associée '%(categ)s'."
+msgid "Error: Missing %s account on product '%s' or on related product category."
+msgstr "Error: Missing %s account on product '%s' or on related product category."
 
 #. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_account_invoice_line
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_invoice_line_id
+msgid "Invoice Line"
+msgstr "Ligne de facturation"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoiced_qty_ids
+msgid "Invoice Lines"
+msgstr "Lignes de factures"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_invoice_id
+msgid "Invoice Reference"
+msgstr "Référence de la facture"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoiced_qty
+msgid "Invoiced Quantity"
+msgstr "Quantité facturée"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_order_id
+msgid "Order"
+msgstr "Commande"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_purchase_order_line
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_purchase_line_id
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_purchase_order_line_qty_to_invoice
+msgid "Qty to invoice"
+msgstr "Quantité à facturer"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_invoice_quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_received_qty
+msgid "Received Quantity"
+msgstr "Quantité reçue"
+
+#. module: account_cutoff_picking
+#: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff_line_sale_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de commande"
+
+#. module: account_cutoff_picking
+#: model:ir.model,name:account_cutoff_picking.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne du bon de commande"
+
+#. module: account_cutoff_picking
+#: code:addons/account_cutoff_picking/models/account_invoice.py:77
 #, python-format
-msgid ""
-"Missing income account on product '%(product)s' or on its related product "
-"category '%(categ)s'."
-msgstr ""
-"Compte de revenu manquant sur l'article '%(product)s' ou sur sa catégorie "
-"d'article associée '%(categ)s'."
+msgid "You cannot delete an invoice for an accounting date where the cutoff accounting entry has already been created"
+msgstr "Vous ne pouvez pas supprimer une facture pour une date comptable où une entrée comptable de cutoff a déjà créée"
 
 #. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+#: code:addons/account_cutoff_picking/models/account_invoice.py:38
 #, python-format
-msgid "Pre-cutoff delivered quantity details:"
-msgstr "Détails des quantités livrées jusqu'à la date de provision :"
+msgid "You cannot validate an invoice for an accounting date that modifies a closed cutoff (i.e. for which an accounting entry has already been created)"
+msgstr "Vous ne pouvez pas valider une facture avec une date comptable qui modifie un cutoff fermé (càd pour lequel l'écriture comptable a déjà été créée)"
 
 #. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
-msgstr "Quantités livrées moins qtés facturées jusqu'à la date de provision :"
+#: model:ir.model,name:account_cutoff_picking.model_account_cutoff_line_invoice
+msgid "account.cutoff.line.invoice"
+msgstr "account.cutoff.line.invoice"
 
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Pre-cutoff delivered quantity:"
-msgstr "Quantités livrées jusqu'à la date de provision :"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Pre-cutoff invoiced quantity details:"
-msgstr "Détails des quantités facturées jusqu'à la date de provision :"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
-msgstr "Quantité facturée moins quantité livrée jusqu'à la date de provision :"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Pre-cutoff invoiced quantity:"
-msgstr "Quantité facturée jusqu'à la date de provision :"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Purchase order %(order)s confirmed on %(confirm_date)s\n"
-"Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
-msgstr ""
-"Commande fournisseur %(order)s confirmée le %(confirm_date)s\n"
-"Ligne de commande fournisseur : %(order_line)s (quantité commandée : %(qty)s "
-"%(uom)s)"
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Sale order %(order)s confirmed on %(confirm_date)s\n"
-"Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
-msgstr ""
-"Commande client %(order)s confirmée le %(confirm_date)s\n"
-"Ligne de commande client : %(order_line)s (quantité commandée : %(qty)s "
-"%(uom)s)"
-
-#. module: account_cutoff_picking
-#: model:ir.model.constraint,message:account_cutoff_picking.constraint_account_cutoff_picking_interval_days_positive
-#: model:ir.model.constraint,message:account_cutoff_picking.constraint_res_company_cutoff_picking_interval_days_positive
-msgid "The value of the field 'Analysis Interval' must be strictly positive."
-msgstr ""
-"La valeur du champ \"Intervalle d'analyse\" doit être strictement positive."
-
-#. module: account_cutoff_picking
-#: model:ir.model.fields,help:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
-#: model:ir.model.fields,help:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
-msgid ""
-"To generate the accrual/prepaid revenue/expenses based on picking dates vs "
-"invoice dates, Odoo will analyse all the pickings/invoices from N days "
-"before the cutoff date up to the cutoff date. N is the Analysis Interval. If"
-" you increase the analysis interval, Odoo will take more time to generate "
-"the cutoff lines."
-msgstr ""
-"Pour générer les provisions de produits et charges à partir de la "
-"comparaison entre les dates de livraison et les dates de facturation, Odoo "
-"analysera tous les livraisons/factures depuis N jours avant la date de "
-"provision jusqu'à la date de provision. N est l'intervalle d'analyse. Si "
-"vous augmentez l'intervalle d'analyse, Odoo mettra plus de temps pour "
-"générer les lignes de provision."
-
-#. module: account_cutoff_picking
-#: model:ir.model.fields,help:account_cutoff_picking.field_account_cutoff__picking_interval_days
-msgid ""
-"To generate the cutoffs based on picking dates vs invoice dates, Odoo will "
-"analyse all the pickings/invoices from N days before the cutoff date up to "
-"the cutoff date. N is the Analysis Interval. If you increase the analysis "
-"interval, Odoo will take more time to generate the cutoff lines."
-msgstr ""
-"Pour générer les provisions à partir de la comparaison entre les dates de "
-"livraison et les dates de facturation, Odoo analysera toutes les livraisons/"
-"factures à partir de N jours avant la date de provision jusqu'à la date de "
-"provision. N est l'intervalle d'analyse. Si vous augmentez l'intervalle "
-"d'analyse, Odoo prendra plus de temps pour générer les lignes de provision."
-
-#. module: account_cutoff_picking
-#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.account_cutoff_form
-#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
-msgid "days"
-msgstr "jours"
