@@ -20,13 +20,13 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-"
-"id={subscription_id}>{subscription_name}</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id={subscription_id}>{subscription_name}</a>:</"
+"p>"
 msgstr ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-"
-"id={subscription_id}>{subscription_name}</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id={subscription_id}>{subscription_name}</a>:</"
+"p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -170,7 +170,8 @@ msgstr "No socio"
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
 #, python-format
 msgid "On subscription %s, the start date is not the first day of a month."
-msgstr "En la suscripción %s, la fecha de inicio no es el primer día de un mes."
+msgstr ""
+"En la suscripción %s, la fecha de inicio no es el primer día de un mes."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_type
@@ -185,8 +186,8 @@ msgid ""
 "Period from {start_date} to {end_date}: {sub_type_label} {amount} over the "
 "minimum amount {min_amount} => no provisioning."
 msgstr ""
-"Período de {start_date} a {end_date}: {sub_type_label} {amount} por "
-"encima del importe mínimo {min_amount} => no provisión."
+"Período de {start_date} a {end_date}: {sub_type_label} {amount} por encima "
+"del importe mínimo {min_amount} => no provisión."
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -196,9 +197,9 @@ msgid ""
 "minimum amount {min_amount}. Default provisioning amount is "
 "{provision_amount} => provisioning {period_cutoff_amount}."
 msgstr ""
-"Período comprendido entre {start_date} y {end_date}: {sub_type_label}"
-" {amount} por debajo del importe mínimo {min_amount}. El importe de "
-"provisión por defecto es {provision_amount} => importe de provisión "
+"Período comprendido entre {start_date} y {end_date}: {sub_type_label} "
+"{amount} por debajo del importe mínimo {min_amount}. El importe de provisión "
+"por defecto es {provision_amount} => importe de provisión "
 "{period_cutoff_amount}."
 
 #. module: account_cutoff_accrual_subscription
