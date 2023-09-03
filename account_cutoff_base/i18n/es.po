@@ -583,8 +583,8 @@ msgstr "número de errores"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "número de mensajes que requieren una acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
@@ -824,6 +824,9 @@ msgstr "historial de la comunicación en la web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "no puedes borrar cierres registrados que están en estado de 'hecho' ."
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "número de mensajes que requieren una acción"
 
 #, python-format
 #~ msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
