@@ -582,7 +582,7 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: account_cutoff_base
