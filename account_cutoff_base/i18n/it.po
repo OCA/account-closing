@@ -581,8 +581,8 @@ msgstr "Numero di errori"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Numero di messaggi che richiedono un'azione"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
@@ -823,6 +823,9 @@ msgstr "Cronologia comunicazioni sito web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Numero di messaggi che richiedono un'azione"
 
 #~ msgid "Amount Currency"
 #~ msgstr "Valuta importo"
