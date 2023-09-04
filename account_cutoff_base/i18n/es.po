@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2023-07-11 20:10+0000\n"
+"PO-Revision-Date: 2023-09-04 18:40+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -472,7 +472,6 @@ msgstr "si está marcada, mensajes nuevos requieren su atención."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -584,7 +583,7 @@ msgstr "número de errores"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
@@ -692,11 +691,6 @@ msgstr "Cuenta ordinaria"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "error en la entrega de sms"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
@@ -824,6 +818,9 @@ msgstr "historial de la comunicación en la web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "no puedes borrar cierres registrados que están en estado de 'hecho' ."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "error en la entrega de sms"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "número de mensajes que requieren una acción"
