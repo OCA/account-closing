@@ -1,5 +1,6 @@
 # Copyright 2012-2018 Camptocamp SA
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
@@ -15,16 +16,40 @@ class WizardCurrencyRevaluation(models.TransientModel):
         return fields.Date.today()
 
     @api.model
+    def _get_default_start_revaluation_date(self):
+        """
+        The default date will be the first date of the month as the most typical case
+        will be calculating for the lines within a month.
+        """
+        return fields.Date.today().replace(day=1)
+
+    @api.model
     def _get_default_journal_id(self):
-        return self.env.user.company_id.currency_reval_journal_id
+        return self.env.company.currency_reval_journal_id
 
     @api.model
     def _get_default_label(self):
         return "%(currency)s %(account)s %(rate)s currency revaluation"
 
+    @api.model
+    @api.depends("journal_id")
+    def _get_default_revaluation_account_ids(self):
+        company = self.journal_id.company_id or self.env.company
+        return self.env["account.account"].search(
+            [
+                ("user_type_id.include_initial_balance", "=", True),
+                ("currency_revaluation", "=", True),
+                ("company_id", "=", company.id),
+            ]
+        )
+
     revaluation_date = fields.Date(
         required=True,
         default=lambda self: self._get_default_revaluation_date(),
+    )
+    start_date = fields.Date(
+        string="Start Revaluation Period",
+        default=lambda self: self._get_default_start_revaluation_date(),
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -37,11 +62,19 @@ class WizardCurrencyRevaluation(models.TransientModel):
     label = fields.Char(
         string="Entry description",
         size=100,
-        help="This label will be inserted in entries description. "
+        help="This label will be inserted in entries description."
         "You can use %(account)s, %(account_name)s, %(currency)s and "
         "%(rate)s keywords.",
         required=True,
         default=lambda self: self._get_default_label(),
+    )
+    revaluation_account_ids = fields.Many2many(
+        comodel_name="account.account",
+        string="Revaluation Accounts",
+        help="Accounts that will be revaluated.",
+        required=True,
+        default=lambda self: self._get_default_revaluation_account_ids(),
+        domain=lambda self: [("company_id", "=", self.env.company.id)],
     )
 
     def _create_move_and_lines(
@@ -56,14 +89,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
         currency_id,
         analytic_debit_acc_id=False,
         analytic_credit_acc_id=False,
+        debit=False,
     ):
 
         base_move = {
             "journal_id": form.journal_id.id,
             "date": form.revaluation_date,
+            "revaluation_to_reverse": True,
         }
-        if form.journal_id.company_id.reversable_revaluations:
-            base_move["revaluation_to_reverse"] = True
 
         base_line = {
             "name": label,
@@ -77,16 +110,26 @@ class WizardCurrencyRevaluation(models.TransientModel):
         base_line["gl_balance"] = sums.get("balance", 0.0)
         base_line["gl_revaluated_balance"] = sums.get("revaluated_balance", 0.0)
         base_line["gl_currency_rate"] = sums.get("currency_rate", 0.0)
+        revaluation_origin_line_ids = sums.get("origin_aml_id", False)
 
         debit_line = base_line.copy()
         credit_line = base_line.copy()
+
+        if debit:
+            debit_line.update(
+                {"revaluation_origin_line_ids": [(6, 0, revaluation_origin_line_ids)]}
+            )
+        else:
+            credit_line.update(
+                {"revaluation_origin_line_ids": [(6, 0, revaluation_origin_line_ids)]}
+            )
 
         debit_line.update(
             {"debit": amount, "credit": 0.0, "account_id": debit_account_id}
         )
 
         if analytic_debit_acc_id:
-            credit_line.update({"analytic_account_id": analytic_debit_acc_id})
+            debit_line.update({"analytic_account_id": analytic_debit_acc_id})
 
         credit_line.update(
             {"debit": 0.0, "credit": amount, "account_id": credit_account_id}
@@ -94,6 +137,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
 
         if analytic_credit_acc_id:
             credit_line.update({"analytic_account_id": analytic_credit_acc_id})
+
         base_move["line_ids"] = [(0, 0, debit_line), (0, 0, credit_line)]
         created_move = self.env["account.move"].create(base_move)
         if self.journal_id.company_id.auto_post_entries:
@@ -149,7 +193,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
     ):
         if partner_id is None:
             partner_id = False
-        company = form.journal_id.company_id or self.env.user.company_id
+        company = form.journal_id.company_id or self.env.company
         created_ids = []
 
         amount_vs_zero = currency.compare_amounts(amount, 0.0)
@@ -165,6 +209,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     partner_id,
                     currency.id,
                     analytic_credit_acc_id=(company.revaluation_analytic_account_id.id),
+                    debit=True,
                 )
                 created_ids.extend(line_ids)
 
@@ -184,6 +229,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     analytic_credit_acc_id=(
                         company.provision_pl_analytic_account_id.id
                     ),
+                    debit=True,
                 )
                 created_ids.extend(line_ids)
         elif amount_vs_zero == -1:
@@ -247,7 +293,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         Account = self.env["account.account"]
         Currency = self.env["res.currency"]
 
-        company = self.journal_id.company_id or self.env.user.company_id
+        company = self.journal_id.company_id or self.env.company
         if not self._validate_company_revaluation_configuration(company):
             raise exceptions.UserError(
                 _(
@@ -258,16 +304,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 )
             )
 
-        # Search for accounts Balance Sheet to be revaluated
-        # on those criteria
-        # - deferral method of account type is not None
-        account_ids = Account.search(
-            [
-                ("user_type_id.include_initial_balance", "=", "True"),
-                ("currency_revaluation", "=", True),
-                ("company_id", "=", company.id),
-            ]
-        )
+        account_ids = self.revaluation_account_ids
 
         if not account_ids:
             raise exceptions.UserError(
@@ -278,14 +315,17 @@ class WizardCurrencyRevaluation(models.TransientModel):
                 )
             )
 
-        revaluations = account_ids.compute_revaluations(self.revaluation_date)
+        revaluations = account_ids.compute_revaluations(
+            self.revaluation_date, self.start_date
+        )
+
         for account_id, by_account in revaluations.items():
             account = Account.browse(account_id)
             if account.internal_type == "liquidity" and (
                 not account.currency_id
                 or account.currency_id == account.company_id.currency_id
             ):
-                # NOTE: There's no point of revaluating anying on bank account
+                # NOTE: There's no point of revaluating anything on bank account
                 # if bank account currency matches company currency.
                 continue
 
@@ -324,28 +364,10 @@ class WizardCurrencyRevaluation(models.TransientModel):
                     )
                     created_ids.extend(new_ids)
 
-        # In case revaluation date is before today, it's safe to run reversing
-        # w/o waiting tomorrow, since otherwise it would cause confusion when
-        # revaluating historical entries for multiple years within one day.
-        if (
-            self.journal_id.company_id.reversable_revaluations
-            and self.revaluation_date < fields.Date.context_today(self)
-        ):
-            reversing_moves = self.env["account.move"].search(
-                [
-                    ("journal_id", "in", self.mapped("journal_id.id")),
-                    ("state", "=", "posted"),
-                    ("revaluation_to_reverse", "=", True),
-                    ("reversed_entry_id", "=", False),
-                ],
-                limit=1,
-            )
-            reversing_moves._reverse_moves()
-
         if created_ids:
             return {
                 "domain": [("id", "in", created_ids)],
-                "name": _("Created revaluation lines"),
+                "name": _("Created Revaluation Lines"),
                 "view_mode": "tree,form",
                 "auto_search": True,
                 "res_model": "account.move.line",

@@ -18,9 +18,14 @@
         <field name="arch" type="xml">
             <filter name="posted" position="after">
                 <filter
-                    string="Revaluation to reverse"
+                    string="Revaluation To Reverse"
                     name="revaluation_to_reverse"
                     domain="[('revaluation_to_reverse', '=', True)]"
+                />
+                <filter
+                    string="Revaluation Reversed"
+                    name="revaluation_reversed"
+                    domain="[('revaluation_reversed', '=', True)]"
                 />
             </filter>
         </field>

@@ -6,14 +6,19 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Currency Revaluation" version="7.0">
-                <div class="alert alert-primary" role="alert">
+                <div
+                    class="alert alert-primary"
+                    role="alert"
+                    name="info"
+                    style="font-weight: bold;"
+                >
                 Odoo will generate exchange rate difference entries for each account set as 'Allow Currency revaluation'.
                 If the account type is payable or receivable : 1 entry will be generated per account/currency/partner.
                 For other account types : 1 entry will be generated per account/currency.
                 </div>
-
                 <group>
                     <group>
+                        <field name="start_date" />
                         <field name="revaluation_date" />
                         <field name="journal_id" />
                     </group>
@@ -28,6 +33,17 @@
                     <div
                     >%%(account_name)s : Account name for which the revaluation is applied"</div>
                     <div>%%(rate)s : Value of rate applied during revaluation</div>
+                </group>
+                <span
+                    name="info-2"
+                    style="font-weight: bold;"
+                >These are all the accounts that will be revaluated upon clicking the Validate button. Initialized as the Accounts having the flag Allow Currency Revaluation set, but then manually changed if needed.
+                </span>
+                <group>
+                    <field
+                        name="revaluation_account_ids"
+                        options="{'no_create':True, 'no_edit':True, 'no_open':True}"
+                    />
                 </group>
                 <footer>
                     <button
@@ -45,7 +61,7 @@
         id="action_view_account_currency_revaluation_wizard"
         model="ir.actions.act_window"
     >
-        <field name="name">Currency revaluation</field>
+        <field name="name">Currency Revaluation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.currency.revaluation</field>
         <field name="view_mode">form</field>
