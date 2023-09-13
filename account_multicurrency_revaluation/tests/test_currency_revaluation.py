@@ -497,13 +497,13 @@ class TestCurrencyRevaluation(common.TransactionCase):
         )
         revaluation_line = new_bank_account_lines - bank_account_lines
         self.assertEqual(len(revaluation_line), 1)
-        self.assertEqual(revaluation_line.debit, 5.0)
-        self.assertEqual(revaluation_line.credit, 0.0)
+        self.assertEqual(revaluation_line.debit, 0.0)
+        self.assertEqual(revaluation_line.credit, 48.33)
         self.assertEqual(revaluation_line.amount_currency, 0.0)
 
         bank_account_lines |= revaluation_line
-        self.assertEqual(sum(bank_account_lines.mapped("debit")), 178.33)
-        self.assertEqual(sum(bank_account_lines.mapped("credit")), 25.0)
+        self.assertEqual(sum(bank_account_lines.mapped("debit")), 173.33)
+        self.assertEqual(sum(bank_account_lines.mapped("credit")), 73.33)
         self.assertEqual(sum(bank_account_lines.mapped("amount_currency")), 125.0)
 
     def test_revaluation_bank_account_same_currency(self):
@@ -921,8 +921,8 @@ class TestCurrencyRevaluation(common.TransactionCase):
         )
         revaluation_lines = new_bank_account_lines - bank_account_lines
         self.assertEqual(len(revaluation_lines), 1)
-        self.assertEqual(sum(revaluation_lines.mapped("debit")), 5.0)
-        self.assertEqual(sum(revaluation_lines.mapped("credit")), 0.0)
+        self.assertEqual(sum(revaluation_lines.mapped("debit")), 0.0)
+        self.assertEqual(sum(revaluation_lines.mapped("credit")), 48.33)
         self.assertEqual(sum(revaluation_lines.mapped("amount_currency")), 0.0)
 
     def create_rates(self, rates_by_date, currency, purge=False):
