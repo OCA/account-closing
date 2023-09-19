@@ -3,18 +3,16 @@
 
 {
     "name": "Account invoice accrual",
-    "version": "12.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Invoice",
     "website": "https://github.com/OCA/account-closing",
-    "depends": [
-        "account",
-        "account_reversal",
-        "account_cutoff_accrual_base",
-    ],
+    "depends": ["account_cutoff_base"],
     "data": [
-        "views/account_invoice_view.xml",
-        "wizard/account_move_accrue_view.xml",
+        "security/account_move_accrue.xml",
+        "wizards/res_config_settings.xml",
+        "wizards/account_move_accrue.xml",
+        "views/account_move.xml",
     ],
     "demo": [],
     "license": "AGPL-3",

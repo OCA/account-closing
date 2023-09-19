@@ -5,10 +5,10 @@ has not been received / sent.
 
 Account Invoice Accrual lets you easily create these provisions entries
 from draft invoices. It adds an accrual button on draft and pro-forma invoices which
-generates the accrual move. When the invoice is validated, the accrual move is 
+generates the accrual move. When the invoice is validated, the accrual move is
 automatically reversed.
 
-.. note:: 
+.. note::
 
   If you are using the Odoo inventory module to process incoming or outgoing shipment
   of goods, check out the account_cutoff_accrual_picking.

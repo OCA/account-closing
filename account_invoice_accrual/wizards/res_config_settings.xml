@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="res_config_settings_view_form">
+        <field name="name">res.config.settings.form (in account_invoice_accrual)</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="account_cutoff_base.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='dft_cutoff_journal_id']" position="before">
+                <div class="row" id="dft_accrual_revenue_journal_id">
+                    <label for="dft_accrual_revenue_journal_id" class="col-md-5" />
+                    <field
+                        name="dft_accrual_revenue_journal_id"
+                        options="{'no_create_edit': True, 'no_open': True}"
+                    />
+                </div>
+                <div class="row" id="dft_accrual_expense_journal_id">
+                    <label for="dft_accrual_expense_journal_id" class="col-md-5" />
+                    <field
+                        name="dft_accrual_expense_journal_id"
+                        options="{'no_create_edit': True, 'no_open': True}"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
