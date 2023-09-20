@@ -10,7 +10,7 @@ from odoo.tests.common import Form
 from .common import TestAccountCutoffCutoffPickingCommon
 
 
-class TestAccountCutoffCutoffExpense(TestAccountCutoffCutoffPickingCommon):
+class AccountCutoffCutoffExpenseCommon(TestAccountCutoffCutoffPickingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -87,6 +87,8 @@ class TestAccountCutoffCutoffExpense(TestAccountCutoffCutoffPickingCommon):
         invoice_form.invoice_date = date
         return invoice_form.save()
 
+
+class TestAccountCutoffCutoffExpense(AccountCutoffCutoffExpenseCommon):
     def test_accrued_expense_empty(self):
         """Test cutoff when there is no PO."""
         cutoff = self.expense_cutoff
