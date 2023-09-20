@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 01:40+0000\n"
-"PO-Revision-Date: 2023-09-20 18:57+0000\n"
+"PO-Revision-Date: 2023-09-20 19:19+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -47,7 +47,7 @@ msgstr "0.00"
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Analytic account</b>"
-msgstr "<b>Analytic account</b>"
+msgstr "<b>Cuenta analítica</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -57,20 +57,20 @@ msgid ""
 "\"Values set here are company-specific.\" groups=\"base.group_multi_company"
 "\"/>"
 msgstr ""
-"<b>Default revaluation journal</b>\n"
+"<b>Diario de revaluación predeterminado</b>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" groups=\"base.group_multi_company"
-"\"/>"
+"\"Values set here are company-specific.\" groups=\"base.group_multi_company\""
+"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Gain</b>"
-msgstr "<b>Gain</b>"
+msgstr "<b>Ganancia</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Loss</b>"
-msgstr "<b>Loss</b>"
+msgstr "<b>Pérdida</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -80,9 +80,9 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
-"<b>Provision B.S accounts</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-o"
-"\" title=\"Values set here are company-specific.\" groups=\"base."
+"<b>Cuentas Provision B.S</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
@@ -93,9 +93,9 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
-"<b>Provision P&amp;L accounts</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-o"
-"\" title=\"Values set here are company-specific.\" groups=\"base."
+"<b>Provision P&amp;Cuentas L</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
@@ -106,9 +106,9 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
-"<b>Revaluation accounts</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-o"
-"\" title=\"Values set here are company-specific.\" groups=\"base."
+"<b>Cuentas de reevaluación</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
@@ -701,6 +701,10 @@ msgid ""
 "Forward set, the currency revaluation cannot be applied on these accounts: \n"
 "\t - %s"
 msgstr ""
+"Hay una cuenta que está editando que no tiene activada la opción de "
+"Traspasar Saldo, no se puede aplicar la revalorización de divisa a estas "
+"cuentas: \n"
+"\t - %s"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
@@ -708,6 +712,8 @@ msgid ""
 "This label will be inserted in entries description.You can use %(account)s, "
 "%(account_name)s, %(currency)s and %(rate)s keywords."
 msgstr ""
+"Esta etiqueta se insertará en la descripción de las entradas. Puede utilizar "
+"las palabras clave %(account)s, %(account_name)s, %(currency)s y %(rate)s."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
