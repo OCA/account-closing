@@ -7,7 +7,7 @@ from odoo import Command, fields
 from .common import TestAccountCutoffCutoffPickingCommon
 
 
-class TestAccountCutoffCutoffRevenue(TestAccountCutoffCutoffPickingCommon):
+class AccountCutoffCutoffRevenueCommon(TestAccountCutoffCutoffPickingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -85,6 +85,8 @@ class TestAccountCutoffCutoffRevenue(TestAccountCutoffCutoffPickingCommon):
             "Delivered quantities are wrong after partial delivery",
         )
 
+
+class TestAccountCutoffCutoffRevenue(AccountCutoffCutoffRevenueCommon):
     def test_accrued_revenue_empty(self):
         """Test cutoff when there is no SO."""
         cutoff = self.revenue_cutoff
