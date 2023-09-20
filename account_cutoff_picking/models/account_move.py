@@ -10,8 +10,9 @@ class AccountMove(models.Model):
 
     def action_post(self):
         res = super().action_post()
-        if self.is_invoice():
-            self.invoice_line_ids._update_cutoff()
+        for move in self:
+            if move.is_invoice():
+                move.invoice_line_ids._update_cutoff()
         return res
 
     def unlink(self):
