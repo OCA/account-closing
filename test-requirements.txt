@@ -1,0 +1,2 @@
+odoo-addon-account-cutoff-picking @ git+https://github.com/OCA/account-closing@refs/pull/261/head#subdirectory=setup/account_cutoff_picking
+odoo-addon-account-move-line-product-category @ git+https://github.com/OCA/account-financial-tools@refs/pull/1726/head#subdirectory=setup/account_move_line_product_category
