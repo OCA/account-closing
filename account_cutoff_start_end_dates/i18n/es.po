@@ -35,12 +35,6 @@ msgid "Cutoff Days"
 msgstr "Días de cierre"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__display_name
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__display_name
-msgid "Display Name"
-msgstr "Nombre para mostrar"
-
-#. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Enable Forecast Mode"
 msgstr "Activar el modo de previsión"
@@ -58,12 +52,6 @@ msgid "Forecast"
 msgstr "previsiones o pronóstico"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__id
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__id
-msgid "ID"
-msgstr "Identidad"
-
-#. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid ""
 "In regular mode, this is the number of days after the cut-off date. In "
@@ -73,12 +61,6 @@ msgstr ""
 "En el modo normal, este es el número de días después de la fecha de cierre. "
 "En el modo de previsión, este es el número de días entre la fecha de inicio "
 "y la fecha final."
-
-#. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line____last_update
-msgid "Last Modified on"
-msgstr "modificado por última vez el"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -131,6 +113,15 @@ msgstr "total de días"
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Debe establecer al menos un Diario de origen."
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre para mostrar"
+
+#~ msgid "ID"
+#~ msgstr "Identidad"
+
+#~ msgid "Last Modified on"
+#~ msgstr "modificado por última vez el"
 
 #~ msgid "Companies"
 #~ msgstr "Compañías"

@@ -36,12 +36,6 @@ msgid "Cutoff Days"
 msgstr "Giorni di separazione"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__display_name
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Enable Forecast Mode"
 msgstr "Abilita modalità previsione"
@@ -59,12 +53,6 @@ msgid "Forecast"
 msgstr "Previsione"
 
 #. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__id
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid ""
 "In regular mode, this is the number of days after the cut-off date. In "
@@ -74,12 +62,6 @@ msgstr ""
 "Nella modalità normale è il numero di giorni dopo la data di separazione. In "
 "modalità previsione è il numero di giorni tra la data di inizio e quella di "
 "fine."
-
-#. module: account_cutoff_start_end_dates
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -132,6 +114,15 @@ msgstr "Giorni totali"
 #, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve essere impostato almeno un registro di origine."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Click to start preparing a new prepaid expense."
 #~ msgstr "Click per iniziare un nuovo calcolo costi prepagati"
