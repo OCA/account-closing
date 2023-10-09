@@ -403,8 +403,8 @@ msgid ""
 "                        to find the problem, fix it and then press again on "
 "\"Calculate\"."
 msgstr ""
-"Generando i movimenti di chiusura, è stato rilevato un movimento sbilanciato."
-"\n"
+"Generando i movimenti di chiusura, è stato rilevato un movimento "
+"sbilanciato.\n"
 "                        È necessario controllare la configurazione della "
 "chiusura contabile o le registrazioni\n"
 "                        per trovare il problema, risolverlo e premere "
@@ -678,7 +678,8 @@ msgstr "Il modello PDC per l'azienda (se esiste)"
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:118
 #, python-format
 msgid "There should be only one fiscal year closing for that year and company!"
-msgstr "Dovrebbe esserci solo una chiusura contabile per questo anno e azienda!"
+msgstr ""
+"Dovrebbe esserci solo una chiusura contabile per questo anno e azienda!"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
