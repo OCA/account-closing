@@ -46,8 +46,8 @@ msgid ""
 "<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
 "accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 msgstr ""
-"<p>No hay provisión para la suscripción <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
+"<p>No hay provisión para la suscripción <a href=# data-oe-model=account."
+"cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
