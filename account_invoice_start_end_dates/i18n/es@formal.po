@@ -60,8 +60,8 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_move.py:0
 #, python-format
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start/End Dates'."
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start/End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
