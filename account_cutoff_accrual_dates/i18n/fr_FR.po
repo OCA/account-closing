@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_cutoff_accrual_dates
+# 	* account_cutoff_accrual_dates
 #
 msgid ""
 msgstr ""
@@ -34,7 +34,9 @@ msgstr ""
 #. module: account_cutoff_accrual_dates
 #: code:addons/account_cutoff_accrual_dates/models/account_cutoff.py:79
 #, python-format
-msgid "Price included taxes such as '%s' are not supported by the module account_cutoff_accrual_dates for the moment."
+msgid ""
+"Price included taxes such as '%s' are not supported by the module "
+"account_cutoff_accrual_dates for the moment."
 msgstr ""
 
 #. module: account_cutoff_accrual_dates
