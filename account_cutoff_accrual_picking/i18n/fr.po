@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_cutoff_accrual_picking
+# 	* account_cutoff_accrual_picking
 #
 msgid ""
 msgstr ""
@@ -60,7 +60,9 @@ msgstr "Manque '%s' sur la taxe'%s'."
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:158
 #, python-format
-msgid "Missing expense account on product '%s' or on its related product category '%s'."
+msgid ""
+"Missing expense account on product '%s' or on its related product category "
+"'%s'."
 msgstr ""
 "Manque le compte de charge sur l'article '%s' ou sur sa catégorie d'article "
 "'%s'."
@@ -68,7 +70,9 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:175
 #, python-format
-msgid "Missing income account on product '%s' or on its related product category '%s'."
+msgid ""
+"Missing income account on product '%s' or on its related product category "
+"'%s'."
 msgstr ""
 "Manque le compte de produit sur l'article '%s' ou sur sa catégorie d'article "
 "'%s'."
