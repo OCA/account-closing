@@ -54,7 +54,8 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: model_terms:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
 msgid "Click to start preparing a new prepaid revenue."
-msgstr "Cliquez pour commencer à préparer un nouveau produit constaté d'avance."
+msgstr ""
+"Cliquez pour commencer à préparer un nouveau produit constaté d'avance."
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_res_company
