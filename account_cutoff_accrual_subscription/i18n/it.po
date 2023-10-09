@@ -32,8 +32,8 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-id=%d>%s</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%d>%s</a>:</p>"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
