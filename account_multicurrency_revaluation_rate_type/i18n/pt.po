@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_multicurrency_revaluation_rate_type
+# 	* account_multicurrency_revaluation_rate_type
 #
 msgid ""
 msgstr ""
@@ -39,7 +39,8 @@ msgstr "Diário"
 
 #. module: account_multicurrency_revaluation_rate_type
 #: model:ir.model.fields,help:account_multicurrency_revaluation_rate_type.field_res_config_settings__revaluation_rate_type
-msgid "Define default currency rate type to be used for multicurrency revaluation."
+msgid ""
+"Define default currency rate type to be used for multicurrency revaluation."
 msgstr ""
 "Definir o tipo de taxa de câmbio pré definida a ser usada para revalorização "
 "multi-moeda."
