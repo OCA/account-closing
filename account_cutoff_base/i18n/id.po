@@ -374,9 +374,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__display_name
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__display_name
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__display_name
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nama Tampilan"
 
@@ -398,11 +395,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -418,13 +410,15 @@ msgid "Group By"
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__id
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__id
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__id
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
@@ -471,9 +465,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line____last_update
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping____last_update
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Terakhir Dimodifikasi pada"
 
@@ -516,7 +507,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
-msgid "Missing '%s' on tax '%s'."
+msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
 msgstr ""
 
 #. module: account_cutoff_base
