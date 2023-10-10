@@ -68,8 +68,7 @@ msgstr "Recopilando intervalo de análisis"
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid ""
-"The value of the field 'Picking Analysis Interval' must be strictly "
-"positive."
+"The value of the field 'Picking Analysis Interval' must be strictly positive."
 msgstr ""
 "el valor del campo 'recopilando intervalo de análisis' debe ser "
 "estrictamente positivo."

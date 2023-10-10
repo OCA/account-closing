@@ -19,31 +19,13 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s line ID %d"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "%s line ID %d: %s"
+msgid "%(order_name)s: %(order_line_name)s"
 msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
 msgid "Account Cut-off"
 msgstr "Abgrenzungskonto"
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Expense Tax Account"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Accrued Revenue Tax Account"
-msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
@@ -57,22 +39,9 @@ msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Invoice %s line ID %d"
-msgstr ""
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid "Missing '%s' on tax '%s'."
-msgstr "Fehlende '%s' bei Steuer '%s'."
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, fuzzy, python-format
 msgid ""
-"Missing expense account on product "
-"'%(product_display_name)s' or on its "
+"Missing expense account on product '%(product_display_name)s' or on its "
 "related product category '%(product_categ_display_name)s'."
 msgstr ""
 "Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
@@ -82,8 +51,7 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, fuzzy, python-format
 msgid ""
-"Missing income account on product "
-"'%(product_display_name)s' or on its "
+"Missing income account on product '%(product_display_name)s' or on its "
 "related product category '%(product_categ_display_name)s'."
 msgstr ""
 "Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
@@ -117,6 +85,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
 msgid "days"
 msgstr ""
+
+#, python-format
+#~ msgid "Missing '%s' on tax '%s'."
+#~ msgstr "Fehlende '%s' bei Steuer '%s'."
 
 #~ msgid "Account Cut-off Line"
 #~ msgstr "Abgrenzungsposten"

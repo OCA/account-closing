@@ -19,8 +19,8 @@ msgstr ""
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
+msgid "%(order_name)s: %(order_line_name)s"
+msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_account_cutoff
@@ -38,45 +38,20 @@ msgid "Config Settings"
 msgstr "Impostazioni di configurazione"
 
 #. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__display_name
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__display_name
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__id
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
-
-#. module: account_cutoff_accrual_picking
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company____last_update
-#: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Missing expense account on product '%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
+msgstr ""
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"Missing expense account on product '%s' or on its related product category "
-"'%s'."
+"Missing income account on product '%(product_display_name)s' or on its "
+"related product category '%(product_categ_display_name)s'."
 msgstr ""
-"Conto di costo mancante per il prodotto \"%s\" o per la categoria prodotto "
-"correlata \"%s\"."
-
-#. module: account_cutoff_accrual_picking
-#: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Missing income account on product '%s' or on its related product category "
-"'%s'."
-msgstr ""
-"Conto di ricavo mancante per il prodotto \"%s\" o per la categoria prodotto "
-"correlata \"%s\"."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
@@ -89,8 +64,7 @@ msgstr "Intervallo analisi prelievi"
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid ""
-"The value of the field 'Picking Analysis Interval' must be strictly "
-"positive."
+"The value of the field 'Picking Analysis Interval' must be strictly positive."
 msgstr ""
 "Il valore del campo \"Intervallo analisi prelievi\" deve essere strettamente "
 "positivo."
@@ -113,3 +87,32 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.res_config_settings_view_form
 msgid "days"
 msgstr "giorni"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#, python-format
+#~ msgid ""
+#~ "Missing expense account on product '%s' or on its related product "
+#~ "category '%s'."
+#~ msgstr ""
+#~ "Conto di costo mancante per il prodotto \"%s\" o per la categoria "
+#~ "prodotto correlata \"%s\"."
+
+#, python-format
+#~ msgid ""
+#~ "Missing income account on product '%s' or on its related product category "
+#~ "'%s'."
+#~ msgstr ""
+#~ "Conto di ricavo mancante per il prodotto \"%s\" o per la categoria "
+#~ "prodotto correlata \"%s\"."

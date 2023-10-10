@@ -68,8 +68,7 @@ msgstr "Interval d'anàlisi de moviments de magatzem"
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid ""
-"The value of the field 'Picking Analysis Interval' must be strictly "
-"positive."
+"The value of the field 'Picking Analysis Interval' must be strictly positive."
 msgstr ""
 "El valor del camp \"Interval d'anàlisi dels moviments de magatzem\" ha "
 "d'ésser positiu."
