@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "<b>Diario de revaluación predeterminado</b>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" groups=\"base.group_multi_company\""
-"/>"
+"\"Values set here are company-specific.\" groups=\"base.group_multi_company"
+"\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -81,8 +81,8 @@ msgid ""
 "group_multi_company\"/>"
 msgstr ""
 "<b>Cuentas Provision B.S</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-"
-"o\" title=\"Values set here are company-specific.\" groups=\"base."
+"                                        <span class=\"fa fa-lg fa-building-o"
+"\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
@@ -94,8 +94,8 @@ msgid ""
 "group_multi_company\"/>"
 msgstr ""
 "<b>Provision P&amp;Cuentas L</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-"
-"o\" title=\"Values set here are company-specific.\" groups=\"base."
+"                                        <span class=\"fa fa-lg fa-building-o"
+"\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
@@ -107,8 +107,8 @@ msgid ""
 "group_multi_company\"/>"
 msgstr ""
 "<b>Cuentas de reevaluación</b>\n"
-"                                        <span class=\"fa fa-lg fa-building-"
-"o\" title=\"Values set here are company-specific.\" groups=\"base."
+"                                        <span class=\"fa fa-lg fa-building-o"
+"\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
