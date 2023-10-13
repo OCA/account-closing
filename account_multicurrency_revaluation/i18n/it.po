@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:39+0000\n"
-"PO-Revision-Date: 2023-09-20 17:48+0000\n"
+"PO-Revision-Date: 2023-10-13 13:37+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -142,7 +142,7 @@ msgstr "ID"
 #. module: account_multicurrency_revaluation
 #: field:wizard.currency.revaluation,journal_id:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Registro"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
