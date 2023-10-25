@@ -68,6 +68,7 @@
                                 readonly="state == 'done'"
                             />
                             <field name="total_cutoff_amount" />
+                            <field name="auto_reverse" />
                             <field
                                 name="source_move_state"
                                 widget="radio"
@@ -96,6 +97,7 @@
                             <field name="move_ref" readonly="state == 'done'" />
                             <field name="move_partner" readonly="state == 'done'" />
                             <field name="move_id" />
+                            <field name="move_reversal_id" />
                         </group>
                     </group>
                     <group name="lines">
