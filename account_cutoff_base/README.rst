@@ -131,10 +131,13 @@ promote its widespread use.
 .. |maintainer-alexis-via| image:: https://github.com/alexis-via.png?size=40px
     :target: https://github.com/alexis-via
     :alt: alexis-via
+.. |maintainer-jbaudoux| image:: https://github.com/jbaudoux.png?size=40px
+    :target: https://github.com/jbaudoux
+    :alt: jbaudoux
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-alexis-via| 
+|maintainer-alexis-via| |maintainer-jbaudoux| 
 
 This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/19.0/account_cutoff_base>`_ project on GitHub.
 
