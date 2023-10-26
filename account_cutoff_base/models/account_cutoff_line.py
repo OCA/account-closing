@@ -12,6 +12,7 @@ class AccountCutoffLine(models.Model):
     _description = "Account Cut-off Line"
 
     parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
+    cutoff_type = fields.Selection(related="parent_id.cutoff_type")
     company_id = fields.Many2one(
         "res.company", related="parent_id.company_id", store=True
     )
