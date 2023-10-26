@@ -17,6 +17,7 @@
                             invisible="not context.get('account_cutoff_line_main_view', False)"
                         />
                     <field name="partner_id" />
+                    <field name="cutoff_type" invisible="1" />
                     <field name="company_id" invisible="1" />
                     <field name="name" widget="text" />
                     <field name="quantity" />
@@ -43,9 +44,9 @@
                 <group
                     name="tax"
                     string="Cut-off Taxes Lines"
-                    invisible="'accrued' not in context.get('cutoff_type', '-')"
+                    attrs="{'invisible': [('cutoff_type', 'not in', ('accrued_expense', 'accrued_revenue'))]}"
                 >
-                <field name="tax_line_ids" nolabel="1" colspan="2" />
+                    <field name="tax_line_ids" nolabel="1" colspan="2" />
                 </group>
                 <group name="notes" string="Notes">
                     <field name="notes" nolabel="1" colspan="2" />
