@@ -5,3 +5,7 @@
 * `CorporateHub <https://corporatehub.eu/>`__
 
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
+
+* `Ooops <https://ooops404.com>`__
+
+  * Giovanni Serra <giovanni@gslab.it>
