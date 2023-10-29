@@ -444,7 +444,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -650,11 +649,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Search Cut-offs"
 msgstr "Ricerca separazioni"
@@ -809,6 +803,9 @@ msgid "You cannot delete cutoff records that are not in draft state."
 msgstr ""
 "Impossibile eliminare record di separazione che non si trovano in stato "
 "bozza."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguito da (canali)"

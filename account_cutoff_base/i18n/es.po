@@ -444,7 +444,6 @@ msgstr "si está marcada, los mensajes nuevos requieren su atención."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -512,7 +511,8 @@ msgstr "mensajes"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
-msgstr "Falta '%(tax_account_field_label)s' en impuesto '%(tax_display_name)s'."
+msgstr ""
+"Falta '%(tax_account_field_label)s' en impuesto '%(tax_display_name)s'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
@@ -648,11 +648,6 @@ msgstr "Cuenta ordinaria"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "error en la entrega de sms"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
@@ -807,6 +802,9 @@ msgstr "historial de la comunicación en la web"
 msgid "You cannot delete cutoff records that are not in draft state."
 msgstr ""
 "no puedes borrar cierres registrados que no estén en estado de borrador."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "error en la entrega de sms"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "seguidores (canales)"
