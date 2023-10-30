@@ -6,7 +6,7 @@
     <record id="view_account_fiscalyear_closing_template_tree" model="ir.ui.view">
         <field name="model">account.fiscalyear.closing.template</field>
         <field name="arch" type="xml">
-            <tree string="Fiscal year closing">
+            <tree>
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="move_config_ids" />

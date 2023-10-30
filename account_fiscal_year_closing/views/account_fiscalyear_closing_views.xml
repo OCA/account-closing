@@ -7,7 +7,7 @@
         <field name="name">account.fiscalyear.closing.tree</field>
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
-            <tree string="Fiscal year closing">
+            <tree>
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_start" />
