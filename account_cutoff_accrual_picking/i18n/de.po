@@ -79,7 +79,7 @@ msgid ""
 "'%s'."
 msgstr ""
 "Fehlendes Aufwandskonto zum Produkt '%s' oder der zugehörigen "
-"Produktkategorie"
+"Produktkategorie '%s'."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -89,6 +89,7 @@ msgid ""
 "'%s'."
 msgstr ""
 "Fehlendes Erlöskonto zum Produkt '%s' oder der zugehörigen Produktkategorie"
+"'%s'."
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
