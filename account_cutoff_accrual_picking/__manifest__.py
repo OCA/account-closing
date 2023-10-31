@@ -4,7 +4,7 @@
 
 {
     "name": "Account Cut-off Picking",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.0.1",
     "category": "Accounting",
     "license": "AGPL-3",
     "summary": "Accrued and prepaid expense/revenue from pickings",
