@@ -359,8 +359,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
-#: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_tree
-#: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_tree
 msgid "Fiscal year closing"
 msgstr ""
 
