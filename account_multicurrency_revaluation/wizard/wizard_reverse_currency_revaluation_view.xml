@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_reverse_currency_revaluation_wizard" model="ir.ui.view">
+        <field name="name">Reverse Currency Revaluation</field>
+        <field name="model">wizard.reverse.currency.revaluation</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Reverse Currency Revaluation">
+                <span
+                    name="info"
+                    style="font-weight: bold;"
+                >For all revaluated entries created during the period defined, a reverse entry will be created in the system. These entries will have the invoice date as the date defined here as well. If there is no reverse posting date, for each entry, the invoice date will be the first day of the next month of the entry date.
+                </span>
+                <span
+                    name="info-2"
+                    style="font-weight: bold;"
+                >The revaluation date of an entry that got revaluated is the date that the process that created the entry run.
+                </span>
+                <group>
+                    <group>
+                        <field name="revaluation_interval_start_date" />
+                        <field name="revaluation_interval_end_date" />
+                        <field name="reverse_posting_date" />
+                        <field name="journal_id" />
+                    </group>
+                </group>
+                <group>
+                    <field name="entries_to_reverse_ids">
+                        <tree create="0" delete="0" limit="10">
+                            <field name="name" />
+                            <field name="company_id" />
+                            <field name="date" />
+                            <field name="amount_total_signed" />
+                            <field name="state" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="reverse_revaluate_currency"
+                        type="object"
+                        string="_Validate"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        id="action_view_account_reverse_currency_revaluation_wizard"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Reverse Currency Revaluation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.reverse.currency.revaluation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        action="action_view_account_reverse_currency_revaluation_wizard"
+        id="menu_view_reverse_account_currency_revaluation_wizard"
+        parent="account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing"
+        groups="group_revaluation_additional"
+        sequence="20"
+    />
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_currency_unrealized" model="ir.actions.report">
+        <field name="name">Currency Revaluation Report</field>
+        <field name="model">account.account</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >account_multicurrency_revaluation.curr_unrealized_report</field>
+        <field
+            name="report_file"
+        >account_multicurrency_revaluation.curr_unrealized_report</field>
+    </record>
+
+</odoo>
