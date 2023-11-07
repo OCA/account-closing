@@ -789,6 +789,7 @@ msgstr "importe total de cierre"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_type
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_type
 msgid "Type"
 msgstr "tipo"
 
