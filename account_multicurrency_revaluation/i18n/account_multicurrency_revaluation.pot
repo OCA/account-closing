@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -205,6 +205,7 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid "Created Revaluation Lines"
@@ -368,6 +369,7 @@ msgid "Multicurrency revaluation"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
@@ -376,6 +378,7 @@ msgid "N/A"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid ""
@@ -384,6 +387,7 @@ msgid ""
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
@@ -391,6 +395,7 @@ msgid "No accounting entry has been posted."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid ""
@@ -417,6 +422,7 @@ msgid "Partner"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "Please, select the accounts!"
@@ -575,6 +581,7 @@ msgid "Reverse Entries Accounting Date"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
 msgid "Reverse Revaluation Entries"
@@ -591,6 +598,7 @@ msgid "Start Revaluation Period"
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "The Start Date cannot be higher than the End Date."
@@ -614,6 +622,7 @@ msgid "The revaluated entries that will be reversed."
 msgstr ""
 
 #. module: account_multicurrency_revaluation
+#. odoo-python
 #: code:addons/account_multicurrency_revaluation/model/account.py:0
 #, python-format
 msgid ""
