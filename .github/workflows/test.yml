@@ -35,11 +35,21 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # account_cutoff_picking is incompatible with account_cutoff_acrrual*
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            name: test with Odoo
-          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            name: test with OCB
             makepot: "true"
+            exclude: account_cutoff_picking
+            name: test with Odoo w/o account_cutoff_picking
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            exclude: account_cutoff_picking
+            name: test with OCB w/o account_cutoff_picking
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            makepot: "true"
+            include: account_cutoff_base,purchase_stock,sale_stock,account_cutoff_picking
+            name: test with Odoo w/ account_cutoff_picking
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: account_cutoff_base,purchase_stock,sale_stock,account_cutoff_picking
+            name: test with OCB w/ account_cutoff_picking
     services:
       postgres:
         image: postgres:12.0
