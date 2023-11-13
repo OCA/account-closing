@@ -152,7 +152,7 @@ class AccountAccount(models.Model):
                 ("parent_state", "!=", "cancel"),
             ]
         )
-        self._apply_ir_rules(query)
+        self.env["account.move.line"]._apply_ir_rules(query)
         tables, where_clause, where_clause_params = query.get_sql()
         mapping = [
             ('"account_move_line".', "aml."),
