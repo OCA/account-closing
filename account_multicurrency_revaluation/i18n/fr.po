@@ -694,7 +694,6 @@ msgstr "_Imprimer"
 msgid "_Validate"
 msgstr "_Valider"
 
-#, python-format
 #~ msgid "Created revaluation lines"
 #~ msgstr "Lignes de réévaluation créées"
 
