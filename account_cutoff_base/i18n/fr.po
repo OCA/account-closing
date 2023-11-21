@@ -829,7 +829,6 @@ msgstr ""
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nombre de messages nécessitant une action"
 
-#, python-format
 #~ msgid "Missing '%(tax_account_field_label)s' on tax '%(tax_display_name)s'."
 #~ msgstr ""
 #~ "Manque '%(tax_account_field_label)s' sur la taxe '%(tax_display_name)s'."
