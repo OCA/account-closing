@@ -185,7 +185,7 @@ class AccountCutoff(models.Model):
         for rec in self:
             name = type2label.get(rec.cutoff_type, "")
             if rec.cutoff_date:
-                name = "%s %s" % (name, format_date(self.env, rec.cutoff_date))
+                name = f"({name}, {format_date(self.env, rec.cutoff_date)})"
             res.append((rec.id, name))
         return res
 
@@ -218,7 +218,7 @@ class AccountCutoff(models.Model):
                 "credit": amount >= 0 and amount or 0,
                 "tax_ids": False,  # neutralize defaut tax of account
             }
-            for k, v in zip(merge_keys, merge_values):
+            for k, v in zip(merge_keys, merge_values, strict=True):
                 value = v
                 if k == "analytic_distribution" and isinstance(v, str):
                     value = json.loads(value)
