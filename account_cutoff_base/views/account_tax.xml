@@ -13,12 +13,12 @@
             <field name="tax_group_id" position="after">
                 <field
                     name="account_accrued_revenue_id"
-                    attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"
+                    invisible="type_tax_use == 'purchase'"
                     options="{'no_create': True}"
                 />
                 <field
                     name="account_accrued_expense_id"
-                    attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"
+                    invisible="type_tax_use == 'sale'"
                     options="{'no_create': True}"
                 />
             </field>
