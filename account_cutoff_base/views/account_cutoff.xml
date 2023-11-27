@@ -22,7 +22,7 @@
                         name="back2draft"
                         string="Back to Draft"
                         type="object"
-                        states="done"
+                        invisible="state != 'done'"
                         confirm="Are you sure you want to go back to draft state?"
                     />
                     <button
@@ -30,14 +30,14 @@
                         name="get_lines"
                         string="Re-Generate Lines"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                     />
                     <button
                         class="btn-primary"
                         name="create_move"
                         string="Create Journal Entry"
                         type="object"
-                        attrs="{'invisible': ['|', ('line_ids', '=', []), ('state', '!=', 'draft')]}"
+                        invisible="line_ids == [] or state != 'draft'"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -65,10 +65,19 @@
                             <field
                                 name="cutoff_date"
                                 options="{'datepicker': {'warn_future': true}}"
+                                readonly="state == 'done'"
                             />
                             <field name="total_cutoff_amount" />
-                            <field name="source_move_state" widget="radio" />
-                            <field name="company_id" options="{'no_create': True}" />
+                            <field
+                                name="source_move_state"
+                                widget="radio"
+                                invisible="state != 'done'"
+                            />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                readonly="state == 'done'"
+                            />
                             <field name="company_currency_id" invisible="1" />
                         </group>
                         <group name="accounting-params">
@@ -76,14 +85,16 @@
                                 name="cutoff_journal_id"
                                 required="1"
                                 options="{'no_create': True}"
+                                readonly="state == 'done'"
                             />
                             <field
                                 name="cutoff_account_id"
                                 required="1"
                                 options="{'no_create': True}"
+                                readonly="state == 'done'"
                             />
-                            <field name="move_ref" />
-                            <field name="move_partner" />
+                            <field name="move_ref" readonly="state == 'done'" />
+                            <field name="move_partner" readonly="state == 'done'" />
                             <field name="move_id" />
                         </group>
                     </group>
@@ -93,6 +104,7 @@
                             nolabel="1"
                             colspan="2"
                             context="{'cutoff_type': cutoff_type}"
+                            readonly="state == 'done'"
                         />
                     </group>
                 </sheet>
@@ -111,12 +123,13 @@
             <tree>
                 <field
                     name="cutoff_type"
-                    invisible="context.get('default_cutoff_type')"
+                    readonly="state == 'done'"
+                    column_invisible="context.get('default_cutoff_type')"
                 />
                 <field name="cutoff_date" decoration-bf="1" />
                 <field name="move_ref" optional="hide" />
                 <field name="total_cutoff_amount" />
-                <field name="company_currency_id" invisible="1" />
+                <field name="company_currency_id" column_invisible="1" />
                 <field name="company_id" optional="show" />
                 <field
                     name="state"
