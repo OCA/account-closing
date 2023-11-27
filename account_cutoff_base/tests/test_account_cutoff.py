@@ -24,7 +24,7 @@ class TestAccountCutoff(TransactionCase):
             self.assertEqual(
                 account_id,
                 random_account.id,
-                "The account must be equals to %s" % random_account.id,
+                f"The account must be equals to {random_account.id}",
             )
             account_id = (
                 self.env["account.cutoff"]
@@ -34,5 +34,5 @@ class TestAccountCutoff(TransactionCase):
             self.assertEqual(
                 account_id,
                 random_account.id,
-                "The account must be equals to %s" % random_account.id,
+                f"The account must be equals to {random_account.id}",
             )
