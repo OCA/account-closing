@@ -42,7 +42,7 @@
             <tree>
                 <field
                     name="parent_id"
-                    invisible="not context.get('account_cutoff_tax_line_main_view', False)"
+                    column_invisible="not context.get('account_cutoff_tax_line_main_view', False)"
                 />
                 <field name="tax_id" />
                 <field name="cutoff_account_id" />
@@ -53,10 +53,10 @@
                 />
                 <field name="base" />
                 <field name="amount" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
                 <field name="cutoff_amount" />
-                <field name="company_currency_id" invisible="1" />
-                <field name="sequence" invisible="1" />
+                <field name="company_currency_id" column_invisible="1" />
+                <field name="sequence" column_invisible="1" />
             </tree>
         </field>
     </record>
