@@ -83,7 +83,6 @@ class AccountCutoff(models.Model):
 
     cutoff_date = fields.Date(
         string="Cut-off Date",
-        states={"done": [("readonly", True)]},
         copy=False,
         tracking=True,
         default=lambda self: self._default_cutoff_date(),
@@ -92,14 +91,12 @@ class AccountCutoff(models.Model):
         selection="_selection_cutoff_type",
         string="Type",
         required=True,
-        states={"done": [("readonly", True)]},
     )
     source_move_state = fields.Selection(
         [("posted", "Posted Entries"), ("draft_posted", "Draft and Posted Entries")],
         string="Source Entries",
         required=True,
         default="posted",
-        states={"done": [("readonly", True)]},
         tracking=True,
     )
     move_id = fields.Many2one(
@@ -111,20 +108,17 @@ class AccountCutoff(models.Model):
     )
     move_ref = fields.Char(
         string="Reference of the Cut-off Journal Entry",
-        states={"done": [("readonly", True)]},
         default=lambda self: self._default_move_ref(),
     )
     move_partner = fields.Boolean(
         string="Partner on Journal Items",
         default=lambda self: self.env.company.default_cutoff_move_partner,
-        states={"done": [("readonly", True)]},
         tracking=True,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
         domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
-        states={"done": [("readonly", True)]},
         default=lambda self: self._default_cutoff_account_id(),
         check_company=True,
         tracking=True,
@@ -133,7 +127,6 @@ class AccountCutoff(models.Model):
         comodel_name="account.journal",
         string="Cut-off Account Journal",
         default=lambda self: self.env.company.default_cutoff_journal_id,
-        states={"done": [("readonly", True)]},
         domain="[('company_id', '=', company_id)]",
         check_company=True,
         tracking=True,
@@ -148,7 +141,6 @@ class AccountCutoff(models.Model):
         "res.company",
         string="Company",
         required=True,
-        states={"done": [("readonly", True)]},
         default=lambda self: self.env.company,
     )
     company_currency_id = fields.Many2one(
@@ -158,7 +150,6 @@ class AccountCutoff(models.Model):
         comodel_name="account.cutoff.line",
         inverse_name="parent_id",
         string="Cut-off Lines",
-        states={"done": [("readonly", True)]},
     )
     state = fields.Selection(
         selection=[("draft", "Draft"), ("done", "Done")],
@@ -179,15 +170,13 @@ class AccountCutoff(models.Model):
         )
     ]
 
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         type2label = self.cutoff_type_label_map
         for rec in self:
             name = type2label.get(rec.cutoff_type, "")
             if rec.cutoff_date:
                 name = f"({name}, {format_date(self.env, rec.cutoff_date)})"
-            res.append((rec.id, name))
-        return res
+            rec.display_name = name or f"#{rec.id}"
 
     def back2draft(self):
         self.ensure_one()
