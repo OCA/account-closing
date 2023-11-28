@@ -369,13 +369,26 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:b4f3db5b68014e9eb2899369770b45a88dad71ae3948fa21734d3bf3740e13c0
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/account-closing/tree/16.0/account_invoice_start_end_dates"><img alt="OCA/account-closing" src="https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/account-closing-16-0/account-closing-16-0-account_invoice_start_end_dates"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/account-closing&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds the fields <em>Start Date</em> and <em>End Date</em> on invoice/move lines.</p>
-<p>It also adds an option <em>Must Have Start/End Dates</em> on the product form (in the <em>Accounting</em> tab) ; if you enable this option, you will get an error message if you try to post an invoice/move that constains such a product on one of its lines and doesn’t have start/end dates on that line.</p>
-<p>If you use this module, you may also be interested in several other modules:</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/account-closing/tree/17.0/account_invoice_start_end_dates"><img alt="OCA/account-closing" src="https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/account-closing-17-0/account-closing-17-0-account_invoice_start_end_dates"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/account-closing&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module adds the fields <em>Start Date</em> and <em>End Date</em> on invoice/move
+lines.</p>
+<p>It also adds an option <em>Must Have Start/End Dates</em> on the product form
+(in the <em>Accounting</em> tab) ; if you enable this option, you will get an
+error message if you try to post an invoice/move that constains such a
+product on one of its lines and doesn’t have start/end dates on that
+line.</p>
+<p>If you use this module, you may also be interested in several other
+modules:</p>
 <ul class="simple">
-<li>the module <em>sale_start_end_dates</em> from the <a class="reference external" href="https://github.com/OCA/sale-workflow">sale-workflow OCA project</a>: this module adds the fields <em>Start Date</em> and <em>End Date</em> on sale order lines and copies the information from sale order lines to invoice/move lines.</li>
-<li>the modules <em>account_cutoff_prepaid</em> and <em>account_cutoff_accrual_dates</em> in the <a class="reference external" href="https://github.com/OCA/account-closing">account-closing OCA projct</a>: these modules allow easy computation of prepaid expenses, prepaid revenues, accrued expense and accrued revenue using start/end dates.</li>
+<li>the module <em>sale_start_end_dates</em> from the <a class="reference external" href="https://github.com/OCA/sale-workflow">sale-workflow OCA
+project</a>: this module adds
+the fields <em>Start Date</em> and <em>End Date</em> on sale order lines and copies
+the information from sale order lines to invoice/move lines.</li>
+<li>the modules <em>account_cutoff_prepaid</em> and
+<em>account_cutoff_accrual_dates</em> in the <a class="reference external" href="https://github.com/OCA/account-closing">account-closing OCA
+projct</a>: these modules
+allow easy computation of prepaid expenses, prepaid revenues, accrued
+expense and accrued revenue using start/end dates.</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -394,7 +407,7 @@ ul.auto-toc {
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/account-closing/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/account-closing/issues/new?body=module:%20account_invoice_start_end_dates%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/account-closing/issues/new?body=module:%20account_invoice_start_end_dates%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -421,7 +434,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/alexis-via"><img alt="alexis-via" src="https://github.com/alexis-via.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/account-closing/tree/16.0/account_invoice_start_end_dates">OCA/account-closing</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/account-closing/tree/17.0/account_invoice_start_end_dates">OCA/account-closing</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
