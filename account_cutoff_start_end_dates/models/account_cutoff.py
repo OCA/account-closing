@@ -36,7 +36,6 @@ class AccountCutoff(models.Model):
         column2="journal_id",
         string="Source Journals",
         default=lambda self: self._get_default_source_journals(),
-        states={"done": [("readonly", True)]},
         check_company=True,
         domain="[('company_id', '=', company_id)]",
     )

@@ -6,3 +6,4 @@
 
 - [Trobz](https://trobz.com):  
   - Dzung Tran \<<dungtd@trobz.com>\>
+  - Thao Le <thaolt@trobz.com>
