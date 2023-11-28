@@ -17,42 +17,71 @@ Account Cut-off Picking
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
-    :target: https://github.com/OCA/account-closing/tree/16.0/account_cutoff_picking
+    :target: https://github.com/OCA/account-closing/tree/17.0/account_cutoff_picking
     :alt: OCA/account-closing
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-closing-16-0/account-closing-16-0-account_cutoff_picking
+    :target: https://translation.odoo-community.org/projects/account-closing-17-0/account-closing-17-0-account_cutoff_picking
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module generates expense/revenue accruals and prepaid expense/revenue based on the status of orders, pickings and invoices. The module is named *account_cutoff_accrual_picking* because it initially only supported accruals ; support for prepaid expense/revenue was added later (it should be renamed in later versions).
+This module generates expense/revenue accruals and prepaid
+expense/revenue based on the status of orders, pickings and invoices.
+The module is named *account_cutoff_accrual_picking* because it
+initially only supported accruals ; support for prepaid expense/revenue
+was added later (it should be renamed in later versions).
 
-To understand the behavior of this module, let's take the example of an expense accrual. When you click on the button *Re-Generate Lines* of an *Expense Accrual*:
+To understand the behavior of this module, let's take the example of an
+expense accrual. When you click on the button *Re-Generate Lines* of an
+*Expense Accrual*:
 
-1. Odoo will look for all incoming picking in Done state with a *Transfer Date* <= *Cut-off Date*. For performance reasons, by default, the incoming picking dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the stock moves of those pickings and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential expense accrual.
+1. Odoo will look for all incoming picking in Done state with a
+   *Transfer Date* <= *Cut-off Date*. For performance reasons, by
+   default, the incoming picking dated before *Cut-off Date* minus 30
+   days will not be taken into account (this limit is configurable via
+   the field *Picking Analysis*). It will go to the stock moves of those
+   pickings and see if they are linked to a purchase order line.
+2. Once this analysis is completed, Odoo has a list of purchase order
+   lines to analyse for potential expense accrual.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
-4. If, for a particular purchase order line, the quantity of products received before the cutoff-date (or on the same day) minus the quantity of products invoiced before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
+4. If, for a particular purchase order line, the quantity of products
+   received before the cutoff-date (or on the same day) minus the
+   quantity of products invoiced before the cut-off date (or on the same
+   day) is positive, Odoo will generate a cut-off line.
 
-Now, let's take the example of a prepaid expense. When you click on the button *Re-Generate Lines* of a *Prepaid Expense*:
+Now, let's take the example of a prepaid expense. When you click on the
+button *Re-Generate Lines* of a *Prepaid Expense*:
 
-1. Odoo will look for all vendor bills dated before (or equal to) *Cut-off Date*. For performance reasons, by default, the vendor bills dated before *Cut-off Date* minus 30 days will not be taken into account (this limit is configurable via the field *Picking Analysis*). It will go to the invoice lines of those vendor bills and see if they are linked to a purchase order line.
-2. Once this analysis is completed, Odoo has a list of purchase order lines to analyse for potential prepaid expense.
+1. Odoo will look for all vendor bills dated before (or equal to)
+   *Cut-off Date*. For performance reasons, by default, the vendor bills
+   dated before *Cut-off Date* minus 30 days will not be taken into
+   account (this limit is configurable via the field *Picking
+   Analysis*). It will go to the invoice lines of those vendor bills and
+   see if they are linked to a purchase order line.
+2. Once this analysis is completed, Odoo has a list of purchase order
+   lines to analyse for potential prepaid expense.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
-4. If, for a particular purchase order line, the quantity of products invoiced before the cutoff-date (or on the same day) minus the quantity of products received before the cut-off date (or on the same day) is positive, Odoo will generate a cut-off line.
+4. If, for a particular purchase order line, the quantity of products
+   invoiced before the cutoff-date (or on the same day) minus the
+   quantity of products received before the cut-off date (or on the same
+   day) is positive, Odoo will generate a cut-off line.
 
-This module should work well with multiple units of measure (including products purchased and invoiced in different units of measure) and in multi-currency.
+This module should work well with multiple units of measure (including
+products purchased and invoiced in different units of measure) and in
+multi-currency.
 
 **Table of contents**
 
@@ -62,7 +91,8 @@ This module should work well with multiple units of measure (including products 
 Configuration
 =============
 
-For configuration instructions, refer to the README of the module *account_cutoff_base*.
+For configuration instructions, refer to the README of the module
+*account_cutoff_base*.
 
 Bug Tracker
 ===========
@@ -70,7 +100,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-closing/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_picking%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_picking%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,17 +108,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -108,6 +138,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
-This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/16.0/account_cutoff_picking>`_ project on GitHub.
+This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/17.0/account_cutoff_picking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
