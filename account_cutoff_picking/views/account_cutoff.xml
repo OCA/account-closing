@@ -13,7 +13,11 @@
             <field name="cutoff_date" position="after">
                 <label for="picking_interval_days" />
                 <div name="picking_interval_days">
-                    <field name="picking_interval_days" class="oe_inline" /> days
+                    <field
+                        name="picking_interval_days"
+                        class="oe_inline"
+                        readonly="state == 'done'"
+                    /> days
                 </div>
             </field>
         </field>

@@ -19,7 +19,6 @@ class AccountCutoff(models.Model):
     picking_interval_days = fields.Integer(
         string="Analysis Interval",
         default=lambda self: self._default_picking_interval_days(),
-        states={"done": [("readonly", True)]},
         tracking=True,
         help="To generate the cutoffs based on picking "
         "dates vs invoice dates, Odoo will analyse all the pickings/invoices from "
@@ -205,7 +204,7 @@ class AccountCutoff(models.Model):
         ):
             sign = order_type == "purchase" and -1 or 1
             move_qty = out_move.product_uom._compute_quantity(
-                out_move.quantity_done * sign, product_uom
+                out_move.quantity * sign, product_uom
             )
             move_logs.append((out_move, move_qty))
         for in_move in incoming_moves.filtered(
@@ -213,7 +212,7 @@ class AccountCutoff(models.Model):
         ):
             sign = order_type == "sale" and -1 or 1
             move_qty = in_move.product_uom._compute_quantity(
-                in_move.quantity_done * sign, product_uom
+                in_move.quantity * sign, product_uom
             )
             move_logs.append((in_move, move_qty))
         move_logs_sorted = sorted(move_logs, key=lambda to_sort: to_sort[0].date)
