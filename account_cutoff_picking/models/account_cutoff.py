@@ -75,34 +75,24 @@ class AccountCutoff(models.Model):
         notes += (
             "\n"
             + _("Pre-cutoff delivered quantity:")
-            + " %s %s"
-            % (
-                precut_delivered_qty_fl,
-                uom_name,
-            )
+            + f" {precut_delivered_qty_fl} {uom_name}"
         )
         if vdict.get("precut_delivered_logs"):
-            notes += (
-                "\n"
-                + _("Pre-cutoff delivered quantity details:")
-                + "\n%s" % "\n".join(vdict["precut_delivered_logs"])
-            )
+            param = "\n".join(vdict["precut_delivered_logs"])
+            notes += "\n" + _("Pre-cutoff delivered quantity details:") + f"\n{param}"
         precut_invoiced_qty_fl = formatLang(
             self.env, vdict.get("precut_invoiced_qty", 0), dp="Product Unit of Measure"
         )
         notes += (
             "\n"
             + _("Pre-cutoff invoiced quantity:")
-            + " %s %s" % (precut_invoiced_qty_fl, uom_name)
+            + f" {precut_invoiced_qty_fl} {uom_name}"
         )
         if vdict.get("precut_invoiced_logs"):
-            notes += (
-                "\n"
-                + _("Pre-cutoff invoiced quantity details:")
-                + "\n%s" % "\n".join(vdict["precut_invoiced_logs"])
-            )
+            param = "\n".join(vdict["precut_invoiced_logs"])
+            notes += "\n" + _("Pre-cutoff invoiced quantity details:") + f"\n{param}"
         qty_fl = formatLang(self.env, qty, dp="Product Unit of Measure")
-        notes += "\n%s %s %s" % (qty_label, qty_fl, uom_name)
+        notes += f"\n{qty_label} {qty_fl} {uom_name}"
 
         vals = {
             "parent_id": self.id,
@@ -227,7 +217,7 @@ class AccountCutoff(models.Model):
             )
             move_logs.append((in_move, move_qty))
         move_logs_sorted = sorted(move_logs, key=lambda to_sort: to_sort[0].date)
-        for (move, move_qty_signed) in move_logs_sorted:
+        for move, move_qty_signed in move_logs_sorted:
             wdict["precut_delivered_qty"] += move_qty_signed
             move_qty_signed_formatted = formatLang(
                 self.env, move_qty_signed, dp="Product Unit of Measure"
@@ -281,15 +271,13 @@ class AccountCutoff(models.Model):
                     iline_qty_puom_formatted = formatLang(
                         self.env, iline_qty_puom, dp="Product Unit of Measure"
                     )
+                    qty = iline_qty_puom_formatted
+                    uom = iline.product_id.uom_id.name
+                    move_type = move_type2label[invoice.move_type]
+                    move_name = invoice.name
+                    date = format_date(self.env, invoice.date)
                     wdict["precut_invoiced_logs"].append(
-                        " • %(qty)s %(uom)s (%(move_type)s %(move_name)s dated %(date)s)"
-                        % {
-                            "qty": iline_qty_puom_formatted,
-                            "uom": iline.product_id.uom_id.name,
-                            "move_type": move_type2label[invoice.move_type],
-                            "move_name": invoice.name,
-                            "date": format_date(self.env, invoice.date),
-                        }
+                        f" • {qty} {uom} ({move_type} {move_name} dated {date})"
                     )
                 # Most recent invoice line used for price_unit, account,...
                 wdict["price_unit"] = iline.price_subtotal / iline_qty_puom
