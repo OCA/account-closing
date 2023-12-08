@@ -1,0 +1,180 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_invoice_start_end_dates
+#
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2018
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-27 03:39+0000\n"
+"PO-Revision-Date: 2023-08-14 11:10+0000\n"
+"Last-Translator: sofien-moalla <s.moalla@cadrinsitu.com>\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: account_invoice_start_end_dates
+#: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
+msgid "Car Insurance"
+msgstr "Assurance voiture"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_product__must_have_dates
+#: model:ir.model.fields,help:account_invoice_start_end_dates.field_product_template__must_have_dates
+msgid ""
+"If this option is active, the user will have to enter a Start Date and an "
+"End Date on the invoice lines that have this product."
+msgstr ""
+"Si cette option est activée, l'utilisateur aura à entrer une date de "
+"démarrage et une date de fin sur les lignes de facture qui ont ce produit."
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model,name:account_invoice_start_end_dates.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: account_invoice_start_end_dates
+#: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
+msgid "Maintenance contract"
+msgstr "Contrat de maintenance"
+
+#. module: account_invoice_start_end_dates
+#. odoo-python
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
+#, python-format
+msgid "Missing End Date for line '%s'."
+msgstr "Date de fin manquante pour la ligne '%s'."
+
+#. module: account_invoice_start_end_dates
+#. odoo-python
+#: code:addons/account_invoice_start_end_dates/models/account_move.py:0
+#, python-format
+msgid ""
+"Missing Start Date and End Date for invoice line with Product '%s' which has "
+"the property 'Must Have Start/End Dates'."
+msgstr ""
+"Date de début et de fin manquante pour la ligne de facture ayant le produit "
+"'%s', qui a la propriété 'Doit avoir une date de début et de fin'."
+
+#. module: account_invoice_start_end_dates
+#. odoo-python
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
+#, python-format
+msgid "Missing Start Date for line '%s'."
+msgstr "Date de début manquante pour la ligne '%s'."
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_product__must_have_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_product_template__must_have_dates
+msgid "Must Have Start/End Dates"
+msgstr "Doit avoir une date de début et de fin"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model,name:account_invoice_start_end_dates.model_product_template
+msgid "Product"
+msgstr "Article"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: account_invoice_start_end_dates
+#. odoo-python
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
+#, python-format
+msgid ""
+"Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
+"line '%(name)s'."
+msgstr ""
+"La date de début (%(start_date)s) doit précéder la date de fin "
+"(%(end_date)s) pour la ligne '%(name)s'."
+
+#~ msgid ""
+#~ "If this option is active, the user will have to enter a Start Date and an "
+#~ "End Date on the invoice/move lines that have this product."
+#~ msgstr ""
+#~ "Si cette option est activée, l'utilisateur devra entrer une date de début "
+#~ "et une date de fin sur les lignes de facture qui ont ce produit."
+
+#~ msgid "Missing End Date for move line with Name '%s'."
+#~ msgstr "Date de fin manquante pour la ligne '%s'."
+
+#~ msgid "Missing Start Date for move line with Name '%s'."
+#~ msgstr "Date de début manquante pour la ligne '%s'."
+
+#~ msgid ""
+#~ "Start Date ({start_date}) should be before End Date ({end_date}) for move "
+#~ "line with Name '{name}'."
+#~ msgstr ""
+#~ "La date de début ({start_date}) devrait être antérieure à la date de fin "
+#~ "({end_date}) pour la ligne ayant le libellé '{name}'."
+
+#~ msgid "Units"
+#~ msgstr "Unité(s)"
+
+#~ msgid "Journal Entries"
+#~ msgstr "Écritures comptables"
+
+#~ msgid ""
+#~ "Missing Start Date and End Date for invoice line with Product '%s' which "
+#~ "has the property 'Must Have Start and End Dates'."
+#~ msgstr ""
+#~ "Date de début et de fin manquantes pour les lignes de facture avec le "
+#~ "produit '%s' qui ont la propriété 'Doit avoir des dates de début et de "
+#~ "fin'."
+
+#~ msgid "Must Have Start and End Dates"
+#~ msgstr "Doit avoir des dates de début et de fin"
+
+#~ msgid "Product Template"
+#~ msgstr "Modèle de produit"
+
+#~ msgid "Start Date should be before End Date for move line with Name '%s'."
+#~ msgstr ""
+#~ "La date de début doit être antérieure à la date de fin pour les écritures "
+#~ "avec le nom '%s'."
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Ligne de facture"
+
+#~ msgid "Missing End Date for invoice line with Description '%s'."
+#~ msgstr ""
+#~ "Date de fin manquante pour les lignes de facture avec la description '%s'."
+
+#~ msgid "Missing Start Date for invoice line with Description '%s'."
+#~ msgstr ""
+#~ "Date de début manquante pour les lignes de facture avec la description "
+#~ "'%s'."
+
+#~ msgid ""
+#~ "Start Date should be before or be the same as End Date for invoice line "
+#~ "with Description '%s'."
+#~ msgstr ""
+#~ "La date de début doit être antérieure ou la même que la date de fin pour "
+#~ "les lignes de facture avec la description '%s'."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification"
