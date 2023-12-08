@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2023 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_cutoff_tax_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.tax.line.form</field>
+        <field name="model">account.cutoff.tax.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="tax" string="Tax">
+                    <field
+                        name="parent_id"
+                        invisible="not context.get('account_cutoff_tax_line_main_view', False)"
+                    />
+                    <field name="tax_id" />
+                    <field name="sequence" />
+                    <field name="company_id" invisible="1" />
+                    <field name="cutoff_account_id" />
+                    <field
+                        name="analytic_distribution"
+                        widget="analytic_distribution"
+                        groups="analytic.group_analytic_accounting"
+                    />
+                    <field name="base" />
+                    <field name="amount" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+                <group name="cutoff" string="Cut-off Computation">
+                    <field name="cutoff_amount" />
+                    <field name="company_currency_id" invisible="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="account_cutoff_tax_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.tax.line.tree</field>
+        <field name="model">account.cutoff.tax.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    column_invisible="not context.get('account_cutoff_tax_line_main_view', False)"
+                />
+                <field name="tax_id" />
+                <field name="cutoff_account_id" />
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <field name="base" />
+                <field name="amount" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="cutoff_amount" />
+                <field name="company_currency_id" column_invisible="1" />
+                <field name="sequence" column_invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>
