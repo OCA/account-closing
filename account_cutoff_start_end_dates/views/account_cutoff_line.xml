@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2022 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.line.prepaid.form</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="start_date" />
+                <field name="end_date" />
+            </field>
+            <field name="cutoff_amount" position="before">
+                <field name="total_days" />
+                <field name="cutoff_days" />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.line.prepaid.tree</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+        <field name="arch" type="xml">
+            <field name="analytic_distribution" position="after">
+                <field name="start_date" optional="show" />
+                <field name="end_date" optional="show" />
+                <field name="total_days" optional="show" />
+                <field name="cutoff_days" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
