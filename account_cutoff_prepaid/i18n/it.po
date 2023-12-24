@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2023-11-21 13:34+0000\n"
+"PO-Revision-Date: 2023-12-24 16:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -39,7 +39,8 @@ msgstr ""
 "Questa funzione è utilizzata dai contabili per raccogliere le informazioni "
 "sui risconti attivi. Questo permette, con un semplice click, di generare le "
 "scritture contabili di fine periodo corrispondenti.\n"
-"</p>"
+"</p>\n"
+"    "
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_revenue_action
