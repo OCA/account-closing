@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2021-12-31 15:39+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-12-24 19:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff
@@ -92,7 +92,7 @@ msgstr ""
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "The start date is after the end date!"
-msgstr "La data di inizio è successiva a quella di fine."
+msgstr "La data di inizio è successiva a quella di fine!"
 
 #. module: account_cutoff_start_end_dates
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
