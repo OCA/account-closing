@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:39+0000\n"
-"PO-Revision-Date: 2023-12-24 16:35+0000\n"
+"PO-Revision-Date: 2023-12-24 16:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -282,7 +282,7 @@ msgstr "Accantonamenti C.E. Conto analitico"
 #. module: account_multicurrency_revaluation
 #: view:res.company:account_multicurrency_revaluation.view_company_form_add_currency_gain_loss_accounts
 msgid "Provision P&L accounts"
-msgstr "Conti accantonamenti C.E. "
+msgstr "Conti accantonamenti C.E."
 
 #. module: account_multicurrency_revaluation
 #: field:res.company,provision_pl_gain_account_id:0
