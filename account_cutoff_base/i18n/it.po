@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2023-12-24 16:35+0000\n"
+"PO-Revision-Date: 2023-12-24 16:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -122,9 +122,9 @@ msgid ""
 "Amount that is used as base to compute the Cut-off Amount. This Amount is in "
 "the 'Amount Currency', which may be different from the 'Company Currency'."
 msgstr ""
-"Valore utilizzato per calcolare ratei e risconti. Questo valore è in "
-"\"Valore in valuta\", che potrebbe differire dal dalla valuta predefinita "
-"della Società. "
+"Valore utilizzato per calcolare ratei e risconti. Questo valore è in \"Valore"
+" in valuta\", che potrebbe differire dal dalla valuta predefinita della "
+"Società."
 
 #. module: account_cutoff_base
 #: field:account.cutoff.line,analytic_account_id:0
@@ -540,7 +540,7 @@ msgid ""
 msgstr ""
 "Questa etichetta verrà inserita nel campo 'Nome' delle righe relative ai "
 "Movimenti nel Conto delle Scritture di Fine Periodo e nel campo "
-"'Riferimento' del Movimento nel Conto delle Scritture di Fine Periodo "
+"'Riferimento' del Movimento nel Conto delle Scritture di Fine Periodo"
 
 #. module: account_cutoff_base
 #: field:account.cutoff,total_cutoff_amount:0
