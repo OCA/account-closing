@@ -604,6 +604,16 @@ class AccountFiscalyearClosingMapping(models.Model):
                     "date": date,
                     "partner_id": partner_id,
                 }
+                if (
+                    account.currency_id
+                    and account.currency_id
+                    != self.fyc_config_id.fyc_id.company_id.currency_id
+                ):
+                    move_line.update(
+                        currency_id=account.currency_id.id,
+                        amount_currency=sum(account_lines.mapped("amount_currency"))
+                        * -1,
+                    )
             else:
                 balance = 0
         return balance, move_line
