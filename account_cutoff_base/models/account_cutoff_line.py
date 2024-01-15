@@ -32,7 +32,10 @@ class AccountCutoffLine(models.Model):
     )
     price_origin = fields.Char(readonly=True)
     origin_move_line_id = fields.Many2one(
-        "account.move.line", string="Origin Journal Item", readonly=True
+        "account.move.line",
+        string="Origin Journal Item",
+        readonly=True,
+        index=True,
     )
     origin_move_id = fields.Many2one(
         related="origin_move_line_id.move_id", string="Origin Journal Entry"
