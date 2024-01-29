@@ -71,7 +71,7 @@
                             <field
                                 name="source_move_state"
                                 widget="radio"
-                                invisible="state != 'done'"
+                                readonly="state == 'done'"
                             />
                             <field
                                 name="company_id"
