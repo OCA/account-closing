@@ -8,7 +8,7 @@
     "category": "Accounting & Finance",
     "summary": "Base module for Account Cut-offs",
     "author": "Akretion,Odoo Community Association (OCA)",
-    "maintainer": "alexis-via",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account"],
     "data": [
