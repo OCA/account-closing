@@ -12,8 +12,8 @@
         <field name="arch" type="xml">
             <field name="date_maturity" position="after">
                 <field name="must_have_dates" invisible="1" />
-                <field name="start_date" required="must_have_dates == True" />
-                <field name="end_date" required="must_have_dates == True" />
+                <field name="start_date" required="must_have_dates" />
+                <field name="end_date" required="must_have_dates" />
             </field>
         </field>
     </record>
@@ -39,16 +39,8 @@
                 position="before"
             >
                 <field name="must_have_dates" invisible="1" />
-                <field
-                    name="start_date"
-                    required="must_have_dates == True"
-                    optional="show"
-                />
-                <field
-                    name="end_date"
-                    required="must_have_dates == True"
-                    optional="show"
-                />
+                <field name="start_date" required="must_have_dates" optional="show" />
+                <field name="end_date" required="must_have_dates" optional="show" />
             </xpath>
             <xpath
                 expr="//field[@name='invoice_line_ids']/form//field[@name='quantity']"
