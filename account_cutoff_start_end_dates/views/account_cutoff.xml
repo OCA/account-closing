@@ -13,17 +13,19 @@
             <field name="cutoff_date" position="after">
                 <field
                     name="start_date"
-                    column_invisible="'prepaid' not in context.get('default_cutoff_type', '-') or state != 'forecast'"
+                    column_invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
+                    invisible="state != 'forecast'"
                     optional="hide"
                 />
                 <field
                     name="end_date"
-                    column_invisible="'prepaid' not in context.get('default_cutoff_type', '-') or state != 'forecast'"
+                    column_invisible="'prepaid' not in context.get('default_cutoff_type', '-')"
+                    invisible="state != 'forecast'"
                     optional="hide"
                 />
             </field>
             <field name="cutoff_date" position="attributes">
-                <attribute name="column_invisible">state == 'forecast'</attribute>
+                <attribute name="invisible">state == 'forecast'</attribute>
             </field>
             <field name="state" position="attributes">
                 <attribute name="decoration-warning">state == 'forecast'</attribute>
