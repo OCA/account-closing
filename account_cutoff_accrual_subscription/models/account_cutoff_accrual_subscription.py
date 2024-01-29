@@ -50,6 +50,10 @@ class AccountCutoffAccrualSubscription(models.Model):
     )
     partner_id = fields.Many2one(
         "res.partner",
+        compute="_compute_partner_id",
+        readonly=False,
+        store=True,
+        precompute=True,
         string="Partner",
         domain=[("parent_id", "=", False)],
         ondelete="restrict",
@@ -72,7 +76,12 @@ class AccountCutoffAccrualSubscription(models.Model):
         help="Minimum amount without taxes over the period",
     )
     provision_amount = fields.Monetary(
-        string="Default Provision Amount", currency_field="company_currency_id"
+        compute="_compute_provision_amount",
+        readonly=False,
+        store=True,
+        precompute=True,
+        string="Default Provision Amount",
+        currency_field="company_currency_id",
     )
     account_id = fields.Many2one(
         "account.account",
@@ -84,6 +93,10 @@ class AccountCutoffAccrualSubscription(models.Model):
     type_tax_use = fields.Char(compute="_compute_type_tax_use")
     tax_ids = fields.Many2many(
         "account.tax",
+        compute="_compute_tax_ids",
+        readonly=False,
+        store=True,
+        precompute=True,
         string="Taxes",
         domain="[('price_include', '=', False), ('company_id', '=', company_id), "
         "('type_tax_use', '=', type_tax_use)]",
@@ -124,23 +137,25 @@ class AccountCutoffAccrualSubscription(models.Model):
         ),
     ]
 
-    @api.onchange("min_amount")
-    def min_amount_change(self):
-        if (
-            self.company_currency_id.compare_amounts(self.min_amount, 0) > 0
-            and not self.provision_amount
-        ):
-            self.provision_amount = self.min_amount
+    @api.depends("min_amount")
+    def _compute_provision_amount(self):
+        for sub in self:
+            if sub.company_currency_id.compare_amounts(
+                sub.min_amount, 0
+            ) > 0 and sub.company_currency_id.is_zero(sub.provision_amount):
+                sub.provision_amount = sub.min_amount
 
-    @api.onchange("account_id")
-    def account_id_change(self):
-        if self.account_id:
-            self.tax_ids = self.account_id.tax_ids
+    @api.depends("account_id")
+    def _compute_tax_ids(self):
+        for sub in self:
+            if sub.account_id:
+                sub.tax_ids = sub.account_id.tax_ids
 
-    @api.onchange("partner_type")
-    def partner_type_change(self):
-        if self.partner_type != "one":
-            self.partner_id = False
+    @api.depends("partner_type")
+    def _compute_partner_id(self):
+        for sub in self:
+            if sub.partner_type != "one":
+                sub.partner_id = False
 
     def _process_subscription(
         self, work, fy_start_date, cutoff_date, common_domain, sign
@@ -221,7 +236,7 @@ class AccountCutoffAccrualSubscription(models.Model):
             # compute amount
             amount = 0
             # 1. No start/end dates
-            no_start_end_res = aml_obj.read_group(
+            no_start_end_res = aml_obj._read_group(
                 domain_base
                 + [
                     ("date", "<=", end_date),
@@ -229,24 +244,20 @@ class AccountCutoffAccrualSubscription(models.Model):
                     ("start_date", "=", False),
                     ("end_date", "=", False),
                 ],
-                ["balance"],
-                [],
+                aggregates=["balance:sum"],
             )
-            amount_no_start_end = (
-                no_start_end_res and no_start_end_res[0]["balance"] or 0
-            )
+            amount_no_start_end = no_start_end_res and no_start_end_res[0][0] or 0
             amount += amount_no_start_end * sign
             # 2. Start/end dates, INSIDE interval
-            inside_res = aml_obj.read_group(
+            inside_res = aml_obj._read_group(
                 domain_base_w_start_end
                 + [
                     ("start_date", ">=", start_date),
                     ("end_date", "<=", end_date),
                 ],
-                ["balance"],
-                [],
+                aggregates=["balance:sum"],
             )
-            amount_inside = inside_res and inside_res[0]["balance"] or 0
+            amount_inside = inside_res and inside_res[0][0] or 0
             amount += amount_inside * sign
             # 3. Start/end dates, OVER interval
             mlines = aml_obj.search(
