@@ -12,10 +12,7 @@
     <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
     <field name="arch" type="xml">
         <field name="parent_id" position="after">
-            <field
-                    name="subscription_id"
-                    attrs="{'invisible': [('subscription_id', '=', False)]}"
-                />
+            <field name="subscription_id" invisible="not subscription_id" />
         </field>
     </field>
 </record>
