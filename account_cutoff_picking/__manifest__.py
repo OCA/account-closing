@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "summary": "Accrued and prepaid expense/revenue from pickings",
     "author": "Akretion,Odoo Community Association (OCA)",
-    "maintainer": "alexis-via",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account_cutoff_base", "purchase_stock", "sale_stock"],
     "data": ["views/res_config_settings.xml", "views/account_cutoff.xml"],
