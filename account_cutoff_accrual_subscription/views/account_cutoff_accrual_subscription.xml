@@ -16,7 +16,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                 <div class="oe_title">
                     <label for="name" string="Subscription Name" class="oe_edit_only" />
@@ -31,7 +31,8 @@
                     <field name="partner_type" widget="radio" />
                     <field
                             name="partner_id"
-                            attrs="{'invisible': [('partner_type', '!=', 'one')], 'required': [('partner_type', '=', 'one')]}"
+                            invisible="partner_type != 'one'"
+                            required="partner_type == 'one'"
                         />
                     <field name="periodicity" />
                     <field name="start_date" />
@@ -63,7 +64,7 @@
             <field name="partner_type" optional="show" />
             <field
                     name="partner_id"
-                    attrs="{'invisible': [('partner_type', '!=', 'one')]}"
+                    invisible="partner_type != 'one'"
                     optional="show"
                 />
             <field name="periodicity" />
