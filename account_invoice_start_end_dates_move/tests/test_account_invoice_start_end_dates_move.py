@@ -4,26 +4,21 @@
 import time
 
 from odoo.tests import tagged
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
 @tagged("-at_install", "post_install")
-class TestInvoiceStartEndDates(SavepointCase):
+class TestInvoiceStartEndDates(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.inv_model = cls.env["account.move"]
         cls.account_model = cls.env["account.account"]
         cls.journal_model = cls.env["account.journal"]
-        cls.account_revenue = cls.account_model.search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
-                )
-            ],
-            limit=1,
+        cls.account_revenue = cls.env["account.chart.template"]._get_demo_account(
+            "income",
+            "income",
+            cls.env.company,
         )
         cls.sale_journal = cls.journal_model.search([("type", "=", "sale")], limit=1)
         cls.maint_product = cls.env.ref(
@@ -97,9 +92,13 @@ class TestInvoiceStartEndDates(SavepointCase):
                 check_move_validity=False,
                 company_id=self.account_user.company_id.id,
                 default_move_type="out_invoice",
+                # NB: ``date`` should be set from the form view,
+                # but it's currently impossible because it's defined
+                # as invisible, so an error will be raised if we use
+                # ``invoice_form.date = self._date("01-01")
+                default_date=self._date("01-01"),
             )
         )
-        invoice_form.date = self._date("01-01")
         invoice_form.partner_id = self.env.ref("base.res_partner_2")
         invoice_form.journal_id = self.sale_journal
         invoice_form.start_date = self._date("03-01")

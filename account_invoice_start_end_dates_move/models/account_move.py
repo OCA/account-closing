@@ -23,9 +23,8 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    @api.onchange("product_id")
+    @api.onchange("product_id", "company_id", "display_type")
     def _onchange_product_id(self):
-        res = super()._onchange_product_id()
         for line in self:
             if (
                 line.company_id.apply_dates_all_lines or line.product_id.must_have_dates
@@ -37,17 +36,17 @@ class AccountMoveLine(models.Model):
                     line.start_date = line.move_id.start_date
                 if line.move_id.end_date:
                     line.end_date = line.move_id.end_date
-        return res
 
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            invoice = self.env["account.move"].browse(vals["move_id"])
+            invoice = self.env["account.move"].browse(vals.get("move_id")).exists()
             if (
                 invoice.company_id.apply_dates_all_lines
                 or vals.get("product_id")
                 and self.env["product.product"]
                 .browse(vals["product_id"])
+                .exists()
                 .must_have_dates
             ):
                 if not vals.get("start_date", False):
