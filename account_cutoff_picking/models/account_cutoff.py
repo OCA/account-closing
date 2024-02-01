@@ -43,6 +43,7 @@ class AccountCutoff(models.Model):
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         dpo = self.env["decimal.precision"]
         qty_prec = dpo.precision_get("Product Unit of Measure")
+        price_prec = dpo.precision_get("Product Price")
         if self.cutoff_type in ("accrued_expense", "accrued_revenue"):
             qty = vdict["precut_delivered_qty"] - vdict["precut_invoiced_qty"]
             qty_label = _("Pre-cutoff delivered quantity minus invoiced quantity:")
@@ -50,7 +51,9 @@ class AccountCutoff(models.Model):
             qty = vdict["precut_invoiced_qty"] - vdict["precut_delivered_qty"]
             qty_label = _("Pre-cutoff invoiced quantity minus delivered quantity:")
 
-        if float_compare(qty, 0, precision_digits=qty_prec) <= 0:
+        if float_compare(qty, 0, precision_digits=qty_prec) <= 0 or float_is_zero(
+            vdict["price_unit"], precision_digits=price_prec
+        ):
             return False
 
         company_currency = self.company_currency_id
