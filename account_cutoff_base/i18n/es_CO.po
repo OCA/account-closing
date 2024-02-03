@@ -145,7 +145,7 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
-msgid "Analytic"
+msgid "Analytic Distribution"
 msgstr ""
 
 #. module: account_cutoff_base
@@ -475,6 +475,7 @@ msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -489,14 +490,6 @@ msgstr ""
 #, python-format
 msgid "Journal entry generated"
 msgstr ""
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__write_uid
@@ -517,11 +510,6 @@ msgstr "Actualizado"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: account_cutoff_base
@@ -691,6 +679,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr ""
@@ -805,3 +798,6 @@ msgstr ""
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
