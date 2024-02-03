@@ -144,8 +144,8 @@ msgstr ""
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
-msgid "Analytic"
-msgstr "Analytique"
+msgid "Analytic Distribution"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution_search
@@ -475,6 +475,7 @@ msgstr "Si activé, de nouveaux messages nécessitent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si activé, des messages ont une erreur d'envoi."
 
@@ -489,14 +490,6 @@ msgstr "Est abonné"
 #, python-format
 msgid "Journal entry generated"
 msgstr "Pièce comptable générée"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__write_uid
@@ -518,11 +511,6 @@ msgstr "Dernière mise à jour le"
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
 msgstr "Vue liste des lignes"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Pièce jointe principale"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
@@ -693,6 +681,11 @@ msgid "Responsible User"
 msgstr "Utilisateur responsable"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur d'envoi du SMS"
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr "Séquence"
@@ -823,8 +816,14 @@ msgstr ""
 "Il n'est pas possible de supprimer les provisions qui sont à l'état "
 "'Terminé'."
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "Erreur d'envoi du SMS"
+#~ msgid "Analytic"
+#~ msgstr "Analytique"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Pièce jointe principale"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nombre de messages nécessitant une action"

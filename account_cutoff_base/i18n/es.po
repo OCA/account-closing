@@ -143,8 +143,8 @@ msgstr "Importe que se utiliza como base para calcular el Importe de cierre."
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
-msgid "Analytic"
-msgstr "analítica"
+msgid "Analytic Distribution"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution_search
@@ -472,6 +472,7 @@ msgstr "si está marcada, mensajes nuevos requieren su atención."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -486,14 +487,6 @@ msgstr "es seguidor"
 #, python-format
 msgid "Journal entry generated"
 msgstr "entrada diaria generada"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping____last_update
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__write_uid
@@ -515,11 +508,6 @@ msgstr "Última actualización el"
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
 msgstr "vista de lista de líneas"
-
-#. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Archivo adjunto principal"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
@@ -693,6 +681,11 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "error en la entrega de sms"
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -820,8 +813,14 @@ msgstr "historial de la comunicación en la web"
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "no puedes borrar cierres registrados que están en estado de 'hecho' ."
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "error en la entrega de sms"
+#~ msgid "Analytic"
+#~ msgstr "analítica"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Archivo adjunto principal"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "número de mensajes que requieren una acción"
