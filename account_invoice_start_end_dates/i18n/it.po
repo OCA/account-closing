@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2023-05-18 16:42+0000\n"
+"PO-Revision-Date: 2024-02-04 19:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
@@ -60,7 +60,7 @@ msgstr "Contratto di manutenzione"
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing End Date for line '%s'."
-msgstr ""
+msgstr "Data fine non presente per la riga '%s'."
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
@@ -78,7 +78,7 @@ msgstr ""
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 #, python-format
 msgid "Missing Start Date for line '%s'."
-msgstr ""
+msgstr "Data inizio non presente per la riga '%s'."
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__must_have_dates
@@ -105,6 +105,8 @@ msgid ""
 "Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
 "line '%(name)s'."
 msgstr ""
+"La data inizio (%(start_date)s) deve essere antecedente alla data fine "
+"(%(end_date)s) per la riga '%(name)s'."
 
 #~ msgid ""
 #~ "If this option is active, the user will have to enter a Start Date and an "
