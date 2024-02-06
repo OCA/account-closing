@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2023-12-24 16:40+0000\n"
+"PO-Revision-Date: 2024-02-06 16:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -66,9 +66,7 @@ msgstr ""
 #. module: account_cutoff_prepaid
 #: sql_constraint:account.cutoff:0
 msgid "A cut-off of the same type already exists with this cut-off date !"
-msgstr ""
-"Una scrittura contabile di fine periodo esiste già per questa data di "
-"riferimento!"
+msgstr "Esiste già una separazione dello stesso tipo per questa data limite!"
 
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff
