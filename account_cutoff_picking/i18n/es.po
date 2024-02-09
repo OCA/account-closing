@@ -72,6 +72,11 @@ msgstr ""
 "de producto relacionada '%(categ)s'."
 
 #. module: account_cutoff_picking
+#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
+msgid "Picking Analysis Interval"
+msgstr ""
+
+#. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
