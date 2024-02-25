@@ -472,7 +472,10 @@ class AccountFiscalyearClosingConfig(models.Model):
             for account in src_accounts:
                 closing_type = self.closing_type_get(account)
                 balance = False
-                if closing_type == 'balance':
+                if closing_type == 'balance' or (
+                    closing_type == 'unreconciled' and
+                    account.internal_type not in ["receivable", "payable"]
+                ):
                     # Get all lines
                     lines = account_map.account_lines_get(account)
                     balance, move_line = account_map.move_line_prepare(
@@ -480,7 +483,8 @@ class AccountFiscalyearClosingConfig(models.Model):
                     )
                     if move_line:
                         move_lines.append(move_line)
-                elif closing_type == 'unreconciled':
+                elif closing_type == 'unreconciled' and \
+                        account.internal_type in ["receivable", "payable"]:
                     # Get credit and debit grouping by partner
                     partners = account_map.account_partners_get(account)
                     for partner in partners:
