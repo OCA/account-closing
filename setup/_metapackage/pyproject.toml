@@ -1,7 +1,8 @@
 [project]
 name = "odoo-addons-oca-account-closing"
-version = "17.0.20231209.1"
+version = "17.0.20240226.0"
 dependencies = [
+    "odoo-addon-account_cutoff_accrual_subscription>=17.0dev,<17.1dev",
     "odoo-addon-account_cutoff_base>=17.0dev,<17.1dev",
     "odoo-addon-account_cutoff_picking>=17.0dev,<17.1dev",
     "odoo-addon-account_cutoff_start_end_dates>=17.0dev,<17.1dev",
