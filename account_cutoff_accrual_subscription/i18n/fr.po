@@ -72,8 +72,8 @@ msgstr "Actif"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution
-msgid "Analytic"
-msgstr "Analytique"
+msgid "Analytic Distribution"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution_search
@@ -158,11 +158,6 @@ msgstr "Charges"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__id
 msgid "ID"
 msgstr "ID"
-
-#. module: account_cutoff_accrual_subscription
-#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_uid
@@ -353,6 +348,12 @@ msgstr "Type d'utilisation de la taxe"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
 msgstr "Annuel"
+
+#~ msgid "Analytic"
+#~ msgstr "Analytique"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Minimum Expense Amount"
 #~ msgstr "Montant minimum de charge"

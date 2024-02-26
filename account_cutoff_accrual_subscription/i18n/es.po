@@ -72,8 +72,8 @@ msgstr "Activo"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution
-msgid "Analytic"
-msgstr "Analítico"
+msgid "Analytic Distribution"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution_search
@@ -158,11 +158,6 @@ msgstr "gasto"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__id
 msgid "ID"
 msgstr "Identidad"
-
-#. module: account_cutoff_accrual_subscription
-#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription____last_update
-msgid "Last Modified on"
-msgstr "modificado por última vez el"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_uid
@@ -352,6 +347,12 @@ msgstr "tipo impuesto utilizado"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
 msgstr "anualmente"
+
+#~ msgid "Analytic"
+#~ msgstr "Analítico"
+
+#~ msgid "Last Modified on"
+#~ msgstr "modificado por última vez el"
 
 #~ msgid "Minimum Expense Amount"
 #~ msgstr "Importe mínimo de gastos"
