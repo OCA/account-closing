@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-account_cutoff_picking>=16.0dev,<16.1dev',
         'odoo-addon-account_cutoff_start_end_dates>=16.0dev,<16.1dev',
         'odoo-addon-account_invoice_start_end_dates>=16.0dev,<16.1dev',
+        'odoo-addon-account_invoice_start_end_dates_move>=16.0dev,<16.1dev',
         'odoo-addon-account_multicurrency_revaluation>=16.0dev,<16.1dev',
     ],
     classifiers=[

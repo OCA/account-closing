@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [account_cutoff_picking](account_cutoff_picking/) | 16.0.1.3.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Accrued and prepaid expense/revenue from pickings
 [account_cutoff_start_end_dates](account_cutoff_start_end_dates/) | 16.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Cutoffs based on start/end dates
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 16.0.1.2.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
+[account_invoice_start_end_dates_move](account_invoice_start_end_dates_move/) | 16.0.1.0.0 |  | Add the possibility to choose start and end dates on account invoice.
 [account_multicurrency_revaluation](account_multicurrency_revaluation/) | 16.0.1.0.1 |  | Manage revaluation for multicurrency environment
 
 [//]: # (end addons)
