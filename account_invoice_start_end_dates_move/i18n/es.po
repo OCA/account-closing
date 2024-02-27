@@ -19,23 +19,23 @@ msgstr ""
 #. module: account_invoice_start_end_dates_move
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
 msgid ""
-"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
-"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
 "'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> from </span>"
 msgstr ""
-"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
-"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
 "'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> desde </span>"
 
 #. module: account_invoice_start_end_dates_move
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
 msgid ""
-"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
-"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
 "'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> to </span>"
 msgstr ""
-"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
-"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
 "'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> a </span>"
 
 #. module: account_invoice_start_end_dates_move
@@ -47,7 +47,8 @@ msgstr "Fechas de Inicio/Fin de Cuenta"
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company__apply_dates_all_lines
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings__apply_dates_all_lines
 msgid "Apply Start/End Dates To All Account Move Lines"
-msgstr "Aplicar fechas de Inicio/Fin a todas las líneas de movimiento de cuenta"
+msgstr ""
+"Aplicar fechas de Inicio/Fin a todas las líneas de movimiento de cuenta"
 
 #. module: account_invoice_start_end_dates_move
 #: model:ir.model,name:account_invoice_start_end_dates_move.model_res_company
@@ -58,14 +59,6 @@ msgstr "Compañías"
 #: model:ir.model,name:account_invoice_start_end_dates_move.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ajustes de Config"
-
-#. module: account_invoice_start_end_dates_move
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__display_name
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company__display_name
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
 
 #. module: account_invoice_start_end_dates_move
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_bank_statement_line__end_date
@@ -80,14 +73,6 @@ msgid "End date"
 msgstr "Fecha Fin"
 
 #. module: account_invoice_start_end_dates_move
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__id
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company__id
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
-
-#. module: account_invoice_start_end_dates_move
 #: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move
 msgid "Journal Entry"
 msgstr "Entrada Diaria"
@@ -96,14 +81,6 @@ msgstr "Entrada Diaria"
 #: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move_line
 msgid "Journal Item"
 msgstr "Artículo Diario"
-
-#. module: account_invoice_start_end_dates_move
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move____last_update
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company____last_update
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: account_invoice_start_end_dates_move
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
@@ -131,3 +108,12 @@ msgstr "Fecha de Inicio"
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
 msgid "Start date"
 msgstr "Fecha Inicio"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
