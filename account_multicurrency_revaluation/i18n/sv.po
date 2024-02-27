@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2024-02-27 08:20+0000\n"
+"PO-Revision-Date: 2024-02-27 10:36+0000\n"
 "Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
@@ -114,7 +114,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "<b>TOTAL</b>"
-msgstr "<b>TOTALT</b>"
+msgstr "<b>SAMMANLAGT</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -241,7 +241,7 @@ msgstr "Avslutning"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_report_closing_entries_menu
 msgid "Closing Entries"
-msgstr "Avslutande verifikat"
+msgstr "Avslutande inlägg"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
@@ -287,7 +287,7 @@ msgstr "Skapad den"
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
-msgstr "Curr. Saldo YTD"
+msgstr "Valuta Saldo ÅTD"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
@@ -341,7 +341,7 @@ msgstr "Valutakurs"
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__reverse_posting_date
 msgid "Date that will be assigned to the reverse entries created."
-msgstr "Datum som kommer att tilldelas de skapade omvända verifikaten."
+msgstr "Datum som kommer att tilldelas de skapade omvända posterna."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__display_name
@@ -358,17 +358,17 @@ msgstr "Slutdatum"
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__entries_to_reverse_ids
 msgid "Entries to reverse"
-msgstr "Verifikat att omvända"
+msgstr "Inmatningar till omvänd"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
 msgid "Entry description"
-msgstr "Beskrivning av verifikat"
+msgstr "Beskrivning av posten"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Gain(+)/Loss(-) YTD"
-msgstr "Vinst(+)/Förlust(-) ÅTD"
+msgstr "Vinst(+)/Förlust(-) YTD"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__id
@@ -400,14 +400,14 @@ msgstr "Journalanteckning"
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
 msgid "Journal Item"
-msgstr "Transaktion"
+msgstr "Tidningsartikel"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer____last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation____last_update
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation____last_update
 msgid "Last Modified on"
-msgstr "Senast ändrad den"
+msgstr "Senast redigerad"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__write_uid
@@ -421,7 +421,7 @@ msgstr "Senast uppdaterad av"
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__write_date
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__write_date
 msgid "Last Updated on"
-msgstr "Senast uppdaterad den"
+msgstr "Senast uppdaterad"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -443,8 +443,8 @@ msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
 "for at least one account in account form."
 msgstr ""
-"Inget konto som ska omvärderas hittades. Markera 'Tillåt valutaomvärdering' "
-"för minst ett konto i kontoformuläret."
+"Inget konto som ska omvärderas hittades. Markera \"Tillåt valutaomvärdering\""
+" för minst ett konto i kontoformuläret."
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -452,7 +452,7 @@ msgstr ""
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
 msgid "No accounting entry has been posted."
-msgstr "Inget verifikat har bokförts."
+msgstr "Ingen bokföringspost har bokförts."
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -523,7 +523,7 @@ msgstr "Avsättning B.S. förlustkonto"
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_pl_analytic_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_pl_analytic_account_id
 msgid "Provision P&L Analytic account"
-msgstr "Tillhandahålla konto för P&L Analytic"
+msgstr "Tillhandahålla objektkonto för resultaträkning"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_pl_gain_account_id
@@ -567,7 +567,7 @@ msgstr "Omvärdering objektkonto"
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_created_line_id
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_move_line_form
 msgid "Revaluation Created Line"
-msgstr "Omvärdering Skapad rad"
+msgstr "Omvärdering Skapad post"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__revaluation_date
@@ -578,28 +578,28 @@ msgstr "Omvärderingsdatum"
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_end_date
 msgid "Revaluation End Date"
-msgstr "Omvärdering slutdatum"
+msgstr "Omvärdering Slutdatum"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_origin_line_count
 msgid "Revaluation Origin Line Count"
-msgstr "Omvärdering ursprungligt radantal"
+msgstr "Omvärdering Ursprung Linjeantal"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_origin_line_ids
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_move_line_form
 msgid "Revaluation Origin Lines"
-msgstr "Omvärdering ursprungsrader"
+msgstr "Omvärdering Ursprungslinjer"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Revaluation Rate"
-msgstr "Omvärderingskurs"
+msgstr "Omvärderingssats"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_filter
 msgid "Revaluation Reversed"
-msgstr "Omvärdering återförd"
+msgstr "Omvärdering Återförd"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_start_date
@@ -609,7 +609,7 @@ msgstr "Startdatum för omvärdering"
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_filter
 msgid "Revaluation To Reverse"
-msgstr "Omvärdering att återföra"
+msgstr "Omvärdering Till återföring"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__revaluation_gain_account_id
@@ -642,24 +642,24 @@ msgstr "Omvärdering till återföring"
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_reverse_account_currency_revaluation_wizard
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_reverse_currency_revaluation_wizard
 msgid "Reverse Currency Revaluation"
-msgstr "Omvänd valuta omvärdering"
+msgstr "Omvänd valuta Omvärdering"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_reverse_currency_revaluation
 msgid "Reverse Currency Revaluation Wizard"
-msgstr "Omvänd valuta omvärderingsguide"
+msgstr "Omvänd valuta Omvärderingsguide"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__reverse_posting_date
 msgid "Reverse Entries Accounting Date"
-msgstr "Omvända bokningar bokföringsdatum"
+msgstr "Omvända bokningar Bokföringsdatum"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
 msgid "Reverse Revaluation Entries"
-msgstr "Omvärderingsverifikat"
+msgstr "Omvärderingsposter"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__start_date
@@ -676,7 +676,7 @@ msgstr "Starta omvärderingsperiod"
 #: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "The Start Date cannot be higher than the End Date."
-msgstr "Startdatum får inte vara större än slutdatum."
+msgstr "Startdatum får inte vara senare i tid än slutdatum."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_unrealized_report_printer__start_date
@@ -685,7 +685,7 @@ msgid ""
 "from this date. The default value will be the first day of the month"
 msgstr ""
 "Rapporten kommer att skriva ut från detta datum, alla omvärderade poster som "
-"skapats från detta datum. Standardvärdet är den första dagen i månaden."
+"skapats från detta datum. Standardvärdet är den första dagen i månaden"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_unrealized_report_printer__end_date
@@ -718,7 +718,7 @@ msgid ""
 "This label will be inserted in entries description.You can use %(account)s, "
 "%(account_name)s, %(currency)s and %(rate)s keywords."
 msgstr ""
-"Denna etikett kommer att infogas i verifikatbeskrivningen. Du kan använda "
+"Denna etikett kommer att infogas i postbeskrivningen. Du kan använda "
 "nyckelorden %(account)s, %(account_name)s, %(currency)s och %(rate)s."
 
 #. module: account_multicurrency_revaluation
@@ -735,10 +735,10 @@ msgstr "Du kan ange standardjournalen i företagsinställningarna."
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.currency_urealized_report_launcher_wizard
 msgid "_Print"
-msgstr "_Print"
+msgstr "_Skriv ut"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_reverse_currency_revaluation_wizard
 msgid "_Validate"
-msgstr "_Validera"
+msgstr "_Godkänn"
