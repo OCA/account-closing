@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-02-27 10:36+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: none\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -22,28 +24,30 @@ msgid ""
 " • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
 "%(src_location)s to %(dest_location)s)"
 msgstr ""
+" - %(qty)s %(uom)s (plockning %(picking)s överförd den %(date)s från "
+"%(src_location)s till %(dest_location)s)"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Avstängning av konto"
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff__picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
 msgid "Analysis Interval"
-msgstr ""
+msgstr "Analysintervall"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Företag"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationsinställningar"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -53,6 +57,8 @@ msgid ""
 "Missing expense account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
 msgstr ""
+"Saknar kostnadskonto på produkten '%(product)s' eller på dess relaterade "
+"produktkategori '%(categ)s'."
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -62,48 +68,50 @@ msgid ""
 "Missing income account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
 msgstr ""
+"Saknar inkomstkonto på produkten '%(product)s' eller på dess relaterade "
+"produktkategori '%(categ)s'."
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity details:"
-msgstr ""
+msgstr "Detaljer om levererad kvantitet före avskärning:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
-msgstr ""
+msgstr "Levererad kvantitet före avskärning minus fakturerad kvantitet:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity:"
-msgstr ""
+msgstr "Levererad kvantitet före avskärning:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity details:"
-msgstr ""
+msgstr "Uppgifter om fakturerad kvantitet före avräkning:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
-msgstr ""
+msgstr "Fakturerad kvantitet före avskärning minus levererad kvantitet:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity:"
-msgstr ""
+msgstr "Fakturerad kvantitet före avräkning:"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -113,6 +121,8 @@ msgid ""
 "Purchase order %(order)s confirmed on %(confirm_date)s\n"
 "Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
 msgstr ""
+"Inköpsorder %(order)s bekräftad den %(confirm_date)s\n"
+"Inköpsorderrad: %(order_line)s (beställt antal: %(qty)s %(uom)s)"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -122,12 +132,14 @@ msgid ""
 "Sale order %(order)s confirmed on %(confirm_date)s\n"
 "Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
 msgstr ""
+"Försäljningsorder %(order)s bekräftad den %(confirm_date)s\n"
+"Orderrad: %(order_line)s (beställt antal: %(qty)s %(uom)s)"
 
 #. module: account_cutoff_picking
 #: model:ir.model.constraint,message:account_cutoff_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid "The value of the field 'Analysis Interval' must be strictly positive."
-msgstr ""
+msgstr "Värdet på fältet \"Analysis Interval\" måste vara strikt positivt."
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,help:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
@@ -139,6 +151,11 @@ msgid ""
 " you increase the analysis interval, Odoo will take more time to generate "
 "the cutoff lines."
 msgstr ""
+"För att generera periodiserade/förutbetalda intäkter/kostnader baserat på "
+"plockdatum vs fakturadatum, kommer Odoo att analysera alla plockningar/"
+"fakturor från N dagar före brytdatumet fram till brytdatumet. N är "
+"analysintervallet. Om du ökar analysintervallet kommer Odoo att ta längre "
+"tid på sig att generera avgränsningslinjerna."
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,help:account_cutoff_picking.field_account_cutoff__picking_interval_days
@@ -148,9 +165,14 @@ msgid ""
 "the cutoff date. N is the Analysis Interval. If you increase the analysis "
 "interval, Odoo will take more time to generate the cutoff lines."
 msgstr ""
+"För att generera gränsvärden baserat på plockdatum vs fakturadatum, kommer "
+"Odoo att analysera alla plockningar / fakturor från N dagar före "
+"gränsdatumet fram till gränsdatumet. N är analysintervallet. Om du ökar "
+"analysintervallet kommer Odoo att ta längre tid på sig att generera "
+"gränslinjerna."
 
 #. module: account_cutoff_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_picking.account_cutoff_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
 msgid "days"
-msgstr ""
+msgstr "dagar"
