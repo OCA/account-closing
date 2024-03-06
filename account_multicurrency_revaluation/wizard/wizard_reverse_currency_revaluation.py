@@ -74,7 +74,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_entries.write(vals)
         if self.journal_id.company_id.auto_post_entries:
             for entry in created_entries:
-                entry.post()
+                entry.action_post()
         # Mark entries reversed as not to be reversed anymore
         entries.write({"revaluation_to_reverse": False})
         if created_entries:
