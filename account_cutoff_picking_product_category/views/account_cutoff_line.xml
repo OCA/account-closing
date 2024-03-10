@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+<!--
+    <record model="ir.ui.view" id="account_cutoff_line_form_view">
+        <field name="name">account.cutoff.line.form (in account_cutoff_picking_product_category)</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="TODO othermodule.form_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+
+-->
+
+</odoo>
