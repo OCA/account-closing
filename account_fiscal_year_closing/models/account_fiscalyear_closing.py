@@ -553,13 +553,13 @@ class AccountFiscalyearClosingMapping(models.Model):
 
     @api.model
     def create(self, vals):
-        if "dest_account_id" in vals:
+        if "dest_account_id" in vals and type(vals["dest_account_id"]) == list:
             vals["dest_account_id"] = vals["dest_account_id"][0]
         res = super(AccountFiscalyearClosingMapping, self).create(vals)
         return res
 
     def write(self, vals):
-        if "dest_account_id" in vals:
+        if "dest_account_id" in vals and type(vals["dest_account_id"]) == list:
             vals["dest_account_id"] = vals["dest_account_id"][0]
         res = super(AccountFiscalyearClosingMapping, self).write(vals)
         return res
