@@ -1,5 +1,5 @@
-# Copyright 2013-2021 Akretion (http://www.akretion.com/)
-# @author: Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2013 Alexis de Lattre (Akretion) <alexis.delattre@akretion.com>
+# Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -109,6 +109,17 @@ class AccountCutoff(models.Model):
         copy=False,
         check_company=True,
     )
+    auto_reverse = fields.Boolean(
+        help="Automatically reverse created move on following day. Use this "
+        "if you accrue a value end of period that you want to reverse "
+        "begin of next period",
+    )
+    move_reversal_id = fields.Many2one(
+        "account.move",
+        string="Cut-off Journal Entry Reversal",
+        readonly=True,
+        copy=False,
+    )
     move_ref = fields.Char(
         string="Reference of the Cut-off Journal Entry",
         states={"done": [("readonly", True)]},
@@ -191,6 +202,10 @@ class AccountCutoff(models.Model):
 
     def back2draft(self):
         self.ensure_one()
+        if self.move_reversal_id:
+            self.move_reversal_id.line_ids.remove_move_reconcile()
+            self.move_reversal_id.unlink()
+            self.move_id.line_ids.remove_move_reconcile()
         if self.move_id:
             self.move_id.unlink()
         self.write({"state": "draft"})
@@ -325,7 +340,24 @@ class AccountCutoff(models.Model):
         move = move_obj.create(vals)
         if self.company_id.post_cutoff_move:
             move._post(soft=False)
-        self.write({"move_id": move.id, "state": "done"})
+
+        data = {"move_id": move.id, "state": "done"}
+
+        if self.auto_reverse:
+            next_day = fields.Date.from_string(self.cutoff_date) + relativedelta(days=1)
+            rev_move = move._reverse_moves(
+                [
+                    {
+                        "date": next_day,
+                        "ref": _("reversal of: ") + move.ref,
+                    }
+                ]
+            )
+            data["move_reversal_id"] = rev_move.id
+            if self.company_id.post_cutoff_move:
+                rev_move._post(soft=False)
+
+        self.write(data)
         self.message_post(body=_("Journal entry generated"))
 
         action = self.env.ref("account.action_move_journal_line").sudo().read()[0]
