@@ -1,0 +1,227 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_invoice_accrual
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-26 10:17+0000\n"
+"PO-Revision-Date: 2016-09-26 10:17+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_supplier_form
+msgid "Accrual"
+msgstr "Razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_date
+msgid "Accrual Date"
+msgstr "Datum razmejitve"
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/wizard/account_move_accrue.py:109
+#, python-format
+msgid "Accrual Entries"
+msgstr "Razmejitveni vnosi"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_journal_id
+msgid "Accrual Journal"
+msgstr "Dnevnik razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_invoice_accrual_move_id
+msgid "Accrual Journal Entry"
+msgstr "Vnos dnevnika razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_account_id
+msgid "Accrual account"
+msgstr "Razmejitveni konto"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_form
+msgid "Accrue"
+msgstr "Razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
+msgid "Accrue Entries"
+msgstr "Razmejitev vnosov"
+
+#. module: account_invoice_accrual
+#: model:ir.actions.act_window,name:account_invoice_accrual.act_account_move_accrue
+msgid "Accrue Invoices"
+msgstr "Razmejitev računov"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,help:account_invoice_accrual.field_account_invoice_to_be_reversed
+#, fuzzy
+msgid "Check this box if your entry has to be reversed at the end of period."
+msgstr "Označite, če se vnos ob koncu obdobja preobrne."
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
+msgid "Create accrual journal entries"
+msgstr "Ustvari razmejitvene dnevniške vnose"
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_move_accrue
+msgid "Create accrual of draft invoices"
+msgstr "Ustvari razmejitev osnutkov računov"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,help:account_invoice_accrual.field_account_move_accrue_date
+msgid ""
+"Enter the date of the accrual account entries. By default, Odoo proposes the "
+"last day of the previous month."
+msgstr ""
+"Vnos datuma za razmejitvene kontne vnose. Privzeto Odoo predlaga zadnji dan "
+"v prejšnjem mesecu."
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_move_prefix
+msgid "Entries Ref. Prefix"
+msgstr "Predpona sklica vnosov"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: account_invoice_accrual
+#: model:ir.model,name:account_invoice_accrual.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Postavka računa"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_move_line_prefix
+msgid "Items Name Prefix"
+msgstr "Predpona naziva postavk"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_move_accrue_write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,help:account_invoice_accrual.field_account_invoice_accrual_move_id
+msgid "Link to the Accrual Journal Items."
+msgstr "Povezava do razmejitvenih dnevniških postavk"
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/models/account_invoice.py:79
+#, python-format
+msgid "Please reverse accrual before cancelling invoice"
+msgstr "Pred preklicem računa izvedite obratno razmejitev"
+
+#. module: account_invoice_accrual
+#: code:addons/account_invoice_accrual/models/account_invoice.py:87
+#, python-format
+msgid "Please reverse accrual before deleting invoice"
+msgstr "Pred izbrisom računa izvedite obratno razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,help:account_invoice_accrual.field_account_move_accrue_move_prefix
+msgid ""
+"Prefix that will be added to the 'Ref' of the journal entry to create the "
+"'Ref' of the accrual journal entry (no space added after the prefix)."
+msgstr ""
+"Predpona, ki bo dodana sklicu dnevniškega vnosa za ustvarjanje sklica "
+"razmejitvenega dnevniškega vnosa (brez dodajanja prostora po predponi)."
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,help:account_invoice_accrual.field_account_move_accrue_move_line_prefix
+msgid ""
+"Prefix that will be added to the name of the journal item to create the name "
+"of the accrual journal item (a space is added after the prefix)."
+msgstr ""
+"Predpona, ki bo dodana nazivu dnevniškega vnosa za ustvarjanje naziva "
+"razmejitvenega dnevniškega vnosa (po predponi se doda prostor)."
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_form
+#: model:ir.ui.view,arch_db:account_invoice_accrual.invoice_supplier_form
+msgid "Reverse Accrual"
+msgstr "Obratna razmejitev"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
+msgid ""
+"This will create accrual for all selected draft invoices without accrual "
+"journal entries"
+msgstr ""
+"Ustvari razmejitev za vse izbrane osnutke računov brez razmejitvenih "
+"dnevniških vnosov"
+
+#. module: account_invoice_accrual
+#: model:ir.model.fields,field_description:account_invoice_accrual.field_account_invoice_to_be_reversed
+msgid "To be reversed"
+msgstr "Za preobrnitev"
+
+#. module: account_invoice_accrual
+#: model:ir.ui.view,arch_db:account_invoice_accrual.view_account_move_accrue
+msgid "or"
+msgstr "ali"
+
+#~ msgid "Accrual On Taxes"
+#~ msgstr "Razmejitev na davke"
+
+#~ msgid "Accrual Period"
+#~ msgstr "Razmejitveno obdobje"
+
+#~ msgid "Companies"
+#~ msgstr "Družbe"
+
+#~ msgid "If empty, take the period of the date."
+#~ msgstr "Če je prazno, upošteva obdobje datuma."
+
+#~ msgid "REV - "
+#~ msgstr "REV - "
