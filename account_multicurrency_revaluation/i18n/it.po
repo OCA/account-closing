@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-03 03:53+0000\n"
-"PO-Revision-Date: 2023-10-13 12:40+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-03-18 16:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(rate)s : Value of rate applied during revaluation"
-msgstr "%(rate)s : Valore o tasso applicato per la rivalutazione"
+msgstr "%(rate)s : valore o tasso applicato per la rivalutazione"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -88,7 +88,7 @@ msgstr "Creato il"
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:345
 #, python-format
 msgid "Created revaluation lines"
-msgstr "Crea scritture di rivalutazione"
+msgstr "Righe rivalutazione create"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_currency
@@ -98,7 +98,7 @@ msgstr "Valuta"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "Currency Revaluation"
-msgstr "Valuta di Rivalutazione"
+msgstr "Rivalutazione valuta"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company_default_currency_reval_journal_id
@@ -119,7 +119,7 @@ msgstr "Tasso di cambio"
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 msgid "Currency revaluation"
-msgstr "Rivalutazione monetaria"
+msgstr "Rivalutazione valuta"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation_display_name
