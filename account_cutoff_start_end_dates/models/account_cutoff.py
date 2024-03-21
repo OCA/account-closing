@@ -37,6 +37,8 @@ class AccountCutoff(models.Model):
         string="Source Journals",
         default=lambda self: self._get_default_source_journals(),
         readonly=True,
+        check_company=True,
+        domain="[('company_id', '=', company_id), ('type', '=', filter_type_domain)]",
         states={"draft": [("readonly", False)]},
     )
     forecast = fields.Boolean(
@@ -89,6 +91,7 @@ class AccountCutoff(models.Model):
             cutoff_account_id = aml.account_id.id
         vals = {
             "parent_id": self.id,
+            "manual": False,
             "origin_move_line_id": aml.id,
             "partner_id": aml.partner_id.id or False,
             "name": aml.name,
@@ -130,15 +133,7 @@ class AccountCutoff(models.Model):
         )
 
         if aml.tax_ids and self.company_id.accrual_taxes:
-            tax_compute_all_res = aml.tax_ids.compute_all(
-                cutoff_amount,
-                product=aml.product_id,
-                partner=aml.partner_id,
-                handle_price_include=False,
-            )
-            vals["tax_line_ids"] = self._prepare_tax_lines(
-                tax_compute_all_res, self.company_currency_id
-            )
+            vals["tax_ids"] = [(6, 0, aml.tax_ids.ids)]
 
     def _prepare_date_prepaid_cutoff_line(self, aml, vals):
         self.ensure_one()

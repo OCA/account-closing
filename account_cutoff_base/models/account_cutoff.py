@@ -7,8 +7,8 @@ from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
-from odoo.tools import date_utils, float_is_zero
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import date_utils
 
 
 class AccountCutoff(models.Model):
@@ -94,6 +94,10 @@ class AccountCutoff(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
+    # technical field to filter taxes on lines
+    # (and source_journal_ids in account_cutoff_start_end_dates)
+    filter_type_domain = fields.Char(compute="_compute_filter_type_domain")
+    show_taxes = fields.Boolean(compute="_compute_show_taxes")
     source_move_state = fields.Selection(
         [("posted", "Posted Entries"), ("draft_posted", "Draft and Posted Entries")],
         string="Source Entries",
@@ -191,6 +195,28 @@ class AccountCutoff(models.Model):
             _("A cutoff of the same type already exists with this cut-off date !"),
         )
     ]
+
+    @api.depends("cutoff_type")
+    def _compute_filter_type_domain(self):
+        domain_map = {
+            "accrued_revenue": "sale",
+            "prepaid_revenue": "sale",
+            "accrued_expense": "purchase",
+            "prepaid_expense": "purchase",
+        }
+        for rec in self:
+            rec.filter_type_domain = domain_map.get(rec.cutoff_type)
+
+    @api.depends("company_id.accrual_taxes", "cutoff_type")
+    def _compute_show_taxes(self):
+        for rec in self:
+            show_taxes = False
+            if rec.company_id.accrual_taxes and rec.cutoff_type in (
+                "accrued_revenue",
+                "accrued_expense",
+            ):
+                show_taxes = True
+            rec.show_taxes = show_taxes
 
     def back2draft(self):
         self.ensure_one()
@@ -336,10 +362,9 @@ class AccountCutoff(models.Model):
     def get_lines(self):
         """This method is designed to be inherited in other modules"""
         self.ensure_one()
-        # Delete existing lines
-        self.line_ids.unlink()
+        # Delete existing automatic lines
+        self.line_ids.filtered(lambda x: not x.manual).unlink()
         self.message_post(body=_("Cut-off lines re-generated"))
-        return True
 
     def unlink(self):
         for rec in self:
@@ -368,70 +393,45 @@ class AccountCutoff(models.Model):
         key = ID of account,
         value = ID of cutoff_account"""
         self.ensure_one()
-        mappings = self.env["account.cutoff.mapping"].search(
+        mappings = self.env["account.cutoff.mapping"].search_read(
             [
                 ("company_id", "=", self.company_id.id),
                 ("cutoff_type", "in", ("all", self.cutoff_type)),
-            ]
+            ],
+            ["account_id", "cutoff_account_id"],
         )
         mapping = {}
         for item in mappings:
-            mapping[item.account_id.id] = item.cutoff_account_id.id
+            mapping[item["account_id"][0]] = item["cutoff_account_id"][0]
         return mapping
-
-    def _prepare_tax_lines(self, tax_compute_all_res, currency):
-        res = []
-        ato = self.env["account.tax"]
-        company_currency = self.company_id.currency_id
-        cur_rprec = company_currency.rounding
-        for tax_line in tax_compute_all_res["taxes"]:
-            tax = ato.browse(tax_line["id"])
-            if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
-                continue
-            if self.cutoff_type == "accrued_expense":
-                tax_accrual_account_id = tax.account_accrued_expense_id.id
-                tax_account_field_label = _("Accrued Expense Tax Account")
-            elif self.cutoff_type == "accrued_revenue":
-                tax_accrual_account_id = tax.account_accrued_revenue_id.id
-                tax_account_field_label = _("Accrued Revenue Tax Account")
-            if not tax_accrual_account_id:
-                raise UserError(
-                    _("Missing '%s' on tax '%s'.")
-                    % (tax_account_field_label, tax.display_name)
-                )
-            tax_amount = currency.round(tax_line["amount"])
-            tax_accrual_amount = currency._convert(
-                tax_amount, company_currency, self.company_id, self.cutoff_date
-            )
-            res.append(
-                (
-                    0,
-                    0,
-                    {
-                        "tax_id": tax_line["id"],
-                        "base": tax_line["base"],  # in currency
-                        "amount": tax_amount,  # in currency
-                        "sequence": tax_line["sequence"],
-                        "cutoff_account_id": tax_accrual_account_id,
-                        "cutoff_amount": tax_accrual_amount,  # in company currency
-                    },
-                )
-            )
-        return res
 
 
 class AccountCutoffLine(models.Model):
     _name = "account.cutoff.line"
     _description = "Account Cut-off Line"
+    _check_company_auto = True
 
     parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
-    name = fields.Char("Description")
+    # field used to delete only automatic lines when clicking on "Re-generate lines"
+    manual = fields.Boolean(default=True)
+    name = fields.Char(string="Description", states={"done": [("readonly", True)]})
     company_currency_id = fields.Many2one(
         related="parent_id.company_currency_id",
         string="Company Currency",
         store=True,
     )
-    partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
+    company_id = fields.Many2one(related="parent_id.company_id", store=True)
+    cutoff_type = fields.Selection(related="parent_id.cutoff_type")
+    filter_type_domain = fields.Char(related="parent_id.filter_type_domain")
+    show_taxes = fields.Boolean(related="parent_id.show_taxes")
+    state = fields.Selection(related="parent_id.state", store=True)
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        states={"done": [("readonly", True)]},
+        domain="[('parent_id', '=', False)]",
+        check_company=True,
+    )
     quantity = fields.Float(
         string="Quantity", digits="Product Unit of Measure", readonly=True
     )
@@ -444,7 +444,10 @@ class AccountCutoffLine(models.Model):
     )
     price_origin = fields.Char(readonly=True)
     origin_move_line_id = fields.Many2one(
-        "account.move.line", string="Origin Journal Item", readonly=True
+        "account.move.line",
+        string="Origin Journal Item",
+        readonly=True,
+        check_company=True,
     )  # Old name: move_line_id
     origin_move_id = fields.Many2one(
         related="origin_move_line_id.move_id", string="Origin Journal Entry"
@@ -455,14 +458,20 @@ class AccountCutoffLine(models.Model):
     account_id = fields.Many2one(
         "account.account",
         "Account",
-        required=True,
-        readonly=True,
+        required=False,
+        states={"done": [("readonly", True)]},
+        check_company=True,
+        domain="[('company_id', '=', company_id), ('deprecated', '=', False)]",
     )
     cutoff_account_id = fields.Many2one(
         "account.account",
         string="Cut-off Account",
+        compute="_compute_cutoff_account_id",
+        store=True,
+        readonly=False,
+        check_company=True,
         required=True,
-        readonly=True,
+        states={"done": [("readonly", True)]},
     )
     cutoff_account_code = fields.Char(
         related="cutoff_account_id.code",
@@ -472,7 +481,8 @@ class AccountCutoffLine(models.Model):
     analytic_account_id = fields.Many2one(
         "account.analytic.account",
         string="Analytic Account",
-        readonly=True,
+        states={"done": [("readonly", True)]},
+        check_company=True,
     )
     currency_id = fields.Many2one(
         "res.currency",
@@ -490,22 +500,112 @@ class AccountCutoffLine(models.Model):
     cutoff_amount = fields.Monetary(
         string="Cut-off Amount",
         currency_field="company_currency_id",
-        readonly=True,
-        help="Cut-off Amount without taxes in the Company Currency.",
+        required=True,
+        states={"done": [("readonly", True)]},
+        help="Cut-off amount without taxes in the company currency. "
+        "Negative amounts will become a debit on the provision line ; "
+        "positive amounts will become a credit on the provision line.",
+    )
+    tax_ids = fields.Many2many(
+        "account.tax",
+        string="Taxes",
+        check_company=True,
+        context={"active_test": False},
+        domain="[('company_id', '=', company_id), ('type_tax_use', '=', filter_type_domain)]",
+        states={"done": [("readonly", True)]},
     )
     tax_line_ids = fields.One2many(
         "account.cutoff.tax.line",
         "parent_id",
+        compute="_compute_tax_line_ids",
+        store=True,
         string="Cut-off Tax Lines",
-        readonly=True,
     )
     notes = fields.Text()
+
+    @api.constrains("tax_ids")
+    def _check_tax_ids(self):
+        for line in self:
+            cutoff_type = line.parent_id.cutoff_type
+            for tax in line.tax_ids:
+                if cutoff_type == "accrued_expense":
+                    if not tax.account_accrued_expense_id:
+                        raise ValidationError(
+                            _("Missing Accrued Expense Tax Account on tax %s.")
+                            % tax.display_name
+                        )
+                elif cutoff_type == "accrued_revenue":
+                    if not tax.account_accrued_revenue_id:
+                        raise ValidationError(
+                            _("Missing Accrued Revenue Tax Account on tax %s.")
+                            % tax.display_name
+                        )
+
+    @api.depends("parent_id.cutoff_type", "account_id")
+    def _compute_cutoff_account_id(self):
+        for line in self:
+            parent = line.parent_id
+            cutoff_account_id = line.account_id.id
+            if line.account_id and parent:
+                mapping = parent._get_mapping_dict()
+                if line.account_id.id in mapping:
+                    cutoff_account_id = mapping[line.account_id.id]
+            line.cutoff_account_id = cutoff_account_id
+
+    @api.depends("tax_ids", "cutoff_amount", "company_id")
+    def _compute_tax_line_ids(self):
+        ato = self.env["account.tax"]
+        for line in self:
+            cutoff_type = line.parent_id.cutoff_type
+            if (
+                line.company_id.accrual_taxes
+                and cutoff_type in ("accrued_expense", "accrued_revenue")
+                and line.tax_ids
+            ):
+                tax_line_ids = [(5,)]
+                tax_compute_all_res = line.tax_ids.compute_all(
+                    line.cutoff_amount, handle_price_include=False
+                )
+                company_currency = line.company_currency_id
+                for tax_line in tax_compute_all_res.get("taxes", []):
+                    if company_currency.is_zero(tax_line.get("amount", 0)):
+                        continue
+                    tax = ato.browse(tax_line["id"] or tax_line["id"].origin)
+                    if cutoff_type == "accrued_expense":
+                        tax_accrual_account_id = tax.account_accrued_expense_id.id
+                    elif cutoff_type == "accrued_revenue":
+                        tax_accrual_account_id = tax.account_accrued_revenue_id.id
+                    else:
+                        continue  # should never happen
+                    tax_line_ids.append(
+                        (
+                            0,
+                            0,
+                            {
+                                # TODO analytic ?
+                                "tax_id": tax.id,
+                                "base": company_currency.round(tax_line["base"]),
+                                "sequence": tax_line["sequence"],
+                                "cutoff_account_id": tax_accrual_account_id,
+                                "cutoff_amount": company_currency.round(
+                                    tax_line["amount"]
+                                ),
+                            },
+                        )
+                    )
+                line.tax_line_ids = tax_line_ids
+            else:
+                line.tax_line_ids = [(5,)]
 
 
 class AccountCutoffTaxLine(models.Model):
     _name = "account.cutoff.tax.line"
     _description = "Account Cut-off Tax Line"
+    # All the fields of cutoff tax lines are in company currency
 
+    cutoff_id = fields.Many2one(
+        "account.cutoff", related="parent_id.parent_id", store=True
+    )
     parent_id = fields.Many2one(
         "account.cutoff.line",
         string="Account Cut-off Line",
@@ -525,15 +625,9 @@ class AccountCutoffTaxLine(models.Model):
         readonly=True,
     )
     base = fields.Monetary(
-        currency_field="currency_id",
+        currency_field="company_currency_id",
         readonly=True,
-        help="Base Amount in the currency of the PO.",
-    )
-    amount = fields.Monetary(
-        string="Tax Amount",
-        currency_field="currency_id",
-        readonly=True,
-        help="Tax Amount in the currency of the PO.",
+        help="Base Amount in the company currency.",
     )
     sequence = fields.Integer(readonly=True)
     cutoff_amount = fields.Monetary(
@@ -541,9 +635,6 @@ class AccountCutoffTaxLine(models.Model):
         currency_field="company_currency_id",
         readonly=True,
         help="Tax Cut-off Amount in the company currency.",
-    )
-    currency_id = fields.Many2one(
-        related="parent_id.currency_id", string="Currency", store=True
     )
     company_currency_id = fields.Many2one(
         related="parent_id.company_currency_id",
