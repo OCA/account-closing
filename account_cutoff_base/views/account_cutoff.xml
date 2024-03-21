@@ -23,6 +23,7 @@
                         string="Back to Draft"
                         type="object"
                         states="done"
+                        confirm="Are you sure you want to go back to draft state?"
                     />
                     <button
                         class="btn-primary"
@@ -73,6 +74,8 @@
                                 widget="selection"
                             />
                             <field name="company_currency_id" invisible="1" />
+                            <field name="filter_type_domain" invisible="1" />
+                            <field name="show_taxes" invisible="1" />
                         </group>
                         <group name="accounting-params">
                             <field name="cutoff_journal_id" required="1" />
@@ -149,6 +152,12 @@
                             name="parent_id"
                             invisible="not context.get('account_cutoff_line_main_view', False)"
                         />
+                    <field name="state" invisible="1" />
+                    <field name="company_id" invisible="1" />
+                    <field name="cutoff_type" invisible="1" />
+                    <field name="filter_type_domain" invisible="1" />
+                    <field name="show_taxes" invisible="1" />
+                    <field name="manual" invisible="1" />
                     <field name="partner_id" />
                     <field name="name" widget="text" />
                     <field name="quantity" />
@@ -163,6 +172,11 @@
                             groups="analytic.group_analytic_accounting"
                         />
                     <field name="amount" />
+                    <field
+                            name="tax_ids"
+                            widget="many2many_tags"
+                            attrs="{'invisible': [('show_taxes', '=', False)]}"
+                        />
                     <field name="currency_id" invisible="1" />
                 </group>
                 <group name="cutoff" string="Cut-off Computation">
@@ -174,7 +188,7 @@
                 <group
                     name="tax"
                     string="Cut-off Taxes Lines"
-                    invisible="'accrued' not in context.get('cutoff_type', '-')"
+                    attrs="{'invisible': [('show_taxes', '=', False)]}"
                 >
                     <field name="tax_line_ids" nolabel="1" />
                 </group>
@@ -204,10 +218,17 @@
                 <field name="quantity" optional="hide" />
                 <field name="price_unit" optional="hide" />
                 <field name="price_origin" optional="hide" />
+                <field
+                    name="tax_ids"
+                    widget="many2many_tags"
+                    attrs="{'column_invisible': [('parent.show_taxes', '=', False)]}"
+                    optional="hide"
+                />
                 <field name="amount" />
                 <field name="currency_id" invisible="1" />
                 <field name="cutoff_amount" sum="1" />
                 <field name="company_currency_id" invisible="1" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>
@@ -245,23 +266,19 @@
         <field name="model">account.cutoff.tax.line</field>
         <field name="arch" type="xml">
             <form string="Cut-off Tax Lines">
-                <group name="tax" string="Tax">
+                <group name="main">
                     <field
                         name="parent_id"
                         invisible="not context.get('account_cutoff_tax_line_main_view', False)"
                     />
                     <field name="tax_id" />
-                    <field name="sequence" />
+                    <field name="sequence" invisible="1" />
                     <field name="cutoff_account_id" />
                     <field
                         name="analytic_account_id"
                         groups="analytic.group_analytic_accounting"
                     />
                     <field name="base" />
-                    <field name="amount" />
-                    <field name="currency_id" invisible="1" />
-                </group>
-                <group name="cutoff" string="Cut-off Computation">
                     <field name="cutoff_amount" />
                     <field name="company_currency_id" invisible="1" />
                 </group>
@@ -284,8 +301,6 @@
                     groups="analytic.group_analytic_accounting"
                 />
                 <field name="base" />
-                <field name="amount" />
-                <field name="currency_id" invisible="1" />
                 <field name="cutoff_amount" />
                 <field name="company_currency_id" invisible="1" />
                 <field name="sequence" invisible="1" />

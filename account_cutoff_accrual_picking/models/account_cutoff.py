@@ -54,7 +54,6 @@ class AccountCutoff(models.Model):
             return False
 
         company_currency = self.company_currency_id
-        currency = vdict["currency"]
         sign = self.cutoff_type in ("accrued_expense", "prepaid_revenue") and -1 or 1
         amount = qty * vdict["price_unit"] * sign
         amount_company_currency = vdict["currency"]._convert(
@@ -106,6 +105,7 @@ class AccountCutoff(models.Model):
 
         vals = {
             "parent_id": self.id,
+            "manual": False,
             "partner_id": vdict["partner"].id,
             "name": vdict["name"],
             "account_id": account_id,
@@ -125,19 +125,7 @@ class AccountCutoff(models.Model):
             and vdict["taxes"]
             and self.company_id.accrual_taxes
         ):
-            # vdict["price_unit"] is a price without tax,
-            # so I set handle_price_include=False
-            tax_compute_all_res = vdict["taxes"].compute_all(
-                vdict["price_unit"],
-                currency=currency,
-                quantity=qty * sign,
-                product=vdict["product"],
-                partner=vdict["partner"],
-                handle_price_include=False,
-            )
-            vals["tax_line_ids"] = self._prepare_tax_lines(
-                tax_compute_all_res, self.company_currency_id
-            )
+            vals["tax_ids"] = [(6, 0, vdict["taxes"].ids)]
         return vals
 
     def order_line_update_oline_dict(

@@ -167,6 +167,7 @@ class AccountCutoff(models.Model):
             vals = {
                 "subscription_id": sub.id,
                 "parent_id": self.id,
+                "manual": False,
                 "partner_id": partner_id,
                 "account_id": sub.account_id.id,
                 "analytic_account_id": sub.analytic_account_id.id or False,
@@ -178,12 +179,7 @@ class AccountCutoff(models.Model):
                 "notes": "\n".join(notes),
             }
             if sub.tax_ids and self.company_id.accrual_taxes:
-                tax_compute_all_res = sub.tax_ids.compute_all(
-                    cutoff_amount, partner=sub.partner_id, handle_price_include=False
-                )
-                vals["tax_line_ids"] = self._prepare_tax_lines(
-                    tax_compute_all_res, ccur
-                )
+                vals["tax_ids"] = [(6, 0, sub.tax_ids.ids)]
             return vals
 
     class AccountCutoffLine(models.Model):
