@@ -91,7 +91,6 @@ class WizardCurrencyRevaluation(models.TransientModel):
         analytic_credit_acc_id=False,
         debit=False,
     ):
-
         base_move = {
             "journal_id": form.journal_id.id,
             "date": form.revaluation_date,
