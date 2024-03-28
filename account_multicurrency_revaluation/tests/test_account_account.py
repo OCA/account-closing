@@ -1,7 +1,10 @@
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.tests import common
+
+from .common import CURRENT_MODULE
 
 
 class TestAccountAccount(common.TransactionCase):
@@ -12,8 +15,8 @@ class TestAccountAccount(common.TransactionCase):
         cls.AccountAccount = cls.env["account.account"]
         cls.account_type_current_liabilities = "liability_current"
         cls.account_type_liquidity = "asset_cash"
-        cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
-        cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
+        cls.company = cls.env.ref(f"{CURRENT_MODULE}.res_company_reval")
+        cls.env.user.write({"company_ids": [Command.link(cls.company.id)]})
         cls.env.company = cls.company
 
     def test_currency_revaluation_field(self):

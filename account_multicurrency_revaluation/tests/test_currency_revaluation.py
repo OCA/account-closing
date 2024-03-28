@@ -2,11 +2,12 @@
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import timedelta
 
-from odoo import exceptions, fields
+from odoo import Command, exceptions, fields
 from odoo.tests import common
+
+from .common import CURRENT_MODULE
 
 
 class TestCurrencyRevaluation(common.TransactionCase):
@@ -15,31 +16,29 @@ class TestCurrencyRevaluation(common.TransactionCase):
         super().setUpClass()
 
         cls.today = fields.Date.today()
-        cls.company = cls.env.ref("account_multicurrency_revaluation.res_company_reval")
-        cls.env.user.write({"company_ids": [(4, cls.company.id, False)]})
+        cls.company = cls.env.ref(f"{CURRENT_MODULE}.res_company_reval")
+        cls.env.user.write({"company_ids": [Command.link(cls.company.id)]})
         cls.env.user.company_id = cls.company
         cls.company.account_journal_payment_debit_account_id = cls.env.ref(
-            "account_multicurrency_revaluation.demo_acc_liquidity_eur"
+            f"{CURRENT_MODULE}.demo_acc_liquidity_eur"
         ).id
         cls.company.account_journal_payment_credit_account_id = cls.env.ref(
-            "account_multicurrency_revaluation.demo_acc_liquidity_eur"
+            f"{CURRENT_MODULE}.demo_acc_liquidity_eur"
         ).id
-        cls.reval_journal = cls.env.ref(
-            "account_multicurrency_revaluation.reval_journal"
-        )
+        cls.reval_journal = cls.env.ref(f"{CURRENT_MODULE}.reval_journal")
         cls.company.write(
             {
                 "revaluation_loss_account_id": cls.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_loss"
+                    f"{CURRENT_MODULE}.acc_reval_loss"
                 ).id,
                 "expense_currency_exchange_account_id": cls.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_loss"
+                    f"{CURRENT_MODULE}.acc_reval_loss"
                 ).id,
                 "revaluation_gain_account_id": cls.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_gain"
+                    f"{CURRENT_MODULE}.acc_reval_gain"
                 ).id,
                 "income_currency_exchange_account_id": cls.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_gain"
+                    f"{CURRENT_MODULE}.acc_reval_gain"
                 ).id,
                 "currency_reval_journal_id": cls.reval_journal.id,
                 "currency_exchange_journal_id": cls.reval_journal.id,
@@ -55,7 +54,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
                 "company_id": cls.company.id,
             }
         )
-        payable_acc = cls.env.ref("account_multicurrency_revaluation.demo_acc_payable")
+        payable_acc = cls.env.ref(f"{CURRENT_MODULE}.demo_acc_payable")
         cls.partner = cls.env.ref("base.res_partner_3")
         cls.partner.company_id = cls.company.id
         cls.partner.property_account_payable_id = payable_acc.id
@@ -69,10 +68,10 @@ class TestCurrencyRevaluation(common.TransactionCase):
             {
                 "default_currency_reval_journal_id": self.reval_journal.id,
                 "revaluation_loss_account_id": self.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_loss"
+                    f"{CURRENT_MODULE}.acc_reval_loss"
                 ).id,
                 "revaluation_gain_account_id": self.env.ref(
-                    "account_multicurrency_revaluation.acc_reval_gain"
+                    f"{CURRENT_MODULE}.acc_reval_gain"
                 ).id,
             }
         ).execute()
@@ -143,10 +142,11 @@ class TestCurrencyRevaluation(common.TransactionCase):
         wiz = wizard.create({})
         result = wiz.print_report()
         account_ids = result.get("data").get("account_ids")
-        report = (
-            self.env["account.move.line"]
-            .search([("account_id", "in", account_ids)])
-            .filtered(lambda l: l.account_id.code == "accrec")
+        account_accrec_ids = self.env["account.account"].search(
+            [("code", "=", "accrec"), ("id", "in", account_ids)]
+        )
+        report = self.env["account.move.line"].search(
+            [("account_id", "in", account_accrec_ids)]
         )
         self.assertEqual(sum(report.mapped("debit")), 295)
         self.assertEqual(sum(report.mapped("credit")), 0)
@@ -214,10 +214,11 @@ class TestCurrencyRevaluation(common.TransactionCase):
         wiz = wizard.create({})
         result = wiz.print_report()
         account_ids = result.get("data").get("account_ids")
-        report = (
-            self.env["account.move.line"]
-            .search([("account_id", "in", account_ids)])
-            .filtered(lambda l: l.account_id.code == "accrec")
+        account_accrec_ids = self.env["account.account"].search(
+            [("code", "=", "accrec"), ("id", "in", account_ids)]
+        )
+        report = self.env["account.move.line"].search(
+            [("account_id", "in", account_accrec_ids)]
         )
         self.assertEqual(sum(report.mapped("debit")), 180)
         self.assertEqual(sum(report.mapped("credit")), 230)
@@ -271,9 +272,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
         self.assertAlmostEqual(sum(reval_move_lines.mapped("credit")), 2666.67)
         self.assertAlmostEqual(sum(reval_move_lines.mapped("amount_currency")), 5000.00)
 
-        acc_suspense = self.env.ref(
-            "account_multicurrency_revaluation.demo_acc_suspense"
-        )
+        acc_suspense = self.env.ref(f"{CURRENT_MODULE}.demo_acc_suspense")
         eur_bank = self.env["account.journal"].create(
             {
                 "name": "Euro Bank",
@@ -327,9 +326,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
         }
         self.company.write(values)
 
-        acc_suspense = self.env.ref(
-            "account_multicurrency_revaluation.demo_acc_suspense"
-        )
+        acc_suspense = self.env.ref(f"{CURRENT_MODULE}.demo_acc_suspense")
         eur_bank = self.env["account.journal"].create(
             {
                 "name": "EUR Bank",
@@ -521,9 +518,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
         }
         self.company.write(values)
 
-        acc_suspense = self.env.ref(
-            "account_multicurrency_revaluation.demo_acc_suspense"
-        )
+        acc_suspense = self.env.ref(f"{CURRENT_MODULE}.demo_acc_suspense")
         usd_bank = self.env["account.journal"].create(
             {
                 "name": "USD Bank",
@@ -749,9 +744,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
         }
         self.company.write(values)
 
-        acc_suspense = self.env.ref(
-            "account_multicurrency_revaluation.demo_acc_suspense"
-        )
+        acc_suspense = self.env.ref(f"{CURRENT_MODULE}.demo_acc_suspense")
         eur_bank = self.env["account.journal"].create(
             {
                 "name": "EUR Bank",
@@ -951,14 +944,14 @@ class TestCurrencyRevaluation(common.TransactionCase):
                 ("provision_bs_loss_account_id", "acc_prov_bs_loss"),
                 ("provision_pl_loss_account_id", "acc_prov_pl_loss"),
             ]:
-                xml_id = "account_multicurrency_revaluation." + xml_id
+                xml_id = f"{CURRENT_MODULE}." + xml_id
                 options[field] = self.env.ref(xml_id)
         self.company.write(options)
 
     def create_invoice(self, date, currency, quantity, price):
-        revenue_acc = self.env.ref("account_multicurrency_revaluation.demo_acc_revenue")
+        revenue_acc = self.env.ref(f"{CURRENT_MODULE}.demo_acc_revenue")
         payment_term = self.env.ref("account.account_payment_term_end_following_month")
-        sales_journal = self.env.ref("account_multicurrency_revaluation.sales_journal")
+        sales_journal = self.env.ref(f"{CURRENT_MODULE}.sales_journal")
         invoice_line_data = {
             "product_id": self.env.ref("product.product_product_5").id,
             "quantity": quantity,

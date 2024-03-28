@@ -11,6 +11,7 @@
 - Vincent Renaville
 - Yannick Vaucher
 - Akim Juillerat
+- Aleksander Milinkevich
 - [CorporateHub](https://corporatehub.eu/):
   - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
 - [Tecnativa](https://www.tecnativa.com):

@@ -125,7 +125,7 @@ class AccountAccount(models.Model):
                     )
                 )
             )
-        return super(AccountAccount, self).write(vals)
+        return super().write(vals)
 
     def _get_revaluation_account_types(self):
         return [

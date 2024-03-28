@@ -3,6 +3,8 @@
 
 from odoo.tests.common import TransactionCase
 
+from .common import CURRENT_MODULE
+
 
 class TestCurrencyRevaluationReport(TransactionCase):
     def test_wizard_empty_accounts(self):
@@ -13,5 +15,5 @@ class TestCurrencyRevaluationReport(TransactionCase):
         self.assertEqual(result.get("type"), "ir.actions.report")
         self.assertEqual(
             result.get("report_name"),
-            "account_multicurrency_revaluation.curr_unrealized_report",
+            f"{CURRENT_MODULE}.curr_unrealized_report",
         )

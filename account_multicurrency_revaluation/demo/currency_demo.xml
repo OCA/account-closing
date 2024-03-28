@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record model="res.currency.rate" id="currency_rate_gbp_01">
         <field eval="time.strftime('%Y-01-15')" name="name" />
