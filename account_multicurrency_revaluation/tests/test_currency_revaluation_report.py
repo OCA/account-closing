@@ -1,7 +1,6 @@
-# Copyright 2012-2018 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo.tests.common import TransactionCase
+
+from .common import CURRENT_MODULE
 
 
 class TestCurrencyRevaluationReport(TransactionCase):
@@ -13,5 +12,5 @@ class TestCurrencyRevaluationReport(TransactionCase):
         self.assertEqual(result.get("type"), "ir.actions.report")
         self.assertEqual(
             result.get("report_name"),
-            "account_multicurrency_revaluation.curr_unrealized_report",
+            f"{CURRENT_MODULE}.curr_unrealized_report",
         )

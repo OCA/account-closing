@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="reval_journal" model="account.journal">
+        <field name="name">Revaluation Journal</field>
+        <field name="code">RJ</field>
+        <field name="type">general</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="bank_journal_usd" model="account.journal">
+        <field name="name">Bank Journal USD</field>
+        <field name="code">BJ USD</field>
+        <field name="type">bank</field>
+        <field name="currency_id" ref="base.USD" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="bank_journal_gbp" model="account.journal">
+        <field name="name">Bank Journal GBP</field>
+        <field name="code">BJ GBP</field>
+        <field name="type">bank</field>
+        <field name="currency_id" ref="base.GBP" />
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+    <record id="sales_journal" model="account.journal">
+        <field name="name">A Sales Journal</field>
+        <field name="code">SJ</field>
+        <field name="type">sale</field>
+        <field name="company_id" ref="res_company_reval" />
+    </record>
+</odoo>

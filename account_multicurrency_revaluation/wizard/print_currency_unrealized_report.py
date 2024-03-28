@@ -1,9 +1,3 @@
-# Copyright 2012-2018 Camptocamp SA
-# Copyright 2020 CorporateHub (https://corporatehub.eu)
-# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 

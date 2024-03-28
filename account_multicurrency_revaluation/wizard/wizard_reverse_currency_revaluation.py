@@ -1,6 +1,3 @@
-# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import _, api, exceptions, fields, models
 
 
@@ -18,7 +15,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
     )
     revaluation_interval_end_date = fields.Date(
         string="Revaluation End Date",
-        help="All entries revaluated on or before this date will be taken into account.",
+        help="All entries revaluated on or before this date "
+        "will be taken into account.",
     )
 
     reverse_posting_date = fields.Date(
@@ -74,7 +72,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_entries.write(vals)
         if self.journal_id.company_id.auto_post_entries:
             for entry in created_entries:
-                entry.post()
+                entry.action_post()
         # Mark entries reversed as not to be reversed anymore
         entries.write({"revaluation_to_reverse": False})
         if created_entries:

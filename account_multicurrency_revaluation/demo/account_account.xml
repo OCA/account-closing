@@ -1,22 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="res_partner_reval" model="res.partner">
-        <field name="name">Revaluation Company</field>
-        <field eval="1" name="is_company" />
-        <field eval="1" name="active" />
-        <field name="street">90 Streets Avenue</field>
-        <field name="country_id" ref="base.ch" />
-        <field name="zip">1000</field>
-        <field name="city">Lausanne</field>
-        <field name="email">revaluation@yourcompany.com</field>
-        <field name="phone">+41 12 345 67 89</field>
-        <field name="website">www.revaluationcompany.com</field>
-    </record>
-    <record id="res_company_reval" model="res.company">
-        <field name="currency_id" ref="base.EUR" />
-        <field name="partner_id" ref="res_partner_reval" />
-        <field name="name">Revaluation Company</field>
-    </record>
     <record id="demo_acc_liquidity_eur" model="account.account">
         <field name="name">Account Liquidity EURO</field>
         <field name="code">accliq.eur</field>
@@ -97,45 +80,6 @@
         <field name="account_type">asset_cash</field>
         <field name="currency_revaluation">True</field>
         <field name="currency_id" ref="base.GBP" />
-        <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="analytic_plan_revaluation" model="account.analytic.plan">
-        <field name="name">Revaluation</field>
-        <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="acc_analytic" model="account.analytic.account">
-        <field name="name">Analytic Account</field>
-        <field name="code">XA001</field>
-        <field name="company_id" ref="res_company_reval" />
-        <field
-            name="plan_id"
-            ref="account_multicurrency_revaluation.analytic_plan_revaluation"
-        />
-    </record>
-    <record id="reval_journal" model="account.journal">
-        <field name="name">Revaluation Journal</field>
-        <field name="code">RJ</field>
-        <field name="type">general</field>
-        <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="bank_journal_usd" model="account.journal">
-        <field name="name">Bank Journal USD</field>
-        <field name="code">BJ USD</field>
-        <field name="type">bank</field>
-        <field name="currency_id" ref="base.USD" />
-        <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="bank_journal_gbp" model="account.journal">
-        <field name="name">Bank Journal GBP</field>
-        <field name="code">BJ GBP</field>
-        <field name="type">bank</field>
-        <field name="currency_id" ref="base.GBP" />
-        <field name="company_id" ref="res_company_reval" />
-    </record>
-    <record id="sales_journal" model="account.journal">
-        <field name="name">A Sales Journal</field>
-        <field name="code">SJ</field>
-        <field name="type">sale</field>
         <field name="company_id" ref="res_company_reval" />
     </record>
 </odoo>
