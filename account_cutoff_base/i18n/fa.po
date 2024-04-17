@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2024-04-16 16:43+0000\n"
+"PO-Revision-Date: 2024-04-17 15:36+0000\n"
 "Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>\n"
 "Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
 "Language: fa\n"
@@ -30,39 +30,39 @@ msgstr "<span class=\"o_stat_text\"> نمایش کامل خطوط </span>"
 #: model:ir.model.constraint,message:account_cutoff_base.constraint_account_cutoff_date_type_company_uniq
 #, python-format
 msgid "A cutoff of the same type already exists with this cut-off date !"
-msgstr ""
+msgstr "بستن حساب طبق همان تاریخ تعیین شده!"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__account_id
 msgid "Account"
-msgstr ""
+msgstr "حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__parent_id
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "رویه‌ی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_mapping
 msgid "Account Cut-off Mapping"
-msgstr ""
+msgstr "توضیح فرآیند بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
 msgid "Account Cut-off Tax Line"
-msgstr ""
+msgstr "رویه‌ی مالیاتی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__accrual_taxes
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__accrual_taxes
 msgid "Accrual On Taxes"
-msgstr ""
+msgstr "برآورد مالیات‌ها"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -72,7 +72,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_cutoff_base.account_expense_accrual_menu
 #, python-format
 msgid "Accrued Expense"
-msgstr ""
+msgstr "بدهی معوقه"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -80,7 +80,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__account_accrued_expense_id
 #, python-format
 msgid "Accrued Expense Tax Account"
-msgstr ""
+msgstr "حساب مالیات بر بدهی معوقه"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -90,7 +90,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_cutoff_base.account_revenue_accrual_menu
 #, python-format
 msgid "Accrued Revenue"
-msgstr ""
+msgstr "درآمد معوقه"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -98,95 +98,95 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_tax__account_accrued_revenue_id
 #, python-format
 msgid "Accrued Revenue Tax Account"
-msgstr ""
+msgstr "حساب مالیات بر درآمد معوقه"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "نیاز به اقدام"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "فعالیت‌ها"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "ترتیب موارد استثناء"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "وضعیت فعالیت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "آیکون نوع فعالیت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff_mapping__cutoff_type__all
 msgid "All Cut-off Types"
-msgstr ""
+msgstr "انواع بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__amount
 msgid "Amount"
-msgstr ""
+msgstr "مبلغ"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
 msgid "Amount that is used as base to compute the Cut-off Amount."
-msgstr ""
+msgstr "مبلغی که به عنوان مبنای محاسبه‌ی بستن حساب مورد استفاده قرار می‌گیرد."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
 msgid "Analytic"
-msgstr ""
+msgstr "تحلیل"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution_search
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution_search
 msgid "Analytic Distribution Search"
-msgstr ""
+msgstr "جستجوی توزیع تحلیلی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_precision
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_precision
 msgid "Analytic Precision"
-msgstr ""
+msgstr "دقت تحلیل"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Are you sure you want to go back to draft state?"
-msgstr ""
+msgstr "مطمئنید می‌خواهید به وضعیت پیش‌نویس برگردید؟"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "تعداد پیوست"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
-msgstr ""
+msgstr "بازگشت به پیش‌نویس"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__base
 msgid "Base"
-msgstr ""
+msgstr "مبنا"
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
 msgid "Click to start a new cutoff account mapping."
-msgstr ""
+msgstr "برای توضیح روند بستن حساب کلیک کنید."
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "شرکت‌ها"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__company_id
@@ -194,24 +194,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__company_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "شرکت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__company_currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__company_currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "ارز رایج شرکت"
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "تنظیمات پیکربندی"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Create Journal Entry"
-msgstr ""
+msgstr "ایجاد ورودی دفتر روزنامه"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__create_uid
@@ -233,12 +233,12 @@ msgstr "ایجاد شده در"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__currency_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "ارز رایج"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__parent_id
 msgid "Cut-off"
-msgstr ""
+msgstr "بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_account_id
@@ -246,156 +246,156 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__cutoff_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__cutoff_account_id
 msgid "Cut-off Account"
-msgstr ""
+msgstr "اکانت بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_account_code
 msgid "Cut-off Account Code"
-msgstr ""
+msgstr "کد اکانت بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_journal_id
 msgid "Cut-off Account Journal"
-msgstr ""
+msgstr "دفتر گزارشات بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_mapping_action
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_mapping_menu
 msgid "Cut-off Account Mapping"
-msgstr ""
+msgstr "نقشه‌ی راه اکانت بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_amount
 msgid "Cut-off Amount"
-msgstr ""
+msgstr "مبلغ موردنظر برای بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__cutoff_amount
 msgid "Cut-off Amount without taxes in the Company Currency."
-msgstr ""
+msgstr "مبلغ موردنیاز برای بستن حساب بدون کسر مالیات به پول رایج شرکت."
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Cut-off Computation"
-msgstr ""
+msgstr "محاسبه‌ی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_date
 msgid "Cut-off Date"
-msgstr ""
+msgstr "تاریخ بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
 msgid "Cut-off Journal Entry"
-msgstr ""
+msgstr "ورودی دفتر روزنامه‌ی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
 msgid "Cut-off Lines"
-msgstr ""
+msgstr "روندهای بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
 msgid "Cut-off Tax Amount"
-msgstr ""
+msgstr "مبلغ مالیات بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__tax_line_ids
 msgid "Cut-off Tax Lines"
-msgstr ""
+msgstr "روندهای مالیاتی بستن حساب"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Cut-off Taxes Lines"
-msgstr ""
+msgstr "روندهای مالیاتی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__cutoff_type
 msgid "Cut-off Type"
-msgstr ""
+msgstr "نوع بستن حساب"
 
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Cut-off lines re-generated"
-msgstr ""
+msgstr "روندهای بستن حساب مجدد ایجاد شدند"
 
 #. module: account_cutoff_base
 #: model:ir.ui.menu,name:account_cutoff_base.cutoff_menu
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.res_config_settings_view_form
 msgid "Cut-offs"
-msgstr ""
+msgstr "بستن حساب‌ها"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_tree
 msgid "Cutoff Account"
-msgstr ""
+msgstr "شرح بستن حساب"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Cutoff Date"
-msgstr ""
+msgstr "تاریخ بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,name:account_cutoff_base.account_cutoff_line_action
 msgid "Cutoff Lines"
-msgstr ""
+msgstr "روندهای بستن حساب"
 
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Cutoff date is not set."
-msgstr ""
+msgstr "تاریخ بستن حساب تعیین نشده است."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_account_id
 msgid "Default Account for Accrued Expenses"
-msgstr ""
+msgstr "حساب پیش‌فرض برای هزینه‌های پرداخت نشده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_account_id
 msgid "Default Account for Accrued Revenues"
-msgstr ""
+msgstr "حساب پیش‌فرض برای درآمدهای تحقق نیافته"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_prepaid_expense_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_prepaid_expense_account_id
 msgid "Default Account for Prepaid Expense"
-msgstr ""
+msgstr "حساب پیش‌فرض برای هزینه‌ی از قبل پرداخت شده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_prepaid_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_prepaid_revenue_account_id
 msgid "Default Account for Prepaid Revenue"
-msgstr ""
+msgstr "حساب پیش‌فرض برای درآمد از قبل پرداخت شده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_journal_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_journal_id
 msgid "Default Cut-off Journal"
-msgstr ""
+msgstr "دفتر روزنامه‌ی پیش‌فرض برای بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_tax_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_tax_account_id
 msgid "Default Tax Account for Accrued Expense"
-msgstr ""
+msgstr "حساب مالیاتی پیش‌فرض برای هزینه‌ی پرداخت نشده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_tax_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_tax_account_id
 msgid "Default Tax Account for Accrued Revenue"
-msgstr ""
+msgstr "حساب مالیاتی پیش‌فرض برای درآمد تحقق یافته"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__name
 msgid "Description"
-msgstr ""
+msgstr "توصیف"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__display_name
@@ -403,49 +403,49 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__display_name
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__display_name
 msgid "Display Name"
-msgstr "نام نمایشی"
+msgstr "نام نمایش داده شده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__done
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Done"
-msgstr ""
+msgstr "انجام شد"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__draft
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Draft"
-msgstr ""
+msgstr "پیش‌نویس"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__draft_posted
 msgid "Draft and Posted Entries"
-msgstr ""
+msgstr "ورودی‌های پیش‌نویس و منتشر شده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "دنبال‌کنندگان"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "دنبال‌کنندگان (شرکا)"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "فونت آیکون awesome مانند fa-task"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Group By"
-msgstr ""
+msgstr "گروه‌بندی شده طبق"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "پیامی دریافت شده است"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__id
@@ -458,34 +458,34 @@ msgstr "شناسه"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "آیکون"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "آیکونی برای نمایش یک فعالیت استثناء"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "در صورت انتخاب این گزینه باید پیام‌های دریافتی را بررسی کنید."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "در صورت انتخاب این گزینه، برخی پیام‌ها دچار خطای تحویل می‌شوند."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "دنبال‌کننده است"
 
 #. module: account_cutoff_base
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "Journal entry generated"
-msgstr ""
+msgstr "ورودی دفتر روزنامه ایجاد شد"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff____last_update
@@ -514,22 +514,22 @@ msgstr "آخرین به روز رسانی در"
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "List view of lines"
-msgstr ""
+msgstr "فهرست خطوط"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "پیوست اصلی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "خطای تحویل پیام"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "پیام‌ها"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -540,95 +540,98 @@ msgid ""
 "'%(tax_display_name)s' or on the accounting configuration page of the "
 "company '%(company)s'."
 msgstr ""
+"در صورت نبود%(tax_account_field_label)s باید آن را در قسمت "
+"مالیات%(tax_display_name)s یا در صفحه‌ی پیکربندی حسابداری شرکت%(company)s، "
+"پیکربندی کنید."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "سررسید فعالیت من"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "سررسید فعالیت بعدی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "خلاصه‌ی فعالیت بعدی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "نوع فعالیت بعدی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__notes
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Notes"
-msgstr ""
+msgstr "یادداشت‌ها"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "تعداد اقدامات"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "تعداد خطاها"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "تعداد پیام‌هایی که نیازمند اقدام هستند"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "تعداد پیام‌های دارای خطای تحویل"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_id
 msgid "Origin Journal Entry"
-msgstr ""
+msgstr "ورودی دفتر روزنامه‌ی مبدأ"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_date
 msgid "Origin Journal Entry Date"
-msgstr ""
+msgstr "تاریخ ورودی دفتر روزنامه‌ی مبدأ"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__origin_move_line_id
 msgid "Origin Journal Item"
-msgstr ""
+msgstr "آیتم دفتر روزنامه‌ی مبدأ"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__partner_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_search
 msgid "Partner"
-msgstr ""
+msgstr "شریک"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_partner
 msgid "Partner on Journal Items"
-msgstr ""
+msgstr "شریک در آیتم‌های دفتر روزنامه"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_cutoff_move_partner
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_cutoff_move_partner
 msgid "Partner on Journal Items by Default"
-msgstr ""
+msgstr "شریک پیش‌فرض در آیتم‌های دفتر روزنامه"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__post_cutoff_move
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__post_cutoff_move
 msgid "Post Cut-off Journal Entry"
-msgstr ""
+msgstr "ورودی دفتر روزنامه پس از بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__source_move_state__posted
 msgid "Posted Entries"
-msgstr ""
+msgstr "ورودی‌های منتشر شده"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -638,7 +641,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_prepaid_expense_menu
 #, python-format
 msgid "Prepaid Expense"
-msgstr ""
+msgstr "هزینه‌ی از قبل پرداخت شده"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -648,12 +651,12 @@ msgstr ""
 #: model:ir.ui.menu,name:account_cutoff_base.account_cutoff_prepaid_revenue_menu
 #, python-format
 msgid "Prepaid Revenue"
-msgstr ""
+msgstr "درآمد از قبل پرداخت شده"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__price_origin
 msgid "Price Origin"
-msgstr ""
+msgstr "مبدأ قیمت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__price_unit
@@ -661,21 +664,23 @@ msgid ""
 "Price per unit (discount included) without taxes in the default unit of "
 "measure of the product in the currency of the 'Currency' field."
 msgstr ""
+"قیمت هر واحد (با تخفیف) بدون کسر مالیات با واحد پیش‌فرض ارزیابی محصول با ارز "
+"رایج شرکت در فیلد «Currency»."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "مقدار (تعداد)"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Re-Generate Lines"
-msgstr ""
+msgstr "ایجاد دوباره‌ی خطوط"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_ref
 msgid "Reference of the Cut-off Journal Entry"
-msgstr ""
+msgstr "مرجع ورودی دفتر روزنامه‌ بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__account_id
