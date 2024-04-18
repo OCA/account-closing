@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-18 11:34+0000\n"
+"Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -22,28 +24,30 @@ msgid ""
 " • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
 "%(src_location)s to %(dest_location)s)"
 msgstr ""
+" %(qty)s%(uom)s انتخاب%(picking)sانتقال داده شده روی %(date)s "
+"از%(src_location)s به %(dest_location)s"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "بستن حساب"
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_account_cutoff__picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_picking.field_res_config_settings__dft_cutoff_picking_interval_days
 msgid "Analysis Interval"
-msgstr ""
+msgstr "بازه تحلیلی"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "شرکت‌ها"
 
 #. module: account_cutoff_picking
 #: model:ir.model,name:account_cutoff_picking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "تنظیمات پیکربندی"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -52,7 +56,7 @@ msgstr ""
 msgid ""
 "Missing expense account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
-msgstr ""
+msgstr "عدم درج هزینه‌ روی محصول %(product)sیا دسته‌بندی محصول%(categ)s."
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -61,49 +65,49 @@ msgstr ""
 msgid ""
 "Missing income account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
-msgstr ""
+msgstr "عدم درج حساب درآمد روی محصول %(product)s یا دسته‌بندی محصول%(categ)s."
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity details:"
-msgstr ""
+msgstr "جزئیات مقدار محصول تحویل داده شده پیش از بستن حساب:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
-msgstr ""
+msgstr "مقدار محصول تحویل داده شده پیش از بستن حساب منهای مقدار فاکتور شده:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity:"
-msgstr ""
+msgstr "مقدار محصول تحویل داده شده پیش از بستن حساب:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity details:"
-msgstr ""
+msgstr "جزئیات مقدار محصول فاکتور شده پیش از بستن حساب:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
-msgstr ""
+msgstr "مقدار محصول فاکتور شده پیش از بستن حساب منهای مقدار تحویل داده شده:"
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity:"
-msgstr ""
+msgstr "مقدار محصول فاکتور شده پیش از بستن حساب:"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -113,6 +117,8 @@ msgid ""
 "Purchase order %(order)s confirmed on %(confirm_date)s\n"
 "Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
 msgstr ""
+"سفارش خرید %(order)s تأیید شده در%(confirm_date)s\n"
+"خط سفارش خرید: %(order_line)s (مقدار سفارش داده شده): %(qty)s%(uom)s"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -122,12 +128,14 @@ msgid ""
 "Sale order %(order)s confirmed on %(confirm_date)s\n"
 "Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
 msgstr ""
+"سفارش فروش %(order)s تأیید شده در %(confirm_date)s\n"
+"خط سفارش فروش: %(order_line)s (مقدار سفارش داده شده: %(qty)s%(uom)s"
 
 #. module: account_cutoff_picking
 #: model:ir.model.constraint,message:account_cutoff_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid "The value of the field 'Analysis Interval' must be strictly positive."
-msgstr ""
+msgstr "ارزش «بازه‌ی تحلیلی» باید حتما مثبت باشد."
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,help:account_cutoff_picking.field_res_company__default_cutoff_picking_interval_days
@@ -139,6 +147,10 @@ msgid ""
 " you increase the analysis interval, Odoo will take more time to generate "
 "the cutoff lines."
 msgstr ""
+"برای ایجاد درآمد تحقق نیافته/از پیش پرداخت شده بر روی تاریخ‌های انتخابی و "
+"تاریخ‌های صدور فاکتورکلیک کنید، اودوو تمام تاریخ‌ها را از N روز قبل از تاریخ "
+"بستن حساب تا تاریخ بستن حساب تحلیل می‌کند.N بازه‌ی تحلیل است. اگر بازه‌ی "
+"تحلیل را افزایش دهید، اودوو زمان بیشتری را صرف خطوط بستن حساب می‌کند."
 
 #. module: account_cutoff_picking
 #: model:ir.model.fields,help:account_cutoff_picking.field_account_cutoff__picking_interval_days
@@ -148,9 +160,13 @@ msgid ""
 "the cutoff date. N is the Analysis Interval. If you increase the analysis "
 "interval, Odoo will take more time to generate the cutoff lines."
 msgstr ""
+"برای بستن حساب در تاریخ‌های انتخابی و یا تاریخ‌های صدور فاکتور، اودوو تمام "
+"تاریخ‌ها را N روز قبل از تاریخ بستن حساب تا تاریخ بستن حساب تحلیل می‌کند. N "
+"بازه‌ی تحلیل است. اگر بازه‌ی تحلیل را افزایش دهید، اودوو زمان بیشتری را صرف "
+"ایجاد خطوط بستن حساب می‌کند."
 
 #. module: account_cutoff_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_picking.account_cutoff_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
 msgid "days"
-msgstr ""
+msgstr "روزها"
