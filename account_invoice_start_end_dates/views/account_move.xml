@@ -47,6 +47,20 @@
                 <field name="start_date" optional="hide" />
                 <field name="end_date" optional="hide" />
             </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/form//field[@name='date_maturity']"
+                position="after"
+            >
+                <field name="must_have_dates" invisible="1" />
+                <field
+                    name="start_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                />
+                <field
+                    name="end_date"
+                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
