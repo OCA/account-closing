@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2024-04-17 15:36+0000\n"
+"PO-Revision-Date: 2024-04-20 07:56+0000\n"
 "Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>\n"
 "Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
 "Language: fa\n"
@@ -56,7 +56,7 @@ msgstr "توضیح فرآیند بستن حساب"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_tax_line
 msgid "Account Cut-off Tax Line"
-msgstr "رویه‌ی مالیاتی بستن حساب"
+msgstr "خط مالیاتی بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__accrual_taxes
@@ -463,7 +463,7 @@ msgstr "آیکون"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr "آیکونی برای نمایش یک فعالیت استثناء"
+msgstr "آیکونی برای نمایش یک فعالیت استثناء."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction
@@ -685,33 +685,33 @@ msgstr "مرجع ورودی دفتر روزنامه‌ بستن حساب"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_mapping__account_id
 msgid "Regular Account"
-msgstr ""
+msgstr "حساب عادی"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "کاربر مسئول"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "توالی"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_line_form
 msgid "Source"
-msgstr ""
+msgstr "منبع"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__source_move_state
 msgid "Source Entries"
-msgstr ""
+msgstr "ثبت‌های منبع"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__state
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "State"
-msgstr ""
+msgstr "وضعیت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__state
@@ -719,6 +719,8 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
+"وضعیت بستن حساب. زمانی که ثبت دفتر رونامه ایجاد شود، وضعیت به صورت «انجام "
+"شده» و فیلدها به شکل «صرفاً خواندنی» مشخص می‌شوند."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_state
@@ -728,23 +730,27 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"وضعیت براساس فعالیت‌ها\n"
+"فعالیت معوقه: تاریخ سررسید گذشته است\n"
+"امروز: تاریخ سررسید فعالیت امروز است\n"
+"برنامه‌ریزی شده: فعالیت‌های آتی."
 
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_tax
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__tax_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_tax_line_form
 msgid "Tax"
-msgstr ""
+msgstr "مالیات"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__amount
 msgid "Tax Amount"
-msgstr ""
+msgstr "مبلغ مالیات"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_tax_line__cutoff_amount
 msgid "Tax Cut-off Amount in the company currency."
-msgstr ""
+msgstr "مبلغ مالیات با ارز رایج کشور."
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -754,6 +760,8 @@ msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
 msgstr ""
+"ثبت دفتر روزنامه‌ در رابطه با بستن حساب از قبل وجود دارد. شما باید این ثبت "
+"را پیش از اجرای این کارکرد حذف کنید."
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -761,6 +769,8 @@ msgstr ""
 #, python-format
 msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
+"هیچ خطی برای این بستن حساب وجود ندارد، بنابراین نمی‌توانیم یک ثبت "
+"دفترروزنامه ایجاد کنیم."
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -769,37 +779,39 @@ msgid ""
 "revenue that is not the same as the original expense/revenue account, using "
 "the same concept as the fiscal positions."
 msgstr ""
+"این ترسیم حساب‌ها به شما امکان می‌دهند با استفاده از وضعیت مالی، برای هزینه/"
+"درآمدی که مشابه حساب هزینه/درآمد اصلی نیستند یک ثبت بستن حساب ایجاد کنید."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__total_cutoff_amount
 msgid "Total Cut-off Amount"
-msgstr ""
+msgstr "مجموع مبلغ بستن حساب"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__cutoff_type
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__cutoff_type
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "نوع فعالیت استثناء در ثبت."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__price_unit
 msgid "Unit Price w/o Tax"
-msgstr ""
+msgstr "قیمت واحد با یا بدون کسر مالیات"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "پیام‌های وب‎سایت"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "سابقه‌ی ارتباطات وب‌سایت"
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -807,3 +819,5 @@ msgstr ""
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
+"شما نمی‌توانید ثبت‌های بستن حساب را برای مواردی که در وضعیت انجام شده قرار "
+"دارند، حذف کنید."
