@@ -6,45 +6,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-20 11:36+0000\n"
+"Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "بستن حساب"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "خط بستن حساب"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid "Cutoff Days"
-msgstr ""
+msgstr "روزهای بستن حساب"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Enable Forecast Mode"
-msgstr ""
+msgstr "فعال کردن حالت پیش‌بینی"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__end_date
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__end_date
 msgid "End Date"
-msgstr ""
+msgstr "تاریخ پایان"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__state__forecast
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_filter
 msgid "Forecast"
-msgstr ""
+msgstr "پیش‌بینی"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
@@ -53,34 +55,36 @@ msgid ""
 "forecast mode, this is the number of days between the start date and the end"
 " date."
 msgstr ""
+"در حالت عادی، این تعداد روزهای سپری شده پس از تاریخ بستن حساب است. در حالت "
+"پیش‌بینی، این تعداد روزهای میان تاریخ شروع و تاریخ پایان است."
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Leave Forecast Mode"
-msgstr ""
+msgstr "ترک حالت پیش‌بینی"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__source_journal_ids
 msgid "Source Journals"
-msgstr ""
+msgstr "دفاتر روزنامه‌ی منبع"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__start_date
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "تاریخ شروع"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "Start date and end date are required for forecast mode."
-msgstr ""
+msgstr "تاریخ‌های شروع و پایان برای حالت پیش‌بینی موردنیاز هستند."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__state
 msgid "State"
-msgstr ""
+msgstr "وضعیت"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__state
@@ -88,13 +92,15 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
+"وضعیت بستن حساب. زمانی که ثبت دفتر روزنامه ایجاد شود، وضعیت در حالت «انجام "
+"شد» قرار می‌گیرد و فیلدها تنها قابل خواندن می‌شوند."
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "The start date is after the end date!"
-msgstr ""
+msgstr "تاریخ وضعیت پس از تاریخ پایان است!"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
@@ -104,21 +110,23 @@ msgid ""
 "This cutoff is linked to a journal entry. You must delete it before entering"
 " forecast mode."
 msgstr ""
+"این بستن حساب با یک ثبت دفتر روزنامه در ارتباط است. شما باید پیش از ورود به "
+"حالت پیش‌بینی آن را حذف کنید."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__end_date
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__start_date
 msgid "This field is only for the forecast mode"
-msgstr ""
+msgstr "این فیلد تنها برای حالت پیش‌بینی است"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__total_days
 msgid "Total Days"
-msgstr ""
+msgstr "مجموع روزها"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "You should set at least one Source Journal."
-msgstr ""
+msgstr "شما باید حداقل یک دفتر روزنامه‌ی منبع داشته باشید."
