@@ -553,13 +553,17 @@ class AccountFiscalyearClosingMapping(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("dest_account_id", False):
+            if vals.get("dest_account_id", False) and isinstance(
+                vals["dest_account_id"], list
+            ):
                 vals["dest_account_id"] = vals["dest_account_id"][0]
         res = super(AccountFiscalyearClosingMapping, self).create(vals_list)
         return res
 
     def write(self, vals):
-        if vals.get("dest_account_id", False):
+        if vals.get("dest_account_id", False) and isinstance(
+            vals["dest_account_id"], list
+        ):
             vals["dest_account_id"] = vals["dest_account_id"][0]
         res = super(AccountFiscalyearClosingMapping, self).write(vals)
         return res
