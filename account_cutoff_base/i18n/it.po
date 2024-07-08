@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2024-02-06 16:34+0000\n"
+"PO-Revision-Date: 2024-07-08 08:59+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_cutoff_base
 #: model:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -490,7 +490,7 @@ msgstr "Riepilogo"
 #: view:account.cutoff.tax.line:account_cutoff_base.account_cutoff_tax_line_form
 #: field:account.cutoff.tax.line,tax_id:0
 msgid "Tax"
-msgstr "Imposte"
+msgstr "Imposta"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,amount:0
