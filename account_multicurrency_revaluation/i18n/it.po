@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2024-04-02 11:46+0000\n"
+"PO-Revision-Date: 2024-07-22 08:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -704,15 +704,14 @@ msgstr "Le registrazioni rivalutate che verranno invertite."
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/model/account.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There is an account that you are editing not having the Bring Balance "
 "Forward set, the currency revaluation cannot be applied on these accounts: \n"
 "\t - %s"
 msgstr ""
-"C'è un conto che si sta modificando che non ha impostato il Bring Balance "
-"Forward, la rivalutazione delle valuta non si può applicare a questi conti: "
-"\n"
+"C'è un conto che si sta modificando che non ha impostato il riporto del "
+"saldo, la rivalutazione delle valuta non si può applicare a questi conti: \n"
 "\t - %s"
 
 #. module: account_multicurrency_revaluation
