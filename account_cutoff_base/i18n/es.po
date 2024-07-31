@@ -472,7 +472,6 @@ msgstr "si está marcada, mensajes nuevos requieren su atención."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -681,11 +680,6 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "error en la entrega de sms"
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -812,6 +806,9 @@ msgstr "historial de la comunicación en la web"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "no puedes borrar cierres registrados que están en estado de 'hecho' ."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "error en la entrega de sms"
 
 #~ msgid "Analytic"
 #~ msgstr "analítica"
