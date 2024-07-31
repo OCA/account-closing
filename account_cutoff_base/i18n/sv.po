@@ -472,7 +472,6 @@ msgstr "Om den är markerad kräver nya meddelanden din uppmärksamhet."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
-#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Om kryssrutan är markerad får vissa meddelanden ett leveransfel."
 
@@ -681,11 +680,6 @@ msgid "Responsible User"
 msgstr "Ansvarig användare"
 
 #. module: account_cutoff_base
-#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Fel vid leverans av SMS"
-
-#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr "Sekvens"
@@ -712,8 +706,8 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
-"Status för avgränsningen. När Verifikatet skapas sätts statusen till \"Klar\""
-" och fälten blir skrivskyddade."
+"Status för avgränsningen. När Verifikatet skapas sätts statusen till "
+"\"Klar\" och fälten blir skrivskyddade."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_state
@@ -812,6 +806,9 @@ msgstr "Webbplatsens kommunikationshistorik"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "Du kan inte ta bort avgränsningsposter som är i färdigt tillstånd."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Fel vid leverans av SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Senast redigerad"
