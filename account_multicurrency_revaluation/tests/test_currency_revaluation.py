@@ -146,7 +146,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
             [("code", "=", "accrec"), ("id", "in", account_ids)]
         )
         report = self.env["account.move.line"].search(
-            [("account_id", "in", account_accrec_ids)]
+            [("account_id", "in", account_accrec_ids.ids)]
         )
         self.assertEqual(sum(report.mapped("debit")), 295)
         self.assertEqual(sum(report.mapped("credit")), 0)
@@ -218,7 +218,7 @@ class TestCurrencyRevaluation(common.TransactionCase):
             [("code", "=", "accrec"), ("id", "in", account_ids)]
         )
         report = self.env["account.move.line"].search(
-            [("account_id", "in", account_accrec_ids)]
+            [("account_id", "in", account_accrec_ids.ids)]
         )
         self.assertEqual(sum(report.mapped("debit")), 180)
         self.assertEqual(sum(report.mapped("credit")), 230)

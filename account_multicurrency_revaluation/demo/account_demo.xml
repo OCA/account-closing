@@ -101,7 +101,6 @@
     </record>
     <record id="analytic_plan_revaluation" model="account.analytic.plan">
         <field name="name">Revaluation</field>
-        <field name="company_id" ref="res_company_reval" />
     </record>
     <record id="acc_analytic" model="account.analytic.account">
         <field name="name">Analytic Account</field>
