@@ -19,7 +19,6 @@ class AccountFiscalyearClosingTemplate(models.Model):
     chart_template_ids = fields.Many2many(
         comodel_name="account.chart.template",
         string="Available for",
-        required=True,
     )
 
 
