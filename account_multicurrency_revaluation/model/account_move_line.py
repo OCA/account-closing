@@ -12,14 +12,12 @@ class AccountAccountLine(models.Model):
     revaluation_created_line_id = fields.Many2one(
         comodel_name="account.move.line",
         string="Revaluation Created Line",
-        readonly=True,
     )
 
     revaluation_origin_line_ids = fields.One2many(
         comodel_name="account.move.line",
         inverse_name="revaluation_created_line_id",
         string="Revaluation Origin Lines",
-        readonly=True,
     )
     revaluation_origin_line_count = fields.Integer(
         compute="_compute_revaluation_origin_line_count"
