@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_reval" model="res.partner">
+        <field name="name">Revaluation Company</field>
+        <field eval="1" name="is_company" />
+        <field eval="1" name="active" />
+        <field name="street">90 Streets Avenue</field>
+        <field name="country_id" ref="base.ch" />
+        <field name="zip">1000</field>
+        <field name="city">Lausanne</field>
+        <field name="email">revaluation@yourcompany.com</field>
+        <field name="phone">+41 12 345 67 89</field>
+        <field name="website">www.revaluationcompany.com</field>
+    </record>
+</odoo>

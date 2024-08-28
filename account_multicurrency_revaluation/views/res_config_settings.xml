@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.currency.revaluation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='invoicing_settings']" position="after">
+                <block
+                    title="Multicurrency Revaluation"
+                    id="multicurrency_revaluation_settings"
+                >
+                    <setting
+                        id="auto_post_entries"
+                        string="Auto Post Entries"
+                        company_dependent="1"
+                        help="If marked, the entries created in the process will be posted automatically."
+                    >
+                        <field name="auto_post_entries" />
+                    </setting>
+                    <setting
+                        id="default_revaluation_journal"
+                        string="Default Revaluation Journal"
+                        company_dependent="1"
+                        help="Currency gain &amp; loss Default Journal"
+                    >
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    for="default_currency_reval_journal_id"
+                                    class="col-lg-4 o_light_label"
+                                />
+                                <field
+                                    name="default_currency_reval_journal_id"
+                                    options="{'no_create_edit': True, 'no_open': True}"
+                                />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="revaluation_accounts"
+                        string="Revaluation Accounts"
+                        company_dependent="1"
+                    >
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    for="revaluation_loss_account_id"
+                                    string="Loss"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="revaluation_loss_account_id" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    for="revaluation_gain_account_id"
+                                    string="Gain"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="revaluation_gain_account_id" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    for="revaluation_analytic_account_id"
+                                    string="Analytic Account"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="revaluation_analytic_account_id" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="provision_bs_accounts"
+                        string="Provision B.S Accounts"
+                        company_dependent="1"
+                    >
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    for="provision_bs_loss_account_id"
+                                    string="Loss"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="provision_bs_loss_account_id" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    for="provision_bs_gain_account_id"
+                                    string="Gain"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="provision_bs_gain_account_id" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="provision_pl_accounts"
+                        string="Provision P&amp;L Accounts"
+                        company_dependent="1"
+                    >
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    for="provision_pl_loss_account_id"
+                                    string="Loss"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="provision_pl_loss_account_id" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    for="provision_pl_gain_account_id"
+                                    string="Gain"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="provision_pl_gain_account_id" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    for="provision_pl_analytic_account_id"
+                                    string="Analytic Account"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="provision_pl_analytic_account_id" />
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

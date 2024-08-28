@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_company_reval" model="res.company">
+        <field name="currency_id" ref="base.EUR" />
+        <field name="partner_id" ref="res_partner_reval" />
+        <field name="name">Revaluation Company</field>
+    </record>
+</odoo>
