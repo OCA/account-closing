@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2024-02-06 16:34+0000\n"
+"PO-Revision-Date: 2024-08-30 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_cutoff_prepaid
 #: model:ir.actions.act_window,help:account_cutoff_prepaid.account_cutoff_prepaid_expense_action
@@ -132,7 +132,7 @@ msgstr "Conto Predefinito per le Entrate Prepagate"
 #: field:account.cutoff.line,end_date:0 field:account.invoice.line,end_date:0
 #: field:account.move.line,end_date:0
 msgid "End Date"
-msgstr "Data finale"
+msgstr "Data fine"
 
 #. module: account_cutoff_prepaid
 #: code:addons/account_cutoff_prepaid/account_cutoff.py:85
