@@ -13,7 +13,11 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/account-closing",
     "depends": ["account"],
-    "data": ["views/account_move.xml", "views/product_template.xml"],
+    "data": [
+        "views/account_move.xml",
+        "views/account_move_line.xml",
+        "views/product_template.xml",
+    ],
     "demo": ["demo/product_demo.xml"],
     "installable": True,
 }
