@@ -41,8 +41,8 @@ class AccountMove(models.Model):
         self.cutoff_entry_ids.with_context(force_delete=True).unlink()
         return res
 
-    def action_post(self):
-        result = super().action_post()
+    def _post(self, *args, **kwargs):
+        result = super()._post(*args, **kwargs)
         for move, lines in self._get_deferrable_lines():
             move._create_cutoff_entries(lines)
 
