@@ -538,3 +538,15 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
             255.0,
             2,
         )
+
+    def test_reverse_moves_reverse_deffered(self):
+
+        with freeze_time("2023-01-15"):
+            self.invoice.action_post()
+            self.assertTrue(len(self.invoice.cutoff_entry_ids) > 0)
+            refund = self.invoice._reverse_moves(cancel=True)
+
+        self.assertEqual(refund.state, "posted")
+        self.assertEqual(
+            len(self.invoice.cutoff_entry_ids), len(refund.cutoff_entry_ids)
+        )
