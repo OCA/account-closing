@@ -53,13 +53,53 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
         action = self.invoice.action_view_deferred_entries()
         self.assertEqual(action["domain"][0][2], self.invoice.cutoff_entry_ids.ids)
 
-    def test_account_invoice_cutoff_monthly_factor_prorata(self):
+    def test_link_product(self):
+        self.addCleanup(
+            self.env["ir.config_parameter"].sudo().set_param,
+            "account_move_cutoff.link_product",
+            False,
+        )
+        self.env["ir.config_parameter"].sudo().set_param(
+            "account_move_cutoff.link_product", "True"
+        )
         self.invoice.line_ids.cutoff_method = "monthly_prorata_temporis"
 
         with freeze_time("2023-01-15"):
             self.invoice.action_post()
         self.assertEqual(self.invoice.cutoff_move_count, 4)
 
+        self.assertEqual(
+            len(
+                self.invoice.cutoff_entry_ids.line_ids.filtered(
+                    lambda ml: ml.product_id
+                )
+            ),
+            18,
+        )
+
+    def test_account_invoice_cutoff_monthly_factor_prorata(self):
+        self.addCleanup(
+            self.env["ir.config_parameter"].sudo().set_param,
+            "account_move_cutoff.link_product",
+            False,
+        )
+        self.env["ir.config_parameter"].sudo().set_param(
+            "account_move_cutoff.link_product", "False"
+        )
+        self.invoice.line_ids.cutoff_method = "monthly_prorata_temporis"
+
+        with freeze_time("2023-01-15"):
+            self.invoice.action_post()
+        self.assertEqual(self.invoice.cutoff_move_count, 4)
+
+        self.assertEqual(
+            len(
+                self.invoice.cutoff_entry_ids.line_ids.filtered(
+                    lambda ml: ml.product_id
+                )
+            ),
+            0,
+        )
         cutoff_move = self.invoice.cutoff_entry_ids.filtered(
             lambda move, move_date=date(2023, 1, 15): move.date == move_date
         )

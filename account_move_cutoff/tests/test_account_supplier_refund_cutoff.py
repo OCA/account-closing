@@ -43,10 +43,6 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
         self.assertEqual(self.refund.state, "posted")
 
     def test_account_refund_cutoff_equals(self):
-        # self.env["ir.config_parameter"].set_param(
-        #     "account_move_cutoff.default_cutoff_method",
-        #     "equal"
-        # )
         self.refund.line_ids.cutoff_method = "equal"
         with freeze_time("2023-01-15"):
             self.refund.action_post()
