@@ -31,6 +31,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="link_product" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="link_product"
+                            string="Link product on deferred entries"
+                        />
+                        <div class="text-muted">
+                            Link product to deferred entries using automatic cutoff on start/end date.
+                        </div>
+                    </div>
+                </div>
             </xpath>
 
         </field>

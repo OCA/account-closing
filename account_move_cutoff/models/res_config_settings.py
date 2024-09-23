@@ -17,3 +17,8 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         string="Expense cut-off journal",
     )
+    link_product = fields.Boolean(
+        "Link product",
+        config_parameter="account_move_cutoff.link_product",
+        help="Link product on deferred account.move.line.",
+    )
