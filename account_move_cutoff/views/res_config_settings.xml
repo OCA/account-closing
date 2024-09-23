@@ -45,6 +45,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <field
+                            name="default_cutoff_method"
+                            string="Default cutoff method"
+                        />
+                        <div class="text-muted">
+                            Determine how to split amounts over periods:
+                            <li>
+                             <ul
+                                >Equal: same amount is splitted over periods of the service"
+                               (using start and end date on the invoice line).</ul>
+                               <ul>
+                             Prorata temporis by month %: amount is splitted over"
+                               the rate of service days in the month.\n"
+                               </ul>
+                               </li>
+                        </div>
+                    </div>
+                </div>
             </xpath>
 
         </field>

@@ -19,16 +19,6 @@ class AccountMoveLine(models.Model):
         "cutoff.period.mixin",
     ]
 
-    @api.model
-    def _get_default_cutoff_method(self):
-        return (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "account_move_cutoff.default_cutoff_method", "monthly_prorata_temporis"
-            )
-        )
-
     is_deferrable_line = fields.Boolean(
         string="Is deferrable line",
         compute="_compute_is_deferrable_line",
@@ -41,7 +31,7 @@ class AccountMoveLine(models.Model):
         ],
         string="Cut-off method",
         required=True,
-        default=lambda self: self._get_default_cutoff_method(),
+        default="monthly_prorata_temporis",
         help=(
             "Determine how to split amounts over periods:\n"
             " * Equal: same amount is splitted over periods of the service"
