@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Account Move Cut-off",
-    "version": "14.0.0.0.1",
+    "version": "14.0.0.0.2",
     "category": "Accounting & Finance",
     "license": "AGPL-3",
     "summary": "Account move Cut-offs, manage Deferred Revenues/Expenses",
