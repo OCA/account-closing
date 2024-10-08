@@ -7,6 +7,7 @@ from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
+from odoo.tools.misc import str2bool
 
 logger = logging.getLogger(__name__)
 
@@ -17,16 +18,6 @@ class AccountMoveLine(models.Model):
         "account.move.line",
         "cutoff.period.mixin",
     ]
-
-    @api.model
-    def _get_default_cutoff_method(self):
-        return (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "account_move_cutoff.default_cutoff_method", "monthly_prorata_temporis"
-            )
-        )
 
     is_deferrable_line = fields.Boolean(
         string="Is deferrable line",
@@ -40,7 +31,7 @@ class AccountMoveLine(models.Model):
         ],
         string="Cut-off method",
         required=True,
-        default=lambda self: self._get_default_cutoff_method(),
+        default="monthly_prorata_temporis",
         help=(
             "Determine how to split amounts over periods:\n"
             " * Equal: same amount is splitted over periods of the service"
@@ -254,6 +245,14 @@ class AccountMoveLine(models.Model):
             end_date = self.end_date
         else:
             start_date, end_date = self._get_period_start_end_dates(period)
+
+        link_product = str2bool(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("account_move_cutoff.link_product", "False"),
+            False,
+        )
+
         return self.env["account.move.line"].create(
             [
                 {
@@ -270,6 +269,7 @@ class AccountMoveLine(models.Model):
                     "partner_id": self.partner_id.id,
                     "analytic_account_id": self.analytic_account_id.id,
                     "cutoff_source_id": self.id,
+                    "product_id": self.product_id.id if link_product else False,
                 },
                 {
                     "move_id": new_move.id,
@@ -287,6 +287,7 @@ class AccountMoveLine(models.Model):
                     "account_id": self.deferred_accrual_account_id.id,
                     "partner_id": self.partner_id.id,
                     "analytic_account_id": False,
+                    "product_id": False,
                     "cutoff_source_id": self.id,
                 },
             ]

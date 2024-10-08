@@ -33,9 +33,16 @@
                 />
             </field>
             <xpath
-                expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='name']"
+                expr="//notebook/page[@id='invoice_tab']/field[@name='invoice_line_ids']/tree/field[@name='account_id']"
                 position="after"
             >
+                <field name="cutoff_method" optional="hide" />
+            </xpath>
+            <xpath
+                expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='account_id']"
+                position="after"
+            >
+                <field name="cutoff_method" optional="hide" />
                 <field name="cutoff_source_move_id" optional="hide" />
                 <field name="cutoff_source_id" optional="hide" />
             </xpath>
