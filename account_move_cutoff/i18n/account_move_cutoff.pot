@@ -141,6 +141,16 @@ msgid "Cutoff Move Count"
 msgstr ""
 
 #. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__default_cutoff_method
+msgid "Default Cutoff method"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Default cutoff method"
+msgstr ""
+
+#. module: account_move_cutoff
 #: model_terms:ir.ui.view,arch_db:account_move_cutoff.view_move_line_form
 msgid "Deferred Revenue/Expense"
 msgstr ""
@@ -152,7 +162,13 @@ msgid "Deferred incomes of %s (%s): %s"
 msgstr ""
 
 #. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Determine how to split amounts over periods:"
+msgstr ""
+
+#. module: account_move_cutoff
 #: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_method
+#: model:ir.model.fields,help:account_move_cutoff.field_res_config_settings__default_cutoff_method
 msgid ""
 "Determine how to split amounts over periods:\n"
 " * Equal: same amount is splitted over periods of the service   (using start and end date on the invoice line).\n"
@@ -171,7 +187,15 @@ msgstr ""
 
 #. module: account_move_cutoff
 #: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__equal
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__res_config_settings__default_cutoff_method__equal
 msgid "Equal"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Equal: same amount is splitted over periods of the service\"\n"
+"                               (using start and end date on the invoice line)."
 msgstr ""
 
 #. module: account_move_cutoff
@@ -241,8 +265,37 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__link_product
+msgid "Link product"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_res_config_settings__link_product
+msgid "Link product on deferred account.move.line."
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Link product on deferred entries"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Link product to deferred entries using automatic cutoff on start/end date."
+msgstr ""
+
+#. module: account_move_cutoff
 #: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__monthly_prorata_temporis
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__res_config_settings__default_cutoff_method__monthly_prorata_temporis
 msgid "Prorata temporis (by month %)"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Prorata temporis by month %: amount is splitted over\"\n"
+"                               the rate of service days in the month.\\n\""
 msgstr ""
 
 #. module: account_move_cutoff
