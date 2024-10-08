@@ -146,6 +146,16 @@ msgid "Cutoff Move Count"
 msgstr "Recuento de Movimientos de Corte"
 
 #. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__default_cutoff_method
+msgid "Default Cutoff method"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Default cutoff method"
+msgstr ""
+
+#. module: account_move_cutoff
 #: model_terms:ir.ui.view,arch_db:account_move_cutoff.view_move_line_form
 msgid "Deferred Revenue/Expense"
 msgstr "Ingresos/gastos diferidos"
@@ -157,15 +167,23 @@ msgid "Deferred incomes of %s (%s): %s"
 msgstr "Ingresos aplazados de %s (%s): %s"
 
 #. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Determine how to split amounts over periods:"
+msgstr ""
+
+#. module: account_move_cutoff
 #: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__cutoff_method
+#: model:ir.model.fields,help:account_move_cutoff.field_res_config_settings__default_cutoff_method
 msgid ""
 "Determine how to split amounts over periods:\n"
-" * Equal: same amount is splitted over periods of the service   (using start and end date on the invoice line).\n"
-" * Prorata temporis by month %: amount is splitted over   the rate of service days in the month.\n"
+" * Equal: same amount is splitted over periods of the service   (using start "
+"and end date on the invoice line).\n"
+" * Prorata temporis by month %: amount is splitted over   the rate of "
+"service days in the month.\n"
 msgstr ""
 "Determine cómo repartir los importes entre los periodos:\n"
-" * Igual: el mismo importe se divide entre los periodos del servicio ("
-"utilizando la fecha de inicio y fin en la línea de factura).\n"
+" * Igual: el mismo importe se divide entre los periodos del servicio "
+"(utilizando la fecha de inicio y fin en la línea de factura).\n"
 " * Prorrata temporal por % del mes: el importe se divide entre el porcentaje "
 "de días de servicio del mes.\n"
 
@@ -181,8 +199,17 @@ msgstr "Mostrar Nombre"
 
 #. module: account_move_cutoff
 #: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__equal
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__res_config_settings__default_cutoff_method__equal
 msgid "Equal"
 msgstr "Igual"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Equal: same amount is splitted over periods of the service\"\n"
+"                               (using start and end date on the invoice "
+"line)."
+msgstr ""
 
 #. module: account_move_cutoff
 #: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__expense_cutoff_journal_id
@@ -256,9 +283,38 @@ msgid "Last Modified on"
 msgstr "Última Modificación el"
 
 #. module: account_move_cutoff
+#: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__link_product
+msgid "Link product"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model:ir.model.fields,help:account_move_cutoff.field_res_config_settings__link_product
+msgid "Link product on deferred account.move.line."
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid "Link product on deferred entries"
+msgstr ""
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Link product to deferred entries using automatic cutoff on start/end date."
+msgstr ""
+
+#. module: account_move_cutoff
 #: model:ir.model.fields.selection,name:account_move_cutoff.selection__account_move_line__cutoff_method__monthly_prorata_temporis
+#: model:ir.model.fields.selection,name:account_move_cutoff.selection__res_config_settings__default_cutoff_method__monthly_prorata_temporis
 msgid "Prorata temporis (by month %)"
 msgstr "Prorata temporis (por mes %)"
+
+#. module: account_move_cutoff
+#: model_terms:ir.ui.view,arch_db:account_move_cutoff.res_config_settings_view_form
+msgid ""
+"Prorata temporis by month %: amount is splitted over\"\n"
+"                               the rate of service days in the month.\\n\""
+msgstr ""
 
 #. module: account_move_cutoff
 #: model:ir.model.fields,field_description:account_move_cutoff.field_res_config_settings__revenue_cutoff_journal_id
@@ -301,9 +357,8 @@ msgstr "El movimiento de esta línea de entrada."
 #: model:ir.model.fields,help:account_move_cutoff.field_account_move_line__deferred_accrual_account_id
 msgid ""
 "Use related field to abstract the way to get deferred accrual account. This "
-"will give the possibility to overwrite the way to configure it. For instance"
-" to use the same account without any configuration while creating new "
-"account."
+"will give the possibility to overwrite the way to configure it. For instance "
+"to use the same account without any configuration while creating new account."
 msgstr ""
 "Utilice el campo relacionado para abstraer la forma de obtener la cuenta de "
 "periodificación diferida. Esto dará la posibilidad de sobrescribir la forma "
