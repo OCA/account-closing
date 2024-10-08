@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 14.0.1.0.3 |  | Generic fiscal year closing wizard
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 14.0.1.2.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start/end dates on invoice/move lines
 [account_invoice_start_end_dates_move](account_invoice_start_end_dates_move/) | 14.0.1.0.0 |  | Add the possibility to choose start and end dates on account invoice.
-[account_move_cutoff](account_move_cutoff/) | 14.0.0.0.2 | [![petrus-v](https://github.com/petrus-v.png?size=30px)](https://github.com/petrus-v) | Account move Cut-offs, manage Deferred Revenues/Expenses
+[account_move_cutoff](account_move_cutoff/) | 14.0.0.1.0 | [![petrus-v](https://github.com/petrus-v.png?size=30px)](https://github.com/petrus-v) | Account move Cut-offs, manage Deferred Revenues/Expenses
 [account_multicurrency_revaluation](account_multicurrency_revaluation/) | 14.0.2.0.2 |  | Manage revaluation for multicurrency environment
 
 [//]: # (end addons)
