@@ -170,6 +170,18 @@ msgid "Attachment Count"
 msgstr "Numero allegati"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid "Auto Reverse"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid ""
+"Automatically reverse created move on following day. Use this if you accrue "
+"a value end of period that you want to reverse begin of next period"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
 msgstr "Ritorna a bozza"
@@ -290,6 +302,11 @@ msgstr "Data di separazione"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
 msgid "Cut-off Journal Entry"
 msgstr "Registrazione separata"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
+msgid "Cut-off Journal Entry Reversal"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -823,6 +840,13 @@ msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
 "Impossibile eliminare record di separazione che non si trovano in stato "
 "completato."
+
+#. module: account_cutoff_base
+#. odoo-python
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "reversal of: "
+msgstr ""
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"

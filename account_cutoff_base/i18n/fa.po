@@ -169,6 +169,18 @@ msgid "Attachment Count"
 msgstr "تعداد پیوست"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid "Auto Reverse"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid ""
+"Automatically reverse created move on following day. Use this if you accrue "
+"a value end of period that you want to reverse begin of next period"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
 msgstr "بازگشت به پیش‌نویس"
@@ -289,6 +301,11 @@ msgstr "تاریخ بستن حساب"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
 msgid "Cut-off Journal Entry"
 msgstr "ورودی دفتر روزنامه‌ی بستن حساب"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
+msgid "Cut-off Journal Entry Reversal"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -760,8 +777,8 @@ msgid ""
 "The Cut-off Journal Entry already exists. You should delete it before "
 "running this function."
 msgstr ""
-"ثبت دفتر روزنامه‌ در رابطه با بستن حساب از قبل وجود دارد. شما باید این ثبت "
-"را پیش از اجرای این کارکرد حذف کنید."
+"ثبت دفتر روزنامه‌ در رابطه با بستن حساب از قبل وجود دارد. شما باید این ثبت را "
+"پیش از اجرای این کارکرد حذف کنید."
 
 #. module: account_cutoff_base
 #. odoo-python
@@ -769,8 +786,8 @@ msgstr ""
 #, python-format
 msgid "There are no lines on this Cut-off, so we can't create a Journal Entry."
 msgstr ""
-"هیچ خطی برای این بستن حساب وجود ندارد، بنابراین نمی‌توانیم یک ثبت "
-"دفترروزنامه ایجاد کنیم."
+"هیچ خطی برای این بستن حساب وجود ندارد، بنابراین نمی‌توانیم یک ثبت دفترروزنامه "
+"ایجاد کنیم."
 
 #. module: account_cutoff_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_base.account_cutoff_mapping_action
@@ -821,3 +838,10 @@ msgid "You cannot delete cutoff records that are in done state."
 msgstr ""
 "شما نمی‌توانید ثبت‌های بستن حساب را برای مواردی که در وضعیت انجام شده قرار "
 "دارند، حذف کنید."
+
+#. module: account_cutoff_base
+#. odoo-python
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "reversal of: "
+msgstr ""

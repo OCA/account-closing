@@ -180,8 +180,9 @@ msgid ""
 "Automatically reverse created move on following day. Use this if you accrue "
 "a value end of period that you want to reverse begin of next period"
 msgstr ""
-"Extourner automatiquement le mouvement sur le jour suivant. Utilisez ceci si vous provisionnez "
-"un montant à la fin d'une période et que vous voulez l'extourner au début de la période suivante"
+"Extourner automatiquement le mouvement sur le jour suivant. Utilisez ceci si "
+"vous provisionnez un montant à la fin d'une période et que vous voulez "
+"l'extourner au début de la période suivante"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form

@@ -169,6 +169,18 @@ msgid "Attachment Count"
 msgstr "Antal bilagor"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid "Auto Reverse"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid ""
+"Automatically reverse created move on following day. Use this if you accrue "
+"a value end of period that you want to reverse begin of next period"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
 msgstr "Tillbaka till utkast"
@@ -289,6 +301,11 @@ msgstr "Brytdatum"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
 msgid "Cut-off Journal Entry"
 msgstr "Bryt-transaktion"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
+msgid "Cut-off Journal Entry Reversal"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -719,8 +736,8 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
-"Status för avgränsningen. När journalposten skapas sätts status till \"Klar\""
-" och fälten blir skrivskyddade."
+"Status för avgränsningen. När journalposten skapas sätts status till "
+"\"Klar\" och fälten blir skrivskyddade."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__activity_state
@@ -820,3 +837,10 @@ msgstr "Historik för kommunikation på webbplatsen"
 #, python-format
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "Du kan inte radera bryt-poster som är markerade som klara."
+
+#. module: account_cutoff_base
+#. odoo-python
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+#, python-format
+msgid "reversal of: "
+msgstr ""
