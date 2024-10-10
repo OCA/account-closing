@@ -7,3 +7,4 @@
 * Jim Hoefnagels <jim.hoefnagels@dynapps.be>
 * `Trobz <https://trobz.com>`_:
     * Dzung Tran <dungtd@trobz.com>
+* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>

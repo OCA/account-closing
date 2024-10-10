@@ -67,6 +67,7 @@
                                 options="{'datepicker': {'warn_future': true}}"
                             />
                             <field name="total_cutoff_amount" />
+                            <field name="auto_reverse" />
                             <field name="source_move_state" widget="radio" />
                             <field name="company_id" options="{'no_create': True}" />
                             <field name="company_currency_id" invisible="1" />
@@ -85,6 +86,7 @@
                             <field name="move_ref" />
                             <field name="move_partner" />
                             <field name="move_id" />
+                            <field name="move_reversal_id" />
                         </group>
                     </group>
                     <group name="lines">

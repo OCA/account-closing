@@ -1,4 +1,5 @@
-# Copyright 2013-2021 Akretion (http://www.akretion.com/)
+# Copyright 2013 Akretion (http://www.akretion.com/)
+# Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -109,6 +110,24 @@ class AccountCutoff(models.Model):
         copy=False,
         check_company=True,
     )
+    auto_reverse = fields.Boolean(
+        help="Automatically reverse created move on following day. Use this "
+        "if you accrue a value end of period that you want to reverse "
+        "begin of next period",
+    )
+    move_reversal_id = fields.Many2one(
+        "account.move",
+        string="Cut-off Journal Entry Reversal",
+        compute="_compute_move_reversal_id",
+    )
+
+    @api.depends("move_id.reversal_move_id", "move_id.reversal_move_id.state")
+    def _compute_move_reversal_id(self):
+        for rec in self:
+            rec.move_reversal_id = rec.move_id.reversal_move_id.filtered(
+                lambda m: m.state != "cancel"
+            )[:1]
+
     move_ref = fields.Char(
         string="Reference of the Cut-off Journal Entry",
         states={"done": [("readonly", True)]},
@@ -191,6 +210,10 @@ class AccountCutoff(models.Model):
 
     def back2draft(self):
         self.ensure_one()
+        if self.move_reversal_id:
+            self.move_reversal_id.line_ids.remove_move_reconcile()
+            self.move_reversal_id.unlink()
+            self.move_id.line_ids.remove_move_reconcile()
         if self.move_id:
             self.move_id.unlink()
         self.write({"state": "draft"})
@@ -325,6 +348,20 @@ class AccountCutoff(models.Model):
         move = move_obj.create(vals)
         if self.company_id.post_cutoff_move:
             move._post(soft=False)
+
+        if self.auto_reverse:
+            next_day = fields.Date.from_string(self.cutoff_date) + relativedelta(days=1)
+            rev_move = move._reverse_moves(
+                [
+                    {
+                        "date": next_day,
+                        "ref": _("reversal of: ") + move.ref,
+                    }
+                ]
+            )
+            if self.company_id.post_cutoff_move:
+                rev_move._post(soft=False)
+
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
