@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+<record id="account_cutoff_form" model="ir.ui.view">
+    <field name="model">account.cutoff</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form" />
+    <field name="arch" type="xml">
+        <field name="cutoff_type" position="after">
+            <span> on </span><field name="order_line_model" />
+        </field>
+        <field name="source_move_state" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': [('order_line_model', '!=', False)]}</attribute>
+        </field>
+    </field>
+</record>
+
+</odoo>
