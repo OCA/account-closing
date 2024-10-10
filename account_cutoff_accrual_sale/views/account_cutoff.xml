@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+<record id="account_accrual_action" model="ir.actions.act_window">
+    <field name="name">Accrued Revenue on Sales Orders</field>
+    <field name="res_model">account.cutoff</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('order_line_model', '=', 'sale.order.line')]</field>
+    <field
+            name="context"
+        >{'default_order_line_model': 'sale.order.line', 'default_cutoff_type': 'accrued_revenue'}</field>
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+        Click to start preparing a new revenue accrual.
+        </p><p>
+        This view can be used by accountants in order to collect information about accrued expenses. It then allows to generate the corresponding cut-off journal entry in one click.
+        </p>
+    </field>
+</record>
+
+<menuitem
+        id="account_accrual_menu"
+        parent="account_cutoff_base.cutoff_menu"
+        action="account_accrual_action"
+        sequence="5"
+    />
+</odoo>
