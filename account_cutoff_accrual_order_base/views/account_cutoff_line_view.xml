@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013 Alexis de Lattre (Akretion) <alexis.delattre@akretion.com>
+  Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+<!-- Form view for lines -->
+<record id="account_cutoff_line_form" model="ir.ui.view">
+    <field name="model">account.cutoff.line</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_form" />
+    <field name="arch" type="xml">
+        <field name="name" position="before">
+            <field name="order_line_model" invisible="1" />
+            <field
+                    name="product_id"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                />
+        </field>
+        <field name="quantity" position="before">
+            <field
+                    name="received_qty"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                />
+            <field
+                    name="invoiced_qty"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                />
+        </field>
+        <group name="tax" position="before">
+            <group
+                    name="invoicelines"
+                    string="Invoice Lines"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                >
+                <field name="invoice_line_ids" nolabel="1" colspan="2">
+                    <tree>
+                        <field name="move_id" />
+                        <field name="quantity" />
+                        <field name="date" />
+                        <field name="parent_state" />
+                    </tree>
+                </field>
+            </group>
+        </group>
+    </field>
+</record>
+
+<!-- Tree view for lines -->
+<record id="account_cutoff_line_tree" model="ir.ui.view">
+    <field name="model">account.cutoff.line</field>
+    <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+    <field name="arch" type="xml">
+        <field name="parent_id" position="after">
+            <!--field
+                    name="order_id"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}" />
+                /-->
+        </field>
+        <field name="quantity" position="after">
+            <field name="order_line_model" invisible="1" />
+            <field
+                    name="received_qty"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                />
+            <field
+                    name="invoiced_qty"
+                    attrs="{'invisible': [('order_line_model', '=', False)]}"
+                />
+        </field>
+    </field>
+</record>
+
+</odoo>

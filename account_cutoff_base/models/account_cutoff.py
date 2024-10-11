@@ -14,6 +14,19 @@ from odoo.tools import date_utils, float_is_zero
 from odoo.tools.misc import format_date
 
 
+class PosNeg:
+    def __init__(self, amount):
+        self.amount_pos = self.amount_neg = 0
+        self.__iadd__(amount)
+
+    def __iadd__(self, amount):
+        if amount < 0:
+            self.amount_neg += amount
+        else:
+            self.amount_pos += amount
+        return self
+
+
 class AccountCutoff(models.Model):
     _name = "account.cutoff"
     _rec_name = "cutoff_date"
@@ -231,11 +244,18 @@ class AccountCutoff(models.Model):
     def _prepare_move(self, to_provision):
         self.ensure_one()
         movelines_to_create = []
-        amount_total = 0
+        amount_total_pos = 0
+        amount_total_neg = 0
         ref = self.move_ref
+        company_currency = self.company_id.currency_id
+        cur_rprec = company_currency.rounding
         merge_keys = self._get_merge_keys()
         for merge_values, amount in to_provision.items():
-            amount = self.company_currency_id.round(amount)
+            amount_total_neg += self.company_currency_id.round(amount.amount_neg)
+            amount_total_pos += self.company_currency_id.round(amount.amount_pos)
+            amount = amount.amount_pos + amount.amount_neg
+            if float_is_zero(amount, precision_rounding=cur_rprec):
+                continue
             vals = {
                 "debit": amount < 0 and amount * -1 or 0,
                 "credit": amount >= 0 and amount or 0,
@@ -249,20 +269,10 @@ class AccountCutoff(models.Model):
                 vals[k] = value
 
             movelines_to_create.append((0, 0, vals))
-            amount_total += amount
 
         # add counter-part
-        counterpart_amount = self.company_currency_id.round(amount_total * -1)
-        movelines_to_create.append(
-            (
-                0,
-                0,
-                {
-                    "account_id": self.cutoff_account_id.id,
-                    "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
-                    "credit": counterpart_amount >= 0 and counterpart_amount or 0,
-                },
-            )
+        movelines_to_create += self._prepare_counterpart_moves(
+            to_provision, amount_total_pos, amount_total_neg
         )
 
         res = {
@@ -273,6 +283,26 @@ class AccountCutoff(models.Model):
             "line_ids": movelines_to_create,
         }
         return res
+
+    def _prepare_counterpart_moves(
+        self, to_provision, amount_total_pos, amount_total_neg
+    ):
+        amount = (amount_total_pos + amount_total_neg) * -1
+        company_currency = self.company_id.currency_id
+        cur_rprec = company_currency.rounding
+        if float_is_zero(amount, precision_rounding=cur_rprec):
+            return []
+        return [
+            (
+                0,
+                0,
+                {
+                    "account_id": self.cutoff_account_id.id,
+                    "debit": amount < 0 and amount * -1 or 0,
+                    "credit": amount >= 0 and amount or 0,
+                },
+            )
+        ]
 
     def _prepare_provision_line(self, cutoff_line):
         """Convert a cutoff line to elements of a move line.
@@ -318,7 +348,10 @@ class AccountCutoff(models.Model):
                 or provision_line.get(key)
                 for key in merge_keys
             )
-            to_provision[key] += provision_line["amount"]
+            if key in to_provision:
+                to_provision[key] += provision_line["amount"]
+            else:
+                to_provision[key] = PosNeg(provision_line["amount"])
         return to_provision
 
     def create_move(self):
