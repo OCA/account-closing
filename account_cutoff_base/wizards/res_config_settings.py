@@ -52,3 +52,13 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
     )
+    dft_accrued_revenue_return_account_id = fields.Many2one(
+        related="company_id.default_accrued_revenue_return_account_id",
+        readonly=False,
+        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+    )
+    dft_accrued_expense_return_account_id = fields.Many2one(
+        related="company_id.default_accrued_expense_return_account_id",
+        readonly=False,
+        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+    )

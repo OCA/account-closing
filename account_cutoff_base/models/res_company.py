@@ -50,3 +50,13 @@ class ResCompany(models.Model):
         string="Default Account for Prepaid Expense",
         check_company=True,
     )
+    default_accrued_revenue_return_account_id = fields.Many2one(
+        "account.account",
+        string="Default Account for Accrued Revenues Refunds",
+        check_company=True,
+    )
+    default_accrued_expense_return_account_id = fields.Many2one(
+        "account.account",
+        string="Default Account for Accrued Expenses Refunds",
+        check_company=True,
+    )
