@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-23 23:20+0000\n"
-"PO-Revision-Date: 2024-03-18 15:36+0000\n"
+"PO-Revision-Date: 2024-10-14 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -172,7 +172,7 @@ msgstr "Numero allegati"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
 msgid "Auto Reverse"
-msgstr ""
+msgstr "Auto inversione"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
@@ -180,6 +180,9 @@ msgid ""
 "Automatically reverse created move on following day. Use this if you accrue "
 "a value end of period that you want to reverse begin of next period"
 msgstr ""
+"Inverte automaticamente il movimento creato il giorno seguente. Usarlo se si "
+"accumula un valore a fine periodo che si vuole invertire all'inizio del "
+"periodo successivo"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -306,7 +309,7 @@ msgstr "Registrazione separata"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
 msgid "Cut-off Journal Entry Reversal"
-msgstr ""
+msgstr "Inversione registrazioni contabili di fine periodo"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -846,7 +849,7 @@ msgstr ""
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "reversal of: "
-msgstr ""
+msgstr "inversione di : "
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"
