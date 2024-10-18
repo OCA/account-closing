@@ -8,6 +8,12 @@ setuptools.setup(
     description="Meta package for oca-account-closing Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-account_cutoff_accrual_order_base>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_accrual_order_stock_base>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_accrual_purchase>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_accrual_purchase_stock>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_accrual_sale>=16.0dev,<16.1dev',
+        'odoo-addon-account_cutoff_accrual_sale_stock>=16.0dev,<16.1dev',
         'odoo-addon-account_cutoff_accrual_subscription>=16.0dev,<16.1dev',
         'odoo-addon-account_cutoff_base>=16.0dev,<16.1dev',
         'odoo-addon-account_cutoff_picking>=16.0dev,<16.1dev',
