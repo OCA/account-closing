@@ -380,9 +380,21 @@ msgid "Default Account for Accrued Expenses"
 msgstr "Compte par défaut pour les charges à payer"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_return_account_id
+msgid "Default Account for Accrued Revenues"
+msgstr "Compte par défaut pour les notes de crédit à établir"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_return_account_id
+#: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_return_account_id
+msgid "Default Account for Accrued Expenses Refunds"
+msgstr "Compte par défaut pour les notes de crédit à recevoir"
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_account_id
-msgid "Default Account for Accrued Revenues"
+msgid "Default Account for Accrued Revenues Refunds"
 msgstr "Compte par défaut pour les produits à recevoir"
 
 #. module: account_cutoff_base
