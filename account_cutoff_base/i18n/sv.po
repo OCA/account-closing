@@ -489,6 +489,7 @@ msgstr "Om markerat, kräver nya meddelanden din uppmärksamhet."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Om markerat får vissa meddelanden ett leveransfel."
 
@@ -708,6 +709,11 @@ msgstr "Ordinarie konto"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__activity_user_id
 msgid "Responsible User"
 msgstr "Ansvarig användare"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence

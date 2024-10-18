@@ -495,6 +495,7 @@ msgstr "Si activé, de nouveaux messages nécessitent votre attention."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si activé, des messages ont une erreur d'envoi."
 
@@ -713,6 +714,11 @@ msgid "Responsible User"
 msgstr "Utilisateur responsable"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur d'envoi du SMS"
+
+#. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__sequence
 msgid "Sequence"
 msgstr "Séquence"
@@ -849,9 +855,6 @@ msgstr ""
 #, python-format
 msgid "reversal of: "
 msgstr "extourne de: "
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Erreur d'envoi du SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nombre de messages nécessitant une action"
