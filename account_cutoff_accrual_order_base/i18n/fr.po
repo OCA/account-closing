@@ -1,0 +1,175 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_cutoff_accrual_order_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-26 11:53+0000\n"
+"PO-Revision-Date: 2023-10-26 11:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_cutoff_accrual_order_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_order_base.account_cutoff_form
+msgid "<span> on </span>"
+msgstr "<span> sur </span>"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr "Provision"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr "Ligne de provision"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_account_cutoff_line__amount
+msgid "Amount that is used as base to compute the Cut-off Amount."
+msgstr "Montant qui est utilisé comme base pour calculer le montant de la provision"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount"
+msgstr "Montant de la provision"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount without taxes in the Company Currency."
+msgstr "Montant de provision hors taxes dans la devise de la société."
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_order_line_cutoff_accrual_mixin
+msgid "Cutoff Accrual Order Line Mixin"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_res_company__cutoff_exclude_locked_orders
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_res_config_settings__cutoff_exclude_locked_orders
+msgid "Cutoff Exclude Locked Orders"
+msgstr "Provision Exclure les commandes verrouillées"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_res_company__cutoff_exclude_locked_orders
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_res_config_settings__cutoff_exclude_locked_orders
+msgid "Do not generate cut-off entries for orders that are locked"
+msgstr "Ne pas générer d'écriture de provision pour les commande verrouillées"
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid "Error: Missing '%(label)s' on tax '%(name)s'."
+msgstr "Errur: '%(label)s' manquant sur la taxe '%(name)s'."
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Error: Missing {map_type} account on product '{product}' or on related "
+"product category."
+msgstr ""
+"Erreur: {map_type} compte manquant sur le produit '{product}' ou sur "
+"la catégorie de product liée."
+
+#. module: account_cutoff_accrual_order_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_order_base.res_config_settings_view_form
+msgid "Exclude Locked Orders"
+msgstr "Exclure les commandes verrouillées"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__invoice_line_ids
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_order_base.account_cutoff_line_form
+msgid "Invoice Lines"
+msgstr "Lignes de facture"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__invoiced_qty
+msgid "Invoiced Quantity"
+msgstr "Quantité facturée"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff__order_line_model
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__order_line_model
+msgid "Order Line Model"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__product_id
+msgid "Product"
+msgstr "Produit"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__received_qty
+msgid "Received Quantity"
+msgstr "Quantité reçue"
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid "Wrong cutoff type %s"
+msgstr "Mauvais type de cutoff %s"
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot validate an invoice for an accounting date that generates an entry in a closed cut-off (i.e. for which an accounting entry has already been created).\n"
+" - Cut-off: {cutoff}\n"
+" - Product: {product}\n"
+msgstr ""
+"Vous ne pouvez pas valider une facture à une date comptable qui génère une ligne dans une provision fermée (càd pour laquelle l'écriture comptable de provision a déjà été créée).\n"
+" - Provision: {cutoff}\n"
+" - Produit: {product}\n"
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot validate an invoice for an accounting date that modifies a closed cutoff (i.e. for which an accounting entry has already been created).\n"
+" - Cut-off: {cutoff}\n"
+" - Product: {product}\n"
+" - Previous invoiced quantity: {prev_inv_qty}\n"
+" - New invoiced quantity: {new_inv_qty}"
+msgstr ""
+"Vous ne pouvez pas valider une facture à une date comptable qui modifie une provision fermée (càd pour laquelle l'écriture comptable de provision a déjà été créée).\n"
+" - Provision: {cutoff}\n"
+" - Produit: {product}\n"
+" - Précédente quantité facturée: {prev_inv_qty}\n"
+" - Nouvelle quantité facturée: {new_inv_qty}"
