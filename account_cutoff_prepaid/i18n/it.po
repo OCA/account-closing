@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-07 02:50+0000\n"
-"PO-Revision-Date: 2024-08-30 10:06+0000\n"
+"PO-Revision-Date: 2024-10-21 13:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -76,7 +76,7 @@ msgstr "Scritture di fine periodo"
 #. module: account_cutoff_prepaid
 #: model:ir.model,name:account_cutoff_prepaid.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Conto scritture fine periodo"
+msgstr "Riga scritture fine periodo"
 
 #. module: account_cutoff_prepaid
 #: field:account.cutoff.line,move_date:0
