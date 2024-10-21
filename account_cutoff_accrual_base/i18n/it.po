@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 02:35+0000\n"
-"PO-Revision-Date: 2020-06-18 15:19+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2024-10-21 13:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff
@@ -27,7 +27,7 @@ msgstr "Ripartizioni di fine esercizio"
 #. module: account_cutoff_accrual_base
 #: model:ir.model,name:account_cutoff_accrual_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Riga di ripartizioni di fine esercizio"
+msgstr "Riga scritture fine periodo"
 
 #. module: account_cutoff_accrual_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_base.field_res_company__accrual_taxes
@@ -60,7 +60,7 @@ msgstr "Conto imposte - ratei attivi"
 #. module: account_cutoff_accrual_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_accrual_base.account_expense_accrual_action
 msgid "Click to start preparing a new expense accrual."
-msgstr "Fare click per iniziare a preparare un nuovo rateo passivo."
+msgstr "Fare clic per iniziare a preparare un nuovo rateo passivo."
 
 #. module: account_cutoff_accrual_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
@@ -144,7 +144,7 @@ msgid ""
 msgstr ""
 "Questa vista può essere usata dai contabili per raccogliere informazioni sui "
 "ratei passivi. Permette di generare la relativa registrazione di "
-"ripartizione con un click."
+"ripartizione con un clic."
 
 #. module: account_cutoff_accrual_base
 #: model_terms:ir.actions.act_window,help:account_cutoff_accrual_base.account_revenue_accrual_action
