@@ -1,0 +1,142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_cutoff_accrual_order_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: account_cutoff_accrual_order_base
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_order_base.account_cutoff_form
+msgid "<span> on </span>"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_cutoff
+msgid "Account Cut-off"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_cutoff_line
+msgid "Account Cut-off Line"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_account_cutoff_line__amount
+msgid "Amount that is used as base to compute the Cut-off Amount."
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_base.field_account_cutoff_line__cutoff_amount
+msgid "Cut-off Amount without taxes in the Company Currency."
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_order_line_cutoff_accrual_mixin
+msgid "Cutoff Accrual Order Line Mixin"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_order_line_cutoff_accrual_mixin__is_cutoff_accrual_excluded
+msgid "Do not generate cut-off entries"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid "Error: Missing '%(label)s' on tax '%(name)s'."
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/account_cutoff.py:0
+#, python-format
+msgid ""
+"Error: Missing {map_type} account on product '{product}' or on related "
+"product category."
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__invoice_line_ids
+#: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_order_base.account_cutoff_line_form
+msgid "Invoice Lines"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__invoiced_qty
+msgid "Invoiced Quantity"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model,name:account_cutoff_accrual_order_base.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff__order_line_model
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__order_line_model
+msgid "Order Line Model"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_base.field_account_cutoff_line__received_qty
+msgid "Received Quantity"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid "Wrong cutoff type %s"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid ""
+"You cannot validate an invoice for an accounting date that generates an entry in a closed cut-off (i.e. for which an accounting entry has already been created).\n"
+" - Cut-off: {cutoff}\n"
+" - Product: {product}\n"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_base
+#. odoo-python
+#: code:addons/account_cutoff_accrual_order_base/models/order_line_mixin.py:0
+#, python-format
+msgid ""
+"You cannot validate an invoice for an accounting date that modifies a closed cutoff (i.e. for which an accounting entry has already been created).\n"
+" - Cut-off: {cutoff}\n"
+" - Product: {product}\n"
+" - Previous invoiced quantity: {prev_inv_qty}\n"
+" - New invoiced quantity: {new_inv_qty}"
+msgstr ""
