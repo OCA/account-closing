@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: account-closing (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-19 22:38+0000\n"
-"PO-Revision-Date: 2024-07-08 08:59+0000\n"
+"PO-Revision-Date: 2024-10-21 13:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-account-closing-8-0/"
 "language/it/)\n"
@@ -55,13 +55,13 @@ msgstr "Conto"
 #. module: account_cutoff_base
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Conto per scritture di fine periodo"
+msgstr "Scritture di fine periodo"
 
 #. module: account_cutoff_base
 #: field:account.cutoff.tax.line,parent_id:0
 #: model:ir.model,name:account_cutoff_base.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Righe scritture fine periodo"
+msgstr "Riga scritture fine periodo"
 
 #. module: account_cutoff_base
 #: view:account.cutoff.mapping:account_cutoff_base.account_cutoff_mapping_form
@@ -234,7 +234,7 @@ msgstr "Valore fine periodo"
 #. module: account_cutoff_base
 #: help:account.cutoff.line,cutoff_amount:0
 msgid "Cut-off Amount without taxes in the Company Currency."
-msgstr "Valore fine periodo senza imposte nella valuta della Società"
+msgstr "Valore fine periodo senza imposte nella valuta dell'azienda."
 
 #. module: account_cutoff_base
 #: view:account.cutoff.line:account_cutoff_base.account_cutoff_line_form
