@@ -59,16 +59,7 @@ class AccountMoveAccrual(models.TransientModel):
             and self.env.context["active_model"] == "account.move"
         ):
             inv = self.env["account.move"].browse(self.env.context["active_ids"])[0]
-            if inv.move_type in ("out_invoice", "out_refund"):
-                journal_id = (
-                    inv.company_id.dft_accrual_revenue_journal_id.id
-                    or inv.company_id.default_cutoff_journal_id.id
-                )
-            else:
-                journal_id = (
-                    inv.company_id.dft_accrual_expense_journal_id.id
-                    or inv.company_id.default_cutoff_journal_id.id
-                )
+            journal_id = inv.company_id.default_cutoff_journal_id.id
         return journal_id
 
     @api.model
