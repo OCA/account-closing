@@ -91,6 +91,7 @@ class AccountCutoff(models.Model):
             "name": aml.name,
             "start_date": aml.start_date,
             "end_date": aml.end_date,
+            "cutoff_date": self.cutoff_date,
             "account_id": aml.account_id.id,
             "cutoff_account_id": cutoff_account_id,
             "analytic_distribution": aml.analytic_distribution,
@@ -209,8 +210,11 @@ class AccountCutoff(models.Model):
                 ("start_date", "<=", self.cutoff_date),
                 ("date", ">", self.cutoff_date),
             ]
+
         amls = aml_obj.search(domain)
         for aml in amls:
+            if self.cutoff_date in aml.cutoff_line_ids.mapped("cutoff_date"):
+                # cutoff line already exists for this date
+                continue
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
-
         return res

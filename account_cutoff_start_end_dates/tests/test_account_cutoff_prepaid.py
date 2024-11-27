@@ -129,6 +129,10 @@ class TestCutoffPrepaid(TransactionCase):
         cutoff = self._create_cutoff("01-31")
         cutoff.get_lines()
         self.assertEqual(amount, cutoff.total_cutoff_amount)
+        # cutoff at the same date as the previous one : no new line created
+        cutoff = self._create_cutoff("01-31")
+        cutoff.get_lines()
+        self.assertEqual(0, cutoff.total_cutoff_amount)
 
     def tests_1(self):
         """generate move, and test move lines grouping"""

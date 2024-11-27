@@ -2,7 +2,7 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class AccountCutoffLine(models.Model):
@@ -12,7 +12,8 @@ class AccountCutoffLine(models.Model):
     _description = "Account Cut-off Line"
 
     parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
-    cutoff_type = fields.Selection(related="parent_id.cutoff_type")
+    cutoff_type = fields.Selection(related="parent_id.cutoff_type", store=True)
+    cutoff_date = fields.Date(related="parent_id.cutoff_date", store=True)
     company_id = fields.Many2one(
         "res.company", related="parent_id.company_id", store=True
     )
@@ -83,3 +84,11 @@ class AccountCutoffLine(models.Model):
         readonly=True,
     )
     notes = fields.Text()
+
+    _sql_constraints = [
+        (
+            "line_date_type_company_uniq",
+            "unique(cutoff_date, company_id, cutoff_type, origin_move_line_id)",
+            _("A cutoff line of the same type already exists with this cut-off date !"),
+        )
+    ]
