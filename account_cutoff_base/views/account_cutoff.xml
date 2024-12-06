@@ -44,7 +44,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
-                            name="button_line_tree"
+                            name="button_line_list"
                             class="oe_stat_button"
                             icon="fa-building-o"
                             type="object"
@@ -108,19 +108,15 @@
                         />
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
-    <record id="account_cutoff_tree" model="ir.ui.view">
-        <field name="name">account.cutoff.tree</field>
+    <record id="account_cutoff_list" model="ir.ui.view">
+        <field name="name">account.cutoff.list</field>
         <field name="model">account.cutoff</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field
                     name="cutoff_type"
                     readonly="state == 'done'"
@@ -137,7 +133,7 @@
                     decoration-info="state == 'draft'"
                     decoration-success="state == 'done'"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="account_cutoff_filter" model="ir.ui.view">
@@ -173,7 +169,7 @@
     <record id="account_revenue_accrual_action" model="ir.actions.act_window">
         <field name="name">Accrued Revenue</field>
         <field name="res_model">account.cutoff</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('cutoff_type', '=', 'accrued_revenue')]</field>
         <field name="context">{'default_cutoff_type': 'accrued_revenue'}</field>
     </record>
@@ -187,7 +183,7 @@
     <record id="account_expense_accrual_action" model="ir.actions.act_window">
         <field name="name">Accrued Expense</field>
         <field name="res_model">account.cutoff</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('cutoff_type', '=', 'accrued_expense')]</field>
         <field name="context">{'default_cutoff_type': 'accrued_expense'}</field>
     </record>
@@ -201,7 +197,7 @@
     <record id="account_cutoff_prepaid_revenue_action" model="ir.actions.act_window">
         <field name="name">Prepaid Revenue</field>
         <field name="res_model">account.cutoff</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('cutoff_type', '=', 'prepaid_revenue')]</field>
         <field name="context">{'default_cutoff_type': 'prepaid_revenue'}</field>
     </record>
@@ -215,7 +211,7 @@
     <record id="account_cutoff_prepaid_expense_action" model="ir.actions.act_window">
         <field name="name">Prepaid Expense</field>
         <field name="res_model">account.cutoff</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('cutoff_type', '=', 'prepaid_expense')]</field>
         <field name="context">{'default_cutoff_type': 'prepaid_expense'}</field>
     </record>

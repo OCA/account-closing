@@ -7,8 +7,8 @@ from collections import defaultdict
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools import date_utils, float_is_zero
 from odoo.tools.misc import format_date
 
@@ -35,10 +35,10 @@ class AccountCutoff(models.Model):
     @property
     def cutoff_type_label_map(self):
         return {
-            "accrued_expense": _("Accrued Expense"),
-            "accrued_revenue": _("Accrued Revenue"),
-            "prepaid_revenue": _("Prepaid Revenue"),
-            "prepaid_expense": _("Prepaid Expense"),
+            "accrued_expense": self.env._("Accrued Expense"),
+            "accrued_revenue": self.env._("Accrued Revenue"),
+            "prepaid_revenue": self.env._("Prepaid Revenue"),
+            "prepaid_expense": self.env._("Prepaid Expense"),
         }
 
     @api.model
@@ -118,7 +118,7 @@ class AccountCutoff(models.Model):
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
-        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+        domain="[('deprecated', '=', False)]",
         default=lambda self: self._default_cutoff_account_id(),
         check_company=True,
         tracking=True,
@@ -162,13 +162,25 @@ class AccountCutoff(models.Model):
         "the state is set to 'Done' and the fields become read-only.",
     )
 
-    _sql_constraints = [
-        (
-            "date_type_company_uniq",
-            "unique(cutoff_date, company_id, cutoff_type)",
-            _("A cutoff of the same type already exists with this cut-off date !"),
-        )
-    ]
+    @api.constrains("cutoff_date", "company_id", "cutoff_type")
+    def _check_unique_cutoff(self):
+        for record in self:
+            existing = self.search(
+                [
+                    ("id", "!=", record.id),
+                    ("cutoff_date", "=", record.cutoff_date),
+                    ("company_id", "=", record.company_id.id),
+                    ("cutoff_type", "=", record.cutoff_type),
+                ],
+                limit=1,
+            )
+            if existing:
+                raise ValidationError(
+                    record.env._(
+                        "A cutoff of the same type already exists "
+                        "with this cut-off date!"
+                    )
+                )
 
     def _compute_display_name(self):
         type2label = self.cutoff_type_label_map
@@ -292,14 +304,14 @@ class AccountCutoff(models.Model):
         move_obj = self.env["account.move"]
         if self.move_id:
             raise UserError(
-                _(
+                self.env._(
                     "The Cut-off Journal Entry already exists. You should "
                     "delete it before running this function."
                 )
             )
         if not self.line_ids:
             raise UserError(
-                _(
+                self.env._(
                     "There are no lines on this Cut-off, so we can't create "
                     "a Journal Entry."
                 )
@@ -315,12 +327,12 @@ class AccountCutoff(models.Model):
         if self.company_id.post_cutoff_move:
             move._post(soft=False)
         self.write({"move_id": move.id, "state": "done"})
-        self.message_post(body=_("Journal entry generated"))
+        self.message_post(body=self.env._("Journal entry generated"))
 
         action = self.env.ref("account.action_move_journal_line").sudo().read()[0]
         action.update(
             {
-                "view_mode": "form,tree",
+                "view_mode": "form,list",
                 "res_id": move.id,
                 "view_id": False,
                 "views": False,
@@ -336,20 +348,22 @@ class AccountCutoff(models.Model):
         # (e.g. account_cutoff_start_end_dates) add additional states
         # and don't require self.cutoff_date
         if self.state == "draft" and not self.cutoff_date:
-            raise UserError(_("Cutoff date is not set."))
+            raise UserError(self.env._("Cutoff date is not set."))
         # Delete existing lines
         self.line_ids.unlink()
-        self.message_post(body=_("Cut-off lines re-generated"))
+        self.message_post(body=self.env._("Cut-off lines re-generated"))
 
     def unlink(self):
         for rec in self:
             if rec.state == "done":
                 raise UserError(
-                    _("You cannot delete cutoff records that are in done state.")
+                    self.env._(
+                        "You cannot delete cutoff records that are in done state."
+                    )
                 )
         return super().unlink()
 
-    def button_line_tree(self):
+    def button_line_list(self):
         action = self.env["ir.actions.actions"]._for_xml_id(
             "account_cutoff_base.account_cutoff_line_action"
         )
@@ -394,17 +408,17 @@ class AccountCutoff(models.Model):
                     tax.account_accrued_expense_id
                     or self.company_id.default_accrued_expense_tax_account_id
                 )
-                tax_account_field_label = _("Accrued Expense Tax Account")
+                tax_account_field_label = self.env._("Accrued Expense Tax Account")
             elif self.cutoff_type == "accrued_revenue":
                 tax_accrual_account = (
                     tax.account_accrued_revenue_id
                     or self.company_id.default_accrued_revenue_tax_account_id
                 )
-                tax_account_field_label = _("Accrued Revenue Tax Account")
+                tax_account_field_label = self.env._("Accrued Revenue Tax Account")
 
             if not tax_accrual_account:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Missing '%(tax_account_field_label)s'. You must configure it "
                         "on the tax '%(tax_display_name)s' or on the accounting "
                         "configuration page of the company '%(company)s'.",
