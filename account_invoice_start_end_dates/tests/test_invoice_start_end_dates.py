@@ -4,6 +4,8 @@
 
 import time
 
+from odoo import Command
+from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
@@ -13,17 +15,21 @@ class TestInvoiceStartEndDates(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.move_model = cls.env["account.move"]
-        cls.account_model = cls.env["account.account"]
-        cls.journal_model = cls.env["account.journal"]
+        cls.partner = cls.env["res.partner"].create({"name": "Nobug Customer"})
         cls.account_revenue = cls.env["account.chart.template"]._get_demo_account(
             "income",
             "income",
             cls.env.company,
         )
-        cls.sale_journal = cls.journal_model.search([("type", "=", "sale")], limit=1)
-        cls.maint_product = cls.env.ref(
-            "account_invoice_start_end_dates.product_maintenance_contract_demo"
+        cls.maint_product = cls.env["product.product"].create(
+            {
+                "name": "Maintenance contract",
+                "type": "service",
+                "categ_id": cls.env.ref("product.product_category_5").id,
+                "must_have_dates": True,
+            }
         )
 
     def _date(self, date):
@@ -31,16 +37,12 @@ class TestInvoiceStartEndDates(TransactionCase):
         return time.strftime("%Y-" + date)
 
     def test_invoice(self):
-        invoice = self.move_model.create(
+        self.move_model.create(
             {
-                "date": self._date("01-01"),
-                "partner_id": self.env.ref("base.res_partner_2").id,
-                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
                 "move_type": "out_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.maint_product.id,
                             "name": "Maintenance IPBX 12 mois",
@@ -49,11 +51,9 @@ class TestInvoiceStartEndDates(TransactionCase):
                             "account_id": self.account_revenue.id,
                             "start_date": self._date("01-01"),
                             "end_date": self._date("12-31"),
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.maint_product.id,
                             "name": "Maintenance téléphones 12 mois",
@@ -64,9 +64,7 @@ class TestInvoiceStartEndDates(TransactionCase):
                             "end_date": self._date("12-31"),
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.maint_product.id,
                             "name": "Maintenance Fax 6 mois",
@@ -77,9 +75,7 @@ class TestInvoiceStartEndDates(TransactionCase):
                             "end_date": self._date("06-30"),
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.env.ref("product.product_product_5").id,
                             "name": "HD IPBX",
@@ -91,4 +87,89 @@ class TestInvoiceStartEndDates(TransactionCase):
                 ],
             }
         )
-        invoice.action_post()
+
+    def test_missing_date(self):
+        with self.assertRaises(ValidationError):
+            self.move_model.create(
+                {
+                    "partner_id": self.partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "product_id": self.maint_product.id,
+                                "name": "Maintenance IPBX 12 mois",
+                                "price_unit": 1200,
+                                "quantity": 1,
+                                "account_id": self.account_revenue.id,
+                                "start_date": False,
+                                "end_date": False,
+                            }
+                        )
+                    ],
+                }
+            )
+
+    def test_date_order(self):
+        with self.assertRaises(ValidationError):
+            self.move_model.create(
+                {
+                    "partner_id": self.partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "name": "Maintenance Odoo",
+                                "price_unit": 1200,
+                                "quantity": 1,
+                                "account_id": self.account_revenue.id,
+                                # start date before end date
+                                "start_date": self._date("12-31"),
+                                "end_date": self._date("01-01"),
+                            }
+                        )
+                    ],
+                }
+            )
+
+    def test_date_partial(self):
+        with self.assertRaises(ValidationError):
+            self.move_model.create(
+                {
+                    "partner_id": self.partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "name": "Maintenance Odoo",
+                                "price_unit": 1200,
+                                "quantity": 1,
+                                "account_id": self.account_revenue.id,
+                                # start date, but no end date
+                                "start_date": self._date("12-31"),
+                                "end_date": False,
+                            }
+                        )
+                    ],
+                }
+            )
+        with self.assertRaises(ValidationError):
+            self.move_model.create(
+                {
+                    "partner_id": self.partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "name": "Maintenance Odoo",
+                                "price_unit": 1200,
+                                "quantity": 1,
+                                "account_id": self.account_revenue.id,
+                                # start date, but no end date
+                                "start_date": False,
+                                "end_date": self._date("12-31"),
+                            }
+                        )
+                    ],
+                }
+            )

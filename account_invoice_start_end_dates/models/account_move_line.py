@@ -14,7 +14,7 @@ class AccountMoveLine(models.Model):
     end_date = fields.Date(index=True)
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
 
-    @api.constrains("start_date", "end_date")
+    @api.constrains("start_date", "end_date", "display_type", "product_id")
     def _check_start_end_dates(self):
         for moveline in self:
             if moveline.start_date and not moveline.end_date:
@@ -40,4 +40,17 @@ class AccountMoveLine(models.Model):
                         "end_date": format_date(self.env, moveline.end_date),
                         "name": moveline.display_name,
                     }
+                )
+            if (
+                moveline.display_type == "product"
+                and moveline.product_id.must_have_dates
+                and not moveline.start_date
+            ):
+                raise ValidationError(
+                    _(
+                        "Missing Start Date for invoice "
+                        "line with Product '%s' which has the "
+                        "property 'Must Have Start/End Dates'."
+                    )
+                    % (moveline.product_id.display_name)
                 )
