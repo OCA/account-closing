@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,6 +19,12 @@ msgid "Car Insurance"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.product_template_form_view
+msgid "Cut-offs"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__end_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
 msgid "End Date"
 msgstr ""
@@ -33,8 +39,8 @@ msgid ""
 msgstr ""
 
 #. module: account_invoice_start_end_dates
-#: model:ir.model,name:account_invoice_start_end_dates.model_account_move
-msgid "Journal Entry"
+#: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice_report
+msgid "Invoices Statistics"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -50,23 +56,20 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
-#, python-format
 msgid "Missing End Date for line '%s'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
-#: code:addons/account_invoice_start_end_dates/models/account_move.py:0
-#, python-format
+#: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
 msgid ""
-"Missing Start Date and End Date for invoice line with Product '%s' which has"
-" the property 'Must Have Start/End Dates'."
+"Missing Start Date for invoice line with Product '%s' which has the property"
+" 'Must Have Start/End Dates'."
 msgstr ""
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
-#, python-format
 msgid "Missing Start Date for line '%s'."
 msgstr ""
 
@@ -83,6 +86,7 @@ msgid "Product"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__start_date
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
 msgid "Start Date"
 msgstr ""
@@ -90,7 +94,6 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #. odoo-python
 #: code:addons/account_invoice_start_end_dates/models/account_move_line.py:0
-#, python-format
 msgid ""
 "Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
 "line '%(name)s'."
