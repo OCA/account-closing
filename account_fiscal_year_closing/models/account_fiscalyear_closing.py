@@ -218,7 +218,7 @@ class AccountFiscalyearClosing(models.Model):
         )
         self.date_opening = fields.Date.to_string(date_end + relativedelta(days=1))
         if self.date_start != self.date_end:
-            self.name = "{}-{}".format(self.date_start, self.date_end)
+            self.name = f"{self.date_start}-{self.date_end}"
         else:
             self.name = str(self.date_end)
 
@@ -235,12 +235,7 @@ class AccountFiscalyearClosing(models.Model):
             if draft_moves:
                 msg = _("One or more draft moves found: \n")
                 for move in draft_moves:
-                    msg += "ID: {}, Date: {}, Number: {}, Ref: {}\n".format(
-                        move.id,
-                        move.date,
-                        move.name,
-                        move.ref,
-                    )
+                    msg += f"ID: {move.id}, Date: {move.date}, Number: {move.name}, Ref: {move.ref}\n"
                 raise ValidationError(msg)
         return True
 
