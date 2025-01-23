@@ -56,6 +56,5 @@ def update_account_type(env, table):
 
 @openupgrade.migrate()
 def migrate(env, version):
-
     update_account_type(env, "account_fiscalyear_closing_type_template")
     update_account_type(env, "account_fiscalyear_closing_type")
