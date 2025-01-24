@@ -10,7 +10,7 @@ from odoo.tests import tagged
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-@tagged("post_install")
+@tagged("post_install_l10n", "post_install", "-at_install")
 class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
@@ -105,16 +105,18 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                         {
                             "value": "percent",
                             "value_amount": 50,
-                            "days": 15,
+                            "delay_type": "days_after",
+                            "nb_days": 15,
                         },
                     ),
                     (
                         0,
                         0,
                         {
-                            "value": "balance",
-                            "days_after": 15,
-                            "end_month": True,
+                            "value": "percent",
+                            "value_amount": 50,
+                            "delay_type": "days_after_end_of_month",
+                            "nb_days": 15,
                         },
                     ),
                 ],

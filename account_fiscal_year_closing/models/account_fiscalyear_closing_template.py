@@ -14,9 +14,11 @@ class AccountFiscalyearClosingTemplate(models.Model):
         inverse_name="template_id",
         string="Moves configuration",
     )
-    chart_template_ids = fields.Many2many(
-        comodel_name="account.chart.template",
+    chart_template = fields.Selection(
         string="Available for",
+        selection=lambda self: self.env[
+            "account.chart.template"
+        ]._select_chart_template(),
         required=True,
     )
 
