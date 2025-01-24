@@ -100,12 +100,15 @@ class SaleOrderLine(models.Model):
             return self.product_uom_qty
         return self.qty_delivered
 
+    def _get_cutoff_accrual_stock_invoice_policy(self):
+        return self.product_id.invoice_policy
+
     def _get_cutoff_accrual_delivered_stock_quantity(self, cutoff):
         self.ensure_one()
         cutoff_nextday = cutoff._nextday_start_dt()
         if self.create_date >= cutoff_nextday:
             # A line added after the cutoff cannot be delivered in the past
             return 0
-        if self.product_id.invoice_policy == "order":
+        if self._get_cutoff_accrual_stock_invoice_policy() == "order":
             return self.product_uom_qty
         return self.qty_delivered
