@@ -27,13 +27,13 @@
                     </group>
                 </group>
                 <field name="line_ids">
-                    <tree>
+                    <list>
                         <field name="name" />
                         <field name="account_id" />
                         <field name="partner_id" />
                         <field name="debit" sum="Total debit" />
                         <field name="credit" sum="Total credit" />
-                    </tree>
+                    </list>
                 </field>
                 <footer>
                     <button special="cancel" string="Close" />

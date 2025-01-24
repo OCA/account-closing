@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class AccountMove(models.Model):
@@ -15,7 +15,7 @@ class AccountMove(models.Model):
                 allfields=["move_type"]
             )["move_type"]["selection"]
         )
-        res.append(("none", _("None")))
+        res.append(("none", self.env._("None")))
         return res
 
     fyc_id = fields.Many2one(
@@ -27,5 +27,4 @@ class AccountMove(models.Model):
     closing_type = fields.Selection(
         selection=_selection_closing_type,
         default="none",
-        states={"posted": [("readonly", True)]},
     )
