@@ -9,8 +9,9 @@ from odoo.addons.account_cutoff_accrual_sale.tests.common import (
 class TestAccountCutoffAccrualSaleStockCommon(TestAccountCutoffAccrualSaleCommon):
     def _confirm_so_and_do_picking(self, qty_done):
         self.so.action_confirm()
-        # Make invoice what product on order
-        self.so._create_invoices(final=True)
+        # Make invoice for product on order
+        invoice = self.so._create_invoices(final=True)
+        invoice.action_post()
         self.assertEqual(
             self.so.invoice_status,
             "no",
