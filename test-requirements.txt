@@ -1,0 +1,1 @@
+odoo-addon-sale-invoice-policy @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3376/head#subdirectory=setup/sale_invoice_policy
