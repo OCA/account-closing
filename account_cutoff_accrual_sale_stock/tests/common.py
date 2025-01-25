@@ -9,13 +9,21 @@ from odoo.addons.account_cutoff_accrual_sale.tests.common import (
 class TestAccountCutoffAccrualSaleStockCommon(TestAccountCutoffAccrualSaleCommon):
     def _confirm_so_and_do_picking(self, qty_done):
         self.so.action_confirm()
-        # Make invoice what product on order
-        self.so._create_invoices(final=True)
-        self.assertEqual(
-            self.so.invoice_status,
-            "no",
-            'SO invoice_status should be "nothing to invoice" after confirming',
-        )
+        if self.so.invoice_status == "to invoice":
+            # Make invoice for product on order
+            invoice = self.so._create_invoices(final=True)
+            invoice.action_post()
+            self.assertEqual(
+                self.so.invoice_status,
+                "no",
+                'SO invoice_status should be "nothing to invoice" after confirming',
+            )
+        else:
+            invoice = self.env["account.move"]
+        self._do_picking(qty_done)
+        return invoice
+
+    def _do_picking(self, qty_done):
         # Deliver
         pick = self.so.picking_ids
         pick.action_assign()

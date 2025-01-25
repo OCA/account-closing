@@ -6,7 +6,7 @@ from datetime import timedelta
 from .common import TestAccountCutoffAccrualSaleStockCommon
 
 
-class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
+class TestAccountCutoffAccrualSaleStock(TestAccountCutoffAccrualSaleStockCommon):
     def test_accrued_revenue_empty(self):
         """Test cutoff when there is no SO."""
         cutoff = self.revenue_cutoff
@@ -19,7 +19,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff = self.revenue_cutoff
         self._confirm_so_and_do_picking(2)
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids:
             self.assertDictEqual(
                 line.analytic_distribution,
@@ -31,7 +31,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff = self.revenue_cutoff
         self._confirm_so_and_do_picking(2)
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -49,7 +49,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff = self.revenue_cutoff
         self._confirm_so_and_do_picking(2)
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -59,7 +59,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         # Make invoice
         invoice = self.so._create_invoices(final=True)
         # - invoice is in draft, no change to cutoff
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -68,14 +68,14 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
             )
         # Validate invoice
         invoice.action_post()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
             self.assertEqual(line.cutoff_amount, 0, "SO line cutoff amount incorrect")
         # Make a refund - the refund reset the SO lines qty_invoiced
         self._refund_invoice(invoice)
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -90,10 +90,10 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         # Validate invoice
         invoice.action_post()
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 1, "1 cutoff line should be found")
+        self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be found")
         # Make a refund - the refund reset qty_invoiced
         self._refund_invoice(invoice)
-        self.assertEqual(len(cutoff.line_ids), 3, "No cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -110,7 +110,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         invoice = self.so._create_invoices(final=True)
         # - invoice is in draft, no change to cutoff
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -119,14 +119,14 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
             )
         # Validate invoice
         invoice.action_post()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
             self.assertEqual(line.cutoff_amount, 0, "SO line cutoff amount incorrect")
         # Make a refund - the refund reset SO lines qty_invoiced
         self._refund_invoice(invoice)
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -143,7 +143,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         # Make invoice
         invoice = self.so._create_invoices(final=True)
         # - invoice is in draft, no change to cutoff
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -153,7 +153,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         # Validate invoice after cutoff
         invoice.invoice_date = cutoff.cutoff_date + timedelta(days=1)
         invoice.action_post()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -164,7 +164,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         refund = self._refund_invoice(invoice, post=False)
         refund.date = cutoff.cutoff_date + timedelta(days=1)
         refund.action_post()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -186,7 +186,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         invoice.action_post()
         self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -197,7 +197,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         refund = self._refund_invoice(invoice, post=False)
         refund.date = cutoff.cutoff_date + timedelta(days=1)
         refund.action_post()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -210,7 +210,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff = self.revenue_cutoff
         self._confirm_so_and_do_picking(2)
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -222,7 +222,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         self.assertEqual(len(cutoff.line_ids), 0, "cutoff line should deleted")
         # Remove Force invoiced, lines should be recreated
         self.so.force_invoiced = False
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -240,7 +240,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be generated")
         # Remove Force invoiced, lines should be created
         self.so.force_invoiced = False
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -253,7 +253,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff = self.revenue_cutoff
         self._confirm_so_and_do_picking(2)
         cutoff.get_lines()
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -263,7 +263,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
         cutoff.state = "done"
         # Force invoiced after cutoff lines generated, cutoff is posted
         self.so.force_invoiced = True
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
@@ -272,7 +272,7 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleStockCommon):
             )
         # Remove Force invoiced, nothing changes
         self.so.force_invoiced = False
-        self.assertEqual(len(cutoff.line_ids), 3, "3 cutoff lines should be found")
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
         for line in cutoff.line_ids.filtered(
             lambda l: l.product_id.detailed_type == "product"
         ):
