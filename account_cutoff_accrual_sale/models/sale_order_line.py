@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -36,13 +37,44 @@ class SaleOrderLine(models.Model):
     def _get_cutoff_accrual_product_qty(self):
         return self.product_uom_qty
 
+    @api.model
     def _get_cutoff_accrual_lines_domain(self, cutoff):
         domain = super()._get_cutoff_accrual_lines_domain(cutoff)
-        # The line could be invoiceable but not the order (see delivery
-        # module).
-        domain.append(("invoice_status", "=", "to invoice"))
-        domain.append(("order_id.invoice_status", "=", "to invoice"))
+        domain = expression.AND(
+            (
+                domain,
+                (
+                    ("state", "in", ("sale", "done")),
+                    ("display_type", "=", False),
+                    ("invoice_status", "=", "to invoice"),
+                    # The delivery line could be invoiceable but not the order (see
+                    # delivery module). So check also the SO invoice status.
+                    ("order_id.invoice_status", "=", "to invoice"),
+                ),
+            )
+        )
         return domain
+
+    @api.model
+    def _get_cutoff_accrual_lines_query(self, cutoff):
+        query = super()._get_cutoff_accrual_lines_query(cutoff)
+        self.flush_model(
+            ["qty_delivered_method", "qty_delivered", "qty_invoiced", "qty_to_invoice"]
+        )
+        # For stock products, we always consider the delivered quantity as it
+        # impacts the stock valuation.
+        # Otherwise, we consider the invoice policy by checking the
+        # qty_to_invoice.
+        query.add_where(
+            f"""
+            CASE
+              WHEN "{self._table}".qty_delivered_method = 'stock_move'
+                THEN "{self._table}".qty_delivered != "{self._table}".qty_invoiced
+              ELSE "{self._table}".qty_to_invoice != 0
+              END
+            """
+        )
+        return query
 
     def _prepare_cutoff_accrual_line(self, cutoff):
         res = super()._prepare_cutoff_accrual_line(cutoff)
