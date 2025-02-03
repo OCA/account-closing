@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-15 23:09+0000\n"
-"PO-Revision-Date: 2024-02-04 19:37+0000\n"
+"PO-Revision-Date: 2025-02-03 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
@@ -27,7 +27,7 @@ msgstr "Assicurazione auto"
 #. module: account_invoice_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.product_template_form_view
 msgid "Cut-offs"
-msgstr ""
+msgstr "Competenze"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__end_date
@@ -49,7 +49,7 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistiche fatture"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
@@ -74,6 +74,8 @@ msgid ""
 "Missing Start Date for invoice line with Product '%s' which has the property "
 "'Must Have Start/End Dates'."
 msgstr ""
+"Data di inizio mancante per la riga della fattura con prodotto '%s' che ha "
+"la proprietà 'Deve avere date di inizio/fine'."
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
