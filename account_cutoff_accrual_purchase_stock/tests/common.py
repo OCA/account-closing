@@ -17,6 +17,13 @@ class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        for p in cls.products.filtered(
+            lambda product: product.detailed_type == "product"
+        ):
+            cls.env["stock.quant"]._update_available_quantity(
+                p, cls.stock_location, 100
+            )
         # Removing all existing PO
         cls.env.cr.execute("DELETE FROM purchase_order;")
         # Create PO
