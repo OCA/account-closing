@@ -7,6 +7,17 @@ from odoo.addons.account_cutoff_accrual_sale.tests.common import (
 
 
 class TestAccountCutoffAccrualSaleStockCommon(TestAccountCutoffAccrualSaleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        for p in cls.products.filtered(
+            lambda product: product.detailed_type == "product"
+        ):
+            cls.env["stock.quant"]._update_available_quantity(
+                p, cls.stock_location, 100
+            )
+
     def _get_service_lines(self, cutoff):
         return cutoff.line_ids.filtered(
             lambda line: line.product_id.detailed_type == "service"
