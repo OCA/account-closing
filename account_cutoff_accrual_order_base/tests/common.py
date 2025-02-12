@@ -38,11 +38,6 @@ class TestAccountCutoffAccrualOrderCommon(TransactionCase):
         cls.products = cls.env.ref("product.product_delivery_01") | cls.env.ref(
             "product.product_delivery_02"
         )
-        cls.stock_location = cls.env.ref("stock.stock_location_stock")
-        for p in cls.products:
-            cls.env["stock.quant"]._update_available_quantity(
-                p, cls.stock_location, 100
-            )
         cls.products |= cls.env.ref("product.expense_product")
         # analytic account
         cls.default_plan = cls.env["account.analytic.plan"].create(
