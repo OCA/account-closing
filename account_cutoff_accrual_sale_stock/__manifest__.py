@@ -6,7 +6,7 @@
     "version": "16.0.1.0.0",
     "category": "Accounting & Finance",
     "license": "AGPL-3",
-    "summary": "Glue module for Cut-Off Accruals on Sales with Stock Deliveries",
+    "summary": "Glue module for Cut-Off Accruals on Sales with Stock",
     "author": "BCIM, Odoo Community Association (OCA)",
     "maintainers": ["jbaudoux"],
     "website": "https://github.com/OCA/account-closing",

@@ -7,6 +7,16 @@ from odoo.addons.account_cutoff_accrual_sale.tests.common import (
 
 
 class TestAccountCutoffAccrualSaleStockCommon(TestAccountCutoffAccrualSaleCommon):
+    def _get_service_lines(self, cutoff):
+        return cutoff.line_ids.filtered(
+            lambda line: line.product_id.detailed_type == "service"
+        )
+
+    def _get_product_lines(self, cutoff):
+        return cutoff.line_ids.filtered(
+            lambda line: line.product_id.detailed_type == "product"
+        )
+
     def _confirm_so_and_do_picking(self, qty_done):
         self.so.action_confirm()
         if self.so.invoice_status == "to invoice":

@@ -40,6 +40,8 @@ class SaleOrderLine(models.Model):
     def _get_cutoff_accrual_delivered_min_date(self):
         """Return first delivery date"""
         self.ensure_one()
+        if self.qty_delivered_method != "stock_move":
+            return super()._get_cutoff_accrual_delivered_min_date()
         stock_moves = self.move_ids.filtered(lambda m: m.state == "done")
         if not stock_moves:
             return

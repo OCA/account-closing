@@ -201,8 +201,14 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleCommon):
         # Validate invoice after cutoff
         self.so.invoice_ids.invoice_date = cutoff.cutoff_date + timedelta(days=1)
         self.so.invoice_ids.action_post()
-        # as there is no delivery and invoice is after cutoff, no line is generated
-        self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be found")
+        # as there is no delivery and invoice is after cutoff, one line is
+        # generated for the service
+        self.assertEqual(len(cutoff.line_ids), 1, "1 cutoff line should be found")
+        amount = self.qty * self.price
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, amount, "SO line cutoff amount incorrect"
+            )
         cutoff.get_lines()
         self.assertEqual(len(cutoff.line_ids), 1, "1 cutoff line should be found")
         amount = self.qty * self.price
