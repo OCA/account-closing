@@ -37,6 +37,11 @@ class SaleOrderLine(models.Model):
     def _get_cutoff_accrual_product_qty(self):
         return self.product_uom_qty
 
+    def _get_cutoff_accrual_price_unit(self):
+        if self.is_downpayment:
+            return self.price_unit
+        return super()._get_cutoff_accrual_price_unit()
+
     @api.model
     def _get_cutoff_accrual_lines_domain(self, cutoff):
         domain = super()._get_cutoff_accrual_lines_domain(cutoff)
@@ -55,7 +60,13 @@ class SaleOrderLine(models.Model):
     def _get_cutoff_accrual_lines_query(self, cutoff):
         query = super()._get_cutoff_accrual_lines_query(cutoff)
         self.flush_model(
-            ["qty_delivered_method", "qty_delivered", "qty_invoiced", "qty_to_invoice"]
+            [
+                "qty_delivered_method",
+                "qty_delivered",
+                "qty_invoiced",
+                "qty_to_invoice",
+                "is_downpayment",
+            ]
         )
         # The delivery line could be invoiceable but not the order (see
         # delivery module). So check also the SO invoice status.
@@ -73,7 +84,10 @@ class SaleOrderLine(models.Model):
               WHEN "{self._table}".qty_delivered_method = 'stock_move'
                 THEN "{self._table}".qty_delivered != "{self._table}".qty_invoiced
               ELSE "{self._table}".qty_to_invoice != 0
-                AND "{so_alias}".invoice_status = 'to invoice'
+                AND (
+                  "{so_alias}".invoice_status = 'to invoice'
+                  OR "{self._table}".is_downpayment
+                )
               END
             """
         )
