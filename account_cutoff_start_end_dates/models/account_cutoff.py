@@ -211,5 +211,4 @@ class AccountCutoff(models.Model):
         amls = aml_obj.search(domain)
         for aml in amls:
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
-
         return res
