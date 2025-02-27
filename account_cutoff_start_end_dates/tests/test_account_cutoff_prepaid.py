@@ -8,57 +8,37 @@ import time
 
 from odoo import Command, fields
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged("post_install", "-at_install")
-class TestCutoffPrepaid(TransactionCase):
+class TestCutoffPrepaid(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.test_company_dict = cls.setup_other_company(name="Cutme Inc.")
+        cls.company = cls.test_company_dict["company"]
+        cls.env.user.write({"company_ids": [Command.link(cls.company.id)]})
         cls.inv_model = cls.env["account.move"]
         cls.cutoff_model = cls.env["account.cutoff"]
-        cls.account_model = cls.env["account.account"]
-        cls.journal_model = cls.env["account.journal"]
-        cls.main_company = cls.env.ref("base.main_company")
-        cls.account_expense = cls.account_model.create(
-            {
-                "account_type": "expense",
-                "company_ids": [Command.set([cls.main_company.id])],
-                "name": "Test expense",
-                "code": "TE.1",
-            }
-        )
-        cls.account_payable = cls.account_model.create(
-            {
-                "account_type": "liability_payable",
-                "company_ids": [Command.set([cls.main_company.id])],
-                "name": "Test payable",
-                "code": "TP.1",
-            }
-        )
-        cls.account_cutoff = cls.account_model.create(
+        cls.account_expense = cls.test_company_dict["default_account_expense"]
+        cls.account_cutoff = cls.env["account.account"].create(
             {
                 "account_type": "liability_current",
-                "company_ids": [Command.set([cls.main_company.id])],
+                "company_ids": [Command.set([cls.company.id])],
                 "name": "Test cutoff",
                 "code": "TC.1",
             }
         )
-        cls.cutoff_journal = cls.journal_model.create(
+        cls.cutoff_journal = cls.test_company_dict["default_journal_misc"]
+        cls.purchase_journal = cls.test_company_dict["default_journal_purchase"]
+        cls.partner = cls.env["res.partner"].create({"name": "Odoo fanboy"})
+        cls.company.write(
             {
-                "name": "Cutoff journal",
-                "type": "general",
-                "code": "GEN",
-                "company_id": cls.main_company.id,
-            }
-        )
-        cls.purchase_journal = cls.journal_model.create(
-            {
-                "name": "Purchase journal",
-                "type": "purchase",
-                "code": "PUR",
-                "company_id": cls.main_company.id,
+                "default_cutoff_journal_id": cls.cutoff_journal.id,
+                "default_prepaid_expense_account_id": cls.account_cutoff.id,
             }
         )
 
@@ -74,10 +54,10 @@ class TestCutoffPrepaid(TransactionCase):
     def _create_invoice(self, date, amount, start_date, end_date):
         invoice = self.inv_model.create(
             {
-                "company_id": self.env.ref("base.main_company").id,
+                "company_id": self.company.id,
                 "invoice_date": self._date(date),
                 "date": self._date(date),
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "journal_id": self.purchase_journal.id,
                 "move_type": "in_invoice",
                 "invoice_line_ids": [
@@ -101,14 +81,14 @@ class TestCutoffPrepaid(TransactionCase):
     def _create_cutoff(self, date):
         cutoff = self.cutoff_model.create(
             {
-                "company_id": self.env.ref("base.main_company").id,
+                "company_id": self.company.id,
                 "cutoff_date": self._date(date),
-                "cutoff_type": "prepaid_revenue",
-                "cutoff_journal_id": self.cutoff_journal.id,
-                "cutoff_account_id": self.account_cutoff.id,
-                "source_journal_ids": [Command.set([self.purchase_journal.id])],
+                "cutoff_type": "prepaid_expense",
             }
         )
+        self.assertTrue(self.purchase_journal in cutoff.source_journal_ids)
+        self.assertEqual(cutoff.cutoff_journal_id, self.cutoff_journal)
+        self.assertEqual(cutoff.cutoff_account_id, self.account_cutoff)
         return cutoff
 
     def test_with_cutoff_before_after_and_in_the_middle(self):
