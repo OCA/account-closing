@@ -10,7 +10,7 @@ class TestAccountCutoff(TransactionCase):
 
         company = self.env.company
         random_account = self.env["account.account"].search(
-            [("company_id", "=", company.id)], limit=1
+            [("company_ids", "in", company.id)], limit=1
         )
         if random_account:
             company.default_accrued_expense_account_id = random_account.id

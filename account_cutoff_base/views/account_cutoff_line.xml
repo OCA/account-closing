@@ -55,10 +55,10 @@
         </field>
     </record>
     <record id="account_cutoff_line_tree" model="ir.ui.view">
-        <field name="name">account.cutoff.line.tree</field>
+        <field name="name">account.cutoff.line.list</field>
         <field name="model">account.cutoff.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field
                     name="parent_id"
                     column_invisible="not context.get('account_cutoff_line_main_view', False)"
@@ -79,7 +79,7 @@
                 <field name="currency_id" column_invisible="1" />
                 <field name="cutoff_amount" sum="1" />
                 <field name="company_currency_id" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="account_cutoff_line_search" model="ir.ui.view">
@@ -102,6 +102,6 @@
     <record id="account_cutoff_line_action" model="ir.actions.act_window">
         <field name="name">Cutoff Lines</field>
         <field name="res_model">account.cutoff.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

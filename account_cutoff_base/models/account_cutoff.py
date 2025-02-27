@@ -7,7 +7,7 @@ from collections import defaultdict
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import date_utils, float_is_zero
 from odoo.tools.misc import format_date
@@ -23,12 +23,12 @@ class AccountCutoff(models.Model):
 
     @api.depends("line_ids", "line_ids.cutoff_amount")
     def _compute_total_cutoff(self):
-        rg_res = self.env["account.cutoff.line"].read_group(
+        rg_res = self.env["account.cutoff.line"]._read_group(
             [("parent_id", "in", self.ids)],
-            ["parent_id", "cutoff_amount"],
-            ["parent_id"],
+            groupby=["parent_id"],
+            aggregates=["cutoff_amount:sum"],
         )
-        mapped_data = {x["parent_id"][0]: x["cutoff_amount"] for x in rg_res}
+        mapped_data = {parent.id: amount for (parent, amount) in rg_res}
         for cutoff in self:
             cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
 
@@ -118,7 +118,7 @@ class AccountCutoff(models.Model):
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
-        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
         default=lambda self: self._default_cutoff_account_id(),
         check_company=True,
         tracking=True,
@@ -166,7 +166,7 @@ class AccountCutoff(models.Model):
         (
             "date_type_company_uniq",
             "unique(cutoff_date, company_id, cutoff_type)",
-            _("A cutoff of the same type already exists with this cut-off date !"),
+            "A cutoff of the same type already exists with this cut-off date !",
         )
     ]
 
@@ -214,15 +214,13 @@ class AccountCutoff(models.Model):
 
                 vals[k] = value
 
-            movelines_to_create.append((0, 0, vals))
+            movelines_to_create.append(Command.create(vals))
             amount_total += amount
 
         # add counter-part
         counterpart_amount = self.company_currency_id.round(amount_total * -1)
         movelines_to_create.append(
-            (
-                0,
-                0,
+            Command.create(
                 {
                     "account_id": self.cutoff_account_id.id,
                     "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
@@ -317,10 +315,12 @@ class AccountCutoff(models.Model):
         self.write({"move_id": move.id, "state": "done"})
         self.message_post(body=_("Journal entry generated"))
 
-        action = self.env.ref("account.action_move_journal_line").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "account.action_move_journal_line"
+        )
         action.update(
             {
-                "view_mode": "form,tree",
+                "view_mode": "form,list",
                 "res_id": move.id,
                 "view_id": False,
                 "views": False,
@@ -349,7 +349,7 @@ class AccountCutoff(models.Model):
                 )
         return super().unlink()
 
-    def button_line_tree(self):
+    def button_line_list(self):
         action = self.env["ir.actions.actions"]._for_xml_id(
             "account_cutoff_base.account_cutoff_line_action"
         )
@@ -418,9 +418,7 @@ class AccountCutoff(models.Model):
                 tax_amount, company_currency, self.company_id, self.cutoff_date
             )
             res.append(
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "tax_id": tax_line["id"],
                         "base": tax_line["base"],  # in currency
