@@ -21,6 +21,7 @@
         "views/account_cutoff_mapping.xml",
         "views/account_tax.xml",
     ],
+    "post_init_hook": "company_country_cutoff_setup",
     "installable": True,
     "license": "LGPL-3",
 }
