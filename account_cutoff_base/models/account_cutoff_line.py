@@ -79,4 +79,4 @@ class AccountCutoffLine(models.Model):
         string="Cut-off Tax Lines",
         readonly=True,
     )
-    notes = fields.Text()
+    notes = fields.Html()
