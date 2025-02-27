@@ -6,10 +6,12 @@
 
 import time
 
-from odoo import fields
+from odoo import Command, fields
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestCutoffPrepaid(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -22,7 +24,7 @@ class TestCutoffPrepaid(TransactionCase):
         cls.account_expense = cls.account_model.create(
             {
                 "account_type": "expense",
-                "company_id": cls.main_company.id,
+                "company_ids": [Command.set([cls.main_company.id])],
                 "name": "Test expense",
                 "code": "TE.1",
             }
@@ -30,7 +32,7 @@ class TestCutoffPrepaid(TransactionCase):
         cls.account_payable = cls.account_model.create(
             {
                 "account_type": "liability_payable",
-                "company_id": cls.main_company.id,
+                "company_ids": [Command.set([cls.main_company.id])],
                 "name": "Test payable",
                 "code": "TP.1",
             }
@@ -38,7 +40,7 @@ class TestCutoffPrepaid(TransactionCase):
         cls.account_cutoff = cls.account_model.create(
             {
                 "account_type": "liability_current",
-                "company_id": cls.main_company.id,
+                "company_ids": [Command.set([cls.main_company.id])],
                 "name": "Test cutoff",
                 "code": "TC.1",
             }
@@ -79,9 +81,7 @@ class TestCutoffPrepaid(TransactionCase):
                 "journal_id": self.purchase_journal.id,
                 "move_type": "in_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "expense",
                             "price_unit": amount,
@@ -106,7 +106,7 @@ class TestCutoffPrepaid(TransactionCase):
                 "cutoff_type": "prepaid_revenue",
                 "cutoff_journal_id": self.cutoff_journal.id,
                 "cutoff_account_id": self.account_cutoff.id,
-                "source_journal_ids": [(6, 0, [self.purchase_journal.id])],
+                "source_journal_ids": [Command.set([self.purchase_journal.id])],
             }
         )
         return cutoff
