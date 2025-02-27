@@ -82,7 +82,7 @@ class AccountCutoff(models.Model):
         store=True,
         readonly=False,
         precompute=True,
-        domain="[('company_id', '=', company_id)]",
+        domain="[('company_id', '=', company_id), ('type', '=', 'general')]",
         check_company=True,
         tracking=True,
     )
