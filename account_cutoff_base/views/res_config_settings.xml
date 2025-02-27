@@ -40,7 +40,6 @@
                                 name="dft_accrued_revenue_account_id"
                                 options="{'no_create_edit': True, 'no_open': True}"
                             />
-
                         </div>
                         <div class="row mt16" id="dft_accrued_expense_account_id">
                             <label

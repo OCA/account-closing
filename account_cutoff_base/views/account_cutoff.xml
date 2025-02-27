@@ -165,7 +165,6 @@
                         string="Cutoff Date"
                         context="{'group_by': 'cutoff_date'}"
                     />
-
                 </group>
             </search>
         </field>
