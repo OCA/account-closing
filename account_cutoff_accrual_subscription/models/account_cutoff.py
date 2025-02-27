@@ -167,7 +167,7 @@ class AccountCutoff(models.Model):
             if notes:
                 msg += "<ul>"
                 for note in notes:
-                    msg += "<li>%s</li>" % note
+                    msg += f"<li>{note}</li>"
                 msg += "</ul>"
             self.message_post(body=msg)
             return False
