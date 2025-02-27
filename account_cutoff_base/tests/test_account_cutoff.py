@@ -4,10 +4,7 @@ from odoo.tests.common import TransactionCase
 
 
 class TestAccountCutoff(TransactionCase):
-    def test_default_cutoff_account_id(self):
-        account_id = self.env["account.cutoff"]._default_cutoff_account_id()
-        self.assertEqual(account_id, False)
-
+    def test_compute_cutoff_account_id(self):
         company = self.env.company
         random_account = self.env["account.account"].search(
             [("company_ids", "in", company.id)], limit=1
@@ -16,23 +13,25 @@ class TestAccountCutoff(TransactionCase):
             company.default_accrued_expense_account_id = random_account.id
             company.default_accrued_revenue_account_id = random_account.id
 
-            account_id = (
-                self.env["account.cutoff"]
-                .with_context(default_cutoff_type="accrued_expense")
-                ._default_cutoff_account_id()
+            cutoff = self.env["account.cutoff"].create(
+                {
+                    "company_id": company.id,
+                    "cutoff_type": "accrued_expense",
+                }
             )
             self.assertEqual(
-                account_id,
+                cutoff.cutoff_account_id.id,
                 random_account.id,
                 f"The account must be equals to {random_account.id}",
             )
-            account_id = (
-                self.env["account.cutoff"]
-                .with_context(default_cutoff_type="accrued_revenue")
-                ._default_cutoff_account_id()
+            cutoff2 = self.env["account.cutoff"].create(
+                {
+                    "company_id": company.id,
+                    "cutoff_type": "accrued_revenue",
+                }
             )
             self.assertEqual(
-                account_id,
+                cutoff2.cutoff_account_id.id,
                 random_account.id,
                 f"The account must be equals to {random_account.id}",
             )
