@@ -165,6 +165,11 @@ class SaleOrderLine(models.Model):
         """Return first delivery date"""
         self.ensure_one()
         if self.product_id.invoice_policy == "order":
-            date = self.order_id.date_order
-            return date.date()
+            date_local = self.order_id.date_order
+            company_tz = self.env.company.partner_id.tz or "UTC"
+            date_utc = fields.Datetime.context_timestamp(
+                self.with_context(tz=company_tz),
+                date_local,
+            )
+            return date_utc.date()
         return
