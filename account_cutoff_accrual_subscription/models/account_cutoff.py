@@ -91,22 +91,20 @@ class AccountCutoff(models.Model):
         # (or in the chatter if the amount to provision is 0)
         sub = data["sub"]
         ccur = self.company_currency_id
-        notes = [
-            _(
-                "CONFIG: %(periodicity)s periodicity, start date %(start_date)s, "
-                "min. expense amount %(min_amount)s, default provision amount "
-                "%(provision_amount)s"
-            )
-            % {
-                "periodicity": sub._fields["periodicity"].convert_to_export(
-                    sub.periodicity, sub
-                ),
-                "start_date": format_date(self.env, sub.start_date),
-                "min_amount": format_amount(self.env, sub.min_amount, ccur),
-                "provision_amount": format_amount(self.env, sub.provision_amount, ccur),
-            },
-            _("PERIODS:"),
-        ]
+        note_config = _(
+            "CONFIG: %(periodicity)s periodicity, start date %(start_date)s, "
+            "min. expense amount %(min_amount)s, default provision amount "
+            "%(provision_amount)s"
+        ) % {
+            "periodicity": sub._fields["periodicity"].convert_to_export(
+                sub.periodicity, sub
+            ),
+            "start_date": format_date(self.env, sub.start_date),
+            "min_amount": format_amount(self.env, sub.min_amount, ccur),
+            "provision_amount": format_amount(self.env, sub.provision_amount, ccur),
+        }
+        note_period = _("PERIODS:")
+        notes = f"<p>{note_config}</p><p>{note_period}</p><ul>"
         cutoff_amount = 0
         for interval in data["intervals"]:
             prorata_label = (
@@ -128,48 +126,40 @@ class AccountCutoff(models.Model):
                 period_cutoff_amount = ccur.round(
                     interval["provision_amount"] - interval["amount"]
                 )
-                notes.append(
-                    _(
-                        "%(start)s → %(end)s%(prorata)s: %(sub_type)s "
-                        "%(amount)s under min. amount ⇒provisionning %(cutoff_amount)s"
-                    )
-                    % {
-                        "start": format_date(self.env, interval["start"]),
-                        "end": format_date(self.env, interval["end"]),
-                        "prorata": prorata_label,
-                        "sub_type": sub_type_label,
-                        "amount": format_amount(self.env, interval["amount"], ccur),
-                        "cutoff_amount": format_amount(
-                            self.env, period_cutoff_amount, ccur
-                        ),
-                    }
-                )
+                line_note = _(
+                    "%(start)s → %(end)s%(prorata)s: %(sub_type)s "
+                    "%(amount)s under min. amount ⇒provisionning %(cutoff_amount)s"
+                ) % {
+                    "start": format_date(self.env, interval["start"]),
+                    "end": format_date(self.env, interval["end"]),
+                    "prorata": prorata_label,
+                    "sub_type": sub_type_label,
+                    "amount": format_amount(self.env, interval["amount"], ccur),
+                    "cutoff_amount": format_amount(
+                        self.env, period_cutoff_amount, ccur
+                    ),
+                }
                 cutoff_amount += period_cutoff_amount * lsign
             else:
-                notes.append(
-                    _(
-                        "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s "
-                        "over min. amount ⇒ no provisionning"
-                    )
-                    % {
-                        "start": format_date(self.env, interval["start"]),
-                        "end": format_date(self.env, interval["end"]),
-                        "prorata": prorata_label,
-                        "sub_type": sub_type_label,
-                        "amount": format_amount(self.env, interval["amount"], ccur),
-                    }
-                )
+                line_note = _(
+                    "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s "
+                    "over min. amount ⇒ no provisionning"
+                ) % {
+                    "start": format_date(self.env, interval["start"]),
+                    "end": format_date(self.env, interval["end"]),
+                    "prorata": prorata_label,
+                    "sub_type": sub_type_label,
+                    "amount": format_amount(self.env, interval["amount"], ccur),
+                }
+            notes += f"<li>{line_note}</li>"
+        notes += "</ul>"
         if ccur.is_zero(cutoff_amount):
             msg = _(
                 "<p>No provision for subscription <a href=# "
                 "data-oe-model=account.cutoff.accrual.subscription "
-                "data-oe-id=%(id)d>%(name)s</a>:</p>"
+                "data-oe-id=%(id)d>%(name)s</a>.</p>"
             ) % {"id": sub.id, "name": sub.name}
-            if notes:
-                msg += "<ul>"
-                for note in notes:
-                    msg += f"<li>{note}</li>"
-                msg += "</ul>"
+            msg += notes
             self.message_post(body=Markup(msg))
             return False
         else:
@@ -192,7 +182,7 @@ class AccountCutoff(models.Model):
                 "amount": 0,
                 "cutoff_amount": cutoff_amount,
                 "cutoff_account_id": cutoff_account_id,
-                "notes": "\n".join(notes),
+                "notes": notes,
             }
             if sub.tax_ids and self.company_id.accrual_taxes:
                 tax_compute_all_res = sub.tax_ids.compute_all(
