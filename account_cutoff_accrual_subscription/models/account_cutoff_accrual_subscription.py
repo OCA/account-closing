@@ -87,7 +87,7 @@ class AccountCutoffAccrualSubscription(models.Model):
         "account.account",
         string="Account",
         required=True,
-        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
         check_company=True,
     )
     type_tax_use = fields.Char(compute="_compute_type_tax_use")
