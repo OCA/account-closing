@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
+from markupsafe import Markup
 
 from odoo import _, models
 from odoo.exceptions import UserError
@@ -169,7 +170,7 @@ class AccountCutoff(models.Model):
                 for note in notes:
                     msg += f"<li>{note}</li>"
                 msg += "</ul>"
-            self.message_post(body=msg)
+            self.message_post(body=Markup(msg))
             return False
         else:
             if sub.partner_type == "one":

@@ -58,12 +58,17 @@
     </record>
 
     <record id="account_cutoff_accrual_subscription_tree" model="ir.ui.view">
-        <field name="name">account.cutoff.accrual.subscription.tree</field>
+        <field name="name">account.cutoff.accrual.subscription.list</field>
         <field name="model">account.cutoff.accrual.subscription</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="name" />
-                <field name="subscription_type" />
+            <list>
+                <field name="name" decoration-bf="1" />
+                <field
+                    name="subscription_type"
+                    widget="badge"
+                    decoration-success="subscription_type == 'expense'"
+                    decoration-info="subscription_type == 'revenue'"
+                />
                 <field name="partner_type" optional="show" />
                 <field
                     name="partner_id"
@@ -85,9 +90,9 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
-                <field name="company_id" invisible="1" />
-                <field name="company_currency_id" invisible="1" />
-            </tree>
+                <field name="company_id" column_invisible="1" />
+                <field name="company_currency_id" column_invisible="1" />
+            </list>
         </field>
     </record>
 
@@ -143,7 +148,7 @@
     >
         <field name="name">Subscriptions</field>
         <field name="res_model">account.cutoff.accrual.subscription</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
