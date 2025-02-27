@@ -36,10 +36,10 @@
         </field>
     </record>
     <record id="account_cutoff_tax_line_tree" model="ir.ui.view">
-        <field name="name">account.cutoff.tax.line.tree</field>
+        <field name="name">account.cutoff.tax.line.list</field>
         <field name="model">account.cutoff.tax.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field
                     name="parent_id"
                     column_invisible="not context.get('account_cutoff_tax_line_main_view', False)"
@@ -57,7 +57,7 @@
                 <field name="cutoff_amount" />
                 <field name="company_currency_id" column_invisible="1" />
                 <field name="sequence" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

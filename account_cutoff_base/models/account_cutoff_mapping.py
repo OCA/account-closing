@@ -20,14 +20,14 @@ class AccountCutoffMapping(models.Model):
     account_id = fields.Many2one(
         "account.account",
         string="Regular Account",
-        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
         required=True,
         check_company=True,
     )
     cutoff_account_id = fields.Many2one(
         "account.account",
         string="Cut-off Account",
-        domain="[('deprecated', '=', False), ('company_id', '=', company_id)]",
+        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
         required=True,
         check_company=True,
     )
