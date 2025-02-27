@@ -23,5 +23,5 @@
     ],
     "post_init_hook": "company_country_cutoff_setup",
     "installable": True,
-    "license": "LGPL-3",
+    "license": "AGPL-3",
 }
