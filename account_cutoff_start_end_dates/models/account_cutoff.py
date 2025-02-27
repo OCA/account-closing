@@ -2,46 +2,48 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
 class AccountCutoff(models.Model):
     _inherit = "account.cutoff"
 
-    @api.model
-    def _get_default_source_journals(self):
-        res = []
-        cutoff_type = self.env.context.get("default_cutoff_type")
-        mapping = {
-            "accrued_revenue": "sale",
-            "accrued_expense": "purchase",
-            "prepaid_revenue": "sale",
-            "prepaid_expense": "purchase",
-        }
-        if cutoff_type in mapping:
-            src_journals = self.env["account.journal"].search(
-                [
-                    ("type", "=", mapping[cutoff_type]),
-                    ("company_id", "=", self.env.company.id),
-                ]
-            )
-            if src_journals:
-                res = src_journals.ids
-        return res
-
     source_journal_ids = fields.Many2many(
         "account.journal",
         column1="cutoff_id",
         column2="journal_id",
         string="Source Journals",
-        default=lambda self: self._get_default_source_journals(),
+        compute="_compute_source_journal_ids",
+        store=True,
+        readonly=False,
+        precompute=True,
         check_company=True,
         domain="[('company_id', '=', company_id)]",
     )
     state = fields.Selection(selection_add=[("forecast", "Forecast")])
     start_date = fields.Date(help="This field is only for the forecast mode")
     end_date = fields.Date(help="This field is only for the forecast mode")
+
+    @api.depends("company_id", "cutoff_type")
+    def _compute_source_journal_ids(self):
+        mapping = {
+            "accrued_revenue": "sale",
+            "accrued_expense": "purchase",
+            "prepaid_revenue": "sale",
+            "prepaid_expense": "purchase",
+        }
+        for rec in self:
+            source_journal_ids = []
+            if rec.cutoff_type in mapping:
+                src_journals = self.env["account.journal"].search(
+                    [
+                        ("type", "=", mapping[rec.cutoff_type]),
+                        ("company_id", "=", rec.company_id.id),
+                    ]
+                )
+                source_journal_ids = src_journals.ids
+            rec.source_journal_ids = [Command.set(source_journal_ids)]
 
     @api.constrains("start_date", "end_date", "state")
     def _check_start_end_dates(self):
