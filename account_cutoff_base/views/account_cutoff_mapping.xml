@@ -23,10 +23,10 @@
         </field>
     </record>
     <record id="account_cutoff_mapping_tree" model="ir.ui.view">
-        <field name="name">account.cutoff.mapping.tree</field>
+        <field name="name">account.cutoff.mapping.list</field>
         <field name="model">account.cutoff.mapping</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="cutoff_type" />
                 <field name="account_id" />
                 <field name="cutoff_account_id" />
@@ -37,13 +37,13 @@
                     optional="show"
                 />
                 <field name="company_id" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="account_cutoff_mapping_action" model="ir.actions.act_window">
         <field name="name">Cut-off Account Mapping</field>
         <field name="res_model">account.cutoff.mapping</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to start a new cutoff account mapping.
