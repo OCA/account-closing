@@ -21,71 +21,14 @@ class AccountCutoff(models.Model):
     _check_company_auto = True
     _description = "Account Cut-off"
 
-    @api.depends("line_ids", "line_ids.cutoff_amount")
-    def _compute_total_cutoff(self):
-        rg_res = self.env["account.cutoff.line"]._read_group(
-            [("parent_id", "in", self.ids)],
-            groupby=["parent_id"],
-            aggregates=["cutoff_amount:sum"],
-        )
-        mapped_data = {parent.id: amount for (parent, amount) in rg_res}
-        for cutoff in self:
-            cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
-
-    @property
-    def cutoff_type_label_map(self):
-        return {
-            "accrued_expense": _("Accrued Expense"),
-            "accrued_revenue": _("Accrued Revenue"),
-            "prepaid_revenue": _("Prepaid Revenue"),
-            "prepaid_expense": _("Prepaid Expense"),
-        }
-
-    @api.model
-    def _default_move_ref(self):
-        cutoff_type = self.env.context.get("default_cutoff_type")
-        ref = self.cutoff_type_label_map.get(cutoff_type, "")
-        return ref
-
-    @api.model
-    def _default_cutoff_date(self):
-        today = fields.Date.context_today(self)
-        company = self.env.company
-        date_from, date_to = date_utils.get_fiscal_year(
-            today,
-            day=company.fiscalyear_last_day,
-            month=int(company.fiscalyear_last_month),
-        )
-        if date_from:
-            return date_from - relativedelta(days=1)
-        else:
-            return False
-
-    def _selection_cutoff_type(self):
-        # generate cutoff types from mapping
-        return list(self.cutoff_type_label_map.items())
-
-    @api.model
-    def _default_cutoff_account_id(self):
-        cutoff_type = self.env.context.get("default_cutoff_type")
-        company = self.env.company
-        if cutoff_type == "accrued_expense":
-            account_id = company.default_accrued_expense_account_id.id or False
-        elif cutoff_type == "accrued_revenue":
-            account_id = company.default_accrued_revenue_account_id.id or False
-        elif cutoff_type == "prepaid_revenue":
-            account_id = company.default_prepaid_revenue_account_id.id or False
-        elif cutoff_type == "prepaid_expense":
-            account_id = company.default_prepaid_expense_account_id.id or False
-        else:
-            account_id = False
-        return account_id
-
     cutoff_date = fields.Date(
         string="Cut-off Date",
         copy=False,
         tracking=True,
-        default=lambda self: self._default_cutoff_date(),
+        compute="_compute_cutoff_date",
+        store=True,
+        readonly=False,
+        precompute=True,
     )
     cutoff_type = fields.Selection(
         selection="_selection_cutoff_type",
@@ -108,25 +51,37 @@ class AccountCutoff(models.Model):
     )
     move_ref = fields.Char(
         string="Reference of the Cut-off Journal Entry",
-        default=lambda self: self._default_move_ref(),
+        compute="_compute_move_ref",
+        store=True,
+        readonly=False,
+        precompute=True,
     )
     move_partner = fields.Boolean(
         string="Partner on Journal Items",
-        default=lambda self: self.env.company.default_cutoff_move_partner,
+        compute="_compute_move_partner",
+        store=True,
+        readonly=False,
+        precompute=True,
         tracking=True,
     )
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
         domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
-        default=lambda self: self._default_cutoff_account_id(),
+        compute="_compute_cutoff_account_id",
+        store=True,
+        readonly=False,
+        precompute=True,
         check_company=True,
         tracking=True,
     )
     cutoff_journal_id = fields.Many2one(
         comodel_name="account.journal",
         string="Cut-off Account Journal",
-        default=lambda self: self.env.company.default_cutoff_journal_id,
+        compute="_compute_cutoff_journal_id",
+        store=True,
+        readonly=False,
+        precompute=True,
         domain="[('company_id', '=', company_id)]",
         check_company=True,
         tracking=True,
@@ -170,6 +125,78 @@ class AccountCutoff(models.Model):
         )
     ]
 
+    @property
+    def cutoff_type_label_map(self):
+        return {
+            "accrued_expense": _("Accrued Expense"),
+            "accrued_revenue": _("Accrued Revenue"),
+            "prepaid_revenue": _("Prepaid Revenue"),
+            "prepaid_expense": _("Prepaid Expense"),
+        }
+
+    def _selection_cutoff_type(self):
+        # generate cutoff types from mapping
+        return list(self.cutoff_type_label_map.items())
+
+    @api.depends("company_id")
+    def _compute_cutoff_date(self):
+        today = fields.Date.context_today(self)
+        for rec in self:
+            cutoff_date = False
+            company = rec.company_id
+            date_from, date_to = date_utils.get_fiscal_year(
+                today,
+                day=company.fiscalyear_last_day,
+                month=int(company.fiscalyear_last_month),
+            )
+            if date_from:
+                cutoff_date = date_from - relativedelta(days=1)
+            rec.cutoff_date = cutoff_date
+
+    @api.depends("company_id", "cutoff_type")
+    def _compute_cutoff_account_id(self):
+        for rec in self:
+            account_id = False
+            company = rec.company_id
+            cutoff_type = rec.cutoff_type
+            if cutoff_type == "accrued_expense":
+                account_id = company.default_accrued_expense_account_id.id or False
+            elif cutoff_type == "accrued_revenue":
+                account_id = company.default_accrued_revenue_account_id.id or False
+            elif cutoff_type == "prepaid_revenue":
+                account_id = company.default_prepaid_revenue_account_id.id or False
+            elif cutoff_type == "prepaid_expense":
+                account_id = company.default_prepaid_expense_account_id.id or False
+            rec.cutoff_account_id = account_id
+
+    @api.depends("company_id")
+    def _compute_cutoff_journal_id(self):
+        for rec in self:
+            rec.cutoff_journal_id = rec.company_id.default_cutoff_journal_id.id or False
+
+    @api.depends("company_id")
+    def _compute_move_partner(self):
+        for rec in self:
+            rec.move_partner = rec.company_id.default_cutoff_move_partner
+
+    @api.depends("cutoff_type")
+    def _compute_move_ref(self):
+        for rec in self:
+            ref = self.cutoff_type_label_map.get(rec.cutoff_type, "")
+            rec.move_ref = ref
+
+    @api.depends("line_ids", "line_ids.cutoff_amount")
+    def _compute_total_cutoff(self):
+        rg_res = self.env["account.cutoff.line"]._read_group(
+            [("parent_id", "in", self.ids)],
+            groupby=["parent_id"],
+            aggregates=["cutoff_amount:sum"],
+        )
+        mapped_data = {parent.id: amount for (parent, amount) in rg_res}
+        for cutoff in self:
+            cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
+
+    @api.depends("cutoff_type", "cutoff_date")
     def _compute_display_name(self):
         type2label = self.cutoff_type_label_map
         for rec in self:
