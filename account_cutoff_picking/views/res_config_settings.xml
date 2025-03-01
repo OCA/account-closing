@@ -20,9 +20,9 @@
                 >
                     <div class="mt16">
                         <field
-                            name="dft_cutoff_picking_interval_days"
-                            class="oe_inline"
-                        /> days
+                        name="dft_cutoff_picking_interval_days"
+                        class="oe_inline"
+                    /> days
                     </div>
                 </setting>
             </setting>
