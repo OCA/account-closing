@@ -68,9 +68,12 @@ class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon
             )
         )
 
-    def _confirm_po_and_do_picking(self, qty_done):
+    def _confirm_po(self):
         self.po.button_confirm()
         self.po.button_approve(force=True)
+
+    def _confirm_po_and_do_picking(self, qty_done):
+        self._confirm_po()
         pick = self.po.picking_ids
         pick.action_assign()
         pick.move_line_ids.write({"qty_done": qty_done})
@@ -89,4 +92,6 @@ class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon
             )
         )
         invoice_form.invoice_date = date
-        return invoice_form.save()
+        invoice = invoice_form.save()
+        invoice.date = date
+        return invoice
