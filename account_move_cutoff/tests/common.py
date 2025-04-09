@@ -36,7 +36,6 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
 
     @classmethod
     def _create_invoice(cls, journal=None, move_type=None, account=None):
-
         return cls.env["account.move"].create(
             {
                 "date": "2023-01-15",

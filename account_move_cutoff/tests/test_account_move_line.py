@@ -197,7 +197,6 @@ class TestAccountMoveLine(CommonAccountInvoiceCutoffCase):
     def test_get_period_start_end_dates(
         self, _test_name, period, line_start, line_end, expected_start_end
     ):
-
         move_line = self.invoice.line_ids[0]
         move_line.write({"start_date": line_start, "end_date": line_end})
         self.assertEqual(
@@ -515,7 +514,6 @@ class TestAccountMoveLine(CommonAccountInvoiceCutoffCase):
         ]
     )
     def test_get_amounts_per_periods_equals(self, line_case, periods, expected):
-
         if not periods:
             periods = [
                 datetime.date(2023, 1, 1),
@@ -621,7 +619,6 @@ class TestAccountMoveLine(CommonAccountInvoiceCutoffCase):
     def test_get_amounts_per_periods_monthly_prorata(
         self, line_case, periods, expected
     ):
-
         if not periods:
             periods = [
                 datetime.date(2023, 1, 1),
