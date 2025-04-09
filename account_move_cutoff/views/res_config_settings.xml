@@ -9,9 +9,10 @@
         <field name="inherit_id" ref="account.res_config_settings_view_form" />
         <field name="arch" type="xml">
 
-            <xpath expr="//div[@id='accounting_reports']" position="inside">
+            <xpath expr="//block[@id='accounting_reports']" position="inside">
+
                 <div
-                    class="col-12 col-lg-6 o_setting_box"
+                    class="col-12 col-lg-12 o_setting_box"
                     id="account_move_cuttof_settings"
                 >
                     <div class="o_setting_left_pane" />
@@ -31,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 o_setting_box">
+                <div class="col-12 col-lg-12 o_setting_box">
                     <div class="o_setting_left_pane">
                         <field name="link_product" />
                     </div>
@@ -46,29 +47,33 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-6 o_setting_box">
+                <div class="col-12 col-lg-12 o_setting_box">
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
+                        <span class="o_form_label">Cutoff Allocation Method</span>
+                        <div class="text-muted">
+
+                            <p style="margin-bottom: 0">
+                                Choose how amounts should be allocated across accounting periods:
+                            </p>
+                            <p style="margin-bottom: 0">
+                                - <strong
+                                >Equal</strong>: splits the total evenly over the entire service period,
+                                based on the start and end dates of the invoice line.
+                            </p>
+                            <p style="margin-bottom: 0">
+                                - <strong
+                                >Prorata temporis (by month %)</strong>: allocates the amount proportionally
+                                to the number of service days in each month.
+                            </p>
+                        </div>
                         <field
                             name="default_cutoff_method"
                             string="Default cutoff method"
                         />
-                        <div class="text-muted">
-                            Determine how to split amounts over periods:
-                            <li>
-                             <ul
-                                >Equal: same amount is splitted over periods of the service"
-                               (using start and end date on the invoice line).</ul>
-                               <ul>
-                             Prorata temporis by month %: amount is splitted over"
-                               the rate of service days in the month.\n"
-                               </ul>
-                               </li>
-                        </div>
                     </div>
                 </div>
             </xpath>
-
         </field>
     </record>
 </odoo>

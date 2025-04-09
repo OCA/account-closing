@@ -8,7 +8,7 @@
             <field name="model">account.account</field>
             <field name="inherit_id" ref="account.view_account_form" />
             <field name="arch" type="xml">
-                <field name="user_type_id" position="after">
+                <field name="account_type" position="after">
                     <field name="deferred_accrual_account_id" />
                 </field>
             </field>
@@ -19,7 +19,7 @@
             <field name="model">account.account</field>
             <field name="inherit_id" ref="account.view_account_list" />
             <field name="arch" type="xml">
-                <field name="user_type_id" position="after">
+                <field name="account_type" position="after">
                     <field name="deferred_accrual_account_id" optional="hide" />
                 </field>
             </field>

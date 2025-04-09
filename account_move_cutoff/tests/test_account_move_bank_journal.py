@@ -3,21 +3,17 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 @tagged("-at_install", "post_install")
-class NoCuttOfInBankJournal(SavepointCase):
+class NoCuttOfInBankJournal(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.account_cutoff = cls.env["account.account"].search(
             [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_current_liabilities").id,
-                ),
+                ("account_type", "=", "liability_current"),
                 ("company_id", "=", cls.env.ref("base.main_company").id),
             ],
             limit=1,
@@ -83,15 +79,7 @@ class NoCuttOfInBankJournal(SavepointCase):
         self.assertEqual(
             entry._get_deferred_titles(),
             (
-                "Advance recognition of %s (%s)"
-                % (
-                    entry.name,
-                    entry.date.strftime("%m %Y"),
-                ),
-                "Advance adjustment of %s (%s)"
-                % (
-                    entry.name,
-                    entry.date.strftime("%m %Y"),
-                ),
+                f"Advance recognition of {entry.name} ({entry.date.strftime('%m %Y')})",
+                f"Advance adjustment of {entry.name} ({entry.date.strftime('%m %Y')})",
             ),
         )

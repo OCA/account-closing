@@ -18,9 +18,9 @@ class TestRefundCutoff(CommonAccountCutoffBaseCAse):
         cls.account_revenue = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 )
             ],
             limit=1,

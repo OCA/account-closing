@@ -129,9 +129,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                         "debit": 0.0,
                         "cutoff_source_move_id": self.invoice,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -144,7 +142,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case A" in ml.name
                         ),
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -159,9 +157,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case B" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -176,9 +172,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case C" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -193,9 +187,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case D" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -210,9 +202,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case F" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -227,9 +217,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case G" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 5, 1),
                         "end_date": date(2023, 5, 31),
                     },
@@ -244,9 +232,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case I" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 15),
                     },
@@ -289,9 +275,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                         "credit": 0.0,
                         "cutoff_source_move_id": self.invoice,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -304,7 +288,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case A" in ml.name
                         ),
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -319,9 +303,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case B" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -336,9 +318,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case C" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -353,9 +333,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case D" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -370,9 +348,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case F" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -387,9 +363,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case I" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -434,9 +408,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                         "credit": 0.0,
                         "cutoff_source_move_id": self.invoice,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -449,7 +421,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case A" in ml.name
                         ),
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -464,9 +436,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case B" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -481,9 +451,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case C" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -498,9 +466,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                             == account
                             and "Case I" in ml.name
                         ),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 15),
                     },
@@ -535,9 +501,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                         "debit": 0.0,
                         "cutoff_source_move_id": self.invoice,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -548,9 +512,7 @@ class TestInvoiceCutoff(CommonAccountInvoiceCutoffCase):
                         "credit": 0.0,
                         "cutoff_source_move_id": self.invoice,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (

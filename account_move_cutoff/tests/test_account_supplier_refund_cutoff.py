@@ -18,9 +18,9 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
         cls.account_expense = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
+                    "expense",
                 )
             ],
             limit=1,
@@ -82,9 +82,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                         "account_id": self.account_cutoff,
                         "debit": 0.0,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -92,7 +90,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case A" in ml.name,
                     {
                         "debit": 3420.68,
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -102,9 +100,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case B" in ml.name,
                     {
                         "debit": 80.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -114,9 +110,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case C" in ml.name,
                     {
                         "debit": 60.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -126,9 +120,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case D" in ml.name,
                     {
                         "debit": 130.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -138,9 +130,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case F" in ml.name,
                     {
                         "debit": 259.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -150,9 +140,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case G" in ml.name,
                     {
                         "debit": 255.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 5, 1),
                         "end_date": date(2023, 5, 31),
                     },
@@ -162,9 +150,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case I" in ml.name,
                     {
                         "debit": 1508.19,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 3, 15),
                     },
@@ -204,9 +190,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                         "account_id": self.account_cutoff,
                         "credit": 0.0,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -214,7 +198,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case A" in ml.name,
                     {
                         "credit": 1710.34,
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -224,9 +208,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case B" in ml.name,
                     {
                         "credit": 40.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -236,9 +218,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case C" in ml.name,
                     {
                         "credit": 30.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -248,9 +228,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case D" in ml.name,
                     {
                         "credit": 130.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -260,9 +238,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case F" in ml.name,
                     {
                         "credit": 259.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -272,9 +248,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case I" in ml.name,
                     {
                         "credit": 1016.39,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 2, 1),
                         "end_date": date(2023, 2, 28),
                     },
@@ -316,9 +290,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                         "account_id": self.account_cutoff,
                         "credit": 0.0,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -326,7 +298,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case A" in ml.name,
                     {
                         "credit": 1710.34,
-                        "analytic_account_id": self.analytic,
+                        "analytic_distribution": {str(self.analytic.id): 100},
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -336,9 +308,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case B" in ml.name,
                     {
                         "credit": 40.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -348,9 +318,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case C" in ml.name,
                     {
                         "credit": 30.0,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 31),
                     },
@@ -360,9 +328,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                     and "Case I" in ml.name,
                     {
                         "credit": 491.80,
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                         "start_date": date(2023, 3, 1),
                         "end_date": date(2023, 3, 15),
                     },
@@ -396,9 +362,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                         "account_id": self.account_expense,
                         "debit": 0.0,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (
@@ -407,9 +371,7 @@ class TestSupplierRefundCutoff(CommonAccountCutoffBaseCAse):
                         "account_id": self.account_cutoff,
                         "credit": 0.0,
                         "partner_id": self.env.ref("base.res_partner_2"),
-                        "analytic_account_id": self.env[
-                            "account.analytic.account"
-                        ].browse(),
+                        "analytic_distribution": False,
                     },
                 ),
                 (

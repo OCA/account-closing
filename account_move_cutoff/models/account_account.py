@@ -11,8 +11,8 @@ class Account(models.Model):
         comodel_name="account.account",
         string="Revenue/Expense accrual account",
         domain="[('company_id', '=', company_id),"
-        "('internal_type', 'not in', ('receivable', 'payable')),"
-        "('is_off_balance', '=', False)]",
+        "('account_type', 'in', ('asset_current', 'liability_current')),"
+        "]",
         help=(
             "Account used to deferred Revenues/Expenses in next periods. "
             "If not set revenue won't be deferred"

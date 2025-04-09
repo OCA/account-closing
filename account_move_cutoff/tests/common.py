@@ -1,24 +1,22 @@
 # Copyright 2023 Foodles (https://www.foodles.co/)
 # @author: Pierre Verkest <pierreverkest84@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from functools import partial
 
+from odoo import Command
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 @tagged("-at_install", "post_install")
-class CommonAccountCutoffBaseCAse(SavepointCase):
+class CommonAccountCutoffBaseCAse(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.maxDiff = None
         cls.account_cutoff = cls.env["account.account"].search(
             [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_current_liabilities").id,
-                ),
+                ("account_type", "=", "liability_current"),
                 ("company_id", "=", cls.env.ref("base.main_company").id),
             ],
             limit=1,
@@ -32,7 +30,10 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
         )
         cls.env.company.revenue_cutoff_journal_id = cls.miscellaneous_journal.id
         cls.env.company.expense_cutoff_journal_id = cls.miscellaneous_journal.id
-        cls.analytic = cls.env["account.analytic.account"].create({"name": "test"})
+        analytic_plan = cls.env["account.analytic.plan"].create({"name": "plan"})
+        cls.analytic = cls.env["account.analytic.account"].create(
+            {"name": "test", "plan_id": analytic_plan.id}
+        )
 
     @classmethod
     def _create_invoice(cls, journal=None, move_type=None, account=None):
@@ -44,23 +45,19 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
                 "journal_id": journal.id,
                 "move_type": move_type,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
                             "name": "Case A: 3 months starting the 7th",
                             "price_unit": 2400,
                             "quantity": 2,
                             "account_id": account.id,
-                            "analytic_account_id": cls.analytic.id,
+                            "analytic_distribution": {cls.analytic.id: 100},
                             "start_date": "2023-01-07",
                             "end_date": "2023-03-31",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
                             "name": "Case B: 3 full months",
@@ -69,11 +66,9 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
                             "account_id": account.id,
                             "start_date": "2023-01-01",
                             "end_date": "2023-03-31",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
                             "name": "Case C: 2 month starting next month",
@@ -82,11 +77,9 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
                             "account_id": account.id,
                             "start_date": "2023-02-01",
                             "end_date": "2023-03-31",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
                             "name": "Case D: 2 month stopping the month before",
@@ -95,70 +88,69 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
                             "account_id": account.id,
                             "start_date": "2023-01-01",
                             "end_date": "2023-02-28",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
-                            "name": "Case E: 1 month (22 october) leaving a blank months",
+                            "name": (
+                                "Case E: 1 month (22 october) leaving a blank months"
+                            ),
                             "price_unit": 113.5,
                             "quantity": 1,
                             "account_id": account.id,
                             "start_date": "2022-10-01",
                             "end_date": "2022-10-15",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
-                            "name": "Case F: 3 months stating before invoice date (december)",
+                            "name": (
+                                "Case F: 3 months stating before invoice date "
+                                "(december)"
+                            ),
                             "price_unit": 777,
                             "quantity": 1,
                             "account_id": account.id,
                             "start_date": "2022-12-01",
                             "end_date": "2023-02-28",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
-                            "name": "Case G: 1 month (may) leaving a blank month (april)",
+                            "name": (
+                                "Case G: 1 month (may) leaving a blank month (april)"
+                            ),
                             "price_unit": 255,
                             "quantity": 1,
                             "account_id": account.id,
                             "start_date": "2023-05-01",
                             "end_date": "2023-05-31",
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.env.ref("product.product_product_5").id,
                             "name": "Case H: product without date",
                             "price_unit": 215,
                             "quantity": 1,
                             "account_id": account.id,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.maint_product.id,
-                            "name": "Case I: 3 months starting the 17th stopping the 15th",
+                            "name": (
+                                "Case I: 3 months starting the 17th stopping the 15th"
+                            ),
                             "price_unit": 2000,
                             "quantity": 1,
                             "account_id": account.id,
                             "start_date": "2023-01-17",
                             "end_date": "2023-03-15",
-                        },
+                        }
                     ),
                 ],
             }
@@ -176,7 +168,10 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
 
             self.assertExpectedAccountMoveLines(
                 invoice, [
-                    (lambda line: line.name == 'Expected string', {"name": "Expected string"})
+                    (
+                        lambda line: line.name == 'Expected string',
+                        {"name": "Expected string"}
+                    )
                 ]
             )
         """
@@ -186,10 +181,13 @@ class CommonAccountCutoffBaseCAse(SavepointCase):
                 self.assertTrue(False, "No lines found matching filter_handler method")
             for line in lines:
                 for key, expected_value in expected_values.items():
-                    self.assertEqual(
+                    assert_method = self.assertEqual
+                    if isinstance(expected_value, float):
+                        assert_method = partial(self.assertAlmostEqual, places=2)
+                    assert_method(
                         getattr(line, key),
                         expected_value,
-                        f"Testing {key} field on {line.name} ({len(lines)} "
+                        msg=f"Testing {key} field on {line.name} ({len(lines)} "
                         "lines matched current filter)",
                     )
 
@@ -201,9 +199,9 @@ class CommonAccountInvoiceCutoffCase(CommonAccountCutoffBaseCAse):
         cls.account_revenue = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 )
             ],
             limit=1,
@@ -226,9 +224,9 @@ class CommonAccountPurchaseInvoiceCutoffCase(CommonAccountCutoffBaseCAse):
         cls.account_expense = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
+                    "expense",
                 )
             ],
             limit=1,

@@ -15,7 +15,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-retweet"
-                    attrs="{'invisible': [('cutoff_move_count', '=', 0)]}"
+                    invisible="cutoff_move_count == 0"
                     name="action_view_deferred_entries"
                 >
                     <div class="o_form_field o_stat_info">
@@ -27,10 +27,7 @@
                 </button>
             </div>
             <field name="ref" position="after">
-                <field
-                    name="cutoff_from_id"
-                    attrs="{'invisible': [('cutoff_from_id', '=', False)]}"
-                />
+                <field name="cutoff_from_id" invisible="not cutoff_from_id" />
             </field>
             <xpath
                 expr="//notebook/page[@id='invoice_tab']/field[@name='invoice_line_ids']/tree/field[@name='account_id']"

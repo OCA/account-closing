@@ -85,31 +85,39 @@ class AccountMove(models.Model):
 
     def _get_deferred_titles(self):
         self.ensure_one()
-        cutoff_title = _("Advance recognition of %s (%s)") % (
-            self.name,
-            self.date.strftime("%m %Y"),
+        cutoff_title = _("Advance recognition of %(name)s (%(date)s)") % dict(
+            name=self.name,
+            date=self.date.strftime("%m %Y"),
         )
-        deferred_title = _("Advance adjustment of %s (%s)") % (
-            self.name,
-            self.date.strftime("%m %Y"),
+        deferred_title = _("Advance adjustment of %(name)s (%(date)s)") % dict(
+            name=self.name,
+            date=self.date.strftime("%m %Y"),
         )
         if self.journal_id.type == "sale":
-            cutoff_title = _("Advance revenue recognition of %s (%s)") % (
-                self.name,
-                self.date.strftime("%m %Y"),
+            cutoff_title = _(
+                "Advance revenue recognition of %(name)s (%(date)s)"
+            ) % dict(
+                name=self.name,
+                date=self.date.strftime("%m %Y"),
             )
-            deferred_title = _("Advance revenue adjustment of %s (%s)") % (
-                self.name,
-                self.date.strftime("%m %Y"),
+            deferred_title = _(
+                "Advance revenue adjustment of %(name)s (%(date)s)"
+            ) % dict(
+                name=self.name,
+                date=self.date.strftime("%m %Y"),
             )
         elif self.journal_id.type == "purchase":
-            cutoff_title = _("Advance expense recognition of %s (%s)") % (
-                self.name,
-                self.date.strftime("%m %Y"),
+            cutoff_title = _(
+                "Advance expense recognition of %(name)s (%(date)s)"
+            ) % dict(
+                name=self.name,
+                date=self.date.strftime("%m %Y"),
             )
-            deferred_title = _("Advance expense adjustment of %s (%s)") % (
-                self.name,
-                self.date.strftime("%m %Y"),
+            deferred_title = _(
+                "Advance expense adjustment of %(name)s (%(date)s)"
+            ) % dict(
+                name=self.name,
+                date=self.date.strftime("%m %Y"),
             )
         return cutoff_title, deferred_title
 

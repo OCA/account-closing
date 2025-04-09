@@ -56,7 +56,10 @@ class AccountMoveLine(models.Model):
         comodel_name="account.move.line",
         string="Cut-off source item",
         readonly=True,
-        help="Source journal item that generate the current deferred revenue/expense item",
+        help=(
+            "Source journal item that generate the current "
+            "deferred revenue/expense item"
+        ),
     )
     cutoff_source_move_id = fields.Many2one(
         comodel_name="account.move",
@@ -182,7 +185,8 @@ class AccountMoveLine(models.Model):
         line_periods = self._generate_monthly_periods(self.start_date, self.end_date)
         line_periods_factors = dict.fromkeys(line_periods, 1)
         last_day_first_period = self._last_day_of_month(line_periods[0])
-        # use of +1 because service days includes start and end dates [start_date, end_date]
+        # use of +1 because service days includes start and end dates
+        # [start_date, end_date]
         line_periods_factors[line_periods[0]] = (
             (last_day_first_period - self.start_date).days + 1
         ) / last_day_first_period.day
@@ -216,16 +220,21 @@ class AccountMoveLine(models.Model):
 
     def _get_deferred_expense_revenue_account_move_line_labels(self, is_cutoff=None):
         if is_cutoff:
-            return _("Deferred incomes of %s (%s): %s") % (
-                self.move_id.name,
-                self.date.strftime("%m %Y"),
-                self.name,
+            return _(
+                "Deferred incomes of %(move_name)s (%(date)s): %(move_line_name)s"
+            ) % dict(
+                move_name=self.move_id.name,
+                date=self.date.strftime("%m %Y"),
+                move_line_name=self.name,
             )
         else:
-            return _("Adjust deferred incomes of %s (%s): %s") % (
-                self.move_id.name,
-                self.date.strftime("%m %Y"),
-                self.name,
+            return _(
+                "Adjust deferred incomes of %(move_name)s (%(date)s): "
+                "%(move_line_name)s"
+            ) % dict(
+                move_name=self.move_id.name,
+                date=self.date.strftime("%m %Y"),
+                move_line_name=self.name,
             )
 
     def _prepare_entry_lines(self, new_move, period, amount, is_cutoff=True):
@@ -267,17 +276,19 @@ class AccountMoveLine(models.Model):
                     "currency_id": self.currency_id.id,
                     "account_id": self.account_id.id,
                     "partner_id": self.partner_id.id,
-                    "analytic_account_id": self.analytic_account_id.id,
+                    "analytic_distribution": self.analytic_distribution,
                     "cutoff_source_id": self.id,
                     "product_id": self.product_id.id if link_product else False,
                 },
                 {
                     "move_id": new_move.id,
-                    "name": _("Adjusting Entry: %s (%s): %s")
-                    % (
-                        self.move_id.name,
-                        self.date.strftime("%m %Y"),
-                        self.name,
+                    "name": _(
+                        "Adjusting Entry: %(move_name)s (%(date)s): %(move_line_date)s"
+                    )
+                    % dict(
+                        move_name=self.move_id.name,
+                        date=self.date.strftime("%m %Y"),
+                        move_line_date=self.name,
                     ),
                     "start_date": start_date,
                     "end_date": end_date,
@@ -286,7 +297,6 @@ class AccountMoveLine(models.Model):
                     "currency_id": self.currency_id.id,
                     "account_id": self.deferred_accrual_account_id.id,
                     "partner_id": self.partner_id.id,
-                    "analytic_account_id": False,
                     "product_id": False,
                     "cutoff_source_id": self.id,
                 },

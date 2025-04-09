@@ -521,7 +521,7 @@ class TestAccountMoveLine(CommonAccountInvoiceCutoffCase):
                 datetime.date(2023, 3, 1),
             ]
         move_line = self.invoice.line_ids.filtered(
-            lambda line: line.name.startswith(line_case)
+            lambda line: line.name and line.name.startswith(line_case)
         )
         move_line.cutoff_method = "equal"
         self.assertEqual(move_line._get_amounts_per_periods(periods), expected)
@@ -626,7 +626,7 @@ class TestAccountMoveLine(CommonAccountInvoiceCutoffCase):
                 datetime.date(2023, 3, 1),
             ]
         move_line = self.invoice.line_ids.filtered(
-            lambda line: line.name.startswith(line_case)
+            lambda line: line.name and line.name.startswith(line_case)
         )
         move_line.cutoff_method = "monthly_prorata_temporis"
         result = move_line._get_amounts_per_periods(periods)
