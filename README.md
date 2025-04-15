@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [account_cutoff_accrual_order_base](account_cutoff_accrual_order_base/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Order Base
 [account_cutoff_accrual_order_stock_base](account_cutoff_accrual_order_stock_base/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Order Stock Base
 [account_cutoff_accrual_purchase](account_cutoff_accrual_purchase/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Expense on Purchase Order
-[account_cutoff_accrual_purchase_stock](account_cutoff_accrual_purchase_stock/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Order Base
+[account_cutoff_accrual_purchase_stock](account_cutoff_accrual_purchase_stock/) | 16.0.1.0.1 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Order Base
 [account_cutoff_accrual_sale](account_cutoff_accrual_sale/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Accrued Revenue on Sales Order
 [account_cutoff_accrual_sale_stock](account_cutoff_accrual_sale_stock/) | 16.0.1.0.0 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Glue module for Cut-Off Accruals on Sales with Stock Deliveries
 [account_cutoff_accrual_subscription](account_cutoff_accrual_subscription/) | 16.0.1.2.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Accrued expenses based on subscriptions
