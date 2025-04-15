@@ -26,7 +26,7 @@ class PurchaseOrderLine(models.Model):
                 FROM stock_move
                 WHERE state='done'
                   AND date >= %s
-                  AND sale_line_id IS NOT NULL
+                  AND purchase_line_id IS NOT NULL
             )
         """,
             (cutoff_nextday,),

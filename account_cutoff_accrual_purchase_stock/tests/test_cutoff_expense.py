@@ -327,3 +327,109 @@ class TestAccountCutoffAccrualPurchase(TestAccountCutoffAccrualPurchaseCommon):
         # Remove Force invoiced, lines should be created
         self.po.force_invoiced = False
         self.assertEqual(len(cutoff.line_ids), 0, "no cutoff line should be generated")
+
+    def test_accrued_expense_on_po_not_received(self):
+        """Test cutoff based on PO where only qty_invoiced."""
+        cutoff = self.expense_cutoff
+        self._confirm_po()
+        # Make invoice
+        po_invoice = self._create_po_invoice(fields.Date.today())
+        po_invoice.invoice_line_ids.quantity = 2
+        cutoff.get_lines()
+        # Invoice is in draft, no cutoff
+        self.assertEqual(len(cutoff.line_ids), 0, "no cutoff line should be generated")
+        # Validate invoice
+        po_invoice.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Regenerate, we should still get the same result
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Make a refund after cutoff - the refund is affecting the PO lines qty_invoiced
+        refund = self._refund_invoice(po_invoice, post=False)
+        refund.date = cutoff.cutoff_date + timedelta(days=1)
+        refund.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Make a refund before cutoff
+        # - the refund is affecting the PO lines qty_invoiced
+        refund = self._refund_invoice(po_invoice)
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 0 * 2, "PO line cutoff amount incorrect"
+            )
+        # Regenerate, we should still get the same amount
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 0, "no cutoff line should be generated")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 0 * 2, "PO line cutoff amount incorrect"
+            )
+
+    def test_accrued_expense_on_po_received_after(self):
+        """Test cutoff based on PO where reception is after cutoff."""
+        cutoff = self.expense_cutoff
+        cutoff.cutoff_date -= timedelta(days=1)
+        self._confirm_po_and_do_picking(2)
+        # Make invoice
+        po_invoice = self._create_po_invoice(cutoff.cutoff_date)
+        po_invoice.invoice_line_ids.quantity = 2
+        cutoff.get_lines()
+        # Invoice is in draft, no cutoff
+        self.assertEqual(len(cutoff.line_ids), 0, "no cutoff line should be generated")
+        # Validate invoice
+        po_invoice.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Regenerate, we should still get the same result
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Make a refund after cutoff - the refund is affecting the PO lines qty_invoiced
+        refund = self._refund_invoice(po_invoice, post=False)
+        refund.date = cutoff.cutoff_date + timedelta(days=1)
+        refund.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        # Make a refund before cutoff
+        # - the refund is affecting the PO lines qty_invoiced
+        refund = self._refund_invoice(po_invoice, post=False)
+        refund.date = cutoff.cutoff_date
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 100 * 2, "PO line cutoff amount incorrect"
+            )
+        refund.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff lines should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 0 * 2, "PO line cutoff amount incorrect"
+            )
+        # Regenerate, we should still get the same amount
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 0, "no cutoff line should be generated")
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, 0 * 2, "PO line cutoff amount incorrect"
+            )
