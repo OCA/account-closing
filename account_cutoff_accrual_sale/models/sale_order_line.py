@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -36,13 +37,61 @@ class SaleOrderLine(models.Model):
     def _get_cutoff_accrual_product_qty(self):
         return self.product_uom_qty
 
+    def _get_cutoff_accrual_price_unit(self):
+        if self.is_downpayment:
+            return self.price_unit
+        return super()._get_cutoff_accrual_price_unit()
+
+    @api.model
     def _get_cutoff_accrual_lines_domain(self, cutoff):
         domain = super()._get_cutoff_accrual_lines_domain(cutoff)
-        # The line could be invoiceable but not the order (see delivery
-        # module).
-        domain.append(("invoice_status", "=", "to invoice"))
-        domain.append(("order_id.invoice_status", "=", "to invoice"))
+        domain = expression.AND(
+            (
+                domain,
+                (
+                    ("state", "in", ("sale", "done")),
+                    ("display_type", "=", False),
+                ),
+            )
+        )
         return domain
+
+    @api.model
+    def _get_cutoff_accrual_lines_query(self, cutoff):
+        query = super()._get_cutoff_accrual_lines_query(cutoff)
+        self.flush_model(
+            [
+                "qty_delivered_method",
+                "qty_delivered",
+                "qty_invoiced",
+                "qty_to_invoice",
+                "is_downpayment",
+            ]
+        )
+        # The delivery line could be invoiceable but not the order (see
+        # delivery module). So check also the SO invoice status.
+        so_alias = query.join(
+            self._table, "order_id", self.order_id._table, "id", "order_id"
+        )
+        self.order_id.flush_model(["invoice_status"])
+        # For stock products, we always consider the delivered quantity as it
+        # impacts the stock valuation.
+        # Otherwise, we consider the invoice policy by checking the
+        # qty_to_invoice.
+        query.add_where(
+            f"""
+            CASE
+              WHEN "{self._table}".qty_delivered_method = 'stock_move'
+                THEN "{self._table}".qty_delivered != "{self._table}".qty_invoiced
+              ELSE "{self._table}".qty_to_invoice != 0
+                AND (
+                  "{so_alias}".invoice_status = 'to invoice'
+                  OR "{self._table}".is_downpayment
+                )
+              END
+            """
+        )
+        return query
 
     def _prepare_cutoff_accrual_line(self, cutoff):
         res = super()._prepare_cutoff_accrual_line(cutoff)
@@ -96,6 +145,8 @@ class SaleOrderLine(models.Model):
         if self.create_date >= cutoff_nextday:
             # A line added after the cutoff cannot be delivered in the past
             return 0
+        # In case of service, we consider what should be invoiced and this is
+        # given by the invoice policy.
         if self.product_id.invoice_policy == "order":
             return self.product_uom_qty
         return self.qty_delivered
@@ -106,6 +157,19 @@ class SaleOrderLine(models.Model):
         if self.create_date >= cutoff_nextday:
             # A line added after the cutoff cannot be delivered in the past
             return 0
-        if self.product_id.invoice_policy == "order":
-            return self.product_uom_qty
+        # In case of stock, we always consider what is delivered as this
+        # impacted the stock valuation.
         return self.qty_delivered
+
+    def _get_cutoff_accrual_delivered_min_date(self):
+        """Return first delivery date"""
+        self.ensure_one()
+        if self.product_id.invoice_policy == "order":
+            date_local = self.order_id.date_order
+            company_tz = self.env.company.partner_id.tz or "UTC"
+            date_utc = fields.Datetime.context_timestamp(
+                self.with_context(tz=company_tz),
+                date_local,
+            )
+            return date_utc.date()
+        return

@@ -45,6 +45,79 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleCommon):
             self.assertEqual(line.tax_line_ids.amount, amount * 15 / 100)
             self.assertEqual(line.tax_line_ids.cutoff_amount, amount * 15 / 100)
 
+    def test_accrued_revenue_downpayment(self):
+        """Test cutoff based on SO with downpayment."""
+        cutoff = self.revenue_cutoff
+        self.so.action_confirm()
+        downpayment_amount = 10
+        self.env["sale.advance.payment.inv"].create(
+            {
+                "advance_payment_method": "fixed",
+                "sale_order_ids": [Command.set(self.so.ids)],
+                "fixed_amount": downpayment_amount,
+            }
+        ).create_invoices()
+        self.so.invoice_ids.action_post()
+        cutoff.get_lines()
+        downpayment_so_line = self.so.order_line.filtered(
+            lambda line: line.is_downpayment and not line.display_type
+        )
+        self.assertEqual(
+            len(downpayment_so_line), 1, "1 down payment SO line should be found"
+        )
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff line should be found")
+        downpayment_cutoff_line = cutoff.line_ids.filtered(
+            lambda line: line.product_id == downpayment_so_line.product_id
+        )
+        self.assertEqual(
+            len(downpayment_cutoff_line),
+            1,
+            "1 down payment Cutoff line should be found",
+        )
+        self.assertEqual(
+            downpayment_cutoff_line.cutoff_amount,
+            -downpayment_amount,
+            "Down payment cutoff amount incorrect",
+        )
+        # Make invoice
+        invoice = self.so._create_invoices(final=True)
+        # - invoice is in draft, no change to cutoff
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff line should be found")
+        downpayment_cutoff_line = cutoff.line_ids.filtered(
+            lambda line: line.product_id == downpayment_so_line.product_id
+        )
+        self.assertEqual(
+            len(downpayment_cutoff_line),
+            1,
+            "1 down payment Cutoff line should be found",
+        )
+        self.assertEqual(
+            downpayment_cutoff_line.cutoff_amount,
+            -downpayment_amount,
+            "Down payment cutoff amount incorrect",
+        )
+        # Validate invoice
+        invoice.action_post()
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff line should be found")
+        for line in cutoff.line_ids:
+            self.assertEqual(line.cutoff_amount, 0, "SO line cutoff amount incorrect")
+        # Make a refund - the refund reset the SO lines qty_invoiced
+        self._refund_invoice(invoice)
+        self.assertEqual(len(cutoff.line_ids), 2, "2 cutoff line should be found")
+        downpayment_cutoff_line = cutoff.line_ids.filtered(
+            lambda line: line.product_id == downpayment_so_line.product_id
+        )
+        self.assertEqual(
+            len(downpayment_cutoff_line),
+            1,
+            "1 down payment Cutoff line should be found",
+        )
+        self.assertEqual(
+            downpayment_cutoff_line.cutoff_amount,
+            -downpayment_amount,
+            "Down payment cutoff amount incorrect",
+        )
+
     # Make tests for product with invoice policy on order
 
     def test_accrued_revenue_on_so_not_invoiced(self):
@@ -201,8 +274,14 @@ class TestAccountCutoffAccrualSale(TestAccountCutoffAccrualSaleCommon):
         # Validate invoice after cutoff
         self.so.invoice_ids.invoice_date = cutoff.cutoff_date + timedelta(days=1)
         self.so.invoice_ids.action_post()
-        # as there is no delivery and invoice is after cutoff, no line is generated
-        self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be found")
+        # as there is no delivery and invoice is after cutoff, one line is
+        # generated for the service
+        self.assertEqual(len(cutoff.line_ids), 1, "1 cutoff line should be found")
+        amount = self.qty * self.price
+        for line in cutoff.line_ids:
+            self.assertEqual(
+                line.cutoff_amount, amount, "SO line cutoff amount incorrect"
+            )
         cutoff.get_lines()
         self.assertEqual(len(cutoff.line_ids), 1, "1 cutoff line should be found")
         amount = self.qty * self.price
