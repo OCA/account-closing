@@ -263,9 +263,12 @@ class AccountCutoff(models.Model):
             }
             for k, v in zip(merge_keys, merge_values):
                 value = v
-                if k == "analytic_distribution" and isinstance(v, str):
-                    value = json.loads(value)
-
+                if k == "analytic_distribution":
+                    if not value:
+                        # Drop from vals to allow computated field to compute
+                        continue
+                    elif isinstance(v, str):
+                        value = json.loads(value)
                 vals[k] = value
 
             movelines_to_create.append((0, 0, vals))
