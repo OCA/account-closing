@@ -5,10 +5,12 @@ from datetime import timedelta
 
 from odoo import fields
 
-from .common import TestAccountCutoffAccrualPurchaseCommon
+from .common import TestAccountCutoffAccrualPurchaseStockCommon
 
 
-class TestAccountCutoffAccrualPurchase(TestAccountCutoffAccrualPurchaseCommon):
+class TestAccountCutoffAccrualPurchaseStock(
+    TestAccountCutoffAccrualPurchaseStockCommon
+):
     def test_accrued_expense_empty(self):
         """Test cutoff when there is no PO."""
         cutoff = self.expense_cutoff
