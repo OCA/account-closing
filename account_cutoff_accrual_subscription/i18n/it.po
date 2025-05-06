@@ -24,8 +24,8 @@ msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s over min. amount ⇒ "
 "no provisionning"
 msgstr ""
-"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s oltre valore minimo ⇒"
-" nessun approvvigionamento"
+"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s oltre valore minimo "
+"⇒ nessun approvvigionamento"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -43,12 +43,11 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"<p>No provision for subscription <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-"
-"id=%(id)d>%(name)s</a>:</p>"
+"<p>No provision for subscription <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 msgstr ""
-"<p>Nessuna fornitura per l'iscrizione <a href=# data-oe-"
-"model=account.cutoff.accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
+"<p>Nessuna fornitura per l'iscrizione <a href=# data-oe-model=account.cutoff."
+"accrual.subscription data-oe-id=%(id)d>%(name)s</a>:</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -102,8 +101,8 @@ msgstr "In archivio"
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid ""
-"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense"
-" amount %(min_amount)s, default provision amount %(provision_amount)s"
+"CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense "
+"amount %(min_amount)s, default provision amount %(provision_amount)s"
 msgstr ""
 "CONFIGURAZIONE: periodicità %(periodicity)s, data inizio %(start_date)s, "
 "valore minimo spesa %(min_amount)s, valore predefinito fornitura "
@@ -145,6 +144,11 @@ msgstr "Valore fornitura predefinito"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: account_cutoff_accrual_subscription
+#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python

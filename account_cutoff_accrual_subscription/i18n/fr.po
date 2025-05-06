@@ -146,6 +146,11 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: account_cutoff_accrual_subscription
+#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
+
+#. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__subscription_type__expense
