@@ -409,6 +409,12 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__distribution_analytic_account_ids
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__done
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_filter
 msgid "Done"
