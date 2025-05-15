@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-18 15:34+0000\n"
+"PO-Revision-Date: 2025-05-15 12:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid " • %s %s (picking %s transfered on %s from %s to %s)"
-msgstr ""
+msgstr " • %s %s (prelievo %s trasferito il %s da %s a %s)"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -38,7 +38,7 @@ msgstr "Scritture di fine periodo"
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_company__default_cutoff_accrual_picking_interval_days
 #: model:ir.model.fields,field_description:account_cutoff_accrual_picking.field_res_config_settings__dft_cutoff_accrual_picking_interval_days
 msgid "Analysis Interval"
-msgstr ""
+msgstr "Intervallo analisi"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model,name:account_cutoff_accrual_picking.model_res_company
@@ -95,37 +95,37 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity details:"
-msgstr ""
+msgstr "Dettagli quantità consegnata pre-limite:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
-msgstr ""
+msgstr "Quantità consegnata pre-limite meno la quantità fatturata:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff delivered quantity:"
-msgstr ""
+msgstr "Quantità consegnata pre-limite:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity details:"
-msgstr ""
+msgstr "Dettagli quantità fatturata pre-limite:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
-msgstr ""
+msgstr "Dettagli quantità fatturata pre-limite meno quantità consegnata:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
 #, python-format
 msgid "Pre-cutoff invoiced quantity:"
-msgstr ""
+msgstr "Quantità fatturata pre-limite:"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -134,6 +134,8 @@ msgid ""
 "Purchase order %s confirmed on %s\n"
 "Purchase Order Line: %s (ordered qty: %s %s)"
 msgstr ""
+"Ordine d'acquisto %s confermato il %s\n"
+"Riga ordine d'acquisto: %s (q.tè ordinata: %s %s)"
 
 #. module: account_cutoff_accrual_picking
 #: code:addons/account_cutoff_accrual_picking/models/account_cutoff.py:0
@@ -142,12 +144,15 @@ msgid ""
 "Sale order %s confirmed on %s\n"
 "Sale Order Line: %s (ordered qty: %s %s)"
 msgstr ""
+"Ordine di vendita %s confermato il %s\n"
+"Riga ordine di vendita: %s (q.tà ordinata: %s %s)"
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_account_cutoff_picking_interval_days_positive
 #: model:ir.model.constraint,message:account_cutoff_accrual_picking.constraint_res_company_cutoff_picking_interval_days_positive
 msgid "The value of the field 'Analysis Interval' must be strictly positive."
 msgstr ""
+"Il valore del campo \"Intervallo analisi\" deve essere strettamente positivo."
 
 #. module: account_cutoff_accrual_picking
 #: model:ir.model.fields,help:account_cutoff_accrual_picking.field_account_cutoff__picking_interval_days
@@ -160,6 +165,11 @@ msgid ""
 "you increase the analysis interval, Odoo will take more time to generate the "
 "cutoff lines."
 msgstr ""
+"Per generare i ricavi/spese accumulati/prepagati in base alle date dei "
+"prelievi rispetto alle date fattura, Odoo analizzerà tutti prelievi/fatture "
+"da N giorni prima la data limite fino alla data limite. N è l'intervallo di "
+"analisi. Se si incrementa l'intervallo di analisi, Odoo imiegherà più tempo "
+"per generare le righe limite."
 
 #. module: account_cutoff_accrual_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_picking.account_cutoff_form
