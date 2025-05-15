@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-23 14:37+0000\n"
-"PO-Revision-Date: 2024-03-18 15:36+0000\n"
+"PO-Revision-Date: 2025-05-15 12:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_cutoff_picking
 #. odoo-python
@@ -156,7 +156,7 @@ msgstr ""
 "Per generare i ricavi/spese accumulati/prepagati in base alle date dei "
 "prelievi rispetto alle date fattura, Odoo analizzerà tutti prelievi/fatture "
 "da N giorni prima la data limite fino alla data limite. N è l'intervallo di "
-"analisi. Se si incrementa l'intervallo di analisi, Odoo imiegherà più tempo "
+"analisi. Se si incrementa l'intervallo di analisi, Odoo impiegherà più tempo "
 "per generare le righe limite."
 
 #. module: account_cutoff_picking
