@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-account-closing"
-version = "18.0.20250606.0"
+version = "18.0.20250606.1"
 dependencies = [
     "odoo-addon-account_cutoff_base==18.0.*",
+    "odoo-addon-account_cutoff_start_end_dates==18.0.*",
     "odoo-addon-account_invoice_start_end_dates==18.0.*",
 ]
 classifiers=[
