@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -72,7 +72,6 @@ msgstr ""
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "Start date and end date are required for forecast mode."
 msgstr ""
 
@@ -91,14 +90,12 @@ msgstr ""
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "The start date is after the end date!"
 msgstr ""
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "This cutoff is linked to a journal entry. You must delete it before entering"
 " forecast mode."
@@ -118,6 +115,5 @@ msgstr ""
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "You should set at least one Source Journal."
 msgstr ""
