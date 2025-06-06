@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,7 +16,6 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s over min. amount ⇒ "
 "no provisionning"
@@ -25,7 +24,6 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s under min. amount "
 "⇒provisionning %(cutoff_amount)s"
@@ -34,11 +32,10 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "<p>No provision for subscription <a href=# data-oe-"
 "model=account.cutoff.accrual.subscription data-oe-"
-"id=%(id)d>%(name)s</a>:</p>"
+"id=%(id)d>%(name)s</a>.</p>"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
@@ -68,11 +65,6 @@ msgid "Analytic Distribution"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
-#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution_search
-msgid "Analytic Distribution Search"
-msgstr ""
-
-#. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_precision
 msgid "Analytic Precision"
 msgstr ""
@@ -91,7 +83,6 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense"
 " amount %(min_amount)s, default provision amount %(provision_amount)s"
@@ -110,7 +101,6 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid "Computing cut-offs from %d subscriptions."
 msgstr ""
 
@@ -135,11 +125,15 @@ msgid "Display Name"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
+#: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
+
+#. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__subscription_type__expense
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
-#, python-format
 msgid "Expense"
 msgstr ""
 
@@ -171,14 +165,12 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
-#, python-format
 msgid "Missing partner on subscription '%s'."
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid "Missing source journals."
 msgstr ""
 
@@ -200,28 +192,24 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid "Odoo cannot compute the fiscal year start date."
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
-#, python-format
 msgid "On subscription %s, the start date is not the first day of a month."
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid "PERIODS:"
 msgstr ""
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "PRORATED min. amount %(min_amount)s, default provisionning amount "
 "%(provision_amount)s"
@@ -254,7 +242,6 @@ msgstr ""
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__subscription_type__revenue
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
-#, python-format
 msgid "Revenue"
 msgstr ""
 
@@ -302,7 +289,6 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "The cutoffs with subscription only work when the cutoff date (%s) is the "
 "last day of a month."
