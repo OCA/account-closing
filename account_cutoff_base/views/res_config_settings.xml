@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019-2021 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">cutoff.res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='accounting_reports']" position="after">
+                <block title="Cut-offs" id="cutoff">
+                    <setting id="dft_cutoff_move_partner">
+                        <field name="dft_cutoff_move_partner" />
+                    </setting>
+                    <setting id="accrual_taxes">
+                        <field name="accrual_taxes" />
+                    </setting>
+                    <setting id="post_cutoff_move">
+                        <field name="post_cutoff_move" />
+                    </setting>
+                    <setting id="cutoff_journal">
+                        <div class="row mt16" id="dft_cutoff_journal_id">
+                            <label for="dft_cutoff_journal_id" class="col-lg-5" />
+                            <field
+                                name="dft_cutoff_journal_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                    </setting>
+                    <setting id="cutoff_accounts">
+                        <div class="row mt16" id="dft_accrued_revenue_account_id">
+                            <label
+                                for="dft_accrued_revenue_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_revenue_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div class="row mt16" id="dft_accrued_expense_account_id">
+                            <label
+                                for="dft_accrued_expense_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_expense_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div
+                            class="row mt16"
+                            id="dft_accrued_revenue_tax_account_id"
+                            invisible="not accrual_taxes"
+                        >
+                            <label
+                                for="dft_accrued_revenue_tax_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_revenue_tax_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div
+                            class="row mt16"
+                            id="dft_accrued_expense_tax_account_id"
+                            invisible="not accrual_taxes"
+                        >
+                            <label
+                                for="dft_accrued_expense_tax_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_accrued_expense_tax_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div class="row mt16" id="dft_prepaid_revenue_account_id">
+                            <label
+                                for="dft_prepaid_revenue_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_prepaid_revenue_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                        <div class="row mt16" id="dft_prepaid_expense_account_id">
+                            <label
+                                for="dft_prepaid_expense_account_id"
+                                class="col-lg-5"
+                            />
+                            <field
+                                name="dft_prepaid_expense_account_id"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
