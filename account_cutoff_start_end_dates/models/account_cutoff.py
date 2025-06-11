@@ -4,6 +4,7 @@
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.osv import expression
 
 
 class AccountCutoff(models.Model):
@@ -169,13 +170,10 @@ class AccountCutoff(models.Model):
             }
         )
 
-    def get_lines(self):
-        res = super().get_lines()
-        aml_obj = self.env["account.move.line"]
-        line_obj = self.env["account.cutoff.line"]
+    def _get_lines_domain(self):
         if not self.source_journal_ids:
             raise UserError(_("You should set at least one Source Journal."))
-        mapping = self._get_mapping_dict()
+
         domain = [
             ("journal_id", "in", self.source_journal_ids.ids),
             ("display_type", "=", "product"),
@@ -183,9 +181,11 @@ class AccountCutoff(models.Model):
             ("balance", "!=", 0),
         ]
         if self.source_move_state == "posted":
-            domain.append(("parent_state", "=", "posted"))
+            domain = expression.AND([domain, [("parent_state", "=", "posted")]])
         else:
-            domain.append(("parent_state", "in", ("draft", "posted")))
+            domain = expression.AND(
+                [domain, [("parent_state", "in", ("draft", "posted"))]]
+            )
 
         if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
             if self.state == "forecast":
@@ -193,24 +193,47 @@ class AccountCutoff(models.Model):
                     raise UserError(
                         _("Start date and end date are required for forecast mode.")
                     )
-                domain += [
-                    ("start_date", "!=", False),
-                    ("start_date", "<=", self.end_date),
-                    ("end_date", ">=", self.start_date),
-                ]
+                domain = expression.AND(
+                    [
+                        domain,
+                        [
+                            ("start_date", "!=", False),
+                            ("start_date", "<=", self.end_date),
+                            ("end_date", ">=", self.start_date),
+                        ],
+                    ]
+                )
             else:
-                domain += [
-                    ("start_date", "!=", False),
-                    ("end_date", ">", self.cutoff_date),
-                    ("date", "<=", self.cutoff_date),
-                ]
+                domain = expression.AND(
+                    [
+                        domain,
+                        [
+                            ("start_date", "!=", False),
+                            ("end_date", ">", self.cutoff_date),
+                            ("date", "<=", self.cutoff_date),
+                        ],
+                    ]
+                )
         elif self.cutoff_type in ["accrued_expense", "accrued_revenue"]:
-            domain += [
-                ("start_date", "!=", False),
-                ("start_date", "<=", self.cutoff_date),
-                ("date", ">", self.cutoff_date),
-            ]
-        amls = aml_obj.search(domain)
+            domain = expression.AND(
+                [
+                    domain,
+                    [
+                        ("start_date", "!=", False),
+                        ("start_date", "<=", self.cutoff_date),
+                        ("date", ">", self.cutoff_date),
+                    ],
+                ]
+            )
+        return domain
+
+    def get_lines(self):
+        res = super().get_lines()
+        aml_obj = self.env["account.move.line"]
+        line_obj = self.env["account.cutoff.line"]
+        lines_domain = self._get_lines_domain()
+        mapping = self._get_mapping_dict()
+        amls = aml_obj.search(lines_domain)
         for aml in amls:
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
         return res
