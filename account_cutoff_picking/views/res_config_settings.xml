@@ -18,12 +18,8 @@
                     id="dft_cutoff_picking_interval_days"
                     string="Picking Analysis Interval"
                 >
-                    <div class="mt16">
-                        <field
-                        name="dft_cutoff_picking_interval_days"
-                        class="oe_inline"
-                    /> days
-                    </div>
+                    <field name="dft_cutoff_picking_interval_days" class="oe_inline" />
+                    <span> days</span>
                 </setting>
             </setting>
         </field>
