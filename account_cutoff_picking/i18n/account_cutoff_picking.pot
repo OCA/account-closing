@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,10 +16,38 @@ msgstr ""
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
+msgid "%(qty)s %(uom)s (%(move_type)s %(move_name)s dated %(date)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
 msgid ""
-" • %(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
+"%(qty)s %(uom)s (picking %(picking)s transfered on %(date)s from "
 "%(src_location)s to %(dest_location)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
+msgid "<span> days</span>"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+msgid ""
+"<strong>Purchase Order:</strong> %(order)s confirmed on "
+"%(confirm_date)s<br><strong>Purchase Order Line:</strong> %(order_line)s "
+"(ordered qty: %(qty)s %(uom)s)"
+msgstr ""
+
+#. module: account_cutoff_picking
+#. odoo-python
+#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
+msgid ""
+"<strong>Sale Order:</strong> %(order)s confirmed on "
+"%(confirm_date)s<br><strong>Sale Order Line:</strong> %(order_line)s "
+"(ordered qty: %(qty)s %(uom)s)"
 msgstr ""
 
 #. module: account_cutoff_picking
@@ -47,7 +75,6 @@ msgstr ""
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "Missing expense account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
@@ -56,7 +83,6 @@ msgstr ""
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "Missing income account on product '%(product)s' or on its related product "
 "category '%(categ)s'."
@@ -70,61 +96,37 @@ msgstr ""
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff delivered quantity details:"
 msgstr ""
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff delivered quantity minus invoiced quantity:"
 msgstr ""
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff delivered quantity:"
 msgstr ""
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff invoiced quantity details:"
 msgstr ""
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff invoiced quantity minus delivered quantity:"
 msgstr ""
 
 #. module: account_cutoff_picking
 #. odoo-python
 #: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
 msgid "Pre-cutoff invoiced quantity:"
-msgstr ""
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Purchase order %(order)s confirmed on %(confirm_date)s\n"
-"Purchase Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
-msgstr ""
-
-#. module: account_cutoff_picking
-#. odoo-python
-#: code:addons/account_cutoff_picking/models/account_cutoff.py:0
-#, python-format
-msgid ""
-"Sale order %(order)s confirmed on %(confirm_date)s\n"
-"Sale Order Line: %(order_line)s (ordered qty: %(qty)s %(uom)s)"
 msgstr ""
 
 #. module: account_cutoff_picking
@@ -155,6 +157,5 @@ msgstr ""
 
 #. module: account_cutoff_picking
 #: model_terms:ir.ui.view,arch_db:account_cutoff_picking.account_cutoff_form
-#: model_terms:ir.ui.view,arch_db:account_cutoff_picking.res_config_settings_view_form
 msgid "days"
 msgstr ""
