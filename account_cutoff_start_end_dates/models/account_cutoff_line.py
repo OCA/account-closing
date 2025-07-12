@@ -1,19 +1,16 @@
-# Copyright 2016-2022 Akretion France
-# @author: Alexis de Lattre <alexis.delattre@akretion.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from odoo import fields, models
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
-class AccountCutoffLine(models.Model):
-    _inherit = "account.cutoff.line"
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
 
-    start_date = fields.Date(readonly=True)
-    end_date = fields.Date(readonly=True)
-    total_days = fields.Integer(readonly=True)
-    cutoff_days = fields.Integer(
-        readonly=True,
-        help="In regular mode, this is the number of days after the "
-        "cut-off date. In forecast mode, this is the number of days "
-        "between the start date and the end date.",
-    )
+    start_date = fields.Date(string="Start Date", help="Start of the period the entry belongs to")
+    end_date = fields.Date(string="End Date", help="End of the period the entry belongs to")
+
+    @api.constrains('start_date', 'end_date')
+    def _check_cutoff_dates(self):
+        """Ensure that start_date is not after end_date"""
+        for line in self:
+            if line.start_date and line.end_date and line.start_date > line.end_date:
+                raise ValidationError("Start Date cannot be after End Date.")
