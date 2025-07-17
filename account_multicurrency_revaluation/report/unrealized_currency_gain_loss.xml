@@ -26,8 +26,8 @@
                         <div class="act_as_table list_table" style="margin-top: 10px;">
                             <div class="act_as_caption account_title">
                                 <span t-esc="account.code" /> - <span
-                                    t-esc="account.name"
-                                />
+                                t-esc="account.name"
+                            />
                             </div>
                             <div class="act_as_thead">
                                 <div class="act_as_row labels">

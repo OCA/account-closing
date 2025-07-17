@@ -5,8 +5,7 @@
 from odoo import api, models
 
 
-class ShellAccount(object):
-
+class ShellAccount:
     """Small class that avoid to override account account object.
 
     only for pure performance reason.
