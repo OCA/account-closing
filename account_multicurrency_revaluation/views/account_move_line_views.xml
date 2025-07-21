@@ -20,7 +20,7 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-list"
-                        attrs="{'invisible': [('revaluation_origin_line_count', '=', 0)]}"
+                        invisible="not revaluation_origin_line_count"
                         groups="account_multicurrency_revaluation.group_revaluation_additional"
                     >
                         <field
@@ -35,7 +35,7 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-external-link"
-                        attrs="{'invisible': [('revaluation_created_line_id', '=', False)]}"
+                        invisible="not revaluation_created_line_id"
                         groups="account_multicurrency_revaluation.group_revaluation_additional"
                     />
                 </div>

@@ -49,7 +49,7 @@
                     <button
                         name="revaluate_currency"
                         type="object"
-                        string="_Validate"
+                        string="Validate"
                         class="oe_highlight"
                     />
                     <button string="Cancel" class="oe_link" special="cancel" />

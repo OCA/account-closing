@@ -20,3 +20,5 @@
 - [ForgeFlow](https://www.forgeflow.com):
   - Jordi Masvidal
   - Guillem Casassas
+- [Komit](https://komit-consulting.com):
+  - Cai Hoang Huynh

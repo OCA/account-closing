@@ -20,6 +20,7 @@ class AccountAccountLine(models.Model):
         comodel_name="account.move.line",
         string="Revaluation Created Line",
         readonly=True,
+        index="btree_not_null",
     )
 
     revaluation_origin_line_ids = fields.One2many(
@@ -158,7 +159,13 @@ class AccountAccount(models.Model):
             ]
         )
         self.env["account.move.line"]._apply_ir_rules(query)
-        tables, where_clause, where_clause_params = query.get_sql()
+        from_string, from_params = query.from_clause
+        where_string, where_params = query.where_clause
+        tables, where_clause, where_clause_params = (
+            from_string,
+            where_string,
+            from_params + where_params,
+        )
         mapping = [
             ('"account_move_line".', "aml."),
             ('"account_move_line"', "account_move_line aml"),

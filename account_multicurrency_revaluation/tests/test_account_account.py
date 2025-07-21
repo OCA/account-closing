@@ -1,7 +1,7 @@
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestAccountAccount(common.TransactionCase):
@@ -17,7 +17,7 @@ class TestAccountAccount(common.TransactionCase):
         cls.env.company = cls.company
 
     def test_currency_revaluation_field(self):
-        with common.Form(self.AccountAccount, view="account.view_account_form") as form:
+        with Form(self.AccountAccount, view="account.view_account_form") as form:
             form.name = "Test Account"
             form.code = "TEST"
             form.account_type = self.account_type_current_liabilities
@@ -25,7 +25,7 @@ class TestAccountAccount(common.TransactionCase):
 
         self.assertFalse(account.currency_revaluation)
 
-        with common.Form(account, view="account.view_account_form") as form:
+        with Form(account, view="account.view_account_form") as form:
             form.account_type = self.account_type_liquidity
             account = form.save()
 

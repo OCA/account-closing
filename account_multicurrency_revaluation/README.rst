@@ -145,6 +145,10 @@ Contributors
   - Jordi Masvidal
   - Guillem Casassas
 
+- `Komit <https://komit-consulting.com>`__:
+
+  - Cai Hoang Huynh
+
 Other credits
 -------------
 

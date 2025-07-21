@@ -18,7 +18,8 @@ class WizardCurrencyRevaluation(models.TransientModel):
     )
     revaluation_interval_end_date = fields.Date(
         string="Revaluation End Date",
-        help="All entries revaluated on or before this date will be taken into account.",
+        help="All entries revaluated on or before "
+        "this date will be taken into account.",
     )
 
     reverse_posting_date = fields.Date(
@@ -74,14 +75,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
         created_entries.write(vals)
         if self.journal_id.company_id.auto_post_entries:
             for entry in created_entries:
-                entry.post()
+                entry.action_post()
         # Mark entries reversed as not to be reversed anymore
         entries.write({"revaluation_to_reverse": False})
         if created_entries:
             return {
                 "domain": [("id", "in", created_entries.ids)],
                 "name": _("Reverse Revaluation Entries"),
-                "view_mode": "tree,form",
+                "view_mode": "list,form",
                 "auto_search": True,
                 "res_model": "account.move",
                 "view_id": False,
