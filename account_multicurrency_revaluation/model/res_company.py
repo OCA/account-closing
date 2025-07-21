@@ -12,7 +12,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Revaluation loss account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",
@@ -30,7 +30,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Revaluation gain account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",
@@ -53,7 +53,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision B.S. loss account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",
@@ -71,7 +71,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision B.S. gain account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",
@@ -89,7 +89,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision P&L loss account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",
@@ -107,7 +107,7 @@ class ResCompany(models.Model):
         comodel_name="account.account",
         string="Provision P&L gain account",
         domain=lambda self: [
-            ("company_id", "=", self.env.company.id),
+            ("company_ids", "in", [self.env.company.id]),
             (
                 "account_type",
                 "not in",

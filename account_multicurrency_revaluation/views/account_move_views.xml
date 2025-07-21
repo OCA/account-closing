@@ -5,10 +5,7 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <group name="misc_group">
-                <field
-                    name="revaluation_to_reverse"
-                    attrs="{'readonly':[('reversed_entry_id', '!=', False)]}"
-                />
+                <field name="revaluation_to_reverse" readonly="reversed_entry_id" />
             </group>
         </field>
     </record>
