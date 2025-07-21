@@ -84,26 +84,45 @@
                     </div>
                     <div class="oe_title">
                         <label for="name" string="Fiscal closing" />
-                        <field name="name" class="oe_inline" />
+                        <field
+                            name="name"
+                            class="oe_inline"
+                            readonly="state not in ['draft']"
+                        />
                     </div>
                     <group>
                         <group>
                             <field name="chart_template" invisible="1" />
+                            <field name="company_id" invisible="1" />
                             <label for="closing_template_id" />
                             <div>
-                                <field name="closing_template_id" class="oe_inline" />
+                                <field
+                                    name="closing_template_id"
+                                    class="oe_inline"
+                                    readonly="state not in ['draft']"
+                                />
                             </div>
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
+                                readonly="state not in ['draft']"
                             />
                         </group>
                         <group>
-                            <field name="year" />
-                            <field name="date_start" />
-                            <field name="date_end" />
-                            <field name="date_opening" />
-                            <field name="check_draft_moves" />
+                            <field name="year" readonly="state not in ['draft']" />
+                            <field
+                                name="date_start"
+                                readonly="state not in ['draft']"
+                            />
+                            <field name="date_end" readonly="state not in ['draft']" />
+                            <field
+                                name="date_opening"
+                                readonly="state not in ['draft']"
+                            />
+                            <field
+                                name="check_draft_moves"
+                                readonly="state not in ['draft']"
+                            />
                         </group>
                     </group>
                     <group invisible="not calculation_date">
@@ -112,7 +131,11 @@
                         </group>
                     </group>
                     <label for="move_config_ids" string="Moves configuration" />
-                    <field name="move_config_ids" nolabel="1">
+                    <field
+                        name="move_config_ids"
+                        nolabel="1"
+                        readonly="state not in ['draft']"
+                    >
                         <list>
                             <field name="sequence" widget="handle" />
                             <field name="enabled" />
