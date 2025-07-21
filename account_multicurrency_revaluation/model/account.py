@@ -153,7 +153,13 @@ class AccountAccount(models.Model):
             ]
         )
         self.env["account.move.line"]._apply_ir_rules(query)
-        tables, where_clause, where_clause_params = query.get_sql()
+        from_string, from_params = query.from_clause
+        where_string, where_params = query.where_clause
+        tables, where_clause, where_clause_params = (
+            from_string,
+            where_string,
+            from_params + where_params,
+        )
         mapping = [
             ('"account_move_line".', "aml."),
             ('"account_move_line"', "account_move_line aml"),

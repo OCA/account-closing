@@ -39,7 +39,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             [
                 ("include_initial_balance", "=", True),
                 ("currency_revaluation", "=", True),
-                ("company_id", "=", company.id),
+                ("company_ids", "in", [company.id]),
             ]
         )
 
@@ -74,7 +74,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
         help="Accounts that will be revaluated.",
         required=True,
         default=lambda self: self._get_default_revaluation_account_ids(),
-        domain=lambda self: [("company_id", "=", self.env.company.id)],
+        domain=lambda self: [("company_ids", "in", [self.env.company.id])],
     )
 
     def _create_move_and_lines(
@@ -334,7 +334,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             account = Account.browse(account_id)
             if account.account_type in ["asset_cash", "liability_credit_card"] and (
                 not account.currency_id
-                or account.currency_id == account.company_id.currency_id
+                or account.currency_id == account.company_ids[0].currency_id
             ):
                 # NOTE: There's no point of revaluating anything on bank account
                 # if bank account currency matches company currency.
@@ -379,7 +379,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             return {
                 "domain": [("id", "in", created_ids)],
                 "name": _("Created Revaluation Lines"),
-                "view_mode": "tree,form",
+                "view_mode": "list,form",
                 "auto_search": True,
                 "res_model": "account.move.line",
                 "view_id": False,
