@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,7 +81,7 @@ msgid "Accounts mapping"
 msgstr ""
 
 #. module: account_fiscal_year_closing
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__chart_template_ids
+#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__chart_template
 msgid "Available for"
 msgstr ""
 
@@ -124,8 +124,8 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: account_fiscal_year_closing
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template_id
-msgid "Chart template"
+#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template
+msgid "Chart Template"
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -160,7 +160,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_bank_statement_line__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__closing_type
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_payment__closing_type
 msgid "Closing Type"
 msgstr ""
 
@@ -187,11 +186,8 @@ msgid "Closing types"
 msgstr ""
 
 #. module: account_fiscal_year_closing
-#. odoo-python
-#: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #: model:ir.model.constraint,message:account_fiscal_year_closing.constraint_account_fiscalyear_closing_config_code_uniq
 #: model:ir.model.constraint,message:account_fiscal_year_closing.constraint_account_fiscalyear_closing_config_template_code_uniq
-#, python-format
 msgid "Code must be unique per fiscal year closing!"
 msgstr ""
 
@@ -394,14 +390,12 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "Fiscal closing move lines"
 msgstr ""
 
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "Fiscal closing moves"
 msgstr ""
 
@@ -409,7 +403,6 @@ msgstr ""
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_bank_statement_line__fyc_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__fyc_id
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_payment__fyc_id
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
@@ -543,20 +536,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: account_fiscal_year_closing
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move____last_update
-#: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__write_uid
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__write_uid
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__write_uid
@@ -635,7 +614,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "No destination account '%s' found."
 msgstr ""
 
@@ -656,7 +634,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_move.py:0
-#, python-format
 msgid "None"
 msgstr ""
 
@@ -670,7 +647,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "One or more draft moves found: \n"
 msgstr ""
 
@@ -750,7 +726,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "Result"
 msgstr ""
 
@@ -783,15 +758,7 @@ msgid "State"
 msgstr ""
 
 #. module: account_fiscal_year_closing
-#: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template_id
-msgid "The chart template for the company (if any)"
-msgstr ""
-
-#. module: account_fiscal_year_closing
-#. odoo-python
-#: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #: model:ir.model.constraint,message:account_fiscal_year_closing.constraint_account_fiscalyear_closing_year_company_uniq
-#, python-format
 msgid ""
 "There should be only one fiscal year closing for that year and company!"
 msgstr ""
@@ -844,7 +811,6 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "Unbalanced journal entry found"
 msgstr ""
 
@@ -873,6 +839,5 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #. odoo-python
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
-#, python-format
 msgid "You can't remove any closing that is not in draft or cancelled state."
 msgstr ""
