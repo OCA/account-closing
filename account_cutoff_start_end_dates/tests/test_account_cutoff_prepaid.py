@@ -65,6 +65,44 @@ class TestAccountCutoffStartEndDates(AccountCutoffCommon):
         cutoff.cutoff_type = "accrued_revenue"
         self.assertIn(self.sale_journal, cutoff.source_journal_ids)
 
+    def test_get_lines_skips_when_lines_cutoff_unicity_is_enabled(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "account_cutoff_base.check_cutoff_date_on_lines_enabled", True
+        )
+        self.addCleanup(
+            self.env["ir.config_parameter"].sudo().set_param,
+            "account_cutoff_base.check_cutoff_date_on_lines_enabled",
+            False,
+        )
+        self._create_invoice(
+            "in_invoice",
+            "2026-01-15",
+            90.0,
+            "2026-04-01",
+            "2026-06-29",
+            self.purchase_journal,
+            self.account_expense,
+        )
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_date": "2026-04-30",
+                "cutoff_type": "prepaid_expense",
+            }
+        )
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 1)
+
+        cutoff2 = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_date": "2026-04-30",
+                "cutoff_type": "prepaid_expense",
+            }
+        )
+        cutoff2.get_lines()
+        self.assertEqual(len(cutoff2.line_ids), 0)
+
     def test_compute_source_journal_ids_unknown_type(self):
         cutoff = self.env["account.cutoff"].create(
             {
