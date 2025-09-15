@@ -156,6 +156,17 @@
                                 </div>
                             </div>
                     </div>
+                    <div class="col-12 col-lg-12 o_setting_box" id="cutoff_on_lines">
+                        <div class="o_setting_left_pane">
+                            <field name="check_cutoff_date_on_lines_enabled" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="check_cutoff_date_on_lines_enabled" />
+                            <div class="text-muted">
+                               Check this box to check cutoff date unicity on lines.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

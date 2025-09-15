@@ -203,14 +203,6 @@ class AccountCutoff(models.Model):
         "the state is set to 'Done' and the fields become read-only.",
     )
 
-    _sql_constraints = [
-        (
-            "date_type_company_uniq",
-            "unique(cutoff_date, company_id, cutoff_type)",
-            _("A cutoff of the same type already exists with this cut-off date !"),
-        )
-    ]
-
     def name_get(self):
         res = []
         type2label = self.cutoff_type_label_map
