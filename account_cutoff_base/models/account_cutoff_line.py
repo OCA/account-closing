@@ -2,7 +2,9 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools import str2bool
 
 
 class AccountCutoffLine(models.Model):
@@ -12,7 +14,8 @@ class AccountCutoffLine(models.Model):
     _description = "Account Cut-off Line"
 
     parent_id = fields.Many2one("account.cutoff", string="Cut-off", ondelete="cascade")
-    cutoff_type = fields.Selection(related="parent_id.cutoff_type")
+    cutoff_type = fields.Selection(related="parent_id.cutoff_type", store=True)
+    cutoff_date = fields.Date(related="parent_id.cutoff_date", store=True)
     company_id = fields.Many2one(
         "res.company", related="parent_id.company_id", store=True
     )
@@ -83,3 +86,46 @@ class AccountCutoffLine(models.Model):
         readonly=True,
     )
     notes = fields.Html()
+
+    def _is_check_cutoff_date_on_lines_enabled(self):
+        return str2bool(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("account_cutoff_base.check_cutoff_date_on_lines_enabled")
+        )
+
+    @api.constrains("cutoff_date", "company_id", "cutoff_type", "origin_move_line_id")
+    def _check_unique_cutoff_date_on_lines(self):
+        if self._is_check_cutoff_date_on_lines_enabled():
+            for line in self:
+                if not line.origin_move_line_id:
+                    continue
+                domain = [
+                    ("id", "!=", line.id),
+                    ("cutoff_date", "=", line.cutoff_date),
+                    ("company_id", "=", line.company_id.id),
+                    ("cutoff_type", "=", line.cutoff_type),
+                    ("origin_move_line_id", "=", line.origin_move_line_id.id),
+                ]
+                if self.env["account.cutoff.line"].search_count(domain):
+                    raise UserError(
+                        self.env._(
+                            "A cutoff line of the same type already "
+                            "exists with this cut-off date !"
+                        )
+                    )
+        else:
+            for parent in self.parent_id:
+                domain = [
+                    ("id", "!=", parent.id),
+                    ("cutoff_date", "=", parent.cutoff_date),
+                    ("company_id", "=", parent.company_id.id),
+                    ("cutoff_type", "=", parent.cutoff_type),
+                ]
+                if self.env["account.cutoff"].search_count(domain):
+                    raise UserError(
+                        self.env._(
+                            "A cutoff of the same type already exists "
+                            "with this cut-off date !"
+                        )
+                    )

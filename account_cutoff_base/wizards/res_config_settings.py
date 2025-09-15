@@ -62,3 +62,12 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         domain="[('company_ids', 'in', company_id)]",
     )
+
+    check_cutoff_date_on_lines_enabled = fields.Boolean(
+        string="Cutoff dates unicity on lines",
+        help=(
+            "Check this if you want to check unicity of cutoff "
+            "dates on lines instead of on the whole move"
+        ),
+        config_parameter="account_cutoff_base.check_cutoff_date_on_lines_enabled",
+    )

@@ -620,3 +620,137 @@ class TestAccountCutoff(AccountCutoffCommon):
         self.assertEqual(cutoff.state, "draft")
         self.assertFalse(cutoff.move_id)
         self.assertFalse(cutoff.move_reversal_id)
+
+    def test_check_unique_cutoff_date_on_lines_disabled(self):
+        # By default, check_cutoff_date_on_lines_enabled is False.
+        # So creating two cutoffs with the same type, company, and date
+        # should raise UserError.
+        self.env["ir.config_parameter"].set_param(
+            "account_cutoff_base.check_cutoff_date_on_lines_enabled", "False"
+        )
+        self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "cutoff_date": "2026-06-30",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                        }
+                    )
+                ],
+            }
+        )
+        # Creating a second one with the same type, date, company
+        # triggers constraint on line create/write
+        with self.assertRaises(UserError):
+            self.env["account.cutoff"].create(
+                {
+                    "company_id": self.company.id,
+                    "cutoff_type": "accrued_expense",
+                    "cutoff_date": "2026-06-30",
+                    "line_ids": [
+                        Command.create(
+                            {
+                                "account_id": self.account_expense.id,
+                                "cutoff_account_id": self.account_expense.id,
+                                "partner_id": self.partner.id,
+                                "cutoff_amount": 50.0,
+                            }
+                        )
+                    ],
+                }
+            )
+
+    def test_check_unique_cutoff_date_on_lines_enabled(self):
+        self.env["ir.config_parameter"].set_param(
+            "account_cutoff_base.check_cutoff_date_on_lines_enabled", "True"
+        )
+        # We need an origin_move_line_id to test line-level uniqueness.
+        move = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": "2026-06-30",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "name": "Line 1",
+                            "account_id": self.account_expense.id,
+                            "debit": 100.0,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Line 2",
+                            "account_id": self.company_data[
+                                "default_account_payable"
+                            ].id,
+                            "credit": 100.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        move.action_post()
+        move_line = move.line_ids.filtered(
+            lambda line: line.account_id == self.account_expense
+        )
+
+        # Create first cutoff with some date and type
+        self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "cutoff_date": "2026-06-30",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                            "origin_move_line_id": move_line.id,
+                        }
+                    )
+                ],
+            }
+        )
+        # Creating a second cutoff with the same date/type is ALLOWED
+        # because checking is on line level
+        cutoff2 = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "cutoff_date": "2026-06-30",
+            }
+        )
+
+        # Adding a line without origin_move_line_id should succeed
+        # (skips the uniqueness check)
+        self.env["account.cutoff.line"].create(
+            {
+                "parent_id": cutoff2.id,
+                "account_id": self.account_expense.id,
+                "cutoff_account_id": self.account_expense.id,
+                "partner_id": self.partner.id,
+                "cutoff_amount": 50.0,
+            }
+        )
+
+        # Adding a line with the SAME origin_move_line_id to cutoff2
+        # should raise UserError
+        with self.assertRaises(UserError):
+            self.env["account.cutoff.line"].create(
+                {
+                    "parent_id": cutoff2.id,
+                    "account_id": self.account_expense.id,
+                    "cutoff_account_id": self.account_expense.id,
+                    "partner_id": self.partner.id,
+                    "cutoff_amount": 50.0,
+                    "origin_move_line_id": move_line.id,
+                }
+            )

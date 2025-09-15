@@ -123,6 +123,12 @@
                             />
                         </div>
                     </setting>
+                    <setting id="cutoff_on_lines">
+                        <field name="check_cutoff_date_on_lines_enabled" />
+                        <div class="text-muted">
+                            Check this box to check cutoff date unicity on lines.
+                        </div>
+                    </setting>
                 </block>
             </xpath>
         </field>
