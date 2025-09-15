@@ -4,6 +4,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import str2bool
 
 
 class AccountCutoff(models.Model):
@@ -91,6 +92,7 @@ class AccountCutoff(models.Model):
             "name": aml.name,
             "start_date": aml.start_date,
             "end_date": aml.end_date,
+            "cutoff_date": self.cutoff_date,
             "account_id": aml.account_id.id,
             "cutoff_account_id": cutoff_account_id,
             "analytic_distribution": aml.analytic_distribution,
@@ -209,8 +211,19 @@ class AccountCutoff(models.Model):
                 ("start_date", "<=", self.cutoff_date),
                 ("date", ">", self.cutoff_date),
             ]
-        amls = aml_obj.search(domain)
-        for aml in amls:
-            line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
 
+        amls = aml_obj.search(domain)
+        check_date_on_lines_enabled = str2bool(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("account_cutoff_base.check_cutoff_date_on_lines_enabled")
+        )
+        for aml in amls:
+            if (
+                check_date_on_lines_enabled
+                and self.cutoff_date in aml.cutoff_line_ids.mapped("cutoff_date")
+            ):
+                # cutoff line already exists for this date
+                continue
+            line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
         return res
