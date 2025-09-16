@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-09-16 16:42+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__account_id
 msgid "Account"
-msgstr ""
+msgstr "Hesap"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__dest_account
@@ -27,71 +29,75 @@ msgid ""
 "operation will be to remove any existing balance on the source accounts with"
 " an equivalent counterpart in the same account."
 msgstr ""
+"Eşleştirilen hedef hesabı için hesap kodu kalıbı. Sadece ilk eşleşen dikkate "
+"alınacak. Bu alanın doldurulmaması durumunda gerçekleştirilen işlem, aynı "
+"hesapta eşdeğer karşılığı bulunan kaynak hesaplardaki mevcut bakiyenin "
+"kaldırılması olacaktır."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__src_accounts
 msgid "Account code pattern for the mapping source accounts"
-msgstr ""
+msgstr "Eşleştirilen kaynak hesapları için hesap kodu kalıbı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_abstract
 msgid "Account fiscalyear closing abstract"
-msgstr ""
+msgstr "Hesap mali yıl kapanış özeti"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_abstract
 msgid "Account fiscalyear closing config abstract"
-msgstr ""
+msgstr "Hesap mali yılı kapanış yapılandırma özeti"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_abstract
 msgid "Account fiscalyear closing mapping abstract"
-msgstr ""
+msgstr "Hesap mali yılı kapanış eşleştirme özeti"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_abstract
 msgid "Account fiscalyear closing type abstract"
-msgstr ""
+msgstr "Hesap mali yılı kapanış türü özeti"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move
 msgid "Account fiscalyear closing unbalanced move"
-msgstr ""
+msgstr "Hesap mali yıl kapanışı dengelenmemiş hareket"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_unbalanced_move_line
 msgid "Account fiscalyear closing unbalanced move line"
-msgstr ""
+msgstr "Hesap mali yıl kapanışı dengelenmemiş hareket satırı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__mapping_ids
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__mapping_ids
 msgid "Account mappings"
-msgstr ""
+msgstr "Hesap eşlemeleri"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type__account_type_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_abstract__account_type_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template__account_type_id
 msgid "Account type"
-msgstr ""
+msgstr "Hesap türü"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Accounts closing types"
-msgstr ""
+msgstr "Hesaplar kapanış türleri"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Accounts mapping"
-msgstr ""
+msgstr "Hesap eşlemelesi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__chart_template_ids
 msgid "Available for"
-msgstr ""
+msgstr "Uygun"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__closing_type_default__balance
@@ -101,40 +107,40 @@ msgstr ""
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_abstract__closing_type__balance
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_template__closing_type__balance
 msgid "Balance"
-msgstr ""
+msgstr "Bakiye"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Calculate"
-msgstr ""
+msgstr "Hesapla"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__calculation_date
 msgid "Calculation date"
-msgstr ""
+msgstr "Hesaplama tarihi"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Cancel"
-msgstr ""
+msgstr "İptal Et"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing__state__cancelled
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Cancelled"
-msgstr ""
+msgstr "İptal Edildi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template_id
 msgid "Chart template"
-msgstr ""
+msgstr "Plan Şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__check_draft_moves
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_abstract__check_draft_moves
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__check_draft_moves
 msgid "Check draft moves"
-msgstr ""
+msgstr "Taslak hareketlerini kontrol ediniz"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing__check_draft_moves
@@ -145,47 +151,49 @@ msgid ""
 "closed. Non-confirmed moves won't be taken in account on the closing "
 "operations."
 msgstr ""
+"Kapanmakta olan mali yılda taslak hareketi olup olmadığını kontrol eder. "
+"Kapanış işlemlerinde onaylanmayan hareketler dikkate alınmayacaktır."
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__move_type__closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_abstract__move_type__closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_type__closing
 msgid "Closing"
-msgstr ""
+msgstr "Kapanış"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_bank_statement_line__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_payment__closing_type
 msgid "Closing Type"
-msgstr ""
+msgstr "Kapanış Türü"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__closing_template_id
 msgid "Closing template"
-msgstr ""
+msgstr "Kapanış şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.actions.act_window,name:account_fiscal_year_closing.action_account_fiscalyear_closing_template
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing_template
 msgid "Closing templates"
-msgstr ""
+msgstr "Kapanış şablonları"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_move_filter
 msgid "Closing type"
-msgstr ""
+msgstr "Kapanış türü"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__closing_type_ids
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__closing_type_ids
 msgid "Closing types"
-msgstr ""
+msgstr "Kapanış türleri"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
@@ -193,7 +201,7 @@ msgstr ""
 #: model:ir.model.constraint,message:account_fiscal_year_closing.constraint_account_fiscalyear_closing_config_template_code_uniq
 #, python-format
 msgid "Code must be unique per fiscal year closing!"
-msgstr ""
+msgstr "Kod, her mali yıl kapanışı için benzersiz olmalıdır!"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__company_id
@@ -201,19 +209,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__company_id
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config__inverse
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract__inverse
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__inverse
 msgid "Configuration code to inverse its move"
-msgstr ""
+msgstr "Hareketini tersine çevirmek için yapılandırma kodu"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Confirm and post moves"
-msgstr ""
+msgstr "Hareketleri onayla ve gönder"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__create_uid
@@ -227,7 +235,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__create_uid
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__create_date
@@ -241,23 +249,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__create_date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__credit
 msgid "Credit"
-msgstr ""
+msgstr "Alacak"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__date
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__debit
 msgid "Debit"
-msgstr ""
+msgstr "Borç"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__closing_type_default
@@ -267,7 +275,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_abstract__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template__closing_type
 msgid "Default closing type"
-msgstr ""
+msgstr "Varsayılan kapanış türü"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__name
@@ -280,13 +288,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__name
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_template__name
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping__dest_account_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__dest_account
 msgid "Destination account"
-msgstr ""
+msgstr "Hedef hesabı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__display_name
@@ -305,52 +313,52 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__display_name
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünüm Adı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing__state__draft
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Draft"
-msgstr ""
+msgstr "Taslak"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__enabled
 msgid "Enabled"
-msgstr ""
+msgstr "Etkin"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_date__first_opening
 msgid "First date of the opening period"
-msgstr ""
+msgstr "Açılış döneminin ilk tarihi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__fyc_id
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing_configuration
 msgid "Fiscal Year Closing"
-msgstr ""
+msgstr "Mali Yıl Kapanışı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__template_id
 msgid "Fiscal Year Closing Template"
-msgstr ""
+msgstr "Mali Yıl Kapanış Şablonu"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Fiscal closing"
-msgstr ""
+msgstr "Mali kapanış"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "Fiscal closing move lines"
-msgstr ""
+msgstr "Mali kapanış hareket satırları"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "Fiscal closing moves"
-msgstr ""
+msgstr "Mali kapanış hareketleri"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing
@@ -361,65 +369,65 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Fiscal year closing"
-msgstr ""
+msgstr "Mali yıl kapanış"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping__fyc_config_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type__fyc_config_id
 msgid "Fiscal year closing config"
-msgstr ""
+msgstr "Mali yıl kapanış yapılandırma"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__template_config_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_type_template__template_config_id
 msgid "Fiscal year closing config template"
-msgstr ""
+msgstr "Mali yıl kapanış yapılandırma şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config
 msgid "Fiscal year closing configuration"
-msgstr ""
+msgstr "Mali yıl kapanış yapılandırması"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_config_template
 msgid "Fiscal year closing configuration template"
-msgstr ""
+msgstr "Mali yıl kapanış yapılandırması şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping
 msgid "Fiscal year closing mapping"
-msgstr ""
+msgstr "Mali yıl kapanış eşleştirme"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_mapping_template
 msgid "Fiscal year closing mapping template"
-msgstr ""
+msgstr "Mali yıl kapanış eşleştirme şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_template
 msgid "Fiscal year closing template"
-msgstr ""
+msgstr "Mali yıl kapanış şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type
 msgid "Fiscal year closing type"
-msgstr ""
+msgstr "Mali yıl kapanış türü"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscalyear_closing_type_template
 msgid "Fiscal year closing type template"
-msgstr ""
+msgstr "Mali yıl kapanış türü şablonu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.actions.act_window,name:account_fiscal_year_closing.action_account_fiscalyear_closing
 #: model:ir.ui.menu,name:account_fiscal_year_closing.menu_account_fiscalyear_closing
 msgid "Fiscal year closings"
-msgstr ""
+msgstr "Mali yıl kapanışları"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__date_start
 msgid "From date"
-msgstr ""
+msgstr "Başlangıç tarihi"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
@@ -428,6 +436,11 @@ msgid ""
 "                        You need to check the closing configuration or your journal entries\n"
 "                        to find the problem, fix it and then press again on \"Calculate\"."
 msgstr ""
+"Kapanış hareketleri oluşturulurken dengesiz bir hareket algılandı.\n"
+"                        Sorunu bulmak için kapanış yapılandırmasını veya "
+"yevmiye kayıtlarınızı kontrol etmeniz,\n"
+"                        düzeltmeniz ve ardından tekrar \\\"Hesapla\\\"ya "
+"basmanız gerekir."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__id
@@ -451,7 +464,7 @@ msgstr ""
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "In process"
-msgstr ""
+msgstr "Süreçte"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing__year
@@ -459,13 +472,15 @@ msgid ""
 "Introduce here the year to close. If the fiscal year is between several "
 "natural years, you have to put here the last one."
 msgstr ""
+"Buraya kapatılacak yılı girin. Mali yıl birkaç doğal yıl arasındaysa, "
+"sonuncusunu buraya koymalısınız."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__inverse
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract__inverse
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__inverse
 msgid "Inverse config"
-msgstr ""
+msgstr "Ters yapılandırma"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__journal_id
@@ -473,12 +488,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__journal_id
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Yevmiye Kaydı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing____last_update
@@ -497,7 +512,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line____last_update
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son Düzenlenme"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__write_uid
@@ -511,7 +526,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__write_uid
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__write_date
@@ -525,42 +540,42 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__write_date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_date__last_ending
 msgid "Last date of the ending period"
-msgstr ""
+msgstr "Bitiş döneminin son tarihi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__move_type__loss_profit
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_abstract__move_type__loss_profit
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_type__loss_profit
 msgid "Loss & Profit"
-msgstr ""
+msgstr "Zarar & Kâr"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__move_id
 msgid "Move"
-msgstr ""
+msgstr "Hareket"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__date
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__move_date
 msgid "Move date"
-msgstr ""
+msgstr "Hareket tarihi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__move_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract__move_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__move_type
 msgid "Move type"
-msgstr ""
+msgstr "Hareket türü"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__move_ids
 msgid "Moves"
-msgstr ""
+msgstr "Hareketler"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__move_config_ids
@@ -568,114 +583,114 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_template_form
 msgid "Moves configuration"
-msgstr ""
+msgstr "Hareketleri yapılandırma"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__name
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "No destination account '%s' found."
-msgstr ""
+msgstr "Hedef hesap '%s' bulunamadı."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_move.py:0
 #, python-format
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "One or more draft moves found: \n"
-msgstr ""
+msgstr "Bir yada daha fazla hareket taslağı bulundu: \n"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__move_type__opening
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_abstract__move_type__opening
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_type__opening
 msgid "Opening"
-msgstr ""
+msgstr "Açılış"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__date_opening
 msgid "Opening date"
-msgstr ""
+msgstr "Açılış tarihi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__move_type__other
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_abstract__move_type__other
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config_template__move_type__other
 msgid "Other"
-msgstr ""
+msgstr "Diğer"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing__state__posted
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_search
 msgid "Posted"
-msgstr ""
+msgstr "Gönderildi"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing__state__calculated
 msgid "Processed"
-msgstr ""
+msgstr "İşlendi"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Recalculate"
-msgstr ""
+msgstr "Yeniden Hesapla"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__ref
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "Result"
-msgstr ""
+msgstr "Sonuç"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__sequence
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract__sequence
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sıra"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Show move lines"
-msgstr ""
+msgstr "Hareket satırlarını göster"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid "Show moves"
-msgstr ""
+msgstr "Hareketleri göster"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping__src_accounts
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_mapping_template__src_accounts
 msgid "Source accounts"
-msgstr ""
+msgstr "Kaynak hesapları"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__state
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,help:account_fiscal_year_closing.field_account_fiscalyear_closing__chart_template_id
 msgid "The chart template for the company (if any)"
-msgstr ""
+msgstr "Şirket için plan şablonu (varsa)"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
@@ -683,7 +698,7 @@ msgstr ""
 #, python-format
 msgid ""
 "There should be only one fiscal year closing for that year and company!"
-msgstr ""
+msgstr "O yıl ve şirket için yalnızca bir mali yıl kapanışı olmalı!"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
@@ -691,27 +706,31 @@ msgid ""
 "This screen will help you to identify the problem, showing you\n"
 "                        the unbalanced journal entry:"
 msgstr ""
+"Bu ekran, dengelenmemiş yevmiye kayıtlarını göstererek,\n"
+"                         hatayı tanımlamanıza yardımcı olacaktır:"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_form
 msgid ""
 "This will remove all the closing moves. Are you sure you want to continue?"
 msgstr ""
+"Bu işlem, tüm kapanış hareketlerini kaldıracaktır. Devam etmek istediğinize "
+"emin misiniz?"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__date_end
 msgid "To date"
-msgstr ""
+msgstr "Bitiş tarihi"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid "Total credit"
-msgstr ""
+msgstr "Toplam alacak"
 
 #. module: account_fiscal_year_closing
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing.view_account_fiscalyear_closing_unbalanced_move_form
 msgid "Total debit"
-msgstr ""
+msgstr "Toplam borç"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_config__closing_type_default__unreconciled
@@ -721,38 +740,39 @@ msgstr ""
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_abstract__closing_type__unreconciled
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_template__closing_type__unreconciled
 msgid "Un-reconciled"
-msgstr ""
+msgstr "Uzlaştırılmamış"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "Unbalanced journal entry found"
-msgstr ""
+msgstr "Dengelenmemiş yevmiye kaydı bulundu"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move_line__move_id
 msgid "Unbalanced move"
-msgstr ""
+msgstr "Dengelenmemiş hareket"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_unbalanced_move__line_ids
 msgid "Unbalanced move lines"
-msgstr ""
+msgstr "Dengelenmemiş hareket satırları"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config__code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_abstract__code
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing_config_template__code
 msgid "Unique code"
-msgstr ""
+msgstr "Benzersiz kod"
 
 #. module: account_fiscal_year_closing
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_fiscalyear_closing__year
 msgid "Year"
-msgstr ""
+msgstr "Yıl"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/models/account_fiscalyear_closing.py:0
 #, python-format
 msgid "You can't remove any closing that is not in draft or cancelled state."
 msgstr ""
+"Taslak veya iptal durumunda olmayan herhangi bir kapanışı kaldıramazsınız."
