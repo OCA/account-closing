@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:39+0000\n"
-"PO-Revision-Date: 2023-06-29 17:10+0000\n"
-"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"PO-Revision-Date: 2025-10-05 09:42+0000\n"
+"Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -133,12 +133,13 @@ msgstr "Montant"
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff_line__amount
 msgid "Amount that is used as base to compute the Cut-off Amount."
 msgstr ""
+"Montant qui est utilisé comme base pour calculer le montant de la provision."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_distribution
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__analytic_distribution
 msgid "Analytic Distribution"
-msgstr ""
+msgstr "Distribution analytique"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__analytic_precision
@@ -372,13 +373,13 @@ msgstr "Journal de provision par défaut"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_tax_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_tax_account_id
 msgid "Default Tax Account for Accrued Expense"
-msgstr ""
+msgstr "Compte de taxes par défaut pour les charges"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_tax_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_tax_account_id
 msgid "Default Tax Account for Accrued Revenue"
-msgstr ""
+msgstr "Compte de taxes par défaut pour les revenus"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__name
@@ -397,7 +398,7 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_line__distribution_analytic_account_ids
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff_tax_line__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Compte de distribution analytique"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields.selection,name:account_cutoff_base.selection__account_cutoff__state__done
@@ -519,6 +520,9 @@ msgid ""
 "'%(tax_display_name)s' or on the accounting configuration page of the "
 "company '%(company)s'."
 msgstr ""
+"Manque le champ '%(tax_account_field_label)s'. Il est nécessaire de le "
+"configurer sur la taxe '%(tax_display_name)s' ou sur la page de "
+"configuration de la comptabilité de la société '%(company)s'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
@@ -559,7 +563,7 @@ msgstr "Nombre d'erreurs"
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Nombre de messages nécessitant une action"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__message_has_error_counter
