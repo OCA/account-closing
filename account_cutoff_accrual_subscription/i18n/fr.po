@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-20 15:08+0000\n"
-"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"PO-Revision-Date: 2025-10-05 09:42+0000\n"
+"Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -73,7 +73,7 @@ msgstr "Actif"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution
 msgid "Analytic Distribution"
-msgstr ""
+msgstr "Distribution analytique"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution_search
@@ -123,7 +123,7 @@ msgstr "Devise de la société"
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid "Computing cut-offs from %d subscriptions."
-msgstr ""
+msgstr "Calcul des provisions à partir de %d abonnements."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_uid
@@ -172,12 +172,12 @@ msgstr "Dernière mise à jour le"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum Amount"
-msgstr ""
+msgstr "Montant minimal"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum amount without taxes over the period"
-msgstr ""
+msgstr "Montant minimal HT sur la période"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
