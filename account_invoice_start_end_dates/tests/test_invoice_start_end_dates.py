@@ -27,7 +27,6 @@ class TestInvoiceStartEndDates(TransactionCase):
             {
                 "name": "Maintenance contract",
                 "type": "service",
-                "categ_id": cls.env.ref("product.product_category_5").id,
                 "must_have_dates": True,
             }
         )
@@ -89,26 +88,27 @@ class TestInvoiceStartEndDates(TransactionCase):
         )
 
     def test_missing_date(self):
+        inv = self.move_model.create(
+            {
+                "partner_id": self.partner.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.maint_product.id,
+                            "name": "Maintenance IPBX 12 mois",
+                            "price_unit": 1200,
+                            "quantity": 1,
+                            "account_id": self.account_revenue.id,
+                            "start_date": False,
+                            "end_date": False,
+                        }
+                    )
+                ],
+            }
+        )
         with self.assertRaises(ValidationError):
-            self.move_model.create(
-                {
-                    "partner_id": self.partner.id,
-                    "move_type": "out_invoice",
-                    "invoice_line_ids": [
-                        Command.create(
-                            {
-                                "product_id": self.maint_product.id,
-                                "name": "Maintenance IPBX 12 mois",
-                                "price_unit": 1200,
-                                "quantity": 1,
-                                "account_id": self.account_revenue.id,
-                                "start_date": False,
-                                "end_date": False,
-                            }
-                        )
-                    ],
-                }
-            )
+            inv.action_post()
 
     def test_date_order(self):
         with self.assertRaises(ValidationError):
