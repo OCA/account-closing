@@ -14,7 +14,9 @@ class AccountMoveLine(models.Model):
     end_date = fields.Date(index=True)
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
 
-    @api.constrains("start_date", "end_date", "display_type", "product_id")
+    @api.constrains(
+        "start_date", "end_date", "display_type", "product_id", "parent_state"
+    )
     def _check_start_end_dates(self):
         for moveline in self:
             if moveline.start_date and not moveline.end_date:
@@ -41,8 +43,13 @@ class AccountMoveLine(models.Model):
                         "name": moveline.display_name,
                     }
                 )
+            # We enforce start_end+end_date when product_id.must_have_dates=True
+            # only when posting the invoice, because some users want to use the
+            # module account_invoice_start_end_dates WITHOUT the module
+            # sale_start_end_dates for a good reason.
             if (
-                moveline.display_type == "product"
+                moveline.parent_state == "posted"
+                and moveline.display_type == "product"
                 and moveline.product_id.must_have_dates
                 and not moveline.start_date
             ):
