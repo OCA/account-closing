@@ -105,6 +105,7 @@ class SaleOrderLine(models.Model):
         # Take all invoices impacting the cutoff
         # FIXME: what about ("move_id.payment_state", "=", "invoicing_legacy")
         domain = [
+            ("company_id", "=", cutoff.company_id.id),
             ("sale_line_ids.is_cutoff_accrual_excluded", "!=", True),
             ("move_id.move_type", "in", ("out_invoice", "out_refund")),
             ("sale_line_ids", "!=", False),
@@ -130,8 +131,9 @@ class SaleOrderLine(models.Model):
                 FROM sale_order_line_invoice_rel
                 WHERE invoice_line_id in %s
             )
+            AND company_id = %s
             """,
-            (tuple(invoice_line_after.ids),),
+            (tuple(invoice_line_after.ids), cutoff.company_id.id),
         )
         sale_ids = [x[0] for x in self.env.cr.fetchall()]
         lines = self.env["sale.order.line"].search(
@@ -166,7 +168,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         if self.product_id.invoice_policy == "order":
             date_local = self.order_id.date_order
-            company_tz = self.env.company.partner_id.tz or "UTC"
+            company_tz = self.company_id.partner_id.tz or "UTC"
             date_utc = fields.Datetime.context_timestamp(
                 self.with_context(tz=company_tz),
                 date_local,
