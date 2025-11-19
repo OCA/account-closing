@@ -50,20 +50,14 @@ class WizardCurrencyRevaluation(models.TransientModel):
             ("revaluation_to_reverse", "=", True),
             ("state", "=", "posted"),
             ("company_id", "=", company_id),
+            ("reversal_move_id", "=", False),
         ]
         if self.revaluation_interval_start_date:
             domain += [("date", ">=", self.revaluation_interval_start_date)]
         if self.revaluation_interval_end_date:
             domain += [("date", "<=", self.revaluation_interval_end_date)]
         entries = account_move_model.search(domain)
-        final_entries = account_move_model
-        for entry in entries:
-            reverse_entry = account_move_model.search(
-                [("reversed_entry_id", "=", entry.id)], limit=1
-            )
-            if not reverse_entry:
-                final_entries += entry
-        self.entries_to_reverse_ids = final_entries
+        self.entries_to_reverse_ids = entries
 
     def reverse_revaluate_currency(self):
         entries = self.entries_to_reverse_ids
@@ -73,8 +67,7 @@ class WizardCurrencyRevaluation(models.TransientModel):
             vals.update({"date": self.reverse_posting_date})
         created_entries.write(vals)
         if self.journal_id.company_id.auto_post_entries:
-            for entry in created_entries:
-                entry.post()
+            created_entries.post()
         # Mark entries reversed as not to be reversed anymore
         entries.write({"revaluation_to_reverse": False})
         if created_entries:
