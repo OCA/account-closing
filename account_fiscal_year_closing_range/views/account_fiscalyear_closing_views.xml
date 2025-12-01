@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record
+        id="action_account_fiscalyear_closing_mapping_range_wizard"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Generate Account Range</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fiscalyear.closing.range.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_fyc_config_id': context.get('default_fyc_config_id'),
+            'default_fyc_config_template_id': context.get('default_fyc_config_template_id'),
+        }</field>
+    </record>
+
+    <record id="view_account_fiscalyear_closing_form" model="ir.ui.view">
+        <field name="name">account.fiscalyear.closing.form.range</field>
+        <field name="model">account.fiscalyear.closing</field>
+        <field
+            name="inherit_id"
+            ref="account_fiscal_year_closing.view_account_fiscalyear_closing_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='move_config_ids']/form//group[@name='accounts_mapping']"
+                position="attributes"
+            >
+                <attribute name="string" /> </xpath>
+
+            <xpath
+                expr="//field[@name='move_config_ids']/form//group[@name='accounts_mapping']"
+                position="before"
+            >
+                <div
+                    class="alert alert-info d-flex justify-content-between align-items-center mb-0"
+                    role="alert"
+                    attrs="{'invisible': [('parent.state', '!=', 'draft')]}"
+                >
+
+                    <div>
+                        <i class="fa fa-info-circle mr-2" />
+                        Use the wizard to generate individual mapping lines for a specific range of accounts.
+                    </div>
+                   <button
+                        name="%(account_fiscal_year_closing_range.action_account_fiscalyear_closing_mapping_range_wizard)d"
+                        type="action"
+                        string="Generate Range"
+                        icon="fa-magic"
+                        class="btn-primary"
+                        context="{'default_fyc_config_id': active_id}"
+                    />
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
