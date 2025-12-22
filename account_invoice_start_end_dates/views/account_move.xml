@@ -14,7 +14,7 @@
                 expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']"
                 position="before"
             >
-                <field name="must_have_dates" invisible="1" />
+                <field name="must_have_dates" column_invisible="1" />
                 <field name="start_date" required="must_have_dates" optional="show" />
                 <field name="end_date" required="must_have_dates" optional="show" />
             </xpath>
