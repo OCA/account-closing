@@ -5,7 +5,7 @@
 
 {
     "name": "Account Invoice Start End Dates",
-    "version": "18.0.1.2.0",
+    "version": "19.0.1.0.0",
     "category": "Accounting & Finance",
     "license": "LGPL-3",
     "summary": "Adds start/end dates on invoice/move lines",
