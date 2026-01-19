@@ -1,8 +1,8 @@
 Go to the menu *Invoicing \> Configuration \> Settings* and configure
 the parameters that are in the *Cut-off* section.
 
-Then, if you plan to use accruals, go to *Invoicing \> Configuration \>
-Accounting \> Taxes* and:
+If you have enabled the option *Accural on Taxes*, you can either:
 
-- for each sale tax, configure the *Accrued Revenue Tax Account*,
-- for each purchase tax, configure the *Accrued Expense Tax Account*.
+- configure the *Default Tax Account for Accrued Revenue* and *Default Tax Account for Accrued Expense* on the configuration page.
+- if you need to use different accounts depending on the tax, go to *Invoicing \> Configuration \>
+Accounting \> Taxes* and configure the *Accrued Revenue Tax Account* on sale taxes and *Accrued Expense Tax Account* on purchase taxes.
