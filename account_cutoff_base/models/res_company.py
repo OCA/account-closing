@@ -7,6 +7,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 logger = logging.getLogger(__name__)
 
@@ -93,11 +94,12 @@ class ResCompany(models.Model):
                 self.env["account.account"]
                 .with_company(self.id)
                 .search(
-                    [
-                        ("deprecated", "=", False),
-                        ("company_ids", "in", self.id),
-                        ("code", "=like", f"{setup_value}%"),
-                    ],
+                    Domain(
+                        [
+                            ("company_ids", "in", self.id),
+                            ("code", "=like", f"{setup_value}%"),
+                        ]
+                    )
                 )
             )
             if len(accounts) == 1:

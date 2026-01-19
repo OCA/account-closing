@@ -22,13 +22,10 @@
                         <field name="post_cutoff_move" />
                     </setting>
                     <setting id="cutoff_journal">
-                        <div class="row mt16" id="dft_cutoff_journal_id">
-                            <label for="dft_cutoff_journal_id" class="col-lg-5" />
-                            <field
-                                name="dft_cutoff_journal_id"
-                                options="{'no_create_edit': True, 'no_open': True}"
-                            />
-                        </div>
+                        <field
+                            name="dft_cutoff_journal_id"
+                            options="{'no_create_edit': True, 'no_open': True}"
+                        />
                     </setting>
                     <setting id="cutoff_accounts">
                         <div class="row mt16" id="dft_accrued_revenue_account_id">
