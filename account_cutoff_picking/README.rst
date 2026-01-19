@@ -21,13 +21,13 @@ Account Cut-off Picking
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
-    :target: https://github.com/OCA/account-closing/tree/18.0/account_cutoff_picking
+    :target: https://github.com/OCA/account-closing/tree/19.0/account_cutoff_picking
     :alt: OCA/account-closing
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-closing-18-0/account-closing-18-0-account_cutoff_picking
+    :target: https://translation.odoo-community.org/projects/account-closing-19-0/account-closing-19-0-account_cutoff_picking
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -52,9 +52,9 @@ expense accrual. When you click on the button *Re-Generate Lines* of an
    lines to analyse for potential expense accrual.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their
-     transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
 4. If, for a particular purchase order line, the quantity of products
    received before the cutoff-date (or on the same day) minus the
@@ -74,9 +74,9 @@ button *Re-Generate Lines* of a *Prepaid Expense*:
    lines to analyse for potential prepaid expense.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their
-     transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
 4. If, for a particular purchase order line, the quantity of products
    invoiced before the cutoff-date (or on the same day) minus the
@@ -104,7 +104,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-closing/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_picking%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_cutoff_picking%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -119,7 +119,7 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
 Other credits
 -------------
@@ -148,6 +148,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
-This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/18.0/account_cutoff_picking>`_ project on GitHub.
+This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/19.0/account_cutoff_picking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

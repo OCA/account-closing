@@ -7,8 +7,9 @@ from datetime import datetime
 import pytz
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import float_compare, float_is_zero
 from odoo.tools.misc import format_date, format_datetime, formatLang
 
@@ -30,13 +31,10 @@ class AccountCutoff(models.Model):
         "Odoo will take more time to generate the cutoff lines.",
     )
 
-    _sql_constraints = [
-        (
-            "picking_interval_days_positive",
-            "CHECK(picking_interval_days > 0)",
-            "The value of the field 'Analysis Interval' must be strictly positive.",
-        )
-    ]
+    _picking_interval_days_positive = models.Constraint(
+        "CHECK(picking_interval_days > 0)",
+        "The value of the field 'Analysis Interval' must be strictly positive.",
+    )
 
     @api.depends("company_id")
     def _compute_picking_interval_days(self):
@@ -52,14 +50,14 @@ class AccountCutoff(models.Model):
             qty = vdict["precut_delivered_qty"] - vdict["precut_invoiced_qty"]
             qty_label = (
                 "<strong>"
-                + _("Pre-cutoff delivered quantity minus invoiced quantity:")
+                + self.env._("Pre-cutoff delivered quantity minus invoiced quantity:")
                 + "</strong>"
             )
         elif self.cutoff_type in ("prepaid_expense", "prepaid_revenue"):
             qty = vdict["precut_invoiced_qty"] - vdict["precut_delivered_qty"]
             qty_label = (
                 "<strong>"
-                + _("Pre-cutoff invoiced quantity minus delivered quantity:")
+                + self.env._("Pre-cutoff invoiced quantity minus delivered quantity:")
                 + "</strong>"
             )
 
@@ -87,14 +85,14 @@ class AccountCutoff(models.Model):
         )
         notes += (
             "<br><strong>"
-            + _("Pre-cutoff delivered quantity:")
+            + self.env._("Pre-cutoff delivered quantity:")
             + f"</strong> {precut_delivered_qty_fl} {uom_name}"
         )
         if vdict.get("precut_delivered_logs"):
             param = "".join(vdict["precut_delivered_logs"])
             notes += (
                 "<br><strong>"
-                + _("Pre-cutoff delivered quantity details:")
+                + self.env._("Pre-cutoff delivered quantity details:")
                 + f"</strong><ul>{param}</ul>"
             )
         else:  # to avoid <br> after </ul>
@@ -104,14 +102,14 @@ class AccountCutoff(models.Model):
         )
         notes += (
             "<strong>"
-            + _("Pre-cutoff invoiced quantity:")
+            + self.env._("Pre-cutoff invoiced quantity:")
             + f"</strong> {precut_invoiced_qty_fl} {uom_name}"
         )
         if vdict.get("precut_invoiced_logs"):
             param = "".join(vdict["precut_invoiced_logs"])
             notes += (
                 "<br><strong>"
-                + _("Pre-cutoff invoiced quantity details:")
+                + self.env._("Pre-cutoff invoiced quantity details:")
                 + f"</strong><ul>{param}</ul>"
             )
         else:  # to avoid <br> after </ul>
@@ -197,37 +195,35 @@ class AccountCutoff(models.Model):
         product_uom = product.uom_id
         outgoing_moves, incoming_moves = order_line._get_outgoing_incoming_moves()
         if order_type == "purchase":
-            ordered_qty = order_line.product_uom._compute_quantity(
+            ordered_qty = order_line.product_uom_id._compute_quantity(
                 order_line.product_qty, product_uom
             )
-            wdict["notes"] = _(
+            wdict["notes"] = self.env._(
                 "<strong>Purchase Order:</strong> "
                 "%(order)s confirmed on %(confirm_date)s<br>"
                 "<strong>Purchase Order Line:</strong> "
-                "%(order_line)s (ordered qty: %(qty)s %(uom)s)"
-            ) % {
-                "order": order.name,
-                "confirm_date": format_datetime(self.env, order.date_approve),
-                "order_line": order_line.name,
-                "qty": formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
-                "uom": product_uom.name,
-            }
+                "%(order_line)s (ordered qty: %(qty)s %(uom)s)",
+                order=order.name,
+                confirm_date=format_datetime(self.env, order.date_approve),
+                order_line=order_line.name,
+                qty=formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                uom=product_uom.name,
+            )
         elif order_type == "sale":
-            ordered_qty = order_line.product_uom._compute_quantity(
+            ordered_qty = order_line.product_uom_id._compute_quantity(
                 order_line.product_uom_qty, product_uom
             )
-            wdict["notes"] = _(
+            wdict["notes"] = self.env._(
                 "<strong>Sale Order:</strong> "
                 "%(order)s confirmed on %(confirm_date)s<br>"
                 "<strong>Sale Order Line:</strong> "
-                "%(order_line)s (ordered qty: %(qty)s %(uom)s)"
-            ) % {
-                "order": order.name,
-                "confirm_date": format_datetime(self.env, order.date_order),
-                "order_line": order_line.name,
-                "qty": formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
-                "uom": product_uom.name,
-            }
+                "%(order_line)s (ordered qty: %(qty)s %(uom)s)",
+                order=order.name,
+                confirm_date=format_datetime(self.env, order.date_order),
+                order_line=order_line.name,
+                qty=formatLang(self.env, ordered_qty, dp="Product Unit of Measure"),
+                uom=product_uom.name,
+            )
         move_logs = []
         for out_move in outgoing_moves.filtered(
             lambda m: m.state == "done" and m.date <= cutoff_datetime
@@ -253,7 +249,7 @@ class AccountCutoff(models.Model):
             )
             wdict["precut_delivered_logs"].append(
                 "<li>"
-                + _(
+                + self.env._(
                     "%(qty)s %(uom)s (picking %(picking)s transfered on %(date)s "
                     "from %(src_location)s to %(dest_location)s)",
                     qty=move_qty_signed_formatted,
@@ -307,7 +303,7 @@ class AccountCutoff(models.Model):
                     date = format_date(self.env, invoice.date)
                     wdict["precut_invoiced_logs"].append(
                         "<li>"
-                        + _(
+                        + self.env._(
                             "%(qty)s %(uom)s (%(move_type)s %(move_name)s "
                             "dated %(date)s)",
                             qty=qty,
@@ -333,47 +329,43 @@ class AccountCutoff(models.Model):
         order = order_line.order_id
         product = order_line.product_id
         if order_type == "purchase":
-            oline_qty_puom = order_line.product_uom._compute_quantity(
+            oline_qty_puom = order_line.product_uom_id._compute_quantity(
                 order_line.product_qty, product.uom_id
             )
             wdict["price_unit"] = order_line.price_subtotal / oline_qty_puom
             wdict["price_origin"] = order.name
             wdict["currency"] = order.currency_id
             wdict["analytic_distribution"] = order_line.analytic_distribution
-            wdict["taxes"] = order_line.taxes_id
+            wdict["taxes"] = order_line.tax_ids
             account = product._get_product_accounts()["expense"]
             if not account:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Missing expense account on product '%(product)s' or on its "
-                        "related product category '%(categ)s'."
+                        "related product category '%(categ)s'.",
+                        product=product.display_name,
+                        categ=product.categ_id.display_name,
                     )
-                    % {
-                        "product": product.display_name,
-                        "categ": product.categ_id.display_name,
-                    }
                 )
             wdict["account_id"] = order.fiscal_position_id.map_account(account).id
         elif order_type == "sale":
-            oline_qty_puom = order_line.product_uom._compute_quantity(
+            oline_qty_puom = order_line.product_uom_id._compute_quantity(
                 order_line.product_uom_qty, product.uom_id
             )
             wdict["price_unit"] = order_line.price_subtotal / oline_qty_puom
             wdict["price_origin"] = order.name
             wdict["currency"] = order.currency_id
             wdict["analytic_distribution"] = order_line.analytic_distribution
-            wdict["taxes"] = order_line.tax_id
+            wdict["taxes"] = order_line.tax_ids
             account = product._get_product_accounts()["income"]
             if not account:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Missing income account on product '%(product)s' or on its "
-                        "related product category '%(categ)s'."
+                        "related product category '%(categ)s'.",
+                        product=product.display_name,
+                        categ=product.categ_id.display_name,
                     )
-                    % {
-                        "product": product.display_name,
-                        "categ": product.categ_id.display_name,
-                    }
                 )
             wdict["account_id"] = order.fiscal_position_id.map_account(account).id
 
@@ -463,13 +455,15 @@ class AccountCutoff(models.Model):
             )
 
             pickings = self.env["stock.picking"].search(
-                [
-                    ("picking_type_code", "=", pick_type_map[cutoff_type]),
-                    ("state", "=", "done"),
-                    ("date_done", "<=", cutoff_datetime),
-                    ("date_done", ">=", min_date_dt),
-                    ("company_id", "=", self.company_id.id),
-                ]
+                Domain(
+                    [
+                        ("picking_type_code", "=", pick_type_map[cutoff_type]),
+                        ("state", "=", "done"),
+                        ("date_done", "<=", cutoff_datetime),
+                        ("date_done", ">=", min_date_dt),
+                        ("company_id", "=", self.company_id.id),
+                    ]
+                )
             )
 
             for p in pickings:
@@ -481,16 +475,18 @@ class AccountCutoff(models.Model):
                 "prepaid_expense": ("in_invoice", "in_refund"),
             }
             min_date = self.cutoff_date - relativedelta(days=self.picking_interval_days)
-            inv_domain = [
-                ("move_type", "in", move_type_map[cutoff_type]),
-                ("date", "<=", self.cutoff_date),
-                ("date", ">=", min_date),
-                ("company_id", "=", self.company_id.id),
-            ]
+            inv_domain = Domain(
+                [
+                    ("move_type", "in", move_type_map[cutoff_type]),
+                    ("date", "<=", self.cutoff_date),
+                    ("date", ">=", min_date),
+                    ("company_id", "=", self.company_id.id),
+                ]
+            )
             if self.source_move_state == "posted":
-                inv_domain.append(("state", "=", "posted"))
+                inv_domain &= Domain("state", "=", "posted")
             else:
-                inv_domain.append(("state", "in", ("draft", "posted")))
+                inv_domain &= Domain("state", "in", ("draft", "posted"))
             invoices = self.env["account.move"].search(inv_domain)
             for invoice in invoices:
                 for iline in invoice.invoice_line_ids.filtered(

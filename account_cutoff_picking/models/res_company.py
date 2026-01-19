@@ -18,10 +18,7 @@ class ResCompany(models.Model):
         default=30,
     )
 
-    _sql_constraints = [
-        (
-            "cutoff_picking_interval_days_positive",
-            "CHECK(default_cutoff_picking_interval_days > 0)",
-            "The value of the field 'Analysis Interval' must be strictly positive.",
-        )
-    ]
+    _cutoff_picking_interval_days_positive = models.Constraint(
+        "CHECK(default_cutoff_picking_interval_days > 0)",
+        "The value of the field 'Analysis Interval' must be strictly positive.",
+    )
