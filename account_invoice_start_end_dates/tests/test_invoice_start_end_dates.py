@@ -23,6 +23,12 @@ class TestInvoiceStartEndDates(TransactionCase):
             "income",
             cls.env.company,
         )
+        cls.regular_product = cls.env["product.product"].create(
+            {
+                "name": "HD IPBX",
+                "type": "consu",
+            }
+        )
         cls.maint_product = cls.env["product.product"].create(
             {
                 "name": "Maintenance contract",
@@ -76,7 +82,7 @@ class TestInvoiceStartEndDates(TransactionCase):
                     ),
                     Command.create(
                         {
-                            "product_id": self.env.ref("product.product_product_5").id,
+                            "product_id": self.regular_product.id,
                             "name": "HD IPBX",
                             "price_unit": 215.5,
                             "quantity": 1,
