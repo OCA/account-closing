@@ -2,9 +2,9 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class AccountCutoff(models.Model):
@@ -37,13 +37,14 @@ class AccountCutoff(models.Model):
         for rec in self:
             source_journal_ids = []
             if rec.cutoff_type in mapping:
-                src_journals = self.env["account.journal"].search(
-                    [
-                        ("type", "=", mapping[rec.cutoff_type]),
-                        ("company_id", "=", rec.company_id.id),
-                    ]
+                source_journal_ids = list(
+                    self.env["account.journal"]._search(
+                        [
+                            ("type", "=", mapping[rec.cutoff_type]),
+                            ("company_id", "=", rec.company_id.id),
+                        ]
+                    )
                 )
-                source_journal_ids = src_journals.ids
             rec.source_journal_ids = [Command.set(source_journal_ids)]
 
     @api.constrains("start_date", "end_date", "state")
@@ -55,14 +56,16 @@ class AccountCutoff(models.Model):
                 and rec.end_date
                 and rec.start_date > rec.end_date
             ):
-                raise ValidationError(_("The start date is after the end date!"))
+                raise ValidationError(
+                    self.env._("The start date is after the end date!")
+                )
 
     def forecast_enable(self):
         self.ensure_one()
         assert self.state == "draft"
         if self.move_id:
             raise UserError(
-                _(
+                self.env._(
                     "This cutoff is linked to a journal entry. "
                     "You must delete it before entering forecast mode."
                 )
@@ -172,57 +175,50 @@ class AccountCutoff(models.Model):
 
     def _get_lines_domain(self):
         if not self.source_journal_ids:
-            raise UserError(_("You should set at least one Source Journal."))
+            raise UserError(self.env._("You should set at least one Source Journal."))
 
-        domain = [
-            ("journal_id", "in", self.source_journal_ids.ids),
-            ("display_type", "=", "product"),
-            ("company_id", "=", self.company_id.id),
-            ("balance", "!=", 0),
-        ]
+        domain = Domain(
+            [
+                ("journal_id", "in", self.source_journal_ids.ids),
+                ("display_type", "=", "product"),
+                ("company_id", "=", self.company_id.id),
+                ("balance", "!=", 0),
+            ]
+        )
         if self.source_move_state == "posted":
-            domain = expression.AND([domain, [("parent_state", "=", "posted")]])
+            domain &= Domain("parent_state", "=", "posted")
         else:
-            domain = expression.AND(
-                [domain, [("parent_state", "in", ("draft", "posted"))]]
-            )
+            domain &= Domain("parent_state", "in", ("draft", "posted"))
 
         if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
             if self.state == "forecast":
                 if not self.start_date or not self.end_date:
                     raise UserError(
-                        _("Start date and end date are required for forecast mode.")
+                        self.env._(
+                            "Start date and end date are required for forecast mode."
+                        )
                     )
-                domain = expression.AND(
+                domain &= Domain(
                     [
-                        domain,
-                        [
-                            ("start_date", "!=", False),
-                            ("start_date", "<=", self.end_date),
-                            ("end_date", ">=", self.start_date),
-                        ],
+                        ("start_date", "!=", False),
+                        ("start_date", "<=", self.end_date),
+                        ("end_date", ">=", self.start_date),
                     ]
                 )
             else:
-                domain = expression.AND(
+                domain &= Domain(
                     [
-                        domain,
-                        [
-                            ("start_date", "!=", False),
-                            ("end_date", ">", self.cutoff_date),
-                            ("date", "<=", self.cutoff_date),
-                        ],
+                        ("start_date", "!=", False),
+                        ("end_date", ">", self.cutoff_date),
+                        ("date", "<=", self.cutoff_date),
                     ]
                 )
         elif self.cutoff_type in ["accrued_expense", "accrued_revenue"]:
-            domain = expression.AND(
+            domain &= Domain(
                 [
-                    domain,
-                    [
-                        ("start_date", "!=", False),
-                        ("start_date", "<=", self.cutoff_date),
-                        ("date", ">", self.cutoff_date),
-                    ],
+                    ("start_date", "!=", False),
+                    ("start_date", "<=", self.cutoff_date),
+                    ("date", ">", self.cutoff_date),
                 ]
             )
         return domain
