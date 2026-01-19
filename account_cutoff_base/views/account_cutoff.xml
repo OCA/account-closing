@@ -150,7 +150,7 @@
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
                 <separator />
                 <filter string="Cutoff Date" name="cutoff_date" date="cutoff_date" />
-                <group string="Group By" name="groupby">
+                <group name="groupby">
                     <filter
                         name="state_groupby"
                         string="State"
