@@ -5,8 +5,9 @@
 from dateutil.relativedelta import relativedelta
 from markupsafe import Markup
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import date_utils
 from odoo.tools.misc import format_amount, format_date
 
@@ -32,16 +33,20 @@ class AccountCutoff(models.Model):
             month=int(self.company_id.fiscalyear_last_month),
         )
         if not fy_start_date:
-            raise UserError(_("Odoo cannot compute the fiscal year start date."))
+            raise UserError(
+                self.env._("Odoo cannot compute the fiscal year start date.")
+            )
 
         sub_type = type2subtype[self.cutoff_type]
         sign = sub_type == "revenue" and -1 or 1
         subs = sub_obj.search(
-            [
-                ("company_id", "=", self.company_id.id),
-                ("subscription_type", "=", sub_type),
-                ("start_date", "<=", self.cutoff_date),
-            ]
+            Domain(
+                [
+                    ("company_id", "=", self.company_id.id),
+                    ("subscription_type", "=", sub_type),
+                    ("start_date", "<=", self.cutoff_date),
+                ]
+            )
         )
         if subs:
             # check that the cutoff is the last day of a month
@@ -50,22 +55,22 @@ class AccountCutoff(models.Model):
             last_day_same_month = self.cutoff_date + relativedelta(day=31)
             if last_day_same_month.day != self.cutoff_date.day:
                 raise UserError(
-                    _(
+                    self.env._(
                         "The cutoffs with subscription only work when the cutoff "
-                        "date (%s) is the last day of a month."
+                        "date (%s) is the last day of a month.",
+                        format_date(self.env, self.cutoff_date),
                     )
-                    % format_date(self.env, self.cutoff_date)
                 )
             if not self.source_journal_ids:
-                raise UserError(_("Missing source journals."))
+                raise UserError(self.env._("Missing source journals."))
             self.message_post(
-                body=_("Computing cut-offs from %d subscriptions.") % len(subs)
+                body=self.env._("Computing cut-offs from %d subscriptions.", len(subs))
             )
-        common_domain = [("journal_id", "in", self.source_journal_ids.ids)]
+        common_domain = Domain("journal_id", "in", self.source_journal_ids.ids)
         if self.source_move_state == "posted":
-            common_domain.append(("parent_state", "=", "posted"))
+            common_domain &= Domain("parent_state", "=", "posted")
         else:
-            common_domain.append(("parent_state", "in", ("draft", "posted")))
+            common_domain &= Domain("parent_state", "in", ("draft", "posted"))
         work = {}
         # Generate time intervals and compute existing expenses/revenue
         for sub in subs:
@@ -74,7 +79,9 @@ class AccountCutoff(models.Model):
             )
         # Create mapping dict
         mapping = self._get_mapping_dict()
-        sub_type_label = sub_type == "expense" and _("Expense") or _("Revenue")
+        sub_type_label = (
+            sub_type == "expense" and self.env._("Expense") or self.env._("Revenue")
+        )
         lsign = sub_type == "expense" and -1 or 1
         for sub in work.keys():
             vals = self._prepare_subscription_cutoff_line(
@@ -91,74 +98,69 @@ class AccountCutoff(models.Model):
         # (or in the chatter if the amount to provision is 0)
         sub = data["sub"]
         ccur = self.company_currency_id
-        note_config = _(
+        note_config = self.env._(
             "CONFIG: %(periodicity)s periodicity, start date %(start_date)s, "
             "min. expense amount %(min_amount)s, default provision amount "
-            "%(provision_amount)s"
-        ) % {
-            "periodicity": sub._fields["periodicity"].convert_to_export(
-                sub.periodicity, sub
-            ),
-            "start_date": format_date(self.env, sub.start_date),
-            "min_amount": format_amount(self.env, sub.min_amount, ccur),
-            "provision_amount": format_amount(self.env, sub.provision_amount, ccur),
-        }
-        note_period = _("PERIODS:")
+            "%(provision_amount)s",
+            periodicity=dict(
+                sub._fields["periodicity"]._description_selection(self.env)
+            ).get(sub.periodicity),
+            start_date=format_date(self.env, sub.start_date),
+            min_amount=format_amount(self.env, sub.min_amount, ccur),
+            provision_amount=format_amount(self.env, sub.provision_amount, ccur),
+        )
+        note_period = self.env._("PERIODS:")
         notes = f"<p>{note_config}</p><p>{note_period}</p><ul>"
         cutoff_amount = 0
         for interval in data["intervals"]:
             prorata_label = (
                 interval["prorata"]
                 and " "
-                + _(
+                + self.env._(
                     "PRORATED min. amount %(min_amount)s, "
-                    "default provisionning amount %(provision_amount)s"
-                )
-                % {
-                    "min_amount": format_amount(self.env, interval["min_amount"], ccur),
-                    "provision_amount": format_amount(
+                    "default provisionning amount %(provision_amount)s",
+                    min_amount=format_amount(self.env, interval["min_amount"], ccur),
+                    provision_amount=format_amount(
                         self.env, interval["provision_amount"], ccur
                     ),
-                }
+                )
                 or ""
             )
             if ccur.compare_amounts(interval["amount"], interval["min_amount"]) < 0:
                 period_cutoff_amount = ccur.round(
                     interval["provision_amount"] - interval["amount"]
                 )
-                line_note = _(
+                line_note = self.env._(
                     "%(start)s → %(end)s%(prorata)s: %(sub_type)s "
-                    "%(amount)s under min. amount ⇒provisionning %(cutoff_amount)s"
-                ) % {
-                    "start": format_date(self.env, interval["start"]),
-                    "end": format_date(self.env, interval["end"]),
-                    "prorata": prorata_label,
-                    "sub_type": sub_type_label,
-                    "amount": format_amount(self.env, interval["amount"], ccur),
-                    "cutoff_amount": format_amount(
-                        self.env, period_cutoff_amount, ccur
-                    ),
-                }
+                    "%(amount)s under min. amount ⇒provisionning %(cutoff_amount)s",
+                    start=format_date(self.env, interval["start"]),
+                    end=format_date(self.env, interval["end"]),
+                    prorata=prorata_label,
+                    sub_type=sub_type_label,
+                    amount=format_amount(self.env, interval["amount"], ccur),
+                    cutoff_amount=format_amount(self.env, period_cutoff_amount, ccur),
+                )
                 cutoff_amount += period_cutoff_amount * lsign
             else:
-                line_note = _(
+                line_note = self.env._(
                     "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s "
-                    "over min. amount ⇒ no provisionning"
-                ) % {
-                    "start": format_date(self.env, interval["start"]),
-                    "end": format_date(self.env, interval["end"]),
-                    "prorata": prorata_label,
-                    "sub_type": sub_type_label,
-                    "amount": format_amount(self.env, interval["amount"], ccur),
-                }
+                    "over min. amount ⇒ no provisionning",
+                    start=format_date(self.env, interval["start"]),
+                    end=format_date(self.env, interval["end"]),
+                    prorata=prorata_label,
+                    sub_type=sub_type_label,
+                    amount=format_amount(self.env, interval["amount"], ccur),
+                )
             notes += f"<li>{line_note}</li>"
         notes += "</ul>"
         if ccur.is_zero(cutoff_amount):
-            msg = _(
+            msg = self.env._(
                 "<p>No provision for subscription <a href=# "
                 "data-oe-model=account.cutoff.accrual.subscription "
-                "data-oe-id=%(id)d>%(name)s</a>.</p>"
-            ) % {"id": sub.id, "name": sub.name}
+                "data-oe-id=%(id)d>%(name)s</a>.</p>",
+                id=sub.id,
+                name=sub.name,
+            )
             msg += notes
             self.message_post(body=Markup(msg))
             return False

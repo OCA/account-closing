@@ -6,8 +6,9 @@ import logging
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +88,7 @@ class AccountCutoffAccrualSubscription(models.Model):
         "account.account",
         string="Account",
         required=True,
-        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
+        domain="[('company_ids', 'in', company_id)]",
         check_company=True,
     )
     type_tax_use = fields.Char(compute="_compute_type_tax_use")
@@ -117,25 +118,19 @@ class AccountCutoffAccrualSubscription(models.Model):
         for sub in self:
             if sub.start_date.day != 1:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "On subscription %s, the start date is not the first "
-                        "day of a month."
+                        "day of a month.",
+                        sub.display_name,
                     )
-                    % sub.display_name
                 )
 
-    _sql_constraints = [
-        (
-            "min_amount_positive",
-            "CHECK(min_amount >= 0)",
-            "The minimum amount must be positive.",
-        ),
-        (
-            "provision_amount_positive",
-            "CHECK(provision_amount >= 0)",
-            "The default provision amount must be positive.",
-        ),
-    ]
+    _min_amount_positive = models.Constraint(
+        "CHECK(min_amount >= 0)", "The minimum amount must be positive."
+    )
+    _provision_amount_positive = models.Constraint(
+        "CHECK(provision_amount >= 0)", "The default provision amount must be positive."
+    )
 
     @api.depends("min_amount")
     def _compute_provision_amount(self):
@@ -173,23 +168,29 @@ class AccountCutoffAccrualSubscription(models.Model):
         ccur = company.currency_id
         months = periodicity2months[self.periodicity]
         work[self] = {"intervals": [], "sub": self}
-        domain_base = common_domain + [
-            ("company_id", "=", company.id),
-            ("account_id", "=", self.account_id.id),
-        ]
+        domain_base = common_domain & Domain(
+            [
+                ("company_id", "=", company.id),
+                ("account_id", "=", self.account_id.id),
+            ]
+        )
         if self.partner_type == "one":
             if self.partner_id:
-                domain_base.append(("partner_id", "=", self.partner_id.id))
+                domain_base &= Domain("partner_id", "=", self.partner_id.id)
             else:
                 raise UserError(
-                    _("Missing partner on subscription '%s'.") % self.display_name
+                    self.env._(
+                        "Missing partner on subscription '%s'.", self.display_name
+                    )
                 )
         elif self.partner_type == "none":
-            domain_base.append(("partner_id", "=", False))
-        domain_base_w_start_end = domain_base + [
-            ("start_date", "!=", False),
-            ("end_date", "!=", False),
-        ]
+            domain_base &= Domain("partner_id", "=", False)
+        domain_base_w_start_end = domain_base & Domain(
+            [
+                ("start_date", "!=", False),
+                ("end_date", "!=", False),
+            ]
+        )
 
         start_date = fy_start_date  # initialize start_date
         while start_date < cutoff_date:
@@ -238,12 +239,14 @@ class AccountCutoffAccrualSubscription(models.Model):
             # 1. No start/end dates
             no_start_end_res = aml_obj._read_group(
                 domain_base
-                + [
-                    ("date", "<=", end_date),
-                    ("date", ">=", start_date),
-                    ("start_date", "=", False),
-                    ("end_date", "=", False),
-                ],
+                & Domain(
+                    [
+                        ("date", "<=", end_date),
+                        ("date", ">=", start_date),
+                        ("start_date", "=", False),
+                        ("end_date", "=", False),
+                    ]
+                ),
                 aggregates=["balance:sum"],
             )
             amount_no_start_end = no_start_end_res and no_start_end_res[0][0] or 0
@@ -251,10 +254,12 @@ class AccountCutoffAccrualSubscription(models.Model):
             # 2. Start/end dates, INSIDE interval
             inside_res = aml_obj._read_group(
                 domain_base_w_start_end
-                + [
-                    ("start_date", ">=", start_date),
-                    ("end_date", "<=", end_date),
-                ],
+                & Domain(
+                    [
+                        ("start_date", ">=", start_date),
+                        ("end_date", "<=", end_date),
+                    ]
+                ),
                 aggregates=["balance:sum"],
             )
             amount_inside = inside_res and inside_res[0][0] or 0
@@ -262,10 +267,12 @@ class AccountCutoffAccrualSubscription(models.Model):
             # 3. Start/end dates, OVER interval
             mlines = aml_obj.search(
                 domain_base_w_start_end
-                + [
-                    ("start_date", "<", start_date),
-                    ("end_date", ">", end_date),
-                ]
+                & Domain(
+                    [
+                        ("start_date", "<", start_date),
+                        ("end_date", ">", end_date),
+                    ]
+                )
             )
             for mline in mlines:
                 total_days = (mline.end_date - mline.start_date).days + 1
@@ -275,11 +282,13 @@ class AccountCutoffAccrualSubscription(models.Model):
             # 4. Start/end dates, start_date before, end_date inside
             mlines = aml_obj.search(
                 domain_base_w_start_end
-                + [
-                    ("start_date", "<", start_date),
-                    ("end_date", ">=", start_date),
-                    ("end_date", "<=", end_date),
-                ]
+                & Domain(
+                    [
+                        ("start_date", "<", start_date),
+                        ("end_date", ">=", start_date),
+                        ("end_date", "<=", end_date),
+                    ]
+                )
             )
             for mline in mlines:
                 total_days = (mline.end_date - mline.start_date).days + 1
@@ -289,11 +298,13 @@ class AccountCutoffAccrualSubscription(models.Model):
             # 5. Start/end dates, start_date inside, end_date after
             mlines = aml_obj.search(
                 domain_base_w_start_end
-                + [
-                    ("start_date", ">=", start_date),
-                    ("start_date", "<=", end_date),
-                    ("end_date", ">", end_date),
-                ]
+                & Domain(
+                    [
+                        ("start_date", ">=", start_date),
+                        ("start_date", "<=", end_date),
+                        ("end_date", ">", end_date),
+                    ]
+                )
             )
             for mline in mlines:
                 total_days = (mline.end_date - mline.start_date).days + 1
