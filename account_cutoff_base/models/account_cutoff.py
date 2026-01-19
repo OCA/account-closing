@@ -7,9 +7,10 @@ from collections import defaultdict
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import date_utils, float_is_zero
+from odoo.fields import Domain
+from odoo.tools import date_utils
 from odoo.tools.misc import format_date
 
 
@@ -67,7 +68,7 @@ class AccountCutoff(models.Model):
     cutoff_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Cut-off Account",
-        domain="[('deprecated', '=', False), ('company_ids', 'in', company_id)]",
+        domain="[('company_ids', 'in', company_id)]",
         compute="_compute_cutoff_account_id",
         store=True,
         readonly=False,
@@ -117,21 +118,18 @@ class AccountCutoff(models.Model):
         "the state is set to 'Done' and the fields become read-only.",
     )
 
-    _sql_constraints = [
-        (
-            "date_type_company_uniq",
-            "unique(cutoff_date, company_id, cutoff_type)",
-            "A cutoff of the same type already exists with this cut-off date !",
-        )
-    ]
+    _date_type_company_uniq = models.UniqueIndex(
+        "(cutoff_date, company_id, cutoff_type)",
+        "A cutoff of the same type already exists with this cut-off date !",
+    )
 
     @property
     def cutoff_type_label_map(self):
         return {
-            "accrued_expense": _("Accrued Expense"),
-            "accrued_revenue": _("Accrued Revenue"),
-            "prepaid_revenue": _("Prepaid Revenue"),
-            "prepaid_expense": _("Prepaid Expense"),
+            "accrued_expense": self.env._("Accrued Expense"),
+            "accrued_revenue": self.env._("Accrued Revenue"),
+            "prepaid_revenue": self.env._("Prepaid Revenue"),
+            "prepaid_expense": self.env._("Prepaid Expense"),
         }
 
     def _selection_cutoff_type(self):
@@ -317,14 +315,14 @@ class AccountCutoff(models.Model):
         move_obj = self.env["account.move"]
         if self.move_id:
             raise UserError(
-                _(
+                self.env._(
                     "The Cut-off Journal Entry already exists. You should "
                     "delete it before running this function."
                 )
             )
         if not self.line_ids:
             raise UserError(
-                _(
+                self.env._(
                     "There are no lines on this Cut-off, so we can't create "
                     "a Journal Entry."
                 )
@@ -340,7 +338,7 @@ class AccountCutoff(models.Model):
         if self.company_id.post_cutoff_move:
             move._post(soft=False)
         self.write({"move_id": move.id, "state": "done"})
-        self.message_post(body=_("Journal entry generated"))
+        self.message_post(body=self.env._("Journal entry generated"))
 
         action = self.env["ir.actions.actions"]._for_xml_id(
             "account.action_move_journal_line"
@@ -363,18 +361,21 @@ class AccountCutoff(models.Model):
         # (e.g. account_cutoff_start_end_dates) add additional states
         # and don't require self.cutoff_date
         if self.state == "draft" and not self.cutoff_date:
-            raise UserError(_("Cutoff date is not set."))
+            raise UserError(self.env._("Cutoff date is not set."))
         # Delete existing lines
         self.line_ids.unlink()
-        self.message_post(body=_("Cut-off lines re-generated"))
+        self.message_post(body=self.env._("Cut-off lines re-generated"))
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_state_done(self):
         for rec in self:
             if rec.state == "done":
                 raise UserError(
-                    _("You cannot delete cutoff records that are in done state.")
+                    self.env._(
+                        "You cannot delete '%s' because it is in 'Done' state.",
+                        rec.display_name,
+                    )
                 )
-        return super().unlink()
 
     def button_line_list(self):
         action = self.env["ir.actions.actions"]._for_xml_id(
@@ -394,10 +395,12 @@ class AccountCutoff(models.Model):
         value = ID of cutoff_account"""
         self.ensure_one()
         mappings = self.env["account.cutoff.mapping"].search(
-            [
-                ("company_id", "=", self.company_id.id),
-                ("cutoff_type", "in", ("all", self.cutoff_type)),
-            ]
+            Domain(
+                [
+                    ("company_id", "=", self.company_id.id),
+                    ("cutoff_type", "in", ("all", self.cutoff_type)),
+                ]
+            )
         )
         mapping = {}
         for item in mappings:
@@ -408,10 +411,9 @@ class AccountCutoff(models.Model):
         res = []
         ato = self.env["account.tax"]
         company_currency = self.company_id.currency_id
-        cur_rprec = company_currency.rounding
         for tax_line in tax_compute_all_res["taxes"]:
             tax = ato.browse(tax_line["id"])
-            if float_is_zero(tax_line["amount"], precision_rounding=cur_rprec):
+            if company_currency.is_zero(tax_line["amount"]):
                 continue
 
             tax_accrual_account = False
@@ -421,17 +423,17 @@ class AccountCutoff(models.Model):
                     tax.account_accrued_expense_id
                     or self.company_id.default_accrued_expense_tax_account_id
                 )
-                tax_account_field_label = _("Accrued Expense Tax Account")
+                tax_account_field_label = self.env._("Accrued Expense Tax Account")
             elif self.cutoff_type == "accrued_revenue":
                 tax_accrual_account = (
                     tax.account_accrued_revenue_id
                     or self.company_id.default_accrued_revenue_tax_account_id
                 )
-                tax_account_field_label = _("Accrued Revenue Tax Account")
+                tax_account_field_label = self.env._("Accrued Revenue Tax Account")
 
             if not tax_accrual_account:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Missing '%(tax_account_field_label)s'. You must configure it "
                         "on the tax '%(tax_display_name)s' or on the accounting "
                         "configuration page of the company '%(company)s'.",
