@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2013-2022 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License LGPL-3 or later (http://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">start_end_dates.view_move_form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/list/field[@name='quantity']"
+                position="before"
+            >
+                <field name="must_have_dates" column_invisible="1" />
+                <field name="start_date" required="must_have_dates" optional="show" />
+                <field name="end_date" required="must_have_dates" optional="show" />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/form//field[@name='quantity']"
+                position="before"
+            >
+                <field name="must_have_dates" invisible="1" />
+                <field name="start_date" required="must_have_dates" />
+                <field name="end_date" required="must_have_dates" />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/list/field[@name='credit']"
+                position="after"
+            >
+                <field name="start_date" optional="hide" />
+                <field name="end_date" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
