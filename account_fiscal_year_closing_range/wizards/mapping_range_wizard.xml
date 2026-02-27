@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="view_account_fiscalyear_closing_mapping_range_wizard_form"
+        model="ir.ui.view"
+    >
+        <field name="name">fiscalyear.closing.range.wizard.form</field>
+        <field name="model">fiscalyear.closing.range.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Account Range Mappings">
+                <div class="alert alert-info" role="alert" style="margin-bottom: 20px;">
+                    <i class="fa fa-info-circle mr-2" />
+                    This wizard creates individual mapping lines for
+                    <strong>every account</strong> found within the specified range.
+                    Ideal for mapping entire groups of accounts to a single result.
+                </div>
+
+                <field name="fyc_config_id" invisible="1" />
+                <field name="fyc_config_template_id" invisible="1" />
+                <field name="company_id" invisible="1" />
+
+                <group>
+                    <group string="Source Range">
+                        <label for="code_start" string="Account Code Range" />
+                        <div class="o_row">
+                            <field name="code_start" placeholder="1000" required="1" />
+                            <span>to</span>
+                            <field name="code_end" placeholder="1999" required="1" />
+                        </div>
+                        <field name="name_prefix" placeholder="e.g. Closing" />
+                    </group>
+
+                    <group string="Destination">
+                        <field
+                            name="dest_account_code"
+                            placeholder="e.g. 3.1.01.001"
+                            required="1"
+                            help="The account code where the balance will be transferred to."
+                        />
+                    </group>
+                </group>
+
+                <notebook>
+                    <page string="Accounts to be Mapped" name="preview_accounts">
+                        <field
+                            name="preview_account_ids"
+                            nolabel="1"
+                            readonly="1"
+                            force_save="1"
+                        >
+                            <list decoration-info="1">
+                                <field name="code" />
+                                <field name="name" />
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+
+                <footer>
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Generate Mappings"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Discard"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="z"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
