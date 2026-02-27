@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [account_cutoff_picking](account_cutoff_picking/) | 18.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Accrued and prepaid expense/revenue from pickings
 [account_cutoff_start_end_dates](account_cutoff_start_end_dates/) | 18.0.1.1.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Cutoffs based on start/end dates
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 18.0.1.0.0 |  | Generic fiscal year closing wizard
+[account_fiscal_year_closing_range](account_fiscal_year_closing_range/) | 18.0.1.0.0 | <a href='https://github.com/kaynnan, marcelsavegnago'><img src='https://github.com/kaynnan, marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='kaynnan, marcelsavegnago'/></a> | Allow mapping account ranges in fiscal year closing
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 18.0.1.2.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start/end dates on invoice/move lines
 
 [//]: # (end addons)
