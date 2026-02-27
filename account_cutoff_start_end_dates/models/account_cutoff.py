@@ -24,6 +24,11 @@ class AccountCutoff(models.Model):
     state = fields.Selection(selection_add=[("forecast", "Forecast")])
     start_date = fields.Date(help="This field is only for the forecast mode")
     end_date = fields.Date(help="This field is only for the forecast mode")
+    include_tax_lines = fields.Boolean(
+        help="If enabled, tax move lines (display_type = 'tax') will also "
+        "be included in the cutoff computation alongside product lines. "
+        "Tax lines must have start and end dates set to be included.",
+    )
 
     @api.depends("company_id", "cutoff_type")
     def _compute_source_journal_ids(self):
@@ -176,9 +181,13 @@ class AccountCutoff(models.Model):
         if not self.source_journal_ids:
             raise UserError(_("You should set at least one Source Journal."))
         mapping = self._get_mapping_dict()
+        if self.include_tax_lines:
+            display_types = ("product", "tax")
+        else:
+            display_types = ("product",)
         domain = [
             ("journal_id", "in", self.source_journal_ids.ids),
-            ("display_type", "=", "product"),
+            ("display_type", "in", display_types),
             ("company_id", "=", self.company_id.id),
             ("balance", "!=", 0),
         ]

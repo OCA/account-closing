@@ -125,3 +125,107 @@ class TestCutoffPrepaid(AccountTestInvoicingCommon):
         # two invoices, but two lines (because the two cutoff lines
         # have been grouped into one line plus one counterpart)
         self.assertEqual(len(cutoff.move_id.line_ids), 2)
+
+    def test_include_tax_lines(self):
+        """Test that include_tax_lines includes tax move lines in cutoff."""
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Test Tax 10%",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 10,
+                "company_id": self.company.id,
+            }
+        )
+        amount = self._days("04-01", "06-30")
+        amount_2months = self._days("05-01", "06-30")
+        # Create invoice with tax
+        invoice = self.inv_model.create(
+            {
+                "company_id": self.company.id,
+                "invoice_date": self._date("01-15"),
+                "date": self._date("01-15"),
+                "partner_id": self.partner.id,
+                "journal_id": self.purchase_journal.id,
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "expense with tax",
+                            "price_unit": amount,
+                            "quantity": 1,
+                            "account_id": self.account_expense.id,
+                            "start_date": self._date("04-01"),
+                            "end_date": self._date("06-30"),
+                            "tax_ids": [Command.set(tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        # Set start_date and end_date on tax lines (not auto-propagated)
+        tax_lines = invoice.line_ids.filtered(lambda line: line.display_type == "tax")
+        self.assertTrue(tax_lines, "Invoice should have tax lines")
+        tax_lines.write(
+            {
+                "start_date": self._date("04-01"),
+                "end_date": self._date("06-30"),
+            }
+        )
+        tax_line_balance = sum(tax_lines.mapped("balance"))
+
+        # Without include_tax_lines: only product line in cutoff
+        cutoff = self._create_cutoff("01-31")
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 1)
+        self.assertEqual(cutoff.total_cutoff_amount, amount)
+        cutoff.unlink()
+
+        # With include_tax_lines, cutoff before period: full amount + tax
+        cutoff = self.cutoff_model.create(
+            {
+                "company_id": self.company.id,
+                "cutoff_date": self._date("01-31"),
+                "cutoff_type": "prepaid_expense",
+                "include_tax_lines": True,
+            }
+        )
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 2)
+        self.assertEqual(
+            cutoff.total_cutoff_amount,
+            amount + tax_line_balance,
+        )
+
+        # With include_tax_lines, cutoff in the middle: prorated amount + tax
+        cutoff = self.cutoff_model.create(
+            {
+                "company_id": self.company.id,
+                "cutoff_date": self._date("04-30"),
+                "cutoff_type": "prepaid_expense",
+                "include_tax_lines": True,
+            }
+        )
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 2)
+        expected_tax_cutoff = self.company.currency_id.round(
+            tax_line_balance * amount_2months / amount
+        )
+        self.assertEqual(
+            cutoff.total_cutoff_amount,
+            amount_2months + expected_tax_cutoff,
+        )
+
+        # With include_tax_lines, cutoff at end of period: no cutoff
+        cutoff = self.cutoff_model.create(
+            {
+                "company_id": self.company.id,
+                "cutoff_date": self._date("06-30"),
+                "cutoff_type": "prepaid_expense",
+                "include_tax_lines": True,
+            }
+        )
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 0)
+        self.assertEqual(cutoff.total_cutoff_amount, 0)
