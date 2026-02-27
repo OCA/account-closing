@@ -53,6 +53,14 @@ msgid "Forecast"
 msgstr "Previsione"
 
 #. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__include_tax_lines
+msgid ""
+"If enabled, tax move lines (display_type = 'tax') will also be included in "
+"the cutoff computation alongside product lines. Tax lines must have start "
+"and end dates set to be included."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid ""
 "In regular mode, this is the number of days after the cut-off date. In "
@@ -62,6 +70,11 @@ msgstr ""
 "Nella modalità normale è il numero di giorni dopo la data di separazione. In "
 "modalità previsione è il numero di giorni tra la data di inizio e quella di "
 "fine."
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__include_tax_lines
+msgid "Include Tax Lines"
+msgstr ""
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -82,7 +95,6 @@ msgstr "Data inizio"
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "Start date and end date are required for forecast mode."
 msgstr "La data inizio e fine sono richieste per la modalità previsionale."
 
@@ -103,14 +115,12 @@ msgstr ""
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "The start date is after the end date!"
 msgstr "La data di inizio è successiva a quella di fine!"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid ""
 "This cutoff is linked to a journal entry. You must delete it before entering "
 "forecast mode."
@@ -132,7 +142,6 @@ msgstr "Giorni totali"
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
-#, python-format
 msgid "You should set at least one Source Journal."
 msgstr "Deve essere impostato almeno un registro di origine."
 
