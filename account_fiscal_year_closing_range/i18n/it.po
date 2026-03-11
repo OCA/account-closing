@@ -6,29 +6,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-11 16:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "%(count)d mapping lines created using destination code %(code)s."
 msgstr ""
+"%(count)d righe di mappatura create utilizzando il codice di destinazione %"
+"(code)s."
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "1999"
-msgstr ""
+msgstr "1999"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_template_form_range
@@ -36,6 +40,9 @@ msgid ""
 "<i class=\"fa fa-exclamation-triangle mr-2\"/>\n"
 "                    Please save the template first before using the range wizard."
 msgstr ""
+"<i class=\"fa fa-exclamation-triangle mr-2\"/>\n"
+"                    Si prega di salvare il modello prima di utilizzare la "
+"procedura guidata per l'intervallo."
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_form_range
@@ -44,6 +51,9 @@ msgid ""
 "<i class=\"fa fa-info-circle mr-2\"/>\n"
 "                        Use the wizard to generate individual mapping lines for a specific range of accounts."
 msgstr ""
+"<i class=\"fa fa-info-circle mr-2\"/>\n"
+"                        Utilizzare la procedura guidata per generare singole "
+"righe di mappatura per un intervallo specifico di conti."
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
@@ -53,21 +63,28 @@ msgid ""
 "                    <strong>every account</strong> found within the specified range.\n"
 "                    Ideal for mapping entire groups of accounts to a single result."
 msgstr ""
+"<i class=\"fa fa-info-circle mr-2\"/>\n"
+"                   Questa procedura guidata crea linee di mappatura "
+"individuali per\n"
+"                   <strong>ogni conto</strong> trovato nell'intervallo "
+"specificato.\n"
+"                   Ideale per mappare interi gruppi di conti in un singolo "
+"risultato."
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "<span>to</span>"
-msgstr ""
+msgstr "<span>a</span>"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Account Code Range"
-msgstr ""
+msgstr "Intervallo codice conto"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Accounts to be Mapped"
-msgstr ""
+msgstr "Conto da mappare"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
@@ -78,158 +95,164 @@ msgid ""
 " the wizard before saving the template. Please save the template first and "
 "try again."
 msgstr ""
+"Impossibile generare mappature di intervallo: il modello di chiusura "
+"dell'anno fiscale non è correttamente collegato a un modello padre. Questo "
+"accade in genere quando si tenta di utilizzare la procedura guidata prima di "
+"salvare il modello. Salvare prima il modello e riprovare."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Destination"
-msgstr ""
+msgstr "Destinazione"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
 msgid "Destination Account Code"
-msgstr ""
+msgstr "Codice conto destinazione"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Discard"
-msgstr ""
+msgstr "Abbandona"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_end
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__code_end
 msgid "End Account Code"
-msgstr ""
+msgstr "Codice conto finale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__fyc_config_id
 msgid "Fiscal Year Closing Config"
-msgstr ""
+msgstr "Configurazione chiusura contabile anno fiscale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__fyc_config_template_id
 msgid "Fiscal Year Closing Config Template"
-msgstr ""
+msgstr "Modello chiusura contabile anno fiscale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model,name:account_fiscal_year_closing_range.model_account_fiscalyear_closing_config
 msgid "Fiscal year closing configuration"
-msgstr ""
+msgstr "Configurazione chiusura anno fiscale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model,name:account_fiscal_year_closing_range.model_account_fiscalyear_closing_mapping
 msgid "Fiscal year closing mapping"
-msgstr ""
+msgstr "Mappatura chiusura anno fiscale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.actions.act_window,name:account_fiscal_year_closing_range.action_account_fiscalyear_closing_mapping_range_wizard
 msgid "Generate Account Range"
-msgstr ""
+msgstr "Genera intervallo conto"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Generate Account Range Mappings"
-msgstr ""
+msgstr "Genera mappature intervallo conto"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Generate Mappings"
-msgstr ""
+msgstr "Genera mappature"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_form_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_template_form_range
 msgid "Generate Range"
-msgstr ""
+msgstr "Genera intervallo"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__name_prefix
 msgid "Mapping Name Prefix"
-msgstr ""
+msgstr "Prefisso nome mappatura"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "No accounts found in the selected range."
-msgstr ""
+msgstr "Nessun conto trovato nell'intervallo selezionato."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__preview_account_ids
 msgid "Preview Accounts"
-msgstr ""
+msgstr "Anteprima conti"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Source Range"
-msgstr ""
+msgstr "Intervallo origine"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_start
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__code_start
 msgid "Start Account Code"
-msgstr ""
+msgstr "Codice conto iniziale"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "Success"
-msgstr ""
+msgstr "Successo"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "The account code where the balance will be transferred to."
-msgstr ""
+msgstr "Codice del conto dove verrà trasferito il saldo."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,help:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
 msgid "The code of the destination account (e.g., 3.1.01.001)"
-msgstr ""
+msgstr "Codice del conto destinazione (es. 3.1.01.001)"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model,name:account_fiscal_year_closing_range.model_fiscalyear_closing_range_wizard
 msgid "Wizard for generating account range mappings in fiscal year closing"
 msgstr ""
+"Procedura guidata per generare le mappature dell'intervallo del conto nella "
+"chiusura dell'anno fiscale"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 3.1.01.001"
-msgstr ""
+msgstr "es. 3.1.01.001"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. Closing"
-msgstr ""
+msgstr "es. Chiusura"
