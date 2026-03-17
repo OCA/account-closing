@@ -51,6 +51,7 @@ class AccountMoveLine(models.Model):
                 moveline.parent_state == "posted"
                 and moveline.display_type == "product"
                 and moveline.product_id.must_have_dates
+                and moveline.journal_id.type in ("sale", "purchase")
                 and not moveline.start_date
             ):
                 raise ValidationError(
