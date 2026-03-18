@@ -28,7 +28,8 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__end_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "End Date"
 msgstr "Enddatum"
 
@@ -50,6 +51,16 @@ msgstr ""
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
 msgid "Journal Item"
 msgstr "Buchungszeile"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+msgid "Line End Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+msgid "Line Start Date"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
@@ -90,7 +101,8 @@ msgstr "Produkt"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__start_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "Start Date"
 msgstr "Startdatum"
 

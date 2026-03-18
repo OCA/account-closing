@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-05-19 22:06+0000\n"
 "PO-Revision-Date: 2017-05-19 22:06+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
-"teams/23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
+"23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,8 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__end_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "End Date"
 msgstr "Einddatum"
 
@@ -52,6 +53,16 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
 msgid "Journal Item"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+msgid "Line End Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+msgid "Line Start Date"
 msgstr ""
 
 #. module: account_invoice_start_end_dates
@@ -93,7 +104,8 @@ msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__start_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "Start Date"
 msgstr "Startdatum"
 

@@ -31,7 +31,8 @@ msgstr "Competenze"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__end_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "End Date"
 msgstr "Data fine"
 
@@ -55,6 +56,16 @@ msgstr "Statistiche fatture"
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
+msgid "Line End Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+msgid "Line Start Date"
+msgstr ""
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
@@ -97,7 +108,8 @@ msgstr "Prodotto"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__start_date
-#: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__start_date
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "Start Date"
 msgstr "Data inizio"
 
@@ -108,8 +120,8 @@ msgid ""
 "Start Date (%(start_date)s) should be before End Date (%(end_date)s) for "
 "line '%(name)s'."
 msgstr ""
-"La data inizio (%(start_date)s) deve essere antecedente alla data fine "
-"(%(end_date)s) per la riga '%(name)s'."
+"La data inizio (%(start_date)s) deve essere antecedente alla data fine (%"
+"(end_date)s) per la riga '%(name)s'."
 
 #~ msgid "Journal Entry"
 #~ msgstr "Registrazione contabile"
