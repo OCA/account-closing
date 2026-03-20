@@ -31,6 +31,8 @@ def migrate(cr, version):
                 )
 
     for config in env["account.fiscalyear.closing.config.template"].search([]):
+        if config.template_id:
+            continue
         company = config.journal_id.company_id
         template = env["account.fiscalyear.closing.template"].search(
             [
@@ -39,9 +41,12 @@ def migrate(cr, version):
             ],
             limit=1,
         )
-        config.write({"template_id": template.id})
+        if template:
+            config.write({"template_id": template.id})
 
     for closing in env["account.fiscalyear.closing"].search([]):
+        if closing.closing_template_id:
+            continue
         company = closing.company_id
         template = env["account.fiscalyear.closing.template"].search(
             [
@@ -50,4 +55,5 @@ def migrate(cr, version):
             ],
             limit=1,
         )
-        closing.write({"closing_template_id": template.id})
+        if template:
+            closing.write({"closing_template_id": template.id})
