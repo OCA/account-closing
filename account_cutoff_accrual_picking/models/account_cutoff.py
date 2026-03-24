@@ -136,7 +136,7 @@ class AccountCutoff(models.Model):
                 handle_price_include=False,
             )
             vals["tax_line_ids"] = self._prepare_tax_lines(
-                tax_compute_all_res, self.company_currency_id
+                tax_compute_all_res, currency
             )
         return vals
 
