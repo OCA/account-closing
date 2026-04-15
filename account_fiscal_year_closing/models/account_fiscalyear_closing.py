@@ -98,13 +98,10 @@ class AccountFiscalyearClosing(models.Model):
         readonly=True,
     )
 
-    _sql_constraints = [
-        (
-            "year_company_uniq",
-            "unique(year, company_id)",
-            ("There should be only one fiscal year closing for that year and company!"),
-        ),
-    ]
+    _year_company_uniq = models.Constraint(
+        "unique(year, company_id)",
+        "There should be only one fiscal year closing for that year and company!",
+    )
 
     def _prepare_mapping(self, tmpl_mapping):
         self.ensure_one()
@@ -121,7 +118,8 @@ class AccountFiscalyearClosing(models.Model):
             )
             # Use an error name if no destination account found
             if not dest_account:
-                name = self.env._("No destination account '%s' found.") % (
+                name = self.env._(
+                    "No destination account '%s' found.",
                     tmpl_mapping.dest_account,
                 )
         return {
@@ -332,7 +330,8 @@ class AccountFiscalyearClosing(models.Model):
         )
         return True
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_state(self):
         if any(x.state not in ("draft", "cancelled") for x in self):
             raise exceptions.UserError(
                 self.env._(
@@ -340,7 +339,6 @@ class AccountFiscalyearClosing(models.Model):
                     "cancelled state."
                 )
             )
-        return super().unlink()
 
 
 class AccountFiscalyearClosingConfig(models.Model):
@@ -372,13 +370,10 @@ class AccountFiscalyearClosingConfig(models.Model):
     journal_id = fields.Many2one(required=True)
     move_id = fields.Many2one(comodel_name="account.move", string="Move")
 
-    _sql_constraints = [
-        (
-            "code_uniq",
-            "unique(code, fyc_id)",
-            "Code must be unique per fiscal year closing!",
-        ),
-    ]
+    _code_uniq = models.Constraint(
+        "unique(code, fyc_id)",
+        "Code must be unique per fiscal year closing!",
+    )
 
     def config_inverse_get(self):
         configs = self.env["account.fiscalyear.closing.config"]
@@ -621,7 +616,7 @@ class AccountFiscalyearClosingMapping(models.Model):
     def move_line_partner_prepare(self, account, partner):
         self.ensure_one()
         move_line = {}
-        balance = partner.get("debit", 0.0) - partner.get("credit", 0.0)
+        balance = partner.get("debit:sum", 0.0) - partner.get("credit:sum", 0.0)
         precision = self.env["decimal.precision"].precision_get("Account")
         description = self.name or account.name
         partner_id = partner.get("partner_id")
@@ -648,15 +643,15 @@ class AccountFiscalyearClosingMapping(models.Model):
         start = self.fyc_config_id.fyc_id.date_start
         end = self.fyc_config_id.fyc_id.date_end
         company_id = self.fyc_config_id.fyc_id.company_id.id
-        return self.env["account.move.line"].read_group(
-            [
+        return self.env["account.move.line"].formatted_read_group(
+            domain=[
                 ("company_id", "=", company_id),
                 ("account_id", "=", account.id),
                 ("date", ">=", start),
                 ("date", "<=", end),
             ],
-            ["partner_id", "credit", "debit"],
-            ["partner_id"],
+            groupby=["partner_id"],
+            aggregates=["credit:sum", "debit:sum"],
         )
 
 

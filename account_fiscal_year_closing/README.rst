@@ -21,13 +21,13 @@ Fiscal year closing
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
-    :target: https://github.com/OCA/account-closing/tree/18.0/account_fiscal_year_closing
+    :target: https://github.com/OCA/account-closing/tree/19.0/account_fiscal_year_closing
     :alt: OCA/account-closing
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-closing-18-0/account-closing-18-0-account_fiscal_year_closing
+    :target: https://translation.odoo-community.org/projects/account-closing-19-0/account-closing-19-0-account_fiscal_year_closing
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-closing&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -72,10 +72,10 @@ If you want to add a closing template or check existing ones:
 11. The way these opposite journal items will be created is determined
     by the closing type in the section "Account closing types":
 
-    - Balance: There will be only one journal item with the opposite
-      balance.
-    - Un-reconciled: The opposite balance will be grouped by the partner
-      field in the period journal entries.
+    -  Balance: There will be only one journal item with the opposite
+       balance.
+    -  Un-reconciled: The opposite balance will be grouped by the
+       partner field in the period journal entries.
 
 12. There's a default closing type to use, and you can specify others by
     account type.
@@ -116,7 +116,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-closing/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_fiscal_year_closing%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/account-closing/issues/new?body=module:%20account_fiscal_year_closing%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -126,15 +126,15 @@ Credits
 Contributors
 ------------
 
-- Antonio Espinosa <antonio.espinosa@tecnativa.com>
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Jordi Ballester Alomar <https://github.com/JordiBForgeFlow>
-- Sergio Corato <https://github.com/sergiocorato>
-- `CorporateHub <https://corporatehub.eu/>`__
+-  Antonio Espinosa <antonio.espinosa@tecnativa.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Jordi Ballester Alomar <https://github.com/JordiBForgeFlow>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  `CorporateHub <https://corporatehub.eu/>`__
 
-  - Alexey Pelykh <alexey.pelykh@corphub.eu>
+   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
 
-- Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
 -----------
@@ -149,6 +149,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/18.0/account_fiscal_year_closing>`_ project on GitHub.
+This module is part of the `OCA/account-closing <https://github.com/OCA/account-closing/tree/19.0/account_fiscal_year_closing>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

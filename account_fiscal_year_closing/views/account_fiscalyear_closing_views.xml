@@ -229,7 +229,7 @@
 
     <record id="action_account_fiscalyear_closing" model="ir.actions.act_window">
         <field name="name">Fiscal year closings</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">fiscal-year-closings</field>
         <field name="res_model">account.fiscalyear.closing</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_account_fiscalyear_closing_tree" />
