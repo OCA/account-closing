@@ -102,10 +102,7 @@ class AccountFiscalyearClosing(models.Model):
         (
             "year_company_uniq",
             "unique(year, company_id)",
-            (
-                "There should be only one fiscal year closing for that year and "
-                "company!"
-            ),
+            ("There should be only one fiscal year closing for that year and company!"),
         ),
     ]
 
