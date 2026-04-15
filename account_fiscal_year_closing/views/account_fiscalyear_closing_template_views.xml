@@ -95,7 +95,7 @@
         model="ir.actions.act_window"
     >
         <field name="name">Closing templates</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">closing-templates</field>
         <field name="res_model">account.fiscalyear.closing.template</field>
         <field name="view_mode">list,form</field>
     </record>

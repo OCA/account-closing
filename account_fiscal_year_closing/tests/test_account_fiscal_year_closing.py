@@ -5,6 +5,7 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -31,11 +32,11 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                 "name": "Test Account manager",
                 "login": "accountmanager",
                 "password": "accountmanager",
-                "groups_id": [
-                    (6, 0, cls.env.user.groups_id.ids),
-                    (4, cls.env.ref("account.group_account_manager").id),
+                "group_ids": [
+                    Command.set(cls.env.user.group_ids.ids),
+                    Command.link(cls.env.ref("account.group_account_manager").id),
                 ],
-                "company_ids": [(6, 0, cls.account_user.company_ids.ids)],
+                "company_ids": [Command.set(cls.account_user.company_ids.ids)],
                 "company_id": cls.account_user.company_id.id,
             }
         )
@@ -99,9 +100,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
             {
                 "name": "Payment term 30/60 end of month",
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "value": "percent",
                             "value_amount": 50,
@@ -109,9 +108,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             "nb_days": 15,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "value": "percent",
                             "value_amount": 50,
@@ -156,9 +153,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                 "invoice_payment_term_id": self.payment_term_2rate.id,
                 "user_id": self.account_user.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "quantity": 1.0,
                             "price_unit": 300.0 if inv_type == "out_invoice" else 100.0,
@@ -167,9 +162,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             if inv_type == "out_invoice"
                             else self.a_purchase.id,
                             "tax_ids": [
-                                (
-                                    6,
-                                    0,
+                                Command.set(
                                     {
                                         self.sale_tax_15.id
                                         if inv_type == "out_invoice"
@@ -187,7 +180,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
     def test_account_closing(self):
         # create a supplier invoice
         supplier_invoice = self.create_simple_invoice(
-            self.the_day, self.env.ref("base.res_partner_4"), "in_invoice"
+            self.the_day, self.partner, "in_invoice"
         )
         self.assertTrue(
             (supplier_invoice.state == "draft"), "Supplier invoice state is not Draft"
@@ -203,7 +196,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
 
         # create a customer invoice
         customer_invoice = self.create_simple_invoice(
-            self.the_day, self.env.ref("base.res_partner_4"), "out_invoice"
+            self.the_day, self.partner, "out_invoice"
         )
         self.assertTrue(
             (customer_invoice.state == "draft"), "Customer invoice state is not Draft"
@@ -288,9 +281,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                 "date_opening": self.start_of_next_year,
                 "check_draft_moves": True,
                 "move_config_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Economic Accounts Closing",
                             "journal_id": self.closing_journal.id,
@@ -300,9 +291,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             "date": self.end_of_this_year,
                             "sequence": 1,
                             "mapping_ids": [
-                                (
-                                    0,
-                                    0,
+                                Command.create(
                                     {
                                         "src_accounts": w,
                                         "dest_account_id": [self.a_pf_closing.id],
@@ -312,9 +301,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             ],
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Profit&Loss",
                             "journal_id": self.closing_journal.id,
@@ -324,9 +311,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             "date": self.end_of_this_year,
                             "sequence": 2,
                             "mapping_ids": [
-                                (
-                                    0,
-                                    0,
+                                Command.create(
                                     {
                                         "name": "profit & loss",
                                         "src_accounts": "pf_acc",
@@ -336,9 +321,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             ],
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Financial Accounts Closing",
                             "journal_id": self.closing_journal.id,
@@ -348,9 +331,7 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
                             "date": self.end_of_this_year,
                             "sequence": 3,
                             "mapping_ids": [
-                                (
-                                    0,
-                                    0,
+                                Command.create(
                                     {
                                         "src_accounts": z,
                                     },
