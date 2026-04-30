@@ -20,16 +20,6 @@ msgid "%(count)d mapping lines created using destination code %(code)s."
 msgstr ""
 
 #. module: account_fiscal_year_closing_range
-#: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
-msgid "1000"
-msgstr ""
-
-#. module: account_fiscal_year_closing_range
-#: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
-msgid "1999"
-msgstr ""
-
-#. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_template_form_range
 msgid ""
 "<i class=\"fa fa-exclamation-triangle mr-2\"/>\n"
