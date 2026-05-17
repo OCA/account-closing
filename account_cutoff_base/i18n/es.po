@@ -156,6 +156,18 @@ msgid "Attachment Count"
 msgstr "recuento de anexos"
 
 #. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid "Auto Reverse"
+msgstr ""
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
+msgid ""
+"Automatically reverse created move on following day. Use this if you accrue "
+"a value end of period that you want to reverse begin of next period"
+msgstr ""
+
+#. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
 msgid "Back to Draft"
 msgstr "volver al borrador"
@@ -276,6 +288,11 @@ msgstr "fecha de cierre"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_id
 msgid "Cut-off Journal Entry"
 msgstr "entrada diaria de cierre"
+
+#. module: account_cutoff_base
+#: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
+msgid "Cut-off Journal Entry Reversal"
+msgstr ""
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -512,13 +529,13 @@ msgstr "mensajes"
 #. odoo-python
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 msgid ""
-"Missing '%(tax_account_field_label)s'. You must configure it on the tax "
-"'%(tax_display_name)s' or on the accounting configuration page of the "
-"company '%(company)s'."
+"Missing '%(tax_account_field_label)s'. You must configure it on the tax '%"
+"(tax_display_name)s' or on the accounting configuration page of the company "
+"'%(company)s'."
 msgstr ""
-"Falta '%(tax_account_field_label)s'. Debe configurarlo en el impuesto "
-"'%(tax_display_name)s' o en la página de configuración contable de la "
-"empresa '%(company)s'."
+"Falta '%(tax_account_field_label)s'. Debe configurarlo en el impuesto '%"
+"(tax_display_name)s' o en la página de configuración contable de la empresa "
+"'%(company)s'."
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__my_activity_date_deadline
@@ -790,6 +807,12 @@ msgstr "historial de la comunicación en la web"
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 msgid "You cannot delete cutoff records that are in done state."
 msgstr "no puedes borrar cierres registrados que están en estado de 'hecho' ."
+
+#. module: account_cutoff_base
+#. odoo-python
+#: code:addons/account_cutoff_base/models/account_cutoff.py:0
+msgid "reversal of: "
+msgstr ""
 
 #~ msgid "Analytic Distribution Search"
 #~ msgstr "Búsqueda de distribución analítica"
