@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 07:54+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -22,74 +24,77 @@ msgid ""
 "model=account.cutoff.accrual.subscription data-oe-"
 "id={subscription_id}>{subscription_name}</a>:</p>"
 msgstr ""
+"<p>Non provision for subscription <a href=# data-oe-"
+"model=account.cutoff.accrual.subscription data-oe-id={subscription_id}>"
+"{subscription_name}</a>:</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
 msgid "Account"
-msgstr ""
+msgstr "Conta"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Conta de peche"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_account_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Analytic Account"
-msgstr ""
+msgstr "conta analítica"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__any
 msgid "Any Partner"
-msgstr ""
+msgstr "calquera socio"
 
 #. module: account_cutoff_accrual_subscription
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Archived"
-msgstr ""
+msgstr "arquivado"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "Divisa de compañía"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid "Computing provisions from %d subscriptions."
-msgstr ""
+msgstr "Cálculo de provisións a partir de %d subscricións."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__provision_amount
 msgid "Default Provision Amount"
-msgstr ""
+msgstr "Importe provisional por defecto"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "nome para mostrar"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -97,81 +102,81 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 #, python-format
 msgid "Expense"
-msgstr ""
+msgstr "gasto"
 
 #. module: account_cutoff_accrual_subscription
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Expense Account"
-msgstr ""
+msgstr "conta de gasto"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__id
 msgid "ID"
-msgstr ""
+msgstr "identidade"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "modificado por última vez o"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "actualizado por última vez por"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "actualizado por última vez o"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum Expense Amount"
-msgstr ""
+msgstr "importe mínimo do gasto"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum expense amount without taxes over the period"
-msgstr ""
+msgstr "importe mínimo de gastos sen impostos durante o período"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid "Missing source journals."
-msgstr ""
+msgstr "diarios de orixe perdidos."
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 #, python-format
 msgid "Missing supplier on subscription '%s'."
-msgstr ""
+msgstr "Falta provedor na subscrición '%s'."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__month
 msgid "Monthly"
-msgstr ""
+msgstr "Mensualmente"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__none
 msgid "No Partner"
-msgstr ""
+msgstr "Non socio"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
 #, python-format
 msgid "On subscription %s, the start date is not the first day of a month."
-msgstr ""
+msgstr "Na subscrición %s, a data de inicio non é o primeiro día dun mes."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_type
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Partner Type"
-msgstr ""
+msgstr "tipo de socio"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -180,6 +185,8 @@ msgid ""
 "Period from {start_date} to {end_date}: {sub_type_label} {amount} over the "
 "minimum amount {min_amount} => no provisioning."
 msgstr ""
+"Período de {start_date} a {end_dáche}: {sub_type_label} {amount} por encima "
+"do importe mínimo {min_amount} => non provisión."
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -189,16 +196,20 @@ msgid ""
 "minimum amount {min_amount}. Default provisioning amount is "
 "{provision_amount} => provisioning {period_cutoff_amount}."
 msgstr ""
+"Período comprendido entre {start_date} e {end_dáche}: {sub_type_label} "
+"{amount} por baixo do importe mínimo {min_amount}. O importe de provisión "
+"por defecto é {provision_amount} => importe de provisión "
+"{period_cutoff_amount}."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__periodicity
 msgid "Periodicity"
-msgstr ""
+msgstr "Periodicidade"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__quarter
 msgid "Quarterly"
-msgstr ""
+msgstr "trimestral"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -206,49 +217,49 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 #, python-format
 msgid "Revenue"
-msgstr ""
+msgstr "Ingresos"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__semester
 msgid "Semesterly"
-msgstr ""
+msgstr "semestral"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__one
 msgid "Specific Partner"
-msgstr ""
+msgstr "Socio específico"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "Data de inicio"
 
 #. module: account_cutoff_accrual_subscription
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_form
 msgid "Subscription Name"
-msgstr ""
+msgstr "Nome de subscrición"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.actions.act_window,name:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_menu
 msgid "Subscriptions"
-msgstr ""
+msgstr "Subscricións"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff_accrual_subscription
 msgid "Subscriptions to compute accrual cutoffs"
-msgstr ""
+msgstr "subscricións para calcular os límites de pagamento"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Supplier"
-msgstr ""
+msgstr "provedor"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__tax_ids
 msgid "Taxes"
-msgstr ""
+msgstr "Impostos"
 
 #. module: account_cutoff_accrual_subscription
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
@@ -257,23 +268,25 @@ msgid ""
 "The cutoffs with subscription only work when the cutoff date (%s) is the "
 "last day of a month."
 msgstr ""
+"Os peches con subscrición só funcionan cando a data de peche (%s) é o último "
+"día dun mes."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.constraint,message:account_cutoff_accrual_subscription.constraint_account_cutoff_accrual_subscription_provision_amount_positive
 msgid "The default provision amount must be positive."
-msgstr ""
+msgstr "O importe da provisión por defecto debe ser positivo."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.constraint,message:account_cutoff_accrual_subscription.constraint_account_cutoff_accrual_subscription_min_amount_positive
 msgid "The minimum amount must be positive."
-msgstr ""
+msgstr "O importe mínimo debe ser positivo."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__subscription_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
-msgstr ""
+msgstr "Anual"
