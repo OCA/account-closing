@@ -9,44 +9,45 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2018-01-25 11:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2026-05-23 04:18+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(account)s : Account code for which the revaluation is applied\""
-msgstr ""
+msgstr "%(account)s: conta á que se aplica a revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(account_name)s : Account name for which the revaluation is applied\""
-msgstr ""
+msgstr "nome de conta á que se aplica a revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(currency)s : Currency to be revaluated"
-msgstr ""
+msgstr "%(currency)s : Moeda a revaluar"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "%(rate)s : Value of rate applied during revaluation"
-msgstr ""
+msgstr "%(rate)s : Valor da taxa aplicada durante a revalorización"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "0.0"
-msgstr ""
+msgstr "0.00"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Analytic account</b>"
-msgstr ""
+msgstr "<b>Conta analítica</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -56,16 +57,20 @@ msgid ""
 "\"Values set here are company-specific.\" groups=\"base.group_multi_company"
 "\"/>"
 msgstr ""
+"<b>Diario de revaluación predeterminado</b>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Gain</b>"
-msgstr ""
+msgstr "<b>Ganancia</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "<b>Loss</b>"
-msgstr ""
+msgstr "<b>Perda</b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -75,6 +80,10 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
+"<b>Contas Provision B</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -84,6 +93,10 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
+"<b>Provision P&amp;Contas L</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -93,11 +106,15 @@ msgid ""
 "\" title=\"Values set here are company-specific.\" groups=\"base."
 "group_multi_company\"/>"
 msgstr ""
+"<b>Contas de reevaluación</b>\n"
+"                                        <span class=\"fa fa-lg fa-building-"
+"o\" title=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "<b>TOTAL</b>"
-msgstr ""
+msgstr "<b> TOTAL </b>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
@@ -105,6 +122,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Establece aquí los valores "
+"específicos de la compañía.\" groups=\"base.group_multi_company\"/>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_reverse_currency_revaluation_wizard
@@ -120,6 +139,17 @@ msgid ""
 "process that created the entry run.\n"
 "                </span>"
 msgstr ""
+"<span name=\"info\" style=\"font-weight: bold;\">Para todos os asentos "
+"revaluados creados durante o período definido, crearase un asento inverso no "
+"sistema. Estas entradas terán a data de factura como a data definida aquí "
+"tamén. Se non existe unha data de contabilización inversa, para cada "
+"entrada, a data de factura será o primeiro día do mes seguinte á data da "
+"entrada.\n"
+"                </span>\n"
+"                <span name=\"info-2\" style=\"font-weight: bold;\">A data de "
+"revaluación dunha entrada que se reevaluó é a data en que se executou o "
+"proceso que creou a entrada.\n"
+"                </span>"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -130,64 +160,69 @@ msgid ""
 "but then manually changed if needed.\n"
 "                </span>"
 msgstr ""
+"<span name=\"info-2\" style=\"font-weight: bold;\">Estas son todas as contas "
+"que se revaluarán ao facer clic no botón Validar. Inicializado como Contas "
+"que teñen configurada a opción Permitir revaluación de moeda, pero logo "
+"cámbiase manualmente se é necesario.\n"
+"                </span>"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_account
 msgid "Account"
-msgstr ""
+msgstr "Conta"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__account_ids
 msgid "Accounts"
-msgstr ""
+msgstr "Contas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__revaluation_account_ids
 msgid "Accounts that will be revaluated."
-msgstr ""
+msgstr "Contas que serán reevaluadas."
 
 #. module: account_multicurrency_revaluation
 #: model:res.groups,name:account_multicurrency_revaluation.group_revaluation_additional
 msgid "Additional provisioning entries posting"
-msgstr ""
+msgstr "Aprovisionamento adicional de entradas publicadas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__gl_balance
 msgid "Aggregated Amount"
-msgstr ""
+msgstr "importe Agregado"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__gl_foreign_balance
 msgid "Aggregated Amount currency"
-msgstr ""
+msgstr "divisa de importe Agregado"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_start_date
 msgid ""
 "All entries revaluated on or after this date will be taken into account."
-msgstr ""
+msgstr "Teranse en conta todas as entradas revalorizadas a partir desta data."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_end_date
 msgid ""
 "All entries revaluated on or before this date will be taken into account."
-msgstr ""
+msgstr "Teranse en conta todas as entradas revalorizadas nesa data ou antes."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_account__currency_revaluation
 msgid "Allow Currency Revaluation"
-msgstr ""
+msgstr "Permitir a Revalorización de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__auto_post_entries
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__auto_post_entries
 msgid "Auto Post Created Entries"
-msgstr ""
+msgstr "entrada creada automaticamente"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Balance YTD"
-msgstr ""
+msgstr "Balance anual ata a data"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.currency_urealized_report_launcher_wizard
@@ -199,39 +234,39 @@ msgstr "Cancelar"
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_closing
 msgid "Closing"
-msgstr ""
+msgstr "Pechando"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_report_closing_entries_menu
 msgid "Closing Entries"
-msgstr ""
+msgstr "pechando entradas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Company currency"
-msgstr ""
+msgstr "Divisa da Compañía"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "axustes de configuración"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid "Created Revaluation Lines"
-msgstr ""
+msgstr "Liñas de revalorización creadas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__create_uid
@@ -250,88 +285,88 @@ msgstr "Creado en"
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Curr. Balance YTD"
-msgstr ""
+msgstr "saldo balance durante o ano ata a data"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Currency Gain and Loss"
-msgstr ""
+msgstr "Ganancia e Perdas de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_account_currency_revaluation_wizard
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 msgid "Currency Revaluation"
-msgstr ""
+msgstr "Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_line_filter
 msgid "Currency Revaluation Items"
-msgstr ""
+msgstr "Partidas de Revalorización de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.report,name:account_multicurrency_revaluation.action_report_currency_unrealized
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.currency_unrealized_report_wizard_menu
 msgid "Currency Revaluation Report"
-msgstr ""
+msgstr "Reporte de Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_currency_revaluation
 msgid "Currency Revaluation Wizard"
-msgstr ""
+msgstr "Asistente de Revaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_report_account_multicurrency_revaluation_curr_unrealized_report
 msgid "Currency Unrealized Report"
-msgstr ""
+msgstr "Reporte de Reevaluación Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__currency_reval_journal_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__default_currency_reval_journal_id
 msgid "Currency gain & loss Default Journal"
-msgstr ""
+msgstr "Diario Predeterminado para ganancia e perdidas de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Currency gain &amp; loss Default Journal"
-msgstr ""
+msgstr "Diario Predeterminado de ganancias &amp; perdidas de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__gl_currency_rate
 msgid "Currency rate"
-msgstr ""
+msgstr "Taxa de cambio"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__reverse_posting_date
 msgid "Date that will be assigned to the reverse entries created."
-msgstr ""
+msgstr "Data que se asignará ás entradas inversas creadas."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__display_name
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a Mostrar"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__end_date
 msgid "End Date"
-msgstr ""
+msgstr "Data Finalización"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__entries_to_reverse_ids
 msgid "Entries to reverse"
-msgstr ""
+msgstr "Entradas á inversa"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
 msgid "Entry description"
-msgstr ""
+msgstr "Descrición da entrada"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Gain(+)/Loss(-) YTD"
-msgstr ""
+msgstr "Ganancia(+)/Perdida(-) YDT"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__id
@@ -347,22 +382,23 @@ msgstr "ID"
 msgid ""
 "If marked, the entries created in the process will be posted automatically."
 msgstr ""
+"Se se marca, as entradas creadas no proceso contabilizaranse automaticamente."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__journal_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "entrada diaria"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Item de Diario"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer____last_update
@@ -388,14 +424,14 @@ msgstr "Última actualización en"
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_config_settings
 msgid "Multicurrency revaluation"
-msgstr ""
+msgstr "Revaluación Multimoneda"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_currency_revaluation.py:0
 #, python-format
 msgid "N/A"
-msgstr ""
+msgstr "non dispoñible"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -405,6 +441,9 @@ msgid ""
 "No account to be revaluated found. Please check 'Allow Currency Revaluation' "
 "for at least one account in account form."
 msgstr ""
+"Non se atopou ningunha canta para ser revaluada. Por favor, configure o "
+"campo 'Permitir Revaluación de Moeda' en polo menos unha conta no formulario "
+"de conta."
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -412,7 +451,7 @@ msgstr ""
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
 msgid "No accounting entry has been posted."
-msgstr ""
+msgstr "Non se publicou ningún asento contable."
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -423,6 +462,10 @@ msgid ""
 "You must specify at least one provision account or a couple of provision "
 "account in the accounting settings."
 msgstr ""
+"Non se definiu algunha conta de revalorización ou provisión para a súa "
+"compañía.\n"
+"Debe especificar polo menos unha ou varias contas de provisión na "
+"configuración de contabilidade."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
@@ -434,199 +477,205 @@ msgid ""
 "                For other account types : 1 entry will be generated per "
 "account/currency."
 msgstr ""
+"Odoo xerará entradas de diferenza de cambio para cada conta establecida como "
+"'Permitir revaluación de Moeda'.\n"
+". . . . . . . . . . . . . . Se o tipo de conta é por pagar ou por cobrar: 1 "
+"entrada será xerada por conta/divisa/socio.\n"
+". . . . . . . . . . . . . . Para outros tipos de conta: 1 entrada será "
+"xerada por conta/divisa."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__only_include_posted_entries
 msgid "Only Include Posted Entries"
-msgstr ""
+msgstr "Incluír Só Entradas Publicadas"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Partner"
-msgstr ""
+msgstr "Socio"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "Please, select the accounts!"
-msgstr ""
+msgstr "Por favor, selecciona as contas!"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.currency_urealized_report_action_wizard
 msgid "Print Currency Revaluation Report"
-msgstr ""
+msgstr "Imprimir Reporte de Revaluación de Monetaria"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_bs_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_bs_gain_account_id
 msgid "Provision B.S. gain account"
-msgstr ""
+msgstr "Conta de Provisión B.S de ganancia"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_bs_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_bs_loss_account_id
 msgid "Provision B.S. loss account"
-msgstr ""
+msgstr "Conta de Provisión B.S de perda"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_pl_analytic_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_pl_analytic_account_id
 msgid "Provision P&L Analytic account"
-msgstr ""
+msgstr "Conta Analítica de Provisión P&L"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_pl_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_pl_gain_account_id
 msgid "Provision P&L gain account"
-msgstr ""
+msgstr "Conta de Provisión P&L de ganancia"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__provision_pl_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__provision_pl_loss_account_id
 msgid "Provision P&L loss account"
-msgstr ""
+msgstr "Conta de Provisión P&L de perda"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Report"
-msgstr ""
+msgstr "Reporte"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__gl_revaluated_balance
 msgid "Revaluated Amount"
-msgstr ""
+msgstr "Monto Revaluado"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Revaluated Amount YTD"
-msgstr ""
+msgstr "Monto Revaluado YTD"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__revaluation_account_ids
 msgid "Revaluation Accounts"
-msgstr ""
+msgstr "Contas de Revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__revaluation_analytic_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__revaluation_analytic_account_id
 msgid "Revaluation Analytic account"
-msgstr ""
+msgstr "Conta Analítica de Revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_created_line_id
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_move_line_form
 msgid "Revaluation Created Line"
-msgstr ""
+msgstr "Liña de Revaluación Creada"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__revaluation_date
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Revaluation Date"
-msgstr ""
+msgstr "Data de Revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_end_date
 msgid "Revaluation End Date"
-msgstr ""
+msgstr "Data Final de Revalorización"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_origin_line_count
 msgid "Revaluation Origin Line Count"
-msgstr ""
+msgstr "Revalorización Orixe Reconto de liñas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move_line__revaluation_origin_line_ids
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_move_line_form
 msgid "Revaluation Origin Lines"
-msgstr ""
+msgstr "Revalorización Liñas de Orixe"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.curr_unrealized_report
 msgid "Revaluation Rate"
-msgstr ""
+msgstr "Taxa de Revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_filter
 msgid "Revaluation Reversed"
-msgstr ""
+msgstr "Revaluación Revertida"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__revaluation_interval_start_date
 msgid "Revaluation Start Date"
-msgstr ""
+msgstr "Data de Inicio da Revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_move_filter
 msgid "Revaluation To Reverse"
-msgstr ""
+msgstr "Revalorización a Reverter"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__revaluation_gain_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__revaluation_gain_account_id
 msgid "Revaluation gain account"
-msgstr ""
+msgstr "Conta de ganancia de revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_company__revaluation_loss_account_id
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_res_config_settings__revaluation_loss_account_id
 msgid "Revaluation loss account"
-msgstr ""
+msgstr "Conta de perda de revaluación"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_bank_statement_line__revaluation_reversed
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move__revaluation_reversed
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_payment__revaluation_reversed
 msgid "Revaluation reversed"
-msgstr ""
+msgstr "Revaluación Revertida"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_bank_statement_line__revaluation_to_reverse
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_move__revaluation_to_reverse
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_account_payment__revaluation_to_reverse
 msgid "Revaluation to reverse"
-msgstr ""
+msgstr "revaluación para reverter"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.actions.act_window,name:account_multicurrency_revaluation.action_view_account_reverse_currency_revaluation_wizard
 #: model:ir.ui.menu,name:account_multicurrency_revaluation.menu_view_reverse_account_currency_revaluation_wizard
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_reverse_currency_revaluation_wizard
 msgid "Reverse Currency Revaluation"
-msgstr ""
+msgstr "Revaluación Inversa de Divisa"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_wizard_reverse_currency_revaluation
 msgid "Reverse Currency Revaluation Wizard"
-msgstr ""
+msgstr "Asistente de Revalorización Inversa de Divisas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__reverse_posting_date
 msgid "Reverse Entries Accounting Date"
-msgstr ""
+msgstr "Data de Contabilidade de Entradas Inversas"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/wizard_reverse_currency_revaluation.py:0
 #, python-format
 msgid "Reverse Revaluation Entries"
-msgstr ""
+msgstr "Entradas de Revaluación Inversa"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_unrealized_report_printer__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "Data de Inicio"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,field_description:account_multicurrency_revaluation.field_wizard_currency_revaluation__start_date
 msgid "Start Revaluation Period"
-msgstr ""
+msgstr "Inicio do Período de Revalorización"
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
 #: code:addons/account_multicurrency_revaluation/wizard/print_currency_unrealized_report.py:0
 #, python-format
 msgid "The Start Date cannot be higher than the End Date."
-msgstr ""
+msgstr "A Data de inicio non pode ser superior á Data final."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_unrealized_report_printer__start_date
@@ -634,16 +683,18 @@ msgid ""
 "The report will print from this Date, all the revaluated entries created "
 "from this date. The default value will be the first day of the month"
 msgstr ""
+"O informe imprimirá a partir desta Data, todos os asentos revalorizados "
+"creados a partir desta data. O valor por defecto será o primeiro día do mes"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_unrealized_report_printer__end_date
 msgid "The report will print till this Date. The default value will be today."
-msgstr ""
+msgstr "O informe imprimirase ata esta data. O valor por defecto será hoxe."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__entries_to_reverse_ids
 msgid "The revaluated entries that will be reversed."
-msgstr ""
+msgstr "As entradas revalorizadas que se anularán."
 
 #. module: account_multicurrency_revaluation
 #. odoo-python
@@ -654,6 +705,9 @@ msgid ""
 "Forward set, the currency revaluation cannot be applied on these accounts: \n"
 "\t - %s"
 msgstr ""
+"Hai unha conta que está a editar que non ten activada a opción de Traspasar "
+"Saldo, non se pode aplicar a revalorización de divisa a estas contas: \n"
+"\t - %s"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__label
@@ -661,25 +715,27 @@ msgid ""
 "This label will be inserted in entries description.You can use %(account)s, "
 "%(account_name)s, %(currency)s and %(rate)s keywords."
 msgstr ""
+"Esta etiqueta inserirase na descrición das entradas. Pode utilizar as "
+"palabras chave %(account)s, %(account_name)s, %(currency)s e %(rate)s."
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model,name:account_multicurrency_revaluation.model_unrealized_report_printer
 msgid "Unrealized Currency Report Printer"
-msgstr ""
+msgstr "Inform de divisas non realizadas"
 
 #. module: account_multicurrency_revaluation
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_currency_revaluation__journal_id
 #: model:ir.model.fields,help:account_multicurrency_revaluation.field_wizard_reverse_currency_revaluation__journal_id
 msgid "You can set the default journal in company settings."
-msgstr ""
+msgstr "Pode configurar o diario predeterminado na configuración da compañía."
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.currency_urealized_report_launcher_wizard
 msgid "_Print"
-msgstr ""
+msgstr "Imprimir"
 
 #. module: account_multicurrency_revaluation
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_currency_revaluation_wizard
 #: model_terms:ir.ui.view,arch_db:account_multicurrency_revaluation.view_account_reverse_currency_revaluation_wizard
 msgid "_Validate"
-msgstr ""
+msgstr "Validar"
