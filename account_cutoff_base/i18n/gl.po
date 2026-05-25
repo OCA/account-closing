@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-25 11:09+0000\n"
-"PO-Revision-Date: 2026-05-23 04:18+0000\n"
-"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
+"PO-Revision-Date: 2026-05-25 12:31+0000\n"
+"Last-Translator: Cándido Martínez <candido@supermercadoscooperativos.com>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
@@ -171,7 +171,7 @@ msgstr "reconto de anexos"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__auto_reverse
 msgid "Auto Reverse"
-msgstr ""
+msgstr "Reversión automática"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,help:account_cutoff_base.field_account_cutoff__auto_reverse
@@ -179,6 +179,8 @@ msgid ""
 "Automatically reverse created move on following day. Use this if you accrue "
 "a value end of period that you want to reverse begin of next period"
 msgstr ""
+"Reversión automáticamente creada no seguinte día. Usar se acumulas un valor "
+"no final do periodo que queres revertir no próximo periodo"
 
 #. module: account_cutoff_base
 #: model_terms:ir.ui.view,arch_db:account_cutoff_base.account_cutoff_form
@@ -305,7 +307,7 @@ msgstr "entrada diaria de peche"
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__move_reversal_id
 msgid "Cut-off Journal Entry Reversal"
-msgstr ""
+msgstr "Corte de reversión de apunte contable"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_account_cutoff__line_ids
@@ -377,7 +379,7 @@ msgstr "conta por defecto para gastos devindicados"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_expense_return_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_expense_return_account_id
 msgid "Default Account for Accrued Expenses Refunds"
-msgstr ""
+msgstr "Conta contable por defecto para reversións de gastos acumulados"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_account_id
@@ -389,7 +391,7 @@ msgstr "conta por defecto para ingresos devindicados"
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_accrued_revenue_return_account_id
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_config_settings__dft_accrued_revenue_return_account_id
 msgid "Default Account for Accrued Revenues Refunds"
-msgstr ""
+msgstr "Conta contable por defecto para reversións de gastos acumulados"
 
 #. module: account_cutoff_base
 #: model:ir.model.fields,field_description:account_cutoff_base.field_res_company__default_prepaid_expense_account_id
@@ -860,4 +862,4 @@ msgstr "non podes borrar peches rexistrados que están en estado de 'feito' ."
 #: code:addons/account_cutoff_base/models/account_cutoff.py:0
 #, python-format
 msgid "reversal of: "
-msgstr ""
+msgstr "reversión de: "
