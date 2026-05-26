@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-22 23:09+0000\n"
-"PO-Revision-Date: 2026-05-26 12:46+0000\n"
+"PO-Revision-Date: 2026-05-26 15:46+0000\n"
 "Last-Translator: Oso Tranquilo <osotranquilo@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -174,7 +174,6 @@ msgstr "Cerrando"
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_bank_statement_line__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_move__closing_type
 #: model:ir.model.fields,field_description:account_fiscal_year_closing.field_account_payment__closing_type
-#, fuzzy
 msgid "Closing Type"
 msgstr "Tipo de cierre"
 
@@ -675,7 +674,7 @@ msgstr "Activos no circulantes"
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_abstract__account_type__liability_non_current
 #: model:ir.model.fields.selection,name:account_fiscal_year_closing.selection__account_fiscalyear_closing_type_template__account_type__liability_non_current
 msgid "Non-current Liabilities"
-msgstr ""
+msgstr "Pasivos no corrientes"
 
 #. module: account_fiscal_year_closing
 #. odoo-python
