@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2026-06-07 18:33+0000\n"
+"PO-Revision-Date: 2026-06-07 18:36+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -33,12 +33,12 @@ msgstr "Postavka računovodske razmejitve"
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid "Cutoff Days"
-msgstr ""
+msgstr "Dnevi razmejitve"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Enable Forecast Mode"
-msgstr ""
+msgstr "Omogoči način napovedi"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__end_date
@@ -59,6 +59,9 @@ msgid ""
 "the cutoff computation alongside product lines. Tax lines must have start "
 "and end dates set to be included."
 msgstr ""
+"Če je omogočeno, bodo davčne dnevniške postavke (display_type = 'tax') "
+"vključene v izračun razmejitve skupaj s postavkami izdelkov. Davčne postavke "
+"morajo imeti nastavljen začetni in končni datum, da so vključene."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
@@ -67,16 +70,18 @@ msgid ""
 "forecast mode, this is the number of days between the start date and the end "
 "date."
 msgstr ""
+"V običajnem načinu je to število dni po datumu razmejitve. V načinu napovedi "
+"je to število dni med začetnim in končnim datumom."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__include_tax_lines
 msgid "Include Tax Lines"
-msgstr ""
+msgstr "Vključi davčne postavke"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
 msgid "Leave Forecast Mode"
-msgstr ""
+msgstr "Zapusti način napovedi"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__source_journal_ids
@@ -93,7 +98,7 @@ msgstr "Začetni daum"
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 msgid "Start date and end date are required for forecast mode."
-msgstr ""
+msgstr "Za način napovedi sta potrebna začetni in končni datum."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__state
@@ -113,7 +118,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 msgid "The start date is after the end date!"
-msgstr ""
+msgstr "Začetni datum je po končnem datumu!"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
@@ -122,12 +127,14 @@ msgid ""
 "This cutoff is linked to a journal entry. You must delete it before entering "
 "forecast mode."
 msgstr ""
+"Ta razmejitev je povezana s temeljnico. Pred vstopom v način napovedi jo "
+"morate izbrisati."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__end_date
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__start_date
 msgid "This field is only for the forecast mode"
-msgstr ""
+msgstr "To polje je samo za način napovedi"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__total_days
