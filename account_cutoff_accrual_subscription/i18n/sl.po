@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-07 19:02+0000\n"
+"PO-Revision-Date: 2026-06-07 21:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -24,6 +24,8 @@ msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s over min. amount ⇒ "
 "no provisionning"
 msgstr ""
+"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s nad minimalnim "
+"zneskom ⇒ brez razmejitve"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -32,6 +34,8 @@ msgid ""
 "%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s under min. amount "
 "⇒provisionning %(cutoff_amount)s"
 msgstr ""
+"%(start)s → %(end)s%(prorata)s: %(sub_type)s %(amount)s pod minimalnim "
+"zneskom ⇒ razmejitev %(cutoff_amount)s"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -41,6 +45,8 @@ msgid ""
 "model=account.cutoff.accrual.subscription data-oe-"
 "id=%(id)d>%(name)s</a>.</p>"
 msgstr ""
+"<p>Za naročnino <a href=# data-oe-model=account.cutoff.accrual.subscription "
+"data-oe-id=%(id)d>%(name)s</a> ni razmejitve.</p>"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
@@ -76,7 +82,7 @@ msgstr "Analitična natančnost"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__any
 msgid "Any Partner"
-msgstr ""
+msgstr "Katerikoli partner"
 
 #. module: account_cutoff_accrual_subscription
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_form
@@ -91,6 +97,9 @@ msgid ""
 "CONFIG: %(periodicity)s periodicity, start date %(start_date)s, min. expense"
 " amount %(min_amount)s, default provision amount %(provision_amount)s"
 msgstr ""
+"KONFIG: periodičnost %(periodicity)s, začetni datum %(start_date)s, min. "
+"znesek stroška %(min_amount)s, privzeti znesek razmejitve %(provision_amount)"
+"s"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__company_id
@@ -106,7 +115,7 @@ msgstr "Valuta družbe"
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 msgid "Computing cut-offs from %d subscriptions."
-msgstr ""
+msgstr "Izračun razmejitev iz %d naročnin."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_uid
@@ -121,7 +130,7 @@ msgstr "Ustvarjeno"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__provision_amount
 msgid "Default Provision Amount"
-msgstr ""
+msgstr "Privzeti znesek razmejitve"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__display_name
@@ -139,7 +148,7 @@ msgstr "Distribucijski analitični konto"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__subscription_type__expense
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Expense"
-msgstr ""
+msgstr "Strošek"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__id
@@ -159,29 +168,29 @@ msgstr "Zadnjič posodobljeno"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum Amount"
-msgstr ""
+msgstr "Minimalni znesek"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,help:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
 msgid "Minimum amount without taxes over the period"
-msgstr ""
+msgstr "Minimalni znesek brez davkov v obdobju"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
 msgid "Missing partner on subscription '%s'."
-msgstr ""
+msgstr "Manjka partner na naročnini '%s'."
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 msgid "Missing source journals."
-msgstr ""
+msgstr "Manjkajo izvorni dnevniki."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__month
 msgid "Monthly"
-msgstr ""
+msgstr "Mesečno"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__name
@@ -191,25 +200,25 @@ msgstr "Naziv"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__none
 msgid "No Partner"
-msgstr ""
+msgstr "Brez partnerja"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 msgid "Odoo cannot compute the fiscal year start date."
-msgstr ""
+msgstr "Odoo ne more izračunati začetnega datuma poslovnega leta."
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff_accrual_subscription.py:0
 msgid "On subscription %s, the start date is not the first day of a month."
-msgstr ""
+msgstr "Pri naročnini %s začetni datum ni prvi dan meseca."
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
 #: code:addons/account_cutoff_accrual_subscription/models/account_cutoff.py:0
 msgid "PERIODS:"
-msgstr ""
+msgstr "OBDOBJA:"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -218,6 +227,8 @@ msgid ""
 "PRORATED min. amount %(min_amount)s, default provisionning amount "
 "%(provision_amount)s"
 msgstr ""
+"PRERAČUNAN min. znesek %(min_amount)s, privzeti znesek razmejitve %"
+"(provision_amount)s"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_id
@@ -234,7 +245,7 @@ msgstr "Tip partnerja"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__periodicity
 msgid "Periodicity"
-msgstr ""
+msgstr "Periodičnost"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__quarter
@@ -247,17 +258,17 @@ msgstr "Četrtletno"
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__subscription_type__revenue
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Revenue"
-msgstr ""
+msgstr "Prihodek"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__semester
 msgid "Semesterly"
-msgstr ""
+msgstr "Polletno"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__one
 msgid "Specific Partner"
-msgstr ""
+msgstr "Določen partner"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__start_date
@@ -267,23 +278,23 @@ msgstr "Začetni daum"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_line__subscription_id
 msgid "Subscription"
-msgstr ""
+msgstr "Naročnina"
 
 #. module: account_cutoff_accrual_subscription
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_form
 msgid "Subscription Name"
-msgstr ""
+msgstr "Naziv naročnine"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.actions.act_window,name:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_action
 #: model:ir.ui.menu,name:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_menu
 msgid "Subscriptions"
-msgstr ""
+msgstr "Naročnine"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff_accrual_subscription
 msgid "Subscriptions to compute accrual cutoffs"
-msgstr ""
+msgstr "Naročnine za izračun razmejitev"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__tax_ids
@@ -297,16 +308,18 @@ msgid ""
 "The cutoffs with subscription only work when the cutoff date (%s) is the "
 "last day of a month."
 msgstr ""
+"Razmejitve z naročninami delujejo le, ko je datum razmejitve (%s) zadnji dan "
+"v mesecu."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.constraint,message:account_cutoff_accrual_subscription.constraint_account_cutoff_accrual_subscription_provision_amount_positive
 msgid "The default provision amount must be positive."
-msgstr ""
+msgstr "Privzeti znesek razmejitve mora biti pozitiven."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.constraint,message:account_cutoff_accrual_subscription.constraint_account_cutoff_accrual_subscription_min_amount_positive
 msgid "The minimum amount must be positive."
-msgstr ""
+msgstr "Minimalni znesek mora biti pozitiven."
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__subscription_type
@@ -321,4 +334,4 @@ msgstr "Tip rabe davka"
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
 msgid "Yearly"
-msgstr ""
+msgstr "Letno"
