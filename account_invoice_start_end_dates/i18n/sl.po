@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-07 18:53+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_insurance_contract_demo_product_template
 msgid "Car Insurance"
-msgstr ""
+msgstr "Avtomobilsko zavarovanje"
 
 #. module: account_invoice_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.product_template_form_view
@@ -30,7 +32,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "End Date"
-msgstr ""
+msgstr "Končni datum"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,help:account_invoice_start_end_dates.field_account_move_line__must_have_dates
@@ -44,12 +46,12 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistika računov"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Dnevniška postavka"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_move_line__end_date
@@ -64,7 +66,7 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:product.template,name:account_invoice_start_end_dates.product_maintenance_contract_demo_product_template
 msgid "Maintenance contract"
-msgstr ""
+msgstr "Vzdrževalna pogodba"
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
@@ -96,14 +98,14 @@ msgstr ""
 #. module: account_invoice_start_end_dates
 #: model:ir.model,name:account_invoice_start_end_dates.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: account_invoice_start_end_dates
 #: model:ir.model.fields,field_description:account_invoice_start_end_dates.field_account_invoice_report__start_date
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_form
 #: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates.view_move_line_tree
 msgid "Start Date"
-msgstr ""
+msgstr "Začetni daum"
 
 #. module: account_invoice_start_end_dates
 #. odoo-python
