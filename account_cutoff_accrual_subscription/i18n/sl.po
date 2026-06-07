@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-07 19:02+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -44,32 +46,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__account_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff
 msgid "Account Cut-off"
-msgstr ""
+msgstr "Računovodska razmejitev"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model,name:account_cutoff_accrual_subscription.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr ""
+msgstr "Postavka računovodske razmejitve"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_distribution
 msgid "Analytic Distribution"
-msgstr ""
+msgstr "Analitična porazdelitev"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__analytic_precision
 msgid "Analytic Precision"
-msgstr ""
+msgstr "Analitična natančnost"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__any
@@ -80,7 +82,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_form
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -93,12 +95,12 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "Valuta družbe"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -109,12 +111,12 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__provision_amount
@@ -124,12 +126,12 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Distribucijski analitični konto"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -142,17 +144,17 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__min_amount
@@ -184,7 +186,7 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__partner_type__none
@@ -221,13 +223,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_id
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__partner_type
 #: model_terms:ir.ui.view,arch_db:account_cutoff_accrual_subscription.account_cutoff_accrual_subscription_search
 msgid "Partner Type"
-msgstr ""
+msgstr "Tip partnerja"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__periodicity
@@ -237,7 +239,7 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__quarter
 msgid "Quarterly"
-msgstr ""
+msgstr "Četrtletno"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -260,7 +262,7 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "Začetni daum"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_line__subscription_id
@@ -286,7 +288,7 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__tax_ids
 msgid "Taxes"
-msgstr ""
+msgstr "Davki"
 
 #. module: account_cutoff_accrual_subscription
 #. odoo-python
@@ -309,12 +311,12 @@ msgstr ""
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__subscription_type
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields,field_description:account_cutoff_accrual_subscription.field_account_cutoff_accrual_subscription__type_tax_use
 msgid "Type Tax Use"
-msgstr ""
+msgstr "Tip rabe davka"
 
 #. module: account_cutoff_accrual_subscription
 #: model:ir.model.fields.selection,name:account_cutoff_accrual_subscription.selection__account_cutoff_accrual_subscription__periodicity__year
