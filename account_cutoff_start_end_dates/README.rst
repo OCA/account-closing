@@ -107,16 +107,16 @@ Authors
 Contributors
 ------------
 
--  Alexis de Lattre <alexis.delattre@akretion.com>
+- Alexis de Lattre <alexis.delattre@akretion.com>
 
--  Stéphane Bidoul <stephane.bidoul@acsone.eu>
+- Stéphane Bidoul <stephane.bidoul@acsone.eu>
 
--  Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+- Jim Hoefnagels <jim.hoefnagels@dynapps.be>
 
--  `Trobz <https://trobz.com>`__:
+- `Trobz <https://trobz.com>`__:
 
-   -  Dzung Tran <dungtd@trobz.com>
-   -  Thao Le thaolt@trobz.com
+  - Dzung Tran <dungtd@trobz.com>
+  - Thao Le thaolt@trobz.com
 
 Other credits
 -------------
