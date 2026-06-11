@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from unittest.mock import Mock
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.account_cutoff_base.tests.common import AccountCutoffCommon
@@ -381,3 +382,44 @@ class TestAccountCutoffStartEndDates(AccountCutoffCommon):
         )
         vals = cutoff._prepare_date_cutoff_line(aml, {})
         self.assertNotIn("cutoff_amount", vals)
+
+    def test_forecast_enable_raises_when_not_draft(self):
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "prepaid_expense",
+            }
+        )
+        cutoff.forecast_enable()
+        with self.assertRaisesRegex(UserError, "enable forecast mode from draft state"):
+            cutoff.forecast_enable()
+
+    def test_forecast_disable_raises_when_not_forecast(self):
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "prepaid_expense",
+            }
+        )
+        with self.assertRaisesRegex(
+            UserError, "disable forecast mode from forecast state"
+        ):
+            cutoff.forecast_disable()
+
+    def test_prepare_date_cutoff_line_raises_when_invalid_dates(self):
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "prepaid_expense",
+            }
+        )
+
+        # using mocked account move line to avoid
+        # date validation constraints
+        aml = Mock()
+        aml.id = 999
+        aml.start_date = fields.Date.to_date("2026-06-30")
+        aml.end_date = fields.Date.to_date("2026-06-01")
+
+        with self.assertRaisesRegex(ValidationError, "Total days should always be > 0"):
+            cutoff._prepare_date_cutoff_line(aml, {})
