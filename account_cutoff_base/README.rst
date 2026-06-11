@@ -36,12 +36,12 @@ This module contains the technical basis for other cut-off modules ; it
 doesn't provide useful features by itself. You need to install other
 cut-off modules to get the useful features:
 
--  the module *account_cutoff_start_end_dates* will manage cut-offs
-   based on start date and end date of invoice/move lines,
--  the module *account_cutoff_picking* will manage cut-offs based on the
-   pickings.
--  the module *account_cutoff_accrual_subscription* will manage cut-offs
-   based on subscriptions.
+- the module *account_cutoff_start_end_dates* will manage cut-offs based
+  on start date and end date of invoice/move lines,
+- the module *account_cutoff_picking* will manage cut-offs based on the
+  pickings.
+- the module *account_cutoff_accrual_subscription* will manage cut-offs
+  based on subscriptions.
 
 **Table of contents**
 
@@ -56,12 +56,12 @@ parameters that are in the *Cut-off* section.
 
 If you have enabled the option *Accural on Taxes*, you can either:
 
--  configure the *Default Tax Account for Accrued Revenue* and *Default
-   Tax Account for Accrued Expense* on the configuration page.
--  if you need to use different accounts depending on the tax, go to
-   *Invoicing > Configuration > Accounting > Taxes* and configure the
-   *Accrued Revenue Tax Account* on sale taxes and *Accrued Expense Tax
-   Account* on purchase taxes.
+- configure the *Default Tax Account for Accrued Revenue* and *Default
+  Tax Account for Accrued Expense* on the configuration page.
+- if you need to use different accounts depending on the tax, go to
+  *Invoicing > Configuration > Accounting > Taxes* and configure the
+  *Accrued Revenue Tax Account* on sale taxes and *Accrued Expense Tax
+  Account* on purchase taxes.
 
 Usage
 =====
@@ -90,24 +90,24 @@ Authors
 Contributors
 ------------
 
--  Alexis de Lattre <alexis.delattre@akretion.com>
+- Alexis de Lattre <alexis.delattre@akretion.com>
 
--  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 
--  Stéphane Bidoul (ACSONE)
+- Stéphane Bidoul (ACSONE)
 
--  Adrien Peiffer (ACSONE)
+- Adrien Peiffer (ACSONE)
 
--  Pedro M. Baeza <pedro.baeza@gmail.com>
+- Pedro M. Baeza <pedro.baeza@gmail.com>
 
--  Jeroen Evens <jeroen.evenss@dynapps.be>
+- Jeroen Evens <jeroen.evenss@dynapps.be>
 
--  Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+- Jim Hoefnagels <jim.hoefnagels@dynapps.be>
 
--  `Trobz <https://trobz.com>`__:
+- `Trobz <https://trobz.com>`__:
 
-   -  Dzung Tran <dungtd@trobz.com>
-   -  Thao Le <thaolt@trobz.com>
+  - Dzung Tran <dungtd@trobz.com>
+  - Thao Le <thaolt@trobz.com>
 
 Other credits
 -------------
