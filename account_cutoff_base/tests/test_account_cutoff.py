@@ -152,6 +152,36 @@ class TestAccountCutoff(AccountCutoffCommon):
         cutoff._compute_cutoff_account_id()
         self.assertFalse(cutoff.cutoff_account_id)
 
+    def test_get_mapping_dict(self):
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+            }
+        )
+
+        # Add another mapping to test filtering
+        self.env["account.cutoff.mapping"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "all",
+                "account_id": self.account_revenue.id,
+                "cutoff_account_id": self.account_prepaid_revenue.id,
+            }
+        )
+
+        # 1. No source_accounts provided: should return all mappings for this company
+        mapping = cutoff._get_mapping_dict()
+        self.assertIn(self.account_expense.id, mapping)
+        self.assertIn(self.account_revenue.id, mapping)
+
+        # 2. source_accounts provided: should return ONLY mappings for those accounts
+        mapping_filtered = cutoff._get_mapping_dict(
+            source_accounts=self.account_expense
+        )
+        self.assertIn(self.account_expense.id, mapping_filtered)
+        self.assertNotIn(self.account_revenue.id, mapping_filtered)
+
     def test_compute_display_name_no_date(self):
         cutoff = self.env["account.cutoff"].create(
             {
