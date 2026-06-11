@@ -389,19 +389,26 @@ class AccountCutoff(models.Model):
         )
         return action
 
-    def _get_mapping_dict(self):
-        """return a dict with:
-        key = ID of account,
-        value = ID of cutoff_account"""
+    def _get_mapping_dict(self, source_accounts=None):
+        """Prepare mapping dict for the cutoff accounts
+        :param source_accounts: account recordset to filter the mapping dict
+
+        :return: dict with:
+            key = ID of account,
+            value = ID of cutoff_account
+        """
         self.ensure_one()
-        mappings = self.env["account.cutoff.mapping"].search(
-            Domain(
-                [
-                    ("company_id", "=", self.company_id.id),
-                    ("cutoff_type", "in", ("all", self.cutoff_type)),
-                ]
-            )
+
+        domain = Domain(
+            [
+                ("company_id", "=", self.company_id.id),
+                ("cutoff_type", "in", ("all", self.cutoff_type)),
+            ]
         )
+        if source_accounts:
+            domain &= Domain("account_id", "in", source_accounts.ids)
+
+        mappings = self.env["account.cutoff.mapping"].search(domain)
         mapping = {}
         for item in mappings:
             mapping[item.account_id.id] = item.cutoff_account_id.id
