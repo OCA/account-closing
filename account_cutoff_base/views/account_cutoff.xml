@@ -125,7 +125,6 @@
                 <field name="cutoff_date" decoration-bf="1" />
                 <field name="move_ref" optional="hide" />
                 <field name="total_cutoff_amount" />
-                <field name="company_currency_id" column_invisible="1" />
                 <field name="company_id" optional="show" />
                 <field
                     name="state"

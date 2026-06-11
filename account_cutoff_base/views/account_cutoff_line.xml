@@ -76,9 +76,7 @@
                 <field name="price_unit" optional="hide" />
                 <field name="price_origin" optional="hide" />
                 <field name="amount" />
-                <field name="currency_id" column_invisible="1" />
                 <field name="cutoff_amount" sum="1" />
-                <field name="company_currency_id" column_invisible="1" />
             </list>
         </field>
     </record>
