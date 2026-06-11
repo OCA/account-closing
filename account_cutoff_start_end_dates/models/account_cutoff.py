@@ -62,7 +62,10 @@ class AccountCutoff(models.Model):
 
     def forecast_enable(self):
         self.ensure_one()
-        assert self.state == "draft"
+        if self.state != "draft":
+            raise UserError(
+                self.env._("You can only enable forecast mode from draft state.")
+            )
         if self.move_id:
             raise UserError(
                 self.env._(
@@ -76,14 +79,20 @@ class AccountCutoff(models.Model):
 
     def forecast_disable(self):
         self.ensure_one()
-        assert self.state == "forecast"
+        if self.state != "forecast":
+            raise UserError(
+                self.env._("You can only disable forecast mode from forecast state.")
+            )
         self.line_ids.unlink()
         self.write({"state": "draft"})
 
     def _prepare_date_cutoff_line(self, aml, mapping):
         self.ensure_one()
         total_days = (aml.end_date - aml.start_date).days + 1
-        assert total_days > 0, "Should never happen. Total days should always be > 0"
+        if total_days <= 0:
+            raise ValidationError(
+                self.env._("Should never happen. Total days should always be > 0")
+            )
         # we use account mapping here
         if aml.account_id.id in mapping:
             cutoff_account_id = mapping[aml.account_id.id]
