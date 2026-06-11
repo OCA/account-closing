@@ -237,8 +237,8 @@ class AccountCutoff(models.Model):
         aml_obj = self.env["account.move.line"]
         line_obj = self.env["account.cutoff.line"]
         lines_domain = self._get_lines_domain()
-        mapping = self._get_mapping_dict()
         amls = aml_obj.search(lines_domain)
+        mapping = self._get_mapping_dict(source_accounts=amls.account_id)
         for aml in amls:
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
         return res
