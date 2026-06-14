@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [account_cutoff_picking](account_cutoff_picking/) | 17.0.1.1.1 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Accrued and prepaid expense/revenue from pickings
 [account_cutoff_start_end_dates](account_cutoff_start_end_dates/) | 17.0.1.1.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Cutoffs based on start/end dates
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 17.0.1.4.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start/end dates on invoice/move lines
+[account_move_cutoff](account_move_cutoff/) | 17.0.0.1.0 | <a href='https://github.com/petrus-v'><img src='https://github.com/petrus-v.png' width='32' height='32' style='border-radius:50%;' alt='petrus-v'/></a> | Account move Cut-offs, manage Deferred Revenues/Expenses
 
 [//]: # (end addons)
 
