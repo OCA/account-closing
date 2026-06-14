@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Foodles (http://www.foodles.co).
+     @author Pierre Verkest <pierreverkest84@gmail.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">cutoff.res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//block[@id='accounting_reports']" position="inside">
+
+                <div
+                    class="col-12 col-lg-12 o_setting_box"
+                    id="account_move_cuttof_settings"
+                >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Cutoff journal</span>
+                        <div class="text-muted">
+                            Revenues
+                        </div>
+                        <div class="text-muted">
+                            <field name="revenue_cutoff_journal_id" />
+                        </div>
+                        <div class="text-muted">
+                            Expenses
+                        </div>
+                        <div class="text-muted">
+                            <field name="expense_cutoff_journal_id" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="link_product" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="link_product"
+                            string="Link product on deferred entries"
+                        />
+                        <div class="text-muted">
+                            Link product to deferred entries using automatic cutoff on start/end date.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-12 o_setting_box">
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Cutoff Allocation Method</span>
+                        <div class="text-muted">
+
+                            <p style="margin-bottom: 0">
+                                Choose how amounts should be allocated across accounting periods:
+                            </p>
+                            <p style="margin-bottom: 0">
+                                - <strong
+                                >Equal</strong>: splits the total evenly over the entire service period,
+                                based on the start and end dates of the invoice line.
+                            </p>
+                            <p style="margin-bottom: 0">
+                                - <strong
+                                >Prorata temporis (by month %)</strong>: allocates the amount proportionally
+                                to the number of service days in each month.
+                            </p>
+                        </div>
+                        <field
+                            name="default_cutoff_method"
+                            string="Default cutoff method"
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
