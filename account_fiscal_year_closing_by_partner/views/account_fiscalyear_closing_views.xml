@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_fiscalyear_closing_form_by_partner" model="ir.ui.view">
+        <field name="name">account.fiscalyear.closing.form.by.partner</field>
+        <field name="model">account.fiscalyear.closing</field>
+        <field
+            name="inherit_id"
+            ref="account_fiscal_year_closing.view_account_fiscalyear_closing_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_draft_moves']" position="after">
+                <field name="split_by_partner" readonly="state not in ['draft']" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
