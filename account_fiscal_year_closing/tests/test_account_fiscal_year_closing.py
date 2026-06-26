@@ -394,3 +394,205 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
 
         posted = fy_closing.button_post()
         self.assertTrue(posted, "Fiscal Year closing is not posted!")
+
+
+@tagged("post_install_l10n", "post_install", "-at_install")
+class TestFiscalYearClosingByPartner(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        today = fields.Date.today()
+        cls.date_start = today.replace(month=1, day=1)
+        cls.date_end = today.replace(month=12, day=31)
+        cls.date_opening = cls.date_end + relativedelta(days=1)
+
+        cls.closing_journal = cls.env["account.journal"].create(
+            {"name": "Closing Journal", "type": "general", "code": "CLBP"}
+        )
+        cls.rec_account = cls.company_data["default_account_receivable"]
+        cls.closing_account = cls.env["account.account"].create(
+            {
+                "code": "CLBPACC",
+                "name": "FYC Balance Closing Account",
+                "account_type": "equity",
+                "reconcile": False,
+            }
+        )
+        rev_account = cls.company_data["default_account_revenue"]
+
+        # partner_b uses a copy of the default receivable account by default in
+        # AccountTestInvoicingCommon; override it so both partners post their
+        # receivable lines on the same rec_account used in the FYC mapping.
+        cls.partner_b.property_account_receivable_id = cls.rec_account
+
+        for partner in (cls.partner_a, cls.partner_b):
+            invoice = cls.env["account.move"].create(
+                {
+                    "partner_id": partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_date": cls.date_start + relativedelta(days=10),
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "quantity": 1.0,
+                                "price_unit": 100.0,
+                                "name": "Test",
+                                "account_id": rev_account.id,
+                            },
+                        )
+                    ],
+                }
+            )
+            invoice.action_post()
+
+    def _create_fyc(self, split_by_partner):
+        return self.env["account.fiscalyear.closing"].create(
+            {
+                "name": "Test Closing",
+                "date_start": self.date_start,
+                "date_end": self.date_end,
+                "date_opening": self.date_opening,
+                "check_draft_moves": False,
+                "split_by_partner": split_by_partner,
+                "move_config_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Receivable Closing",
+                            "journal_id": self.closing_journal.id,
+                            "code": "REC",
+                            "move_type": "closing",
+                            "closing_type_default": "balance",
+                            "date": self.date_end,
+                            "sequence": 1,
+                            "mapping_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "src_accounts": self.rec_account.code,
+                                        "dest_account_id": self.closing_account.id,
+                                    },
+                                )
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+
+    def test_split_by_partner_creates_per_partner_lines(self):
+        fyc = self._create_fyc(split_by_partner=True)
+        fyc.button_calculate()
+        self.assertEqual(fyc.state, "calculated")
+
+        closing_lines = fyc.move_ids.line_ids.filtered(
+            lambda line: line.account_id == self.rec_account
+        )
+        partners_on_lines = closing_lines.mapped("partner_id")
+        self.assertIn(self.partner_a, partners_on_lines)
+        self.assertIn(self.partner_b, partners_on_lines)
+
+    def test_no_split_aggregates_lines(self):
+        fyc = self._create_fyc(split_by_partner=False)
+        fyc.button_calculate()
+        self.assertEqual(fyc.state, "calculated")
+
+        closing_lines = fyc.move_ids.line_ids.filtered(
+            lambda line: line.account_id == self.rec_account
+        )
+        self.assertEqual(len(closing_lines), 1)
+        self.assertFalse(closing_lines.partner_id)
+
+    def test_split_by_partner_keeps_foreign_currency(self):
+        # When the receivable account is held in a foreign currency, the
+        # per-partner closing lines must carry currency_id/amount_currency
+        # over, exactly like the aggregate path does.
+        company_currency = self.env.company.currency_id
+        other_currency = self.setup_other_currency("EUR")
+        if other_currency == company_currency:
+            other_currency = self.setup_other_currency("USD")
+        fx_account = self.env["account.account"].create(
+            {
+                "code": "CLBPFX",
+                "name": "FX Receivable",
+                "account_type": "asset_receivable",
+                "reconcile": True,
+                "currency_id": other_currency.id,
+            }
+        )
+        rev_account = self.company_data["default_account_revenue"]
+        for partner in (self.partner_a, self.partner_b):
+            partner.property_account_receivable_id = fx_account
+            invoice = self.env["account.move"].create(
+                {
+                    "partner_id": partner.id,
+                    "move_type": "out_invoice",
+                    "invoice_date": self.date_start + relativedelta(days=10),
+                    "currency_id": other_currency.id,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "quantity": 1.0,
+                                "price_unit": 100.0,
+                                "name": "Test FX",
+                                "account_id": rev_account.id,
+                            },
+                        )
+                    ],
+                }
+            )
+            invoice.action_post()
+
+        fyc = self.env["account.fiscalyear.closing"].create(
+            {
+                "name": "Test FX Closing",
+                "date_start": self.date_start,
+                "date_end": self.date_end,
+                "date_opening": self.date_opening,
+                "check_draft_moves": False,
+                "split_by_partner": True,
+                "move_config_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "FX Receivable Closing",
+                            "journal_id": self.closing_journal.id,
+                            "code": "RECFX",
+                            "move_type": "closing",
+                            "closing_type_default": "balance",
+                            "date": self.date_end,
+                            "sequence": 1,
+                            "mapping_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "src_accounts": fx_account.code,
+                                        "dest_account_id": self.closing_account.id,
+                                    },
+                                )
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+        fyc.button_calculate()
+        self.assertEqual(fyc.state, "calculated")
+
+        closing_lines = fyc.move_ids.line_ids.filtered(
+            lambda line: line.account_id == fx_account
+        )
+        self.assertEqual(len(closing_lines), 2)
+        for partner in (self.partner_a, self.partner_b):
+            line = closing_lines.filtered(lambda ln, p=partner: ln.partner_id == p)
+            self.assertEqual(len(line), 1)
+            self.assertEqual(line.currency_id, other_currency)
+            self.assertNotEqual(line.amount_currency, 0.0)
