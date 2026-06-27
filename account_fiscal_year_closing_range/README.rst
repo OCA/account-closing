@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =================================
 Account Fiscal Year Closing Range
 =================================
@@ -17,7 +13,7 @@ Account Fiscal Year Closing Range
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -68,10 +64,10 @@ range of accounts:
 
 3. In the wizard:
 
-   - Set the **Start Account Code** and **End Account Code**.
-   - Enter the **Destination Account Code** (e.g., ``3.1.01.001``).
-   - Optional: Define a **Mapping Name Prefix** to identify these lines
-     easily.
+   -  Set the **Start Account Code** and **End Account Code**.
+   -  Enter the **Destination Account Code** (e.g., ``3.1.01.001``).
+   -  Optional: Define a **Mapping Name Prefix** to identify these lines
+      easily.
 
 4. Click **"Generate Mappings"**.
 
@@ -100,9 +96,11 @@ Authors
 Contributors
 ------------
 
-- `Escodoo <https://escodoo.com.br/>`__
+-  `Escodoo <https://escodoo.com.br/>`__
 
-  - Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+   -  Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+
+-  Nextev srl <odoo@nextev.it>
 
 Maintainers
 -----------

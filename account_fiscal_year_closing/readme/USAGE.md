@@ -16,3 +16,8 @@ For closing a fiscal year:
 9.  If one of the created journal entries is unbalanced, as Odoo doesn't
     allow to create unbalanced entries, a new screen will be shown for
     checking the problem on the created entry.
+
+By default the **Split closing by partner** option is enabled, so receivable
+and payable accounts are closed with one move line per partner and those lines
+are reconciled by partner after posting. Disable it on the closing form to get
+a single aggregated line per account instead.

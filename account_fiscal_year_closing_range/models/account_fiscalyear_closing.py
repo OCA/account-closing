@@ -49,58 +49,15 @@ class AccountFiscalyearClosingConfig(models.Model):
 
         return domain
 
-    def _mapping_move_lines_get(self):
+    def _mapping_src_accounts_get(self, account_map):
+        """Select the source accounts supporting filtering by range
+        (Start/End) in addition to the standard pattern matching.
+
+        Only the account selection is overridden here; the move-line
+        generation (including the per-partner split) is inherited from
+        account_fiscal_year_closing.
         """
-        Retrieve move lines for the closing entry.
-        Overridden to support account filtering by range (Start/End)
-        in addition to the standard pattern matching.
-        """
-        move_lines = []
-        dest_totals = {}
-
-        for account_map in self.mapping_ids:
-            dest = account_map.dest_account_id
-            dest_totals.setdefault(dest, 0.0)
-
-            domain = self._get_mapping_account_domain(account_map)
-            if not domain:
-                continue
-
-            src_accounts = self.env["account.account"].search(domain, order="code ASC")
-
-            for account in src_accounts:
-                closing_type = self.closing_type_get(account)
-                balance = 0.0
-                move_line = {}
-
-                if closing_type == "balance":
-                    lines = account_map.account_lines_get(account)
-                    balance, move_line = account_map.move_line_prepare(account, lines)
-                    if move_line:
-                        move_lines.append(move_line)
-
-                elif closing_type == "unreconciled":
-                    partners = account_map.account_partners_get(account)
-                    for partner in partners:
-                        balance, move_line = account_map.move_line_partner_prepare(
-                            account, partner
-                        )
-                        if move_line:
-                            move_lines.append(move_line)
-
-                if dest and balance:
-                    dest_totals[dest] -= balance
-
-        for account_map in self.mapping_ids.filtered("dest_account_id"):
-            dest = account_map.dest_account_id
-            balance = dest_totals.get(dest, 0.0)
-
-            if not balance:
-                continue
-
-            dest_totals[dest] = 0.0
-            move_line = account_map.dest_move_line_prepare(dest, balance)
-            if move_line:
-                move_lines.append(move_line)
-
-        return move_lines
+        domain = self._get_mapping_account_domain(account_map)
+        if not domain:
+            return self.env["account.account"]
+        return self.env["account.account"].search(domain, order="code ASC")
