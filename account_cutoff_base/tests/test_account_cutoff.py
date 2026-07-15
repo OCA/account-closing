@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 from odoo import Command
 from odoo.exceptions import UserError
+from odoo.tools import mute_logger
 
 from odoo.addons.account_cutoff_base.post_install import company_country_cutoff_setup
 
@@ -28,6 +29,7 @@ class TestAccountCutoff(AccountCutoffCommon):
         self.company._country_cutoff_setup()
         self.assertTrue(self.company.accrual_taxes)
 
+    @mute_logger("odoo.addons.account_cutoff_base.models.res_company")
     def test_post_install_country_cutoff_setup_no_account_found_and_multiple(self):
         country_fr = self.env["res.country"].search([("code", "=", "FR")], limit=1)
         # We temporarily change country code to something without accounts
