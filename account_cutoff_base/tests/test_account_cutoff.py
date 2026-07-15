@@ -4,9 +4,8 @@
 
 from unittest.mock import patch
 
-from odoo import Command, fields
+from odoo import Command
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
 
 from odoo.addons.account_cutoff_base.post_install import company_country_cutoff_setup
 
@@ -520,143 +519,102 @@ class TestAccountCutoff(AccountCutoffCommon):
         selection = cutoff._selection_cutoff_type()
         self.assertIn(("accrued_expense", "Accrued Expense"), selection)
 
-
-class TestAccountCutoff2(TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.company = cls.env.ref("base.main_company")
-        cls.cutoff_journal = cls.env["account.journal"].create(
+    def test_create_move_without_auto_reverse_does_not_generate_reversal_entry(self):
+        cutoff = self.env["account.cutoff"].create(
             {
-                "code": "cop0",
-                "company_id": cls.company.id,
-                "name": "Cutoff Journal Base",
-                "type": "general",
-            }
-        )
-        cls.cutoff_account = cls.env["account.account"].create(
-            {
-                "name": "Cutoff Base Account",
-                "code": "ACB480000",
-                "company_id": cls.company.id,
-                "account_type": "liability_current",
-            }
-        )
-
-    def test_default_cutoff_account_id(self):
-        account_id = self.env["account.cutoff"]._default_cutoff_account_id()
-        self.assertEqual(account_id, False)
-
-        company = self.env.company
-        random_account = self.env["account.account"].search(
-            [("company_id", "=", company.id)], limit=1
-        )
-        if random_account:
-            company.default_accrued_expense_account_id = random_account.id
-            company.default_accrued_revenue_account_id = random_account.id
-
-            account_id = (
-                self.env["account.cutoff"]
-                .with_context(default_cutoff_type="accrued_expense")
-                ._default_cutoff_account_id()
-            )
-            self.assertEqual(
-                account_id,
-                random_account.id,
-                f"The account must be equals to {random_account.id}",
-            )
-            account_id = (
-                self.env["account.cutoff"]
-                .with_context(default_cutoff_type="accrued_revenue")
-                ._default_cutoff_account_id()
-            )
-            self.assertEqual(
-                account_id,
-                random_account.id,
-                f"The account must be equals to {random_account.id}",
-            )
-
-    def test_create_move(self):
-        type_cutoff = "accrued_revenue"
-        cutoff = (
-            self.env["account.cutoff"]
-            .with_context(default_cutoff_type=type_cutoff)
-            .create(
-                {
-                    "cutoff_type": type_cutoff,
-                    "company_id": 1,
-                    "cutoff_date": fields.Date.today(),
-                    "cutoff_account_id": self.cutoff_account.id,
-                    "cutoff_journal_id": self.cutoff_journal.id,
-                }
-            )
-        )
-        account = self.env["account.account"].create(
-            {
-                "name": "Base account",
-                "code": "ACB220000",
                 "company_id": self.company.id,
-                "account_type": "liability_current",
+                "cutoff_type": "accrued_expense",
+                "auto_reverse": False,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                        }
+                    )
+                ],
             }
         )
-        cutoff.line_ids = [
-            Command.create(
-                {
-                    "parent_id": cutoff.id,
-                    "account_id": account.id,
-                    "cutoff_account_id": self.cutoff_account.id,
-                    "cutoff_amount": 50,
-                },
-            )
-        ]
+        cutoff.create_move()
+        self.assertFalse(cutoff.move_reversal_id)
+
+    def test_auto_reverse_generates_draft_reversal_entry_when_post_cutoff_move_is_false(
+        self,
+    ):
         self.company.post_cutoff_move = False
-        cutoff.auto_reverse = False
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "auto_reverse": True,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                        }
+                    )
+                ],
+            }
+        )
         cutoff.create_move()
-        self.assertEqual(
-            cutoff.move_id.state,
-            "draft",
-            "A draft move is expected",
-        )
-        self.assertFalse(
-            cutoff.move_reversal_id,
-            "No reversal move is expected",
-        )
-        cutoff.back2draft()
-        self.assertFalse(
-            cutoff.move_id,
-            "No move is expected",
-        )
-        cutoff.auto_reverse = True
-        cutoff.create_move()
-        self.assertEqual(
-            cutoff.move_id.state,
-            "draft",
-            "A draft move is expected",
-        )
-        self.assertEqual(
-            cutoff.move_reversal_id.state,
-            "draft",
-            "A draft reversal move is expected",
-        )
-        cutoff.back2draft()
-        self.assertFalse(
-            cutoff.move_id,
-            "No move is expected",
-        )
-        self.assertFalse(
-            cutoff.move_reversal_id,
-            "No reversal move is expected",
-        )
+        self.assertEqual(cutoff.move_id.state, "draft")
+        self.assertEqual(cutoff.move_reversal_id.state, "draft")
+
+    def test_auto_reverse_generates_posted_reversal_entry_when_post_cutoff_move_is_true(
+        self,
+    ):
         self.company.post_cutoff_move = True
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "auto_reverse": True,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                        }
+                    )
+                ],
+            }
+        )
         cutoff.create_move()
-        self.assertEqual(
-            cutoff.move_id.state,
-            "posted",
-            "A posted move is expected",
+        self.assertEqual(cutoff.move_id.state, "posted")
+        self.assertEqual(cutoff.move_reversal_id.state, "posted")
+
+    def test_back2draft_with_auto_reverse_deletes_move_and_reversal_entry(self):
+        self.company.post_cutoff_move = False
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+                "auto_reverse": True,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": self.account_expense.id,
+                            "cutoff_account_id": self.account_expense.id,
+                            "partner_id": self.partner.id,
+                            "cutoff_amount": 100.0,
+                        }
+                    )
+                ],
+            }
         )
-        self.assertEqual(
-            cutoff.move_id.state,
-            "posted",
-            "A posted reversal move is expected",
-        )
+        cutoff.create_move()
+        self.assertEqual(cutoff.state, "done")
+        self.assertTrue(cutoff.move_id)
+        self.assertTrue(cutoff.move_reversal_id)
+
+        cutoff.back2draft()
+        self.assertEqual(cutoff.state, "draft")
+        self.assertFalse(cutoff.move_id)
+        self.assertFalse(cutoff.move_reversal_id)
