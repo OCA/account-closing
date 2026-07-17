@@ -1,0 +1,261 @@
+# Copyright 2016-2022 Akretion France
+# @author: Alexis de Lattre <alexis.delattre@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models
+from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
+from odoo.tools import str2bool
+
+
+class AccountCutoff(models.Model):
+    _inherit = "account.cutoff"
+
+    source_journal_ids = fields.Many2many(
+        "account.journal",
+        column1="cutoff_id",
+        column2="journal_id",
+        string="Source Journals",
+        compute="_compute_source_journal_ids",
+        store=True,
+        readonly=False,
+        precompute=True,
+        check_company=True,
+        domain="[('company_id', '=', company_id)]",
+    )
+    state = fields.Selection(selection_add=[("forecast", "Forecast")])
+    start_date = fields.Date(help="This field is only for the forecast mode")
+    end_date = fields.Date(help="This field is only for the forecast mode")
+
+    @api.depends("company_id", "cutoff_type")
+    def _compute_source_journal_ids(self):
+        mapping = {
+            "accrued_revenue": "sale",
+            "accrued_expense": "purchase",
+            "prepaid_revenue": "sale",
+            "prepaid_expense": "purchase",
+        }
+        journals_data = self.env["account.journal"]._read_group(
+            [
+                ("type", "in", ["sale", "purchase"]),
+                ("company_id", "in", self.company_id.ids),
+            ],
+            ["company_id", "type"],
+            ["id:recordset"],
+        )
+        mapped_journals = {
+            (company.id, journal_type): journals
+            for company, journal_type, journals in journals_data
+        }
+        for rec in self:
+            journal_type = mapping.get(rec.cutoff_type)
+            rec.source_journal_ids = mapped_journals.get(
+                (rec.company_id.id, journal_type), self.env["account.journal"]
+            )
+
+    @api.constrains("start_date", "end_date", "state")
+    def _check_start_end_dates(self):
+        for rec in self:
+            if (
+                rec.state == "forecast"
+                and rec.start_date
+                and rec.end_date
+                and rec.start_date > rec.end_date
+            ):
+                raise ValidationError(
+                    self.env._("The start date is after the end date!")
+                )
+
+    def forecast_enable(self):
+        self.ensure_one()
+        if self.state != "draft":
+            raise UserError(
+                self.env._("You can only enable forecast mode from draft state.")
+            )
+        if self.move_id:
+            raise UserError(
+                self.env._(
+                    "This cutoff is linked to a journal entry. "
+                    "You must delete it before entering forecast mode."
+                )
+            )
+        self.line_ids.unlink()
+        # set cutoff_date to False to avoid issue with unicity sql constraint
+        self.write({"state": "forecast", "cutoff_date": False})
+
+    def forecast_disable(self):
+        self.ensure_one()
+        if self.state != "forecast":
+            raise UserError(
+                self.env._("You can only disable forecast mode from forecast state.")
+            )
+        self.line_ids.unlink()
+        self.write({"state": "draft"})
+
+    def _prepare_date_cutoff_line(self, aml, mapping):
+        self.ensure_one()
+        total_days = (aml.end_date - aml.start_date).days + 1
+        if total_days <= 0:
+            raise ValidationError(
+                self.env._("Should never happen. Total days should always be > 0")
+            )
+        # we use account mapping here
+        if aml.account_id.id in mapping:
+            cutoff_account_id = mapping[aml.account_id.id]
+        else:
+            cutoff_account_id = aml.account_id.id
+        vals = {
+            "parent_id": self.id,
+            "origin_move_line_id": aml.id,
+            "partner_id": aml.partner_id.id or False,
+            "name": aml.name,
+            "start_date": aml.start_date,
+            "end_date": aml.end_date,
+            "cutoff_date": self.cutoff_date,
+            "account_id": aml.account_id.id,
+            "cutoff_account_id": cutoff_account_id,
+            "analytic_distribution": aml.analytic_distribution,
+            "total_days": total_days,
+            "amount": -aml.balance,
+            "currency_id": self.company_currency_id.id,
+            "tax_line_ids": [],
+        }
+        if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
+            self._prepare_date_prepaid_cutoff_line(aml, vals)
+        elif self.cutoff_type in ["accrued_expense", "accrued_revenue"]:
+            self._prepare_date_accrual_cutoff_line(aml, vals)
+        return vals
+
+    def _prepare_date_accrual_cutoff_line(self, aml, vals):
+        self.ensure_one()
+        start_date_dt = aml.start_date
+        end_date_dt = aml.end_date
+        # Here, we compute the amount of the cutoff
+        # That's the important part !
+        cutoff_date_dt = self.cutoff_date
+        if end_date_dt <= cutoff_date_dt:
+            cutoff_days = vals["total_days"]
+        else:
+            cutoff_days = (cutoff_date_dt - start_date_dt).days + 1
+        cutoff_amount = -aml.balance * cutoff_days / vals["total_days"]
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
+
+        vals.update(
+            {
+                "cutoff_days": cutoff_days,
+                "cutoff_amount": cutoff_amount,
+            }
+        )
+
+        if aml.tax_ids and self.company_id.accrual_taxes:
+            tax_compute_all_res = aml.tax_ids.compute_all(
+                cutoff_amount,
+                product=aml.product_id,
+                partner=aml.partner_id,
+                handle_price_include=False,
+            )
+            vals["tax_line_ids"] = self._prepare_tax_lines(
+                tax_compute_all_res, self.company_currency_id
+            )
+
+    def _prepare_date_prepaid_cutoff_line(self, aml, vals):
+        self.ensure_one()
+        start_date_dt = aml.start_date
+        end_date_dt = aml.end_date
+        # Here, we compute the amount of the cutoff
+        # That's the important part !
+        if self.state == "forecast":
+            out_days = 0
+            forecast_start_date_dt = self.start_date
+            forecast_end_date_dt = self.end_date
+            if end_date_dt > forecast_end_date_dt:
+                out_days += (end_date_dt - forecast_end_date_dt).days
+            if start_date_dt < forecast_start_date_dt:
+                out_days += (forecast_start_date_dt - start_date_dt).days
+            cutoff_days = vals["total_days"] - out_days
+        else:
+            cutoff_date_dt = self.cutoff_date
+            if start_date_dt > cutoff_date_dt:
+                cutoff_days = vals["total_days"]
+            else:
+                cutoff_days = (end_date_dt - cutoff_date_dt).days
+        cutoff_amount = aml.balance * cutoff_days / vals["total_days"]
+        cutoff_amount = self.company_currency_id.round(cutoff_amount)
+
+        vals.update(
+            {
+                "cutoff_days": cutoff_days,
+                "cutoff_amount": cutoff_amount,
+            }
+        )
+
+    def _get_lines_domain(self):
+        if not self.source_journal_ids:
+            raise UserError(self.env._("You should set at least one Source Journal."))
+
+        domain = Domain(
+            [
+                ("journal_id", "in", self.source_journal_ids.ids),
+                ("display_type", "=", "product"),
+                ("company_id", "=", self.company_id.id),
+                ("balance", "!=", 0),
+            ]
+        )
+        if self.source_move_state == "posted":
+            domain &= Domain("parent_state", "=", "posted")
+        else:
+            domain &= Domain("parent_state", "in", ("draft", "posted"))
+
+        if self.cutoff_type in ["prepaid_expense", "prepaid_revenue"]:
+            if self.state == "forecast":
+                if not self.start_date or not self.end_date:
+                    raise UserError(
+                        self.env._(
+                            "Start date and end date are required for forecast mode."
+                        )
+                    )
+                domain &= Domain(
+                    [
+                        ("start_date", "!=", False),
+                        ("start_date", "<=", self.end_date),
+                        ("end_date", ">=", self.start_date),
+                    ]
+                )
+            else:
+                domain &= Domain(
+                    [
+                        ("start_date", "!=", False),
+                        ("end_date", ">", self.cutoff_date),
+                        ("date", "<=", self.cutoff_date),
+                    ]
+                )
+        elif self.cutoff_type in ["accrued_expense", "accrued_revenue"]:
+            domain &= Domain(
+                [
+                    ("start_date", "!=", False),
+                    ("start_date", "<=", self.cutoff_date),
+                    ("date", ">", self.cutoff_date),
+                ]
+            )
+        return domain
+
+    def get_lines(self):
+        res = super().get_lines()
+        aml_obj = self.env["account.move.line"]
+        line_obj = self.env["account.cutoff.line"]
+        lines_domain = self._get_lines_domain()
+        amls = aml_obj.search(lines_domain)
+        mapping = self._get_mapping_dict(source_accounts=amls.account_id)
+        check_date_on_lines_enabled = str2bool(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("account_cutoff_base.check_cutoff_date_on_lines_enabled")
+        )
+        for aml in amls:
+            if (
+                check_date_on_lines_enabled
+                and self.cutoff_date in aml.cutoff_line_ids.mapped("cutoff_date")
+            ):
+                continue
+            line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
+        return res
