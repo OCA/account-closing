@@ -3,7 +3,8 @@
 
 import logging
 
-from odoo import models
+from odoo import fields, models
+from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
 
@@ -43,10 +44,43 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         if self.qty_delivered_method != "stock_move":
             return super()._get_cutoff_accrual_delivered_min_date()
-        stock_moves = self.move_ids.filtered(lambda m: m.state == "done")
-        if not stock_moves:
-            return
-        return min(stock_moves.mapped("date")).date()
+        tz = self.order_id.company_id.partner_id.tz or "UTC"
+        for move in self.move_ids.sorted("date"):
+            if move.state != "done":
+                continue
+            if move.picking_code != "outgoing" and self.product_uom_qty > 0:
+                continue
+            if move.picking_code != "incoming" and self.product_uom_qty < 0:
+                continue
+            if not move.product_qty:
+                continue
+            date = fields.Datetime.context_timestamp(
+                self.with_context(tz=tz),
+                move.date,
+            ).date()
+            if move.returned_move_ids:
+                returned_qty_same_month = sum(
+                    move.returned_move_ids.filtered(
+                        lambda m, fields=fields: m.state == "done"
+                        and fields.Datetime.context_timestamp(
+                            self.with_context(tz=tz),
+                            m.date,
+                        )
+                        .date()
+                        .month
+                        == date.month
+                    ).mapped("product_qty")
+                )
+                if (
+                    float_compare(
+                        move.product_qty,
+                        returned_qty_same_month,
+                        precision_rounding=move.product_id.uom_id.rounding,
+                    )
+                    <= 0
+                ):
+                    continue
+            return date
 
     def _get_cutoff_accrual_delivered_stock_quantity(self, cutoff):
         self.ensure_one()
