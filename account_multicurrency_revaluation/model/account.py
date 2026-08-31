@@ -1,6 +1,7 @@
 # Copyright 2012-2018 Camptocamp SA
 # Copyright 2020 CorporateHub (https://corporatehub.eu)
 # Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2026 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -145,6 +146,10 @@ class AccountAccount(models.Model):
                 rec.currency_revaluation = False
 
     def _revaluation_query(self, revaluation_date, start_date=None):
+        self.env["account.move"].flush_model()
+        self.env["account.move.line"].flush_model()
+        self.env["account.partial.reconcile"].flush_model()
+
         query = self.env["account.move.line"]._where_calc(
             [
                 ("company_id", "in", self.env.companies.ids),
