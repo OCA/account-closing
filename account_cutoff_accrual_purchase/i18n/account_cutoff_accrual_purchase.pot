@@ -50,6 +50,11 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: account_cutoff_accrual_purchase
+#: model:ir.model,name:account_cutoff_accrual_purchase.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_cutoff_accrual_purchase
 #: model:ir.actions.server,name:account_cutoff_accrual_purchase.ir_cron_cutoff_ir_actions_server
 #: model:ir.cron,cron_name:account_cutoff_accrual_purchase.ir_cron_cutoff
 msgid "Make cutoff at end of period - purchase order lines"
