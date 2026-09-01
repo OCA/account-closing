@@ -26,7 +26,7 @@ class TestAccountCutoffAccrualSaleCommon(TestAccountCutoffAccrualOrderCommon):
         cls.env.cr.execute("DELETE FROM sale_order;")
         # Make service product invoicable on order
         cls.env.ref("product.expense_product").invoice_policy = "order"
-        # Create SO and confirm
+        # Create SO
         cls.price = 100
         cls.qty = 5
         cls.so = cls.env["sale.order"].create(

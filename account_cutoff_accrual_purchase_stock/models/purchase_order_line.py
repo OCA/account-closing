@@ -28,8 +28,9 @@ class PurchaseOrderLine(models.Model):
                   AND date >= %s
                   AND purchase_line_id IS NOT NULL
             )
+            AND company_id = %s
         """,
-            (cutoff_nextday,),
+            (cutoff_nextday, cutoff.company_id.id),
         )
         purchase_ids = [x[0] for x in self.env.cr.fetchall()]
         lines = self.env["purchase.order.line"].search(
