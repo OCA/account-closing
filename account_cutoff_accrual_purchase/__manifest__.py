@@ -3,7 +3,7 @@
 
 {
     "name": "Account Cut-off Accrual Purchase",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Accounting & Finance",
     "license": "AGPL-3",
     "summary": "Accrued Expense on Purchase Order",
