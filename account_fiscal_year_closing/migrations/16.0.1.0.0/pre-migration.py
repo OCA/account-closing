@@ -49,7 +49,7 @@ def update_account_type(env, table):
             UPDATE {table} aa
             SET account_type = atm.account_type
             FROM account_type_map atm
-            WHERE atm.user_type_id = aa.user_type_id
+            WHERE atm.user_type_id = aa.account_type_id
         """,
     )
 
