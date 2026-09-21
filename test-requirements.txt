@@ -1,0 +1,6 @@
+odoo-addon-account-cutoff-base @ git+https://github.com/OCA/account-closing@refs/pull/274/head#subdirectory=setup/account_cutoff_base
+odoo-addon-account-cutoff-accrual-order-base @ git+https://github.com/OCA/account-closing@refs/pull/271/head#subdirectory=setup/account_cutoff_accrual_order_base
+odoo-addon-account-cutoff-accrual-order-stock-base @ git+https://github.com/OCA/account-closing@refs/pull/271/head#subdirectory=setup/account_cutoff_accrual_order_stock_base
+odoo-addon-account-cutoff-accrual-sale @ git+https://github.com/OCA/account-closing@refs/pull/271/head#subdirectory=setup/account_cutoff_accrual_sale
+odoo-addon-account-cutoff-accrual-sale-stock @ git+https://github.com/OCA/account-closing@refs/pull/271/head#subdirectory=setup/account_cutoff_accrual_sale_stock
+odoo-addon-account-move-line-product-category @ git+https://github.com/OCA/account-financial-tools@refs/pull/1726/head#subdirectory=setup/account_move_line_product_category
