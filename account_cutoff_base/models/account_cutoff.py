@@ -9,7 +9,7 @@ from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 
 from odoo import Command, _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools import date_utils, float_is_zero
 from odoo.tools.misc import format_date
 
@@ -42,6 +42,26 @@ class AccountCutoff(models.Model):
         required=True,
         default="posted",
         tracking=True,
+    )
+    accrual_scope = fields.Selection(
+        [
+            ("all", "All Lines"),
+            ("full", "Lines Entirely Before Cut-off Date"),
+            ("partial", "Lines Spanning Cut-off Date"),
+        ],
+        string="Lines to Include",
+        required=True,
+        compute="_compute_accrual_scope",
+        store=True,
+        readonly=False,
+        precompute=True,
+        tracking=True,
+        help="Only for accruals. Restrict the cut-off lines to the ones whose "
+        "period ends on or before the cut-off date (usually recorded as invoices "
+        "to receive/issue) or to the ones whose period spans the cut-off date "
+        "(usually recorded as accrued expense/revenue). Several cut-offs of the "
+        "same type can share the same cut-off date as long as they don't "
+        "include the same lines.",
     )
     move_id = fields.Many2one(
         "account.move",
@@ -136,14 +156,6 @@ class AccountCutoff(models.Model):
         "the state is set to 'Done' and the fields become read-only.",
     )
 
-    _sql_constraints = [
-        (
-            "date_type_company_uniq",
-            "unique(cutoff_date, company_id, cutoff_type)",
-            "A cutoff of the same type already exists with this cut-off date !",
-        )
-    ]
-
     @property
     def cutoff_type_label_map(self):
         return {
@@ -156,6 +168,44 @@ class AccountCutoff(models.Model):
     def _selection_cutoff_type(self):
         # generate cutoff types from mapping
         return list(self.cutoff_type_label_map.items())
+
+    @api.constrains("cutoff_date", "cutoff_type", "company_id", "accrual_scope")
+    def _check_cutoff_overlap(self):
+        for rec in self.filtered("cutoff_date"):
+            others = self.search(
+                [
+                    ("id", "!=", rec.id),
+                    ("company_id", "=", rec.company_id.id),
+                    ("cutoff_type", "=", rec.cutoff_type),
+                    ("cutoff_date", "=", rec.cutoff_date),
+                ]
+            )
+            for other in others:
+                if rec._is_cutoff_overlapping(other):
+                    raise ValidationError(
+                        _(
+                            "The cut-offs %(cutoff)s and %(other)s have the same "
+                            "type and cut-off date and would include the same "
+                            "lines.",
+                            cutoff=rec.display_name,
+                            other=other.display_name,
+                        )
+                    )
+
+    def _is_cutoff_overlapping(self, other):
+        """Return True if this cut-off and ``other``, which have the same
+        company, type and cut-off date, would include the same lines.
+
+        Each module that generates cut-off lines must extend this method
+        to tell when its lines would be included in both cut-offs.
+        """
+        self.ensure_one()
+        return False
+
+    def _accrual_scopes_overlap(self, other):
+        self.ensure_one()
+        scopes = {self.accrual_scope, other.accrual_scope}
+        return "all" in scopes or len(scopes) == 1
 
     @api.depends("company_id")
     def _compute_cutoff_date(self):
@@ -171,6 +221,14 @@ class AccountCutoff(models.Model):
             if date_from:
                 cutoff_date = date_from - relativedelta(days=1)
             rec.cutoff_date = cutoff_date
+
+    @api.depends("cutoff_type")
+    def _compute_accrual_scope(self):
+        for rec in self:
+            if rec.cutoff_type in ("accrued_expense", "accrued_revenue"):
+                rec.accrual_scope = rec.accrual_scope or "all"
+            else:
+                rec.accrual_scope = "all"
 
     @api.depends("company_id", "cutoff_type")
     def _compute_cutoff_account_id(self):
@@ -198,10 +256,22 @@ class AccountCutoff(models.Model):
         for rec in self:
             rec.move_partner = rec.company_id.default_cutoff_move_partner
 
-    @api.depends("cutoff_type")
+    def _get_accrual_scope_label(self):
+        self.ensure_one()
+        if self.accrual_scope in (False, "all"):
+            return ""
+        scope2label = dict(
+            self._fields["accrual_scope"]._description_selection(self.env)
+        )
+        return scope2label[self.accrual_scope]
+
+    @api.depends("cutoff_type", "accrual_scope")
     def _compute_move_ref(self):
         for rec in self:
             ref = self.cutoff_type_label_map.get(rec.cutoff_type, "")
+            scope_label = rec._get_accrual_scope_label()
+            if scope_label:
+                ref = f"{ref} - {scope_label}"
             rec.move_ref = ref
 
     @api.depends("line_ids", "line_ids.cutoff_amount")
@@ -215,13 +285,16 @@ class AccountCutoff(models.Model):
         for cutoff in self:
             cutoff.total_cutoff_amount = mapped_data.get(cutoff.id, 0)
 
-    @api.depends("cutoff_type", "cutoff_date")
+    @api.depends("cutoff_type", "cutoff_date", "accrual_scope")
     def _compute_display_name(self):
         type2label = self.cutoff_type_label_map
         for rec in self:
             name = type2label.get(rec.cutoff_type, "")
             if rec.cutoff_date:
                 name = f"({name}, {format_date(self.env, rec.cutoff_date)})"
+            scope_label = rec._get_accrual_scope_label()
+            if scope_label:
+                name = f"{name} - {scope_label}"
             rec.display_name = name or f"#{rec.id}"
 
     def back2draft(self):

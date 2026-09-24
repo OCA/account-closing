@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================
 Account Cut-off Start End Dates
 ===============================
@@ -17,7 +13,7 @@ Account Cut-off Start End Dates
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -86,6 +82,28 @@ Date*. Enter the start date and the end date of your next fiscal year
 and click on the button *Re-Generate lines*: you will see all the
 revenue that you already have in your source journals for that period.
 
+To compute the expense accruals, go to the menu *Accounting > Cut-offs >
+Accrued Expense*, create a cut-off and click on the button *Re-Generate
+lines*: Odoo will get all the lines of the source journals that are
+dated after the cut-off date and have a start date before or on the
+cut-off date.
+
+The field *Lines to Include* allows to split these lines between two
+cut-offs on the same date, for example to record them on different
+cut-off accounts:
+
+-  *Lines Entirely Before Cut-off Date*: the lines whose end date is
+   before or on the cut-off date, so the whole expense belongs to the
+   period that is closed (in some countries, it is recorded as invoices
+   to receive),
+-  *Lines Spanning Cut-off Date*: the lines whose end date is after the
+   cut-off date, so only a part of the expense is accrued.
+
+Several cut-offs of the same type can have the same cut-off date only if
+they don't include the same lines: they must have different source
+journals, or one must include only the lines entirely before the cut-off
+date and the other only the lines spanning the cut-off date.
+
 Bug Tracker
 ===========
 
@@ -107,16 +125,16 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
-- Stéphane Bidoul <stephane.bidoul@acsone.eu>
+-  Stéphane Bidoul <stephane.bidoul@acsone.eu>
 
-- Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+-  Jim Hoefnagels <jim.hoefnagels@dynapps.be>
 
-- `Trobz <https://trobz.com>`__:
+-  `Trobz <https://trobz.com>`__:
 
-  - Dzung Tran <dungtd@trobz.com>
-  - Thao Le thaolt@trobz.com
+   -  Dzung Tran <dungtd@trobz.com>
+   -  Thao Le thaolt@trobz.com
 
 Other credits
 -------------
