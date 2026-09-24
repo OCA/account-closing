@@ -16,3 +16,25 @@ invoice for my next fiscal year ?*, you will be interested by the
 Date*. Enter the start date and the end date of your next fiscal year
 and click on the button *Re-Generate lines*: you will see all the
 revenue that you already have in your source journals for that period.
+
+To compute the expense accruals, go to the menu *Accounting \>
+Cut-offs \> Accrued Expense*, create a cut-off and click on the button
+*Re-Generate lines*: Odoo will get all the lines of the source journals
+that are dated after the cut-off date and have a start date before or on
+the cut-off date.
+
+The field *Lines to Include* allows to split these lines between two
+cut-offs on the same date, for example to record them on different
+cut-off accounts:
+
+- *Lines Entirely Before Cut-off Date*: the lines whose end date is
+  before or on the cut-off date, so the whole expense belongs to the
+  period that is closed (in some countries, it is recorded as invoices
+  to receive),
+- *Lines Spanning Cut-off Date*: the lines whose end date is after the
+  cut-off date, so only a part of the expense is accrued.
+
+Several cut-offs of the same type can have the same cut-off date only if
+they don't include the same lines: they must have different source
+journals, or one must include only the lines entirely before the cut-off
+date and the other only the lines spanning the cut-off date.

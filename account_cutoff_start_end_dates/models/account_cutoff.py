@@ -50,6 +50,22 @@ class AccountCutoff(models.Model):
                 source_journal_ids = src_journals.ids
             rec.source_journal_ids = [Command.set(source_journal_ids)]
 
+    @api.constrains(
+        "cutoff_date",
+        "cutoff_type",
+        "company_id",
+        "accrual_scope",
+        "source_journal_ids",
+    )
+    def _check_cutoff_overlap(self):
+        return super()._check_cutoff_overlap()
+
+    def _is_cutoff_overlapping(self, other):
+        return super()._is_cutoff_overlapping(other) or (
+            bool(self.source_journal_ids & other.source_journal_ids)
+            and self._accrual_scopes_overlap(other)
+        )
+
     @api.constrains("start_date", "end_date", "state")
     def _check_start_end_dates(self):
         for rec in self:
@@ -72,7 +88,7 @@ class AccountCutoff(models.Model):
                 )
             )
         self.line_ids.unlink()
-        # set cutoff_date to False to avoid issue with unicity sql constraint
+        # set cutoff_date to False to exclude the cutoff from the overlap check
         self.write({"state": "forecast", "cutoff_date": False})
 
     def forecast_disable(self):
@@ -219,6 +235,10 @@ class AccountCutoff(models.Model):
                 ("start_date", "<=", self.cutoff_date),
                 ("date", ">", self.cutoff_date),
             ]
+            if self.accrual_scope == "full":
+                domain.append(("end_date", "<=", self.cutoff_date))
+            elif self.accrual_scope == "partial":
+                domain.append(("end_date", ">", self.cutoff_date))
         amls = aml_obj.search(domain)
         for aml in amls:
             line_obj.create(self._prepare_date_cutoff_line(aml, mapping))
