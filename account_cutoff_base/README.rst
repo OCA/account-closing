@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Account Cut-off Base
 ====================
@@ -17,7 +13,7 @@ Account Cut-off Base
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -36,12 +32,12 @@ This module contains the technical basis for other cut-off modules ; it
 doesn't provide useful features by itself. You need to install other
 cut-off modules to get the useful features:
 
-- the module *account_cutoff_start_end_dates* will manage cut-offs based
-  on start date and end date of invoice/move lines,
-- the module *account_cutoff_picking* will manage cut-offs based on the
-  pickings.
-- the module *account_cutoff_accrual_subscription* will manage cut-offs
-  based on subscriptions.
+-  the module *account_cutoff_start_end_dates* will manage cut-offs
+   based on start date and end date of invoice/move lines,
+-  the module *account_cutoff_picking* will manage cut-offs based on the
+   pickings.
+-  the module *account_cutoff_accrual_subscription* will manage cut-offs
+   based on subscriptions.
 
 **Table of contents**
 
@@ -57,14 +53,19 @@ parameters that are in the *Cut-off* section.
 Then, if you plan to use accruals, go to *Invoicing > Configuration >
 Accounting > Taxes* and:
 
-- for each sale tax, configure the *Accrued Revenue Tax Account*,
-- for each purchase tax, configure the *Accrued Expense Tax Account*.
+-  for each sale tax, configure the *Accrued Revenue Tax Account*,
+-  for each purchase tax, configure the *Accrued Expense Tax Account*.
 
 Usage
 =====
 
 This module is used as a base for other cut-off modules. Please refer to
 the README of the other cut-off modules.
+
+Several cut-offs of the same type can have the same cut-off date only if
+they don't include the same lines. Each module that generates cut-off
+lines must extend the method ``_is_cutoff_overlapping`` to tell when its
+lines would be included in both cut-offs.
 
 Bug Tracker
 ===========
@@ -87,24 +88,24 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
-- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+-  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 
-- Stéphane Bidoul (ACSONE)
+-  Stéphane Bidoul (ACSONE)
 
-- Adrien Peiffer (ACSONE)
+-  Adrien Peiffer (ACSONE)
 
-- Pedro M. Baeza <pedro.baeza@gmail.com>
+-  Pedro M. Baeza <pedro.baeza@gmail.com>
 
-- Jeroen Evens <jeroen.evenss@dynapps.be>
+-  Jeroen Evens <jeroen.evenss@dynapps.be>
 
-- Jim Hoefnagels <jim.hoefnagels@dynapps.be>
+-  Jim Hoefnagels <jim.hoefnagels@dynapps.be>
 
-- `Trobz <https://trobz.com>`__:
+-  `Trobz <https://trobz.com>`__:
 
-  - Dzung Tran <dungtd@trobz.com>
-  - Thao Le <thaolt@trobz.com>
+   -  Dzung Tran <dungtd@trobz.com>
+   -  Thao Le <thaolt@trobz.com>
 
 Other credits
 -------------

@@ -88,6 +88,25 @@ class TestAccountCutoff(AccountTestInvoicingCommon):
         )
         self.assertEqual(cutoff2.cutoff_account_id, self.cutoff_account)
 
+    def test_accrual_scope(self):
+        """The lines to include can be restricted only on accruals"""
+        cutoff = self.env["account.cutoff"].create(
+            {
+                "company_id": self.company.id,
+                "cutoff_type": "accrued_expense",
+            }
+        )
+        self.assertEqual(cutoff.accrual_scope, "all")
+        self.assertEqual(cutoff.move_ref, "Accrued Expense")
+        cutoff.accrual_scope = "partial"
+        self.assertEqual(
+            cutoff.move_ref, "Accrued Expense - Lines Spanning Cut-off Date"
+        )
+        self.assertTrue(cutoff.display_name.endswith(" - Lines Spanning Cut-off Date"))
+        cutoff.cutoff_type = "prepaid_expense"
+        self.assertEqual(cutoff.accrual_scope, "all")
+        self.assertEqual(cutoff.move_ref, "Prepaid Expense")
+
     def test_create_move_no_auto_reverse(self):
         """create_move without auto_reverse creates no reversal entry"""
         self.company.post_cutoff_move = False

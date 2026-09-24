@@ -75,6 +75,12 @@
                                 readonly="state == 'done'"
                             />
                             <field
+                                name="accrual_scope"
+                                widget="radio"
+                                invisible="cutoff_type not in ('accrued_expense', 'accrued_revenue')"
+                                readonly="state == 'done'"
+                            />
+                            <field
                                 name="company_id"
                                 options="{'no_create': True}"
                                 readonly="state == 'done'"
@@ -125,6 +131,12 @@
                     column_invisible="context.get('default_cutoff_type')"
                 />
                 <field name="cutoff_date" decoration-bf="1" />
+                <field
+                    name="accrual_scope"
+                    column_invisible="'prepaid' in context.get('default_cutoff_type', '')"
+                    invisible="cutoff_type not in ('accrued_expense', 'accrued_revenue')"
+                    optional="show"
+                />
                 <field name="move_ref" optional="hide" />
                 <field name="total_cutoff_amount" />
                 <field name="company_currency_id" column_invisible="1" />
