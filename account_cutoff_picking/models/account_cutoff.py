@@ -45,6 +45,14 @@ class AccountCutoff(models.Model):
                 cutoff.company_id.default_cutoff_picking_interval_days
             )
 
+    def _is_cutoff_overlapping(self, other):
+        # The lines generated from pickings don't depend on the source journals
+        # and are always entirely before the cut-off date
+        return super()._is_cutoff_overlapping(other) or "partial" not in (
+            self.accrual_scope,
+            other.accrual_scope,
+        )
+
     def picking_prepare_cutoff_line(self, vdict, account_mapping):
         dpo = self.env["decimal.precision"]
         qty_prec = dpo.precision_get("Product Unit of Measure")
@@ -452,7 +460,12 @@ class AccountCutoff(models.Model):
         # => gen cutoff line if precut_invoiced_qty - precut_delivered_qty > 0
 
         # ACCURAL
-        if cutoff_type in ("accrued_revenue", "accrued_expense"):
+        # goods delivered before the cut-off date are entirely before it,
+        # so they are never included in a cut-off limited to spanning lines
+        if (
+            cutoff_type in ("accrued_revenue", "accrued_expense")
+            and self.accrual_scope != "partial"
+        ):
             pick_type_map = {
                 "accrued_revenue": "outgoing",
                 "accrued_expense": "incoming",

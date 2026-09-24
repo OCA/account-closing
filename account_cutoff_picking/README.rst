@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======================
 Account Cut-off Picking
 =======================
@@ -17,7 +13,7 @@ Account Cut-off Picking
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -52,9 +48,9 @@ expense accrual. When you click on the button *Re-Generate Lines* of an
    lines to analyse for potential expense accrual.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their
-     transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
 4. If, for a particular purchase order line, the quantity of products
    received before the cutoff-date (or on the same day) minus the
@@ -74,9 +70,9 @@ button *Re-Generate Lines* of a *Prepaid Expense*:
    lines to analyse for potential prepaid expense.
 3. For each of these purchase order lines, Odoo will:
 
-   - scan the related stock moves in *done* state and check their
-     transfer date,
-   - scan the related invoices lines and check their invoice date.
+   -  scan the related stock moves in *done* state and check their
+      transfer date,
+   -  scan the related invoices lines and check their invoice date.
 
 4. If, for a particular purchase order line, the quantity of products
    invoiced before the cutoff-date (or on the same day) minus the
@@ -86,6 +82,10 @@ button *Re-Generate Lines* of a *Prepaid Expense*:
 This module should work well with multiple units of measure (including
 products purchased and invoiced in different units of measure) and in
 multi-currency.
+
+The accrual lines generated from pickings are always entirely before the
+cut-off date: they are not included in the accruals whose field *Lines
+to Include* is set to *Lines Spanning Cut-off Date*.
 
 **Table of contents**
 
@@ -119,7 +119,7 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
 Other credits
 -------------

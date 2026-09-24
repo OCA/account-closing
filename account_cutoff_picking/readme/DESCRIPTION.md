@@ -48,3 +48,7 @@ button *Re-Generate Lines* of a *Prepaid Expense*:
 This module should work well with multiple units of measure (including
 products purchased and invoiced in different units of measure) and in
 multi-currency.
+
+The accrual lines generated from pickings are always entirely before the
+cut-off date: they are not included in the accruals whose field *Lines
+to Include* is set to *Lines Spanning Cut-off Date*.
