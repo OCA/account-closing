@@ -14,13 +14,21 @@ from odoo.tools.misc import format_amount, format_date
 class AccountCutoff(models.Model):
     _inherit = "account.cutoff"
 
+    def _is_cutoff_overlapping(self, other):
+        # The provisions of the subscriptions don't depend on the source journals
+        # and are computed on periods that end by the cut-off date
+        return super()._is_cutoff_overlapping(other) or (
+            self.cutoff_type in ("accrued_expense", "accrued_revenue")
+            and "partial" not in (self.accrual_scope, other.accrual_scope)
+        )
+
     def get_lines(self):
         res = super().get_lines()
         type2subtype = {
             "accrued_expense": "expense",
             "accrued_revenue": "revenue",
         }
-        if self.cutoff_type not in type2subtype:
+        if self.cutoff_type not in type2subtype or self.accrual_scope == "partial":
             return res
 
         line_obj = self.env["account.cutoff.line"]

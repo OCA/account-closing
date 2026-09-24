@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Account Accrual Subscriptions
 =============================
@@ -17,7 +13,7 @@ Account Accrual Subscriptions
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -35,6 +31,10 @@ Account Accrual Subscriptions
 This module allows you to easily compute accrued expenses (and accrued
 revenues) by comparing expected expense amounts (configured as
 *subscriptions*) with real expense amounts.
+
+The provisions of the subscriptions are computed on periods that end by
+the cut-off date: they are not included in the accruals whose field
+*Lines to Include* is set to *Lines Spanning Cut-off Date*.
 
 **Table of contents**
 
@@ -70,7 +70,7 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
 Maintainers
 -----------
