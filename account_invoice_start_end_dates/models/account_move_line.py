@@ -10,9 +10,49 @@ from odoo.tools.misc import format_date
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    start_date = fields.Date("Line Start Date", index=True)
-    end_date = fields.Date("Line End Date", index=True)
+    start_date = fields.Date(
+        "Line Start Date",
+        index=True,
+        compute="_compute_start_end_dates",
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
+    end_date = fields.Date(
+        "Line End Date",
+        index=True,
+        compute="_compute_start_end_dates",
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
+
+    @api.depends("move_id.invoice_date", "display_type")
+    def _compute_start_end_dates(self):
+        # The invoice date is only a default: we never overwrite dates that are
+        # already set on the line, so that the user can enter another period.
+        # The company options are deliberately not dependencies, otherwise
+        # enabling them would fill the lines of all the existing invoices.
+        for line in self:
+            move = line.move_id
+            company = move.company_id
+            use_invoice_date = (
+                move.is_purchase_document(include_receipts=True)
+                and company.start_end_dates_from_bill_date
+            ) or (
+                move.is_sale_document(include_receipts=True)
+                and company.start_end_dates_from_invoice_date
+            )
+            if (
+                use_invoice_date
+                and line.display_type == "product"
+                and not line.start_date
+                and not line.end_date
+                and move.invoice_date
+            ):
+                line.start_date = move.invoice_date
+                line.end_date = move.invoice_date
 
     @api.constrains(
         "start_date", "end_date", "display_type", "product_id", "parent_state"

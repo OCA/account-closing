@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 Lorenzo Battistini
+  License LGPL-3 or later (http://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">start_end_dates.res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block id="invoicing_settings" position="inside">
+                <setting
+                    id="start_end_dates_from_invoice_date"
+                    company_dependent="1"
+                    help="Use the invoice date as Start Date and End Date of the invoice lines that don't have them"
+                >
+                    <field name="start_end_dates_from_invoice_date" />
+                </setting>
+            </block>
+            <block id="account_vendor_bills" position="inside">
+                <setting
+                    id="start_end_dates_from_bill_date"
+                    company_dependent="1"
+                    help="Use the bill date as Start Date and End Date of the bill lines that don't have them"
+                >
+                    <field name="start_end_dates_from_bill_date" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

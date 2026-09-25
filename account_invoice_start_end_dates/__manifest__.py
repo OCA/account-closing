@@ -17,6 +17,7 @@
         "views/account_move.xml",
         "views/account_move_line.xml",
         "views/product_template.xml",
+        "views/res_config_settings.xml",
         "reports/account_invoice_report_view.xml",
     ],
     "demo": ["demo/product_demo.xml"],
