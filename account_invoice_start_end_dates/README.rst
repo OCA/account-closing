@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================
 Account Invoice Start End Dates
 ===============================
@@ -17,7 +13,7 @@ Account Invoice Start End Dates
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -50,20 +46,39 @@ one field at a time.
 If you use this module, you may also be interested in several other
 modules:
 
-- the module *sale_start_end_dates* from the `sale-workflow OCA
-  project <https://github.com/OCA/sale-workflow>`__: this module adds
-  the fields *Start Date* and *End Date* on sale order lines and copies
-  the information from sale order lines to invoice/move lines.
-- the modules *account_cutoff_prepaid* and
-  *account_cutoff_accrual_dates* in the `account-closing OCA
-  projct <https://github.com/OCA/account-closing>`__: these modules
-  allow easy computation of prepaid expenses, prepaid revenues, accrued
-  expense and accrued revenue using start/end dates.
+-  the module *sale_start_end_dates* from the `sale-workflow OCA
+   project <https://github.com/OCA/sale-workflow>`__: this module adds
+   the fields *Start Date* and *End Date* on sale order lines and copies
+   the information from sale order lines to invoice/move lines.
+-  the modules *account_cutoff_prepaid* and
+   *account_cutoff_accrual_dates* in the `account-closing OCA
+   projct <https://github.com/OCA/account-closing>`__: these modules
+   allow easy computation of prepaid expenses, prepaid revenues, accrued
+   expense and accrued revenue using start/end dates.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+To use the invoice date as default Start Date and End Date of the
+invoice lines, go to *Invoicing > Configuration > Settings* and enable:
+
+-  *Default Start/End Dates from Bill Date*, in the *Vendor Bills*
+   section, for vendor bills and refunds;
+-  *Default Start/End Dates from Invoice Date*, in the *Customer
+   Invoices* section, for customer invoices and refunds.
+
+When the invoice date is set, the invoice lines that don't have a Start
+Date and an End Date get the invoice date as Start Date and End Date. On
+customer invoices, the invoice date is often left empty until the
+invoice is posted: the lines get it at that moment. The dates already
+set on a line are never overwritten, so you can still enter another
+period on the lines that need it. The lines whose product has the option
+*Must Have Start/End Dates* get the invoice date too.
 
 Bug Tracker
 ===========
@@ -86,11 +101,11 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
-- Jeroen Evens <jeroen.evens@dynapps.be>
-- `Trobz <https://trobz.com>`__:
+-  Alexis de Lattre <alexis.delattre@akretion.com>
+-  Jeroen Evens <jeroen.evens@dynapps.be>
+-  `Trobz <https://trobz.com>`__:
 
-  - Thao Le thaolt@trobz.com
+   -  Thao Le thaolt@trobz.com
 
 Other credits
 -------------
