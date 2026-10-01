@@ -123,6 +123,10 @@
                                 name="check_draft_moves"
                                 readonly="state not in ['draft']"
                             />
+                            <field
+                                name="split_by_partner"
+                                readonly="state not in ['draft']"
+                            />
                         </group>
                     </group>
                     <group invisible="not calculation_date">

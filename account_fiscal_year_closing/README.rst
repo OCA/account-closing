@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Fiscal year closing
 ===================
@@ -17,7 +13,7 @@ Fiscal year closing
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Faccount--closing-lightgray.png?logo=github
@@ -72,10 +68,10 @@ If you want to add a closing template or check existing ones:
 11. The way these opposite journal items will be created is determined
     by the closing type in the section "Account closing types":
 
-    - Balance: There will be only one journal item with the opposite
-      balance.
-    - Un-reconciled: The opposite balance will be grouped by the partner
-      field in the period journal entries.
+    -  Balance: There will be only one journal item with the opposite
+       balance.
+    -  Un-reconciled: The opposite balance will be grouped by the
+       partner field in the period journal entries.
 
 12. There's a default closing type to use, and you can specify others by
     account type.
@@ -110,6 +106,12 @@ For closing a fiscal year:
    allow to create unbalanced entries, a new screen will be shown for
    checking the problem on the created entry.
 
+By default the **Split closing by partner** option is enabled, so
+receivable and payable accounts are closed with one move line per
+partner and those lines are reconciled by partner after posting. Disable
+it on the closing form to get a single aggregated line per account
+instead.
+
 Bug Tracker
 ===========
 
@@ -126,15 +128,16 @@ Credits
 Contributors
 ------------
 
-- Antonio Espinosa <antonio.espinosa@tecnativa.com>
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Jordi Ballester Alomar <https://github.com/JordiBForgeFlow>
-- Sergio Corato <https://github.com/sergiocorato>
-- `CorporateHub <https://corporatehub.eu/>`__
+-  Antonio Espinosa <antonio.espinosa@tecnativa.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Jordi Ballester Alomar <https://github.com/JordiBForgeFlow>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  `CorporateHub <https://corporatehub.eu/>`__
 
-  - Alexey Pelykh <alexey.pelykh@corphub.eu>
+   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
 
-- Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Nextev srl <odoo@nextev.it>
 
 Maintainers
 -----------

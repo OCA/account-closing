@@ -1,2 +1,3 @@
 - [Escodoo](https://escodoo.com.br/)
   - Kaynnan Lemes \<kaynnan.lemes@escodoo.com.br\>
+- Nextev srl \<<odoo@nextev.it>\>

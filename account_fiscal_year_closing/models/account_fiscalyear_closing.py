@@ -10,6 +10,9 @@ from odoo.tools import float_is_zero
 
 _logger = logging.getLogger(__name__)
 
+# Account types whose closing lines can be detailed per partner.
+_PARTNER_ACCOUNT_TYPES = ("asset_receivable", "liability_payable")
+
 
 class AccountFiscalyearClosing(models.Model):
     _inherit = "account.fiscalyear.closing.abstract"
@@ -96,6 +99,14 @@ class AccountFiscalyearClosing(models.Model):
         inverse_name="fyc_id",
         string="Moves",
         readonly=True,
+    )
+    split_by_partner = fields.Boolean(
+        string="Split closing by partner",
+        default=True,
+        readonly=True,
+        help="Close receivable and payable accounts with one move line per "
+        "partner instead of a single aggregated line, and reconcile the "
+        "resulting lines by partner after posting.",
     )
 
     _sql_constraints = [
@@ -297,8 +308,26 @@ class AccountFiscalyearClosing(models.Model):
         for closing in self:
             for move_config in closing.move_config_ids.sorted("sequence"):
                 move_config.move_id.action_post()
+            if closing.split_by_partner:
+                closing._reconcile_closing_lines()
         self.write({"state": "posted"})
         return True
+
+    def _reconcile_closing_lines(self):
+        """Reconcile the per-partner closing lines (closing vs. opening) so
+        that receivable/payable balances are carried over partner by partner.
+        """
+        self.ensure_one()
+        buckets = {}
+        for line in self.move_ids.line_ids:
+            if not line.partner_id or not line.account_id.reconcile:
+                continue
+            key = (line.account_id.id, line.partner_id.id)
+            buckets.setdefault(key, self.env["account.move.line"])
+            buckets[key] |= line
+        for lines in buckets.values():
+            if len(lines) > 1:
+                lines.reconcile()
 
     def button_open_moves(self):
         # Return an action for showing moves
@@ -419,6 +448,65 @@ class AccountFiscalyearClosingConfig(models.Model):
             "line_ids": [(0, 0, m) for m in move_lines],
         }
 
+    def _mapping_src_accounts_get(self, account_map):
+        """Return the source accounts handled by a mapping line.
+
+        Split out from _mapping_move_lines_get so that other modules (e.g.
+        account_fiscal_year_closing_range) can change how the accounts are
+        selected without re-implementing the move-line generation logic.
+        """
+        return self.env["account.account"].search(
+            [
+                ("company_ids", "in", self.fyc_id.company_id.ids),
+                ("code", "=ilike", account_map.src_accounts),
+            ],
+            order="code ASC",
+        )
+
+    def _account_move_lines_get(self, account_map, account):
+        """Return ``(move_line_vals_list, balance)`` for a single source
+        account.
+
+        Receivable/payable accounts are detailed per partner when the closing
+        is configured to do so (``split_by_partner``), regardless of the
+        closing type; otherwise the original aggregate/unreconciled behaviour
+        is kept.  Keeping this in its own method lets overrides reuse the split
+        logic instead of duplicating it.
+        """
+        closing_type = self.closing_type_get(account)
+        # Detail by partner the receivable/payable accounts when enabled: one
+        # move line per partner instead of a single aggregate one.
+        split = (
+            self.fyc_id.split_by_partner
+            and account.account_type in _PARTNER_ACCOUNT_TYPES
+        )
+        move_lines = []
+        balance = False
+        if closing_type == "balance" and not split:
+            lines = account_map.account_lines_get(account)
+            balance, move_line = account_map.move_line_prepare(account, lines)
+            if move_line:
+                move_lines.append(move_line)
+        elif closing_type in ("balance", "unreconciled") and split:
+            # Get credit and debit grouping by partner
+            balance = 0
+            for partner in account_map.account_partners_get(account):
+                partner_balance, move_line = account_map.move_line_partner_prepare(
+                    account, partner
+                )
+                if move_line:
+                    move_lines.append(move_line)
+                    balance += partner_balance
+        elif closing_type == "unreconciled":
+            # Get credit and debit grouping by partner
+            for partner in account_map.account_partners_get(account):
+                balance, move_line = account_map.move_line_partner_prepare(
+                    account, partner
+                )
+                if move_line:
+                    move_lines.append(move_line)
+        return move_lines, balance
+
     def _mapping_move_lines_get(self):
         move_lines = []
         dest_totals = {}
@@ -426,34 +514,11 @@ class AccountFiscalyearClosingConfig(models.Model):
         for account_map in self.mapping_ids:
             dest = account_map.dest_account_id
             dest_totals.setdefault(dest, 0)
-            src_accounts = self.env["account.account"].search(
-                [
-                    ("company_ids", "in", self.fyc_id.company_id.ids),
-                    ("code", "=ilike", account_map.src_accounts),
-                ],
-                order="code ASC",
-            )
-            for account in src_accounts:
-                closing_type = self.closing_type_get(account)
-                balance = False
-                if closing_type == "balance":
-                    # Get all lines
-                    lines = account_map.account_lines_get(account)
-                    balance, move_line = account_map.move_line_prepare(account, lines)
-                    if move_line:
-                        move_lines.append(move_line)
-                elif closing_type == "unreconciled":
-                    # Get credit and debit grouping by partner
-                    partners = account_map.account_partners_get(account)
-                    for partner in partners:
-                        balance, move_line = account_map.move_line_partner_prepare(
-                            account, partner
-                        )
-                        if move_line:
-                            move_lines.append(move_line)
-                else:
-                    # Account type has unsupported closing method
-                    continue
+            for account in self._mapping_src_accounts_get(account_map):
+                account_lines, balance = self._account_move_lines_get(
+                    account_map, account
+                )
+                move_lines += account_lines
                 if dest and balance:
                     dest_totals[dest] -= balance
         # Add destination move lines, if any
@@ -642,6 +707,21 @@ class AccountFiscalyearClosingMapping(models.Model):
                 "date": date,
                 "partner_id": partner_id,
             }
+            # Carry over the balance in the account currency, mirroring
+            # move_line_prepare (the aggregate path).  Only accounts with a
+            # fixed foreign currency hold a meaningful amount_currency; for
+            # accounts kept in the company currency this is skipped, so a
+            # mono-currency company is unaffected.  amount_currency is summed
+            # per partner by account_partners_get and negated here because the
+            # closing line reverses the account balance.
+            if (
+                account.currency_id
+                and account.currency_id != account.company_currency_id
+            ):
+                move_line.update(
+                    currency_id=account.currency_id.id,
+                    amount_currency=partner.get("amount_currency", 0.0) * -1,
+                )
         else:
             balance = 0
         return balance, move_line
@@ -655,10 +735,14 @@ class AccountFiscalyearClosingMapping(models.Model):
             [
                 ("company_id", "=", company_id),
                 ("account_id", "=", account.id),
+                ("move_id.state", "!=", "cancel"),
                 ("date", ">=", start),
                 ("date", "<=", end),
             ],
-            ["partner_id", "credit", "debit"],
+            # amount_currency is needed so move_line_partner_prepare can keep
+            # the foreign-currency balance on per-partner closing lines for
+            # accounts held in a currency other than the company one.
+            ["partner_id", "credit", "debit", "amount_currency"],
             ["partner_id"],
         )
 
