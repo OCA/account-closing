@@ -70,7 +70,7 @@
                             name="button_open_moves"
                             type="object"
                             string="Show moves"
-                            icon="fa-list"
+                            icon="list"
                             invisible="state not in ['calculated', 'posted']"
                         />
                         <button
@@ -78,7 +78,7 @@
                             name="button_open_move_lines"
                             type="object"
                             string="Show move lines"
-                            icon="fa-list"
+                            icon="list"
                             invisible="state not in ['calculated', 'posted']"
                         />
                     </div>
