@@ -1,0 +1,13 @@
+id,name,model_id,group_id/id,operation,domain
+manage_account_fiscalyear_closing,account_fiscalyear_closing write,account.fiscalyear.closing,account.group_account_manager,crud,
+fiscalyear_closing_multi_company_rule,Fiscal year closing multi-company,account.fiscalyear.closing,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+manage_account_fiscalyear_closing_template,account_fiscalyear_closing_template write,account.fiscalyear.closing.template,account.group_account_manager,crud,
+fiscalyear_closing_template_multi_company_rule,Fiscal year closing template multi-company,account.fiscalyear.closing.template,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+manage_account_fiscalyear_closing_config,account_fiscalyear_closing_config write,account.fiscalyear.closing.config,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_config_template,account_fiscalyear_closing_config_template write,account.fiscalyear.closing.config.template,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_mapping,account_fiscalyear_closing_mapping write,account.fiscalyear.closing.mapping,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_mapping_template,account_fiscalyear_closing_mapping_template write,account.fiscalyear.closing.mapping.template,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_type,account_fiscalyear_closing_type write,account.fiscalyear.closing.type,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_type_template,account_fiscalyear_closing_type_template write,account.fiscalyear.closing.type.template,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_unbalanced_move,manage account_fiscalyear_closing_unbalanced_move,account.fiscalyear.closing.unbalanced.move,account.group_account_manager,crud,
+manage_account_fiscalyear_closing_unbalanced_move_line,manage account_fiscalyear_closing_unbalanced_move_line,account.fiscalyear.closing.unbalanced.move.line,account.group_account_manager,crud,
