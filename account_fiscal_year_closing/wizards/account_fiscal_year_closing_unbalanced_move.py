@@ -9,7 +9,6 @@ class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
 
     journal_id = fields.Many2one(
         comodel_name="account.journal",
-        string="Journal",
         readonly=True,
     )
     ref = fields.Char(
@@ -37,13 +36,11 @@ class AccountFiscalYearClosingUnbalancedMoveLine(models.TransientModel):
     )
     account_id = fields.Many2one(
         comodel_name="account.account",
-        string="Account",
     )
     credit = fields.Float()
     debit = fields.Float()
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
     )
     name = fields.Char()
     date = fields.Date()

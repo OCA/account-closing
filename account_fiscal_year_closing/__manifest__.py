@@ -4,18 +4,22 @@
 {
     "name": "Fiscal year closing",
     "summary": "Generic fiscal year closing wizard",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/account-closing",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
+    "assets": {
+        "web.assets_tests": [
+            "account_fiscal_year_closing/static/tests/tours/*",
+        ],
+    },
     "depends": [
         "account",
     ],
     "data": [
-        "security/account_fiscalyear_closing_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/account_fiscalyear_closing_views.xml",
         "views/account_fiscalyear_closing_template_views.xml",
         "views/account_move_views.xml",

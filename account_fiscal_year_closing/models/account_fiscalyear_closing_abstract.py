@@ -10,7 +10,6 @@ class AccountFiscalyearClosingAbstract(models.AbstractModel):
     name = fields.Char(string="Description", required=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         ondelete="cascade",
     )
     check_draft_moves = fields.Boolean(
@@ -46,7 +45,6 @@ class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
-        string="Journal",
     )
     closing_type_default = fields.Selection(
         selection=[

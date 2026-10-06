@@ -240,7 +240,6 @@ class AccountFiscalyearClosing(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": self.env._("Unbalanced journal entry found"),
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "account.fiscalyear.closing.unbalanced.move",
             "res_id": wizard.id,
@@ -300,7 +299,6 @@ class AccountFiscalyearClosing(models.Model):
         return {
             "name": self.env._("Fiscal closing moves"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "list,form",
             "res_model": "account.move",
             "domain": [("fyc_id", "in", self.ids)],
@@ -310,7 +308,6 @@ class AccountFiscalyearClosing(models.Model):
         return {
             "name": self.env._("Fiscal closing move lines"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "list,form",
             "res_model": "account.move.line",
             "domain": [("move_id.fyc_id", "in", self.ids)],
@@ -368,7 +365,7 @@ class AccountFiscalyearClosingConfig(models.Model):
     date = fields.Date(string="Move date")
     enabled = fields.Boolean(default=True)
     journal_id = fields.Many2one(required=True)
-    move_id = fields.Many2one(comodel_name="account.move", string="Move")
+    move_id = fields.Many2one(comodel_name="account.move")
 
     _code_uniq = models.Constraint(
         "unique(code, fyc_id)",
@@ -470,10 +467,10 @@ class AccountFiscalyearClosingConfig(models.Model):
         if config.move_id:
             move_ids = config.move_id._reverse_moves(
                 [
-                    dict(
-                        date=date,
-                        journal_id=self.journal_id.id,
-                    )
+                    {
+                        "date": date,
+                        "journal_id": self.journal_id.id,
+                    }
                 ]
             )
         return move_ids.ids
