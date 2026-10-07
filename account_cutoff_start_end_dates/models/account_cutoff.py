@@ -171,6 +171,11 @@ class AccountCutoff(models.Model):
             }
         )
 
+    def _get_source_move_line_domain(self):
+        """Hook to restrict the journal items used as source of the cutoff."""
+        self.ensure_one()
+        return []
+
     def get_lines(self):
         res = super().get_lines()
         aml_obj = self.env["account.move.line"]
@@ -183,7 +188,7 @@ class AccountCutoff(models.Model):
             ("display_type", "=", False),
             ("company_id", "=", self.company_id.id),
             ("balance", "!=", 0),
-        ]
+        ] + self._get_source_move_line_domain()
         if self.source_move_state == "posted":
             domain.append(("parent_state", "=", "posted"))
         else:
