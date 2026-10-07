@@ -60,7 +60,9 @@ class AccountCutoff(models.Model):
             self.message_post(
                 body=_("Computing provisions from %d subscriptions.") % len(subs)
             )
-        common_domain = [("journal_id", "in", self.source_journal_ids.ids)]
+        common_domain = [
+            ("journal_id", "in", self.source_journal_ids.ids)
+        ] + self._get_source_move_line_domain()
         if self.source_move_state == "posted":
             common_domain.append(("parent_state", "=", "posted"))
         else:
