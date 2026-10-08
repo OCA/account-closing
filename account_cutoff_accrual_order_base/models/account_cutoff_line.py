@@ -29,7 +29,7 @@ class AccountCutoffLine(models.Model):
         return
 
     def _compute_invoice_lines(self):
-        return
+        self.invoice_line_ids = False
 
     @api.depends("invoiced_qty", "received_qty")
     def _compute_quantity(self):

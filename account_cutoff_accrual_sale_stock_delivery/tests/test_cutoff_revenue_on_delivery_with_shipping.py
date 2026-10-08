@@ -3,6 +3,10 @@
 
 from datetime import timedelta
 
+from freezegun import freeze_time
+
+from odoo import fields
+
 from odoo.addons.account_cutoff_accrual_sale_stock.tests.common import (
     TestAccountCutoffAccrualSaleStockCommon,
 )
@@ -19,6 +23,13 @@ class TestAccountCutoffAccrualSaleStockOnDeliveryWithShipping(
             lambda line: line.product_id.detailed_type == "service"
         )
         sol.is_delivery = True
+
+    def test_accrued_revenue_on_so_only_confirmed(self):
+        """Test cutoff based on SO only confirmed."""
+        cutoff = self.revenue_cutoff
+        self.so.action_confirm()
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be found")
 
     def test_accrued_revenue_on_so_not_invoiced(self):
         """Test cutoff based on SO where qty_delivered > qty_invoiced."""
@@ -258,6 +269,54 @@ class TestAccountCutoffAccrualSaleStockOnDeliveryWithShipping(
             self.assertEqual(
                 line.cutoff_amount, 100 * 2, "SO line cutoff amount incorrect"
             )
+
+    def test_accrued_revenue_on_so_all_after_cutoff(self):
+        """Test cutoff update when delivery and invoice after cutoff date.
+
+        Ensure no error is raised.
+        """
+        cutoff = self.revenue_cutoff
+        self.so.action_confirm()
+        cutoff.state = "done"
+        next_month = fields.Datetime.add(fields.Datetime.now(), months=1)
+        with freeze_time(next_month):
+            self._do_picking(2)
+            # Make invoice
+            invoice = self.so._create_invoices(final=True)
+            # Validate invoice
+            invoice.action_post()
+
+    def test_accrued_revenue_on_so_returned_and_resend_after_cutoff(self):
+        """Test cutoff update when delivery and invoice after cutoff date.
+
+        Case with a delivery and return before cutoff.
+        Ensure no error is raised.
+        """
+        cutoff = self.revenue_cutoff
+        qty_done = 2
+        self._confirm_so_and_do_picking(qty_done)
+        delivery = self.so.picking_ids.filtered(lambda p: p.state == "done")
+        self.assertEqual(len(delivery), 1, "1 done delivery should be found")
+        return_wizard = (
+            self.env["stock.return.picking"]
+            .with_context(active_model="stock.picking", active_id=delivery.id)
+            .new()
+        )
+        return_wizard._onchange_picking_id()  # Force filling the lines
+        delivery_return_id, _ = return_wizard._create_returns()
+        delivery_return = self.env["stock.picking"].browse(delivery_return_id)
+        delivery_return.move_line_ids.write({"qty_done": qty_done})
+        delivery_return._action_done()
+        cutoff.get_lines()
+        self.assertEqual(len(cutoff.line_ids), 0, "No cutoff lines should be found")
+        cutoff.state = "done"
+        next_month = fields.Datetime.add(fields.Datetime.now(), months=1)
+        with freeze_time(next_month):
+            self._do_picking(qty_done)
+            # Make invoice
+            invoice = self.so._create_invoices(final=True)
+            # Validate invoice
+            invoice.action_post()
 
     def test_accrued_revenue_on_so_force_invoiced_after(self):
         """Test cutoff when SO is force invoiced after cutoff"""
