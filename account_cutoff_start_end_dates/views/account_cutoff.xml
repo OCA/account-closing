@@ -57,12 +57,23 @@
                     to leave forecast mode if they entered it by mistake -->
                 <field name="start_date" invisible="state != 'forecast'" />
                 <field name="end_date" invisible="state != 'forecast'" />
+                <field
+                    name="calculation_method"
+                    readonly="state == 'done'"
+                    invisible="state == 'forecast'"
+                />
+                <field name="previous_cutoff_id" invisible="not previous_cutoff_id" />
             </field>
             <field name="cutoff_date" position="attributes">
                 <attribute name="invisible">state not in ['draft', 'done']</attribute>
             </field>
             <field name="state" position="attributes">
                 <attribute name="statusbar_visible">draft,done</attribute>
+            </field>
+            <field name="auto_reverse" position="attributes">
+                <attribute
+                    name="readonly"
+                >state == 'done' or calculation_method == 'difference'</attribute>
             </field>
             <group name="accounting-params" position="attributes">
                 <attribute name="invisible">state not in ['draft', 'done']</attribute>
