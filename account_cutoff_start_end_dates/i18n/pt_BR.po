@@ -9,9 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-19 00:37+0000\n"
-"PO-Revision-Date: 2024-05-29 20:37+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
+"PO-Revision-Date: 2026-10-16 01:07+0000\n"
+"Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -19,22 +18,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff
 msgid "Account Cut-off"
-msgstr "Conta de corte"
+msgstr "Corte contábil"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff_line
 msgid "Account Cut-off Line"
-msgstr "Linha da conta de corte"
+msgstr "Linha do corte contábil"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__cutoff_days
 msgid "Cutoff Days"
-msgstr "Dias limite"
+msgstr "Dias de corte"
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -45,7 +44,7 @@ msgstr "Ativar modo de previsão"
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__end_date
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__end_date
 msgid "End Date"
-msgstr "Data Final"
+msgstr "Data final"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__state__forecast
@@ -60,8 +59,8 @@ msgid ""
 "forecast mode, this is the number of days between the start date and the end "
 "date."
 msgstr ""
-"No modo normal, este é o número de dias após a data limite. No modo de "
-"previsão, este é o número de dias entre a data de início e a data de término."
+"No modo normal, é o número de dias após a data de corte. No modo de "
+"previsão, é o número de dias entre a data inicial e a data final."
 
 #. module: account_cutoff_start_end_dates
 #: model_terms:ir.ui.view,arch_db:account_cutoff_start_end_dates.account_cutoff_form
@@ -77,21 +76,19 @@ msgstr "Diários de origem"
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__start_date
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__start_date
 msgid "Start Date"
-msgstr "Data Inicial"
+msgstr "Data inicial"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "Start date and end date are required for forecast mode."
-msgstr ""
-"A data de início e a data de término são obrigatórias para o modo de "
-"previsão."
+msgstr "A data inicial e a data final são obrigatórias no modo de previsão."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__state
 msgid "State"
-msgstr "Estado"
+msgstr "Situação"
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__state
@@ -99,15 +96,15 @@ msgid ""
 "State of the cutoff. When the Journal Entry is created, the state is set to "
 "'Done' and the fields become read-only."
 msgstr ""
-"Estado do corte. Quando o lançamento contábil manual é criado, o estado é "
-"definido como 'Concluído' e os campos tornam-se somente leitura."
+"Situação do corte. Quando o lançamento é criado, a situação passa para "
+"'Concluído' e os campos ficam somente leitura."
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "The start date is after the end date!"
-msgstr "A data de início é posterior à data de término!"
+msgstr "A data inicial é posterior à data final!"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
@@ -117,8 +114,8 @@ msgid ""
 "This cutoff is linked to a journal entry. You must delete it before entering "
 "forecast mode."
 msgstr ""
-"Este corte está vinculado a um lançamento contábil manual. Você deve excluí-"
-"lo antes de entrar no modo de previsão."
+"Este corte está vinculado a um lançamento. Exclua-o antes de entrar no modo "
+"de previsão."
 
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,help:account_cutoff_start_end_dates.field_account_cutoff__end_date
@@ -129,14 +126,14 @@ msgstr "Este campo é apenas para o modo de previsão"
 #. module: account_cutoff_start_end_dates
 #: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__total_days
 msgid "Total Days"
-msgstr "Dias Totais"
+msgstr "Total de dias"
 
 #. module: account_cutoff_start_end_dates
 #. odoo-python
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 #, python-format
 msgid "You should set at least one Source Journal."
-msgstr "Você deve definir pelo menos um Diário de Origem."
+msgstr "Defina pelo menos um diário de origem."
 
 #~ msgid "Companies"
 #~ msgstr "Empresas"
