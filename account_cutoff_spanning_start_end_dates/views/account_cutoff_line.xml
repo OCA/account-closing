@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 Lorenzo Battistini
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_cutoff_line_form" model="ir.ui.view">
+        <field name="name">account.cutoff.line.spanning.form</field>
+        <field name="model">account.cutoff.line</field>
+        <field
+            name="inherit_id"
+            ref="account_cutoff_start_end_dates.account_cutoff_line_form"
+        />
+        <field name="arch" type="xml">
+            <field name="end_date" position="after">
+                <field
+                    name="is_spanning"
+                    invisible="cutoff_type not in ('accrued_expense', 'accrued_revenue')"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_line_tree" model="ir.ui.view">
+        <field name="name">account.cutoff.line.spanning.list</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_tree" />
+        <field name="arch" type="xml">
+            <field name="cutoff_account_code" position="after">
+                <field
+                    name="is_spanning"
+                    column_invisible="context.get('cutoff_type') in ('prepaid_expense', 'prepaid_revenue')"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_cutoff_line_search" model="ir.ui.view">
+        <field name="name">account.cutoff.line.spanning.search</field>
+        <field name="model">account.cutoff.line</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_line_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <filter
+                    name="spanning"
+                    string="Spanning"
+                    domain="[('is_spanning', '=', True)]"
+                />
+                <filter
+                    name="not_spanning"
+                    string="Not Spanning"
+                    domain="[('is_spanning', '=', False)]"
+                />
+            </field>
+            <filter name="partner_groupby" position="after">
+                <filter
+                    name="spanning_groupby"
+                    string="Spanning"
+                    context="{'group_by': 'is_spanning'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
