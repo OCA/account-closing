@@ -148,8 +148,10 @@ class OrderLineCutoffAccrualMixin(models.AbstractModel):
 
     @api.model
     def _get_cutoff_accrual_lines_domain(self, cutoff):
-        domain = []
-        domain.append(("is_cutoff_accrual_excluded", "!=", True))
+        domain = [
+            ("is_cutoff_accrual_excluded", "!=", True),
+            ("company_id", "=", cutoff.company_id.id),
+        ]
         return domain
 
     @api.model

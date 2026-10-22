@@ -19,8 +19,8 @@ class AccountCutoffLine(models.Model):
 
     @api.depends("sale_line_id")
     def _compute_invoice_lines(self):
+        res = super()._compute_invoice_lines()
         for rec in self:
             if rec.sale_line_id:
                 rec.invoice_line_ids = rec.sale_line_id.invoice_lines
-        super()._compute_invoice_lines()
-        return
+        return res

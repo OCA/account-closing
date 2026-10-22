@@ -57,6 +57,7 @@ class PurchaseOrderLine(models.Model):
         # Take all invoices impacting the cutoff
         # FIXME: what about ("move_id.payment_state", "=", "invoicing_legacy")
         domain = [
+            ("company_id", "=", cutoff.company_id.id),
             ("purchase_line_id.is_cutoff_accrual_excluded", "!=", True),
             ("move_id.move_type", "in", ("in_invoice", "in_refund")),
             ("purchase_line_id", "!=", False),
@@ -82,8 +83,9 @@ class PurchaseOrderLine(models.Model):
                 FROM account_move_line
                 WHERE id in %s
             )
+            AND company_id = %s
             """,
-            (tuple(invoice_line_after.ids),),
+            (tuple(invoice_line_after.ids), cutoff.company_id.id),
         )
         purchase_ids = [x[0] for x in self.env.cr.fetchall()]
         lines = self.env["purchase.order.line"].search(
