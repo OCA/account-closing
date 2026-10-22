@@ -1,5 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# 	* account_cutoff_accrual_sale_stock_delivery
 #
 msgid ""
 msgstr ""
@@ -11,3 +12,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: account_cutoff_accrual_sale_stock_delivery
+#: model:ir.model.fields,field_description:account_cutoff_accrual_sale_stock_delivery.field_sale_order_line__is_cutoff_accrual_excluded
+msgid "Do not generate cut-off entries"
+msgstr ""
+
+#. module: account_cutoff_accrual_sale_stock_delivery
+#: model:ir.model,name:account_cutoff_accrual_sale_stock_delivery.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
