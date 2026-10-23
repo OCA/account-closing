@@ -2,9 +2,7 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License LGPL-3 or later (http://www.gnu.org/licenses/lgpl).
 
-import time
-
-from odoo import Command
+from odoo import Command, fields
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
@@ -39,10 +37,10 @@ class TestInvoiceStartEndDates(TransactionCase):
 
     def _date(self, date):
         """convert MM-DD to current year date YYYY-MM-DD"""
-        return time.strftime("%Y-" + date)
+        return fields.Date.today().strftime("%Y-" + date)
 
     def test_invoice(self):
-        self.move_model.create(
+        invoice = self.move_model.create(
             {
                 "partner_id": self.partner.id,
                 "move_type": "out_invoice",
@@ -91,6 +89,28 @@ class TestInvoiceStartEndDates(TransactionCase):
                     ),
                 ],
             }
+        )
+
+        report_lines = self.env["account.invoice.report"].search(
+            [("move_id", "=", invoice.id)], order="id"
+        )
+        self.assertRecordValues(
+            report_lines,
+            [
+                {
+                    "start_date": fields.Date.to_date(self._date("01-01")),
+                    "end_date": fields.Date.to_date(self._date("12-31")),
+                },
+                {
+                    "start_date": fields.Date.to_date(self._date("01-01")),
+                    "end_date": fields.Date.to_date(self._date("12-31")),
+                },
+                {
+                    "start_date": fields.Date.to_date(self._date("01-01")),
+                    "end_date": fields.Date.to_date(self._date("06-30")),
+                },
+                {"start_date": False, "end_date": False},
+            ],
         )
 
     def test_missing_date(self):

@@ -2,8 +2,7 @@
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import api, fields, models
-from odoo.tools import SQL
+from odoo import fields, models
 
 
 class AccountInvoiceReport(models.Model):
@@ -12,6 +11,5 @@ class AccountInvoiceReport(models.Model):
     start_date = fields.Date(readonly=True)
     end_date = fields.Date(readonly=True)
 
-    @api.model
-    def _select(self) -> SQL:
-        return SQL("%s, line.start_date, line.end_date", super()._select())
+    def _select_list(self, table):
+        return [*super()._select_list(table), table.start_date, table.end_date]
