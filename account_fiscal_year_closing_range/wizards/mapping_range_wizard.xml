@@ -23,20 +23,36 @@
 
                 <group>
                     <group string="Source Range">
-                        <label for="code_start" string="Account Code Range" />
+                        <label for="account_start_id" string="Account Range" />
                         <div class="o_row">
-                            <field name="code_start" placeholder="1000" required="1" />
+                            <field
+                                name="account_start_id"
+                                placeholder="e.g. 1.1.01.001"
+                                required="1"
+                            />
                             <span>to</span>
-                            <field name="code_end" placeholder="1999" required="1" />
+                            <field
+                                name="account_end_id"
+                                placeholder="e.g. 1.1.01.999"
+                                required="1"
+                            />
                         </div>
                         <field name="name_prefix" placeholder="e.g. Closing" />
                     </group>
 
                     <group string="Destination">
                         <field
+                            name="dest_account_id"
+                            placeholder="e.g. 3.1.01.001 - Account Name"
+                            required="fyc_config_id"
+                            invisible="not fyc_config_id"
+                            help="The account where the balance will be transferred to."
+                        />
+                        <field
                             name="dest_account_code"
                             placeholder="e.g. 3.1.01.001"
-                            required="1"
+                            required="not fyc_config_id"
+                            invisible="fyc_config_id"
                             help="The account code where the balance will be transferred to."
                         />
                     </group>
