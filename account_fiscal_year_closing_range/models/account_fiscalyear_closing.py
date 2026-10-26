@@ -1,7 +1,7 @@
 # Copyright 2026 Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountFiscalyearClosingMapping(models.Model):
@@ -13,18 +13,6 @@ class AccountFiscalyearClosingMapping(models.Model):
     code_end = fields.Char(
         string="End Account Code",
     )
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if "dest_account_id" in vals and isinstance(vals["dest_account_id"], int):
-                vals["dest_account_id"] = [vals["dest_account_id"]]
-        return super().create(vals_list)
-
-    def write(self, vals):
-        if "dest_account_id" in vals and isinstance(vals["dest_account_id"], int):
-            vals["dest_account_id"] = [vals["dest_account_id"]]
-        return super().write(vals)
 
 
 class AccountFiscalyearClosingConfig(models.Model):
