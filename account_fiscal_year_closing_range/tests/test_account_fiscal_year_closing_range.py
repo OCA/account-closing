@@ -165,9 +165,9 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "100100"
-            wizard_form.code_end = "100300"
-            wizard_form.dest_account_code = self.acc_dest.code
+            wizard_form.account_start_id = self.acc_1
+            wizard_form.account_end_id = self.acc_3
+            wizard_form.dest_account_id = self.acc_dest
             wizard = wizard_form.save()
         preview_codes = wizard.preview_account_ids.mapped("code")
         self.assertIn("100100", preview_codes)
@@ -185,13 +185,13 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "100100"
-            wizard_form.code_end = "100200"
-            wizard_form.dest_account_code = self.acc_dest.code
+            wizard_form.account_start_id = self.acc_1
+            wizard_form.account_end_id = self.acc_2
+            wizard_form.dest_account_id = self.acc_dest
             wizard = wizard_form.save()
         self.assertEqual(len(wizard.preview_account_ids), 2)
 
-        wizard.code_end = "100300"
+        wizard.account_end_id = self.acc_3
         wizard._onchange_code_range()
         self.assertEqual(len(wizard.preview_account_ids), 3)
         fyc.unlink()
@@ -228,9 +228,10 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "888888"
-            wizard_form.code_end = "888888"
-            wizard_form.dest_account_code = self.acc_dest.code
+            # Reversed range (start code higher than end code) matches no account.
+            wizard_form.account_start_id = self.acc_3
+            wizard_form.account_end_id = self.acc_1
+            wizard_form.dest_account_id = self.acc_dest
             wizard = wizard_form.save()
         self.assertEqual(len(wizard.preview_account_ids), 0)
         fyc.unlink()
@@ -256,9 +257,9 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "100100"
-            wizard_form.code_end = "100100"
-            wizard_form.dest_account_code = self.acc_dest.code
+            wizard_form.account_start_id = self.acc_1
+            wizard_form.account_end_id = self.acc_1
+            wizard_form.dest_account_id = self.acc_dest
             wizard_form.name_prefix = "Custom Prefix"
             wizard = wizard_form.save()
         mapping_name = wizard._prepare_mapping_vals(self.acc_1)["name"]
@@ -275,9 +276,9 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "100100"
-            wizard_form.code_end = "100300"
-            wizard_form.dest_account_code = self.acc_dest.code
+            wizard_form.account_start_id = self.acc_1
+            wizard_form.account_end_id = self.acc_3
+            wizard_form.dest_account_id = self.acc_dest
             wizard = wizard_form.save()
         self.assertEqual(wizard.action_cancel()["type"], "ir.actions.act_window_close")
         fyc.unlink()
@@ -303,9 +304,9 @@ class TestAccountFiscalYearClosingRange(AccountTestInvoicingCommon):
                 active_id=config.id, default_fyc_config_id=config.id
             )
         ) as wizard_form:
-            wizard_form.code_start = "100100"
-            wizard_form.code_end = "100400"
-            wizard_form.dest_account_code = self.acc_dest.code
+            wizard_form.account_start_id = self.acc_1
+            wizard_form.account_end_id = self.acc_out
+            wizard_form.dest_account_id = self.acc_dest
             wizard = wizard_form.save()
         self.assertEqual(wizard.company_id.id, self.env.company.id)
         fyc.unlink()
