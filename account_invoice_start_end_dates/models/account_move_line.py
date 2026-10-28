@@ -17,6 +17,7 @@ class AccountMoveLine(models.Model):
         store=True,
         readonly=False,
         precompute=True,
+        copy=False,
     )
     end_date = fields.Date(
         "Line End Date",
@@ -25,8 +26,19 @@ class AccountMoveLine(models.Model):
         store=True,
         readonly=False,
         precompute=True,
+        copy=False,
     )
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
+
+    def _copy_data_extend_business_fields(self, values):
+        # The dates refer to the period of the invoice: they are not copied
+        # when an invoice is duplicated, because the copy is a new invoice with
+        # a new date, but a credit note covers the period of the reversed
+        # invoice, so its lines keep the dates.
+        res = super()._copy_data_extend_business_fields(values)
+        values["start_date"] = self.start_date
+        values["end_date"] = self.end_date
+        return res
 
     @api.depends("move_id.invoice_date", "display_type")
     def _compute_start_end_dates(self):

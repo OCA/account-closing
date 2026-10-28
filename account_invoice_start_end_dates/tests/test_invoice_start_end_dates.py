@@ -282,3 +282,76 @@ class TestInvoiceStartEndDates(TransactionCase):
                 move = self._create_move_without_dates(move_type)
                 move.invoice_date = self._date("03-15")
                 self.assertFalse(move.invoice_line_ids[0].start_date)
+
+    def _create_bill_with_dates(self):
+        self.env.company.start_end_dates_from_bill_date = True
+        bill = self._create_move_without_dates("in_invoice")
+        bill.invoice_date = self._date("03-15")
+        maint_line, insurance_line = bill.invoice_line_ids
+        self.assertEqual(
+            maint_line.start_date, fields.Date.to_date(self._date("03-15"))
+        )
+        self.assertEqual(
+            insurance_line.start_date, fields.Date.to_date(self._date("01-01"))
+        )
+        return bill
+
+    def test_duplicate_without_default_dates(self):
+        bill = self._create_bill_with_dates()
+        self.env.company.start_end_dates_from_bill_date = False
+        copy = bill.copy()
+        self.assertFalse(copy.invoice_date)
+        copy.invoice_date = self._date("04-20")
+        # the dates of the original lines are not copied
+        self.assertFalse(copy.invoice_line_ids.filtered("start_date"))
+        self.assertFalse(copy.invoice_line_ids.filtered("end_date"))
+
+    def test_duplicate_with_default_dates(self):
+        bill = self._create_bill_with_dates()
+        copy = bill.copy()
+        self.assertFalse(copy.invoice_line_ids.filtered("start_date"))
+        new_date = fields.Date.to_date(self._date("04-20"))
+        copy.invoice_date = new_date
+        # the lines of the copy get the new bill date
+        self.assertEqual(len(copy.invoice_line_ids), 2)
+        for line in copy.invoice_line_ids:
+            self.assertEqual(line.start_date, new_date)
+            self.assertEqual(line.end_date, new_date)
+
+    def test_vendor_bill_autocomplete_default_dates(self):
+        bill = self._create_bill_with_dates()
+        new_date = fields.Date.to_date(self._date("04-20"))
+        bill_form = Form(self.move_model.with_context(default_move_type="in_invoice"))
+        bill_form.partner_id = self.partner
+        bill_form.invoice_date = new_date
+        bill_form.invoice_vendor_bill_id = bill
+        new_bill = bill_form.save()
+        self.assertEqual(len(new_bill.invoice_line_ids), 2)
+        for line in new_bill.invoice_line_ids:
+            self.assertEqual(line.start_date, new_date)
+            self.assertEqual(line.end_date, new_date)
+
+    def test_credit_note_keeps_dates(self):
+        bill = self._create_bill_with_dates()
+        bill.action_post()
+        wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=bill.ids)
+            .create(
+                {
+                    "journal_id": bill.journal_id.id,
+                    "date": self._date("04-20"),
+                    "reason": "test",
+                }
+            )
+        )
+        wizard.refund_moves()
+        refund = wizard.new_move_ids
+        self.assertEqual(refund.move_type, "in_refund")
+        for line in bill.invoice_line_ids:
+            refund_line = refund.invoice_line_ids.filtered(
+                lambda rl, line=line: rl.name == line.name
+            )
+            self.assertEqual(len(refund_line), 1)
+            self.assertEqual(refund_line.start_date, line.start_date)
+            self.assertEqual(refund_line.end_date, line.end_date)

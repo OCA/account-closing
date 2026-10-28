@@ -13,6 +13,10 @@ is posted. This way, the lines of a draft invoice can be mass-edited from
 the *Journal Items* list view, where the native mass edit writes one field
 at a time.
 
+The dates refer to the period of the invoice/move: when an invoice/move
+is duplicated, the lines of the copy don't get the dates of the original
+lines. The lines of a credit note keep the dates of the reversed invoice.
+
 If you use this module, you may also be interested in several other
 modules:
 

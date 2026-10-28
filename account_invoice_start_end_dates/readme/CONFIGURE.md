@@ -13,3 +13,7 @@ the lines get it at that moment. The dates already set on a line are never
 overwritten, so you can still enter another period on the lines that need it.
 The lines whose product has the option *Must Have Start/End Dates* get the
 invoice date too.
+
+When an invoice is duplicated, or a vendor bill is filled from a previous one
+with the *Auto-Complete* field, the lines of the new invoice get its invoice
+date, not the dates of the original lines.
