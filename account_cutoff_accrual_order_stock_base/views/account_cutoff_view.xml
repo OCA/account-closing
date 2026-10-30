@@ -12,7 +12,7 @@
         <field name="cutoff_account_id" position="after">
             <field
                     name="cutoff_account_prepaid_stock_id"
-                    required="1"
+                    attrs="{'required': [('cutoff_type', 'in', ('accrued_expense', 'accrued_revenue'))], 'invisible': [('cutoff_account_prepaid_stock_id', '=', False), ('cutoff_type', 'not in', ('accrued_expense', 'accrued_revenue'))]}"
                     options="{'no_create': True}"
                 />
         </field>
