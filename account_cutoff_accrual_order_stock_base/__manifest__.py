@@ -4,7 +4,7 @@
 
 {
     "name": "Account Cut-off Accrual Order Stock Base",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Accounting & Finance",
     "license": "AGPL-3",
     "summary": "Accrued Order Stock Base",
