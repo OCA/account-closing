@@ -14,6 +14,7 @@
     "depends": ["account_cutoff_base", "stock"],
     "data": [
         "views/account_cutoff_view.xml",
+        "wizards/res_config_settings.xml",
     ],
     "installable": True,
     "application": False,
