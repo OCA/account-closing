@@ -25,9 +25,17 @@ class AccountCutoff(models.Model):
         cutoff_type = self.env.context.get("default_cutoff_type")
         company = self.env.company
         if cutoff_type == "accrued_expense":
-            account_id = company.default_prepaid_expense_account_id.id or False
+            account_id = (
+                company.default_stock_prepaid_expense_account_id.id
+                or company.default_prepaid_expense_account_id.id
+                or False
+            )
         elif cutoff_type == "accrued_revenue":
-            account_id = company.default_prepaid_revenue_account_id.id or False
+            account_id = (
+                company.default_stock_prepaid_revenue_account_id.id
+                or company.default_prepaid_revenue_account_id.id
+                or False
+            )
         else:
             account_id = False
         return account_id
