@@ -4,7 +4,7 @@
 {
     "name": "Account invoice start end dates on invoice",
     "summary": "Add the possibility to choose start and end dates on account invoice.",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/account-closing",

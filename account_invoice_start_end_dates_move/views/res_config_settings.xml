@@ -5,24 +5,15 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="account.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='accounting_reports']" position="after">
-                <h2>Account Start/End Dates</h2>
-                <div class="row mt16 o_settings_container">
-                    <div
-                        class="col-12 col-md-12 o_setting_box"
+            <xpath expr="//block[@id='accounting_reports']" position="after">
+                <block title="Account Start/End Dates" id="account_start_end_dates">
+                    <setting
                         id="apply_dates_all_lines"
+                        help="Set start and end date to all account move lines, including those without product or with product not enabled to start/end dates."
                     >
-                        <div class="o_setting_left_pane">
-                            <field name="apply_dates_all_lines" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="apply_dates_all_lines" />
-                            <div class="text-muted">
-                                Set start and end date to all account move lines, including those without product or with product not enabled to start/end dates.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <field name="apply_dates_all_lines" />
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
