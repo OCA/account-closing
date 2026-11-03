@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_invoice_start_end_dates_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-06 17:47+0000\n"
+"PO-Revision-Date: 2024-02-27 18:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> from </span>"
+msgstr ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> da </span>"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', '!"
+"=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> to </span>"
+msgstr ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> a </span>"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.res_config_settings_view_form
+msgid "Account Start/End Dates"
+msgstr "Date inizio/fine conto"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company__apply_dates_all_lines
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings__apply_dates_all_lines
+msgid "Apply Start/End Dates To All Account Move Lines"
+msgstr "Applica le date inizio/fine a tutte le righe dei movimenti conto"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_bank_statement_line__end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_payment__end_date
+msgid "End Date"
+msgstr "Data fine"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "End date"
+msgstr "Data fine"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "Select invoice lines dates"
+msgstr "Seleziona date righe fattura"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.res_config_settings_view_form
+msgid ""
+"Set start and end date to all account move lines, including those without "
+"product or with product not enabled to start/end dates."
+msgstr ""
+"Imposta la data inizio e fine in tutte le righe di movimento del conto, "
+"incluse quelle senza prodotto o con prodotto non abilitato a data inizio/"
+"fine."
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_bank_statement_line__start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_payment__start_date
+msgid "Start Date"
+msgstr "Data inizio"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "Start date"
+msgstr "Data inizio"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
