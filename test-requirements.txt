@@ -1,0 +1,1 @@
+odoo-addon-account-cutoff-base @ git+https://github.com/oca/account-closing.git@refs/pull/382/head#subdirectory=account_cutoff_base
