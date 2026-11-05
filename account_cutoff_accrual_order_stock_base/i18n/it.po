@@ -31,6 +31,40 @@ msgstr ""
 "ricevuta."
 
 #. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_stock_base.field_res_company__default_stock_prepaid_revenue_account_id
+#: model:ir.model.fields,help:account_cutoff_accrual_order_stock_base.field_res_config_settings__dft_stock_prepaid_revenue_account_id
+msgid "Account for goods invoiced not yet delivered"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model.fields,help:account_cutoff_accrual_order_stock_base.field_res_company__default_stock_prepaid_expense_account_id
+#: model:ir.model.fields,help:account_cutoff_accrual_order_stock_base.field_res_config_settings__dft_stock_prepaid_expense_account_id
+msgid "Account for goods invoiced not yet received"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model,name:account_cutoff_accrual_order_stock_base.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model,name:account_cutoff_accrual_order_stock_base.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_stock_base
 #: model:ir.model.fields,field_description:account_cutoff_accrual_order_stock_base.field_account_cutoff__cutoff_account_prepaid_stock_id
 msgid "Cut-off Prepaid Stock Account"
 msgstr "Conto scritture di chiusura giacenze prepagate"
+
+#. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_stock_base.field_res_company__default_stock_prepaid_expense_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_stock_base.field_res_config_settings__dft_stock_prepaid_expense_account_id
+msgid "Default Account for Prepaid Expense on Purchase Order"
+msgstr ""
+
+#. module: account_cutoff_accrual_order_stock_base
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_stock_base.field_res_company__default_stock_prepaid_revenue_account_id
+#: model:ir.model.fields,field_description:account_cutoff_accrual_order_stock_base.field_res_config_settings__dft_stock_prepaid_revenue_account_id
+msgid "Default Account for Prepaid Revenue on Sales Order"
+msgstr ""
