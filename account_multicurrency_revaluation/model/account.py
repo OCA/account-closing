@@ -20,6 +20,7 @@ class AccountAccountLine(models.Model):
         comodel_name="account.move.line",
         string="Revaluation Created Line",
         readonly=True,
+        index="btree_not_null",
     )
 
     revaluation_origin_line_ids = fields.One2many(
