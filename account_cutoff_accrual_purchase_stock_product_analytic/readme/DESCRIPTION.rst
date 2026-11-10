@@ -1,0 +1,1 @@
+Test module between account_cutoff_accrual_purchase_stock and product_analytic

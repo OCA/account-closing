@@ -13,7 +13,7 @@ from odoo.addons.account_cutoff_accrual_order_base.tests.common import (
 )
 
 
-class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon):
+class TestAccountCutoffAccrualPurchaseStockCommon(TestAccountCutoffAccrualOrderCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -37,6 +37,8 @@ class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon
             }
         )
         cls.tax_purchase.account_accrued_expense_id = cls.cutoff_account
+        cls.price = 100
+        cls.qty = 5
         cls.po = cls.env["purchase.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -45,9 +47,9 @@ class TestAccountCutoffAccrualPurchaseCommon(TestAccountCutoffAccrualOrderCommon
                         {
                             "name": p.name,
                             "product_id": p.id,
-                            "product_qty": 5,
+                            "product_qty": cls.qty,
                             "product_uom": p.uom_po_id.id,
-                            "price_unit": 100,
+                            "price_unit": cls.price,
                             "date_planned": fields.Date.to_string(
                                 datetime.today() + relativedelta(days=-15)
                             ),
