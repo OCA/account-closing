@@ -368,7 +368,7 @@ class AccountFiscalyearClosingConfig(models.Model):
     date = fields.Date(string="Move date")
     enabled = fields.Boolean(default=True)
     journal_id = fields.Many2one(required=True)
-    move_id = fields.Many2one(comodel_name="account.move", string="Move")
+    move_id = fields.Many2one(comodel_name="account.move")
 
     _code_uniq = models.Constraint(
         "unique(code, fyc_id)",
