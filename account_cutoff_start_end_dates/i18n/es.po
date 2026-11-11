@@ -148,3 +148,87 @@ msgstr "Debe establecer al menos un Diario de origen."
 
 #~ msgid "Companies"
 #~ msgstr "Compañías"
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "A later posted cut-off already exists."
+msgstr "Ya existe un cierre posterior con un asiento contabilizado."
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff_tax_line
+msgid "Account Cut-off Tax Line"
+msgstr "Línea de impuestos del cierre contable"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__calculation_method
+msgid "Calculation Method"
+msgstr "Método de cálculo"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__calculation_method__difference
+msgid "Difference Since Last Cut-off"
+msgstr "Diferencia desde el último cierre"
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Difference calculation requires no automatic reversal or forecast mode."
+msgstr "El cálculo por diferencias requiere desactivar la reversión automática y el modo de previsión."
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Disable automatic reversal for difference calculation."
+msgstr "Desactive la reversión automática para el cálculo por diferencias."
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__pending_amount
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_amount
+#: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__calculation_method__pending
+msgid "Pending Amount"
+msgstr "Importe pendiente"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_base
+msgid "Pending Base"
+msgstr "Base pendiente"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_cutoff_amount
+msgid "Pending Cutoff Amount"
+msgstr "Importe de cierre pendiente"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__previous_cutoff_id
+msgid "Previous Cutoff"
+msgstr "Cierre anterior"
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__previous_pending_amount
+msgid "Previous Pending Amount"
+msgstr "Importe pendiente anterior"
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Reset dependent cut-offs to draft first."
+msgstr "Primero devuelva a borrador los cierres dependientes."
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous cut-off changed. Generate the lines again."
+msgstr "El cierre anterior ha cambiado. Vuelva a generar las líneas."
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous difference cut-off must not be reversed."
+msgstr "El cierre anterior por diferencias no debe estar revertido."
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous regular cut-off must have a posted reversal dated on or before this cut-off to start from zero."
+msgstr "Para empezar desde cero, el cierre anterior del modo habitual debe tener una reversión contabilizada con fecha anterior o igual a la de este cierre."

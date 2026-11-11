@@ -130,3 +130,87 @@ msgstr ""
 #: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
 msgid "You should set at least one Source Journal."
 msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "A later posted cut-off already exists."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model,name:account_cutoff_start_end_dates.model_account_cutoff_tax_line
+msgid "Account Cut-off Tax Line"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__calculation_method
+msgid "Calculation Method"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__calculation_method__difference
+msgid "Difference Since Last Cut-off"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Difference calculation requires no automatic reversal or forecast mode."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Disable automatic reversal for difference calculation."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__pending_amount
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_amount
+#: model:ir.model.fields.selection,name:account_cutoff_start_end_dates.selection__account_cutoff__calculation_method__pending
+msgid "Pending Amount"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_base
+msgid "Pending Base"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_tax_line__pending_cutoff_amount
+msgid "Pending Cutoff Amount"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff__previous_cutoff_id
+msgid "Previous Cutoff"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#: model:ir.model.fields,field_description:account_cutoff_start_end_dates.field_account_cutoff_line__previous_pending_amount
+msgid "Previous Pending Amount"
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "Reset dependent cut-offs to draft first."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous cut-off changed. Generate the lines again."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous difference cut-off must not be reversed."
+msgstr ""
+
+#. module: account_cutoff_start_end_dates
+#. odoo-python
+#: code:addons/account_cutoff_start_end_dates/models/account_cutoff.py:0
+msgid "The previous regular cut-off must have a posted reversal dated on or before this cut-off to start from zero."
+msgstr ""
