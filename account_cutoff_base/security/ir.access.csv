@@ -1,0 +1,14 @@
+id,name,model_id,group_id/id,operation,domain
+access_account_cutoff_mapping,Full access on account.cutoff.mapping,account.cutoff.mapping,account.group_account_manager,crud,
+access_account_cutoff_mapping_user,Read access on account.cutoff.mapping,account.cutoff.mapping,account.group_account_user,r,
+access_account_cutoff_mapping_readonly,Read access on account.cutoff.mapping to Auditor,account.cutoff.mapping,account.group_account_readonly,r,
+account_cutoff_mapping_multi_company_rule,Account Cutoff Mapping Multi-Company,account.cutoff.mapping,,crud,"[('company_id', 'in', company_ids)]"
+access_account_cutoff,Full access on account.cutoff to accountant,account.cutoff,account.group_account_user,crud,
+access_account_cutoff_readonly,Readonly access on account.cutoff to auditor,account.cutoff,account.group_account_readonly,r,
+account_cutoff_multi_company_rule,Account Cutoff Multi-Company,account.cutoff,,crud,"[('company_id', 'in', company_ids)]"
+access_account_cutoff_line,Full access on account.cutoff.line to accountant,account.cutoff.line,account.group_account_user,crud,
+access_account_cutoff_line_readonly,Readonly access on account.cutoff.line to auditor,account.cutoff.line,account.group_account_readonly,r,
+account_cutoff_line_multi_company_rule,Account Cutoff Line Multi-Company,account.cutoff.line,,crud,"[('company_id', 'in', company_ids)]"
+access_account_cutoff_tax_line,Full access on account.cutoff.tax.line to accountant,account.cutoff.tax.line,account.group_account_user,crud,
+access_account_cutoff_tax_line_readonly,Readonly access on account.cutoff.tax.line to accountant,account.cutoff.tax.line,account.group_account_readonly,r,
+account_cutoff_tax_line_multi_company_rule,Account Cutoff Tax Line Multi-Company,account.cutoff.tax.line,,crud,"[('company_id', 'in', company_ids)]"
