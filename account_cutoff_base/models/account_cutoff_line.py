@@ -21,7 +21,7 @@ class AccountCutoffLine(models.Model):
         related="parent_id.company_currency_id",
         string="Company Currency",
     )
-    partner_id = fields.Many2one("res.partner", string="Partner", readonly=True)
+    partner_id = fields.Many2one("res.partner", readonly=True)
     quantity = fields.Float(digits="Product Unit of Measure", readonly=True)
     price_unit = fields.Float(
         string="Unit Price w/o Tax",
@@ -42,7 +42,6 @@ class AccountCutoffLine(models.Model):
     )
     account_id = fields.Many2one(
         "account.account",
-        "Account",
         required=True,
         readonly=True,
         check_company=True,
@@ -59,7 +58,6 @@ class AccountCutoffLine(models.Model):
     )
     currency_id = fields.Many2one(
         "res.currency",
-        string="Currency",
         readonly=True,
     )
     amount = fields.Monetary(

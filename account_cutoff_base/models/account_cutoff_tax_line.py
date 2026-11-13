@@ -20,9 +20,7 @@ class AccountCutoffTaxLine(models.Model):
     company_id = fields.Many2one(
         "res.company", related="parent_id.company_id", store=True
     )
-    tax_id = fields.Many2one(
-        "account.tax", string="Tax", required=True, check_company=True
-    )
+    tax_id = fields.Many2one("account.tax", required=True, check_company=True)
     cutoff_account_id = fields.Many2one(
         "account.account",
         string="Cut-off Account",

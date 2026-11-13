@@ -19,7 +19,7 @@ class AccountCutoff(models.Model):
     _name = "account.cutoff"
     _rec_name = "cutoff_date"
     _order = "cutoff_date desc"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
     _check_company_auto = True
     _description = "Account Cut-off"
 
@@ -114,7 +114,6 @@ class AccountCutoff(models.Model):
     )
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -161,7 +160,7 @@ class AccountCutoff(models.Model):
         for rec in self:
             cutoff_date = False
             company = rec.company_id
-            date_from, date_to = date_utils.get_fiscal_year(
+            date_from, _date_to = date_utils.get_fiscal_year(
                 today,
                 day=company.fiscalyear_last_day,
                 month=int(company.fiscalyear_last_month),
@@ -367,7 +366,7 @@ class AccountCutoff(models.Model):
                 [
                     {
                         "date": next_day,
-                        "ref": _("reversal of: ") + move.ref,
+                        "ref": self.env._("reversal of: ") + move.ref,
                     }
                 ]
             )
