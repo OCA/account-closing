@@ -131,3 +131,17 @@ class TestAccountCutoff(AccountTestInvoicingCommon):
         cutoff.back2draft()
         self.assertFalse(cutoff.move_id)
         self.assertFalse(cutoff.move_reversal_id)
+
+    def test_back2draft_posted(self):
+        """back2draft deletes a posted move and its posted reversal"""
+        self.company.post_cutoff_move = True
+        cutoff = self._create_cutoff()
+        cutoff.auto_reverse = True
+        cutoff.create_move()
+        moves = cutoff.move_id | cutoff.move_reversal_id
+        self.assertEqual(len(moves), 2)
+        self.assertEqual(set(moves.mapped("state")), {"posted"})
+        cutoff.back2draft()
+        self.assertEqual(cutoff.state, "draft")
+        self.assertFalse(cutoff.move_id)
+        self.assertFalse(moves.exists())

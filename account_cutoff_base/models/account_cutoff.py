@@ -226,12 +226,11 @@ class AccountCutoff(models.Model):
 
     def back2draft(self):
         self.ensure_one()
-        if self.move_reversal_id:
-            self.move_reversal_id.line_ids.remove_move_reconcile()
-            self.move_reversal_id.unlink()
-            self.move_id.line_ids.remove_move_reconcile()
-        if self.move_id:
-            self.move_id.unlink()
+        moves = self.move_reversal_id | self.move_id
+        moves.line_ids.remove_move_reconcile()
+        # Posted journal entries cannot be deleted: reset them to draft first
+        moves.filtered(lambda move: move.state == "posted").button_draft()
+        moves.unlink()
         self.write({"state": "draft"})
 
     def _get_merge_keys(self):
