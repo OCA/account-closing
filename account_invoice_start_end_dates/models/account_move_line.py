@@ -10,8 +10,10 @@ from odoo.tools.misc import format_date
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    start_date = fields.Date(index=True)
-    end_date = fields.Date(index=True)
+    # start date/end date already exists as string for deferred_start/end_date
+    # (account_accountant). Change label to avoid confusion
+    start_date = fields.Date(index=True, string="Date Start")
+    end_date = fields.Date(index=True, string="Date End")
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
 
     @api.constrains(
