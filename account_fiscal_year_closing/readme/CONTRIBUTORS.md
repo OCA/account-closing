@@ -5,3 +5,4 @@
 - [CorporateHub](https://corporatehub.eu/)
   - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
 - Giuseppe Borruso \<<gborruso@dinamicheaziendali.it>\>
+- Nextev srl \<<odoo@nextev.it>\>
