@@ -1,0 +1,30 @@
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    def _selection_closing_type(self):
+        """Use selection values from move_type field in closing config
+        (making a copy for preventing side effects), plus an extra value for
+        non-closing moves."""
+        res = list(
+            self.env["account.fiscalyear.closing.config"].fields_get(
+                allfields=["move_type"]
+            )["move_type"]["selection"]
+        )
+        res.append(("none", self.env._("None")))
+        return res
+
+    fyc_id = fields.Many2one(
+        comodel_name="account.fiscalyear.closing",
+        ondelete="cascade",
+        string="Fiscal year closing",
+        readonly=True,
+    )
+    closing_type = fields.Selection(
+        selection=_selection_closing_type,
+        default="none",
+    )
