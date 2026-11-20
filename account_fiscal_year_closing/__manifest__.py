@@ -4,7 +4,7 @@
 {
     "name": "Fiscal year closing",
     "summary": "Generic fiscal year closing wizard",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/account-closing",
     "author": "Odoo Community Association (OCA)",
