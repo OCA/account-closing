@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 Lorenzo Battistini
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_cutoff_form" model="ir.ui.view">
+        <field name="name">account.cutoff.spanning.form</field>
+        <field name="model">account.cutoff</field>
+        <field name="inherit_id" ref="account_cutoff_base.account_cutoff_form" />
+        <field name="arch" type="xml">
+            <field name="cutoff_account_id" position="after">
+                <field
+                    name="cutoff_account_spanning_id"
+                    options="{'no_create': True}"
+                    invisible="cutoff_type not in ('accrued_expense', 'accrued_revenue')"
+                    readonly="state == 'done'"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
