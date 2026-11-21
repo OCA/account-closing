@@ -12,8 +12,12 @@
         <field name="arch" type="xml">
             <field name="date_maturity" position="after">
                 <field name="must_have_dates" invisible="1" />
-                <field name="start_date" required="must_have_dates" />
-                <field name="end_date" required="must_have_dates" />
+                <field
+                    name="start_date"
+                    required="must_have_dates"
+                    string="Start Date"
+                />
+                <field name="end_date" required="must_have_dates" string="End Date" />
             </field>
         </field>
     </record>
@@ -24,8 +28,8 @@
         <field name="arch" type="xml">
             <field name="date_maturity" position="after">
                 <field name="must_have_dates" column_invisible="1" />
-                <field name="start_date" optional="hide" />
-                <field name="end_date" optional="hide" />
+                <field name="start_date" optional="hide" string="Start Date" />
+                <field name="end_date" optional="hide" string="End Date" />
             </field>
         </field>
     </record>
