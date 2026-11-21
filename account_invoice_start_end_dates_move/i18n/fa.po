@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_invoice_start_end_dates_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-20 07:56+0000\n"
+"Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>\n"
+"Language-Team: none\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> from </span>"
+msgstr ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\">از </span>"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> to </span>"
+msgstr ""
+"<span class=\"o_form_label mx-3\" attrs=\"{'invisible': ['|', ('state', "
+"'!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund', "
+"'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}\"> به </span>"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.res_config_settings_view_form
+msgid "Account Start/End Dates"
+msgstr "تاریخ‌های شروع/پایان حساب"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_company__apply_dates_all_lines
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_res_config_settings__apply_dates_all_lines
+msgid "Apply Start/End Dates To All Account Move Lines"
+msgstr "اعمال تاریخ‌های شروع/پایان به تمام خطوط انتقال حساب"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_res_company
+msgid "Companies"
+msgstr "شرکت‌ها"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_res_config_settings
+msgid "Config Settings"
+msgstr "تنظیمات پیکربندی"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_bank_statement_line__end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__end_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_payment__end_date
+msgid "End Date"
+msgstr "تاریخ پایان"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "End date"
+msgstr "تاریخ پایان"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move
+msgid "Journal Entry"
+msgstr "ثبت دفتر روزنامه"
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model,name:account_invoice_start_end_dates_move.model_account_move_line
+msgid "Journal Item"
+msgstr "آیتم دفتر روزنامه"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "Select invoice lines dates"
+msgstr "انتخاب تاریخ‌های خطوط صدور فاکتور"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.res_config_settings_view_form
+msgid ""
+"Set start and end date to all account move lines, including those without "
+"product or with product not enabled to start/end dates."
+msgstr ""
+"تعیین تاریخ شروع و پایان برای تمام خطوط انتقال حساب، از جمله خطوط بدون محصول "
+"یا با محصولی که تاریخ شروع/پایان آنها مشخص نشده است."
+
+#. module: account_invoice_start_end_dates_move
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_bank_statement_line__start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_move__start_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_move.field_account_payment__start_date
+msgid "Start Date"
+msgstr "تاریخ شروع"
+
+#. module: account_invoice_start_end_dates_move
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_move.view_move_form
+msgid "Start date"
+msgstr "تاریخ شروع"

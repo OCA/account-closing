@@ -1,0 +1,2 @@
+- Sergio Corato (<https://github.com/sergiocorato>)
+- Luca Franceschini (<https://github.com/marco-lucaf>)
