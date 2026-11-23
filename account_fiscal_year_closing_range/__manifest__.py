@@ -1,7 +1,7 @@
 {
     "name": "Account Fiscal Year Closing Range",
     "summary": "Allow mapping account ranges in fiscal year closing",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/account-closing",
     "author": "Escodoo, Odoo Community Association (OCA)",
