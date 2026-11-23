@@ -28,6 +28,7 @@ addon | version | maintainers | summary
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 18.0.1.0.1 |  | Generic fiscal year closing wizard
 [account_fiscal_year_closing_range](account_fiscal_year_closing_range/) | 18.0.1.0.0 | <a href='https://github.com/kaynnan, marcelsavegnago'><img src='https://github.com/kaynnan, marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='kaynnan, marcelsavegnago'/></a> | Allow mapping account ranges in fiscal year closing
 [account_invoice_start_end_dates](account_invoice_start_end_dates/) | 18.0.1.4.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start/end dates on invoice/move lines
+[account_invoice_start_end_dates_default](account_invoice_start_end_dates_default/) | 18.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Invoice date as default start/end dates of the invoice lines
 
 [//]: # (end addons)
 
