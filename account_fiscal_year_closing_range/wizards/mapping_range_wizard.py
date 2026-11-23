@@ -23,18 +23,28 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
         compute="_compute_company_id",
         store=True,
     )
-    code_start = fields.Char(
-        string="Start Account Code",
+    account_start_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Start Account",
+        domain="[('company_ids', 'in', [company_id])]",
         required=True,
     )
-    code_end = fields.Char(
-        string="End Account Code",
+    account_end_id = fields.Many2one(
+        comodel_name="account.account",
+        string="End Account",
+        domain="[('company_ids', 'in', [company_id])]",
         required=True,
+    )
+    dest_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Destination Account",
+        domain="[('company_ids', 'in', [company_id])]",
+        help="The destination account where the balance will be transferred to.",
     )
     dest_account_code = fields.Char(
         string="Destination Account Code",
-        required=True,
-        help="The code of the destination account (e.g., 3.1.01.001)",
+        help="The code of the destination account (e.g., 3.1.01.001). "
+        "Used for templates, which are not tied to a single company.",
     )
     preview_account_ids = fields.Many2many(
         comodel_name="account.account",
@@ -53,29 +63,19 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
             else:
                 record.company_id = self.env.company
 
-    @api.onchange("code_start", "code_end")
+    @api.onchange("account_start_id", "account_end_id")
     def _onchange_code_range(self):
-        """Update preview accounts when code range changes."""
-        if not (self.code_start and self.code_end):
+        """Update preview accounts when the account range changes."""
+        if not (self.account_start_id and self.account_end_id):
             self.preview_account_ids = False
             return
 
-        try:
-            if self.fyc_config_id:
-                company_id = self.fyc_config_id.fyc_id.company_id.id
-            elif (
-                self.fyc_config_template_id and self.fyc_config_template_id.template_id
-            ):
-                company_id = self.env.company.id
-            else:
-                company_id = self.env.company.id
-        except AttributeError:
-            company_id = self.env.company.id
+        company_id = self.company_id.id or self.env.company.id
 
         domain = [
             ("company_ids", "in", [company_id]),
-            ("code", ">=", self.code_start),
-            ("code", "<=", self.code_end),
+            ("code", ">=", self.account_start_id.code),
+            ("code", "<=", self.account_end_id.code),
         ]
         self.preview_account_ids = self.env["account.account"].search(
             domain, order="code ASC"
@@ -93,18 +93,10 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
         }
 
         if self.fyc_config_id:
-            dest_acc = self.env["account.account"].search(
-                [
-                    ("code", "=", self.dest_account_code),
-                    ("company_ids", "in", [self.fyc_config_id.fyc_id.company_id.id]),
-                ],
-                limit=1,
-            )
-
             vals.update(
                 {
                     "fyc_config_id": self.fyc_config_id.id,
-                    "dest_account_id": dest_acc.id,
+                    "dest_account_id": self.dest_account_id.id,
                 }
             )
         else:
@@ -119,8 +111,22 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
     def action_apply(self):
         self.ensure_one()
 
+        if not (self.fyc_config_id or self.fyc_config_template_id):
+            raise UserError(
+                _(
+                    "This wizard must be opened from a fiscal year closing "
+                    "configuration or template."
+                )
+            )
+
         if not self.preview_account_ids:
             raise UserError(_("No accounts found in the selected range."))
+
+        if self.fyc_config_id and not self.dest_account_id:
+            raise UserError(_("Please select a destination account."))
+
+        if not self.fyc_config_id and not self.dest_account_code:
+            raise UserError(_("Please enter a destination account code."))
 
         if self.fyc_config_template_id and not self.fyc_config_template_id.template_id:
             raise UserError(
@@ -144,6 +150,10 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
 
         created_records = self.env[model_name].create(vals_list)
 
+        dest_code = (
+            self.dest_account_id.code if self.fyc_config_id else self.dest_account_code
+        )
+
         return {
             "type": "ir.actions.client",
             "tag": "display_notification",
@@ -154,7 +164,7 @@ class FiscalYearClosingRangeWizard(models.TransientModel):
                 )
                 % {
                     "count": len(created_records),
-                    "code": self.dest_account_code,
+                    "code": dest_code,
                 },
                 "type": "success",
                 "next": {"type": "ir.actions.act_window_close"},

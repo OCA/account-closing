@@ -10,8 +10,12 @@ range of accounts:
     mapping list.
 
 3.  In the wizard:  
-    - Set the **Start Account Code** and **End Account Code**.
-    - Enter the **Destination Account Code** (e.g., `3.1.01.001`).
+    - Select the **Start Account** and **End Account** that define the
+      range.
+    - For a fiscal year closing configuration, select the **Destination
+      Account** from the account list. For a template (not tied to a
+      single company), enter the **Destination Account Code** as a code
+      pattern instead (e.g., `3.1.01.001`).
     - Optional: Define a **Mapping Name Prefix** to identify these lines
       easily.
 
