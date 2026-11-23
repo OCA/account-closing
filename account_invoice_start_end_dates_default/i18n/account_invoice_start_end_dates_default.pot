@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_invoice_start_end_dates_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model,name:account_invoice_start_end_dates_default.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model,name:account_invoice_start_end_dates_default.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_res_company__start_end_dates_from_bill_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_res_config_settings__start_end_dates_from_bill_date
+msgid "Default Start/End Dates from Bill Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_res_company__start_end_dates_from_invoice_date
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_res_config_settings__start_end_dates_from_invoice_date
+msgid "Default Start/End Dates from Invoice Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,help:account_invoice_start_end_dates_default.field_res_company__start_end_dates_from_invoice_date
+#: model:ir.model.fields,help:account_invoice_start_end_dates_default.field_res_config_settings__start_end_dates_from_invoice_date
+msgid ""
+"If enabled, the lines of customer invoices and refunds that don't have a "
+"Start Date and an End Date get the invoice date as Start Date and End Date."
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,help:account_invoice_start_end_dates_default.field_res_company__start_end_dates_from_bill_date
+#: model:ir.model.fields,help:account_invoice_start_end_dates_default.field_res_config_settings__start_end_dates_from_bill_date
+msgid ""
+"If enabled, the lines of vendor bills and refunds that don't have a Start "
+"Date and an End Date get the bill date as Start Date and End Date."
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model,name:account_invoice_start_end_dates_default.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model,name:account_invoice_start_end_dates_default.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_account_move_line__end_date
+msgid "Line End Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model:ir.model.fields,field_description:account_invoice_start_end_dates_default.field_account_move_line__start_date
+msgid "Line Start Date"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_default.res_config_settings_view_form
+msgid ""
+"Use the bill date as Start Date and End Date of the bill lines that don't "
+"have them"
+msgstr ""
+
+#. module: account_invoice_start_end_dates_default
+#: model_terms:ir.ui.view,arch_db:account_invoice_start_end_dates_default.res_config_settings_view_form
+msgid ""
+"Use the invoice date as Start Date and End Date of the invoice lines that "
+"don't have them"
+msgstr ""
