@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-07 18:51+0000\n"
+"PO-Revision-Date: 2026-11-25 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
@@ -69,7 +69,7 @@ msgstr "<span>do</span>"
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Account Range"
-msgstr ""
+msgstr "Razpon konta"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
@@ -113,7 +113,7 @@ msgstr "Cilj"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_id
 msgid "Destination Account"
-msgstr ""
+msgstr "Ciljni konto"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
@@ -133,7 +133,7 @@ msgstr "Prikazani naziv"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__account_end_id
 msgid "End Account"
-msgstr ""
+msgstr "Končni konto"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_end
@@ -211,13 +211,13 @@ msgstr "V izbranem razponu ni najdenih kontov."
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "Please enter a destination account code."
-msgstr ""
+msgstr "Vnesite kodo ciljnega konta."
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "Please select a destination account."
-msgstr ""
+msgstr "Izberite ciljni konto."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__preview_account_ids
@@ -232,7 +232,7 @@ msgstr "Izvorni razpon"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__account_start_id
 msgid "Start Account"
-msgstr ""
+msgstr "Začetni konto"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_start
@@ -253,7 +253,7 @@ msgstr "Kontna koda, kamor bo prenesen saldo."
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "The account where the balance will be transferred to."
-msgstr ""
+msgstr "Konto, kamor bo prenesen saldo."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,help:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
@@ -261,11 +261,13 @@ msgid ""
 "The code of the destination account (e.g., 3.1.01.001). Used for templates, "
 "which are not tied to a single company."
 msgstr ""
+"Koda ciljnega konta (npr. 3.1.01.001). Uporabljeno za predloge, ki niso "
+"vezane na eno samo družbo."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,help:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_id
 msgid "The destination account where the balance will be transferred to."
-msgstr ""
+msgstr "Ciljni konto, kamor bo prenesen saldo."
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
@@ -274,6 +276,8 @@ msgid ""
 "This wizard must be opened from a fiscal year closing configuration or "
 "template."
 msgstr ""
+"Ta čarovnik mora biti odprt iz nastavitev zaključka fiskalnega leta ali iz "
+"predloge."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model,name:account_fiscal_year_closing_range.model_fiscalyear_closing_range_wizard
@@ -284,12 +288,12 @@ msgstr ""
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 1.1.01.001"
-msgstr ""
+msgstr "npr. 1.1.01.001"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 1.1.01.999"
-msgstr ""
+msgstr "npr. 1.1.01.999"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
@@ -299,7 +303,7 @@ msgstr "npr. 3.1.01.001"
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 3.1.01.001 - Account Name"
-msgstr ""
+msgstr "npr. 3.1.01.001 - Naziv konta"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
