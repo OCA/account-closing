@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 16:45+0000\n"
+"PO-Revision-Date: 2026-11-25 15:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
@@ -73,7 +73,7 @@ msgstr "<span>a</span>"
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "Account Range"
-msgstr ""
+msgstr "Intervallo conto"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
@@ -117,7 +117,7 @@ msgstr "Destinazione"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_id
 msgid "Destination Account"
-msgstr ""
+msgstr "Conto destinazione"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
@@ -137,7 +137,7 @@ msgstr "Nome visualizzato"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__account_end_id
 msgid "End Account"
-msgstr ""
+msgstr "Conto finale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_end
@@ -215,13 +215,13 @@ msgstr "Nessun conto trovato nell'intervallo selezionato."
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "Please enter a destination account code."
-msgstr ""
+msgstr "Inserire un codice conto destinazione."
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
 #: code:addons/account_fiscal_year_closing_range/wizards/mapping_range_wizard.py:0
 msgid "Please select a destination account."
-msgstr ""
+msgstr "Selezionare un conto destinazione."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__preview_account_ids
@@ -236,7 +236,7 @@ msgstr "Intervallo origine"
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__account_start_id
 msgid "Start Account"
-msgstr ""
+msgstr "Conto iniziale"
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,field_description:account_fiscal_year_closing_range.field_account_fiscalyear_closing_mapping__code_start
@@ -257,7 +257,7 @@ msgstr "Codice del conto dove verrà trasferito il saldo."
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "The account where the balance will be transferred to."
-msgstr ""
+msgstr "Conto dove verrà trasferito il saldo."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,help:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_code
@@ -265,11 +265,13 @@ msgid ""
 "The code of the destination account (e.g., 3.1.01.001). Used for templates, "
 "which are not tied to a single company."
 msgstr ""
+"Il codice del conto di destinazione (ad es. 3.1.01.001). Utilizzato per i "
+"modelli, che non sono vincolati a una singola azienda."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model.fields,help:account_fiscal_year_closing_range.field_fiscalyear_closing_range_wizard__dest_account_id
 msgid "The destination account where the balance will be transferred to."
-msgstr ""
+msgstr "Il conto di destinazione su cui verrà trasferito il saldo."
 
 #. module: account_fiscal_year_closing_range
 #. odoo-python
@@ -278,6 +280,8 @@ msgid ""
 "This wizard must be opened from a fiscal year closing configuration or "
 "template."
 msgstr ""
+"Questa procedura guidata deve essere aperta a partire da una configurazione "
+"o da un modello di chiusura dell'esercizio fiscale."
 
 #. module: account_fiscal_year_closing_range
 #: model:ir.model,name:account_fiscal_year_closing_range.model_fiscalyear_closing_range_wizard
@@ -289,12 +293,12 @@ msgstr ""
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 1.1.01.001"
-msgstr ""
+msgstr "es. 1.1.01.001"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 1.1.01.999"
-msgstr ""
+msgstr "es. 1.1.01.999"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
@@ -304,7 +308,7 @@ msgstr "es. 3.1.01.001"
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
 msgid "e.g. 3.1.01.001 - Account Name"
-msgstr ""
+msgstr "es. 3.1.01.001 - Nome conto"
 
 #. module: account_fiscal_year_closing_range
 #: model_terms:ir.ui.view,arch_db:account_fiscal_year_closing_range.view_account_fiscalyear_closing_mapping_range_wizard_form
