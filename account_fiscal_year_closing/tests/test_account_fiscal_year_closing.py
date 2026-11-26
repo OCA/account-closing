@@ -184,6 +184,83 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
         )
         return invoice
 
+    def test_unreconciled_non_receivable_payable_not_split_by_partner(self):
+        partners = self.env.ref("base.res_partner_1") | self.env.ref(
+            "base.res_partner_2"
+        )
+        for partner in partners:
+            move = self.env["account.move"].create(
+                {
+                    "move_type": "entry",
+                    "date": self.the_day,
+                    "journal_id": self.closing_journal.id,
+                    "line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "account_id": self.a_sale.id,
+                                "partner_id": partner.id,
+                                "debit": 0.0,
+                                "credit": 100.0,
+                            },
+                        ),
+                        (
+                            0,
+                            0,
+                            {
+                                "account_id": self.a_purchase.id,
+                                "partner_id": partner.id,
+                                "debit": 100.0,
+                                "credit": 0.0,
+                            },
+                        ),
+                    ],
+                }
+            )
+            move.action_post()
+        fy_closing = self.env["account.fiscalyear.closing"].create(
+            {
+                "name": "Closing fy by partner",
+                "year": 1998,
+                "date_start": self.start_of_this_year,
+                "date_end": self.end_of_this_year,
+                "date_opening": self.start_of_next_year,
+                "check_draft_moves": False,
+                "move_config_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Unreconciled income",
+                            "journal_id": self.closing_journal.id,
+                            "code": "UNR",
+                            "move_type": "closing",
+                            "closing_type_default": "unreconciled",
+                            "date": self.end_of_this_year,
+                            "sequence": 1,
+                            "mapping_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "src_accounts": self.a_sale.code,
+                                        "dest_account_id": self.a_bal_closing.id,
+                                    },
+                                ),
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+        fy_closing.button_calculate()
+        income_lines = fy_closing.move_ids.line_ids.filtered(
+            lambda line: line.account_id == self.a_sale
+        )
+        self.assertEqual(len(income_lines), 1)
+        self.assertAlmostEqual(income_lines.balance, 200.0)
+
     def test_account_closing(self):
         # create a supplier invoice
         supplier_invoice = self.create_simple_invoice(

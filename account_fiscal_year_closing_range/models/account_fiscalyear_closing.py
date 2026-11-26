@@ -61,7 +61,11 @@ class AccountFiscalyearClosingConfig(models.Model):
                 balance = 0.0
                 move_line = {}
 
-                if closing_type == "balance":
+                if closing_type == "balance" or (
+                    closing_type == "unreconciled"
+                    and account.account_type
+                    not in ("asset_receivable", "liability_payable")
+                ):
                     lines = account_map.account_lines_get(account)
                     balance, move_line = account_map.move_line_prepare(account, lines)
                     if move_line:
