@@ -268,15 +268,8 @@ class AccountCutoff(models.Model):
             amount_total += amount
 
         # add counter-part
-        counterpart_amount = self.company_currency_id.round(amount_total * -1)
-        movelines_to_create.append(
-            Command.create(
-                {
-                    "account_id": self.cutoff_account_id.id,
-                    "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
-                    "credit": counterpart_amount >= 0 and counterpart_amount or 0,
-                },
-            )
+        movelines_to_create += self._prepare_counterpart_moves(
+            to_provision, amount_total
         )
 
         res = {
@@ -287,6 +280,23 @@ class AccountCutoff(models.Model):
             "line_ids": movelines_to_create,
         }
         return res
+
+    def _prepare_counterpart_moves(self, to_provision, amount_total):
+        """Return the commands that create the counterpart lines of the
+        cut-off journal entry, balancing the provision lines whose total
+        amount is ``amount_total`` (< 0 means debit).
+        """
+        self.ensure_one()
+        counterpart_amount = self.company_currency_id.round(amount_total * -1)
+        return [
+            Command.create(
+                {
+                    "account_id": self.cutoff_account_id.id,
+                    "debit": counterpart_amount < 0 and counterpart_amount * -1 or 0,
+                    "credit": counterpart_amount >= 0 and counterpart_amount or 0,
+                },
+            )
+        ]
 
     def _prepare_provision_line(self, cutoff_line):
         """Convert a cutoff line to elements of a move line.
