@@ -215,6 +215,21 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
             "Customer invoice state is not out_invoice",
         )
 
+        # A cancelled invoice must not be taken into account by the closing.
+        # Its journal items stay in the database, so closing the receivable and
+        # payable accounts by partner used to pick them up and the closing move
+        # came out unbalanced.
+        cancelled_invoice = self.create_simple_invoice(
+            self.the_day, self.env.ref("base.res_partner_4"), "out_invoice"
+        )
+        cancelled_invoice.action_post()
+        cancelled_invoice.button_draft()
+        cancelled_invoice.button_cancel()
+        self.assertTrue(
+            (cancelled_invoice.state == "cancel"),
+            "Cancelled invoice state is not Cancelled",
+        )
+
         move_lines = self.move_line_obj.search([])
         account_types = move_lines.mapped("account_id.account_type")
         self.assertTrue(
@@ -248,11 +263,17 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
         )
         # Income
         inc_move_lines = self.move_line_obj.search(
-            [("account_id.account_type", "=", "income")]
+            [
+                ("account_id.account_type", "=", "income"),
+                ("move_id.state", "!=", "cancel"),
+            ]
         )
         # Expenses
         exp_move_lines = self.move_line_obj.search(
-            [("account_id.account_type", "=", "expense")]
+            [
+                ("account_id.account_type", "=", "expense"),
+                ("move_id.state", "!=", "cancel"),
+            ]
         )
         # Current Assets
         cas_move_lines = self.move_line_obj.search(
