@@ -394,3 +394,105 @@ class TestAccountFiscalYearClosing(AccountTestInvoicingCommon):
 
         posted = fy_closing.button_post()
         self.assertTrue(posted, "Fiscal Year closing is not posted!")
+
+    def test_post_reconciles_reversed_unreconciled_moves(self):
+        receivable = self.company_data["default_account_receivable"]
+        fy_closing = self.env["account.fiscalyear.closing"].create(
+            {
+                "name": "Closing fy with reversed moves",
+                "year": 1997,
+                "date_start": self.start_of_this_year,
+                "date_end": self.end_of_this_year,
+                "date_opening": self.start_of_next_year,
+                "check_draft_moves": False,
+            }
+        )
+        move_a = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": self.the_day,
+                "journal_id": self.closing_journal.id,
+                "fyc_id": fy_closing.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": receivable.id,
+                            "debit": 100.0,
+                            "credit": 0.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "debit": 0.0,
+                            "credit": 100.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        move_b = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": self.the_day,
+                "journal_id": self.closing_journal.id,
+                "fyc_id": fy_closing.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": receivable.id,
+                            "debit": 0.0,
+                            "credit": 100.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "debit": 100.0,
+                            "credit": 0.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        config_values = {
+            "fyc_id": fy_closing.id,
+            "journal_id": self.closing_journal.id,
+            "move_type": "closing",
+            "closing_type_default": "unreconciled",
+            "date": self.end_of_this_year,
+        }
+        self.env["account.fiscalyear.closing.config"].create(
+            {
+                **config_values,
+                "name": "Unreconciled A",
+                "code": "A",
+                "inverse": "B",
+                "sequence": 1,
+                "move_id": move_a.id,
+            }
+        )
+        self.env["account.fiscalyear.closing.config"].create(
+            {
+                **config_values,
+                "name": "Unreconciled B",
+                "code": "B",
+                "inverse": "A",
+                "sequence": 2,
+                "move_id": move_b.id,
+            }
+        )
+        fy_closing.button_post()
+        receivable_lines = (move_a.line_ids + move_b.line_ids).filtered(
+            lambda line: line.account_id == receivable
+        )
+        self.assertEqual(len(receivable_lines), 2)
+        self.assertTrue(all(receivable_lines.mapped("reconciled")))
